@@ -21,6 +21,7 @@ import com.robertx22.mmorpg.registers.RegisterCurioSlot;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
+import com.robertx22.network.PacketHandler;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
@@ -40,6 +41,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -78,7 +80,18 @@ public class Main {
     public Main() {
 	Main.instance = this;
 
+	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+	    IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+	    // ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, ()
+	    // -> GuiHandler::openGui);
+	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::clientSetup);
+	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::loadComplete);
+	    MinecraftForge.EVENT_BUS.addListener(ClientHandler::registerRenders);
+	});
+
 	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
 	eventBus.addListener(this::setup);
 	eventBus.addListener(this::enqueue);
 	eventBus.addListener(this::clientSetup);
@@ -144,7 +157,10 @@ public class Main {
 	CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class, new PlayerDeathItems.Storage(),
 		PlayerDeathItems.DefaultImpl.class);
 
-	ModMetadata modMeta = event.getModMetadata();
+	DeferredWorkQueue.runLater(() -> {
+	    PacketHandler.register(); // NetworkRegistry.createInstance
+
+	});
 
     }
 

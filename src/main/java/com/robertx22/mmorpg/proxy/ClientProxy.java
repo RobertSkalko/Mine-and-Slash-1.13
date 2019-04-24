@@ -21,6 +21,7 @@ import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -98,14 +99,8 @@ public class ClientProxy implements IProxy {
 
     }
 
-    public void RegisterModEntity(Item item, Class<? extends Entity> theclass, int id) {
-
-	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
-		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
-
-	RenderingRegistry.registerEntityRenderingHandler(theclass,
-		renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getInstance().getRenderItem()));
-
+    private static <T extends Entity> IRenderFactory<T> RegisterModEntity(final Item itemToRender) {
+	return manager -> new RenderSprite<>(manager, itemToRender, Minecraft.getInstance().getItemRenderer());
     }
 
     @Override
