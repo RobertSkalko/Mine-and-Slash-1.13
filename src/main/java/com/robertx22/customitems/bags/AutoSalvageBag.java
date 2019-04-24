@@ -25,7 +25,6 @@ import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 
-import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
@@ -75,11 +74,6 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     public float getBonusSalvageChance() {
 	return BonusSalvageValues.get(rarity);
-    }
-
-    @Override
-    public BaubleType getBaubleType(ItemStack itemstack) {
-	return BaubleType.BODY;
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {

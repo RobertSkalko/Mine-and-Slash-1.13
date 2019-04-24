@@ -1,12 +1,8 @@
 package com.robertx22.dimensions;
 
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProviderSurface;
-import net.minecraft.world.gen.ChunkGeneratorOverworld;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.common.DimensionManager;
+import net.minecraft.world.dimension.OverworldDimension;
 
-public abstract class BaseWorldProvider extends WorldProviderSurface implements IWP {
+public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
 
     public BaseWorldProvider(boolean nothing) {
 
@@ -16,18 +12,6 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
     public int Weight() {
 	return this.UncommonWeight;
 
-    }
-
-    @Override
-    public DimensionType getDimensionType() {
-	DimensionType type = null;
-
-	try {
-	    type = DimensionManager.getProviderType(this.getDimension());
-	} catch (IllegalArgumentException e) {
-	}
-
-	return type != null ? type : super.getDimensionType();
     }
 
     @Override
@@ -53,14 +37,4 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
 	return false;
     }
 
-    @Override
-    public String getSaveFolder() {
-	return "MineAndSlash_MapWorld" + this.getDimension();
-    }
-
-    @Override
-    public IChunkGenerator createChunkGenerator() {
-	return new ChunkGeneratorOverworld(world, world.rand.nextLong(), true, "");
-
-    }
 }
