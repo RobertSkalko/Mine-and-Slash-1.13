@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import javax.xml.ws.handler.MessageContext;
+
 import com.robertx22.customitems.gearitems.MyEntityArrow;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
@@ -19,11 +21,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public interface IProxy {
 
@@ -65,7 +62,7 @@ public interface IProxy {
      *
      * @param event the event
      */
-    void preInit(FMLPreInitializationEvent event);
+    void preInit();
 
     /**
      * Fml life cycle event for Initialization. This phase is good for registering
@@ -74,7 +71,7 @@ public interface IProxy {
      *
      * @param event the event
      */
-    void init(FMLInitializationEvent event);
+    void init();
 
     /**
      * Fml life cycle event Post Initialization. This phase is useful For doing
@@ -84,14 +81,14 @@ public interface IProxy {
      *
      * @param event the event
      */
-    void postInit(FMLPostInitializationEvent event);
+    void postInit();
 
     /**
      * Fml life cycle event. Server commands should be registered here.
      *
      * @param event the event
      */
-    void serverStarting(FMLServerStartingEvent event);
+    void serverStarting();
 
     /*
      * Thanks to CoolAlias for this tip!

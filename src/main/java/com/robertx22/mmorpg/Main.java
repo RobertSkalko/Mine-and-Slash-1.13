@@ -10,6 +10,7 @@ import com.robertx22.dimensions.ChestGenerator;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
+import com.robertx22.mmorpg.gui.GuiHandlerAll;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -36,14 +37,19 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -76,9 +82,22 @@ public class Main {
 
     }
 
+    @SubscribeEvent
+    public static void commonSetup(final FMLCommonSetupEvent event) {
+
+    }
+
+    @SubscribeEvent
+    public static void clientSetup(final FMLClientSetupEvent event) {
+
+    }
+
     public void preInit(FMLCommonSetupEvent event) {
 
-	Serialization.generateConfig(event);
+	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
+		() -> GuiHandlerAll::getClientGuiElement);
+
+	Serialization.generateConfig();
 
 	UniqueItemRegister.registerAll();
 
@@ -91,11 +110,11 @@ public class Main {
 	GearItemRegisters.register();
 
 	ItemOre.Register();
-	StartupRepair.preInitCommon(event);
-	StartupSalvage.preInitCommon(event);
-	StartupModify.preInitCommon(event);
-	StartupGearFactory.preInitCommon(event);
-	StartupMap.preInitCommon(event);
+	StartupRepair.preInitCommon();
+	StartupSalvage.preInitCommon();
+	StartupModify.preInitCommon();
+	StartupGearFactory.preInitCommon();
+	StartupMap.preInitCommon();
 
 	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
 	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
@@ -126,7 +145,6 @@ public class Main {
     @EventHandler
     public void init(FMLInitializationEvent event) {
 
-	RabbitGui.proxy.init();
 	proxy.init(event);
 
 	TestManager.RunAllTests();
@@ -151,13 +169,21 @@ public class Main {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
-	proxy.postInit(event);
-	RabbitGui.proxy.postInit();
+	proxy.postInit();
 
-	Serialization.generateConfig(event);
+	Serialization.generateConfig();
+	Serialization.loadConfig();
 
-	Serialization.loadConfig(event);
+    }
 
+    @SubscribeEvent
+    public static void serverSetup(final FMLDedicatedServerSetupEvent event) {
+
+	registerDims(event);
+
+	proxy.serverStarting();
+
+	CommandRegisters.Register();
     }
 
     @EventHandler
@@ -165,9 +191,9 @@ public class Main {
 
 	registerDims(event);
 
-	proxy.serverStarting(event);
+	proxy.serverStarting();
 
-	CommandRegisters.Register(event);
+	CommandRegisters.Register();
 
     }
 
@@ -183,7 +209,7 @@ public class Main {
 
     }
 
-    private void registerDims(FMLServerStartingEvent event) {
+    private void registerDims(FMLDedicatedServerSetupEvent event) {
 
 	String name = MapDatas.getLoc();
 	MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);

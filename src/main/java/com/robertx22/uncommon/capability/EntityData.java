@@ -35,7 +35,7 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -44,10 +44,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class EntityData {
@@ -184,16 +184,7 @@ public class EntityData {
 			new ICapabilitySerializable<NBTTagCompound>() {
 			    UnitData inst = new DefaultImpl();
 
-			    @Override
-			    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				return capability == Data;
-
-			    }
-
-			    @Override
-			    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-				return capability == Data ? Data.<T>cast(inst) : null;
-			    }
+			    final LazyOptional<UnitData> capability;
 
 			    @Override
 			    public NBTTagCompound serializeNBT() {
@@ -205,6 +196,11 @@ public class EntityData {
 				Data.getStorage().readNBT(Data, inst, null, nbt);
 			    }
 
+			    @Override
+			    public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+				return Data.orEmpty(cap, inst);
+			    }
+
 			});
 
 	    }
@@ -214,17 +210,18 @@ public class EntityData {
 
     public static class Storage implements IStorage<UnitData> {
 	@Override
-	public NBTBase writeNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side) {
 
 	    return instance.getNBT();
 	}
 
 	@Override
-	public void readNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side, NBTBase nbt) {
+	public void readNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side, INBTBase nbt) {
 
 	    instance.setNBT((NBTTagCompound) nbt);
 
 	}
+
     }
 
     public static class DefaultImpl implements UnitData {
@@ -468,7 +465,7 @@ public class EntityData {
 	public void syncToClient(EntityPlayer player) {
 	    if (unit != null) {
 		PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
-		Main.Network.sendTo(packet, (EntityPlayerMP) player);
+		Main.Network.senTo(packet, (EntityPlayerMP) player);
 	    }
 	}
 
@@ -595,24 +592,17 @@ public class EntityData {
 	@Override
 	public void onMobKill(IWorldData world) {
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
+	    try {
 
-			if (kills == null) {
-			    kills = new PlayerMapKillsData();
-			}
-
-			kills.onKill(world.getMap());
-
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
+		if (kills == null) {
+		    kills = new PlayerMapKillsData();
 		}
 
-	    };
-	    FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(noteThread);
+		kills.onKill(world.getMap());
+
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 
 	}
 

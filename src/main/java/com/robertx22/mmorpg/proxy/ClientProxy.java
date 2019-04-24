@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import javax.xml.ws.handler.MessageContext;
+
 import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
@@ -20,7 +22,6 @@ import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -31,18 +32,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ClientProxy implements IProxy {
     // functionality
 
     @Override
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit() {
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -61,7 +56,7 @@ public class ClientProxy implements IProxy {
     }
 
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void init() {
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -72,7 +67,7 @@ public class ClientProxy implements IProxy {
     }
 
     @Override
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit() {
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -86,7 +81,7 @@ public class ClientProxy implements IProxy {
     }
 
     @Override
-    public void serverStarting(FMLServerStartingEvent event) {
+    public void serverStarting() {
 	// This will never get called on client side
 
     }

@@ -72,6 +72,11 @@ repositories {
 	}
 	
 	 maven { url = "http://maven2.tterrag.com" } // AutoSave	
+	 
+	  maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+	
 	
 }
 
@@ -89,8 +94,8 @@ dependencies {
 
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Auto Nbt Saving, REQUIRED
-    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.10"
-
+    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Need for nbt saving
+	deobf 'top.theillusivec2.curios:curios:1.13.2-0.10' // like baubles
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import javax.xml.ws.handler.MessageContext;
+
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 
@@ -7,16 +9,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ServerProxy implements IProxy {
     @Override
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit() {
 
 	// DEBUG
 	System.out.println("on Server side");
@@ -24,17 +21,17 @@ public class ServerProxy implements IProxy {
     }
 
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void init() {
 
     }
 
     @Override
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit() {
 
     }
 
     @Override
-    public void serverStarting(FMLServerStartingEvent event) {
+    public void serverStarting() {
 
     }
 

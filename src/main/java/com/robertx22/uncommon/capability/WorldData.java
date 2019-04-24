@@ -114,7 +114,36 @@ public class WorldData {
     }
 
     public static ICapabilityProvider createProvider() {
-	return new DefaultImpl();
+	return new Provider();
+    }
+
+    public static class Provider implements ICapabilitySerializable<INBTBase> {
+
+	final LazyOptional<IWorldData> optional;
+	final IWorldData handler;
+
+	Provider() {
+	    this.handler = new Factory().call();
+	    this.optional = LazyOptional.of(() -> handler);
+	}
+
+	@SuppressWarnings("ConstantConditions")
+	@Override
+	public INBTBase serializeNBT() {
+	    return CuriosCapability.INVENTORY.writeNBT(handler, null);
+	}
+
+	@SuppressWarnings("ConstantConditions")
+	@Override
+	public void deserializeNBT(INBTBase nbt) {
+	    CuriosCapability.INVENTORY.readNBT(handler, null, nbt);
+	}
+
+	@Override
+	public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
     }
 
     public static class Storage implements IStorage<IWorldData> {
@@ -146,7 +175,7 @@ public class WorldData {
     static final String MINUTES_PASSED = "minutes_passed";
     static final String ISRESERVED = "is_reserved";
 
-    public static class DefaultImpl implements IWorldData, ICapabilitySerializable<INBTBase> {
+    public static class DefaultImpl implements IWorldData {
 	private NBTTagCompound nbt = new NBTTagCompound();
 
 	long mapDevicePos;
@@ -479,24 +508,6 @@ public class WorldData {
 	@Override
 	public boolean isOwner(EntityPlayer player) {
 	    return player.getUniqueID().toString().equals(this.owner);
-	}
-
-	@Override
-	public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	@Override
-	public INBTBase serializeNBT() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	@Override
-	public void deserializeNBT(INBTBase nbt) {
-	    // TODO Auto-generated method stub
-
 	}
 
     }

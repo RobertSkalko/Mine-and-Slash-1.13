@@ -21,9 +21,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class PlayerDeathItems {
@@ -53,17 +54,6 @@ public class PlayerDeathItems {
 			    IPlayerDrops inst = new DefaultImpl();
 
 			    @Override
-			    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				return capability == Data;
-
-			    }
-
-			    @Override
-			    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-				return capability == Data ? Data.<T>cast(inst) : null;
-			    }
-
-			    @Override
 			    public NBTTagCompound serializeNBT() {
 				return (NBTTagCompound) Data.getStorage().writeNBT(Data, inst, null);
 			    }
@@ -71,6 +61,11 @@ public class PlayerDeathItems {
 			    @Override
 			    public void deserializeNBT(NBTTagCompound nbt) {
 				Data.getStorage().readNBT(Data, inst, null, nbt);
+			    }
+
+			    @Override
+			    public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+				return cap == Data ? Data.<T>cast(inst) : null;
 			    }
 
 			});

@@ -17,7 +17,6 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Serialization {
@@ -41,7 +40,7 @@ public class Serialization {
 	return config_path + "CompatibleItems.txt";
     }
 
-    public static void loadConfig(FMLPostInitializationEvent event) {
+    public static void loadConfig() {
 
 	JsonReader reader;
 	try {
@@ -56,7 +55,7 @@ public class Serialization {
 	}
     }
 
-    public static void generateConfig(FMLPostInitializationEvent event) {
+    public static void generateConfig() {
 	genListOfUniqueItems();
 	genListOfItemTypes();
     }
