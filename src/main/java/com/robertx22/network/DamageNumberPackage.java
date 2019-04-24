@@ -6,9 +6,9 @@ import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class DamageNumberPackage {
@@ -35,53 +35,54 @@ public class DamageNumberPackage {
 
     }
 
-    public void fromBytes(DamageNumberPackage packet, ByteBuf buf) {
+    public static DamageNumberPackage decode(PacketBuffer buf) {
 
-	element = buf.getInt(1);
-	x = buf.getDouble(2);
-	y = buf.getDouble(3);
-	z = buf.getDouble(4);
-	height = buf.getFloat(5);
-	string = buf.getString(6);
-	isExp = buf.getBoolean(7);
+	DamageNumberPackage newpkt = new DamageNumberPackage();
 
-    }
+	newpkt.element = buf.getInt(1);
+	newpkt.x = buf.getDouble(2);
+	newpkt.y = buf.getDouble(3);
+	newpkt.z = buf.getDouble(4);
+	newpkt.height = buf.getFloat(5);
+	newpkt.isExp = buf.getBoolean(6);
 
-    @Override
-    public void toBytes(ByteBuf tag) {
+	newpkt.string = buf.readTextComponent().toString();
 
-	tag.setInt(1, element);
-	tag.putDouble("x", x);
-	tag.putDouble("y", y);
-	tag.putDouble("z", z);
-	tag.putFloat("height", height);
-	tag.putString("string", string);
-	tag.setBoolean("isExp", isExp);
-	ByteBufUtils.writeTag(buf, tag);
+	return newpkt;
 
     }
 
-    public static class Handler {
+    public static void encode(DamageNumberPackage packet, PacketBuffer tag) {
 
-	public void onMessage(final DamageNumberPackage pkt, Supplier<NetworkEvent.Context> ctx) {
+	tag.setInt(1, packet.element);
+	tag.setDouble(2, packet.x);
+	tag.setDouble(3, packet.y);
+	tag.setDouble(4, packet.z);
+	tag.setFloat(5, packet.height);
+	tag.setBoolean(6, packet.isExp);
 
-	    ctx.get().enqueueWork(() -> {
-		try {
+	tag.writeTextComponent(new TextComponentString(packet.string));
 
-		    if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
-			OnDisplayDamage.displayParticle(pkt);
+    }
 
-		    } else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
-			OnDisplayDamage.displayParticle(pkt);
-		    }
-		} catch (Exception e) {
-		    e.printStackTrace();
+    public static void handle(final DamageNumberPackage pkt, Supplier<NetworkEvent.Context> ctx) {
+
+	ctx.get().enqueueWork(() -> {
+	    try {
+
+		if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
+		    OnDisplayDamage.displayParticle(pkt);
+
+		} else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
+		    OnDisplayDamage.displayParticle(pkt);
 		}
-	    });
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	});
 
-	    ctx.get().setPacketHandled(true);
+	ctx.get().setPacketHandled(true);
 
-	}
     }
 
 }
