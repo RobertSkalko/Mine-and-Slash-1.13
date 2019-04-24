@@ -1,9 +1,6 @@
 package com.robertx22.customitems.gearitems.bases;
 
-import baubles.api.IBauble;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -11,12 +8,11 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public abstract class BaseBaublesItem extends Item implements IBauble, IGearItem {
+public abstract class BaseBaublesItem extends Item implements IGearItem {
 
     public BaseBaublesItem() {
 
-	this.setMaxStackSize(1);
-	this.setMaxDamage(0);
+	super(new Properties().maxStackSize(1));
 
     }
 
@@ -35,16 +31,6 @@ public abstract class BaseBaublesItem extends Item implements IBauble, IGearItem
 	 * ItemStack.EMPTY); } onEquipped(player.getHeldItem(hand), player); break; } }
 	 */
 	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-    }
-
-    @Override
-    public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-	player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 1.9f);
-    }
-
-    @Override
-    public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-	player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
     }
 
 }

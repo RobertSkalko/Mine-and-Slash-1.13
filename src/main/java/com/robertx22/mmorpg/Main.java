@@ -16,6 +16,8 @@ import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
+import com.robertx22.mmorpg.registers.RegisterCurioClient;
+import com.robertx22.mmorpg.registers.RegisterCurioSlot;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
@@ -44,12 +46,12 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModMetadata;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -76,20 +78,20 @@ public class Main {
     public Main() {
 	Main.instance = this;
 
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
-
-	IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-    }
-
-    @SubscribeEvent
-    public static void commonSetup(final FMLCommonSetupEvent event) {
+	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+	eventBus.addListener(this::setup);
+	eventBus.addListener(this::enqueue);
+	eventBus.addListener(this::clientSetup);
 
     }
 
-    @SubscribeEvent
-    public static void clientSetup(final FMLClientSetupEvent event) {
+    public void setup(final FMLCommonSetupEvent event) {
+	MinecraftForge.EVENT_BUS.register(this);
+    }
 
+    public void clientSetup(final FMLClientSetupEvent event) {
+
+	RegisterCurioClient.icons();
     }
 
     public void preInit(FMLCommonSetupEvent event) {
@@ -142,8 +144,12 @@ public class Main {
 
     }
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
+    private void enqueue(final InterModEnqueueEvent evt) {
+
+	RegisterCurioSlot.reg();
+    }
+
+    public void init(FMLDedicatedServerSetupEvent event) {
 
 	proxy.init(event);
 
@@ -166,7 +172,6 @@ public class Main {
 
     }
 
-    @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
 	proxy.postInit();
@@ -176,7 +181,6 @@ public class Main {
 
     }
 
-    @SubscribeEvent
     public static void serverSetup(final FMLDedicatedServerSetupEvent event) {
 
 	registerDims(event);
@@ -186,7 +190,6 @@ public class Main {
 	CommandRegisters.Register();
     }
 
-    @EventHandler
     public void start(FMLServerStartingEvent event) {
 
 	registerDims(event);
@@ -197,14 +200,14 @@ public class Main {
 
     }
 
-    @EventHandler
+    @SubscribeEvent
     public void stop(FMLServerStoppedEvent event) {
 	MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you switch saves you
 					 // also get dimensions from your last save, which isn't nice
 
     }
 
-    @EventHandler
+    @SubscribeEvent
     public void stopping(FMLServerStoppingEvent event) {
 
     }

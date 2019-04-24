@@ -63,7 +63,7 @@ public class HealthBarRenderer {
 
 	if (NeatConfig.showOnlyFocused) {
 	    Entity focused = HealthBarUtils.getEntityLookedAt(mc.player);
-	    if (focused != null && focused.hasCapability(EntityData.Data, null) && focused.isEntityAlive())
+	    if (focused != null && focused.hasCapability(EntityData.Data, null) && focused.isAlive())
 		try {
 		    renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class HealthBarRenderer {
 			&& entity.isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(),
 				renderingVector.getZ())
 			&& (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
-			&& entity.isEntityAlive() && entity.getRecursivePassengers().isEmpty())
+			&& entity.isAlive() && entity.getRecursivePassengers().isEmpty())
 		    renderHealthBar((EntityLivingBase) entity, partialTicks, cameraEntity);
 	}
     }

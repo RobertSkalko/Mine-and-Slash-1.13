@@ -1,7 +1,7 @@
 package com.robertx22.database.particle_gens;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.particles.RedstoneParticleData;
 
 public class NovaParticleGen extends ParticleGen {
 
@@ -17,7 +17,8 @@ public class NovaParticleGen extends ParticleGen {
 	    double ypos = y;
 	    double zpos = z + (radius * Math.cos(phi));
 
-	    Minecraft.getInstance().world.spawnParticle(EnumParticleTypes.REDSTONE, xpos, ypos, zpos, xVel, yVel, zVel);
+	    Minecraft.getInstance().world.addParticle(
+		    new RedstoneParticleData((float) xVel, (float) yVel, (float) zVel, 1F), xpos, ypos, zpos, 1, 1, 1);
 
 	}
     }

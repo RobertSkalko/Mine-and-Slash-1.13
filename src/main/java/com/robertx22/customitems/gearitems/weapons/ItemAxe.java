@@ -35,13 +35,13 @@ public class ItemAxe extends BaseWeaponItem implements IWeapon {
      * Check whether this Item can harvest the given Block
      */
     public boolean canHarvestBlock(IBlockState blockIn) {
-	return blockIn.getBlock() == Blocks.WEB;
+	return blockIn.getBlock() == Blocks.COBWEB;
     }
 
     public float getDestroySpeed(ItemStack stack, IBlockState state) {
 	Block block = state.getBlock();
 
-	if (block == Blocks.WEB) {
+	if (block == Blocks.COBWEB) {
 	    return 15.0F;
 	} else {
 	    Material material = state.getMaterial();

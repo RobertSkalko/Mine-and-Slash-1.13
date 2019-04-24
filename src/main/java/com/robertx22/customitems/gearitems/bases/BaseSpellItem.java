@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,10 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BaseSpellItem extends Item {
 
@@ -32,16 +32,15 @@ public abstract class BaseSpellItem extends Item {
     public abstract BaseSpell Spell();
 
     public BaseSpellItem() {
-	this.setMaxStackSize(1);
-	this.setMaxDamage(0);
+	super(new Properties().maxStackSize(0).defaultMaxDamage(0));
+
 	this.setRegistryName(GUID().toLowerCase());
-	this.setUnlocalizedName(this.getRegistryName().toString());
 
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
 	SpellItemData data = Spell.Load(stack);
 
@@ -51,29 +50,29 @@ public abstract class BaseSpellItem extends Item {
 
 	    ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + data.level);
-	    tooltip.add("");
+	    Tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + data.level, tooltip);
+	    Tooltip.add("", tooltip);
 
 	    boolean moreInfo = GuiScreen.isShiftKeyDown();
 
-	    tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ");
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)));
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)));
+	    Tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ", tooltip);
+	    Tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)), tooltip);
+	    Tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)), tooltip);
 
 	    if (spell.hasScalingValue()) {
-		tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)));
+		Tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)), tooltip);
 	    }
 
-	    tooltip.add("");
+	    Tooltip.add("", tooltip);
 
-	    tooltip.add(TextFormatting.AQUA + "Type: " + this.Spell().typeString());
+	    Tooltip.add(TextFormatting.AQUA + "Type: " + this.Spell().typeString(), tooltip);
 
-	    tooltip.add("");
+	    Tooltip.add("", tooltip);
 
-	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
+	    Tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data), tooltip);
 
-	    tooltip.add("");
-	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName(), tooltip);
 	}
     }
 

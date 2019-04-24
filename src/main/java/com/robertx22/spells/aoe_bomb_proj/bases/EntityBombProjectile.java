@@ -89,7 +89,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     public void checkOnKill(EntityLivingBase entity) {
 
-	if (entity.isEntityAlive() == false && this.getThrower() != null) {
+	if (entity.isAlive() == false && this.getThrower() != null) {
 
 	    if (this.getBuff().equals(SpellBuffType.Energy_Regen)) {
 		this.getThrower().addPotionEffect(new PotionEffect(EnergyRegenPotion.INSTANCE, 400, 2));
@@ -107,7 +107,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-	switch (result.typeOfHit) {
+	switch (result.type) {
 	case BLOCK:
 	    this.motionX = 0;
 	    this.motionY = 0;

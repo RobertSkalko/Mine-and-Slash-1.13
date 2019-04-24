@@ -54,7 +54,7 @@ public class OnTickLogic {
 
 		    if (data.regenTicks > TicksToRegen) {
 			data.regenTicks = 0;
-			if (player.isEntityAlive()) {
+			if (player.isAlive()) {
 
 			    IWorldData mapdata = Load.World(player.world);
 			    UnitData unit_capa = player.getCapability(EntityData.Data, null);

@@ -28,6 +28,7 @@ public class SpellAcidBomb extends BaseBombSpell {
 	public Elements element() {
 	    return Elements.Nature;
 	}
+
     }
 
     @Override

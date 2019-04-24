@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.mojang.datafixers.DataFixer;
 import com.robertx22.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
 import com.robertx22.uncommon.capability.EntityData;
@@ -18,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -58,6 +58,24 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     protected boolean shouldExcludeCaster() {
 	return true;
+    }
+
+    @Override
+    protected void registerData() {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    protected void readAdditional(NBTTagCompound compound) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    protected void writeAdditional(NBTTagCompound compound) {
+	// TODO Auto-generated method stub
+
     }
 
     @Override

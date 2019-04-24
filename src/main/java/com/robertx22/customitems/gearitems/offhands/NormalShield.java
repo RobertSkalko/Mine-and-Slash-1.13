@@ -6,17 +6,13 @@ import javax.annotation.Nullable;
 
 import com.robertx22.mmorpg.Ref;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber
 public class NormalShield extends ItemShield {
@@ -30,8 +26,7 @@ public class NormalShield extends ItemShield {
     ResourceLocation resource = new ResourceLocation("");
 
     public NormalShield(String name) {
-	super();
-	this.setMaxDamage(750);
+	super(new Properties().defaultMaxDamage(750));
 
 	resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
 
@@ -40,22 +35,6 @@ public class NormalShield extends ItemShield {
     @Override
     public boolean isShield(ItemStack stack, @Nullable EntityLivingBase entity) {
 	return true;
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	for (Item item : Items.values()) {
-	    registerModel(item);
-	}
-    }
-
-    public static void registerModel(Item item) {
-	registerModel(item, item.getRegistryName().getResourcePath());
-    }
-
-    public static void registerModel(Item item, String modelName) {
-	ModelLoader.setCustomModelResourceLocation(item, 0,
-		new ModelResourceLocation(Ref.MODID + ":" + modelName, "inventory"));
     }
 
 }

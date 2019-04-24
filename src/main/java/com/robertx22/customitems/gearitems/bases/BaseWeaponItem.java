@@ -8,28 +8,24 @@ import com.robertx22.uncommon.SLOC;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTier;
 import net.minecraft.item.ItemTool;
-import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWeapon {
-
-    static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 
     public abstract String Name();
 
     public BaseWeaponItem() {
-	super(Mat, EFFECTIVE_ON);
-	this.setMaxStackSize(1);
-	this.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
+
+	super(2F, 2F, ItemTier.DIAMOND, EFFECTIVE_ON, new Properties());
 
     }
 
     public static boolean checkDurability(EntityLivingBase attacker, ItemStack stack) {
 
-	if (stack.getItemDamage() > stack.getMaxDamage() - 20) {
+	if (stack.getDamage() > stack.getMaxDamage() - 20) {
 	    attacker.sendMessage(SLOC.chat("low_weapon_durability"));
 	    return false;
 

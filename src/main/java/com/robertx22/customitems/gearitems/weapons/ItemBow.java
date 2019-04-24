@@ -18,7 +18,6 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -71,7 +70,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 	if (entityLiving instanceof EntityPlayer) {
 
 	    EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-	    boolean flag = entityplayer.capabilities.isCreativeMode
+	    boolean flag = entityplayer.isCreative()
 		    || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 
 	    int i = this.getMaxItemUseDuration(stack) - timeLeft;
@@ -82,7 +81,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 	    float f = getArrowVelocity(i);
 
 	    if ((double) f >= 0.1D) {
-		boolean flag1 = entityplayer.capabilities.isCreativeMode;
+		boolean flag1 = entityplayer.isCreative();
 
 		if (!worldIn.isRemote) {
 
@@ -128,9 +127,8 @@ public class ItemBow extends BaseBow implements IWeapon {
 
 		worldIn.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
 			SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
-			1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+			1.0F / (this.random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-		entityplayer.addStat(StatList.getObjectUseStats(this));
 	    }
 	}
 

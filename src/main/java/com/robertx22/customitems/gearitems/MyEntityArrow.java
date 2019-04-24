@@ -41,7 +41,7 @@ public class MyEntityArrow extends EntityArrow {
     private int knockbackStrength;
 
     private MyEntityArrow(World worldIn) {
-	super(worldIn);
+	super(type, worldIn);
 
 	this.pickupStatus = MyEntityArrow.PickupStatus.DISALLOWED;
 
@@ -79,7 +79,7 @@ public class MyEntityArrow extends EntityArrow {
     protected void onHit(RayTraceResult raytraceResultIn) {
 
 	try {
-	    Entity entity = raytraceResultIn.entityHit;
+	    Entity entity = raytraceResultIn.entity;
 
 	    if (entity instanceof EntityLivingBase) { // apparenty ender dragons are sometimes not entityliving?
 
@@ -95,7 +95,7 @@ public class MyEntityArrow extends EntityArrow {
 
 			if (!this.world.isRemote) {
 
-			    this.setDead();
+			    this.remove();
 
 			    // super.onHit(raytraceResultIn);
 
