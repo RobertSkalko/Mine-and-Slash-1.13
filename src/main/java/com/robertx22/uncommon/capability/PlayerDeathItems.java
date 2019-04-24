@@ -13,7 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -51,21 +51,26 @@ public class PlayerDeathItems {
 
 		event.addCapability(new ResourceLocation(Ref.MODID, "PlayerDeathItems"),
 			new ICapabilitySerializable<NBTTagCompound>() {
-			    IPlayerDrops inst = new DefaultImpl();
+
+			    IPlayerDrops impl = new DefaultImpl();
+			    private final LazyOptional<IPlayerDrops> cap = LazyOptional.of(() -> impl);
 
 			    @Override
 			    public NBTTagCompound serializeNBT() {
-				return (NBTTagCompound) Data.getStorage().writeNBT(Data, inst, null);
+				return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
 			    }
 
 			    @Override
 			    public void deserializeNBT(NBTTagCompound nbt) {
-				Data.getStorage().readNBT(Data, inst, null, nbt);
+				Data.getStorage().readNBT(Data, impl, null, nbt);
 			    }
 
 			    @Override
 			    public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-				return cap == Data ? Data.<T>cast(inst) : null;
+				if (cap == Data) {
+				    return this.cap.cast();
+				}
+				return LazyOptional.empty();
 			    }
 
 			});
@@ -77,13 +82,13 @@ public class PlayerDeathItems {
 
     public static class Storage implements IStorage<IPlayerDrops> {
 	@Override
-	public NBTBase writeNBT(Capability<IPlayerDrops> capability, IPlayerDrops instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<IPlayerDrops> capability, IPlayerDrops instance, EnumFacing side) {
 
 	    return instance.getNBT();
 	}
 
 	@Override
-	public void readNBT(Capability<IPlayerDrops> capability, IPlayerDrops instance, EnumFacing side, NBTBase nbt) {
+	public void readNBT(Capability<IPlayerDrops> capability, IPlayerDrops instance, EnumFacing side, INBTBase nbt) {
 
 	    instance.setNBT((NBTTagCompound) nbt);
 
@@ -103,7 +108,7 @@ public class PlayerDeathItems {
 	    if (item_list != null) {
 		NBTTagCompound itemsnbt = new NBTTagCompound();
 		Writer.write(itemsnbt, item_list);
-		nbt.setTag(ITEM_LIST_OBJ, itemsnbt);
+		nbt.put(ITEM_LIST_OBJ, itemsnbt);
 	    }
 
 	    return nbt;
@@ -113,7 +118,7 @@ public class PlayerDeathItems {
 	@Override
 	public void setNBT(NBTTagCompound value) {
 
-	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(ITEM_LIST_OBJ);
+	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.get(ITEM_LIST_OBJ);
 	    if (object_nbt != null) {
 		item_list = new ItemListData();
 		Reader.read(object_nbt, item_list);

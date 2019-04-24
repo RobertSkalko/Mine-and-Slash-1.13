@@ -10,7 +10,7 @@ public class DimensionsContainer {
 
     ArrayList<DimensionConfigs> list = new ArrayList<DimensionConfigs>();
 
-    public boolean hasConfig(int id) {
+    public boolean hasConfig(String id) {
 
 	for (DimensionConfigs c : list) {
 	    if (id == c.DIMENSION_id) {
@@ -20,7 +20,7 @@ public class DimensionsContainer {
 	return false;
     }
 
-    public DimensionConfigs getConfig(int id) {
+    public DimensionConfigs getConfig(String id) {
 
 	for (DimensionConfigs c : list) {
 	    if (id == c.DIMENSION_id) {

@@ -36,12 +36,13 @@ public class DimensionConfigs {
 	this.MOB_LEVEL_ONE_AREA = area;
 	this.MINIMUM_MOB_LEVEL = min;
 	this.MAXIMUM_MOB_LEVEL = max;
+
     }
 
     @Config.Name("Dimension ID")
     @Config.LangKey("mmorpg.config.dimension_id")
     @Config.Comment("0 is overwold for example")
-    public int DIMENSION_id = 0;
+    public String DIMENSION_id = "";
 
     @Config.Name("Mob Level Per Distance")
     @Config.LangKey("mmorpg.config.mob_lvl_per_distance")

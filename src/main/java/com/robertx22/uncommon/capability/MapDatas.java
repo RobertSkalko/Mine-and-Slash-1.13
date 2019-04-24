@@ -41,7 +41,7 @@ public class MapDatas extends WorldSavedData {
 	if (list != null) {
 	    NBTTagCompound dimnbt = new NBTTagCompound();
 	    Writer.write(dimnbt, list);
-	    nbt.setTag(LOCATION, dimnbt);
+	    nbt.put(LOCATION, dimnbt);
 	}
 
 	return nbt;
@@ -50,7 +50,7 @@ public class MapDatas extends WorldSavedData {
     @Override
     public void read(NBTTagCompound value) {
 
-	NBTTagCompound dimnbt = (NBTTagCompound) value.getTag(LOCATION);
+	NBTTagCompound dimnbt = (NBTTagCompound) value.get(LOCATION);
 	if (dimnbt != null) {
 	    Reader.read(dimnbt, list);
 	}

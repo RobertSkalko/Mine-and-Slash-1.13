@@ -12,8 +12,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiInventoryModify extends TileGui {
@@ -46,7 +46,7 @@ public class GuiInventoryModify extends TileGui {
 	// Bind the image texture
 	Minecraft.getInstance().getTextureManager().bindTexture(texture);
 	// Draw the image
-	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+	GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 	drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 	// get cook progress as a double between 0 and 1

@@ -183,19 +183,18 @@ public class EntityData {
 	    if (can) {
 
 		event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
-		    UnitData inst = new DefaultImpl();
 
-		    private final UnitData impl = new DefaultImpl();
+		    UnitData impl = new DefaultImpl();
 		    private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
 
 		    @Override
 		    public NBTTagCompound serializeNBT() {
-			return (NBTTagCompound) Data.getStorage().writeNBT(Data, inst, null);
+			return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
 		    }
 
 		    @Override
 		    public void deserializeNBT(NBTTagCompound nbt) {
-			Data.getStorage().readNBT(Data, inst, null, nbt);
+			Data.getStorage().readNBT(Data, impl, null, nbt);
 		    }
 
 		    @Override
@@ -318,7 +317,8 @@ public class EntityData {
 	@Override
 	public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
 
-	    DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension);
+	    DimensionConfigs config = ModConfig.Dimensions.getAll()
+		    .getConfig(entity.dimension.getRegistryName().toString());
 
 	    int lvl = 1;
 

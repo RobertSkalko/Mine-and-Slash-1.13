@@ -83,11 +83,12 @@ public class Main {
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 	    IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	    // ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, ()
-	    // -> GuiHandler::openGui);
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::clientSetup);
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::loadComplete);
-	    MinecraftForge.EVENT_BUS.addListener(ClientHandler::registerRenders);
+	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
+		    () -> GuiHandlerAll::getClientGuiElement);
+
+	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::preInit);
+	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::loadComplete);
+	    MinecraftForge.EVENT_BUS.addListener(ClientProxy::regRenders);
 	});
 
 	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
