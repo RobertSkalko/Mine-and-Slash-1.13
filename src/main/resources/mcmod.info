@@ -11,6 +11,6 @@
   "credits": "Vazkii, Traverse Team, Dom_codes",
   "logoFile": "logo",
   "screenshots": [],
-  "dependencies": [patchouli]
+  "dependencies": [curios]
 }
 ]
