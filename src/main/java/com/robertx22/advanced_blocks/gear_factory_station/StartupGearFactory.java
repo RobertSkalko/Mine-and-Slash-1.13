@@ -7,8 +7,13 @@ import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 
 public class StartupGearFactory {
+
+    @ObjectHolder(Ref.MODID + ":gear_factory_station")
+    public static TileEntityType<?> GEAR_FACTORY;
+
     public static Block blockInventoryAdvanced;
     public static ItemBlock itemBlockInventoryAdvanced;
 

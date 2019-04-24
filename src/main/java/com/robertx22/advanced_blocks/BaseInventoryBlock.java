@@ -1,7 +1,5 @@
 package com.robertx22.advanced_blocks;
 
-import java.util.Random;
-
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.gui.GuiHandler;
 
@@ -15,10 +13,13 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class BaseInventoryBlock extends BlockContainer {
     protected BaseInventoryBlock(Properties prop) {
@@ -37,40 +38,29 @@ public abstract class BaseInventoryBlock extends BlockContainer {
     }
 
     @Override
-    public int quantityDropped(Random random) {
-	return 1;
+    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
+	return this;
     }
 
-    // This is where you can do something when the block is broken. In this case
-    // drop the inventory's contents
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    public void onPlayerDestroy(IWorld worldIn, BlockPos pos, IBlockState state) {
+	TileEntity tileEntity = worldIn.getTileEntity(pos);
+	if (tileEntity instanceof IInventory) {
+	    InventoryHelper.dropInventoryItems((World) worldIn, pos, (IInventory) tileEntity);
+	}
+    }
+
+    @Override
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
 	TileEntity tileEntity = worldIn.getTileEntity(pos);
 	if (tileEntity instanceof IInventory) {
 	    InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
 	}
-
-	super.breakBlock(worldIn, pos, state);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-	return this.getDefaultState();
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-	return 0;
     }
 
     @OnlyIn(Dist.CLIENT)
     public BlockRenderLayer getBlockLayer() {
 	return BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState iBlockState) {
-	return false;
     }
 
     @Override

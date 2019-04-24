@@ -11,7 +11,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class DamageNumberPackage {
+public class DmgNumPacket {
 
     public int element;
     public String string;
@@ -21,11 +21,11 @@ public class DamageNumberPackage {
     public float height;
     public boolean isExp;
 
-    public DamageNumberPackage() {
+    public DmgNumPacket() {
 
     }
 
-    public DamageNumberPackage(EntityLivingBase entity, Elements ele, String str) {
+    public DmgNumPacket(EntityLivingBase entity, Elements ele, String str) {
 	this.element = ele.i;
 	this.string = str;
 	this.x = entity.posX;
@@ -35,9 +35,9 @@ public class DamageNumberPackage {
 
     }
 
-    public static DamageNumberPackage decode(PacketBuffer buf) {
+    public static DmgNumPacket decode(PacketBuffer buf) {
 
-	DamageNumberPackage newpkt = new DamageNumberPackage();
+	DmgNumPacket newpkt = new DmgNumPacket();
 
 	newpkt.element = buf.getInt(1);
 	newpkt.x = buf.getDouble(2);
@@ -52,7 +52,7 @@ public class DamageNumberPackage {
 
     }
 
-    public static void encode(DamageNumberPackage packet, PacketBuffer tag) {
+    public static void encode(DmgNumPacket packet, PacketBuffer tag) {
 
 	tag.setInt(1, packet.element);
 	tag.setDouble(2, packet.x);
@@ -65,7 +65,7 @@ public class DamageNumberPackage {
 
     }
 
-    public static void handle(final DamageNumberPackage pkt, Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(final DmgNumPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
 	ctx.get().enqueueWork(() -> {
 	    try {

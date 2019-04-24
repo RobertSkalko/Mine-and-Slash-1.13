@@ -5,7 +5,7 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
-import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.network.DmgNumPacket;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -58,7 +58,7 @@ public class OnMobDeathDrops {
 			    int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim,
 				    exp_multi);
 
-			    DamageNumberPackage packet = new DamageNumberPackage(entity, Elements.Nature,
+			    DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature,
 				    "+" + DamageEffect.FormatNumber(exp) + " Exp!");
 			    packet.isExp = true;
 

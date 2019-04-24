@@ -1,7 +1,6 @@
 package com.robertx22.customitems.bags;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.robertx22.customitems.ItemSingle;
 import com.robertx22.db_lists.CreativeTabList;
@@ -15,7 +14,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.SPacketCollectItem;
@@ -31,6 +30,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -65,27 +65,41 @@ public abstract class BaseBagItem extends Item {
 	return new InvProvider();
     }
 
-    private static class InvProvider implements ICapabilitySerializable<NBTBase> {
+    private static class InvProvider implements ICapabilitySerializable<INBTBase> {
 
 	private final IItemHandler inv = new ItemStackHandler(size);
 
 	@Override
-	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-	    if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
+	public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+	    if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(inv, null);
 	    else
 		return null;
 	}
 
 	@Override
-	public NBTBase serializeNBT() {
+	public INBTBase serializeNBT() {
 	    return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
 	}
 
 	@Override
-	public void deserializeNBT(NBTBase nbt) {
+	public void deserializeNBT(INBTBase nbt) {
 	    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
+
 	}
+
+	/*
+	 * @Override public <T> T getCapability(@Nonnull Capability<T>
+	 * capability, @Nullable EnumFacing facing) { if (capability ==
+	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return
+	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv); else return null; }
+	 * 
+	 * @Override public NBTBase serializeNBT() { return
+	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null); }
+	 * 
+	 * @Override public void deserializeNBT(NBTBase nbt) {
+	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt); }
+	 */
     }
 
     @Override
@@ -96,9 +110,9 @@ public abstract class BaseBagItem extends Item {
 
 	    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
 
-	    stack.getTag().removeTag(TAG_ITEMS);
+	    stack.getTag().remove(TAG_ITEMS);
 
-	    if (stack.getTag().getSize() == 0)
+	    if (stack.getTag().size() == 0)
 		stack.setTag(null);
 	}
     }

@@ -9,14 +9,13 @@ import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
-import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
@@ -41,12 +40,11 @@ public class ClientProxy implements IProxy {
 	// DEBUG
 	System.out.println("on Client side");
 
-	MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
 	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 
 	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new DmgNumPacket());
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new MessagePackage.Handler());

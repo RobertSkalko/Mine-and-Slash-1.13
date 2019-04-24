@@ -22,7 +22,6 @@ import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import baubles.api.BaublesApi;
@@ -42,7 +41,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -93,32 +91,32 @@ public class AutoSalvageBag extends Item implements IBauble {
 
 		GearItemData gear = Gear.Load(stack);
 		if (gear != null) {
-		    nbt.setInt("gear", gear.Rarity);
+		    nbt.putInt("gear", gear.Rarity);
 		    successChat(player);
 		}
 		SpellItemData spell = Spell.Load(stack);
 		if (spell != null) {
-		    nbt.setInt("spell", spell.rarity);
+		    nbt.putInt("spell", spell.rarity);
 		    successChat(player);
 		}
 		MapItemData map = Map.Load(stack);
 		if (map != null) {
-		    nbt.setInt("map", map.rarity);
+		    nbt.putInt("map", map.rarity);
 		    successChat(player);
 		}
 		RuneItemData rune = Rune.Load(stack);
 		if (rune != null) {
-		    nbt.setInt("rune", rune.rarity);
+		    nbt.putInt("rune", rune.rarity);
 		    successChat(player);
 		}
 
 		bag.setTag(nbt);
 
 	    } else {
-		nbt.setInt("gear", -1);
-		nbt.setInt("spell", -1);
-		nbt.setInt("map", -1);
-		nbt.setInt("rune", -1);
+		nbt.putInt("gear", -1);
+		nbt.putInt("spell", -1);
+		nbt.putInt("map", -1);
+		nbt.putInt("rune", -1);
 
 		player.sendMessage(new TextComponentString("Bag Config Cleared"));
 	    }
@@ -261,7 +259,7 @@ public class AutoSalvageBag extends Item implements IBauble {
     private int getGear(NBTTagCompound nbt) {
 
 	if (nbt != null) {
-	    if (nbt.hasKey("gear")) {
+	    if (nbt.contains("gear")) {
 		return nbt.getInt("gear");
 	    }
 	}
@@ -271,7 +269,7 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     private int getSpell(NBTTagCompound nbt) {
 	if (nbt != null) {
-	    if (nbt.hasKey("spell")) {
+	    if (nbt.contains("spell")) {
 		return nbt.getInt("spell");
 	    }
 	}
@@ -281,7 +279,7 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     private int getRune(NBTTagCompound nbt) {
 	if (nbt != null) {
-	    if (nbt.hasKey("rune")) {
+	    if (nbt.contains("rune")) {
 		return nbt.getInt("rune");
 	    }
 	}
@@ -292,7 +290,7 @@ public class AutoSalvageBag extends Item implements IBauble {
     private int getMap(NBTTagCompound nbt) {
 	if (nbt != null) {
 
-	    if (nbt.hasKey("map")) {
+	    if (nbt.contains("map")) {
 		return nbt.getInt("map");
 	    }
 	}
@@ -348,11 +346,6 @@ public class AutoSalvageBag extends Item implements IBauble {
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	Rarities.Items.forEach((x) -> Items.put(x.Rank(), new AutoSalvageBag(x.Rank())));
 	Items.values().forEach((x) -> event.getRegistry().register(x));
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	Items.values().forEach((x) -> RegisterUtils.registerRender(x));
     }
 
 }

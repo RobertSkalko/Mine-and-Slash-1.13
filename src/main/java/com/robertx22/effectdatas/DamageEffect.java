@@ -14,7 +14,7 @@ import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.network.DmgNumPacket;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.CLOC;
@@ -116,7 +116,7 @@ public class DamageEffect extends EffectData
 
 	    if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
 
-		Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+		Main.Network.sendTo(new DmgNumPacket(Target, this.Element, FormatDamageNumber(this)),
 			(EntityPlayerMP) Source);
 	    }
 	}

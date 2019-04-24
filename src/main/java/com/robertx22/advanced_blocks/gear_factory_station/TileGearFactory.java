@@ -133,7 +133,7 @@ public class TileGearFactory extends BaseTile implements IInteractionObject {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearFactory() {
-	super(type);
+	super(StartupGearFactory.GEAR_FACTORY);
 	itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 	clear();
     }
@@ -364,19 +364,19 @@ public class TileGearFactory extends BaseTile implements IInteractionObject {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.setByte("Slot", (byte) i);
+		dataForThisSlot.putByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.setTag("Items", dataForAllSlots);
+	parentNBTTagCompound.put("Items", dataForAllSlots);
 
 	// Save everything else
-	parentNBTTagCompound.setShort("CookTime", cookTime);
+	parentNBTTagCompound.putShort("CookTime", cookTime);
 
-	parentNBTTagCompound.setInt("fuel", this.points);
+	parentNBTTagCompound.putInt("fuel", this.points);
 	return parentNBTTagCompound;
     }
 

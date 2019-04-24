@@ -9,4 +9,18 @@ public enum Elements {
 	this.i = i;
     }
 
+    public static Elements byNumber(int i) {
+
+	if (i == 1) {
+	    return Fire;
+	} else if (i == 2) {
+	    return Water;
+	} else if (i == 3) {
+	    return Thunder;
+	} else if (i == 4) {
+	    return Nature;
+	}
+	return None;
+    }
+
 }

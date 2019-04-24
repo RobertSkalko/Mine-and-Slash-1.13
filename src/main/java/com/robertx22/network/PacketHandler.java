@@ -6,8 +6,8 @@ public class PacketHandler {
     public static void register() {
 	int disc = 0;
 
-	Main.Network.registerMessage(disc++, DamageNumberPackage.class, DamageNumberPackage::encode,
-		DamageNumberPackage::decode, DamageNumberPackage::handle);
+	Main.Network.registerMessage(disc++, DmgNumPacket.class, DmgNumPacket::encode,
+		DmgNumPacket::decode, DmgNumPacket::handle);
 
     }
 }

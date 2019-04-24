@@ -18,7 +18,7 @@ import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
 import com.robertx22.mmorpg.registers.RegisterCurioClient;
 import com.robertx22.mmorpg.registers.RegisterCurioSlot;
-import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
@@ -87,6 +87,7 @@ public class Main {
 
     public void setup(final FMLCommonSetupEvent event) {
 	MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
@@ -120,13 +121,16 @@ public class Main {
 
 	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
 	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
-	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
+	MinecraftForge.EVENT_BUS.register(new DmgNumPacket());
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
 	Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Dist.CLIENT);
 	Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Dist.CLIENT);
-	Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Dist.CLIENT);
+
+	Network.registerMessage(2, DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode,
+		DmgNumPacket::handle);
+
 	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Dist.CLIENT);
 	Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Dist.CLIENT);
 	Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Dist.CLIENT);
