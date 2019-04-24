@@ -10,18 +10,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.template.ITemplateProcessor;
-import net.minecraft.world.gen.structure.template.Template.BlockInfo;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.gen.feature.template.ITemplateProcessor;
+import net.minecraft.world.gen.feature.template.Template.BlockInfo;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class AddChestLoot implements ITemplateProcessor {
 
     @Override
-    public BlockInfo processBlock(World world, BlockPos pos, BlockInfo blockInfoIn) {
+    public BlockInfo processBlock(IBlockReader world, BlockPos pos, BlockInfo blockInfoIn) {
 
 	if (blockInfoIn.blockState.getBlock().equals(Blocks.CHEST.getDefaultState().getBlock())) {
 
-	    IWorldData data = Load.World(world);
+	    if (world instanceof ICapabilityProvider == false) {
+		return blockInfoIn;
+	    }
+
+	    IWorldData data = Load.World((ICapabilityProvider) world);
 
 	    List<ItemStack> items = MasterLootGen.gen(5F, data, data.getLevel());
 

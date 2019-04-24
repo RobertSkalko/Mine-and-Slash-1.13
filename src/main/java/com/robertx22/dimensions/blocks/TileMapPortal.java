@@ -3,58 +3,59 @@ package com.robertx22.dimensions.blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TileMapPortal extends TileEntity {
 
-	public int id;
+    public int id;
 
-	public TileMapPortal(int id) {
-		this.id = id;
+    public TileMapPortal(int id) {
+	super(type);
+	this.id = id;
+    }
+
+    public TileMapPortal() {
+
+    }
+
+    int ticks = 0;
+
+    public void ontick() {
+	ticks++;
+    }
+
+    public boolean readyToTeleport() {
+
+	if (ticks > 80) {
+	    ticks = 0;
+	    return true;
 	}
+	return false;
 
-	public TileMapPortal() {
+    }
 
-	}
+    @OnlyIn(Dist.CLIENT)
+    public boolean shouldRenderFace(EnumFacing face) {
+	return face == EnumFacing.UP;
+    }
 
-	int ticks = 0;
+    @Override
+    public void read(NBTTagCompound nbt) {
+	super.read(nbt);
 
-	public void ontick() {
-		ticks++;
-	}
+	id = nbt.getInt("dim_Id");
+	ticks = nbt.getInt("ticks");
+    }
 
-	public boolean readyToTeleport() {
+    @Override
+    public NBTTagCompound write(NBTTagCompound nbt) {
+	super.write(nbt); // The super call is required to save and load the tile loc
 
-		if (ticks > 80) {
-			ticks = 0;
-			return true;
-		}
-		return false;
+	nbt.putInt("dim_Id", id);
+	nbt.putInt("ticks", ticks);
 
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public boolean shouldRenderFace(EnumFacing face) {
-		return face == EnumFacing.UP;
-	}
-
-	@Override
-	public void read(NBTTagCompound nbt) {
-		super.read(nbt);
-
-		id = nbt.getInt("dim_Id");
-		ticks = nbt.getInt("ticks");
-	}
-
-	@Override
-	public NBTTagCompound write(NBTTagCompound nbt) {
-		super.write(nbt); // The super call is required to save and load the tile loc
-
-		nbt.setInt("dim_Id", id);
-		nbt.setInt("ticks", ticks);
-
-		return nbt;
-	}
+	return nbt;
+    }
 
 }

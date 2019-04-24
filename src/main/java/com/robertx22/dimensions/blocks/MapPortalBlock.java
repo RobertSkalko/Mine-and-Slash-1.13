@@ -18,14 +18,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.registries.ObjectHolder;
 
 @EventBusSubscriber
 public class MapPortalBlock extends BlockEndPortal {
@@ -35,10 +36,8 @@ public class MapPortalBlock extends BlockEndPortal {
 
     public MapPortalBlock() {
 
-	super(Material.PORTAL);
+	super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(100F));
 	this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
-	this.setUnlocalizedName(Ref.MODID + ":map_portal_block");
-	this.setHardness(100F);
 
     }
 
@@ -49,10 +48,10 @@ public class MapPortalBlock extends BlockEndPortal {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(IBlockState state, World world, BlockPos pos, Entity entity) {
 	try {
 	    if (world.isRemote == false && entity instanceof EntityPlayer) {
-		if (!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss()) {
+		if (entity.isNonBoss()) {
 
 		    TileEntity en = world.getTileEntity(pos);
 
@@ -128,7 +127,7 @@ public class MapPortalBlock extends BlockEndPortal {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntity createNewTileEntity(IBlockReader worldIn) {
 	return new TileMapPortal();
     }
 

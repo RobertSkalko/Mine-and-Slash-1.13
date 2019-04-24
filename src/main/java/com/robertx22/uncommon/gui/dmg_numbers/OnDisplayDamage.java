@@ -16,8 +16,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class OnDisplayDamage {
 
@@ -34,17 +34,17 @@ public class OnDisplayDamage {
 	double motionZ = world.rand.nextGaussian() * 0.02;
 	Particle damageIndicator = new DamageParticle(data.element, data.string, world, data.x, data.y + data.height,
 		data.z, motionX, motionY, motionZ);
-	Minecraft.getInstance().effectRenderer.addEffect(damageIndicator);
+	Minecraft.getInstance().gameRenderer.addEffect(damageIndicator);
     }
 
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public RayTraceResult rayTrace(Entity e, double blockReachDistance, float partialTicks) {
-	Vec3d vec3d = e.getPositionEyes(partialTicks);
+	Vec3d vec3d = e.getEyePosition(partialTicks);
 	Vec3d vec3d1 = e.getLook(partialTicks);
-	Vec3d vec3d2 = vec3d.addVector(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance,
+	Vec3d vec3d2 = vec3d.add(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance,
 		vec3d1.z * blockReachDistance);
-	return mc.world.rayTraceBlocks(vec3d, vec3d2, false, true, true);
+	return mc.world.rayTraceBlocks(vec3d, vec3d2);
     }
 
     public RayTraceResult getMouseOver(float partialTicks) {
@@ -60,7 +60,7 @@ public class OnDisplayDamage {
 
 	objectMouseOver = rayTrace(observer, reachDistance, partialTicks);
 
-	Vec3d observerPositionEyes = observer.getPositionEyes(partialTicks);
+	Vec3d observerPositionEyes = observer.getEyePosition(partialTicks);
 
 	double distance = reachDistance;
 
@@ -69,19 +69,21 @@ public class OnDisplayDamage {
 	}
 
 	Vec3d lookVector = observer.getLook(partialTicks);
-	Vec3d lookVectorFromEyePosition = observerPositionEyes.addVector(lookVector.x * reachDistance,
+	Vec3d lookVectorFromEyePosition = observerPositionEyes.add(lookVector.x * reachDistance,
 		lookVector.y * reachDistance, lookVector.z * reachDistance);
 	this.pointedEntity = null;
 	Vec3d hitVector = null;
-	List<Entity> list = this.mc.world.getEntitiesInAABBexcluding(
-		observer, observer.getBoundingBox().expand(lookVector.x * reachDistance,
-			lookVector.y * reachDistance, lookVector.z * reachDistance).expand(1.0D, 1.0D, 1.0D),
-		EntitySelectors.NOT_SPECTATING);
+	List<Entity> list = this.mc.world
+		.getEntitiesInAABBexcluding(observer,
+			observer.getBoundingBox()
+				.expand(lookVector.x * reachDistance, lookVector.y * reachDistance,
+					lookVector.z * reachDistance)
+				.expand(1.0D, 1.0D, 1.0D),
+			EntitySelectors.NOT_SPECTATING);
 	double d2 = distance;
 
 	for (Entity entity1 : list) {
-	    AxisAlignedBB axisalignedbb = entity1.getBoundingBox()
-		    .grow((double) entity1.getCollisionBorderSize());
+	    AxisAlignedBB axisalignedbb = entity1.getBoundingBox().grow((double) entity1.getCollisionBorderSize());
 	    RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(observerPositionEyes,
 		    lookVectorFromEyePosition);
 

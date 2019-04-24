@@ -42,15 +42,25 @@ public class ChestGenerator implements IWorldGenerator {
 
 		BlockPos pos1 = new BlockPos(x, 0, z);
 
-		int y = world.getTopSolidOrLiquidBlock(pos1).getY();
-
-		BlockPos pos = new BlockPos(x, y, z);
+		BlockPos pos = getTopSolidBlock(world, pos1);
 
 		genChest(world, pos, loot);
 
 	    }
 
 	}
+
+    }
+
+    public static BlockPos getTopSolidBlock(World world, BlockPos pos) {
+
+	int y = world.getHeight();
+
+	while (world.isAirBlock(new BlockPos(pos.getX(), y, pos.getZ())) && y > -1) {
+	    y--;
+	}
+
+	return new BlockPos(pos.getX(), y, pos.getZ());
 
     }
 
