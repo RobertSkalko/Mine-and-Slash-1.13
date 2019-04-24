@@ -1,6 +1,6 @@
 package com.robertx22.customitems.misc;
 
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -20,9 +20,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber
 public class ItemMapBackPortal extends Item {
@@ -32,10 +32,9 @@ public class ItemMapBackPortal extends Item {
 
     public ItemMapBackPortal() {
 
+	super(new Properties().group(CreativeTabs.MyModTab));
+
 	RegisterItemUtils.RegisterItemName(this, "map_back_portal");
-	this.setMaxStackSize(1);
-	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabList.MyModTab);
 
     }
 

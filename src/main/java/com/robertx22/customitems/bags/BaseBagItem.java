@@ -3,7 +3,7 @@ package com.robertx22.customitems.bags;
 import javax.annotation.Nonnull;
 
 import com.robertx22.customitems.ItemSingle;
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
@@ -54,7 +54,7 @@ public abstract class BaseBagItem extends Item {
 
     public BaseBagItem(String name) {
 
-	super(new ItemSingle().group(CreativeTabList.MyModTab));
+	super(new ItemSingle().group(CreativeTabs.MyModTab));
 	RegisterItemUtils.RegisterItemName(this, name);
 
     }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
@@ -29,7 +29,7 @@ public class ItemSocket extends Item {
 	this.rarity = rarity;
 
 	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabList.MyModTab);
+	this.setCreativeTab(CreativeTabs.MyModTab);
 
 	RegisterItemUtils.RegisterItemName(this, "socket" + rarity);
     }

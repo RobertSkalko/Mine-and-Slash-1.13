@@ -7,16 +7,14 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.blocks.BlockOre;
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,8 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -53,7 +49,7 @@ public class ItemOre extends Item implements IWeighted {
 
     public ItemOre(String name, int rarity) {
 
-	super(new Properties().group(CreativeTabList.CurrencyTab));
+	super(new Properties().group(CreativeTabs.CurrencyTab));
 
 	RegisterItemUtils.RegisterItemName(this, name);
 
@@ -91,21 +87,6 @@ public class ItemOre extends Item implements IWeighted {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
 	Blocks.values().forEach((x) -> event.getRegistry().register(x));
 
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-
-	ItemOres.values().forEach((x) -> RegisterUtils.registerRender(x));
-	ItemBlocks.values().forEach((x) -> RegisterUtils.registerRender(x));
-
-	for (Block block : Blocks.values()) {
-	    Item item = Item.getItemFromBlock((Block) block);
-	    ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(),
-		    "inventory");
-	    ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-
-	}
     }
 
 }

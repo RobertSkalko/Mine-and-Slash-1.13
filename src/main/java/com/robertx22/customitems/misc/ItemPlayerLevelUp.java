@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.BaseItem;
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
@@ -38,7 +38,7 @@ public class ItemPlayerLevelUp extends BaseItem {
 
     public ItemPlayerLevelUp() {
 	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabList.CurrencyTab);
+	this.setCreativeTab(CreativeTabs.CurrencyTab);
 
 	RegisterItemUtils.RegisterItemName(this, "player_levelup");
     }

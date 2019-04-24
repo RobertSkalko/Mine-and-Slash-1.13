@@ -6,22 +6,22 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class ItemCapacitor extends Item {
@@ -29,10 +29,10 @@ public class ItemCapacitor extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemCapacitor(int rarity) {
-	this.rarity = rarity;
 
-	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabList.CurrencyTab);
+	super(new Properties().group(CreativeTabs.CurrencyTab));
+
+	this.rarity = rarity;
 
 	RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
     }
@@ -49,11 +49,12 @@ public class ItemCapacitor extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
-	tooltip.add(CLOC.tooltip("capacitor"));
+	Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
 
-	tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x");
+	Tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x", tooltip);
 
     }
 
@@ -61,11 +62,6 @@ public class ItemCapacitor extends Item {
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemCapacitor(x.Rank())));
 	Items.values().forEach((x) -> event.getRegistry().register(x));
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	Items.values().forEach((x) -> RegisterUtils.registerRender(x));
     }
 
 }

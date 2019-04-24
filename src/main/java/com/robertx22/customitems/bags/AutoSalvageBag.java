@@ -8,7 +8,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.ISalvagable;
@@ -61,7 +61,7 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     public AutoSalvageBag(int rarity) {
 
-	super(new Properties().group(CreativeTabList.MyModTab));
+	super(new Properties().group(CreativeTabs.MyModTab));
 
 	this.rarity = rarity;
 

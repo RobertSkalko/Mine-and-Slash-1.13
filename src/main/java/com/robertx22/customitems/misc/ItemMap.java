@@ -17,17 +17,19 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemMap extends Item {
@@ -35,7 +37,8 @@ public class ItemMap extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
 	MapItemData data = Map.Load(stack);
 
@@ -43,42 +46,43 @@ public class ItemMap extends Item {
 
     }
 
-    public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
+    public static List<ITextComponent> showTooltip(MapItemData data, List<ITextComponent> tooltip) {
 
 	if (data != null) {
 
 	    ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + +data.level);
-	    tooltip.add("");
+	    Tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + +data.level, tooltip);
+	    Tooltip.add("", tooltip);
 
 	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
 	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
 	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
 
-	    tooltip.add("");
+	    Tooltip.add("", tooltip);
 
 	    try {
-		tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().locName());
+		Tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().locName(),
+			tooltip);
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
 
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier);
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier, tooltip);
 
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes);
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes, tooltip);
 
-	    tooltip.add("");
-	    tooltip.add(
-		    TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%");
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%",
+		    tooltip);
 
-	    tooltip.add("");
-	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName(), tooltip);
 
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"));
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"), tooltip);
 
 	}
 
@@ -86,7 +90,8 @@ public class ItemMap extends Item {
 
     }
 
-    private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
+    private static void addAffixTypeToTooltip(MapItemData data, List<ITextComponent> tooltip,
+	    AffectedEntities affected) {
 
 	List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
 
@@ -102,7 +107,7 @@ public class ItemMap extends Item {
 	    str = CLOC.word("mob_affixes");
 	}
 
-	tooltip.add(TextFormatting.GREEN + str);
+	Tooltip.add(TextFormatting.GREEN + str, tooltip);
 
 	for (MapAffixData affix : affixes) {
 
@@ -111,7 +116,7 @@ public class ItemMap extends Item {
 		for (String statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(),
 			data.level, false)) {
 
-		    tooltip.add(" * " + TextFormatting.RED + statstring);
+		    Tooltip.add(" * " + TextFormatting.RED + statstring, tooltip);
 		}
 
 	    }
@@ -161,6 +166,7 @@ public class ItemMap extends Item {
     }
 
     public ItemMap() {
+	super(new Properties());
 
     }
 

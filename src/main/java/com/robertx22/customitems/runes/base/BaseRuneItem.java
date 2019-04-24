@@ -39,14 +39,16 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect {
 
@@ -60,8 +62,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     public abstract BaseRuneItem byRarity(int rar);
 
     public BaseRuneItem(int rarity) {
-	this.setMaxDamage(0);
-	this.setMaxStackSize(1);
+	super(new Properties().maxStackSize(1).defaultMaxDamage(0));
 	this.rarity = rarity;
 
     }
@@ -103,41 +104,42 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
 	RuneItemData rune = Rune.Load(stack);
 
 	if (rune != null) {
 
-	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + rune.level);
+	    Tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + rune.level, tooltip);
 
 	    RuneRarity rar = rune.GetRarity();
 
 	    if (rune.armor != null) {
-		tooltip.add(CLOC.tooltip("stats_on_armor") + ":");
+		Tooltip.add(CLOC.tooltip("stats_on_armor") + ":", tooltip);
 		for (String str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    tooltip.add(str);
+		    Tooltip.add(str, tooltip);
 		}
-		tooltip.add("");
+		Tooltip.add("", tooltip);
 	    }
 	    if (rune.weapon != null) {
 
-		tooltip.add(CLOC.tooltip("stats_on_weapon") + ":");
+		Tooltip.add(CLOC.tooltip("stats_on_weapon") + ":", tooltip);
 		for (String str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    tooltip.add(str);
+		    Tooltip.add(str, tooltip);
 		}
 	    }
 	    if (rune.jewerly != null) {
 
-		tooltip.add("");
-		tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":");
+		Tooltip.add("", tooltip);
+		Tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":", tooltip);
 		for (String str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    tooltip.add(str);
+		    Tooltip.add(str, tooltip);
 		}
-		tooltip.add("");
+		Tooltip.add("", tooltip);
 	    }
 
-	    tooltip.add(CLOC.word("rarity") + ": " + rune.GetRarity().Color() + rune.GetRarity().locName());
+	    Tooltip.add(CLOC.word("rarity") + ": " + rune.GetRarity().Color() + rune.GetRarity().locName(), tooltip);
 
 	}
 

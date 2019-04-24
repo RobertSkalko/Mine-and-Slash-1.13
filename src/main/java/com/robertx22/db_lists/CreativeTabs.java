@@ -7,7 +7,7 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabList {
+public class CreativeTabs {
 
     public static final ItemGroup MyModTab = new ItemGroup(Ref.MODID + "_main") {
 
