@@ -6,7 +6,6 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +17,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +37,7 @@ public class ItemMapBackPortal extends Item {
     }
 
     @Override
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
 	try {
 	    if (!worldIn.isRemote && entityIn instanceof EntityPlayer) {
@@ -57,20 +55,20 @@ public class ItemMapBackPortal extends Item {
 		    if (pos.distanceSq(entityIn.getPosition()) > 2) {
 
 			nbt.putBoolean("porting", false);
-			nbt.setInt("ticks", 0);
+			nbt.putInt("ticks", 0);
 
 			entityIn.sendMessage(SLOC.chat("teleport_canceled"));
 
 		    } else {
 
-			if (nbt.hasKey("ticks")) {
+			if (nbt.contains("ticks")) {
 
 			    int ticks = nbt.getInt("ticks");
-			    nbt.setInt("ticks", ticks + 1);
+			    nbt.putInt("ticks", ticks + 1);
 
 			    if (ticks > 100) {
 
-				nbt.setInt("ticks", 0);
+				nbt.putInt("ticks", 0);
 				nbt.putBoolean("porting", false);
 
 				IWorldData data = Load.World(worldIn);
@@ -80,7 +78,7 @@ public class ItemMapBackPortal extends Item {
 
 			    }
 			} else {
-			    nbt.setInt("ticks", 1);
+			    nbt.putInt("ticks", 1);
 			}
 
 		    }
@@ -106,7 +104,7 @@ public class ItemMapBackPortal extends Item {
 			}
 
 			player.getHeldItem(hand).getTag().putBoolean("porting", true);
-			player.getHeldItem(hand).getTag().setLong("pos", player.getPosition().toLong());
+			player.getHeldItem(hand).getTag().putLong("pos", player.getPosition().toLong());
 
 			player.sendMessage(SLOC.chat("teleport_begin"));
 
@@ -129,11 +127,6 @@ public class ItemMapBackPortal extends Item {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	event.getRegistry().register(new ItemMapBackPortal());
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
     }
 
 }

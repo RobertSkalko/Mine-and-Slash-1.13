@@ -28,13 +28,13 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 	super.addInformation(stack, worldIn, tooltip, flagIn);
 
-	tooltip.add("");
-	tooltip.add(TextFormatting.GOLD + CLOC.word("bonus_success_rate") + ": " + this.bonusSuccessChance() + "%");
-	tooltip.add(TextFormatting.GOLD + CLOC.word("major_success_bonus") + ": " + this.critOnSuccessChance() + "%");
-	tooltip.add(TextFormatting.GOLD + CLOC.word("major_failure_chance") + ": " + this.majorFailureChance() + "%");
+	Tooltip.add("");
+	Tooltip.add(TextFormatting.GOLD + CLOC.word("bonus_success_rate") + ": " + this.bonusSuccessChance() + "%");
+	Tooltip.add(TextFormatting.GOLD + CLOC.word("major_success_bonus") + ": " + this.critOnSuccessChance() + "%");
+	Tooltip.add(TextFormatting.GOLD + CLOC.word("major_failure_chance") + ": " + this.majorFailureChance() + "%");
 
     }
 

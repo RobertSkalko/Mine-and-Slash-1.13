@@ -12,21 +12,21 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
@@ -36,45 +36,40 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     public ItemAwakenRuneWord() {
 
+	super(new Properties().maxStackSize(64).defaultMaxDamage(0));
+
 	RegisterItemUtils.RegisterItemName(this, "awaken_runeword");
-	this.setMaxStackSize(64);
-	this.setMaxDamage(0);
-	// this.setCreativeTab(CreativeTabList.MyModTab);
 
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
 	if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
-	    tooltip.add("");
-	    tooltip.add(CLOC.word("runeword") + ":");
+	    Tooltip.add("", tooltip);
+	    Tooltip.add(CLOC.word("runeword") + ":", tooltip);
 
 	    String word = this.getWord(stack);
 
 	    RuneWord runeword = RuneWords.All.get(word);
 
-	    tooltip.add(TextFormatting.GOLD + runeword.locName());
+	    Tooltip.add(TextFormatting.GOLD + runeword.locName(), tooltip);
 
-	    tooltip.add(TextFormatting.GREEN + runeword.getRuneWordComboString());
+	    Tooltip.add(TextFormatting.GREEN + runeword.getRuneWordComboString(), tooltip);
 
-	    tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size());
+	    Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);
 
-	    tooltip.add("");
+	    Tooltip.add("", tooltip);
 	}
-	tooltip.add(CLOC.tooltip("place_in_modify"));
-	tooltip.add(CLOC.tooltip("unlocks_runeword_combo"));
+	Tooltip.add(CLOC.tooltip("place_in_modify"), tooltip);
+	Tooltip.add(CLOC.tooltip("unlocks_runeword_combo"), tooltip);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	event.getRegistry().register(new ItemAwakenRuneWord());
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
     }
 
     @Override
@@ -103,7 +98,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     public String getWord(ItemStack stack) {
 
-	if (stack != null && stack.hasTag() && stack.getTag().hasKey("runeword")) {
+	if (stack != null && stack.hasTag() && stack.getTag().contains("runeword")) {
 	    return stack.getTag().getString("runeword");
 	}
 

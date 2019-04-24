@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public abstract class BaseItem extends Item {
 
-    public BaseItem() {
-	super(new Properties());
+    public BaseItem(Properties prop) {
+	super(prop);
     }
 
     public ItemStack EmptyOrDecrease(ItemStack stack) {

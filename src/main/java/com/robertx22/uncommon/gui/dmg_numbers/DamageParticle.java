@@ -71,7 +71,7 @@ public class DamageParticle extends Particle {
 	GL11.glScaled(this.particleScale * 0.008D, this.particleScale * 0.008D, this.particleScale * 0.008D);
 	GL11.glScaled(this.scale, this.scale, this.scale);
 
-	OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 0.003662109F);
+	OpenGlHelper.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
 	GL11.glEnable(3553);
 	GL11.glDisable(3042);
 	GL11.glDepthMask(true);

@@ -13,7 +13,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,14 +22,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ObjectHolder;
 
 @EventBusSubscriber
 public class ItemNewbieGearBag extends BaseItem {
@@ -38,8 +38,7 @@ public class ItemNewbieGearBag extends BaseItem {
     public static final Item ITEM = null;
 
     public ItemNewbieGearBag() {
-	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabs.CurrencyTab);
+	super(new Properties().group(CreativeTabs.MyModTab));
 
 	RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
     }
@@ -89,19 +88,15 @@ public class ItemNewbieGearBag extends BaseItem {
 	event.getRegistry().register(new ItemNewbieGearBag());
     }
 
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
-    }
-
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	    ITooltipFlag flagIn) {
 
-	tooltip.add(CLOC.tooltip("newbie_gear_bag"));
+	Tooltip.add(CLOC.tooltip("newbie_gear_bag"), tooltip);
 
-	tooltip.add(CLOC.lore("newbie_gear_bag1"));
-	tooltip.add(CLOC.lore("newbie_gear_bag2"));
+	Tooltip.add(CLOC.lore("newbie_gear_bag1"), tooltip);
+	Tooltip.add(CLOC.lore("newbie_gear_bag2"), tooltip);
 
     }
 

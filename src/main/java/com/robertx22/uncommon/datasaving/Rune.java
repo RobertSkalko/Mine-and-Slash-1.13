@@ -21,8 +21,8 @@ public class Rune {
 	}
 
 	RuneItemData data = null;
-	if (stack.getTag().hasKey(LOC)) {
-	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().getTag(LOC);
+	if (stack.getTag().contains(LOC)) {
+	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().get(LOC);
 	    data = new RuneItemData();
 	    Reader.read(nbt, data);
 	}
@@ -44,8 +44,8 @@ public class Rune {
 	    NBTTagCompound object_nbt = new NBTTagCompound();
 	    Writer.write(object_nbt, gear);
 	    NBTTagCompound new_nbt = stack.getTag();
-	    new_nbt.setTag(LOC, object_nbt);
-	    new_nbt.setInt("rarity", gear.rarity);
+	    new_nbt.put(LOC, object_nbt);
+	    new_nbt.putInt("rarity", gear.rarity);
 	    stack.setTag(new_nbt);
 
 	}

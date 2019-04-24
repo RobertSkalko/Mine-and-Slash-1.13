@@ -55,7 +55,7 @@ public class OnItemOnGroundParticles {
 	    for (EntityItem en : p.world.getEntitiesWithinAABB(EntityItem.class, box)) {
 
 		ItemStack stack = en.getItem();
-		if (stack.hasTag() && stack.getTag().hasKey("rarity")) {
+		if (stack.hasTag() && stack.getTag().contains("rarity")) {
 
 		    int rarity = stack.getTag().getInt("rarity");
 

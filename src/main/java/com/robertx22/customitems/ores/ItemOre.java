@@ -61,7 +61,7 @@ public class ItemOre extends Item implements IWeighted {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
 	    ITooltipFlag flagIn) {
 
-	tooltip.add(new TextComponentString(CLOC.tooltip("ore")));
+	Tooltip.add(new TextComponentString(CLOC.tooltip("ore")));
 
     }
 

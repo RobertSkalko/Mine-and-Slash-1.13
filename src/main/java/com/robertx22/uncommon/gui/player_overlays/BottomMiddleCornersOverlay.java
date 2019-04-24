@@ -14,23 +14,27 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
     public void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
 	    UnitData data) {
 	// ENERGY
-	int x = event.getResolution().getScaledWidth() / 2 + this.TEXTURE_WIDTH - 5;
-	int y = event.getResolution().getScaledHeight() - 16 - this.TEXTURE_HEIGHT;
+
+	int height = Minecraft.getInstance().mainWindow.getScaledHeight();
+	int width = Minecraft.getInstance().mainWindow.getScaledHeight();
+
+	int x = width / 2 + this.TEXTURE_WIDTH - 5;
+	int y = height - 16 - this.TEXTURE_HEIGHT;
 
 	this.DrawBar(mc, gui, unit, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, false, data, x,
 		y);
 
 	// MANA
-	x = event.getResolution().getScaledWidth() / 2 + this.TEXTURE_WIDTH - 5;
-	y = event.getResolution().getScaledHeight() - 15;
+	x = width / 2 + this.TEXTURE_WIDTH - 5;
+	y = height - 15;
 
 	this.DrawBar(mc, gui, unit, manatexturepath, data.getCurrentMana(), unit.manaData().Value, false, data, x, y);
 
 	// MANA
 
 	// HEALTH
-	x = event.getResolution().getScaledWidth() / 2 - this.TEXTURE_WIDTH * 2 + 5;
-	y = event.getResolution().getScaledHeight() - 16 - this.TEXTURE_HEIGHT;
+	x = width / 2 - this.TEXTURE_WIDTH * 2 + 5;
+	y = height - 16 - this.TEXTURE_HEIGHT;
 
 	this.DrawBar(mc, gui, unit, healthtexturepath, unit.health().CurrentValue(entity, unit),
 		unit.healthData().Value, false, data, x, y);
@@ -38,8 +42,8 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
 	// HEALTH
 
 	// EXP
-	x = event.getResolution().getScaledWidth() / 2 - this.TEXTURE_WIDTH * 2 + 5;
-	y = event.getResolution().getScaledHeight() - 15;
+	x = width / 2 - this.TEXTURE_WIDTH * 2 + 5;
+	y = height - 15;
 
 	this.DrawBar(mc, gui, unit, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), true, data,
 		x, y);

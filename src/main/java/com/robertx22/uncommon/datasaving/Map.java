@@ -18,8 +18,8 @@ public class Map {
 	    return null;
 	}
 	MapItemData data = null;
-	if (stack.getTag().hasKey(LOC)) {
-	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().getTag(LOC);
+	if (stack.getTag().contains(LOC)) {
+	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().get(LOC);
 	    data = new MapItemData();
 	    Reader.read(nbt, data);
 	}
@@ -41,7 +41,7 @@ public class Map {
 	    NBTTagCompound object_nbt = new NBTTagCompound();
 	    Writer.write(object_nbt, gear);
 	    NBTTagCompound new_nbt = stack.getTag();
-	    new_nbt.setTag(LOC, object_nbt);
+	    new_nbt.put(LOC, object_nbt);
 	    stack.setTag(new_nbt);
 
 	}

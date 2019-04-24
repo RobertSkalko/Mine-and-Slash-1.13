@@ -185,6 +185,7 @@ public class Main {
 
     }
 
+    @SubscribeEvent
     public static void serverSetup(final FMLDedicatedServerSetupEvent event) {
 
 	registerDims(event);
@@ -194,6 +195,7 @@ public class Main {
 	CommandRegisters.Register();
     }
 
+    @SubscribeEvent
     public void start(FMLServerStartingEvent event) {
 
 	registerDims(event);
@@ -216,10 +218,10 @@ public class Main {
 
     }
 
-    private void registerDims(FMLDedicatedServerSetupEvent event) {
+    private void registerDims(FMLServerStartingEvent event) {
 
 	String name = MapDatas.getLoc();
-	MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
+	MapDatas data = (MapDatas) event.getServer().getWorlds([0].getMapStorage().getOrLoadData(MapDatas.class, name);
 	if (data == null) {
 	    event.getServer().worlds[0].getMapStorage().setData(name, new MapDatas(name));
 	    data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
@@ -228,7 +230,7 @@ public class Main {
 	data.registerDimensions();
     }
 
-    @EventHandler
+    @SubscribeEvent
     public static void onWorldLoad(FMLServerStartedEvent event) {
 	WorldServer world = DimensionManager.getWorld(0); // default world
 

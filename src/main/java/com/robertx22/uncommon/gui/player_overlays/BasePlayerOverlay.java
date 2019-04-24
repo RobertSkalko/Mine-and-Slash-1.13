@@ -30,7 +30,7 @@ public abstract class BasePlayerOverlay {
     public void DrawBar(Minecraft mc, Gui gui, Unit unit, ResourceLocation res, float current, float max, boolean isExp,
 	    UnitData data, int x, int y) {
 
-	GlStateManager.color(1F, 1F, 1F, 1F);
+	GlStateManager.color4f(1F, 1F, 1F, 1F);
 	mc.getTextureManager().bindTexture(res);
 	gui.drawTexturedModalRect(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
 	int barwidth = (int) (((float) current / max * 100));
@@ -52,7 +52,7 @@ public abstract class BasePlayerOverlay {
 	float text_x = x + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2;
 	float text_y = y + TEXTURE_HEIGHT / 2 - mc.fontRenderer.FONT_HEIGHT / 2 + 0.5F;
 
-	mc.fontRenderer.drawString(str, text_x, text_y, Color.LIGHT_GRAY.getRGB(), true);
+	mc.fontRenderer.drawString(str, text_x, text_y, Color.LIGHT_GRAY.getRGB());
 
     }
 

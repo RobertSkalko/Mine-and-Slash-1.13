@@ -104,7 +104,7 @@ public abstract class BaseBagItem extends Item {
 
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-	if (stack.getTag() != null && stack.getTag().hasKey(TAG_ITEMS)) {
+	if (stack.getTag() != null && stack.getTag().contains(TAG_ITEMS)) {
 	    NBTTagList oldData = stack.getTag().getList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND);
 	    IItemHandler newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
