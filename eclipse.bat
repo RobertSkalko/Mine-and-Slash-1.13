@@ -1,1 +1,1 @@
-cmd /k gradlew.bat genEclipseRuns
+cmd /k gradlew.bat eclipse

@@ -65,9 +65,7 @@ repositories {
 	
 	maven { url = "http://maven2.tterrag.com" } // AutoSave	
 	 
-	maven {
-        url = "https://maven.theillusivec4.top/"
-    }
+	maven {  url = "https://maven.theillusivec4.top/" } // curios  
 	
 	maven {
         name = "CurseForge"
@@ -84,10 +82,9 @@ configurations {
 }
 
 dependencies {
- 
-    minecraft "net.minecraftforge:forge:${version_forge}"
-	//deobf "top.theillusivec4.curios:curios:${version_curios}"
-	deobf 'curios:curios:${version_curios}'
+
+	minecraft "net.minecraftforge:forge:${version_forge}"	
+	compile "top.theillusivec4.curios:curios:${version_curios}"
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:${version_autosave}" // Auto Nbt Saving, REQUIRED
     embed "info.loenwind.autosave:AutoSave:${version_autosave}" // Need for nbt saving		
