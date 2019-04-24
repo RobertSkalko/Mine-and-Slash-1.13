@@ -33,11 +33,11 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-	if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && staff != null) {
+	if (result.entity != null && result.entity instanceof EntityLivingBase && staff != null) {
 
 	    if (!world.isRemote) {
 		try {
-		    EntityLivingBase target = (EntityLivingBase) result.entityHit;
+		    EntityLivingBase target = (EntityLivingBase) result.entity;
 
 		    ItemStaff staffclass = (ItemStaff) staff.getItem();
 
@@ -54,7 +54,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
 	if (!this.world.isRemote) {
 	    this.world.setEntityState(this, (byte) 3);
-	    this.setDead();
+	    this.remove();
 	}
 
     }
@@ -62,7 +62,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     @Override
     public void onUpdate() {
 
-	super.onUpdate();
+	super.tick();
 
 	if (world.isRemote) {
 	    for (int i = 0; i < 5; i++) {
@@ -75,7 +75,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 	}
 
 	if (this.ticksExisted > 20) {
-	    this.setDead();
+	    this.remove();
 	}
     }
 

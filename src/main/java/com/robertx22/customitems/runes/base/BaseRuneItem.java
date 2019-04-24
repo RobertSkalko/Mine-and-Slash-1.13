@@ -102,7 +102,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 	RuneItemData rune = Rune.Load(stack);

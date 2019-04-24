@@ -26,7 +26,7 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 	super.addInformation(stack, worldIn, tooltip, flagIn);

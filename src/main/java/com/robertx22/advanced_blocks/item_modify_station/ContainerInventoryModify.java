@@ -135,7 +135,7 @@ public class ContainerInventoryModify extends Container {
     // (id and data) are the same two
     // values given to sendWindowProperty. In this case we are using fields so we
     // just pass them to the tileEntity.
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void updateProgressBar(int id, int data) {
 	tileInventory.setField(id, data);

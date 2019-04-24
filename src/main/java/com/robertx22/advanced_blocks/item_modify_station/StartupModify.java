@@ -52,7 +52,7 @@ public class StartupModify {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public static void preInitClientOnly() {
 		// This step is necessary in order to make your block render properly when it is
 		// an item (i.e. in the inventory

@@ -61,15 +61,15 @@ public class ParticlePackage implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
 	NBTTagCompound tag = new NBTTagCompound();
-	tag.setBoolean("isGen", isGenerator);
-	tag.setString("name", name);
-	tag.setDouble("x", x);
-	tag.setDouble("y", y);
-	tag.setDouble("z", z);
-	tag.setDouble("xVel", xVel);
-	tag.setDouble("yVel", yVel);
-	tag.setDouble("zVel", zVel);
-	tag.setDouble("radius", radius);
+	tag.putBoolean("isGen", isGenerator);
+	tag.putString("name", name);
+	tag.putDouble("x", x);
+	tag.putDouble("y", y);
+	tag.putDouble("z", z);
+	tag.putDouble("xVel", xVel);
+	tag.putDouble("yVel", yVel);
+	tag.putDouble("zVel", zVel);
+	tag.putDouble("radius", radius);
 	tag.setInt("amount", amount);
 	ByteBufUtils.writeTag(buf, tag);
 

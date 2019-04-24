@@ -37,7 +37,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class HealthBarRenderer {
 
     Minecraft mc = Minecraft.getInstance();
@@ -77,7 +77,7 @@ public class HealthBarRenderer {
 		if (entity != null && entity instanceof EntityLivingBase && entity != mc.player
 			&& entity.isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(),
 				renderingVector.getZ())
-			&& (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
+			&& (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getBoundingBox()))
 			&& entity.isAlive() && entity.getRecursivePassengers().isEmpty())
 		    renderHealthBar((EntityLivingBase) entity, partialTicks, cameraEntity);
 	}

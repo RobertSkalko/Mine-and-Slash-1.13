@@ -37,7 +37,7 @@ public class ItemSocket extends Item {
     int rarity;
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 	tooltip.add(CLOC.tooltip("socketable_item"));

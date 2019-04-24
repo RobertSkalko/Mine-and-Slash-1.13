@@ -241,14 +241,14 @@ public class EntityData {
 
 	@Override
 	public NBTTagCompound getNBT() {
-	    nbt.setFloat(MANA, mana);
-	    nbt.setFloat(ENERGY, energy);
+	    nbt.putFloat(MANA, mana);
+	    nbt.putFloat(ENERGY, energy);
 	    nbt.setInt(LEVEL, level);
 	    nbt.setInt(EXP, exp);
 	    nbt.setInt(RARITY, rarity);
-	    nbt.setString(UUID, uuid);
-	    nbt.setString(NAME, name);
-	    nbt.setBoolean(MOB_SAVED_ONCE, true);
+	    nbt.putString(UUID, uuid);
+	    nbt.putString(NAME, name);
+	    nbt.putBoolean(MOB_SAVED_ONCE, true);
 	    nbt.setInt(CURRENT_MAP_ID, currentMapId);
 
 	    if (unit != null) {

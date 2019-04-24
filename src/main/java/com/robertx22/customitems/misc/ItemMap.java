@@ -34,7 +34,7 @@ public class ItemMap extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 	MapItemData data = Map.Load(stack);

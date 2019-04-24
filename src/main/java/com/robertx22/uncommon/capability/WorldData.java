@@ -198,16 +198,16 @@ public class WorldData {
 	public NBTTagCompound getNBT() {
 	    nbt.setInt(TIER, tier);
 	    nbt.setInt(LEVEL, level);
-	    nbt.setBoolean(IS_MAP_WORLD, isMap);
-	    nbt.setBoolean(SET_FOR_DELETE, setForDelete);
-	    nbt.setString(OWNER, owner);
-	    nbt.setBoolean(IS_INIT, isInit);
+	    nbt.putBoolean(IS_MAP_WORLD, isMap);
+	    nbt.putBoolean(SET_FOR_DELETE, setForDelete);
+	    nbt.putString(OWNER, owner);
+	    nbt.putBoolean(IS_INIT, isInit);
 	    nbt.setInt(ORIGINAL_DIM, originalDimension);
 	    nbt.setInt(MAP_DIM, mapDimension);
-	    nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
-	    nbt.setString(SAVE_NAME, saveName);
+	    nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
+	    nbt.putString(SAVE_NAME, saveName);
 	    nbt.setInt(MINUTES_PASSED, minutesPassed);
-	    nbt.setBoolean(ISRESERVED, reserved);
+	    nbt.putBoolean(ISRESERVED, reserved);
 
 	    if (mapdata != null) {
 		NBTTagCompound tag = new NBTTagCompound();

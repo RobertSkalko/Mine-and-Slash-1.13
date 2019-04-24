@@ -58,12 +58,11 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-	if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && effect != null
-		&& data != null) {
+	if (result.entity != null && result.entity instanceof EntityLivingBase && effect != null && data != null) {
 	    if (world.isRemote) {
 		SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
 	    }
-	    EntityLivingBase living = (EntityLivingBase) result.entityHit;
+	    EntityLivingBase living = (EntityLivingBase) result.entity;
 
 	    if (!entitiesHit.contains(living)) {
 		effect.Activate(data, living);
@@ -74,7 +73,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
 	} else {
 	    if (world.isRemote) {
-		SoundUtils.playSound(this, SoundEvents.BLOCK_CLOTH_HIT, 0.7F, 0.9F);
+		SoundUtils.playSound(this, SoundEvents.BLOCK_STONE_HIT, 0.7F, 0.9F);
 	    }
 	}
 
@@ -83,7 +82,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 										  // mobs in the way and damage
 										  // them all
 		this.world.setEntityState(this, (byte) 3);
-		this.setDead();
+		this.remove();
 	    }
 
 	}
@@ -94,7 +93,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     @Override
     public void onUpdate() {
 
-	super.onUpdate();
+	super.tick();
 
 	if (world.isRemote) {
 

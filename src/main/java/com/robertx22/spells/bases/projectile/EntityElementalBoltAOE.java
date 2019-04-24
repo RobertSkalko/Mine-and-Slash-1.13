@@ -49,7 +49,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	if (!this.world.isRemote) {
 	    this.world.setEntityState(this, (byte) 3);
-	    this.setDead();
+	    this.remove();
 	}
 
     }

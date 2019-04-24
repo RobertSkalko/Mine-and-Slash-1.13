@@ -44,7 +44,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 	if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
@@ -96,7 +96,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	if (nbt == null) {
 	    nbt = new NBTTagCompound();
 	}
-	nbt.setString("runeword", word.GUID());
+	nbt.putString("runeword", word.GUID());
 	stack.setTag(nbt);
 
     }

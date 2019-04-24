@@ -38,7 +38,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
     @Override
     public void onUpdate() {
 
-	super.onUpdate();
+	super.tick();
 
     }
 

@@ -48,7 +48,7 @@ public class ItemCapacitor extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 	tooltip.add(CLOC.tooltip("capacitor"));

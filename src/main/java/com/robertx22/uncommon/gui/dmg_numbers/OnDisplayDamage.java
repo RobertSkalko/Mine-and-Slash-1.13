@@ -38,7 +38,7 @@ public class OnDisplayDamage {
     }
 
     @Nullable
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public RayTraceResult rayTrace(Entity e, double blockReachDistance, float partialTicks) {
 	Vec3d vec3d = e.getPositionEyes(partialTicks);
 	Vec3d vec3d1 = e.getLook(partialTicks);
@@ -74,13 +74,13 @@ public class OnDisplayDamage {
 	this.pointedEntity = null;
 	Vec3d hitVector = null;
 	List<Entity> list = this.mc.world.getEntitiesInAABBexcluding(
-		observer, observer.getEntityBoundingBox().expand(lookVector.x * reachDistance,
+		observer, observer.getBoundingBox().expand(lookVector.x * reachDistance,
 			lookVector.y * reachDistance, lookVector.z * reachDistance).expand(1.0D, 1.0D, 1.0D),
 		EntitySelectors.NOT_SPECTATING);
 	double d2 = distance;
 
 	for (Entity entity1 : list) {
-	    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox()
+	    AxisAlignedBB axisalignedbb = entity1.getBoundingBox()
 		    .grow((double) entity1.getCollisionBorderSize());
 	    RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(observerPositionEyes,
 		    lookVectorFromEyePosition);

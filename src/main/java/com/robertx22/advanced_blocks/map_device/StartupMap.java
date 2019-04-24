@@ -39,7 +39,7 @@ public class StartupMap {
 	}
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static void preInitClientOnly() {
 	ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":map_device",
 		"inventory");

@@ -61,7 +61,7 @@ public class HealthBarUtils {
 
 		Entity lookedEntity = null;
 		List<Entity> entitiesInBoundingBox = e.getEntityWorld().getEntitiesWithinAABBExcludingEntity(e,
-				e.getEntityBoundingBox()
+				e.getBoundingBox()
 						.grow(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
 						.expand(1F, 1F, 1F));
 		double minDistance = distance;
@@ -69,7 +69,7 @@ public class HealthBarUtils {
 		for (Entity entity : entitiesInBoundingBox) {
 			if (entity.canBeCollidedWith()) {
 				float collisionBorderSize = entity.getCollisionBorderSize();
-				AxisAlignedBB hitbox = entity.getEntityBoundingBox().expand(collisionBorderSize, collisionBorderSize,
+				AxisAlignedBB hitbox = entity.getBoundingBox().expand(collisionBorderSize, collisionBorderSize,
 						collisionBorderSize);
 				RayTraceResult interceptPosition = hitbox.calculateIntercept(positionVector, reachVector);
 

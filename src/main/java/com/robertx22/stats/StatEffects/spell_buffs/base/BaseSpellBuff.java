@@ -33,7 +33,7 @@ public abstract class BaseSpellBuff implements IStatEffect {
 
 		SpellBuffEffect spell = (SpellBuffEffect) Effect;
 
-		if (spell.buffable.getType().equals(this.typeOfSpellAffected())) {
+		if (spell.buffable.getBuffType().equals(this.typeOfSpellAffected())) {
 
 		    spell.setBuff(this.buffType());
 		}

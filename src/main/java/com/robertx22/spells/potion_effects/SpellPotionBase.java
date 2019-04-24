@@ -36,7 +36,7 @@ public abstract class SpellPotionBase extends Potion {
 
     public List<EntityLivingBase> getEntitiesAround(Entity en, float radius) {
 
-	return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getEntityBoundingBox().grow(radius));
+	return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getBoundingBox().grow(radius));
     }
 
     @Override
@@ -171,7 +171,7 @@ public abstract class SpellPotionBase extends Potion {
 	return null;
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
 	if (mc.currentScreen != null && getIconTexture() != null) {
@@ -180,7 +180,7 @@ public abstract class SpellPotionBase extends Potion {
 	}
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
 	if (getIconTexture() != null) {

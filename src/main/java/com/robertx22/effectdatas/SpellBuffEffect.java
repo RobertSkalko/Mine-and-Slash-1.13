@@ -137,14 +137,14 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
     }
 
     @Override
-    public void setType(SpellType type) {
-	this.buffable.setType(type);
+    public void setBuffType(SpellType type) {
+	this.buffable.setBuffType(type);
 
     }
 
     @Override
-    public SpellType getType() {
-	return this.buffable.getType();
+    public SpellType getBuffType() {
+	return this.buffable.getBuffType();
     }
 
 }

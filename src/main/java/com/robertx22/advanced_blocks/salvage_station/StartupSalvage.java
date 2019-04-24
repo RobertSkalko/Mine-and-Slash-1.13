@@ -45,7 +45,7 @@ public class StartupSalvage {
 	}
 
 	// inventory item
-	@SideOnly(Side.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public static void preInitClientOnly() {
 		ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":salvage_station",
 				"inventory");

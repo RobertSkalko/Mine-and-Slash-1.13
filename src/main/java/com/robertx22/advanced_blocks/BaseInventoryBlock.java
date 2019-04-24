@@ -63,7 +63,7 @@ public abstract class BaseInventoryBlock extends BlockContainer {
 	return 0;
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public BlockRenderLayer getBlockLayer() {
 	return BlockRenderLayer.SOLID;
     }

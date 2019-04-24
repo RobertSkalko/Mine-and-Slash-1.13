@@ -246,7 +246,7 @@ public final class WizardryUtilities {
      * return the correct coordinate when x or z is negative.
      */
     public static IBlockState getBlockEntityIsStandingOn(Entity entity) {
-	BlockPos pos = new BlockPos(MathHelper.floor(entity.posX), (int) entity.getEntityBoundingBox().minY - 1,
+	BlockPos pos = new BlockPos(MathHelper.floor(entity.posX), (int) entity.getBoundingBox().minY - 1,
 		MathHelper.floor(entity.posZ));
 	return entity.world.getBlockState(pos);
     }
@@ -436,10 +436,10 @@ public final class WizardryUtilities {
      * <p>
      * As of Wizardry 1.2, this is just a shorthand for:
      * <p>
-     * <code><center>player.getEntityBoundingBox().minY + player.getEyeHeight()</code></center>
+     * <code><center>player.getBoundingBox().minY + player.getEyeHeight()</code></center>
      */
     public static double getPlayerEyesPos(EntityLivingBase player) {
-	return player.getEntityBoundingBox().minY + player.getEyeHeight();
+	return player.getBoundingBox().minY + player.getEyeHeight();
     }
 
     /**
@@ -544,7 +544,7 @@ public final class WizardryUtilities {
     @Nullable
     public static RayTraceResult rayTrace(double range, World world, EntityLivingBase entity, boolean hitLiquids) {
 
-	Vec3d start = new Vec3d(entity.posX, entity.getEntityBoundingBox().minY + entity.getEyeHeight(), entity.posZ);
+	Vec3d start = new Vec3d(entity.posX, entity.getBoundingBox().minY + entity.getEyeHeight(), entity.posZ);
 	Vec3d look = entity.getLookVec();
 	Vec3d end = start.addVector(look.x * range, look.y * range, look.z * range);
 	return world.rayTraceBlocks(start, end, hitLiquids);
@@ -568,7 +568,7 @@ public final class WizardryUtilities {
 	HashSet<Entity> hashset = new HashSet<Entity>(1);
 	hashset.add(entity);
 	return WizardryUtilities.tracePath(world, (float) entity.posX,
-		(float) (entity.getEntityBoundingBox().minY + entity.getEyeHeight()), (float) entity.posZ,
+		(float) (entity.getBoundingBox().minY + entity.getEyeHeight()), (float) entity.posZ,
 		(float) (entity.posX + dx), (float) (entity.posY + entity.getEyeHeight() + dy),
 		(float) (entity.posZ + dz), 1.0f, hashset, false);
     }
@@ -593,7 +593,7 @@ public final class WizardryUtilities {
 	HashSet<Entity> hashset = new HashSet<Entity>(1);
 	hashset.add(entity);
 	return WizardryUtilities.tracePath(world, (float) entity.posX,
-		(float) (entity.getEntityBoundingBox().minY + entity.getEyeHeight()), (float) entity.posZ,
+		(float) (entity.getBoundingBox().minY + entity.getEyeHeight()), (float) entity.posZ,
 		(float) (entity.posX + dx), (float) (entity.posY + entity.getEyeHeight() + dy),
 		(float) (entity.posZ + dz), borderSize, hashset, false);
     }
@@ -647,7 +647,7 @@ public final class WizardryUtilities {
 	    if ((ent.canBeCollidedWith() || !collideablesOnly)
 		    && ((excluded != null && !excluded.contains(ent)) || excluded == null)) {
 		float entBorder = ent.getCollisionBorderSize();
-		entityBb = ent.getEntityBoundingBox();
+		entityBb = ent.getBoundingBox();
 		if (entityBb != null) {
 		    entityBb = entityBb.grow(entBorder, entBorder, entBorder);
 		    intercept = entityBb.calculateIntercept(startVec, endVec);
@@ -692,7 +692,7 @@ public final class WizardryUtilities {
      * @param textureWidth  The width of the actual image.
      * @param textureHeight The height of the actual image.
      */
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static void drawTexturedRect(int x, int y, int u, int v, int width, int height, int textureWidth,
 	    int textureHeight) {
 
@@ -726,7 +726,7 @@ public final class WizardryUtilities {
      * which draws the entire texture (u and v are set to 0 and textureWidth and
      * textureHeight are the same as width and height).
      */
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static void drawTexturedRect(int x, int y, int width, int height) {
 	drawTexturedRect(x, y, 0, 0, width, height, width, height);
     }

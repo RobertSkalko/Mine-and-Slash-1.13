@@ -26,8 +26,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class EntityBaseProjectile extends Entity implements IProjectile, IBuffableSpell, IShootableProjectile {
 
@@ -79,12 +79,12 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     @Override
-    public void setType(SpellType type) {
+    public void setBuffType(SpellType type) {
 	this.spellType = type;
     }
 
     @Override
-    public SpellType getType() {
+    public SpellType getBuffType() {
 	return this.spellType;
     }
 
@@ -169,9 +169,9 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     /**
      * Checks if the entity is in range to render.
      */
-    @SideOnly(Side.CLIENT)
+
     public boolean isInRangeToRenderDist(double distance) {
-	double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
+	double d0 = this.getBoundingBox().getAverageEdgeLength() * 4.0D;
 
 	if (Double.isNaN(d0)) {
 	    d0 = 4.0D;
@@ -230,7 +230,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     /**
      * Updates the entity motion clientside, called by packets from the server
      */
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void setVelocity(double x, double y, double z) {
 	this.motionX = x;
 	this.motionY = y;
@@ -251,7 +251,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     public void directTowards(Entity target, float velocity) {
 
 	double dx = target.posX - this.posX;
-	double dy = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F)
+	double dy = target.getBoundingBox().minY + (double) (target.height / 2.0F)
 		- (this.posY + (double) (this.height / 2.0F));
 	double dz = target.posZ - this.posZ;
 
@@ -267,7 +267,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	this.lastTickPosX = this.posX;
 	this.lastTickPosY = this.posY;
 	this.lastTickPosZ = this.posZ;
-	super.onUpdate();
+	super.tick();
 
 	if (this.throwableShake > 0) {
 	    --this.throwableShake;
@@ -275,7 +275,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
 	if (this.getDoExpireProc() && this.ticksExisted > 0 && this.ticksExisted % this.deathTime == 0) {
 	    if (this.onExpireProc(this.getThrower())) {
-		this.setDead();
+		this.remove();
 	    }
 	}
 
@@ -284,7 +284,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 		++this.ticksInGround;
 
 		if (this.ticksInGround == 1200) {
-		    this.setDead();
+		    this.remove();
 		}
 
 		return;
@@ -316,7 +316,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
 	Entity entity = null;
 	List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this,
-		this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.2D));
+		this.getBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.2D));
 	double d0 = 0.0D;
 	boolean flag = false;
 
@@ -331,7 +331,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 		    flag = true;
 		} else {
 		    flag = false;
-		    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);
+		    AxisAlignedBB axisalignedbb = entity1.getBoundingBox().grow(0.30000001192092896D);
 		    RayTraceResult raytraceresult1 = axisalignedbb.calculateIntercept(vec3d, vec3d1);
 
 		    if (raytraceresult1 != null) {
@@ -359,7 +359,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	}
 
 	if (raytraceresult != null) {
-	    if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
+	    if (raytraceresult.hitInfo == RayTraceResult.Type.BLOCK) {
 		Block block = this.world.getBlockState(raytraceresult.getBlockPos()).getBlock();
 
 		if (block.isPassable(world, raytraceresult.getBlockPos())) {
@@ -421,7 +421,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	checkHoming();
 
 	if (this.ticksExisted > this.getDeathTime()) {
-	    this.setDead();
+	    this.remove();
 	}
 
     }
@@ -494,22 +494,22 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound compound) {
-	compound.setInt("xTile", this.xTile);
-	compound.setInt("yTile", this.yTile);
-	compound.setInt("zTile", this.zTile);
+	compound.putInt("xTile", this.xTile);
+	compound.putInt("yTile", this.yTile);
+	compound.putInt("zTile", this.zTile);
 	ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
-	compound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
-	compound.setByte("shake", (byte) this.throwableShake);
-	compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+	compound.putString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
+	compound.putByte("shake", (byte) this.throwableShake);
+	compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
 	if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof EntityPlayer) {
-	    this.throwerName = this.thrower.getName();
+	    this.throwerName = this.thrower.getName().toString();
 	}
 
-	compound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);
-	compound.setBoolean("doGroundProc", this.getDoExpireProc());
-	compound.setInt("airProcTime", this.getAirProcTime());
-	compound.setInt("deathTime", this.getDeathTime());
+	compound.putString("ownerName", this.throwerName == null ? "" : this.throwerName);
+	compound.putBoolean("doGroundProc", this.getDoExpireProc());
+	compound.putInt("airProcTime", this.getAirProcTime());
+	compound.putInt("deathTime", this.getDeathTime());
     }
 
     /**
@@ -520,7 +520,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	this.yTile = compound.getInt("yTile");
 	this.zTile = compound.getInt("zTile");
 
-	if (compound.hasKey("inTile", 8)) {
+	if (compound.contains("inTile", 8)) {
 	    this.inTile = Block.getBlockFromName(compound.getString("inTile"));
 	} else {
 	    this.inTile = Block.getBlockById(compound.getByte("inTile") & 255);

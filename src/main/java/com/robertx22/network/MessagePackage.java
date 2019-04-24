@@ -42,8 +42,8 @@ public class MessagePackage implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
 	NBTTagCompound tag = new NBTTagCompound();
-	tag.setString("text", text);
-	tag.setString("type", type);
+	tag.putString("text", text);
+	tag.putString("type", type);
 
 	ByteBufUtils.writeTag(buf, tag);
 

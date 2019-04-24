@@ -1,20 +1,19 @@
 package com.robertx22.network;
 
+import java.util.function.Supplier;
+
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class DamageNumberPackage implements IMessage {
+public class DamageNumberPackage {
 
-    public Elements element;
+    public int element;
     public String string;
     public double x;
     public double y;
@@ -27,7 +26,7 @@ public class DamageNumberPackage implements IMessage {
     }
 
     public DamageNumberPackage(EntityLivingBase entity, Elements ele, String str) {
-	this.element = ele;
+	this.element = ele.i;
 	this.string = str;
 	this.x = entity.posX;
 	this.y = entity.posY;
@@ -36,57 +35,52 @@ public class DamageNumberPackage implements IMessage {
 
     }
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-	NBTTagCompound tag = ByteBufUtils.readTag(buf);
-	element = Elements.valueOf(tag.getString("element"));
-	x = tag.getDouble("x");
-	y = tag.getDouble("y");
-	z = tag.getDouble("z");
-	height = tag.getFloat("height");
-	string = tag.getString("string");
-	isExp = tag.getBoolean("isExp");
+    public void fromBytes(DamageNumberPackage packet, ByteBuf buf) {
+
+	element = buf.getInt(1);
+	x = buf.getDouble(2);
+	y = buf.getDouble(3);
+	z = buf.getDouble(4);
+	height = buf.getFloat(5);
+	string = buf.getString(6);
+	isExp = buf.getBoolean(7);
 
     }
 
     @Override
-    public void toBytes(ByteBuf buf) {
-	NBTTagCompound tag = new NBTTagCompound();
-	tag.setString("element", element.name());
-	tag.setDouble("x", x);
-	tag.setDouble("y", y);
-	tag.setDouble("z", z);
-	tag.setFloat("height", height);
-	tag.setString("string", string);
+    public void toBytes(ByteBuf tag) {
+
+	tag.setInt(1, element);
+	tag.putDouble("x", x);
+	tag.putDouble("y", y);
+	tag.putDouble("z", z);
+	tag.putFloat("height", height);
+	tag.putString("string", string);
 	tag.setBoolean("isExp", isExp);
 	ByteBufUtils.writeTag(buf, tag);
 
     }
 
-    public static class Handler implements IMessageHandler<DamageNumberPackage, IMessage> {
+    public static class Handler {
 
-	@Override
-	public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
+	public void onMessage(final DamageNumberPackage pkt, Supplier<NetworkEvent.Context> ctx) {
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
+	    ctx.get().enqueueWork(() -> {
+		try {
 
-			if (message.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
-			    OnDisplayDamage.displayParticle(message);
+		    if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
+			OnDisplayDamage.displayParticle(pkt);
 
-			} else if (message.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
-			    OnDisplayDamage.displayParticle(message);
-			}
-		    } catch (Exception e) {
-			e.printStackTrace();
+		    } else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
+			OnDisplayDamage.displayParticle(pkt);
 		    }
+		} catch (Exception e) {
+		    e.printStackTrace();
 		}
-	    };
-	    noteThread.run();
+	    });
 
-	    return null;
+	    ctx.get().setPacketHandled(true);
+
 	}
     }
 

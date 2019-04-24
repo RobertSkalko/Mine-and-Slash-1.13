@@ -13,7 +13,7 @@ public interface IBuffableSpell {
 
     SpellBuffType getBuff();
 
-    void setType(SpellType type);
+    void setBuffType(SpellType type);
 
-    SpellType getType();
+    SpellType getBuffType();
 }

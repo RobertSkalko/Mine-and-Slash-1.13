@@ -24,13 +24,13 @@ public class SpellBuffCheck implements IBuffableSpell {
     }
 
     @Override
-    public void setType(SpellType type) {
+    public void setBuffType(SpellType type) {
 	this.type = type;
 
     }
 
     @Override
-    public SpellType getType() {
+    public SpellType getBuffType() {
 	return this.type;
     }
 

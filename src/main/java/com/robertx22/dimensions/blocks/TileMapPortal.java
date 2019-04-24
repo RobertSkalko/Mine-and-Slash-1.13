@@ -34,7 +34,7 @@ public class TileMapPortal extends TileEntity {
 
 	}
 
-	@SideOnly(Side.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public boolean shouldRenderFace(EnumFacing face) {
 		return face == EnumFacing.UP;
 	}
