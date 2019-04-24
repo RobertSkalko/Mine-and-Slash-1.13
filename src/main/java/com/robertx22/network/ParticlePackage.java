@@ -1,17 +1,15 @@
 package com.robertx22.network;
 
+import javax.xml.ws.handler.MessageContext;
+
 import com.robertx22.database.particle_gens.ParticleGen;
 import com.robertx22.db_lists.ParticleGens;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ParticlePackage implements IMessage {
 
@@ -22,7 +20,6 @@ public class ParticlePackage implements IMessage {
     private double xVel;
     private double yVel;
     private double zVel;
-    private boolean isGenerator;
     private double radius;
     private int amount;
 
@@ -31,7 +28,7 @@ public class ParticlePackage implements IMessage {
 
     public ParticlePackage(boolean isGen, String name, double x, double y, double z, double xVel, double yVel,
 	    double zVel, double radius, int amount) {
-	this.isGenerator = isGen;
+
 	this.name = name;
 	this.x = x;
 	this.y = y;
@@ -46,7 +43,7 @@ public class ParticlePackage implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
 	NBTTagCompound tag = ByteBufUtils.readTag(buf);
-	isGenerator = tag.getBoolean("isGen");
+
 	name = tag.getString("name");
 	x = tag.getDouble("x");
 	y = tag.getDouble("y");
@@ -61,7 +58,7 @@ public class ParticlePackage implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
 	NBTTagCompound tag = new NBTTagCompound();
-	tag.putBoolean("isGen", isGenerator);
+
 	tag.putString("name", name);
 	tag.putDouble("x", x);
 	tag.putDouble("y", y);
@@ -85,21 +82,11 @@ public class ParticlePackage implements IMessage {
 		public void run() {
 		    try {
 
-			if (message.isGenerator) {
+			ParticleGen gen = ParticleGens.All.get(message.name);
 
-			    ParticleGen gen = ParticleGens.All.get(message.name);
+			gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel,
+				message.radius, message.amount);
 
-			    gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel,
-				    message.radius, message.amount);
-
-			} else {
-
-			    EnumParticleTypes particle = EnumParticleTypes.getByName(message.name);
-			    World world = Minecraft.getInstance().world;
-
-			    world.spawnParticle(particle, message.x, message.y, message.z, message.xVel, message.yVel,
-				    message.zVel);
-			}
 		    } catch (Exception e) {
 
 		    }

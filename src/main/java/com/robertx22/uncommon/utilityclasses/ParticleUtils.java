@@ -4,7 +4,8 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.network.ParticlePackage;
 
 import net.minecraft.entity.Entity;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ParticleUtils {
 
@@ -13,9 +14,8 @@ public class ParticleUtils {
 
 	ParticlePackage packet = new ParticlePackage(true, name, x, y, z, xVel, yVel, zVel, radius, amount);
 
-	TargetPoint point = new TargetPoint(source.dimension, x, y, z, 100);
-
-	Main.Network.sendToAllAround(packet, point);
+	Chunk chunk = source.world.getChunk(source.getPosition());
+	Main.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), packet);
 
     }
 

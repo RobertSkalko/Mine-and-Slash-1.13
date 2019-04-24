@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.config;
 
-import net.minecraftforge.common.config.Config;
+import com.electronwill.nightconfig.core.Config;
 
 public class DimensionConfigs {
 
