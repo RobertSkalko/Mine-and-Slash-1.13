@@ -1,15 +1,18 @@
 package com.robertx22.dimensions;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.dimension.OverworldDimension;
+import net.minecraft.world.gen.ChunkGeneratorType;
+import net.minecraft.world.gen.DebugGenSettings;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
 
-    public BaseWorldProvider(boolean nothing) {
+    public BaseWorldProvider() {
 
     }
 
@@ -18,9 +21,11 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
     @Override
     public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
 
-	SingleBiomeProviderSettings singlebiomeprovidersettings2 = biomeprovidertype.createSettings()
-		.setBiome(this.getbi);
-	biomeprovider = biomeprovidertype.create(singlebiomeprovidersettings2);
+	// Biome
+
+	SingleBiomeProviderSettings setting = biomeprovidertype.createSettings().setBiome(getBiome());
+
+	return ChunkGeneratorType.DEBUG.create(this.world, biomeprovidertype.create(setting), new DebugGenSettings());
 
     }
 
@@ -29,6 +34,8 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
 	return this.UncommonWeight;
 
     }
+
+    public abstract Biome getBiome();
 
     @Override
     public boolean canDropChunk(int x, int z) {
