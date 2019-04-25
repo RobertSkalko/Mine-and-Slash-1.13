@@ -1,24 +1,19 @@
 package com.robertx22.network;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import com.robertx22.mmorpg.Main;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class EntityUnitPackage implements IMessage {
+public class EntityUnitPackage {
 
     public int id;
     public NBTTagCompound nbt;
@@ -29,7 +24,7 @@ public class EntityUnitPackage implements IMessage {
 
     public EntityUnitPackage(Entity entity) {
 	this.id = entity.getEntityId();
-	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
+	this.nbt = Load.Unit(entity).getNBT();
     }
 
     public EntityUnitPackage(Entity entity, UnitData data) {
@@ -37,54 +32,50 @@ public class EntityUnitPackage implements IMessage {
 	this.nbt = data.getNBT();
     }
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-	nbt = ByteBufUtils.readTag(buf);
-	id = nbt.getInt("id");
-    }
+    public static EntityUnitPackage decode(PacketBuffer buf) {
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-	nbt.setInt("id", id);
-	ByteBufUtils.writeTag(buf, nbt);
+	EntityUnitPackage newpkt = new EntityUnitPackage();
+
+	newpkt.id = buf.getInt(0);
+	newpkt.nbt = buf.readCompoundTag();
+
+	return newpkt;
 
     }
 
-    public static class Handler implements IMessageHandler<EntityUnitPackage, IMessage> {
+    public static void encode(EntityUnitPackage packet, PacketBuffer tag) {
 
-	@Override
-	public IMessage onMessage(EntityUnitPackage message, MessageContext ctx) {
+	tag.setInt(0, packet.id);
+	tag.writeCompoundTag(packet.nbt);
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
+    }
 
-			final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+    public static void handle(final EntityUnitPackage pkt, Supplier<NetworkEvent.Context> ctx) {
 
-			if (player != null && player.world != null) {
-			    Entity entity = player.world.getEntityByID(message.id);
+	ctx.get().enqueueWork(() -> {
+	    try {
 
-			    EntityLivingBase en = (EntityLivingBase) entity;
+		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-			    if (en != null) {
-				en.getCapability(EntityData.Data, null).setNBT(message.nbt);
+		if (player != null && player.world != null) {
+		    Entity entity = player.world.getEntityByID(pkt.id);
 
-			    }
+		    EntityLivingBase en = (EntityLivingBase) entity;
 
-			}
+		    if (en != null) {
+			Load.Unit(en).setNBT(pkt.nbt);
 
-		    } catch (Exception e) {
-			e.printStackTrace();
 		    }
+
 		}
 
-	    };
-	    ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-	    scheduler.schedule(noteThread, 1, TimeUnit.SECONDS);
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	});
 
-	    return null;
-	}
+	ctx.get().setPacketHandled(true);
 
     }
+
 }

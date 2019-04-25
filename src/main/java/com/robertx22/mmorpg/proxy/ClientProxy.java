@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import java.util.function.Supplier;
+
 import com.robertx22.customitems.gearitems.MyEntityArrow;
 import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
@@ -33,6 +35,7 @@ import net.minecraft.client.renderer.entity.RenderSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -43,6 +46,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ClientProxy implements IProxy {
     // functionality
@@ -137,6 +141,11 @@ public class ClientProxy implements IProxy {
     public void loadComplete(FMLLoadCompleteEvent event) {
 	// TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public EntityPlayer getPlayerEntityFromContext(Supplier<Context> ctx) {
+	return Minecraft.getInstance().player;
     }
 
 }
