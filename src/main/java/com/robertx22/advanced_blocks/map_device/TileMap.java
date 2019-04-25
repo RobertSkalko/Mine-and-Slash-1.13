@@ -110,7 +110,15 @@ public class TileMap extends BaseTile {
 		    this.MapSlot().shrink(1);
 		    this.StartSlot().shrink(1);
 
-		    map.createDimension(id, world, pos, player);
+		    if (true)
+			try {
+			    throw new Exception("mapdevice");
+			} catch (Exception e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+		    // map.createDimension(id, world, pos, player);
 
 		    BlockPos pos = this.pos.north(4);
 		    ItemMap.createMap(id, pos, world, map);

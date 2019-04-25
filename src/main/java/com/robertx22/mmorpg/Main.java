@@ -11,7 +11,6 @@ import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.RegisterCurioClient;
 import com.robertx22.mmorpg.registers.RegisterCurioSlot;
-import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.testing.TestManager;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -119,9 +118,10 @@ public class Main {
 
     @SubscribeEvent
     public void stop(FMLServerStoppedEvent event) {
-	MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you switch saves you
-					 // also get dimensions from your last save, which isn't nice
+	// every save game has it's own dimensions, otherwise when you switch saves you
+	// also get dimensions from your last save, which isn't nice
 
+	MapManager.onStopServerUnRegisterDimensions();
     }
 
     @SubscribeEvent

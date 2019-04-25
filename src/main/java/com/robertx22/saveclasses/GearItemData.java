@@ -44,6 +44,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StringUtils;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -260,30 +262,36 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     }
 
+    public void tooltip(List<ITextComponent> tooltip, List<String> strings) {
+	for (String str : strings) {
+	    tooltip.add(new TextComponentString(str));
+	}
+    }
+
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit, UnitData data) {
 
 	event.getToolTip().clear();
 
-	event.getToolTip().add(GetDisplayName(stack));
-	event.getToolTip().add(TextFormatting.YELLOW + CLOC.word("level") + ": " + level);
+	event.getToolTip().add(new TextComponentString(GetDisplayName(stack)));
+	event.getToolTip().add(new TextComponentString(TextFormatting.YELLOW + CLOC.word("level") + ": " + level));
 
-	event.getToolTip().add("");
+	event.getToolTip().add(new TextComponentString(""));
 
 	List<ITooltipList> list = new ArrayList<ITooltipList>();
 
 	if (uniqueStats != null) {
-	    event.getToolTip().addAll(uniqueStats.GetTooltipString(this));
+	    tooltip(event.getToolTip(), uniqueStats.GetTooltipString(this));
 	}
 	if (primaryStats != null) {
-	    event.getToolTip().addAll(primaryStats.GetTooltipString(this));
+	    tooltip(event.getToolTip(), primaryStats.GetTooltipString(this));
 	}
 
 	if (runes != null) {
-	    event.getToolTip().addAll(runes.GetTooltipString(this));
+	    tooltip(event.getToolTip(), runes.GetTooltipString(this));
 	}
 
-	event.getToolTip().add("");
+	event.getToolTip().add(new TextComponentString(""));
 
 	list.add(secondaryStats);
 	list.add(prefix);
@@ -299,8 +307,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 	ITooltipList part : list) {
 
 	    if (part != null) {
-		event.getToolTip().addAll(part.GetTooltipString(this));
-		event.getToolTip().add("");
+		tooltip(event.getToolTip(), part.GetTooltipString(this));
+		event.getToolTip().add(new TextComponentString(""));
 
 	    }
 
@@ -310,48 +318,49 @@ public class GearItemData implements ITooltip, ISalvagable {
 
 	if (isUnique) {
 	    IUnique unique = this.uniqueStats.getUniqueItem();
-	    event.getToolTip().add(TextFormatting.GREEN + "'" + unique.locDesc() + "'");
-	    event.getToolTip().add("");
+	    event.getToolTip().add(new TextComponentString(TextFormatting.GREEN + "'" + unique.locDesc() + "'"));
+	    event.getToolTip().add(new TextComponentString(""));
 
 	}
 
 	ItemRarity rarity = GetRarity();
-	event.getToolTip().add(CLOC.word("rarity") + ": " + rarity.Color() + rarity.locName());
+	event.getToolTip().add(new TextComponentString(CLOC.word("rarity") + ": " + rarity.Color() + rarity.locName()));
 
 	if (!this.isSalvagable) {
-	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));
+	    event.getToolTip().add(new TextComponentString(TextFormatting.RED + CLOC.word("unsalvagable")));
 	}
 
 	if (this.GetBaseGearType() instanceof IWeapon) {
 	    IWeapon iwep = (IWeapon) this.GetBaseGearType();
-	    event.getToolTip().add("");
-	    event.getToolTip().add(TextFormatting.GREEN + CLOC.stat("energy") + ": " + iwep.mechanic().GetEnergyCost());
+	    event.getToolTip().add(new TextComponentString(""));
+	    event.getToolTip().add(new TextComponentString(
+		    TextFormatting.GREEN + CLOC.stat("energy") + ": " + iwep.mechanic().GetEnergyCost()));
 	}
 
-	List<String> tool = removeDoubleBlankLines(event.getToolTip());
+	List<ITextComponent> tool = removeDoubleBlankLines(event.getToolTip());
 	event.getToolTip().clear();
 	event.getToolTip().addAll(tool);
 
     }
 
-    private List<String> removeDoubleBlankLines(List<String> tooltip) {
+    private List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {
 
-	List<String> newt = new ArrayList();
+	List<ITextComponent> newt = new ArrayList();
 
 	String s = "";
-	for (int i = 0; i < tooltip.size(); i++) {
+	for (int i = 0; i < list.size(); i++) {
 
 	    if (i > 0) {
 
-		if (s.equals(tooltip.get(i)) && s.isEmpty()) {
+		if (s.equals(list.get(i).toString()) && s.isEmpty()) {
 
 		} else {
-		    newt.add(tooltip.get(i));
+		    newt.add(list.get(i));
 		}
 	    } else {
-		newt.add(tooltip.get(i));
+		newt.add(list.get(i));
 	    }
-	    s = tooltip.get(i);
+	    s = list.get(i).toString();
 	}
 
 	return newt;
@@ -360,7 +369,8 @@ public class GearItemData implements ITooltip, ISalvagable {
     private void BuildSetTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
 
 	if (this.set != null) {
-	    event.getToolTip().add(TextFormatting.GREEN + "[Set]: " + TextFormatting.GRAY + set.GetSet().Name());
+	    event.getToolTip().add(new TextComponentString(
+		    TextFormatting.GREEN + "[Set]: " + TextFormatting.GRAY + set.GetSet().Name()));
 
 	    for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
 
@@ -381,11 +391,11 @@ public class GearItemData implements ITooltip, ISalvagable {
 
 		    String str2 = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
 
-		    event.getToolTip().add(str2);
+		    event.getToolTip().add(new TextComponentString(str2));
 		}
 
 	    }
-	    event.getToolTip().add("");
+	    event.getToolTip().add(new TextComponentString(""));
 	}
     }
 
