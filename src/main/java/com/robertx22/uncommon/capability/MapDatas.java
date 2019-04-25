@@ -4,21 +4,21 @@ package com.robertx22.uncommon.capability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.dimensions.MapManager;
 import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapDataList;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.datasaving.Load;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.DimensionManager;
 
 public class MapDatas extends WorldSavedData {
 
-    public static List<Integer> dimensionIds = new ArrayList<Integer>();
+    public static List<ResourceLocation> dimensionIds = new ArrayList<ResourceLocation>();
 
     public MapDatas(String name) {
 	super(name);
@@ -98,22 +98,6 @@ public class MapDatas extends WorldSavedData {
 	}
     }
 
-    private void registerReserved(int id) {
-
-	if (DimensionManager.isDimensionRegistered(id) == false) {
-
-	    DimensionManager.registerDimension(id, DimensionType.OVERWORLD);
-
-	    DimensionManager.initDimension(id);
-
-	    IWorldData world = Load.World(DimensionManager.getWorld(id));
-
-	    world.setReserved(true);
-
-	}
-
-    }
-
     public void registerDimensions() {
 
 	this.dimensionIds.clear();
@@ -128,7 +112,7 @@ public class MapDatas extends WorldSavedData {
 
     public static void unregisterDimensions() {
 	for (int id : dimensionIds) {
-	    if (DimensionManager.isDimensionRegistered(id)) {
+	    if (MapManager.isRegistered(id)) {
 		DimensionManager.unregisterDimension(id);
 	    }
 

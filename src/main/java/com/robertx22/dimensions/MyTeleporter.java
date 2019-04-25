@@ -10,7 +10,7 @@ import net.minecraft.world.WorldServer;
 public class MyTeleporter extends Teleporter {
     private final BlockPos targetPos;
 
-    public MyTeleporter(World world, BlockPos pos, EntityPlayer player, int dimension) {
+    public MyTeleporter(World world, BlockPos pos, EntityPlayer player) {
 	super((WorldServer) world);
 	this.targetPos = pos;
     }

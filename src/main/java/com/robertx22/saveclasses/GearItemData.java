@@ -88,7 +88,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    if (gearTypeName.isEmpty()) {
 		return "error";
 	    } else {
-		return stack.getDisplayName();
+		return stack.getDisplayName().toString();
 	    }
 	}
     }
@@ -189,12 +189,12 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    text += "Runed " + name(stack);
 	} else {
 
-	    if (prefix != null && ModConfig.Client.SHOW_AFFIXED_NAME) {
+	    if (prefix != null && ModConfig.Client.SHOW_AFFIXED_NAME.get()) {
 		text += prefix.BaseAffix().locName() + " ";
 	    }
 	    text += name(stack);
 
-	    if (suffix != null && ModConfig.Client.SHOW_AFFIXED_NAME) {
+	    if (suffix != null && ModConfig.Client.SHOW_AFFIXED_NAME.get()) {
 		text += " " + suffix.BaseAffix().locName() + " ";
 	    }
 	}

@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.capability;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
@@ -17,6 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -71,7 +73,7 @@ public class WorldData {
 
 	BlockPos getMapDevicePos();
 
-	int getOriginalDimension();
+	DimensionType getOriginalDimension();
 
 	void teleportPlayerBack(EntityPlayer player);
 
@@ -169,7 +171,7 @@ public class WorldData {
 	boolean setForDelete = false;
 	String owner = "";
 	boolean isInit = false;
-	int originalDimension;
+	DimensionType originalDimension;
 	int mapDimension;
 	boolean didntSetBackPortal = true;
 	String saveName = "";
@@ -184,7 +186,7 @@ public class WorldData {
 	    nbt.putBoolean(SET_FOR_DELETE, setForDelete);
 	    nbt.putString(OWNER, owner);
 	    nbt.putBoolean(IS_INIT, isInit);
-	    nbt.putInt(ORIGINAL_DIM, originalDimension);
+	    nbt.putString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
 	    nbt.putInt(MAP_DIM, mapDimension);
 	    nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 	    nbt.putString(SAVE_NAME, saveName);
@@ -217,7 +219,7 @@ public class WorldData {
 	    setForDelete = nbt.getBoolean(SET_FOR_DELETE);
 	    owner = nbt.getString(OWNER);
 	    isInit = nbt.getBoolean(IS_INIT);
-	    this.originalDimension = nbt.getInt(ORIGINAL_DIM);
+	    this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
 	    this.mapDimension = nbt.getInt(MAP_DIM);
 	    this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 	    this.saveName = nbt.getString(SAVE_NAME);
@@ -292,7 +294,7 @@ public class WorldData {
 	    this.level = map.level;
 	    this.tier = map.tier;
 	    this.mapdata = map;
-	    this.originalDimension = world.provider.getDimension();
+	    // this.originalDimension = world.provider.getDimension();
 	    this.mapDimension = dimensionId;
 	    this.mapDevicePos = pos.toLong();
 	    this.isInit = true;
@@ -342,7 +344,7 @@ public class WorldData {
 	}
 
 	@Override
-	public int getOriginalDimension() {
+	public DimensionType getOriginalDimension() {
 	    return this.originalDimension;
 	}
 
@@ -375,8 +377,7 @@ public class WorldData {
 
 	    }
 
-	    player.changeDimension(this.originalDimension,
-		    new MyTeleporter(player.world, pos, player, this.originalDimension));
+	    player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
 
 	}
 

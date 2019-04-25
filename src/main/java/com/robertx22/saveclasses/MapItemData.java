@@ -13,9 +13,6 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.MapDatas;
-import com.robertx22.uncommon.capability.WorldData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
@@ -28,8 +25,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.common.DimensionManager;
 
 @Storable
 public class MapItemData implements ISalvagable {
@@ -128,27 +123,28 @@ public class MapItemData implements ISalvagable {
 
 	unit.setCurrentMapId(id);
 
-	//ModDimension
-	
-	DimensionManager.registerDimension(name, type, data)
-	
-	DimensionData dimData = getDimData(id, map.worldGeneratorName);
-
-	if (DimensionManager.isDimensionRegistered(id)) {
-	    DimensionManager.unregisterDimension(id);
-	}
-
-	DimensionManager.registerDimension(id, dimData.getDimensionType());
-	DimensionManager.initDimension(id);
-	World world = DimensionManager.getWorld(id);
-
-	IWorldData data = world.getCapability(WorldData.Data, null);
-	data.init(pos, ogworld, map, id, player);
-
-	MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
-		MapDatas.getLoc());
-
-	mapdatas.register(dimData);
+	// ModDimension
+	/*
+	 * DimensionManager.registerDimension(name, type, data)
+	 * 
+	 * DimensionData dimData = getDimData(id, map.worldGeneratorName);
+	 * 
+	 * if (DimensionManager.isDimensionRegistered(id)) {
+	 * DimensionManager.unregisterDimension(id); }
+	 * 
+	 * DimensionManager.registerDimension(id, dimData.getDimensionType());
+	 * DimensionManager.initDimension(id); World world =
+	 * DimensionManager.getWorld(id);
+	 * 
+	 * IWorldData data = world.getCapability(WorldData.Data, null); data.init(pos,
+	 * ogworld, map, id, player);
+	 * 
+	 * MapDatas mapdatas = (MapDatas)
+	 * DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
+	 * MapDatas.getLoc());
+	 * 
+	 * mapdatas.register(dimData);
+	 */
 
     }
 
@@ -161,31 +157,27 @@ public class MapItemData implements ISalvagable {
 
     public String findFreeDimensionId(EntityPlayer player, UnitData unit) {
 
-	if (unit.hasCurrentMapId()) {
-	    
-	    
-	    DimensionManager.registerDimension(name, type, data)
+	/*
+	 * if (unit.hasCurrentMapId()) {
+	 * 
+	 * 
+	 * DimensionManager.registerDimension(name, type, data)
+	 * 
+	 * 
+	 * int lastid = unit.getCurrentMapId(); if
+	 * (DimensionManager.isDimensionRegistered(lastid)) {
+	 * DimensionManager.initDimension(lastid); World world =
+	 * DimensionManager.getWorld(lastid); if (world != null) { IWorldData data =
+	 * Load.World(world); data.setDelete(true, world); } } }
+	 * 
+	 * int id = ModConfig.MapDimensions.MAP_ID_START;
+	 * 
+	 * while (DimensionManager.isDimensionRegistered(id)) {
+	 * 
+	 * id--; }
+	 */
 
-	    
-	    int lastid = unit.getCurrentMapId();
-	    if (DimensionManager.isDimensionRegistered(lastid)) {
-		DimensionManager.initDimension(lastid);
-		World world = DimensionManager.getWorld(lastid);
-		if (world != null) {
-		    IWorldData data = Load.World(world);
-		    data.setDelete(true, world);
-		}
-	    }
-	}
-
-	int id = ModConfig.MapDimensions.MAP_ID_START;
-
-	while (DimensionManager.isDimensionRegistered(id)) {
-
-	    id--;
-	}
-
-	return id;
+	return "";
     }
 
     public MapRarity GetRarity() {

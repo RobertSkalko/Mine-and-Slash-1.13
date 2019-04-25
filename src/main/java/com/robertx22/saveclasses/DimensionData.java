@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -33,13 +32,7 @@ public class DimensionData {
 
     public DimensionType getDimensionType() {
 
-	try {
-	    return DimensionType.getKey(dim)register(Name, suffix, ID,
-		    (Class<? extends IWP>) WorldProviders.All.get(theclass).getClass(), false);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	return DimensionType.OVERWORLD;
+	return null;
     }
 
 }

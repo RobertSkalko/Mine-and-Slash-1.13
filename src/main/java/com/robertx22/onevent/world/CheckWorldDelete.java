@@ -5,10 +5,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
-
-import com.robertx22.dimensions.WorldFileUtils;
-import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -52,18 +48,19 @@ public class CheckWorldDelete {
 
 			    if (data != null && data.isSetForDelete()) {
 
-				MapDatas mapdata = (MapDatas) world.getMapStorage().getOrLoadData(MapDatas.class,
-					MapDatas.getLoc());
-
-				if (mapdata != null) {
-
-				    mapdata.delete(world.provider.getDimension());
-				    increaseCount(id);
-
-				    FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
-				    System.out.println("Deleting a temporary map world to free up disk space!");
-
-				}
+				/*
+				 * MapDatas mapdata = (MapDatas)
+				 * world.getMapStorage().getOrLoadData(MapDatas.class, MapDatas.getLoc());
+				 * 
+				 * if (mapdata != null) {
+				 * 
+				 * mapdata.delete(world.provider.getDimension()); increaseCount(id);
+				 * 
+				 * FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
+				 * System.out.println("Deleting a temporary map world to free up disk space!");
+				 * 
+				 * }
+				 */
 
 			    }
 
