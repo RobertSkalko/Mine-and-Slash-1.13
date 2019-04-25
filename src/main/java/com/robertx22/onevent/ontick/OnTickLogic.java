@@ -17,6 +17,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -34,7 +35,7 @@ public class OnTickLogic {
     @SubscribeEvent
     public static void onTickLogic(TickEvent.PlayerTickEvent event) {
 
-	if (event.phase == Phase.END && event.side.equals(event.side.SERVER)) {
+	if (event.phase == Phase.END && event.side.equals(LogicalSide.SERVER)) {
 
 	    try {
 

@@ -1,5 +1,7 @@
 package com.robertx22.onevent.world;
 
+import java.util.ArrayList;
+
 import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.PlayerDeathItems.IPlayerDrops;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -7,13 +9,14 @@ import com.robertx22.uncommon.datasaving.Load;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class OnDeathInMapStopItemDrop {
@@ -31,11 +34,11 @@ public class OnDeathInMapStopItemDrop {
 		World world = event.getEntityPlayer().world;
 		IWorldData data = Load.World(world);
 
-		IPlayerDrops capa = event.getEntityPlayer().getCapability(PlayerDeathItems.Data, null);
+		IPlayerDrops capa = event.getEntityPlayer().getCapability(PlayerDeathItems.Data, null).orElse(null);
 
-		if (data != null && data.isMapWorld()) {
+		if (capa != null && data != null && data.isMapWorld()) {
 
-		    capa.saveItems(event.getDrops());
+		    capa.saveItems(new ArrayList<EntityItem>(event.getDrops()));
 
 		    IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
 		    for (int i = 0; i < baubles.getSlots(); i++) {

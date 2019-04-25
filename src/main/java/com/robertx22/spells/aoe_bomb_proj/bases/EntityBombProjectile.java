@@ -7,14 +7,14 @@ import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.Targeting;
 import com.robertx22.spells.potion_effects.all.EnergyRegenPotion;
 import com.robertx22.spells.potion_effects.all.ManaRegenPotion;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -59,7 +59,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
 	}
 
-	this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, this.posX, this.posY, this.posZ, 1, 1, 1, 0);
+	this.world.addParticle(Particles.EXPLOSION, this.posX, this.posY, this.posZ, 1, 1, 1);
 
 	boolean hit = false;
 
@@ -69,12 +69,12 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 		    EntityLivingBase.class);
 
 	    for (int i = 0; i < list.size(); ++i) {
-		EntityLivingBase entity1 = list.get(i);
+		EntityLivingBase entity = list.get(i);
 
-		if (entity1.hasCapability(EntityData.Data, null)) {
-		    effect.Activate(data, entity1);
+		if (Load.hasUnit(entity)) {
+		    effect.Activate(data, entity);
 
-		    checkOnKill(entity1);
+		    checkOnKill(entity);
 
 		    hit = true;
 		}

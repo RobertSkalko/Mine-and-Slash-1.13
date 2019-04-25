@@ -12,7 +12,7 @@ public class ParticleUtils {
     public static void spawnParticleGenerator(Entity source, String name, double x, double y, double z, double xVel,
 	    double yVel, double zVel, double radius, int amount) {
 
-	ParticlePackage packet = new ParticlePackage(true, name, x, y, z, xVel, yVel, zVel, radius, amount);
+	ParticlePackage packet = new ParticlePackage(name, x, y, z, xVel, yVel, zVel, radius, amount);
 
 	Chunk chunk = source.world.getChunk(source.getPosition());
 	Main.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), packet);

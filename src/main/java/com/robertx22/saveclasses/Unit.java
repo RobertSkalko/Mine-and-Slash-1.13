@@ -22,13 +22,13 @@ import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.stats.Stat;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -39,6 +39,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 @Storable
 public class Unit {
@@ -182,7 +185,7 @@ public class Unit {
 	Unit mob = new Unit();
 	mob.InitMobStats();
 
-	UnitData endata = entity.getCapability(EntityData.Data, null);
+	UnitData endata = Load.Unit(entity);
 
 	endata.SetMobLevelAtSpawn(data, entity);
 	endata.setRarity(randomRarity(entity, endata.getLevel()));
@@ -202,7 +205,7 @@ public class Unit {
 
 	int minRarity = 0;
 
-	if (entity.dimension == 0) {
+	if (entity.dimension.equals(DimensionType.OVERWORLD)) {
 
 	    if (y < 50) {
 		minRarity = 1;
@@ -215,7 +218,7 @@ public class Unit {
 	List<MobRarity> rarities = Rarities.Mobs;
 	List<MobRarity> after = new ArrayList<MobRarity>();
 
-	DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension);
+	DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension.toString());
 
 	for (MobRarity rar : rarities) {
 	    if (rar.Rank() >= minRarity) {
@@ -353,7 +356,11 @@ public class Unit {
 	DirtyCheck newcheck = getDirtyCheck();
 
 	if (old.isDirty(newcheck)) {
-	    Main.Network.sendToAllTracking(new EntityUnitPackage(entity, data), entity);
+
+	    Chunk chunk = entity.world.getChunk(entity.getPosition());
+
+	    Main.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
+
 	}
 
     }

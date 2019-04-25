@@ -8,17 +8,18 @@ import javax.annotation.Nullable;
 import com.mojang.datafixers.DataFixer;
 import com.robertx22.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Particles;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -144,21 +145,21 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	this.doGroundProc = newVal;
     }
 
-    public EntityBaseProjectile(World worldIn) {
-	super(worldIn);
+    public EntityBaseProjectile(EntityType<?> type, World worldIn) {
+	super(type, worldIn);
 	this.xTile = -1;
 	this.yTile = -1;
 	this.zTile = -1;
 	this.setSize(0.25F, 0.25F);
     }
 
-    public EntityBaseProjectile(World worldIn, double x, double y, double z) {
-	this(worldIn);
+    public EntityBaseProjectile(EntityType<?> type, World worldIn, double x, double y, double z) {
+	this(type, worldIn);
 	this.setPosition(x, y, z);
     }
 
-    public EntityBaseProjectile(World worldIn, EntityLivingBase throwerIn) {
-	this(worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D,
+    public EntityBaseProjectile(EntityType<?> type, World worldIn, EntityLivingBase throwerIn) {
+	this(type, worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D,
 		throwerIn.posZ);
 	this.thrower = throwerIn;
     }
@@ -323,7 +324,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	for (int i = 0; i < list.size(); ++i) {
 	    Entity entity1 = list.get(i);
 
-	    if (entity1.hasCapability(EntityData.Data, null)) {
+	    if (Load.hasUnit(entity1)) {
 		if (entity1 == this.ignoreEntity) {
 		    flag = true;
 		} else if (this.thrower != null && this.ticksExisted < 2 && this.ignoreEntity == null) {
@@ -362,7 +363,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	    if (raytraceresult.hitInfo == RayTraceResult.Type.BLOCK) {
 		Block block = this.world.getBlockState(raytraceresult.getBlockPos()).getBlock();
 
-		if (block.isPassable(world, raytraceresult.getBlockPos())) {
+		if (block.equals(Blocks.GRASS) || block.equals(Blocks.TALL_GRASS)
+			|| block.equals(Blocks.TALL_SEAGRASS)) {
 		} else {
 		    this.onImpact(raytraceresult);
 		}
@@ -400,7 +402,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	if (this.isInWater()) {
 	    for (int j = 0; j < 4; ++j) {
 		float f3 = 0.25F;
-		this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D,
+		this.world.addParticle(Particles.BUBBLE, this.posX - this.motionX * 0.25D,
 			this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY,
 			this.motionZ);
 	    }
@@ -443,8 +445,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 			// Decides if current entity should be replaced.
 			if (homindTarget == null || this.getDistance(homindTarget) > this.getDistance(possibleTarget)) {
 			    // Decides if new entity is a valid target.
-			    if (possibleTarget.hasCapability(EntityData.Data, null)
-				    && !possibleTarget.equals(this.getThrower())) {
+			    if (Load.hasUnit(possibleTarget) && !possibleTarget.equals(this.getThrower())) {
 				homindTarget = possibleTarget;
 				setHomingTarget = true;
 				this.setNoGravity(true);
@@ -497,8 +498,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	compound.putInt("xTile", this.xTile);
 	compound.putInt("yTile", this.yTile);
 	compound.putInt("zTile", this.zTile);
-	ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
-	compound.putString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
+
 	compound.putByte("shake", (byte) this.throwableShake);
 	compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
@@ -519,12 +519,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	this.xTile = compound.getInt("xTile");
 	this.yTile = compound.getInt("yTile");
 	this.zTile = compound.getInt("zTile");
-
-	if (compound.contains("inTile", 8)) {
-	    this.inTile = Block.getBlockFromName(compound.getString("inTile"));
-	} else {
-	    this.inTile = Block.getBlockById(compound.getByte("inTile") & 255);
-	}
 
 	this.throwableShake = compound.getByte("shake") & 255;
 	this.inGround = compound.getByte("inGround") == 1;

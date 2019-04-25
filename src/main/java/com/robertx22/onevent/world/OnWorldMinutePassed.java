@@ -1,12 +1,14 @@
 package com.robertx22.onevent.world;
 
+import java.util.HashMap;
+
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
@@ -15,28 +17,32 @@ public class OnWorldMinutePassed {
 
     static final int oneMinute = 1200; // 1200 1 minute
 
-    static int ticks = 0;
+    public static HashMap<Dimension, Integer> datas = new HashMap<Dimension, Integer>();
 
     @SubscribeEvent
-    public static void onMinutePassedUpdateWorldTime(TickEvent.ServerTickEvent event) {
+    public static void onMinutePassedUpdateWorldTime(TickEvent.WorldTickEvent event) {
 
-	if (event.phase == Phase.END && event.side.isServer()) {
+	if (event.phase == Phase.END && event.side.equals(LogicalSide.SERVER)) {
 
-	    ticks++;
+	    Dimension dim = event.world.dimension;
 
-	    if (ticks > oneMinute) {
+	    if (datas.containsKey(dim)) {
+		datas.put(dim, datas.get(dim) + 1);
+	    } else {
+		datas.put(dim, 1);
+	    }
 
-		ticks = 0;
+	    if (datas.get(dim) > oneMinute) {
 
-		for (WorldServer world : FMLCommonHandler.instance().getMinecraftServerInstance().worlds) {
+		datas.put(dim, 0);
 
-		    IWorldData data = Load.World(world);
+		IWorldData data = Load.World(event.world);
 
-		    if (data != null) {
-			data.passMinute(world);
+		if (data != null) {
+		    data.passMinute(event.world);
 
-		    }
 		}
+
 	    }
 	}
 
