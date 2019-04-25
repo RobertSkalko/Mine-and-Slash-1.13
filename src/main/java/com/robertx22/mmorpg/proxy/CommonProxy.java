@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import java.util.function.Supplier;
+
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.map_device.StartupMap;
@@ -19,27 +21,27 @@ import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.unique_items.UniqueItemRegister;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.MinableConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class CommonProxy implements IProxy {
 
@@ -52,7 +54,7 @@ public class CommonProxy implements IProxy {
 
 	UniqueItemRegister.registerAll();
 
-	GameRegistry.registerTileEntity(TileMapPortal.class, new ResourceLocation(Ref.MODID, "map_portal_tile"));
+	TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder.create(TileMapPortal::new));
 
 	GearItemRegisters.register();
 
@@ -73,10 +75,7 @@ public class CommonProxy implements IProxy {
 		EntityData.DefaultImpl::new);
 
 	CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
-		WorldData.DefaultImpl.class);
-
-	CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class, new PlayerDeathItems.Storage(),
-		PlayerDeathItems.DefaultImpl.class);
+		WorldData.DefaultImpl::new);
 
 	DeferredWorkQueue.runLater(() -> {
 	    RegisterPackets.register(); // NetworkRegistry.createInstance
@@ -85,24 +84,26 @@ public class CommonProxy implements IProxy {
 
 	if (ModConfig.Server.GENERATE_ORES) {
 
-	    int chance = 6;
 	    int amount = 7;
 
 	    for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-
-		BiomeManager.getBiomes(BiomeManager.BiomeType.WARM)
-			.forEach((BiomeManager.BiomeEntry biomeEntry) -> biomeEntry.biome.addFeature(
-				GenerationStage.Decoration.UNDERGROUND_ORES,
-				Biome.createCompositeFeature(Feature.MINABLE,
-					new MinableConfig(MinableConfig.IS_ROCK,
-						ItemOre.Blocks.get(i).getDefaultState(), 12),
-					Biome.COUNT_RANGE, new CountRangeConfig(amount - i, 30, 40, 70)
-
-				)));
-
+		genOre(ItemOre.Blocks.get(i), amount--);
 	    }
 
 	}
+
+    }
+
+    private void genOre(Block block, int amount) {
+
+	BiomeManager.getBiomes(BiomeManager.BiomeType.WARM)
+		.forEach((BiomeManager.BiomeEntry biomeEntry) -> biomeEntry.biome.addFeature(
+			GenerationStage.Decoration.UNDERGROUND_ORES,
+			Biome.createCompositeFeature(Feature.MINABLE,
+				new MinableConfig(MinableConfig.IS_ROCK, block.getDefaultState(), 12),
+				Biome.COUNT_RANGE, new CountRangeConfig(amount, 30, 40, 70)
+
+			)));
 
     }
 
@@ -122,8 +123,8 @@ public class CommonProxy implements IProxy {
     }
 
     @Override
-    public void regRenders(ModelRegistryEvent evt) {
-
+    public EntityPlayer getPlayerEntityFromContext(Supplier<Context> ctx) {
+	return null;
     }
 
 }

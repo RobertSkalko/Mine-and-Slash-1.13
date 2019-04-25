@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class CheckWorldDelete {
 
-    public static HashMap<Integer, Integer> idAndDeleteAttempts = new HashMap<Integer, Integer>();
+    public static HashMap<String, Integer> idAndDeleteAttempts = new HashMap<String, Integer>();
 
     @SubscribeEvent
     public static void onWorldUnload(WorldEvent.Unload event) {
@@ -28,7 +28,7 @@ public class CheckWorldDelete {
 	if (!event.getWorld().isRemote()) {
 
 	    try {
-		resetCount(event.getWorld().provider.getDimension());
+		resetCount(event.getWorld().getDimension().getType().getRegistryName().toString());
 	    } catch (Exception e1) {
 		e1.printStackTrace();
 	    }
@@ -84,17 +84,17 @@ public class CheckWorldDelete {
 	}
     }
 
-    private static boolean hasMoreTries(int id) {
+    private static boolean hasMoreTries(String id) {
 	return idAndDeleteAttempts.containsKey(id) == false || idAndDeleteAttempts.get(id) < 5;
     }
 
-    private static void resetCount(int id) {
+    private static void resetCount(String id) {
 	if (idAndDeleteAttempts.containsKey(id)) {
 	    idAndDeleteAttempts.put(id, 0);
 	}
     }
 
-    private static void increaseCount(int id) {
+    private static void increaseCount(String id) {
 
 	if (idAndDeleteAttempts.containsKey(id)) {
 	    idAndDeleteAttempts.put(id, idAndDeleteAttempts.get(id) + 1);
