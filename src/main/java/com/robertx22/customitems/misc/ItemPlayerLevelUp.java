@@ -8,9 +8,8 @@ import com.robertx22.customitems.BaseItem;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,7 +25,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -51,11 +49,11 @@ public class ItemPlayerLevelUp extends BaseItem {
 	if (!worldIn.isRemote) {
 	    try {
 
-		int req = tokensRequired(player.getCapability(EntityData.Data, null).getLevel());
+		int req = tokensRequired(Load.Unit(player).getLevel());
 
 		if (hasEnoughTokens(player.getHeldItem(handIn), req)) {
 
-		    if (player.getCapability(EntityData.Data, null).LevelUp((EntityPlayerMP) player)) {
+		    if (Load.Unit(player).LevelUp((EntityPlayerMP) player)) {
 
 			return new ActionResult<ItemStack>(EnumActionResult.PASS,
 				EmptyOrDecrease(player.getHeldItem(handIn), req));
@@ -99,7 +97,7 @@ public class ItemPlayerLevelUp extends BaseItem {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
 	    ITooltipFlag flagIn) {
 
-	Tooltip.add(CLOC.tooltip("player_levelup"),tooltip));
+	Tooltip.add(CLOC.tooltip("player_levelup"), tooltip);
 
     }
 

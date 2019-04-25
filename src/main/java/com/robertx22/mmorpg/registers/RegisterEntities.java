@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
+import com.robertx22.customitems.gearitems.MyEntityArrow;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
@@ -13,6 +14,7 @@ import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
 import com.robertx22.spells.aoe_projectile.SpellFlameExplosion;
 import com.robertx22.spells.aoe_projectile.SpellFrostExplosion;
 import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
+import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
 import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
@@ -46,6 +48,9 @@ public class RegisterEntities {
     public static final EntityType<?> ACIDEXPLOSION;
     public static final EntityType<?> THUNDEREXPLOSION;
 
+    public static final EntityType<?> STAFFPROJECTILE;
+    public static final EntityType<?> MYARROW;
+
     static {
 
 	FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new);
@@ -66,6 +71,9 @@ public class RegisterEntities {
 	FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new);
 	ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new);
 	THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new);
+
+	STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new);
+	MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new);
 
     }
 

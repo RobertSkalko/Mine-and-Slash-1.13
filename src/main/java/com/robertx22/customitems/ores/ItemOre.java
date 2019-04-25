@@ -12,6 +12,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -20,7 +21,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -61,7 +61,7 @@ public class ItemOre extends Item implements IWeighted {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
 	    ITooltipFlag flagIn) {
 
-	Tooltip.add(new TextComponentString(CLOC.tooltip("ore")));
+	Tooltip.add(CLOC.tooltip("ore"), tooltip);
 
     }
 

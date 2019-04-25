@@ -1,14 +1,12 @@
 package com.robertx22.customitems.infusions.upgrade;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ObjectHolder;
 
 @EventBusSubscriber
 public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
@@ -25,11 +23,6 @@ public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	event.getRegistry().register(new WondrousUpgradeInfusion());
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
     }
 
     @Override

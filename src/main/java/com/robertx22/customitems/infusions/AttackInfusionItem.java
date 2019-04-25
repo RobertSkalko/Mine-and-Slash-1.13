@@ -20,14 +20,12 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamage
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.stats.StatMod;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ObjectHolder;
 
 @EventBusSubscriber
 public class AttackInfusionItem extends BaseInfusionItem {
@@ -45,11 +43,6 @@ public class AttackInfusionItem extends BaseInfusionItem {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 	event.getRegistry().register(new AttackInfusionItem());
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
     }
 
     @Override
