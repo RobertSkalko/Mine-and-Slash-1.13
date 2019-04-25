@@ -31,10 +31,8 @@ import com.robertx22.customitems.runes.VohItem;
 import com.robertx22.customitems.runes.XahItem;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -109,13 +107,6 @@ public class GearItemRegisters {
 	    event.getRegistry().register(item);
 	}
 
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	for (Item item : items) {
-	    RegisterUtils.registerRender(item);
-	}
     }
 
 }

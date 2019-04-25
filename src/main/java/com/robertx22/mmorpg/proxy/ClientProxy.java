@@ -47,10 +47,11 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-public class ClientProxy {
+public class ClientProxy implements IProxy {
     // functionality
 
-    public static void preInit(FMLCommonSetupEvent event) {
+    public void preInit(FMLCommonSetupEvent event) {
+
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -65,7 +66,7 @@ public class ClientProxy {
 
     }
 
-    public static void regRenders(ModelRegistryEvent evt) {
+    public void regRenders(ModelRegistryEvent evt) {
 
 	RegisterModEntity(Items.SNOWBALL, SpellFrostBolt.EntityFrostBolt.class, i++);
 	RegisterModEntity(Items.MAGMA_CREAM, SpellFireBolt.EntityFireBolt.class, i++);
@@ -93,7 +94,7 @@ public class ClientProxy {
 
     }
 
-    public static void init() {
+    public void init() {
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -103,7 +104,7 @@ public class ClientProxy {
 
     }
 
-    public static void postInit() {
+    public void postInit() {
 	// DEBUG
 	System.out.println("on Client side");
 
@@ -131,7 +132,7 @@ public class ClientProxy {
 
     }
 
-    public static <T extends Entity> IRenderFactory<T> createRenderFactory(final Item itemToRender) {
+    public <T extends Entity> IRenderFactory<T> createRenderFactory(final Item itemToRender) {
 	return manager -> new RenderSprite<>(manager, itemToRender, Minecraft.getInstance().getItemRenderer());
     }
 

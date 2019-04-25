@@ -12,6 +12,7 @@ import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
 import com.robertx22.mmorpg.gui.GuiHandlerAll;
 import com.robertx22.mmorpg.proxy.ClientProxy;
+import com.robertx22.mmorpg.proxy.CommonProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
@@ -29,6 +30,7 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.WorldData;
+import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.unique_items.UniqueItemRegister;
@@ -66,7 +68,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 @Mod(Ref.MODID)
 public class Main {
 
-    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+    public static IProxy proxy = (IProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static Main instance;
 
@@ -80,18 +82,21 @@ public class Main {
     public Main() {
 	Main.instance = this;
 
+	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+	FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::preInit);
+	FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::loadComplete);
+
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-	    IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		    () -> GuiHandlerAll::getClientGuiElement);
 
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::preInit);
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::loadComplete);
 	    MinecraftForge.EVENT_BUS.addListener(ClientProxy::regRenders);
 	});
 
-	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+	// ForgeMod
+	// ModLoadingContext.get().registerConfig(type, spec, fileName);
 
 	eventBus.addListener(this::setup);
 	eventBus.addListener(this::enqueue);
@@ -111,57 +116,9 @@ public class Main {
 
     public void preInit(FMLCommonSetupEvent event) {
 
-	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-		() -> GuiHandlerAll::getClientGuiElement);
-
-	Serialization.generateConfig();
-
-	UniqueItemRegister.registerAll();
-
-	GameRegistry.registerTileEntity(TileMapPortal.class, new ResourceLocation(Ref.MODID, "map_portal_tile"));
-
+	new CommonProxy().preInit(event);
 	proxy.preInit(event);
-
 	proxy.registerRenders();
-
-	GearItemRegisters.register();
-
-	ItemOre.Register();
-	StartupRepair.preInitCommon();
-	StartupSalvage.preInitCommon();
-	StartupModify.preInitCommon();
-	StartupGearFactory.preInitCommon();
-	StartupMap.preInitCommon();
-
-	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
-	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
-	MinecraftForge.EVENT_BUS.register(new DmgNumPacket());
-	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
-	MinecraftForge.EVENT_BUS.register(new WorldPackage());
-
-	Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Dist.CLIENT);
-	Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Dist.CLIENT);
-
-	Network.registerMessage(2, DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode,
-		DmgNumPacket::handle);
-
-	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Dist.CLIENT);
-	Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Dist.CLIENT);
-	Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Dist.CLIENT);
-
-	CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
-		EntityData.DefaultImpl.class);
-
-	CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
-		WorldData.DefaultImpl.class);
-
-	CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class, new PlayerDeathItems.Storage(),
-		PlayerDeathItems.DefaultImpl.class);
-
-	DeferredWorkQueue.runLater(() -> {
-	    PacketHandler.register(); // NetworkRegistry.createInstance
-
-	});
 
     }
 
