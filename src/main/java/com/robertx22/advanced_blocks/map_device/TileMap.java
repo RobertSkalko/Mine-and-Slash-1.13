@@ -104,7 +104,7 @@ public class TileMap extends BaseTile {
 
 		    UnitData unit = Load.Unit(player);
 
-		    int id = map.findFreeDimensionId(player, unit);
+		    String id = map.findFreeDimensionId(player, unit);
 
 		    // start map
 		    this.MapSlot().shrink(1);

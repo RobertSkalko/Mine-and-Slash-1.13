@@ -1,14 +1,15 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -18,7 +19,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     ItemStack staff;
 
     public EntityStaffProjectile(World worldIn) {
-	super(worldIn);
+	super(RegisterEntities.STAFFPROJECTILE, worldIn);
 
     }
 
@@ -67,7 +68,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 	if (world.isRemote) {
 	    for (int i = 0; i < 5; i++) {
 
-		this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + rand.nextFloat() * 0.2 - 0.1,
+		this.world.addParticle(Particles.CRIT, this.posX + rand.nextFloat() * 0.2 - 0.1,
 			this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,
 			this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
 

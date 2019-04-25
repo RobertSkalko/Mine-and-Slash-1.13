@@ -2,8 +2,8 @@ package com.robertx22.uncommon.gui.player_overlays;
 
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Player_GUIs;
 
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ public class BarsGUI extends Gui {
 	    ticks++;
 
 	    if (ticks > 12) {
-		UnitData newData = mc.player.getCapability(EntityData.Data);
+		UnitData newData = Load.Unit(mc.player);
 
 		ticks = 0;
 

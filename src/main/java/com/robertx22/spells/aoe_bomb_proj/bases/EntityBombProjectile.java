@@ -12,6 +12,7 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityType;
 import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
@@ -25,8 +26,8 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 	return 2.5D;
     }
 
-    public EntityBombProjectile(World worldIn) {
-	super(worldIn);
+    public EntityBombProjectile(EntityType<?> type, World worldIn) {
+	super(type, worldIn);
 
 	this.setDeathTime(60);
 	this.setAirProcTime(40);

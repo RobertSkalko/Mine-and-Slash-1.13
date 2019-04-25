@@ -7,14 +7,15 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
-    public EntityElementalBoltAOE(World worldIn) {
-	super(worldIn);
+    public EntityElementalBoltAOE(EntityType<?> type, World worldIn) {
+	super(type, worldIn);
 
     }
 

@@ -5,8 +5,7 @@ import com.robertx22.dimensions.IWP;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
+import net.minecraft.world.dimension.DimensionType;
 
 @Storable
 public class DimensionData {
@@ -36,7 +35,7 @@ public class DimensionData {
 
 	try {
 	    return DimensionType.register(Name, suffix, ID,
-		    (Class<? extends WorldProvider>) WorldProviders.All.get(theclass).getClass(), false);
+		    (Class<? extends IWP>) WorldProviders.All.get(theclass).getClass(), false);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}

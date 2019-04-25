@@ -8,7 +8,7 @@ import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
@@ -57,7 +57,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 	    for (int i = 0; i < list.size(); ++i) {
 		EntityLivingBase entity1 = list.get(i);
 
-		if (entity1.hasCapability(EntityData.Data, null) && entity1 != caster) {
+		if (Load.hasUnit(entity1) && entity1 != caster) {
 
 		    entity1.playSound(SoundEvents.ENCHANT_THORNS_HIT, 0.7F, 0);
 
@@ -70,7 +70,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
 	}
 
-	SoundUtils.playSoundAtPlayer(caster, SoundEvents.EVOCATION_ILLAGER_CAST_SPELL, 1, 1);
+	SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1, 1);
 	caster.swingArm(hand);
 	return true;
     }

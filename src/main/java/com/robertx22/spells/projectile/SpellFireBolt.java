@@ -2,6 +2,7 @@ package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.projectile.ItemFireBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -15,7 +16,7 @@ public class SpellFireBolt extends BaseSpellProjectile {
 
 	public EntityFireBolt(World worldIn) {
 
-	    super(worldIn);
+	    super(RegisterEntities.FIREBOLT, worldIn);
 
 	}
 

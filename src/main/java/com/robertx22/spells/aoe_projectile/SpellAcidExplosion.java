@@ -2,6 +2,7 @@ package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemAcidExplosion;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
@@ -16,7 +17,7 @@ public class SpellAcidExplosion extends BaseAoeSpellProjectile {
 
 	public EntityAcidExplosion(World worldIn) {
 
-	    super(worldIn);
+	    super(RegisterEntities.ACIDEXPLOSION, worldIn);
 
 	}
 

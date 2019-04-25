@@ -11,8 +11,8 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class CleansePoisonPotion extends SpellPotionBase {
@@ -27,7 +27,8 @@ public class CleansePoisonPotion extends SpellPotionBase {
     private CleansePoisonPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.cleanse_poison");
+	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.cleanse_poison"));
+
     }
 
     @Override

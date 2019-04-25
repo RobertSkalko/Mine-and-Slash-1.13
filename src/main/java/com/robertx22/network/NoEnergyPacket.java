@@ -10,28 +10,28 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class MessagePackage {
+public class NoEnergyPacket {
 
     public enum MessageTypes {
 	NoEnergy, NoMana
     }
 
-    public MessagePackage() {
+    public NoEnergyPacket() {
     }
 
-    public static MessagePackage decode(PacketBuffer buf) {
+    public static NoEnergyPacket decode(PacketBuffer buf) {
 
-	MessagePackage newpkt = new MessagePackage();
+	NoEnergyPacket newpkt = new NoEnergyPacket();
 
 	return newpkt;
 
     }
 
-    public static void encode(MessagePackage packet, PacketBuffer tag) {
+    public static void encode(NoEnergyPacket packet, PacketBuffer tag) {
 
     }
 
-    public static void handle(final MessagePackage pkt, Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(final NoEnergyPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
 	ctx.get().enqueueWork(() -> {
 	    try {

@@ -12,8 +12,9 @@ import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.Particles;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 
 public abstract class BaseSpellHeal extends BaseSpell {
 
@@ -74,11 +75,11 @@ public abstract class BaseSpellHeal extends BaseSpell {
 	    double d1 = (double) ((float) WizardryUtilities.getPlayerEyesPos(en) - 0.5F + en.world.rand.nextFloat());
 	    double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 
-	    en.world.spawnParticle(EnumParticleTypes.HEART, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+	    en.world.addParticle(Particles.HEART, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
 	}
     }
 
-    public static void spawnParticles(EnumParticleTypes particle, EntityLivingBase en, int amount) {
+    public static void spawnParticles(IParticleData particle, EntityLivingBase en, int amount) {
 	for (int i = 0; i < amount; i++) {
 	    double d0 = (double) ((float) en.posX + en.world.rand.nextFloat() * 2 - 1.0F);
 	    // Apparently the client side spawns the particles 1 block higher than it
@@ -87,7 +88,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
 	    double d1 = (double) ((float) WizardryUtilities.getPlayerEyesPos(en) - 0.5F + en.world.rand.nextFloat());
 	    double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 
-	    en.world.spawnParticle(particle, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+	    en.world.addParticle((IParticleData) particle, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
 	}
     }
 }

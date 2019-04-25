@@ -2,6 +2,7 @@ package com.robertx22.spells.aoe_bomb_proj;
 
 import com.robertx22.customitems.spells.aoe_bomb_proj.ItemIceBomb;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
 import com.robertx22.spells.aoe_bomb_proj.bases.EntityBombProjectile;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -20,7 +21,7 @@ public class SpellIceBomb extends BaseBombSpell {
     static public class EntityIceBomb extends EntityBombProjectile {
 
 	public EntityIceBomb(World worldIn) {
-	    super(worldIn);
+	    super(RegisterEntities.FROSTBOMB, worldIn);
 
 	}
 

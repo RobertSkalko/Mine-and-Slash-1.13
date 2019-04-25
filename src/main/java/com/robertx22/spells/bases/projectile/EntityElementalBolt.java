@@ -12,6 +12,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -24,8 +25,8 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public abstract Elements element();
 
-    public EntityElementalBolt(World worldIn) {
-	super(worldIn);
+    public EntityElementalBolt(EntityType<?> type, World worldIn) {
+	super(type, worldIn);
 
     }
 

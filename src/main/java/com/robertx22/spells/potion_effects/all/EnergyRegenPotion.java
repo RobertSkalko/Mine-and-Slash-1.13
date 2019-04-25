@@ -9,12 +9,12 @@ import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Particles;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class EnergyRegenPotion extends SpellPotionBase {
@@ -33,7 +33,8 @@ public class EnergyRegenPotion extends SpellPotionBase {
     private EnergyRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.energy_regen");
+	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.energy_regen"));
+
     }
 
     @Override
@@ -52,7 +53,7 @@ public class EnergyRegenPotion extends SpellPotionBase {
 	try {
 
 	    if (entity.world.isRemote) {
-		SpellInstantHeal.spawnParticles(EnumParticleTypes.VILLAGER_HAPPY, entity, 5);
+		SpellInstantHeal.spawnParticles(Particles.HAPPY_VILLAGER, entity, 5);
 	    } else {
 		UnitData data = Load.Unit(entity);
 		data.restoreEnergy(amplifier);

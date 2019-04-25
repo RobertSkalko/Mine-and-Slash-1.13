@@ -2,6 +2,7 @@ package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemFrostExplosion;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
@@ -15,7 +16,7 @@ public class SpellFrostExplosion extends BaseAoeSpellProjectile {
 
 	public EntityFrostExplosion(World worldIn) {
 
-	    super(worldIn);
+	    super(RegisterEntities.FROSTEXPLOSION, worldIn);
 
 	}
 

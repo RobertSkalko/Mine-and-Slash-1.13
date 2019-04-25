@@ -12,14 +12,10 @@ import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class SpellPotionBase extends Potion {
-
-    public void register(String name) {
-	setPotionName(name);
-    }
 
     public SpellPotionBase finish() {
 	// This method is called from the registry callback, so our mod is the active

@@ -9,12 +9,12 @@ import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Particles;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class ManaRegenPotion extends SpellPotionBase {
@@ -33,7 +33,8 @@ public class ManaRegenPotion extends SpellPotionBase {
     private ManaRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.mana_regen");
+	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.mana_regen"));
+
     }
 
     @Override
@@ -63,7 +64,7 @@ public class ManaRegenPotion extends SpellPotionBase {
 	try {
 
 	    if (entity.world.isRemote) {
-		SpellInstantHeal.spawnParticles(EnumParticleTypes.WATER_BUBBLE, entity, 5);
+		SpellInstantHeal.spawnParticles(Particles.BUBBLE, entity, 5);
 	    } else {
 		UnitData data = Load.Unit(entity);
 		data.restoreMana(amplifier);

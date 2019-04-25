@@ -28,6 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
 @Storable
@@ -127,6 +128,10 @@ public class MapItemData implements ISalvagable {
 
 	unit.setCurrentMapId(id);
 
+	//ModDimension
+	
+	DimensionManager.registerDimension(name, type, data)
+	
 	DimensionData dimData = getDimData(id, map.worldGeneratorName);
 
 	if (DimensionManager.isDimensionRegistered(id)) {
@@ -154,10 +159,14 @@ public class MapItemData implements ISalvagable {
 	return data;
     }
 
-    public int findFreeDimensionId(EntityPlayer player, UnitData unit) {
+    public String findFreeDimensionId(EntityPlayer player, UnitData unit) {
 
 	if (unit.hasCurrentMapId()) {
+	    
+	    
+	    DimensionManager.registerDimension(name, type, data)
 
+	    
 	    int lastid = unit.getCurrentMapId();
 	    if (DimensionManager.isDimensionRegistered(lastid)) {
 		DimensionManager.initDimension(lastid);

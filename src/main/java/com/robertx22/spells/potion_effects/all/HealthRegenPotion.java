@@ -12,8 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class HealthRegenPotion extends SpellPotionBase {
@@ -32,7 +32,8 @@ public class HealthRegenPotion extends SpellPotionBase {
     private HealthRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.self_regen");
+	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.self_regen"));
+
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.mmorpg.Main;
-import com.robertx22.network.MessagePackage;
+import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -88,8 +88,7 @@ public abstract class BaseSpell implements IWeighted {
 
 		} else {
 		    if (caster instanceof EntityPlayerMP) {
-			Main.Network.sendTo(new MessagePackage("not_enough_mana", MessagePackage.MessageTypes.NoMana),
-				(EntityPlayerMP) caster);
+			Main.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
 
 		    }
 

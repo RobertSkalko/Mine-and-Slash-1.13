@@ -2,6 +2,7 @@ package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.projectile.ItemFrostBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.mmorpg.registers.RegisterEntities;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -14,7 +15,7 @@ public class SpellFrostBolt extends BaseSpellProjectile {
 
 	public EntityFrostBolt(World worldIn) {
 
-	    super(worldIn);
+	    super(RegisterEntities.FROSTBOLT, worldIn);
 
 	}
 

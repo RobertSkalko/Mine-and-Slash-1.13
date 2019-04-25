@@ -3,7 +3,7 @@ package com.robertx22.mmorpg.registers;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
-import com.robertx22.network.MessagePackage;
+import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
@@ -18,8 +18,8 @@ public class RegisterPackets {
 	Main.Network.registerMessage(index++, EntityUnitPackage.class, EntityUnitPackage::encode,
 		EntityUnitPackage::decode, EntityUnitPackage::handle);
 
-	Main.Network.registerMessage(index++, MessagePackage.class, MessagePackage::encode, MessagePackage::decode,
-		MessagePackage::handle);
+	Main.Network.registerMessage(index++, NoEnergyPacket.class, NoEnergyPacket::encode, NoEnergyPacket::decode,
+		NoEnergyPacket::handle);
 
 	Main.Network.registerMessage(index++, ParticlePackage.class, ParticlePackage::encode, ParticlePackage::decode,
 		ParticlePackage::handle);
