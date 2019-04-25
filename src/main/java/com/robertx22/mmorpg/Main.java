@@ -22,7 +22,6 @@ import com.robertx22.mmorpg.registers.RegisterCurioSlot;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
-import com.robertx22.network.PacketHandler;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;

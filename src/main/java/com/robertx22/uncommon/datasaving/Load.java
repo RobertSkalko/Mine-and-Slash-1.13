@@ -9,6 +9,13 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Load {
 
+    public static boolean hasUnit(ICapabilityProvider provider) {
+	if (provider != null) {
+	    return provider.getCapability(EntityData.Data).isPresent();
+	}
+	return false;
+    }
+
     public static UnitData Unit(ICapabilityProvider provider) {
 	if (provider != null) {
 	    return provider.getCapability(EntityData.Data).orElse(new EntityData.DefaultImpl());

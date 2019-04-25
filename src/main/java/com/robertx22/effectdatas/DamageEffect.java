@@ -29,6 +29,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.network.NetworkDirection;
 
 public class DamageEffect extends EffectData
 	implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -116,8 +117,10 @@ public class DamageEffect extends EffectData
 
 	    if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
 
-		Main.Network.sendTo(new DmgNumPacket(Target, this.Element, FormatDamageNumber(this)),
-			(EntityPlayerMP) Source);
+		EntityPlayerMP player = (EntityPlayerMP) Source;
+		DmgNumPacket packet = new DmgNumPacket(Target, this.Element, FormatDamageNumber(this));
+		Main.Network.sendTo(packet, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+
 	    }
 	}
 

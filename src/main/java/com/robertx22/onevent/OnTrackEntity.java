@@ -2,14 +2,15 @@ package com.robertx22.onevent;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.EntityUnitPackage;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.NetworkDirection;
 
 @Mod.EventBusSubscriber
 public class OnTrackEntity {
@@ -21,10 +22,11 @@ public class OnTrackEntity {
 
 	if (entity instanceof EntityLivingBase) {
 	    if (entity.isEntityEqual(event.getEntityPlayer()) == false) {
-		if (entity.hasCapability(EntityData.Data, null)) {
-
+		if (Load.Unit(entity) != null) {
+		    EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
 		    Main.Network.sendTo(new EntityUnitPackage((EntityLivingBase) entity),
-			    (EntityPlayerMP) event.getEntityPlayer());
+			    player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+
 		}
 
 	    }
