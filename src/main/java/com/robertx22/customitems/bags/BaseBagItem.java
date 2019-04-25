@@ -4,32 +4,25 @@ import javax.annotation.Nonnull;
 
 import com.robertx22.customitems.ItemSingle;
 import com.robertx22.db_lists.CreativeTabs;
-import com.robertx22.mmorpg.Main;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -68,11 +61,12 @@ public abstract class BaseBagItem extends Item {
     private static class InvProvider implements ICapabilitySerializable<INBTBase> {
 
 	private final IItemHandler inv = new ItemStackHandler(size);
+	private final LazyOptional<IItemHandler> opt = LazyOptional.of(() -> inv);
 
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
 	    if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(inv, null);
+		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
 	    else
 		return null;
 	}
@@ -88,34 +82,24 @@ public abstract class BaseBagItem extends Item {
 
 	}
 
-	/*
-	 * @Override public <T> T getCapability(@Nonnull Capability<T>
-	 * capability, @Nullable EnumFacing facing) { if (capability ==
-	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return
-	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv); else return null; }
-	 * 
-	 * @Override public NBTBase serializeNBT() { return
-	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null); }
-	 * 
-	 * @Override public void deserializeNBT(NBTBase nbt) {
-	 * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt); }
-	 */
     }
 
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-	if (stack.getTag() != null && stack.getTag().contains(TAG_ITEMS)) {
-	    NBTTagList oldData = stack.getTag().getList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND);
-	    IItemHandler newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-	    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
-
-	    stack.getTag().remove(TAG_ITEMS);
-
-	    if (stack.getTag().size() == 0)
-		stack.setTag(null);
-	}
-    }
+// I THINK ITS NOT NEEDED
+    /*
+     * @Override public void inventoryTick(ItemStack stack, World world, Entity
+     * entityIn, int slot, boolean selected) { if (stack.getTag() != null &&
+     * stack.getTag().contains(TAG_ITEMS)) { NBTTagList oldData =
+     * stack.getTag().getList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND); IItemHandler
+     * newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,
+     * null).orElse(null);
+     * 
+     * if (newInv != null) {
+     * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
+     * 
+     * stack.getTag().remove(TAG_ITEMS);
+     * 
+     * if (stack.getTag().size() == 0) stack.setTag(null); } } }
+     */
 
     @SubscribeEvent
     public static void onPickupItem(EntityItemPickupEvent event) {
@@ -128,7 +112,12 @@ public abstract class BaseBagItem extends Item {
 
 	    ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
 	    if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
-		IItemHandler bagInv = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		IItemHandler bagInv = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+			.orElseGet(null);
+		if (bagInv == null) {
+		    return;
+		}
+
 		BaseBagItem bagitem = (BaseBagItem) bag.getItem();
 
 		if (bagitem.IsValidItem(stack) && stack.getCount() > 0) {
@@ -162,30 +151,23 @@ public abstract class BaseBagItem extends Item {
 	}
     }
 
-    @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
-	player.openGui(Main.instance, GuiNumber(), world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
-	return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-    }
+    public EnumActionResult onItemUse(ItemUseContext context) {
+	World world = context.getWorld();
 
-    @Nonnull
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side,
-	    float xs, float ys, float zs) {
-	TileEntity tile = world.getTileEntity(pos);
+	TileEntity tile = world.getTileEntity(context.getPos());
 	if (tile != null) {
 	    if (!world.isRemote) {
 		IItemHandler tileInv = null;
-		if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side))
-		    tileInv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
+		if (tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent())
+		    tileInv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
 		else if (tile instanceof IInventory)
 		    tileInv = new InvWrapper((IInventory) tile);
 
 		if (tileInv == null)
 		    return EnumActionResult.FAIL;
 
-		IItemHandlerModifiable bagInv = (IItemHandlerModifiable) player.getHeldItem(hand)
+		IItemHandlerModifiable bagInv = (IItemHandlerModifiable) context.getItem()
 			.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
 		for (int i = 0; i < bagInv.getSlots(); i++) {

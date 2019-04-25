@@ -24,9 +24,6 @@ import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
@@ -46,9 +43,10 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import top.theillusivec4.curios.api.CuriosAPI;
 
 @EventBusSubscriber
-public class AutoSalvageBag extends Item implements IBauble {
+public class AutoSalvageBag extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -309,34 +307,40 @@ public class AutoSalvageBag extends Item implements IBauble {
 
 		ItemStack stack = event.getItem().getItem();
 
-		IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
-		for (int a = 0; a < handler.getSlots(); a++) {
-		    if (!handler.getStackInSlot(a).isEmpty()
-			    && handler.getStackInSlot(a).getItem() instanceof AutoSalvageBag) {
+		for (int i = 0; i < AutoSalvageBag.Items.size(); i++) {
 
-			AutoSalvageBag salvageBag = (AutoSalvageBag) handler.getStackInSlot(a).getItem();
+		    Item item = AutoSalvageBag.Items.get(i);
 
-			ISalvagable sal = getSalvagable(stack);
+		    if (CuriosAPI.getCurioEquipped(item, player) != null) {
 
-			if (sal != null) {
+			if (CuriosAPI.getCurioEquipped(item, player).getStack().getItem() instanceof AutoSalvageBag) {
+			    AutoSalvageBag salvageBag = (AutoSalvageBag) CuriosAPI.getCurioEquipped(item, player)
+				    .getStack().getItem();
 
-			    if (salvageBag.shouldSalvageItem(sal, handler.getStackInSlot(a).getTag())) {
+			    ISalvagable sal = getSalvagable(stack);
 
-				ItemStack result = salvageBag.getSalvageResultForItem(sal);
+			    if (sal != null) {
 
-				stack.setCount(0);
+				if (salvageBag.shouldSalvageItem(sal, stack.getTag())) {
 
-				EntityItem item = new EntityItem(player.world, player.posX, player.posY, player.posZ,
-					result);
-				item.setNoPickupDelay();
-				player.world.spawnEntity(item);
+				    ItemStack result = salvageBag.getSalvageResultForItem(sal);
 
+				    stack.setCount(0);
+
+				    EntityItem enitem = new EntityItem(player.world, player.posX, player.posY,
+					    player.posZ, result);
+				    enitem.setNoPickupDelay();
+				    player.world.spawnEntity(enitem);
+
+				}
 			    }
+
+			    return;
+
 			}
 
-			return;
-
 		    }
+
 		}
 	    }
 	}
