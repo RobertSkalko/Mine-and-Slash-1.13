@@ -1,11 +1,11 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class OnPlayerClone {
@@ -16,8 +16,8 @@ public class OnPlayerClone {
 	if (!event.getEntityPlayer().world.isRemote) {
 
 	    EntityPlayer player = event.getEntityPlayer();
-	    player.getCapability(EntityData.Data, null)
-		    .HandleCloneEvent(event.getOriginal().getCapability(EntityData.Data, null));
+
+	    Load.Unit(player).HandleCloneEvent(Load.Unit(event.getOriginal()));
 
 	}
 

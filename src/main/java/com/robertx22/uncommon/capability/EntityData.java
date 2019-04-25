@@ -48,6 +48,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.NetworkDirection;
 
 @Mod.EventBusSubscriber
 public class EntityData {
@@ -469,7 +470,10 @@ public class EntityData {
 	public void syncToClient(EntityPlayer player) {
 	    if (unit != null) {
 		PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
-		Main.Network.senTo(packet, (EntityPlayerMP) player);
+
+		EntityPlayerMP mp = (EntityPlayerMP) player;
+
+		Main.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
 	    }
 	}
 

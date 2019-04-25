@@ -15,15 +15,14 @@ import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.self.SpellInstantHeal;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 @Mod.EventBusSubscriber
@@ -69,21 +68,21 @@ public class OnLogin {
     @SubscribeEvent
     public static void onLogin(PlayerLoggedInEvent event) {
 
-	if (event.player.world.isRemote) {
+	if (event.getPlayer().world.isRemote) {
 	    return;
 	}
 
 	try {
 
-	    EntityPlayer player = event.player;
+	    EntityPlayer player = event.getPlayer();
 
-	    if (player.hasCapability(EntityData.Data, null)) {
+	    if (Load.hasUnit(player) == false) {
 
 		UnitData data = Load.Unit(player);
 
 		data.onLogin(player);
 
-		player.getCapability(EntityData.Data, null).syncToClient(player);
+		Load.Unit(player).syncToClient(player);
 
 	    } else {
 		player.sendMessage(

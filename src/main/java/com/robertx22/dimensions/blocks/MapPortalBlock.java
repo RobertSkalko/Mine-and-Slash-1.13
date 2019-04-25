@@ -100,8 +100,8 @@ public class MapPortalBlock extends BlockEndPortal {
 					BlockPos pos1 = w.getSpawnPoint();
 					BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
 
-					entity.changeDimension(portal.id,
-						new MyTeleporter(world, pos2, (EntityPlayer) entity, portal.id));
+					entity.changeDimension(portal.id, new MyTeleporter(world, pos2,
+						(EntityPlayer) entity, DimensionManager.portal.id));
 
 				    }
 

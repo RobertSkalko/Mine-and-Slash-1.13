@@ -4,7 +4,6 @@ import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItem;
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItems;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
@@ -12,8 +11,8 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class OnItemPickupGiveStatsWhitelist {
@@ -49,7 +48,7 @@ public class OnItemPickupGiveStatsWhitelist {
 
 			EntityPlayer player = event.getEntityPlayer();
 
-			if (player.hasCapability(EntityData.Data, null)) {
+			if (Load.hasUnit(player)) {
 			    if (data == null) {
 				data = Load.Unit(player);
 			    }

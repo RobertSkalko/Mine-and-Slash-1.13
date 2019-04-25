@@ -9,13 +9,13 @@ import org.apache.commons.io.FileUtils;
 
 import com.robertx22.dimensions.WorldFileUtils;
 import com.robertx22.uncommon.capability.MapDatas;
-import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class CheckWorldDelete {
@@ -25,7 +25,7 @@ public class CheckWorldDelete {
     @SubscribeEvent
     public static void onWorldUnload(WorldEvent.Unload event) {
 
-	if (!event.getWorld().isRemote) {
+	if (!event.getWorld().isRemote()) {
 
 	    try {
 		resetCount(event.getWorld().provider.getDimension());
@@ -39,16 +39,16 @@ public class CheckWorldDelete {
 		@Override
 		public void run() {
 
-		    int id = 0;
+		    String id = "";
 
 		    try {
 
-			World world = event.getWorld();
+			World world = (World) event.getWorld();
 
-			id = world.provider.getDimension();
+			id = world.dimension.toString();
 
-			if (world.hasCapability(WorldData.Data, null)) {
-			    IWorldData data = world.getCapability(WorldData.Data, null);
+			if (Load.World(world) != null) {
+			    IWorldData data = Load.World(world);
 
 			    if (data != null && data.isSetForDelete()) {
 

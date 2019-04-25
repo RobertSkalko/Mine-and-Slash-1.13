@@ -41,7 +41,7 @@ public class MyEntityArrow extends EntityArrow {
     /** The amount of knockback an arrow applies when it hits a mob. */
     private int knockbackStrength;
 
-    private MyEntityArrow(World worldIn) {
+    public MyEntityArrow(World worldIn) {
 	super(RegisterEntities.MYARROW, worldIn);
 
 	this.pickupStatus = MyEntityArrow.PickupStatus.DISALLOWED;

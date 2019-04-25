@@ -10,16 +10,14 @@ import com.robertx22.database.stat_types.resources.ManaRegen;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
@@ -34,81 +32,81 @@ public class OnTickLogic {
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
     @SubscribeEvent
-    public static void onTickLogic(TickEvent.ServerTickEvent event) {
+    public static void onTickLogic(TickEvent.PlayerTickEvent event) {
 
-	if (event.phase == Phase.END && event.side.isServer()) {
+	if (event.phase == Phase.END && event.side.equals(event.side.SERVER)) {
 
 	    try {
-		for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
-			.getPlayers()) {
 
-		    PlayerTickData data = null;
+		EntityPlayerMP player = (EntityPlayerMP) event.player;
 
-		    if (PlayerTickDatas.containsKey(player.getUniqueID())) {
-			data = PlayerTickDatas.get(player.getUniqueID());
-		    } else {
-			data = new PlayerTickData();
-		    }
+		PlayerTickData data = null;
 
-		    data.increment();
+		if (PlayerTickDatas.containsKey(player.getUniqueID())) {
+		    data = PlayerTickDatas.get(player.getUniqueID());
+		} else {
+		    data = new PlayerTickData();
+		}
 
-		    if (data.regenTicks > TicksToRegen) {
-			data.regenTicks = 0;
-			if (player.isAlive()) {
+		data.increment();
 
-			    IWorldData mapdata = Load.World(player.world);
-			    UnitData unit_capa = player.getCapability(EntityData.Data, null);
-			    unit_capa.recalculateStats(player, mapdata);
-			    Unit unit = unit_capa.getUnit();
-
-			    int manarestored = (int) unit.MyStats.get(new ManaRegen().Guid()).Value;
-			    unit_capa.restoreMana(manarestored);
-
-			    int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Guid()).Value;
-			    unit_capa.restoreEnergy(energyrestored);
-
-			    int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
-			    unit_capa.heal(player, healthrestored);
-
-			    unit_capa.setUnit(unit, player);
-
-			}
-		    }
-
-		    if (data.worldUpdateTicks > TicksToUpdateWorld) {
-			data.worldUpdateTicks = 0;
-			IWorldData mapdata = Load.World(player.world);
-			if (mapdata.isMapWorld()) {
-			    Main.Network.sendTo(new WorldPackage(mapdata), player);
-			}
-
-		    }
-
-		    if (data.mapPortalTicks > TicksToGiveMapPortal) {
-			data.mapPortalTicks = 0;
+		if (data.regenTicks > TicksToRegen) {
+		    data.regenTicks = 0;
+		    if (player.isAlive()) {
 
 			IWorldData mapdata = Load.World(player.world);
+			UnitData unit_capa = Load.Unit(player);
+			unit_capa.recalculateStats(player, mapdata);
+			Unit unit = unit_capa.getUnit();
 
-			if (mapdata.isMapWorld()) {
-			    ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
-			    if (!player.inventory.hasItemStack(portalitem)) {
-				player.inventory.addItemStackToInventory(portalitem);
+			int manarestored = (int) unit.MyStats.get(new ManaRegen().Guid()).Value;
+			unit_capa.restoreMana(manarestored);
 
-			    }
-			}
+			int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Guid()).Value;
+			unit_capa.restoreEnergy(energyrestored);
 
-		    }
+			int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
+			unit_capa.heal(player, healthrestored);
 
-		    if (data.playerSyncTick > TicksToUpdatePlayer) {
-			data.playerSyncTick = 0;
-			UnitData unit_capa = player.getCapability(EntityData.Data, null);
-			unit_capa.syncToClient(player);
+			unit_capa.setUnit(unit, player);
 
-		    }
-		    if (data != null) {
-			PlayerTickDatas.put(player.getUniqueID(), data);
 		    }
 		}
+
+		if (data.worldUpdateTicks > TicksToUpdateWorld) {
+		    data.worldUpdateTicks = 0;
+		    IWorldData mapdata = Load.World(player.world);
+		    if (mapdata.isMapWorld()) {
+			Main.sendToClient(new WorldPackage(mapdata), player);
+		    }
+
+		}
+
+		if (data.mapPortalTicks > TicksToGiveMapPortal) {
+		    data.mapPortalTicks = 0;
+
+		    IWorldData mapdata = Load.World(player.world);
+
+		    if (mapdata.isMapWorld()) {
+			ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
+			if (!player.inventory.hasItemStack(portalitem)) {
+			    player.inventory.addItemStackToInventory(portalitem);
+
+			}
+		    }
+
+		}
+
+		if (data.playerSyncTick > TicksToUpdatePlayer) {
+		    data.playerSyncTick = 0;
+		    UnitData unit_capa = Load.Unit(player);
+		    unit_capa.syncToClient(player);
+
+		}
+		if (data != null) {
+		    PlayerTickDatas.put(player.getUniqueID(), data);
+		}
+
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }

@@ -6,7 +6,6 @@ import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DmgNumPacket;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -17,8 +16,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class OnMobDeathDrops {
@@ -36,13 +35,13 @@ public class OnMobDeathDrops {
 
 	    if (!(entity instanceof EntityPlayer)) {
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-		    if (entity.hasCapability(EntityData.Data, null)) {
+		    if (Load.hasUnit(entity)) {
 
 			float loot_multi = EntityTypeUtils.getLootMulti(entity);
 			float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
-			UnitData victim = entity.getCapability(EntityData.Data, null);
-			UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+			UnitData victim = Load.Unit(entity);
+			UnitData killer = Load.Unit(event.getSource().getTrueSource());
 
 			if (loot_multi > 0) {
 
@@ -62,7 +61,9 @@ public class OnMobDeathDrops {
 				    "+" + DamageEffect.FormatNumber(exp) + " Exp!");
 			    packet.isExp = true;
 
-			    Main.Network.sendTo(packet, (EntityPlayerMP) event.getSource().getTrueSource());
+			    EntityPlayerMP mp = (EntityPlayerMP) event.getSource().getTrueSource();
+
+			    Main.sendToClient(packet, mp);
 			}
 		    }
 		}

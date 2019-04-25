@@ -4,7 +4,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
@@ -12,15 +11,16 @@ import com.robertx22.uncommon.datasaving.Map;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Mod;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class OnTooltip {
 
     @SubscribeEvent
@@ -53,11 +53,11 @@ public class OnTooltip {
 
 	    if (unit != null && gear != null) {
 
-		gear.BuildTooltip(stack, event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
+		gear.BuildTooltip(stack, event, unit, Load.Unit(event.getEntityPlayer()));
 
 		if (GuiScreen.isShiftKeyDown() == false) {
 
-		    event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
+		    event.getToolTip().add(new TextComponentString(CLOC.tooltip("press_shift_more_info")));
 		}
 
 	    }
@@ -66,9 +66,10 @@ public class OnTooltip {
 	if (unitdata != null) {
 	    MapItemData map = Map.Load(stack);
 	    if (map != null) {
-		event.getToolTip().add("");
-		event.getToolTip().add(TextFormatting.GOLD + CLOC.tooltip("affix_rarity_lootbonus") + ": "
-			+ unitdata.getLootBonusPerAffixKills(map) + "%");
+		event.getToolTip().add(new TextComponentString(""));
+		event.getToolTip()
+			.add(new TextComponentString(TextFormatting.GOLD + CLOC.tooltip("affix_rarity_lootbonus") + ": "
+				+ unitdata.getLootBonusPerAffixKills(map) + "%"));
 
 	    }
 	}

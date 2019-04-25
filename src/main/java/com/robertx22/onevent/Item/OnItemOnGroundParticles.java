@@ -8,16 +8,17 @@ import com.robertx22.mmorpg.config.ModConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class OnItemOnGroundParticles {
 
     static Random rand = new Random();
@@ -75,14 +76,14 @@ public class OnItemOnGroundParticles {
 			yhigh = 1;
 			amount = 6;
 
-			en.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, en.posX + rand.nextFloat() * radius - 0.1,
+			en.world.addParticle(Particles.CRIT, en.posX + rand.nextFloat() * radius - 0.1,
 				en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
 				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
 		    }
 
 		    for (int i = 0; i < amount; i++) {
 
-			en.world.spawnParticle(EnumParticleTypes.REDSTONE, en.posX + rand.nextFloat() * radius - 0.1,
+			en.world.addParticle((IParticleData) Particles.DUST, en.posX + rand.nextFloat() * radius - 0.1,
 				en.posY + en.height / 2 + rand.nextFloat() * (radius + yhigh),
 				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
 

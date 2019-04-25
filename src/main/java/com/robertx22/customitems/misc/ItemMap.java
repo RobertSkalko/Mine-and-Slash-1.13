@@ -124,7 +124,7 @@ public class ItemMap extends Item {
 	}
     }
 
-    public static void createMap(int id, BlockPos pos, World world, MapItemData data) {
+    public static void createMap(String id, BlockPos pos, World world, MapItemData data) {
 	IWorldData currentdata = Load.World(world);
 
 	if (currentdata.isMapWorld()) {
@@ -138,7 +138,7 @@ public class ItemMap extends Item {
 	}
     }
 
-    private static void summonPortal(World world, BlockPos pos, int id) {
+    private static void summonPortal(World world, BlockPos pos, String id) {
 
 	spawnPortalBlock(world, pos, id);
 
@@ -154,7 +154,7 @@ public class ItemMap extends Item {
 
     }
 
-    private static void spawnPortalBlock(World world, BlockPos pos, int id) {
+    private static void spawnPortalBlock(World world, BlockPos pos, String id) {
 	world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
 	TileMapPortal portal = new TileMapPortal(id);
 	world.setTileEntity(pos, portal);

@@ -2,7 +2,7 @@ package com.robertx22.onevent.combat;
 
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -29,7 +29,7 @@ public class OnHurt {
 	// required or else there's no point in getting legendary weapons if a diamond
 	// sword more damage
 	if (event.getSource() != null && event.getSource().getTrueSource() instanceof EntityLivingBase
-		&& event.getEntityLiving().getCapability(EntityData.Data, null) != null) {
+		&& Load.hasUnit(event.getEntityLiving())) {
 	    if (event.getSource().isExplosion()) {
 		event.setAmount(event.getAmount() * ModConfig.Server.MOB_ENVIRONMENT_DAMAGE_MULTI);
 		return;

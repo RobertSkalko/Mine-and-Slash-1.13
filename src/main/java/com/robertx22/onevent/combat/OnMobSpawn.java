@@ -6,6 +6,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,12 +34,12 @@ public class OnMobSpawn {
 	}
 
 	try {
-	    IWorldData data = event.getWorld().getCapability(WorldData.Data);
+	    IWorldData data = Load.World(event.getWorld());
 
 	    if (!(entity instanceof EntityPlayer)) {
 		if (event.getWorld().getCapability(WorldData.Data).isPresent()) {
 
-		    UnitData endata = entity.getCapability(EntityData.Data, null);
+		    UnitData endata = Load.Unit(entity);
 		    Unit check = endata.getUnit();
 
 		    if (check == null) {
@@ -51,7 +52,7 @@ public class OnMobSpawn {
 
 		}
 	    } else {
-		UnitData endata = entity.getCapability(EntityData.Data, null);
+		UnitData endata = Load.Unit(entity);
 		if (endata != null && endata.getUnit() != null) {
 		    CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
 		}
