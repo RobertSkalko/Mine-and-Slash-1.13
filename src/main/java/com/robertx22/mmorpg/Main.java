@@ -95,16 +95,15 @@ public class Main {
 	eventBus.addListener(this::setup);
 	eventBus.addListener(this::postInit);
 	eventBus.addListener(this::enqueue);
-	eventBus.addListener(this::clientSetup);
-
-	// FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::loadComplete);
 
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
 	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		    () -> GuiHandlerAll::getClientGuiElement);
 
-	    MinecraftForge.EVENT_BUS.addListener(ClientProxy::regRenders);
+	    eventBus.addListener(ClientProxy::regRenders);
+	    eventBus.addListener(this::clientSetup);
+
 	});
 
 	// ForgeMod

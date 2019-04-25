@@ -1,6 +1,5 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.google.common.graph.Network;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.map_device.StartupMap;
@@ -8,16 +7,14 @@ import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
 import com.robertx22.mmorpg.gui.GuiHandlerAll;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
+import com.robertx22.mmorpg.registers.RegisterPackets;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
-import com.robertx22.network.MessagePackage;
-import com.robertx22.network.PacketHandler;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
@@ -32,7 +29,6 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.MinableConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -73,16 +69,6 @@ public class CommonProxy implements IProxy {
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
-	Main.Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Dist.CLIENT);
-	Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Dist.CLIENT);
-
-	Main.Network.registerMessage(2, DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode,
-		DmgNumPacket::handle);
-
-	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Dist.CLIENT);
-	Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Dist.CLIENT);
-	Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Dist.CLIENT);
-
 	CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
 		EntityData.DefaultImpl::new);
 
@@ -93,7 +79,7 @@ public class CommonProxy implements IProxy {
 		PlayerDeathItems.DefaultImpl.class);
 
 	DeferredWorkQueue.runLater(() -> {
-	    PacketHandler.register(); // NetworkRegistry.createInstance
+	    RegisterPackets.register(); // NetworkRegistry.createInstance
 
 	});
 

@@ -1,17 +1,16 @@
 package com.robertx22.network;
 
-import com.robertx22.mmorpg.Main;
-import com.robertx22.uncommon.capability.EntityData;
+import java.util.function.Supplier;
 
-import io.netty.buffer.ByteBuf;
+import com.robertx22.mmorpg.Main;
+import com.robertx22.uncommon.datasaving.Load;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class PlayerUnitPackage implements IMessage {
+public class PlayerUnitPackage {
 
     public PlayerUnitPackage() {
 
@@ -23,43 +22,42 @@ public class PlayerUnitPackage implements IMessage {
 	this.nbt = nbt;
     }
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-	NBTTagCompound tag = ByteBufUtils.readTag(buf);
-	this.nbt = tag;
+    public static PlayerUnitPackage decode(PacketBuffer buf) {
+
+	PlayerUnitPackage newpkt = new PlayerUnitPackage();
+
+	newpkt.nbt = buf.readCompoundTag();
+
+	return newpkt;
 
     }
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-	ByteBufUtils.writeTag(buf, nbt);
+    public static void encode(PlayerUnitPackage packet, PacketBuffer tag) {
+
+	tag.writeCompoundTag(packet.nbt);
+
     }
 
-    public static class Handler implements IMessageHandler<PlayerUnitPackage, IMessage> {
+    public static void handle(final PlayerUnitPackage pkt, Supplier<NetworkEvent.Context> ctx) {
 
-	@Override
-	public IMessage onMessage(PlayerUnitPackage message, MessageContext ctx) {
+	ctx.get().enqueueWork(() -> {
+	    try {
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
-			final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-			if (player != null) {
-			    if (player.hasCapability(EntityData.Data, null)) {
-				player.getCapability(EntityData.Data, null).setNBT(message.nbt);
-			    }
-			}
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
+		if (player != null) {
+
+		    Load.Unit(player).setNBT(pkt.nbt);
+
 		}
-	    };
 
-	    noteThread.run();
-	    return null;
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	});
 
-	}
+	ctx.get().setPacketHandled(true);
+
     }
+
 }

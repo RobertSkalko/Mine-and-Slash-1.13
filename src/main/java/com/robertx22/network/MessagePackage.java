@@ -1,21 +1,16 @@
 package com.robertx22.network;
 
+import java.util.function.Supplier;
+
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.config.ModConfig;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class MessagePackage implements IMessage {
-
-    public String text;
-    public String type;
+public class MessagePackage {
 
     public enum MessageTypes {
 	NoEnergy, NoMana
@@ -24,64 +19,36 @@ public class MessagePackage implements IMessage {
     public MessagePackage() {
     }
 
-    public MessagePackage(String name, MessageTypes type) {
+    public static MessagePackage decode(PacketBuffer buf) {
 
-	this.text = name;
-	this.type = type.name();
+	MessagePackage newpkt = new MessagePackage();
 
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-	NBTTagCompound tag = ByteBufUtils.readTag(buf);
-	text = tag.getString("text");
-	type = tag.getString("type");
+	return newpkt;
 
     }
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-	NBTTagCompound tag = new NBTTagCompound();
-	tag.putString("text", text);
-	tag.putString("type", type);
-
-	ByteBufUtils.writeTag(buf, tag);
+    public static void encode(MessagePackage packet, PacketBuffer tag) {
 
     }
 
-    public static class Handler implements IMessageHandler<MessagePackage, IMessage> {
+    public static void handle(final MessagePackage pkt, Supplier<NetworkEvent.Context> ctx) {
 
-	@Override
-	public IMessage onMessage(final MessagePackage message, MessageContext ctx) {
+	ctx.get().enqueueWork(() -> {
+	    try {
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
+		if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING) {
 
-			MessageTypes type = MessageTypes.valueOf(message.type);
+		    EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+		    player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
 
-			if (type.equals(MessageTypes.NoEnergy) || type.equals(MessageTypes.NoMana)) {
-
-			    if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING) {
-
-				EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-				player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
-
-				// player.sendMessage(SLOC.chat(message.text));
-			    }
-
-			}
-
-		    } catch (Exception e) {
-
-		    }
 		}
-	    };
-	    noteThread.run();
 
-	    return null;
-	}
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	});
+
+	ctx.get().setPacketHandled(true);
 
     }
 

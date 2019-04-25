@@ -60,13 +60,12 @@ public class EntityUnitPackage {
 		if (player != null && player.world != null) {
 		    Entity entity = player.world.getEntityByID(pkt.id);
 
-		    EntityLivingBase en = (EntityLivingBase) entity;
+		    if (entity instanceof EntityLivingBase) {
 
-		    if (en != null) {
+			EntityLivingBase en = (EntityLivingBase) entity;
+
 			Load.Unit(en).setNBT(pkt.nbt);
-
 		    }
-
 		}
 
 	    } catch (Exception e) {

@@ -1,17 +1,14 @@
 package com.robertx22.network;
 
-import javax.xml.ws.handler.MessageContext;
+import java.util.function.Supplier;
 
 import com.robertx22.database.particle_gens.ParticleGen;
 import com.robertx22.db_lists.ParticleGens;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class ParticlePackage implements IMessage {
+public class ParticlePackage {
 
     private String name;
     private double x;
@@ -26,8 +23,8 @@ public class ParticlePackage implements IMessage {
     public ParticlePackage() {
     }
 
-    public ParticlePackage(boolean isGen, String name, double x, double y, double z, double xVel, double yVel,
-	    double zVel, double radius, int amount) {
+    public ParticlePackage(String name, double x, double y, double z, double xVel, double yVel, double zVel,
+	    double radius, int amount) {
 
 	this.name = name;
 	this.x = x;
@@ -38,64 +35,56 @@ public class ParticlePackage implements IMessage {
 	this.zVel = zVel;
 	this.radius = radius;
 	this.amount = amount;
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-	NBTTagCompound tag = ByteBufUtils.readTag(buf);
-
-	name = tag.getString("name");
-	x = tag.getDouble("x");
-	y = tag.getDouble("y");
-	z = tag.getDouble("z");
-	xVel = tag.getDouble("xVel");
-	yVel = tag.getDouble("yVel");
-	zVel = tag.getDouble("zVel");
-	radius = tag.getDouble("radius");
-	amount = tag.getInt("amount");
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf) {
-	NBTTagCompound tag = new NBTTagCompound();
-
-	tag.putString("name", name);
-	tag.putDouble("x", x);
-	tag.putDouble("y", y);
-	tag.putDouble("z", z);
-	tag.putDouble("xVel", xVel);
-	tag.putDouble("yVel", yVel);
-	tag.putDouble("zVel", zVel);
-	tag.putDouble("radius", radius);
-	tag.setInt("amount", amount);
-	ByteBufUtils.writeTag(buf, tag);
 
     }
 
-    public static class Handler implements IMessageHandler<ParticlePackage, IMessage> {
+    public static ParticlePackage decode(PacketBuffer tag) {
 
-	@Override
-	public IMessage onMessage(final ParticlePackage message, MessageContext ctx) {
+	ParticlePackage newpkt = new ParticlePackage();
 
-	    Runnable noteThread = new Runnable() {
-		@Override
-		public void run() {
-		    try {
+	newpkt.name = tag.readString(30);
+	newpkt.x = tag.getDouble(0);
+	newpkt.y = tag.getDouble(1);
+	newpkt.z = tag.getDouble(2);
+	newpkt.xVel = tag.getDouble(3);
+	newpkt.yVel = tag.getDouble(4);
+	newpkt.zVel = tag.getDouble(5);
+	newpkt.radius = tag.getDouble(6);
+	newpkt.amount = tag.getInt(7);
 
-			ParticleGen gen = ParticleGens.All.get(message.name);
+	return newpkt;
 
-			gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel,
-				message.radius, message.amount);
+    }
 
-		    } catch (Exception e) {
+    public static void encode(ParticlePackage packet, PacketBuffer tag) {
 
-		    }
-		}
-	    };
-	    noteThread.run();
+	tag.writeString(packet.name, 30);
+	tag.setDouble(0, packet.x);
+	tag.setDouble(1, packet.y);
+	tag.setDouble(2, packet.z);
+	tag.setDouble(3, packet.xVel);
+	tag.setDouble(4, packet.yVel);
+	tag.setDouble(5, packet.zVel);
+	tag.setDouble(6, packet.radius);
+	tag.setInt(7, packet.amount);
 
-	    return null;
-	}
+    }
+
+    public static void handle(final ParticlePackage message, Supplier<NetworkEvent.Context> ctx) {
+
+	ctx.get().enqueueWork(() -> {
+	    try {
+
+		ParticleGen gen = ParticleGens.All.get(message.name);
+
+		gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel, message.radius,
+			message.amount);
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	});
+
+	ctx.get().setPacketHandled(true);
 
     }
 

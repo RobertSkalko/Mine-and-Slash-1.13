@@ -8,12 +8,6 @@ import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
-import com.robertx22.network.DmgNumPacket;
-import com.robertx22.network.EntityUnitPackage;
-import com.robertx22.network.MessagePackage;
-import com.robertx22.network.ParticlePackage;
-import com.robertx22.network.PlayerUnitPackage;
-import com.robertx22.network.WorldPackage;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
@@ -49,21 +43,10 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ClientProxy implements IProxy {
-    // functionality
 
     public void preInit(FMLCommonSetupEvent event) {
 
-	// DEBUG
-	System.out.println("on Client side");
-
 	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
-
-	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new DmgNumPacket());
-	MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new MessagePackage.Handler());
 
     }
 
