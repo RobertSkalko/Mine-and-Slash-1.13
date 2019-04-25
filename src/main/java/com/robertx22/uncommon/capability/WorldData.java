@@ -1,8 +1,6 @@
 package com.robertx22.uncommon.capability;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
@@ -22,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -31,6 +28,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class WorldData {
+
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "WorldData");
 
     @CapabilityInject(IWorldData.class)
     public static final Capability<IWorldData> Data = null;
@@ -94,68 +93,51 @@ public class WorldData {
 
     }
 
-    private static class Factory implements Callable<IWorldData> {
-
-	@Override
-	public IWorldData call() throws Exception {
-	    return new DefaultImpl();
-	}
-    }
-
     @Mod.EventBusSubscriber
     public static class EventHandler {
 	@SubscribeEvent
 	public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {
 
-	    event.addCapability(new ResourceLocation(Ref.MODID, "WorldData"), createProvider());
+	    event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
+
+		IWorldData impl = new DefaultImpl();
+		private final LazyOptional<IWorldData> cap = LazyOptional.of(() -> impl);
+
+		@Override
+		public NBTTagCompound serializeNBT() {
+		    return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+		}
+
+		@Override
+		public void deserializeNBT(NBTTagCompound nbt) {
+		    Data.getStorage().readNBT(Data, impl, null, nbt);
+		}
+
+		@Override
+		public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+		    if (cap == Data) {
+			return this.cap.cast();
+		    }
+		    return LazyOptional.empty();
+		}
+	    });
 
 	}
 
-    }
-
-    public static ICapabilityProvider createProvider() {
-	return new Provider();
-    }
-
-    public static class Provider implements ICapabilitySerializable<INBTBase> {
-
-	final LazyOptional<IWorldData> optional;
-	final IWorldData handler;
-
-	Provider() {
-	    this.handler = new Factory().call();
-	    this.optional = LazyOptional.of(() -> handler);
-	}
-
-	@SuppressWarnings("ConstantConditions")
-	@Override
-	public INBTBase serializeNBT() {
-	    return CuriosCapability.INVENTORY.writeNBT(handler, null);
-	}
-
-	@SuppressWarnings("ConstantConditions")
-	@Override
-	public void deserializeNBT(INBTBase nbt) {
-	    CuriosCapability.INVENTORY.readNBT(handler, null, nbt);
-	}
-
-	@Override
-	public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
     }
 
     public static class Storage implements IStorage<IWorldData> {
-
 	@Override
 	public INBTBase writeNBT(Capability<IWorldData> capability, IWorldData instance, EnumFacing side) {
+
 	    return instance.getNBT();
 	}
 
 	@Override
 	public void readNBT(Capability<IWorldData> capability, IWorldData instance, EnumFacing side, INBTBase nbt) {
+
 	    instance.setNBT((NBTTagCompound) nbt);
+
 	}
     }
 
@@ -196,31 +178,31 @@ public class WorldData {
 
 	@Override
 	public NBTTagCompound getNBT() {
-	    nbt.setInt(TIER, tier);
-	    nbt.setInt(LEVEL, level);
+	    nbt.putInt(TIER, tier);
+	    nbt.putInt(LEVEL, level);
 	    nbt.putBoolean(IS_MAP_WORLD, isMap);
 	    nbt.putBoolean(SET_FOR_DELETE, setForDelete);
 	    nbt.putString(OWNER, owner);
 	    nbt.putBoolean(IS_INIT, isInit);
-	    nbt.setInt(ORIGINAL_DIM, originalDimension);
-	    nbt.setInt(MAP_DIM, mapDimension);
+	    nbt.putInt(ORIGINAL_DIM, originalDimension);
+	    nbt.putInt(MAP_DIM, mapDimension);
 	    nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 	    nbt.putString(SAVE_NAME, saveName);
-	    nbt.setInt(MINUTES_PASSED, minutesPassed);
+	    nbt.putInt(MINUTES_PASSED, minutesPassed);
 	    nbt.putBoolean(ISRESERVED, reserved);
 
 	    if (mapdata != null) {
 		NBTTagCompound tag = new NBTTagCompound();
 		Writer.write(tag, mapdata);
-		nbt.setTag(MAP_OBJECT, tag);
+		nbt.put(MAP_OBJECT, tag);
 	    }
 	    if (mapworlddata != null) {
 		NBTTagCompound tag = new NBTTagCompound();
 		Writer.write(tag, mapworlddata);
-		nbt.setTag(MAP_WORLD_OBJ, tag);
+		nbt.put(MAP_WORLD_OBJ, tag);
 	    }
 
-	    nbt.setLong(POS_OBJ, mapDevicePos);
+	    nbt.putLong(POS_OBJ, mapDevicePos);
 
 	    return nbt;
 
@@ -242,12 +224,12 @@ public class WorldData {
 	    this.minutesPassed = nbt.getInt(MINUTES_PASSED);
 	    this.reserved = nbt.getBoolean(ISRESERVED);
 
-	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
+	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.get(MAP_OBJECT);
 	    if (mapnbt != null) {
 		Reader.read(mapnbt, mapdata);
 	    }
 
-	    NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.getTag(MAP_WORLD_OBJ);
+	    NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.get(MAP_WORLD_OBJ);
 	    if (mapworldnbt != null) {
 		Reader.read(mapworldnbt, mapworlddata);
 	    }
@@ -310,7 +292,7 @@ public class WorldData {
 	    this.level = map.level;
 	    this.tier = map.tier;
 	    this.mapdata = map;
-	    this.originalDimension = world.getDimension().getType().getId();
+	    this.originalDimension = world.provider.getDimension();
 	    this.mapDimension = dimensionId;
 	    this.mapDevicePos = pos.toLong();
 	    this.isInit = true;

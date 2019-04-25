@@ -36,7 +36,7 @@ public class OnItemOnGroundParticles {
 	    return;
 	}
 
-	if (ModConfig.Client.RENDER_ITEM_ENTITY_RARITY_PARTICLES == false) {
+	if (ModConfig.Client.RENDER_ITEM_ENTITY_RARITY_PARTICLES.get() == false) {
 	    return;
 	}
 

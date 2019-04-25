@@ -48,6 +48,8 @@ public class ClientProxy implements IProxy {
 
 	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 
+	init();
+
     }
 
     public static void regRenders(ModelRegistryEvent evt) {

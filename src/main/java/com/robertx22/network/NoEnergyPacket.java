@@ -36,7 +36,7 @@ public class NoEnergyPacket {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING) {
+		if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
 
 		    EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 		    player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);

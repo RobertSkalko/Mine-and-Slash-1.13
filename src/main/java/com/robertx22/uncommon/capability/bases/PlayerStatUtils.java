@@ -22,12 +22,13 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 
-import baubles.api.BaublesApi;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosAPI;
+import top.theillusivec4.curios.api.CuriosAPI.FinderData;
+import top.theillusivec4.curios.api.inventory.CurioStackHandler;
 
 public class PlayerStatUtils {
 
@@ -209,15 +210,28 @@ public class PlayerStatUtils {
 	}
 
 	if (entity instanceof EntityPlayer) {
-	    IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
 
-	    for (int i = 0; i < baubles.getSlots(); i++) {
-		ItemStack stack = baubles.getStackInSlot(i);
-		if (stack != null) {
-		    list.add(stack);
+	    @SuppressWarnings("unused")
+	    FinderData found = CuriosAPI.getCuriosHandler(entity).map(handler -> {
+		for (String id : handler.getCurioMap().keySet()) {
+		    CurioStackHandler stackHandler = handler.getStackHandler(id);
+
+		    if (stackHandler != null) {
+
+			for (int i = 0; i < stackHandler.getSlots(); i++) {
+			    ItemStack stack = stackHandler.getStackInSlot(i);
+
+			    if (!stack.isEmpty()) {
+				list.add(stack);
+			    }
+			}
+		    }
 		}
+		return new FinderData("", 0, ItemStack.EMPTY);
+	    }).orElse(new FinderData("", 0, ItemStack.EMPTY));
 
-	    }
+	    //
+
 	}
 	List<GearItemData> gearitems = new ArrayList<GearItemData>();
 

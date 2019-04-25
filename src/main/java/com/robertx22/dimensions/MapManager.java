@@ -25,4 +25,11 @@ public class MapManager {
 
     }
 
+    public static void onStartServerRegisterDimensions() {
+
+    }
+
+    public static void onStopServerUnRegisterDimensions() {
+
+    }
 }

@@ -70,10 +70,10 @@ public class DmgNumPacket {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
+		if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP.get()) {
 		    OnDisplayDamage.displayParticle(pkt);
 
-		} else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
+		} else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE.get()) {
 		    OnDisplayDamage.displayParticle(pkt);
 		}
 	    } catch (Exception e) {

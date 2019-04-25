@@ -10,7 +10,7 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class ClientContainer {
 
-    static final ForgeConfigSpec clientSpec;
+    public static final ForgeConfigSpec clientSpec;
     public static final ClientContainer INSTANCE;
     static {
 	final Pair<ClientContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder()
