@@ -111,7 +111,7 @@ public class DamageEffect extends EffectData
 	    Heal();
 	    RestoreMana();
 
-	    if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
+	    if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG.get()) {
 		LogCombat();
 	    }
 

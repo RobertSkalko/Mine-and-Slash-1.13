@@ -34,7 +34,7 @@ public class DimensionData {
     public DimensionType getDimensionType() {
 
 	try {
-	    return DimensionType.register(Name, suffix, ID,
+	    return DimensionType.getKey(dim)register(Name, suffix, ID,
 		    (Class<? extends IWP>) WorldProviders.All.get(theclass).getClass(), false);
 	} catch (Exception e) {
 	    e.printStackTrace();
