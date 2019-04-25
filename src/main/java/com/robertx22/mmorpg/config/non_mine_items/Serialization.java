@@ -17,15 +17,15 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 public class Serialization {
 
     private static String config_path = "";
 
-    public static void generateConfig(FMLPreInitializationEvent event) {
+    public static void generateConfig() {
 
-	config_path = event.getModConfigurationDirectory().getAbsolutePath() + "/" + Ref.MODID + "/";
+	config_path = FMLPaths.CONFIGDIR.get().toAbsolutePath() + "/" + Ref.MODID + "/";
 
 	new File(config_path).mkdirs();
 
@@ -33,6 +33,8 @@ public class Serialization {
 	String json = gson.toJson(new ConfigItems());
 
 	makeFileAndDirAndWrite(getItemsConfigPath(), json, false);
+
+	generateConfigTutorials();
 
     }
 
@@ -55,7 +57,7 @@ public class Serialization {
 	}
     }
 
-    public static void generateConfig() {
+    public static void generateConfigTutorials() {
 	genListOfUniqueItems();
 	genListOfItemTypes();
     }

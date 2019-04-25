@@ -2,6 +2,8 @@ package com.robertx22.mmorpg.config;
 
 import com.electronwill.nightconfig.core.Config;
 
+import net.minecraft.world.dimension.DimensionType;
+
 public class DimensionConfigs {
 
     public DimensionConfigs() {
@@ -9,28 +11,28 @@ public class DimensionConfigs {
     }
 
     public static DimensionConfigs Overworld() {
-	return new DimensionConfigs(0, 1, 100);
+	return new DimensionConfigs(DimensionType.OVERWORLD.toString(), 1, 100);
     }
 
     public static DimensionConfigs DefaultExtra() {
-	return new DimensionConfigs(123456, 1, 100);
+	return new DimensionConfigs("", 1, 100);
     }
 
     public static DimensionConfigs Nether() {
-	return new DimensionConfigs(-1, 10, 100);
+	return new DimensionConfigs(DimensionType.NETHER.toString(), 10, 100);
     }
 
     public static DimensionConfigs End() {
-	return new DimensionConfigs(1, 25, 100);
+	return new DimensionConfigs(DimensionType.THE_END.toString(), 25, 100);
     }
 
-    public DimensionConfigs(int id, int min, int max) {
+    public DimensionConfigs(String id, int min, int max) {
 	this.DIMENSION_id = id;
 	this.MINIMUM_MOB_LEVEL = min;
 	this.MAXIMUM_MOB_LEVEL = max;
     }
 
-    public DimensionConfigs(int id, int distance, int area, int min, int max) {
+    public DimensionConfigs(String id, int distance, int area, int min, int max) {
 	this.DIMENSION_id = id;
 	this.MOB_LEVEL_PER_DISTANCE = distance;
 	this.MOB_LEVEL_ONE_AREA = area;

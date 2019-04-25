@@ -115,7 +115,6 @@ public class Main {
 
 	proxy.postInit(event);
 
-	Serialization.generateConfig();
 	Serialization.loadConfig();
 
     }
