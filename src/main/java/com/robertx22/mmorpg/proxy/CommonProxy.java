@@ -8,6 +8,7 @@ import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
@@ -72,10 +73,10 @@ public class CommonProxy implements IProxy {
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
-	Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Dist.CLIENT);
+	Main.Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Dist.CLIENT);
 	Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Dist.CLIENT);
 
-	Network.registerMessage(2, DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode,
+	Main.Network.registerMessage(2, DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode,
 		DmgNumPacket::handle);
 
 	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Dist.CLIENT);
@@ -83,7 +84,7 @@ public class CommonProxy implements IProxy {
 	Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Dist.CLIENT);
 
 	CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
-		EntityData.DefaultImpl.class);
+		EntityData.DefaultImpl::new);
 
 	CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
 		WorldData.DefaultImpl.class);
