@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
@@ -13,6 +14,9 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -21,7 +25,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventorySalvage extends BaseTile {
 
@@ -79,6 +82,7 @@ public class TileInventorySalvage extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventorySalvage() {
+	super(StartupSalvage.GEAR_SALVAGE);
 	itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 	clear();
     }
@@ -96,7 +100,7 @@ public class TileInventorySalvage extends BaseTile {
     int ticks = 0;
 
     @Override
-    public void update() {
+    public void tick() {
 
 	if (!this.world.isRemote) {
 	    ticks++;
@@ -187,8 +191,7 @@ public class TileInventorySalvage extends BaseTile {
 			}
 
 			if (outputStack.getItem() == result.getItem()
-				&& (!outputStack.getHasSubtypes()
-					|| outputStack.getMetadata() == outputStack.getMetadata())
+
 				&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
 			    int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
 			    if (combinedSize <= getInventoryStackLimit()
@@ -236,17 +239,17 @@ public class TileInventorySalvage extends BaseTile {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.setByte("Slot", (byte) i);
+		dataForThisSlot.putByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.setTag("Items", dataForAllSlots);
+	parentNBTTagCompound.put("Items", dataForAllSlots);
 
 	// Save everything else
-	parentNBTTagCompound.setShort("CookTime", cookTime);
+	parentNBTTagCompound.putShort("CookTime", cookTime);
 
 	return parentNBTTagCompound;
     }
@@ -312,24 +315,9 @@ public class TileInventorySalvage extends BaseTile {
     }
     // ------------------------
 
-    // will add a key for this container to the lang file so we can name it in the
-    // GUI
-    @Override
-    public String getName() {
-	return CLOC.blank("tile.mmorpg:salvage_station.name");
-    }
-
     @Override
     public boolean hasCustomName() {
 	return false;
-    }
-
-    // standard code to look up what the human-readable name is
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-	return this.hasCustomName() ? new TextComponentString(this.getName())
-		: new TextComponentTranslation(this.getName());
     }
 
     private static final byte COOK_FIELD_ID = 0;
@@ -364,6 +352,32 @@ public class TileInventorySalvage extends BaseTile {
     @Override
     public boolean isItemValidInput(ItemStack stack) {
 	return this.getSmeltingResultForItem(stack).isEmpty() == false;
+    }
+
+    @Nullable
+    @Override
+    public ITextComponent getDisplayName() {
+	return this.getName();
+    }
+
+    @Override
+    public ITextComponent getName() {
+	return new TextComponentString(CLOC.blank("block.mmorpg:salvage_station"));
+    }
+
+    @Override
+    public ITextComponent getCustomName() {
+	return new TextComponentString("");
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+	return new ContainerInventorySalvage(playerInventory, this);
+    }
+
+    @Override
+    public String getGuiID() {
+	return Ref.MODID + "gear_salvage_station_gui";
     }
 
 }

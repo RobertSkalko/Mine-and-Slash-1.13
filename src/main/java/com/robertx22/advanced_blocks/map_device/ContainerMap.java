@@ -6,8 +6,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ContainerMap extends Container {
 
@@ -42,7 +42,7 @@ public class ContainerMap extends Container {
 	// Add the players hotbar to the gui - the [xpos, ypos] location of each item
 	for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
 	    int slotNumber = x;
-	    addSlotToContainer(new Slot(invPlayer, slotNumber, HOTBAR_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
+	    addSlot(new Slot(invPlayer, slotNumber, HOTBAR_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
 	}
 
 	final int PLAYER_INVENTORY_XPOS = 8;
@@ -53,26 +53,26 @@ public class ContainerMap extends Container {
 		int slotNumber = HOTBAR_SLOT_COUNT + y * PLAYER_INVENTORY_COLUMN_COUNT + x;
 		int xpos = PLAYER_INVENTORY_XPOS + x * SLOT_X_SPACING;
 		int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
-		addSlotToContainer(new Slot(invPlayer, slotNumber, xpos, ypos));
+		addSlot(new Slot(invPlayer, slotNumber, xpos, ypos));
 	    }
 	}
 
 	// VANILLA END
 	final int TIER_X = 26;
 	final int TIER_Y = 85;
-	addSlotToContainer(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
+	addSlot(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
 
 	final int LEVEL_X = 134;
 	final int LEVEL_Y = 85;
-	addSlotToContainer(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
+	addSlot(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
 
 	final int MAP_X = 81;
 	final int MAP_Y = 28;
-	addSlotToContainer(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
+	addSlot(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
 
 	final int START_X = 80;
 	final int START_Y = 99;
-	addSlotToContainer(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
+	addSlot(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
 
     }
 

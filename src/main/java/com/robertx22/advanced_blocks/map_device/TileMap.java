@@ -6,14 +6,18 @@ import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,7 +27,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileMap extends BaseTile {
     @Override
@@ -53,6 +56,8 @@ public class TileMap extends BaseTile {
     }
 
     public TileMap() {
+	super(StartupMap.MAP_DEVICE);
+
 	itemStacks = new ItemStack[4];
 	clear();
     }
@@ -60,7 +65,7 @@ public class TileMap extends BaseTile {
     int ticks = 0;
 
     @Override
-    public void update() {
+    public void tick() {
 	if (!this.world.isRemote) {
 
 	    ticks++;
@@ -148,14 +153,14 @@ public class TileMap extends BaseTile {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.setByte("Slot", (byte) i);
+		dataForThisSlot.putByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.setTag("Items", dataForAllSlots);
+	parentNBTTagCompound.put("Items", dataForAllSlots);
 
 	// Save everything else
 
@@ -221,22 +226,10 @@ public class TileMap extends BaseTile {
 
     // will add a key for this container to the lang file so we can name it in the
     // GUI
-    @Override
-    public String getName() {
-	return "";
-    }
 
     @Override
     public boolean hasCustomName() {
 	return false;
-    }
-
-    // standard code to look up what the human-readable name is
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-	return this.hasCustomName() ? new TextComponentString(this.getName())
-		: new TextComponentTranslation(this.getName());
     }
 
     @Override
@@ -252,6 +245,32 @@ public class TileMap extends BaseTile {
     @Override
     public int getFieldCount() {
 	return 0;
+    }
+
+    @Nullable
+    @Override
+    public ITextComponent getDisplayName() {
+	return this.getName();
+    }
+
+    @Override
+    public ITextComponent getName() {
+	return new TextComponentString(CLOC.blank("block.mmorpg:map_device"));
+    }
+
+    @Override
+    public ITextComponent getCustomName() {
+	return new TextComponentString("");
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+	return new ContainerMap(playerInventory, this);
+    }
+
+    @Override
+    public String getGuiID() {
+	return Ref.MODID + "gear_map_device_gui";
     }
 
 }

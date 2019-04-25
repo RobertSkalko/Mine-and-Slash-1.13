@@ -6,10 +6,14 @@ import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -18,7 +22,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventoryModify extends BaseTile {
 
@@ -85,6 +88,7 @@ public class TileInventoryModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventoryModify() {
+	super(StartupModify.GEAR_MODIFY);
 	itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 	clear();
     }
@@ -102,7 +106,7 @@ public class TileInventoryModify extends BaseTile {
     int ticks = 0;
 
     @Override
-    public void update() {
+    public void tick() {
 	if (!this.world.isRemote) {
 
 	    ticks++;
@@ -179,8 +183,7 @@ public class TileInventoryModify extends BaseTile {
 			}
 
 			if (outputStack.getItem() == result.getItem()
-				&& (!outputStack.getHasSubtypes()
-					|| outputStack.getMetadata() == outputStack.getMetadata())
+
 				&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
 			    int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
 			    if (combinedSize <= getInventoryStackLimit()
@@ -230,17 +233,17 @@ public class TileInventoryModify extends BaseTile {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.setByte("Slot", (byte) i);
+		dataForThisSlot.putByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.setTag("Items", dataForAllSlots);
+	parentNBTTagCompound.put("Items", dataForAllSlots);
 
 	// Save everything else
-	parentNBTTagCompound.setShort("CookTime", cookTime);
+	parentNBTTagCompound.putShort("CookTime", cookTime);
 
 	return parentNBTTagCompound;
     }
@@ -308,10 +311,6 @@ public class TileInventoryModify extends BaseTile {
 
     // will add a key for this container to the lang file so we can name it in the
     // GUI
-    @Override
-    public String getName() {
-	return CLOC.blank("tile.mmorpg:modify_station.name");
-    }
 
     @Override
     public boolean hasCustomName() {
@@ -322,8 +321,7 @@ public class TileInventoryModify extends BaseTile {
     @Nullable
     @Override
     public ITextComponent getDisplayName() {
-	return this.hasCustomName() ? new TextComponentString(this.getName())
-		: new TextComponentTranslation(this.getName());
+	return this.getDisplayName();
     }
 
     private static final byte COOK_FIELD_ID = 0;
@@ -352,6 +350,26 @@ public class TileInventoryModify extends BaseTile {
     @Override
     public int getFieldCount() {
 	return NUMBER_OF_FIELDS;
+    }
+
+    @Override
+    public ITextComponent getName() {
+	return new TextComponentString(CLOC.blank("tile.mmorpg:modify_station.name"));
+    }
+
+    @Override
+    public ITextComponent getCustomName() {
+	return new TextComponentString("");
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+	return new ContainerInventoryModify(playerInventory, this);
+    }
+
+    @Override
+    public String getGuiID() {
+	return Ref.MODID + "gear_modify_station_gui";
     }
 
 }

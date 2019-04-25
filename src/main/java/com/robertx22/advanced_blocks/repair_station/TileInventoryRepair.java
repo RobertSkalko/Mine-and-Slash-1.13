@@ -7,21 +7,23 @@ import javax.annotation.Nullable;
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemCapacitor;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventoryRepair extends BaseTile {
 
@@ -44,12 +46,12 @@ public class TileInventoryRepair extends BaseTile {
 	GearItemData gear = Gear.Load(stack);
 	if (gear != null) {
 	    ItemStack copy = stack.copy();
-	    int dmg = copy.getItemDamage() - FuelRemaining;
+	    int dmg = copy.getDamage() - FuelRemaining;
 
 	    if (dmg < 0) {
 		dmg = 0;
 	    }
-	    copy.setItemDamage(dmg);
+	    copy.setDamage(dmg);
 
 	    return copy;
 	}
@@ -76,6 +78,8 @@ public class TileInventoryRepair extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventoryRepair() {
+	super(StartupRepair.GEAR_REPAIR);
+
 	itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 	clear();
     }
@@ -119,7 +123,7 @@ public class TileInventoryRepair extends BaseTile {
     int ticks = 0;
 
     @Override
-    public void update() {
+    public void tick() {
 
 	if (!this.world.isRemote) {
 	    int numberOfFuelBurning = burnFuel();
@@ -245,7 +249,7 @@ public class TileInventoryRepair extends BaseTile {
 	for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
 	    if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-		fuelNeeded = itemStacks[inputSlot].getItemDamage();
+		fuelNeeded = itemStacks[inputSlot].getDamage();
 
 		if (fuelNeeded > this.FuelRemaining) {
 		    fuelNeeded = this.FuelRemaining;
@@ -271,8 +275,7 @@ public class TileInventoryRepair extends BaseTile {
 			}
 
 			if (outputStack.getItem() == result.getItem()
-				&& (!outputStack.getHasSubtypes()
-					|| outputStack.getMetadata() == outputStack.getMetadata())
+
 				&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
 			    int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
 			    if (combinedSize <= getInventoryStackLimit()
@@ -315,7 +318,7 @@ public class TileInventoryRepair extends BaseTile {
     // returns the number of ticks the given item will burn. Returns 0 if the given
     // item is not a valid fuel
     public static short getItemBurnTime(ItemStack stack) {
-	int burntime = TileEntityFurnace.getItemBurnTime(stack); // just use the vanilla values
+	int burntime = burnTime;
 	return (short) MathHelper.clamp(burntime, 0, Short.MAX_VALUE);
     }
 
@@ -327,19 +330,19 @@ public class TileInventoryRepair extends BaseTile {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.setByte("Slot", (byte) i);
+		dataForThisSlot.putByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.setTag("Items", dataForAllSlots);
+	parentNBTTagCompound.put("Items", dataForAllSlots);
 
 	// Save everything else
-	parentNBTTagCompound.setShort("CookTime", cookTime);
+	parentNBTTagCompound.putShort("CookTime", cookTime);
 
-	parentNBTTagCompound.setInt("fuel", this.FuelRemaining);
+	parentNBTTagCompound.putInt("fuel", this.FuelRemaining);
 	return parentNBTTagCompound;
     }
 
@@ -405,24 +408,9 @@ public class TileInventoryRepair extends BaseTile {
     }
     // ------------------------
 
-    // will add a key for this container to the lang file so we can name it in the
-    // GUI
-    @Override
-    public String getName() {
-	return CLOC.blank("tile.mmorpg:repair_station.name");
-    }
-
     @Override
     public boolean hasCustomName() {
 	return false;
-    }
-
-    // standard code to look up what the human-readable name is
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-	return this.hasCustomName() ? new TextComponentString(this.getName())
-		: new TextComponentTranslation(this.getName());
     }
 
     // Fields are used to send non-inventory information from the server to
@@ -470,6 +458,32 @@ public class TileInventoryRepair extends BaseTile {
     @Override
     public int getFieldCount() {
 	return NUMBER_OF_FIELDS;
+    }
+
+    @Nullable
+    @Override
+    public ITextComponent getDisplayName() {
+	return this.getName();
+    }
+
+    @Override
+    public ITextComponent getName() {
+	return new TextComponentString(CLOC.blank("block.mmorpg:repair_station"));
+    }
+
+    @Override
+    public ITextComponent getCustomName() {
+	return new TextComponentString("");
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+	return new ContainerInventoryRepair(playerInventory, this);
+    }
+
+    @Override
+    public String getGuiID() {
+	return Ref.MODID + "gear_repair_station_gui";
     }
 
 }

@@ -30,9 +30,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.IInteractionObject;
 
-public class TileGearFactory extends BaseTile implements IInteractionObject {
+public class TileGearFactory extends BaseTile {
 
     @Override
     public boolean isAutomatable() {

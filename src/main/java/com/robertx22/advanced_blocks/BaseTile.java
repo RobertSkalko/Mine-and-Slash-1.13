@@ -10,8 +10,9 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IInteractionObject;
 
-public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable {
+public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable, IInteractionObject {
 
     public BaseTile(TileEntityType<?> tileEntityTypeIn) {
 	super(tileEntityTypeIn);

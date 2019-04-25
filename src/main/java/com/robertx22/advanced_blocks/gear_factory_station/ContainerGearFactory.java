@@ -27,7 +27,7 @@ public class ContainerGearFactory extends Container {
     // must assign a slot index to each of the slots used by the GUI.
     // For this container, we can see the furnace fuel, input, and output slots as
     // well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container using addSlotToContainer(), it
+    // Each time we add a Slot to the container using addSlot(), it
     // automatically increases the slotIndex, which means
     // 0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 -
     // 8)
