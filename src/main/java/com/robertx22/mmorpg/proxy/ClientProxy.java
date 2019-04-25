@@ -6,8 +6,6 @@ import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
-import com.robertx22.mmorpg.Main;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
@@ -31,21 +29,20 @@ import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 
 public class ClientProxy implements IProxy {
     // functionality
@@ -68,29 +65,38 @@ public class ClientProxy implements IProxy {
 
     public static void regRenders(ModelRegistryEvent evt) {
 
-	RegisterModEntity(Items.SNOWBALL, SpellFrostBolt.EntityFrostBolt.class, i++);
-	RegisterModEntity(Items.MAGMA_CREAM, SpellFireBolt.EntityFireBolt.class, i++);
-	RegisterModEntity(Items.SLIME_BALL, SpellAcidBolt.EntityAcidBolt.class, i++);
-	RegisterModEntity(Items.GLOWSTONE_DUST, SpellThunderBolt.EntityThunderBolt.class, i++);
-
-	RegisterModEntity(Items.SNOWBALL, SpellFrostExplosion.EntityFrostExplosion.class, i++);
-	RegisterModEntity(Items.MAGMA_CREAM, SpellFlameExplosion.EntityFlameExplosion.class, i++);
-	RegisterModEntity(Items.SLIME_BALL, SpellAcidExplosion.EntityAcidExplosion.class, i++);
-	RegisterModEntity(Items.GLOWSTONE_DUST, SpellLightningExplosion.EntityLightningExplosion.class, i++);
-
-	RegisterModEntity(Items.ENDER_PEARL, EntityStaffProjectile.class, i++);
-
-	regArrow(Items.ARROW, MyEntityArrow.class, i++);
-	//
-
-	RegisterModEntity(Items.SLIME_BALL, SpellAcidBomb.EntityAcidBomb.class, i++);
-	RegisterModEntity(Items.GLOWSTONE_DUST, SpellThunderBomb.EntityThunderBomb.class, i++);
-	RegisterModEntity(Items.SNOWBALL, SpellIceBomb.EntityIceBomb.class, i++);
-
 	ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
 
+	RenderingRegistry.registerEntityRenderingHandler(MyEntityArrow.class, RenderMyArrow::new);
+
+	RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class,
+		newRenFac(Items.MAGMA_CREAM));
 	RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class,
-		createRenderFactory(Items.MAGMA_CREAM));
+		newRenFac(Items.MAGMA_CREAM));
+	RenderingRegistry.registerEntityRenderingHandler(SpellFlameExplosion.EntityFlameExplosion.class,
+		newRenFac(Items.MAGMA_CREAM));
+
+	RenderingRegistry.registerEntityRenderingHandler(SpellFrostBolt.EntityFrostBolt.class,
+		newRenFac(Items.SNOWBALL));
+	RenderingRegistry.registerEntityRenderingHandler(SpellIceBomb.EntityIceBomb.class, newRenFac(Items.SNOWBALL));
+	RenderingRegistry.registerEntityRenderingHandler(SpellFrostExplosion.EntityFrostExplosion.class,
+		newRenFac(Items.SNOWBALL));
+
+	RenderingRegistry.registerEntityRenderingHandler(SpellThunderBolt.EntityThunderBolt.class,
+		newRenFac(Items.GLOWSTONE_DUST));
+	RenderingRegistry.registerEntityRenderingHandler(SpellLightningExplosion.EntityLightningExplosion.class,
+		newRenFac(Items.GLOWSTONE_DUST));
+	RenderingRegistry.registerEntityRenderingHandler(SpellThunderBomb.EntityThunderBomb.class,
+		newRenFac(Items.GLOWSTONE_DUST));
+
+	RenderingRegistry.registerEntityRenderingHandler(SpellAcidBolt.EntityAcidBolt.class,
+		newRenFac(Items.SLIME_BALL));
+	RenderingRegistry.registerEntityRenderingHandler(SpellAcidExplosion.EntityAcidExplosion.class,
+		newRenFac(Items.SLIME_BALL));
+	RenderingRegistry.registerEntityRenderingHandler(SpellAcidBomb.EntityAcidBomb.class,
+		newRenFac(Items.SLIME_BALL));
+
+	RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac(Items.ENDER_PEARL));
 
     }
 
@@ -112,33 +118,25 @@ public class ClientProxy implements IProxy {
 
     }
 
-    @Override
-    public void serverStarting() {
-	// This will never get called on client side
-
-    }
-
-    public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
-
-	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
-		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
-
-	RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
-	    @Override
-	    public Render createRenderFor(RenderManager manager) {
-		return new RenderMyArrow(manager);
-	    }
-	});
-
-    }
-
-    public <T extends Entity> IRenderFactory<T> createRenderFactory(final Item itemToRender) {
+    public static <T extends Entity> IRenderFactory<T> newRenFac(final Item itemToRender) {
 	return manager -> new RenderSprite<>(manager, itemToRender, Minecraft.getInstance().getItemRenderer());
     }
 
     @Override
     public String translate(String str) {
 	return I18n.format(str);
+    }
+
+    @Override
+    public void postInit(InterModProcessEvent event) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void loadComplete(FMLLoadCompleteEvent event) {
+	// TODO Auto-generated method stub
+
     }
 
 }

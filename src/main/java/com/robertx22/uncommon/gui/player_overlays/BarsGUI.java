@@ -1,10 +1,10 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
-import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.enumclasses.Player_GUIs;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

@@ -9,6 +9,7 @@ import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
 import com.robertx22.mmorpg.gui.GuiHandlerAll;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
@@ -25,8 +26,14 @@ import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.MinableConfig;
+import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -88,6 +95,28 @@ public class CommonProxy implements IProxy {
 	    PacketHandler.register(); // NetworkRegistry.createInstance
 
 	});
+
+	if (ModConfig.Server.GENERATE_ORES) {
+
+	    int chance = 6;
+	    int amount = 7;
+
+	    for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
+
+		BiomeManager.getBiomes(BiomeManager.BiomeType.WARM)
+			.forEach((BiomeManager.BiomeEntry biomeEntry) -> biomeEntry.biome.addFeature(
+				GenerationStage.Decoration.UNDERGROUND_ORES,
+				Biome.createCompositeFeature(Feature.MINABLE,
+					new MinableConfig(MinableConfig.IS_ROCK,
+						ItemOre.Blocks.get(i).getDefaultState(), 12),
+					Biome.COUNT_RANGE, new CountRangeConfig(amount - i, 30, 40, 70)
+
+				)));
+
+	    }
+
+	}
+
     }
 
     @Override

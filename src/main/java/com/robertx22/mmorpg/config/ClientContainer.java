@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.config;
 
-import com.robertx22.mmorpg.Player_GUIs;
+import com.robertx22.uncommon.enumclasses.Player_GUIs;
 
 import net.minecraftforge.common.config.Config;
 

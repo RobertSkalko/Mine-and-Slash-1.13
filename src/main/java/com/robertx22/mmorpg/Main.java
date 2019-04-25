@@ -37,7 +37,13 @@ import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.MinableConfig;
+import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -55,6 +61,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -111,6 +118,10 @@ public class Main {
 
     }
 
+    public void loadComplete(final FMLLoadCompleteEvent event) {
+
+    }
+
     public void postInit(final InterModProcessEvent event) {
 
 	proxy.postInit(event);
@@ -129,45 +140,12 @@ public class Main {
 	RegisterCurioSlot.reg();
     }
 
-    public void init(FMLDedicatedServerSetupEvent event) {
-
-	proxy.init(event);
-
-	TestManager.RunAllTests();
-
-	// RegisterBiomes.initBiomeManagerAndDictionary();
-
-	if (ModConfig.Server.GENERATE_ORES) {
-	    int chance = 6;
-	    int amount = 7;
-
-	    for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-		GameRegistry.registerWorldGenerator(new OreGen(ItemOre.Blocks.get(i), amount - i, 10, 75, chance - i),
-			0);
-	    }
-
-	}
-
-	GameRegistry.registerWorldGenerator(new ChestGenerator(), 5);
-
-    }
-
-    @SubscribeEvent
-    public static void serverSetup(final FMLDedicatedServerSetupEvent event) {
-
-	registerDims(event);
-
-	proxy.serverStarting();
-
-	CommandRegisters.Register();
-    }
-
     @SubscribeEvent
     public void start(FMLServerStartingEvent event) {
 
-	registerDims(event);
+	TestManager.RunAllTests();
 
-	proxy.serverStarting();
+	registerDims(event);
 
 	CommandRegisters.Register();
 

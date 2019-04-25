@@ -6,7 +6,6 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -50,9 +49,4 @@ public class ServerProxy implements IProxy {
 
     }
 
-    @Override
-    public void regRenders(ModelRegistryEvent evt) {
-	// TODO Auto-generated method stub
-
-    }
 }
