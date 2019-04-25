@@ -56,6 +56,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -84,8 +85,12 @@ public class Main {
 
 	IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::preInit);
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::loadComplete);
+	eventBus.addListener(this::setup);
+	eventBus.addListener(this::postInit);
+	eventBus.addListener(this::enqueue);
+	eventBus.addListener(this::clientSetup);
+
+	// FMLJavaModLoadingContext.get().getModEventBus().addListener(proxy::loadComplete);
 
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -96,30 +101,28 @@ public class Main {
 	});
 
 	// ForgeMod
-	// ModLoadingContext.get().registerConfig(type, spec, fileName);
-
-	eventBus.addListener(this::setup);
-	eventBus.addListener(this::enqueue);
-	eventBus.addListener(this::clientSetup);
-
     }
 
     public void setup(final FMLCommonSetupEvent event) {
+
 	MinecraftForge.EVENT_BUS.register(this);
+	new CommonProxy().preInit(event);
+	proxy.preInit(event);
+
+    }
+
+    public void postInit(final InterModProcessEvent event) {
+
+	proxy.postInit(event);
+
+	Serialization.generateConfig();
+	Serialization.loadConfig();
 
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
 	RegisterCurioClient.icons();
-    }
-
-    public void preInit(FMLCommonSetupEvent event) {
-
-	new CommonProxy().preInit(event);
-	proxy.preInit(event);
-	proxy.registerRenders();
-
     }
 
     private void enqueue(final InterModEnqueueEvent evt) {
@@ -147,15 +150,6 @@ public class Main {
 	}
 
 	GameRegistry.registerWorldGenerator(new ChestGenerator(), 5);
-
-    }
-
-    public void postInit(FMLPostInitializationEvent event) {
-
-	proxy.postInit();
-
-	Serialization.generateConfig();
-	Serialization.loadConfig();
 
     }
 

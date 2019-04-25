@@ -66,7 +66,7 @@ public class ClientProxy implements IProxy {
 
     }
 
-    public void regRenders(ModelRegistryEvent evt) {
+    public static void regRenders(ModelRegistryEvent evt) {
 
 	RegisterModEntity(Items.SNOWBALL, SpellFrostBolt.EntityFrostBolt.class, i++);
 	RegisterModEntity(Items.MAGMA_CREAM, SpellFireBolt.EntityFireBolt.class, i++);

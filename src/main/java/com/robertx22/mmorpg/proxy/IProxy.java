@@ -1,6 +1,5 @@
 package com.robertx22.mmorpg.proxy;
 
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -15,5 +14,5 @@ public interface IProxy {
 
     String translate(String str);
 
-    void regRenders(ModelRegistryEvent evt);
+    // void regRenders(ModelRegistryEvent evt);
 }
