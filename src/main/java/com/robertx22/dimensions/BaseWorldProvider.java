@@ -4,6 +4,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.DebugGenSettings;
@@ -11,17 +12,16 @@ import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
+    DimensionType type;
 
-    public BaseWorldProvider() {
-
+    public BaseWorldProvider(DimensionType type) {
+	this.type = type;
     }
 
     BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeprovidertype = BiomeProviderType.FIXED;
 
     @Override
     public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
-
-	// Biome
 
 	SingleBiomeProviderSettings setting = biomeprovidertype.createSettings().setBiome(getBiome());
 
