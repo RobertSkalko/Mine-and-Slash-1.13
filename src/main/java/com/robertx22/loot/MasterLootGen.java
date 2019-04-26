@@ -17,6 +17,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class MasterLootGen {
 
@@ -37,14 +38,14 @@ public class MasterLootGen {
 	items.addAll(new RuneLootGen(mob, player, world, victim).generate());
 	items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
 
-	if (world.isMapWorld()) {
+	if (world.dropsUniques(victim.world)) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
 	}
 
 	return items;
     }
 
-    public static List<ItemStack> gen(float multi, IWorldData world, int level) {
+    public static List<ItemStack> gen(World theworld, float multi, IWorldData world, int level) {
 	List<ItemStack> items = new ArrayList<ItemStack>();
 
 	if (world == null) {
@@ -62,7 +63,7 @@ public class MasterLootGen {
 	items.addAll(new RuneLootGen(multi, world, level).generate());
 	items.addAll(new RunedGearLootGen(multi, world, level).generate());
 
-	if (world.isMapWorld()) {
+	if (world.dropsUniques(theworld)) {
 	    items.addAll(new UniqueGearLootGen(multi, world, level).generate());
 
 	}

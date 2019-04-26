@@ -49,7 +49,7 @@ public class DimensionConfig {
 
     public boolean SINGLEPLAYER_MOB_SCALING = false;
 
-    public boolean IS_A_MAP_WORLD = false;
+    public boolean DROPS_UNIQUE_ITEMS = false;
 
     public int MAP_TIER = 0;
 

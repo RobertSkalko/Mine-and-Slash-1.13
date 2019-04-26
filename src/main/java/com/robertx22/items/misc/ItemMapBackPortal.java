@@ -90,12 +90,12 @@ public class ItemMapBackPortal extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
-	if (!worldIn.isRemote) {
+	if (!world.isRemote) {
 	    try {
 
-		IWorldData data = Load.World(worldIn);
+		IWorldData data = Load.World(world);
 		if (data != null) {
 		    if (data.isMapWorld()) {
 

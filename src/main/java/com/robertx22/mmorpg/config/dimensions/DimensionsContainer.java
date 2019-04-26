@@ -2,6 +2,8 @@ package com.robertx22.mmorpg.config.dimensions;
 
 import java.util.HashMap;
 
+import net.minecraft.world.World;
+
 public class DimensionsContainer {
 
     public static DimensionsContainer INSTANCE = new DimensionsContainer();
@@ -28,6 +30,11 @@ public class DimensionsContainer {
 	}
 
 	return false;
+    }
+
+    public DimensionConfig getConfig(World world) {
+	return getConfig(world.getDimension().getType().getRegistryName().toString());
+
     }
 
     public DimensionConfig getConfig(String id) {

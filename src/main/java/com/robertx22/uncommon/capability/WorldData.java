@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.MapWorldData;
 import com.robertx22.uncommon.SLOC;
@@ -37,6 +38,9 @@ public class WorldData {
     public static final Capability<IWorldData> Data = null;
 
     public interface IWorldData {
+
+	boolean dropsUniques(World world);
+
 	NBTTagCompound getNBT();
 
 	void setNBT(NBTTagCompound value);
@@ -242,7 +246,9 @@ public class WorldData {
 
 	@Override
 	public boolean isMapWorld() {
+
 	    return isMap;
+
 	}
 
 	@Override
@@ -274,7 +280,7 @@ public class WorldData {
 	@Override
 	public void delete(EntityPlayer player, World mapworld) {
 
-	    if (this.isMapWorld()) {
+	    if (this.isMap) {
 
 		if (isOwner(player)) {
 		    this.setForDelete = true;
@@ -491,6 +497,16 @@ public class WorldData {
 	@Override
 	public boolean isOwner(EntityPlayer player) {
 	    return player.getUniqueID().toString().equals(this.owner);
+	}
+
+	@Override
+	public boolean dropsUniques(World world) {
+
+	    if (isMap == true) {
+		return true;
+	    }
+
+	    return DimensionsContainer.INSTANCE.getConfig(world).DROPS_UNIQUE_ITEMS;
 	}
 
     }
