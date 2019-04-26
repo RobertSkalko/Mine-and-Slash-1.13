@@ -48,7 +48,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
 	    if (j >= 1) {
 		this.bindTexture(END_PORTAL_TEXTURE);
 		flag = true;
-		Minecraft.getInstance().gameRenderer.setupFogColor(true);
+		Minecraft.getInstance().entityRenderer.setupFogColor(true);
 	    }
 
 	    if (j == 1) {
@@ -138,7 +138,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
 	GlStateManager.disableTexGen(GlStateManager.TexGen.R);
 	GlStateManager.enableLighting();
 	if (flag) {
-	    Minecraft.getInstance().gameRenderer.setupFogColor(false);
+	    Minecraft.getInstance().entityRenderer.setupFogColor(true);
 	}
 
     }

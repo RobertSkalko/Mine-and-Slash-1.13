@@ -402,7 +402,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 	if (this.isInWater()) {
 	    for (int j = 0; j < 4; ++j) {
 		float f3 = 0.25F;
-		this.world.addParticle(Particles.BUBBLE, this.posX - this.motionX * 0.25D,
+		this.world.addParticle(Particles.BUBBLE, flag, this.posX - this.motionX * 0.25D,
 			this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY,
 			this.motionZ);
 	    }
@@ -495,21 +495,21 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound compound) {
-	compound.putInt("xTile", this.xTile);
-	compound.putInt("yTile", this.yTile);
-	compound.putInt("zTile", this.zTile);
+	compound.setInt("xTile", this.xTile);
+	compound.setInt("yTile", this.yTile);
+	compound.setInt("zTile", this.zTile);
 
-	compound.putByte("shake", (byte) this.throwableShake);
-	compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
+	compound.setByte("shake", (byte) this.throwableShake);
+	compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 
 	if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof EntityPlayer) {
 	    this.throwerName = this.thrower.getName().toString();
 	}
 
-	compound.putString("ownerName", this.throwerName == null ? "" : this.throwerName);
-	compound.putBoolean("doGroundProc", this.getDoExpireProc());
-	compound.putInt("airProcTime", this.getAirProcTime());
-	compound.putInt("deathTime", this.getDeathTime());
+	compound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);
+	compound.setBoolean("doGroundProc", this.getDoExpireProc());
+	compound.setInt("airProcTime", this.getAirProcTime());
+	compound.setInt("deathTime", this.getDeathTime());
     }
 
     /**

@@ -91,14 +91,14 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	if (nbt == null) {
 	    nbt = new NBTTagCompound();
 	}
-	nbt.putString("runeword", word.GUID());
+	nbt.setString("runeword", word.GUID());
 	stack.setTag(nbt);
 
     }
 
     public String getWord(ItemStack stack) {
 
-	if (stack != null && stack.hasTag() && stack.getTag().contains("runeword")) {
+	if (stack != null && stack.hasTag() && stack.getTag().hasKey("runeword")) {
 	    return stack.getTag().getString("runeword");
 	}
 

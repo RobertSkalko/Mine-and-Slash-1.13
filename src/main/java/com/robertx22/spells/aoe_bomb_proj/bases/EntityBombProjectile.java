@@ -60,7 +60,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
 	}
 
-	this.world.addParticle(Particles.EXPLOSION, this.posX, this.posY, this.posZ, 1, 1, 1);
+	this.world.addParticle(Particles.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
 
 	boolean hit = false;
 

@@ -56,7 +56,7 @@ public class OnItemOnGroundParticles {
 	    for (EntityItem en : p.world.getEntitiesWithinAABB(EntityItem.class, box)) {
 
 		ItemStack stack = en.getItem();
-		if (stack.hasTag() && stack.getTag().contains("rarity")) {
+		if (stack.hasTag() && stack.getTag().hasKey("rarity")) {
 
 		    int rarity = stack.getTag().getInt("rarity");
 
@@ -76,14 +76,15 @@ public class OnItemOnGroundParticles {
 			yhigh = 1;
 			amount = 6;
 
-			en.world.addParticle(Particles.CRIT, en.posX + rand.nextFloat() * radius - 0.1,
+			en.world.addParticle(Particles.CRIT, false, en.posX + rand.nextFloat() * radius - 0.1,
 				en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
 				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
 		    }
 
 		    for (int i = 0; i < amount; i++) {
 
-			en.world.addParticle((IParticleData) Particles.DUST, en.posX + rand.nextFloat() * radius - 0.1,
+			en.world.addParticle((IParticleData) Particles.DUST, false,
+				en.posX + rand.nextFloat() * radius - 0.1,
 				en.posY + en.height / 2 + rand.nextFloat() * (radius + yhigh),
 				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
 

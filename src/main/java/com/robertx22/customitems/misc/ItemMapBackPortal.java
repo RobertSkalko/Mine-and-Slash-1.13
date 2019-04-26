@@ -54,22 +54,22 @@ public class ItemMapBackPortal extends Item {
 
 		    if (pos.distanceSq(entityIn.getPosition()) > 2) {
 
-			nbt.putBoolean("porting", false);
-			nbt.putInt("ticks", 0);
+			nbt.setBoolean("porting", false);
+			nbt.setInt("ticks", 0);
 
 			entityIn.sendMessage(SLOC.chat("teleport_canceled"));
 
 		    } else {
 
-			if (nbt.contains("ticks")) {
+			if (nbt.hasKey("ticks")) {
 
 			    int ticks = nbt.getInt("ticks");
-			    nbt.putInt("ticks", ticks + 1);
+			    nbt.setInt("ticks", ticks + 1);
 
 			    if (ticks > 100) {
 
-				nbt.putInt("ticks", 0);
-				nbt.putBoolean("porting", false);
+				nbt.setInt("ticks", 0);
+				nbt.setBoolean("porting", false);
 
 				IWorldData data = Load.World(worldIn);
 				data.teleportPlayerBack((EntityPlayer) entityIn);
@@ -78,7 +78,7 @@ public class ItemMapBackPortal extends Item {
 
 			    }
 			} else {
-			    nbt.putInt("ticks", 1);
+			    nbt.setInt("ticks", 1);
 			}
 
 		    }
@@ -103,8 +103,8 @@ public class ItemMapBackPortal extends Item {
 			    player.getHeldItem(hand).setTag(new NBTTagCompound());
 			}
 
-			player.getHeldItem(hand).getTag().putBoolean("porting", true);
-			player.getHeldItem(hand).getTag().putLong("pos", player.getPosition().toLong());
+			player.getHeldItem(hand).getTag().setBoolean("porting", true);
+			player.getHeldItem(hand).getTag().setLong("pos", player.getPosition().toLong());
 
 			player.sendMessage(SLOC.chat("teleport_begin"));
 

@@ -75,7 +75,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
 	    double d1 = (double) ((float) WizardryUtilities.getPlayerEyesPos(en) - 0.5F + en.world.rand.nextFloat());
 	    double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 
-	    en.world.addParticle(Particles.HEART, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+	    en.world.addParticle(Particles.HEART, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
 	}
     }
 
@@ -88,7 +88,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
 	    double d1 = (double) ((float) WizardryUtilities.getPlayerEyesPos(en) - 0.5F + en.world.rand.nextFloat());
 	    double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 
-	    en.world.addParticle((IParticleData) particle, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+	    en.world.addParticle((IParticleData) particle, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
 	}
     }
 }

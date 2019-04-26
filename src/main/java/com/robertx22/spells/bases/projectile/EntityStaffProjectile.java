@@ -68,7 +68,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 	if (world.isRemote) {
 	    for (int i = 0; i < 5; i++) {
 
-		this.world.addParticle(Particles.CRIT, this.posX + rand.nextFloat() * 0.2 - 0.1,
+		this.world.addParticle(Particles.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
 			this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,
 			this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
 

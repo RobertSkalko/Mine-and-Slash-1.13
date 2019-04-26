@@ -180,31 +180,31 @@ public class WorldData {
 
 	@Override
 	public NBTTagCompound getNBT() {
-	    nbt.putInt(TIER, tier);
-	    nbt.putInt(LEVEL, level);
-	    nbt.putBoolean(IS_MAP_WORLD, isMap);
-	    nbt.putBoolean(SET_FOR_DELETE, setForDelete);
-	    nbt.putString(OWNER, owner);
-	    nbt.putBoolean(IS_INIT, isInit);
-	    nbt.putString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
-	    nbt.putInt(MAP_DIM, mapDimension);
-	    nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
-	    nbt.putString(SAVE_NAME, saveName);
-	    nbt.putInt(MINUTES_PASSED, minutesPassed);
-	    nbt.putBoolean(ISRESERVED, reserved);
+	    nbt.setInt(TIER, tier);
+	    nbt.setInt(LEVEL, level);
+	    nbt.setBoolean(IS_MAP_WORLD, isMap);
+	    nbt.setBoolean(SET_FOR_DELETE, setForDelete);
+	    nbt.setString(OWNER, owner);
+	    nbt.setBoolean(IS_INIT, isInit);
+	    nbt.setString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
+	    nbt.setInt(MAP_DIM, mapDimension);
+	    nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
+	    nbt.setString(SAVE_NAME, saveName);
+	    nbt.setInt(MINUTES_PASSED, minutesPassed);
+	    nbt.setBoolean(ISRESERVED, reserved);
 
 	    if (mapdata != null) {
 		NBTTagCompound tag = new NBTTagCompound();
 		Writer.write(tag, mapdata);
-		nbt.put(MAP_OBJECT, tag);
+		nbt.setTag(MAP_OBJECT, tag);
 	    }
 	    if (mapworlddata != null) {
 		NBTTagCompound tag = new NBTTagCompound();
 		Writer.write(tag, mapworlddata);
-		nbt.put(MAP_WORLD_OBJ, tag);
+		nbt.setTag(MAP_WORLD_OBJ, tag);
 	    }
 
-	    nbt.putLong(POS_OBJ, mapDevicePos);
+	    nbt.setLong(POS_OBJ, mapDevicePos);
 
 	    return nbt;
 
@@ -226,12 +226,12 @@ public class WorldData {
 	    this.minutesPassed = nbt.getInt(MINUTES_PASSED);
 	    this.reserved = nbt.getBoolean(ISRESERVED);
 
-	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.get(MAP_OBJECT);
+	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
 	    if (mapnbt != null) {
 		Reader.read(mapnbt, mapdata);
 	    }
 
-	    NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.get(MAP_WORLD_OBJ);
+	    NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.getTag(MAP_WORLD_OBJ);
 	    if (mapworldnbt != null) {
 		Reader.read(mapworldnbt, mapworlddata);
 	    }

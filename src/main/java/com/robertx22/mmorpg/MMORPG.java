@@ -7,14 +7,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
-import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
-import com.robertx22.advanced_blocks.map_device.StartupMap;
-import com.robertx22.advanced_blocks.repair_station.StartupRepair;
-import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
@@ -39,7 +33,6 @@ import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -122,8 +115,6 @@ public class MMORPG {
 
 	System.out.println("Starting Setup");
 
-	System.out.println("Starting Common Pre Init");
-
 	RegisterPackets.register();
 
 	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
@@ -133,16 +124,9 @@ public class MMORPG {
 
 	UniqueItemRegister.registerAll();
 
-	TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder.create(TileMapPortal::new));
-
 	GearItemRegisters.register();
 
 	ItemOre.Register();
-	StartupRepair.preInitCommon();
-	StartupSalvage.preInitCommon();
-	StartupModify.preInitCommon();
-	StartupGearFactory.preInitCommon();
-	StartupMap.preInitCommon();
 
 	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
 	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());

@@ -168,20 +168,21 @@ public abstract class SpellPotionBase extends Potion {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
-    public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
-	if (mc.currentScreen != null && getIconTexture() != null) {
-	    mc.getTextureManager().bindTexture(getIconTexture());
+    public void renderInventoryEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z) {
+
+	if (gui != null && getIconTexture() != null) {
+	    Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
 	    Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
 	}
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
-    public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
+    public void renderHUDEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z,
+	    float alpha) {
 	if (getIconTexture() != null) {
-	    mc.getTextureManager().bindTexture(getIconTexture());
+	    Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
 	    Gui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
 	}
     }
+
 }

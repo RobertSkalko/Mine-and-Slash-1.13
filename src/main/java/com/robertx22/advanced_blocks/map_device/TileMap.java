@@ -161,14 +161,14 @@ public class TileMap extends BaseTile {
 	for (int i = 0; i < this.itemStacks.length; ++i) {
 	    if (!this.itemStacks[i].isEmpty()) { // isEmpty()
 		NBTTagCompound dataForThisSlot = new NBTTagCompound();
-		dataForThisSlot.putByte("Slot", (byte) i);
+		dataForThisSlot.setByte("Slot", (byte) i);
 		this.itemStacks[i].write(dataForThisSlot);
 		dataForAllSlots.add(dataForThisSlot);
 	    }
 	}
 	// the array of hashmaps is then inserted into the parent hashmap for the
 	// container
-	parentNBTTagCompound.put("Items", dataForAllSlots);
+	parentNBTTagCompound.setTag("Items", dataForAllSlots);
 
 	// Save everything else
 

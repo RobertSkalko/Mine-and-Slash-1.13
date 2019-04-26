@@ -251,25 +251,25 @@ public class EntityData {
 
 	@Override
 	public NBTTagCompound getNBT() {
-	    nbt.putFloat(MANA, mana);
-	    nbt.putFloat(ENERGY, energy);
-	    nbt.putInt(LEVEL, level);
-	    nbt.putInt(EXP, exp);
-	    nbt.putInt(RARITY, rarity);
-	    nbt.putString(UUID, uuid);
-	    nbt.putString(NAME, name);
-	    nbt.putBoolean(MOB_SAVED_ONCE, true);
-	    nbt.putInt(CURRENT_MAP_ID, currentMapId);
+	    nbt.setFloat(MANA, mana);
+	    nbt.setFloat(ENERGY, energy);
+	    nbt.setInt(LEVEL, level);
+	    nbt.setInt(EXP, exp);
+	    nbt.setInt(RARITY, rarity);
+	    nbt.setString(UUID, uuid);
+	    nbt.setString(NAME, name);
+	    nbt.setBoolean(MOB_SAVED_ONCE, true);
+	    nbt.setInt(CURRENT_MAP_ID, currentMapId);
 
 	    if (unit != null) {
 		NBTTagCompound unitnbt = new NBTTagCompound();
 		Writer.write(unitnbt, unit);
-		nbt.put(UNIT_OBJECT, unitnbt);
+		nbt.setTag(UNIT_OBJECT, unitnbt);
 	    }
 	    if (kills != null) {
 		NBTTagCompound killsnbt = new NBTTagCompound();
 		Writer.write(killsnbt, kills);
-		nbt.put(KILLS_OBJECT, killsnbt);
+		nbt.setTag(KILLS_OBJECT, killsnbt);
 	    }
 
 	    return nbt;
@@ -288,13 +288,13 @@ public class EntityData {
 	    this.mana = value.getFloat(MANA);
 	    this.currentMapId = value.getInt(CURRENT_MAP_ID);
 
-	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.get(UNIT_OBJECT);
+	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
 	    if (object_nbt != null) {
 		unit = new Unit();
 		Reader.read(object_nbt, unit);
 	    }
 
-	    NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.get(KILLS_OBJECT);
+	    NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);
 	    if (kills_nbt != null) {
 		kills = new PlayerMapKillsData();
 		Reader.read(kills_nbt, kills);

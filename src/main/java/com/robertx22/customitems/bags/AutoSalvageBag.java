@@ -89,32 +89,32 @@ public class AutoSalvageBag extends Item {
 
 		GearItemData gear = Gear.Load(stack);
 		if (gear != null) {
-		    nbt.putInt("gear", gear.Rarity);
+		    nbt.setInt("gear", gear.Rarity);
 		    successChat(player);
 		}
 		SpellItemData spell = Spell.Load(stack);
 		if (spell != null) {
-		    nbt.putInt("spell", spell.rarity);
+		    nbt.setInt("spell", spell.rarity);
 		    successChat(player);
 		}
 		MapItemData map = Map.Load(stack);
 		if (map != null) {
-		    nbt.putInt("map", map.rarity);
+		    nbt.setInt("map", map.rarity);
 		    successChat(player);
 		}
 		RuneItemData rune = Rune.Load(stack);
 		if (rune != null) {
-		    nbt.putInt("rune", rune.rarity);
+		    nbt.setInt("rune", rune.rarity);
 		    successChat(player);
 		}
 
 		bag.setTag(nbt);
 
 	    } else {
-		nbt.putInt("gear", -1);
-		nbt.putInt("spell", -1);
-		nbt.putInt("map", -1);
-		nbt.putInt("rune", -1);
+		nbt.setInt("gear", -1);
+		nbt.setInt("spell", -1);
+		nbt.setInt("map", -1);
+		nbt.setInt("rune", -1);
 
 		player.sendMessage(new TextComponentString("Bag Config Cleared"));
 	    }
@@ -257,7 +257,7 @@ public class AutoSalvageBag extends Item {
     private int getGear(NBTTagCompound nbt) {
 
 	if (nbt != null) {
-	    if (nbt.contains("gear")) {
+	    if (nbt.hasKey("gear")) {
 		return nbt.getInt("gear");
 	    }
 	}
@@ -267,7 +267,7 @@ public class AutoSalvageBag extends Item {
 
     private int getSpell(NBTTagCompound nbt) {
 	if (nbt != null) {
-	    if (nbt.contains("spell")) {
+	    if (nbt.hasKey("spell")) {
 		return nbt.getInt("spell");
 	    }
 	}
@@ -277,7 +277,7 @@ public class AutoSalvageBag extends Item {
 
     private int getRune(NBTTagCompound nbt) {
 	if (nbt != null) {
-	    if (nbt.contains("rune")) {
+	    if (nbt.hasKey("rune")) {
 		return nbt.getInt("rune");
 	    }
 	}
@@ -288,7 +288,7 @@ public class AutoSalvageBag extends Item {
     private int getMap(NBTTagCompound nbt) {
 	if (nbt != null) {
 
-	    if (nbt.contains("map")) {
+	    if (nbt.hasKey("map")) {
 		return nbt.getInt("map");
 	    }
 	}

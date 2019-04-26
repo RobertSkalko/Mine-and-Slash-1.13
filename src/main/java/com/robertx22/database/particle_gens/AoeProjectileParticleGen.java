@@ -18,7 +18,8 @@ public class AoeProjectileParticleGen extends ParticleGen {
 	    double zpos = z + (radius * Math.cos(phi));
 
 	    Minecraft.getInstance().world.addParticle(
-		    new RedstoneParticleData((float) xVel, (float) yVel, (float) zVel, 1F), xpos, ypos, zpos, 1, 1, 1);
+		    new RedstoneParticleData((float) xVel, (float) yVel, (float) zVel, 1F), true, xpos, ypos, zpos, 1,
+		    1, 1);
 
 	}
     }

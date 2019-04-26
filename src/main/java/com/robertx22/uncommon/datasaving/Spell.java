@@ -21,8 +21,8 @@ public class Spell {
 	}
 
 	SpellItemData data = null;
-	if (stack.getTag().contains(LOC)) {
-	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().get(LOC);
+	if (stack.getTag().hasKey(LOC)) {
+	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().getTag(LOC);
 	    data = new SpellItemData();
 	    Reader.read(nbt, data);
 	}
@@ -43,8 +43,8 @@ public class Spell {
 	    NBTTagCompound object_nbt = new NBTTagCompound();
 	    Writer.write(object_nbt, spell);
 	    NBTTagCompound new_nbt = stack.getTag();
-	    new_nbt.put(LOC, object_nbt);
-	    new_nbt.putInt("rarity", spell.rarity);
+	    new_nbt.setTag(LOC, object_nbt);
+	    new_nbt.setInt("rarity", spell.rarity);
 	    stack.setTag(new_nbt);
 
 	}
