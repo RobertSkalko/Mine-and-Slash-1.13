@@ -1,6 +1,5 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.Boots;
 import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Chest;
@@ -9,6 +8,7 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.Sword;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.create.GearGen;

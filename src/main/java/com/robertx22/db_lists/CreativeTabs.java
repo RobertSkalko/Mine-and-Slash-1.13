@@ -1,7 +1,7 @@
 package com.robertx22.db_lists;
 
-import com.robertx22.customitems.currency.ItemChaosOrb;
-import com.robertx22.customitems.gearitems.weapons.ItemSword;
+import com.robertx22.items.currency.ItemChaosOrb;
+import com.robertx22.items.gearitems.weapons.ItemSword;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.item.ItemGroup;

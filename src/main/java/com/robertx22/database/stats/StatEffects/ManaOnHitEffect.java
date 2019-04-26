@@ -1,11 +1,11 @@
 package com.robertx22.database.stats.StatEffects;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.effectdatas.EffectData;
-import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
+import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class ManaOnHitEffect implements IStatEffect {

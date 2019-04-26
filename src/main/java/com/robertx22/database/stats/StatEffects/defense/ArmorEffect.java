@@ -2,11 +2,11 @@ package com.robertx22.database.stats.StatEffects.defense;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.UsableStat;
-import com.robertx22.effectdatas.EffectData;
-import com.robertx22.effectdatas.interfaces.IArmorReducable;
-import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.interfaces.IArmorReducable;
+import com.robertx22.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class ArmorEffect implements IStatEffect {

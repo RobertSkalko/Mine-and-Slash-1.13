@@ -1,7 +1,7 @@
 package com.robertx22.loot.create;
 
-import com.robertx22.customitems.misc.ItemAwakenRuneWord;
 import com.robertx22.database.runewords.RuneWord;
+import com.robertx22.items.misc.ItemAwakenRuneWord;
 import com.robertx22.loot.blueprints.AwakenRuneWordBlueprint;
 
 import net.minecraft.item.ItemStack;

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.gearitems.baubles.ItemBracelet;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
@@ -18,6 +17,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThun
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
+import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 

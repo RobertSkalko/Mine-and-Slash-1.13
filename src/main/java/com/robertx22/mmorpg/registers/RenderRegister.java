@@ -1,9 +1,9 @@
 package com.robertx22.mmorpg.registers;
 
-import com.robertx22.customitems.gearitems.MyEntityArrow;
-import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.items.gearitems.MyEntityArrow;
+import com.robertx22.items.gearitems.RenderMyArrow;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;

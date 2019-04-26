@@ -2,7 +2,7 @@ package com.robertx22.loot.blueprints;
 
 import java.util.List;
 
-import com.robertx22.customitems.unique_items.IUnique;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

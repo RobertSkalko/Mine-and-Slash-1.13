@@ -1,9 +1,9 @@
 package com.robertx22.mmorpg.gui;
 
-import com.robertx22.advanced_blocks.gear_factory_station.GuiGearFactory;
-import com.robertx22.advanced_blocks.gear_factory_station.TileGearFactory;
-import com.robertx22.advanced_blocks.item_modify_station.GuiInventoryModify;
-import com.robertx22.advanced_blocks.item_modify_station.TileInventoryModify;
+import com.robertx22.blocks.gear_factory_station.GuiGearFactory;
+import com.robertx22.blocks.gear_factory_station.TileGearFactory;
+import com.robertx22.blocks.item_modify_station.GuiInventoryModify;
+import com.robertx22.blocks.item_modify_station.TileInventoryModify;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

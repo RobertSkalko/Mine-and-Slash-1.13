@@ -1,7 +1,7 @@
 package com.robertx22.spells.projectile;
 
-import com.robertx22.customitems.spells.projectile.ItemThunderBolt;
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.items.spells.projectile.ItemThunderBolt;
 import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stats.StatEffects.offense.WeaponDamageEffect;
-import com.robertx22.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;

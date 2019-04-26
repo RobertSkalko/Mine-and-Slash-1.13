@@ -2,12 +2,11 @@ package com.robertx22.uncommon.capability;
 
 import java.util.UUID;
 
-import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.items.gearitems.bases.IWeapon;
+import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.DimensionConfigs;
@@ -23,6 +22,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;

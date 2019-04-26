@@ -1,7 +1,7 @@
 package com.robertx22.loot.create;
 
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.loot.blueprints.RuneBlueprint;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.rune.RuneItemData;

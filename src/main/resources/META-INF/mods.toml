@@ -1,15 +1,15 @@
 modLoader="javafml"
 loaderVersion="[25,)"
 issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
-logoFile="${mod_icon}"
+logoFile="logo.png"
 [[mods]]
 modId="mmorpg"
-version="${mod_version}"
+version="1.7.0"
 displayName="Mine and Slash"
-displayURL="${mod_url}"
-authors="${mod_author}"
+displayURL="https://minecraft.curseforge.com/proajects/mine-and-slash-reloaded"
+authors="robertx22"
 description='''
-${mod_description}
+Turn Minecraft Into a hack and slash looter!
 '''
 [[dependencies.mmorpg]]
     modId="forge"

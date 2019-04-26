@@ -2,7 +2,7 @@ package com.robertx22.mmorpg.config.non_mine_items;
 
 import java.util.Arrays;
 
-import com.robertx22.customitems.unique_items.IUnique;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.loot.blueprints.UniqueBlueprint;

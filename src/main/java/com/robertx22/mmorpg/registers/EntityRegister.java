@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.robertx22.customitems.gearitems.MyEntityArrow;
+import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;

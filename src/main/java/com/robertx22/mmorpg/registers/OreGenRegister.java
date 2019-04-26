@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.registers;
 
-import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.config.ModConfig;
 
 import net.minecraft.block.Block;

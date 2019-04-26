@@ -7,9 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import com.robertx22.customitems.ores.ItemOre;
-import com.robertx22.customitems.unique_items.UniqueItemRegister;
 import com.robertx22.dimensions.MapManager;
+import com.robertx22.items.ores.ItemOre;
+import com.robertx22.items.unique_items.UniqueItemRegister;
 import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;

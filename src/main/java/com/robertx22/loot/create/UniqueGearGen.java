@@ -1,10 +1,10 @@
 package com.robertx22.loot.create;
 
-import com.robertx22.customitems.unique_items.IUnique;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;

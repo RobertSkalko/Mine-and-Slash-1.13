@@ -1,10 +1,10 @@
 package com.robertx22.database.stats.StatEffects.offense;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.effectdatas.EffectData;
-import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.interfaces.ICrittable;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

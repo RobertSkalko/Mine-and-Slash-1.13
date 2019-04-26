@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.unique_items.IUnique;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.loot.create.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;

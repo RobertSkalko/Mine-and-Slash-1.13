@@ -3,7 +3,6 @@ package com.robertx22.database.gearitemslots.bases;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
@@ -12,6 +11,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
+import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 
