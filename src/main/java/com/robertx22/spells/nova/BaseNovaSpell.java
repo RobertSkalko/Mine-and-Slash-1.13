@@ -2,13 +2,13 @@ package com.robertx22.spells.nova;
 
 import java.util.List;
 
-import com.robertx22.ColoredRedstone;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
@@ -49,7 +49,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
 	if (!world.isRemote) {
 
-	    ColoredRedstone.SpawnNovaRedstone(this.Element(), caster, radius, 200);
+	    ColoredRedstoneUtils.SpawnNovaRedstone(this.Element(), caster, radius, 200);
 
 	    List<EntityLivingBase> list = WizardryUtilities.getEntitiesWithinRadius(radius, caster,
 		    EntityLivingBase.class);

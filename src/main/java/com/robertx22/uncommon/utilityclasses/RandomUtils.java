@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.robertx22.db_lists.Spells;
+import com.robertx22.uncommon.interfaces.IWeighted;
 
 public class RandomUtils {
 

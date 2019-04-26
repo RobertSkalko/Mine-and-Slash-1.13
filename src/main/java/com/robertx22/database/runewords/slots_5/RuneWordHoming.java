@@ -10,11 +10,11 @@ import com.robertx22.customitems.runes.RahItem;
 import com.robertx22.customitems.runes.VohItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
-import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stat_mods.spell_buffs.HomingFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.spell_buffs.HomingFlat;
 
 public class RuneWordHoming extends RuneWord {
 

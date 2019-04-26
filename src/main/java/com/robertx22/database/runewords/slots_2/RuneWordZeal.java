@@ -7,9 +7,9 @@ import com.robertx22.customitems.runes.GohItem;
 import com.robertx22.customitems.runes.MosItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 
 public class RuneWordZeal extends RuneWord {
 

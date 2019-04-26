@@ -2,12 +2,12 @@ package com.robertx22.spells.aoe_bomb_proj.bases;
 
 import java.util.List;
 
-import com.robertx22.ColoredRedstone;
+import com.robertx22.potion_effects.all.EnergyRegenPotion;
+import com.robertx22.potion_effects.all.ManaRegenPotion;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.Targeting;
-import com.robertx22.spells.potion_effects.all.EnergyRegenPotion;
-import com.robertx22.spells.potion_effects.all.ManaRegenPotion;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
@@ -56,7 +56,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
 	} else {
 
-	    ColoredRedstone.SpawnAoeRedstone(element(), this, this.radius(), 300);
+	    ColoredRedstoneUtils.SpawnAoeRedstone(element(), this, this.radius(), 300);
 
 	}
 

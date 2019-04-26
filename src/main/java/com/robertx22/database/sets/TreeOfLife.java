@@ -7,9 +7,9 @@ import java.util.List;
 import com.robertx22.database.gearitemslots.Charm;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
-import com.robertx22.stats.StatMod;
 
 public class TreeOfLife extends Set {
 

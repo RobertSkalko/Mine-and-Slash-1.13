@@ -8,8 +8,8 @@ import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 
 import net.minecraft.item.Item;
 

@@ -5,8 +5,8 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

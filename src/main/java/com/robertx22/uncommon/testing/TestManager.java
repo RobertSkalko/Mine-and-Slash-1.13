@@ -6,11 +6,7 @@ public class TestManager {
 
     public static void RunAllTests() {
 
-	// CountRuneUsageInRuneWords.doit();
-	// new CreateJsonsOfRunes().doit();
-
 	if (RunTests) {
-	    // new ItemGenRarityTest().GenManyItems();
 
 	}
 

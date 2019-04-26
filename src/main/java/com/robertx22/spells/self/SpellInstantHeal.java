@@ -1,7 +1,7 @@
 package com.robertx22.spells.self;
 
 import com.robertx22.customitems.spells.self.ItemInstantHeal;
-import com.robertx22.database.stat_types.resources.Health;
+import com.robertx22.database.stats.stat_types.resources.Health;
 import com.robertx22.effectdatas.SpellBuffEffect;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.EffectCalculation;

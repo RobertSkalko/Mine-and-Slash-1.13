@@ -10,10 +10,10 @@ import com.robertx22.customitems.runes.DosItem;
 import com.robertx22.customitems.runes.XahItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.resources.EnergyFlat;
-import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.EnergyFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 
 public class RuneWordInfinity extends RuneWord {
 

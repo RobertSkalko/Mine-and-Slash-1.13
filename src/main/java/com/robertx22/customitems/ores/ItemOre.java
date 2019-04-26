@@ -10,7 +10,7 @@ import com.robertx22.customitems.blocks.BlockOre;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 

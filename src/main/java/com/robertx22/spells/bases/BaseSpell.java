@@ -7,7 +7,7 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.interfaces.IWeighted;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -9,10 +9,10 @@ import com.robertx22.customitems.runes.RahItem;
 import com.robertx22.customitems.runes.XahItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 
 public class RuneWordMagician extends RuneWord {
 

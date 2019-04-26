@@ -8,9 +8,9 @@ import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.customitems.gearitems.weapons.ItemSword;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
-import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.percent.CriticalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
 
 import net.minecraft.item.Item;
 

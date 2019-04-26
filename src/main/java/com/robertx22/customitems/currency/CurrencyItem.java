@@ -8,8 +8,8 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.ItemDefault;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.utilityclasses.ITiered;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.interfaces.ITiered;
+import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 

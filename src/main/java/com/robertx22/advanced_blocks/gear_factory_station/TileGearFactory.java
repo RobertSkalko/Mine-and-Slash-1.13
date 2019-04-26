@@ -7,10 +7,10 @@ import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.ores.ItemOre;
-import com.robertx22.generation.GearGen;
-import com.robertx22.generation.SpellItemGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
-import com.robertx22.generation.blueprints.SpellBlueprint;
+import com.robertx22.loot.blueprints.GearBlueprint;
+import com.robertx22.loot.blueprints.SpellBlueprint;
+import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;

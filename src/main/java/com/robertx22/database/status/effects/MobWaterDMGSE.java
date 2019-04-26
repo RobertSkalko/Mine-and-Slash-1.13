@@ -3,7 +3,7 @@ package com.robertx22.database.status.effects;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
 import com.robertx22.database.status.effects.bases.BaseMobEleDMG;
 import com.robertx22.saveclasses.gearitem.StatModData;
 

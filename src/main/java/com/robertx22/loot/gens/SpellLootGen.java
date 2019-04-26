@@ -1,7 +1,7 @@
 package com.robertx22.loot.gens;
 
-import com.robertx22.generation.SpellItemGen;
-import com.robertx22.generation.blueprints.SpellBlueprint;
+import com.robertx22.loot.blueprints.SpellBlueprint;
+import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

@@ -1,7 +1,7 @@
 package com.robertx22.dimensions;
 
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.interfaces.IWeighted;
 
 public interface IWP extends IWeighted {
     abstract String GUID();

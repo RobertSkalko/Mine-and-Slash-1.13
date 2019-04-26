@@ -1,7 +1,7 @@
 package com.robertx22.mmorpg.config.non_mine_items;
 
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItem.creationTypes;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.interfaces.IWeighted;
 
 public class WeightedType implements IWeighted {
 

@@ -7,10 +7,12 @@ import java.util.Map.Entry;
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.customitems.unique_items.IUnique;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.config.ClientContainer;
@@ -31,12 +33,10 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndSta
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.rune.RunesData;
-import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

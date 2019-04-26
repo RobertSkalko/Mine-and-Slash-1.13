@@ -7,8 +7,8 @@ import com.robertx22.customitems.runes.AnoItem;
 import com.robertx22.customitems.runes.ItaItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.percent.ArmorPercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 
 public class RuneWordStone extends RuneWord {
 

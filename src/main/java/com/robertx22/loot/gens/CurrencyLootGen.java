@@ -6,7 +6,7 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.utilityclasses.ITiered;
+import com.robertx22.uncommon.interfaces.ITiered;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import com.robertx22.customitems.misc.ItemMapBackPortal;
-import com.robertx22.database.stat_types.resources.EnergyRegen;
-import com.robertx22.database.stat_types.resources.HealthRegen;
-import com.robertx22.database.stat_types.resources.ManaRegen;
+import com.robertx22.database.stats.stat_types.resources.EnergyRegen;
+import com.robertx22.database.stats.stat_types.resources.HealthRegen;
+import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.saveclasses.Unit;

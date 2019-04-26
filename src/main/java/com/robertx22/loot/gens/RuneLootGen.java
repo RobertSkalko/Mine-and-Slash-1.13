@@ -1,7 +1,7 @@
 package com.robertx22.loot.gens;
 
-import com.robertx22.generation.RuneGen;
-import com.robertx22.generation.blueprints.RuneBlueprint;
+import com.robertx22.loot.blueprints.RuneBlueprint;
+import com.robertx22.loot.create.RuneGen;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

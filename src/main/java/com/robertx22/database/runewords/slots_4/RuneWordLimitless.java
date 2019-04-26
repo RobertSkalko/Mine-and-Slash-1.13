@@ -9,10 +9,10 @@ import com.robertx22.customitems.runes.VohItem;
 import com.robertx22.customitems.runes.XahItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stat_mods.percent.DodgePercent;
-import com.robertx22.database.stat_mods.spell_buffs.EnergyRegenBuffFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
+import com.robertx22.database.stats.stat_mods.spell_buffs.EnergyRegenBuffFlat;
 
 public class RuneWordLimitless extends RuneWord {
 

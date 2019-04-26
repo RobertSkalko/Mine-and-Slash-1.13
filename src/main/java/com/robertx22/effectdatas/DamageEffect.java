@@ -3,7 +3,7 @@ package com.robertx22.effectdatas;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.robertx22.database.stat_types.defense.BlockStrength;
+import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.effectdatas.interfaces.IDamageEffect;

@@ -11,10 +11,10 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import com.robertx22.customitems.unique_items.IUnique;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.loading.FMLPaths;

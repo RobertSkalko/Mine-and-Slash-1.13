@@ -7,9 +7,9 @@ import com.robertx22.customitems.runes.BerItem;
 import com.robertx22.customitems.runes.CenItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 
 public class RuneWordScales extends RuneWord {
 

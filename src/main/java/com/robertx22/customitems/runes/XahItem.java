@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.customitems.runes.base.BaseRuneItem;
-import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 
 import net.minecraft.item.Item;
 

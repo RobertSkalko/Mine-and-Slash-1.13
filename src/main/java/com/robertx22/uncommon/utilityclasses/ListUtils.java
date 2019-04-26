@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.robertx22.uncommon.interfaces.ITiered;
+
 import net.minecraft.item.Item;
 
 public class ListUtils {

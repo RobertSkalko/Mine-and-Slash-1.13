@@ -8,10 +8,11 @@ import java.util.UUID;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
-import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.resources.Energy;
-import com.robertx22.database.stat_types.resources.Health;
-import com.robertx22.database.stat_types.resources.Mana;
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stats.stat_types.resources.Energy;
+import com.robertx22.database.stats.stat_types.resources.Health;
+import com.robertx22.database.stats.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
@@ -21,14 +22,13 @@ import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.capability.bases.CommonStatUtils;
-import com.robertx22.uncommon.capability.bases.MobStatUtils;
-import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
+import com.robertx22.uncommon.stat_calculation.MobStatUtils;
+import com.robertx22.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -359,7 +359,8 @@ public class Unit {
 
 	    Chunk chunk = entity.world.getChunk(entity.getPosition());
 
-	    MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
+	    MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
+		    new EntityUnitPackage(entity, data));
 
 	}
 

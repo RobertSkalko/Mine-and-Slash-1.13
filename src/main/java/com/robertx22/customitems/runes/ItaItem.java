@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.customitems.runes.base.BaseRuneItem;
-import com.robertx22.database.stat_mods.percent.ArmorPercent;
-import com.robertx22.database.stat_mods.percent.PhysicalDamagePercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
+import com.robertx22.database.stats.stat_mods.percent.PhysicalDamagePercent;
 
 import net.minecraft.item.Item;
 

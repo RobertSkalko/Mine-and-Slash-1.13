@@ -2,17 +2,17 @@ package com.robertx22.mmorpg.config.non_mine_items;
 
 import java.util.Arrays;
 
-import com.robertx22.generation.GearGen;
-import com.robertx22.generation.RunedGearGen;
-import com.robertx22.generation.UniqueGearGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
-import com.robertx22.generation.blueprints.RunedGearBlueprint;
-import com.robertx22.generation.blueprints.UniqueBlueprint;
+import com.robertx22.customitems.unique_items.IUnique;
+import com.robertx22.loot.blueprints.GearBlueprint;
+import com.robertx22.loot.blueprints.RunedGearBlueprint;
+import com.robertx22.loot.blueprints.UniqueBlueprint;
+import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.create.RunedGearGen;
+import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.ItemStack;
 

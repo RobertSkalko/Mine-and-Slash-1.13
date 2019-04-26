@@ -3,15 +3,15 @@ package com.robertx22.customitems.infusions;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stat_mods.flat.DodgeFlat;
-import com.robertx22.database.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stat_mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

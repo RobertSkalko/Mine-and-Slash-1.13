@@ -1,8 +1,8 @@
 package com.robertx22.customitems.currency;
 
 import com.robertx22.database.rarities.items.UniqueItem;
-import com.robertx22.generation.UniqueGearGen;
-import com.robertx22.generation.blueprints.UniqueBlueprint;
+import com.robertx22.loot.blueprints.UniqueBlueprint;
+import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;

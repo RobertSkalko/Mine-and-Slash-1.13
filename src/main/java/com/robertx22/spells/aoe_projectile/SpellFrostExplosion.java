@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemFrostExplosion;
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;

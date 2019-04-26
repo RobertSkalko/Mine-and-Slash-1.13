@@ -3,15 +3,15 @@ package com.robertx22.customitems.infusions;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.database.stat_mods.flat.resources.LifeOnHitFlat;
-import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

@@ -3,9 +3,9 @@ package com.robertx22.spells.self;
 import java.util.ArrayList;
 
 import com.robertx22.effectdatas.interfaces.IBuffableSpell.SpellBuffType;
+import com.robertx22.potion_effects.all.AoeRegenPotion;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.SpellBuffCheck;
-import com.robertx22.spells.potion_effects.all.AoeRegenPotion;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 

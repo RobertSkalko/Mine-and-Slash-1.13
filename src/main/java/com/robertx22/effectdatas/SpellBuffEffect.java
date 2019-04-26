@@ -8,11 +8,11 @@ import com.robertx22.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
-import com.robertx22.stats.IStatEffect;
-import com.robertx22.stats.IStatEffect.EffectSides;
-import com.robertx22.stats.IStatEffects;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.interfaces.IStatEffect;
+import com.robertx22.uncommon.interfaces.IStatEffects;
+import com.robertx22.uncommon.interfaces.IStatEffect.EffectSides;
 
 import net.minecraft.entity.EntityLivingBase;
 

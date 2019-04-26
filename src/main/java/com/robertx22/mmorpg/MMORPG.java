@@ -8,11 +8,12 @@ import org.apache.logging.log4j.Logger;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.customitems.unique_items.UniqueItemRegister;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
-import com.robertx22.mmorpg.gui.GuiHandlerAll;
+import com.robertx22.mmorpg.gui.GuiHandlerClient;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -25,7 +26,6 @@ import com.robertx22.mmorpg.registers.OreGenRegister;
 import com.robertx22.mmorpg.registers.PacketRegister;
 import com.robertx22.mmorpg.registers.RenderRegister;
 import com.robertx22.uncommon.testing.TestManager;
-import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
@@ -82,7 +82,7 @@ public class MMORPG {
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
 	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-		    () -> GuiHandlerAll::getClientGuiElement);
+		    () -> GuiHandlerClient::getClientGuiElement);
 
 	    FMLJavaModLoadingContext.get().getModEventBus().addListener(RenderRegister::regRenders);
 	    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -107,7 +107,7 @@ public class MMORPG {
 	System.out.println("Starting Setup");
 
 	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-		() -> GuiHandlerAll::getClientGuiElement);
+		() -> GuiHandlerClient::getClientGuiElement);
 
 	PacketRegister.register();
 	UniqueItemRegister.register();

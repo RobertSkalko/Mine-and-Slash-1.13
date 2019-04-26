@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.IStatEffect;
+import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class EffectUnitStat implements Comparator<EffectUnitStat> {
 

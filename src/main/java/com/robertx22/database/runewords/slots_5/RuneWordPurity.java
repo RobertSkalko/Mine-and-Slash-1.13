@@ -10,11 +10,11 @@ import com.robertx22.customitems.runes.GohItem;
 import com.robertx22.customitems.runes.MosItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.database.stat_mods.spell_buffs.PurityFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.stat_mods.spell_buffs.PurityFlat;
 
 public class RuneWordPurity extends RuneWord {
 

@@ -8,9 +8,9 @@ import com.robertx22.customitems.runes.MosItem;
 import com.robertx22.customitems.runes.RahItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stat_mods.flat.DodgeFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 
 public class RuneWordThief extends RuneWord {
 

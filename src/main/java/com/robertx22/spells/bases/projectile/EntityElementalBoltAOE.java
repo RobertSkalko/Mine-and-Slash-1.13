@@ -2,7 +2,7 @@ package com.robertx22.spells.bases.projectile;
 
 import java.util.List;
 
-import com.robertx22.ColoredRedstone;
+import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
@@ -33,7 +33,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	} else {
 
-	    ColoredRedstone.SpawnAoeRedstone(element(), this, radius(), 500);
+	    ColoredRedstoneUtils.SpawnAoeRedstone(element(), this, radius(), 500);
 
 	}
 	if (effect != null && data != null) {
