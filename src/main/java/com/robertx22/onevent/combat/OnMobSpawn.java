@@ -1,9 +1,7 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
@@ -29,38 +27,26 @@ public class OnMobSpawn {
 	    return;
 	}
 
-	if (entity.getCapability(EntityData.Data) != null) {
-	    return;
-	}
+	UnitData endata = Load.Unit(entity);
+	IWorldData data = Load.World(event.getWorld());
 
-	try {
-	    IWorldData data = Load.World(event.getWorld());
+	if (endata != null && data != null) {
 
-	    if (!(entity instanceof EntityPlayer)) {
-		if (event.getWorld().getCapability(WorldData.Data).isPresent()) {
-
-		    UnitData endata = Load.Unit(entity);
-		    Unit check = endata.getUnit();
-
-		    if (check == null) {
-
-			Unit unit = Unit.Mob(entity, data);
-
-			endata.forceSetUnit(unit);
-
-		    }
-
-		}
-	    } else {
-		UnitData endata = Load.Unit(entity);
-		if (endata != null && endata.getUnit() != null) {
+	    if (entity instanceof EntityPlayer) {
+		if (endata.getUnit() != null) {
 		    CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
 		}
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
 
+	    } else {
+
+		if (endata.needsToBeGivenStats()) {
+		    Unit unit = Unit.Mob(entity, data);
+		    endata.forceSetUnit(unit);
+		}
+
+	    }
+
+	}
     }
 
 }

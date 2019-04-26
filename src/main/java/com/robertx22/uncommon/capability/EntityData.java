@@ -69,8 +69,11 @@ public class EntityData {
     private static final String MANA = "current_mana";
     private static final String ENERGY = "current_energy";
     private static final String CURRENT_MAP_ID = "current_map_id";
+    private static final String SET_MOB_STATS = "set_mob_stats";
 
     public interface UnitData extends ICommonCapability {
+
+	boolean needsToBeGivenStats();
 
 	void freelySetLevel(int lvl);
 
@@ -234,6 +237,7 @@ public class EntityData {
     public static class DefaultImpl implements UnitData {
 	private NBTTagCompound nbt = new NBTTagCompound();
 
+	boolean setMobStats = false;
 	Unit unit = null;
 	PlayerMapKillsData kills = null;
 	int level = 1;
@@ -257,6 +261,7 @@ public class EntityData {
 	    nbt.setString(NAME, name);
 	    nbt.setBoolean(MOB_SAVED_ONCE, true);
 	    nbt.setInt(CURRENT_MAP_ID, currentMapId);
+	    nbt.setBoolean(SET_MOB_STATS, setMobStats);
 
 	    if (unit != null) {
 		NBTTagCompound unitnbt = new NBTTagCompound();
@@ -285,6 +290,7 @@ public class EntityData {
 	    this.energy = value.getFloat(ENERGY);
 	    this.mana = value.getFloat(MANA);
 	    this.currentMapId = value.getInt(CURRENT_MAP_ID);
+	    this.setMobStats = value.getBoolean(SET_MOB_STATS);
 
 	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
 	    if (object_nbt != null) {
@@ -321,6 +327,8 @@ public class EntityData {
 
 	@Override
 	public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
+
+	    this.setMobStats = true;
 
 	    DimensionConfigs config = ModConfig.Dimensions.getAll()
 		    .getConfig(entity.dimension.getRegistryName().toString());
@@ -817,6 +825,11 @@ public class EntityData {
 	@Override
 	public void freelySetLevel(int lvl) {
 	    this.level = lvl;
+	}
+
+	@Override
+	public boolean needsToBeGivenStats() {
+	    return this.setMobStats == false;
 	}
     }
 

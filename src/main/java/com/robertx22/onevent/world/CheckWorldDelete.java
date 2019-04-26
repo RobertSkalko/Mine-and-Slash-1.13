@@ -21,7 +21,7 @@ public class CheckWorldDelete {
     @SubscribeEvent
     public static void onWorldUnload(WorldEvent.Unload event) {
 
-	if (!event.getWorld().isRemote()) {
+	if (!event.getWorld().isRemote() && event.getWorld().getDimension() != null) {
 
 	    try {
 		resetCount(event.getWorld().getDimension().getType().getRegistryName().toString());
