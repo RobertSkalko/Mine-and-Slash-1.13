@@ -1,10 +1,7 @@
 package com.robertx22.mmorpg.config.non_mine_items;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,39 +11,40 @@ import com.google.gson.stream.JsonReader;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.items.unique_items.IUnique;
-import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.ISerializedConfig;
+import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.loading.FMLPaths;
 
-public class Serialization {
+public class ConfigItemsSerialization implements ISerializedConfig {
 
-    private static String config_path = "";
+    public static final ConfigItemsSerialization INSTANCE = new ConfigItemsSerialization();
 
-    public static void generateConfig() {
-
-	config_path = FMLPaths.CONFIGDIR.get().toAbsolutePath() + "/" + Ref.MODID + "/";
-
-	new File(config_path).mkdirs();
+    public void generateIfEmpty() {
 
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	String json = gson.toJson(new ConfigItems());
 
-	makeFileAndDirAndWrite(getItemsConfigPath(), json, false);
+	SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
 
 	generateConfigTutorials();
 
     }
 
-    public static String getItemsConfigPath() {
-	return config_path + "CompatibleItems.txt";
+    public String fileName() {
+	return "CompatibleItems.txt";
     }
 
-    public static void loadConfig() {
+    @Override
+    public String folder() {
+	return SerializationUtils.CONFIG_PATH;
+    }
+
+    public void load() {
 
 	JsonReader reader;
 	try {
-	    reader = new JsonReader(new FileReader(getItemsConfigPath()));
+	    reader = new JsonReader(new FileReader(this.getPath()));
 
 	    ConfigItems.INSTANCE = new Gson().fromJson(reader, ConfigItems.class);
 
@@ -57,31 +55,12 @@ public class Serialization {
 	}
     }
 
-    public static void generateConfigTutorials() {
+    private void generateConfigTutorials() {
 	genListOfUniqueItems();
 	genListOfItemTypes();
     }
 
-    private static void makeFileAndDirAndWrite(String path, String text, boolean overwriteAnyway) {
-
-	try {
-	    if (new File(path).exists() == false || overwriteAnyway) {
-
-		new File(path).createNewFile();
-		FileWriter fileWriter;
-		fileWriter = new FileWriter(path);
-		fileWriter.write(text);
-		fileWriter.close();
-
-		// System.out.println("Creating new CompatibleItems.txt");
-	    }
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-
-    }
-
-    private static void genListOfUniqueItems() {
+    private void genListOfUniqueItems() {
 
 	List<String> list = new ArrayList();
 
@@ -93,11 +72,11 @@ public class Serialization {
 	String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW THE GUIDS/IDS OF ALL UNIQUE ITEMS\n"
 		+ String.join("\n", list);
 
-	makeFileAndDirAndWrite(config_path + "UniqueItemGUIDS-TUTORIAL.txt", text, true);
+	SerializationUtils.makeFileAndDirAndWrite("tutorials", "UniqueItemGUIDS-TUTORIAL.txt", text);
 
     }
 
-    private static void genListOfItemTypes() {
+    private void genListOfItemTypes() {
 
 	List<String> list = new ArrayList();
 
@@ -108,7 +87,8 @@ public class Serialization {
 	String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW WHAT ITEM TYPES THERE ARE\n"
 		+ String.join("\n", list);
 
-	makeFileAndDirAndWrite(config_path + "GearTypeGUIDS-TUTORIAL.txt", text, true);
+	SerializationUtils.makeFileAndDirAndWrite("tutorials", "GearTypeGUIDS-TUTORIAL.txt", text);
 
     }
+
 }

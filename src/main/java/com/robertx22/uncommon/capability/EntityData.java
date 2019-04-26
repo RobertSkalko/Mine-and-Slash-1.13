@@ -9,8 +9,9 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.dimensions.DimensionConfig;
+import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
@@ -330,7 +331,7 @@ public class EntityData {
 
 	    this.setMobStats = true;
 
-	    DimensionConfigs config = ModConfig.Dimensions.getAll()
+	    DimensionConfig config = DimensionsContainer.INSTANCE
 		    .getConfig(entity.dimension.getRegistryName().toString());
 
 	    int lvl = 1;
@@ -367,7 +368,7 @@ public class EntityData {
 	    this.level = lvl;
 	}
 
-	public static int GetMobLevelByDistanceFromSpawn(Entity entity, DimensionConfigs config) {
+	public static int GetMobLevelByDistanceFromSpawn(Entity entity, DimensionConfig config) {
 
 	    double distance = entity.world.getSpawnPoint().getDistance((int) entity.posX, (int) entity.posY,
 		    (int) entity.posZ);

@@ -16,8 +16,9 @@ import com.robertx22.database.stats.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.dimensions.DimensionConfig;
+import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -218,7 +219,7 @@ public class Unit {
 	List<MobRarity> rarities = Rarities.Mobs;
 	List<MobRarity> after = new ArrayList<MobRarity>();
 
-	DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension.toString());
+	DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.dimension.toString());
 
 	for (MobRarity rar : rarities) {
 	    if (rar.Rank() >= minRarity) {

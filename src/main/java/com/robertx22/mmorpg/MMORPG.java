@@ -12,7 +12,8 @@ import com.robertx22.items.ores.ItemOre;
 import com.robertx22.items.unique_items.UniqueItemRegister;
 import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.mmorpg.config.non_mine_items.Serialization;
+import com.robertx22.mmorpg.config.dimensions.ConfigDimensionsSerialization;
+import com.robertx22.mmorpg.config.non_mine_items.ConfigItemsSerialization;
 import com.robertx22.mmorpg.gui.GuiHandlerClient;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
@@ -115,7 +116,8 @@ public class MMORPG {
 	ItemOre.Register();
 	CapabilityRegister.register();
 	OreGenRegister.register();
-	Serialization.generateConfig();
+	ConfigItemsSerialization.INSTANCE.generateIfEmpty();
+	ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
 	proxy.preInit(event);
 
     }
@@ -124,7 +126,8 @@ public class MMORPG {
 
 	proxy.postInit(event);
 	CurioSlotRegister.reg();
-	Serialization.loadConfig();
+	ConfigItemsSerialization.INSTANCE.load();
+	ConfigDimensionsSerialization.INSTANCE.load();
 
     }
 
