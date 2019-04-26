@@ -8,6 +8,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class RuneLootGen extends BaseLootGen {
 
@@ -20,8 +21,8 @@ public class RuneLootGen extends BaseLootGen {
 
     }
 
-    public RuneLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public RuneLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 
 	runePrint = new RuneBlueprint(level);
 

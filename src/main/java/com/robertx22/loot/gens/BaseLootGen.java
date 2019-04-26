@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.loot.LootUtils;
+import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public abstract class BaseLootGen {
 
@@ -39,10 +41,10 @@ public abstract class BaseLootGen {
     public IWorldData world;
     public int world_tier;
 
-    public BaseLootGen(float multi, IWorldData world) {
+    public BaseLootGen(World theworld, float multi, IWorldData world) {
 
 	this.world = world;
-	this.world_tier = world.getTier();
+	this.world_tier = world.getTier(theworld);
 
 	float chance = BaseChance();
 
@@ -55,13 +57,15 @@ public abstract class BaseLootGen {
     public BaseLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
 
 	this.world = world;
-	this.world_tier = world.getTier();
+	this.world_tier = world.getTier(victim.world);
 
 	float chance = BaseChance();
 
 	float entity_type_multi = EntityTypeUtils.getLootMulti(victim);
 
 	chance *= entity_type_multi;
+
+	chance *= DimensionsContainer.INSTANCE.getConfig(victim.world).DROP_MULTIPLIER;
 
 	if (hasLevelDistancePunishment()) {
 	    chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);

@@ -55,6 +55,6 @@ public class DimensionConfig {
 
     public float DROP_MULTIPLIER = 1F;
 
-    public float DIFFICULTY_MULTIPLIER = 1F;
+    public float MOB_STRENGTH_MULTIPLIER = 1F;
 
 }

@@ -331,8 +331,7 @@ public class EntityData {
 
 	    this.setMobStats = true;
 
-	    DimensionConfig config = DimensionsContainer.INSTANCE
-		    .getConfig(entity.dimension.getRegistryName().toString());
+	    DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
 
 	    int lvl = 1;
 

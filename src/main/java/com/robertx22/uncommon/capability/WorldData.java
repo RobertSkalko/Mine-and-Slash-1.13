@@ -51,7 +51,7 @@ public class WorldData {
 
 	int getWorldID();
 
-	int getTier();
+	int getTier(World world);
 
 	int getLevel();
 
@@ -310,7 +310,12 @@ public class WorldData {
 	}
 
 	@Override
-	public int getTier() {
+	public int getTier(World world) {
+
+	    if (DimensionsContainer.INSTANCE.hasConfig(world)) {
+		return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER;
+	    }
+
 	    return tier;
 	}
 

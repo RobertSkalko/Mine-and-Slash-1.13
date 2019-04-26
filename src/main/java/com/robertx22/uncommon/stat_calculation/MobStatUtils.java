@@ -15,6 +15,7 @@ import com.robertx22.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.StatusEffects;
+import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
@@ -23,11 +24,20 @@ import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.world.World;
 
 public class MobStatUtils {
 
     static int spelldmg = 8;
     static int spellresist = 4;
+
+    public static void worldMultiplierStats(World world, UnitData data) {
+
+	for (StatData stat : data.getUnit().MyStats.values()) {
+	    stat.Flat *= DimensionsContainer.INSTANCE.getConfig(world).MOB_STRENGTH_MULTIPLIER;
+	}
+
+    }
 
     public static void AddMobcStats(UnitData unitdata, int level) {
 

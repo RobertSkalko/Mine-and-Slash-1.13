@@ -219,7 +219,7 @@ public class Unit {
 	List<MobRarity> rarities = Rarities.Mobs;
 	List<MobRarity> after = new ArrayList<MobRarity>();
 
-	DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.dimension.toString());
+	DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
 
 	for (MobRarity rar : rarities) {
 	    if (rar.Rank() >= minRarity) {
@@ -316,7 +316,7 @@ public class Unit {
 
 	int tier = 0;
 	if (world != null) {
-	    tier = world.getTier();
+	    tier = world.getTier(entity.world);
 	}
 
 	ClearStats();
@@ -335,16 +335,15 @@ public class Unit {
 
 	} else {
 	    MobStatUtils.AddMobcStats(data, data.getLevel());
-	    // MobStatUtils.SetMobStrengthMultiplier(this,
-	    // Rarities.Mobs.get(data.getRarity()));
 	    MobStatUtils.AddMobTierStats(this, tier);
-
+	    MobStatUtils.worldMultiplierStats(entity.world, data);
 	}
 
 	if (gearIsValid) {
 	    PlayerStatUtils.CountWornSets(entity, gears, this);
-	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
+	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level);
 	    PlayerStatUtils.AddAllSetStats(entity, this, level);
+
 	}
 
 	CommonStatUtils.AddStatusEffectStats(this, level);

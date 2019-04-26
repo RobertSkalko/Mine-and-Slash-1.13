@@ -11,6 +11,7 @@ import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class RunedGearLootGen extends BaseLootGen {
 
@@ -23,8 +24,8 @@ public class RunedGearLootGen extends BaseLootGen {
 
     }
 
-    public RunedGearLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public RunedGearLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 	gearPrint = new RunedGearBlueprint(level);
 
     }

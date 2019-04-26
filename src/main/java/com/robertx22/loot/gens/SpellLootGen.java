@@ -8,6 +8,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class SpellLootGen extends BaseLootGen {
 
@@ -20,8 +21,8 @@ public class SpellLootGen extends BaseLootGen {
 
     }
 
-    public SpellLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public SpellLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 
 	spellPrint = new SpellBlueprint(level);
 

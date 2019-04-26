@@ -13,6 +13,7 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class CurrencyLootGen extends BaseLootGen {
 
@@ -21,8 +22,8 @@ public class CurrencyLootGen extends BaseLootGen {
 
     }
 
-    public CurrencyLootGen(float multi, IWorldData world) {
-	super(multi, world);
+    public CurrencyLootGen(World theworld, float multi, IWorldData world) {
+	super(theworld, multi, world);
     }
 
     @Override

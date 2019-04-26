@@ -11,6 +11,7 @@ import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class GearLootGen extends BaseLootGen {
 
@@ -23,8 +24,8 @@ public class GearLootGen extends BaseLootGen {
 
     }
 
-    public GearLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public GearLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 	gearPrint = new GearBlueprint(level);
 
     }

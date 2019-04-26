@@ -8,6 +8,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class AwakenRuneWordLootGen extends BaseLootGen {
 
@@ -16,8 +17,8 @@ public class AwakenRuneWordLootGen extends BaseLootGen {
 
     }
 
-    public AwakenRuneWordLootGen(float multi, IWorldData world) {
-	super(multi, world);
+    public AwakenRuneWordLootGen(World theworld, float multi, IWorldData world) {
+	super(theworld, multi, world);
     }
 
     @Override

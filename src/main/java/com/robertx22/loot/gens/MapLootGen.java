@@ -8,6 +8,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class MapLootGen extends BaseLootGen {
     MapBlueprint blueprint;
@@ -15,14 +16,14 @@ public class MapLootGen extends BaseLootGen {
     public MapLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
 	super(mob, player, world, victim);
 
-	blueprint = new MapBlueprint(mob.getLevel(), world.getTier());
+	blueprint = new MapBlueprint(mob.getLevel(), world.getTier(victim.world));
 
     }
 
-    public MapLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public MapLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 
-	blueprint = new MapBlueprint(level, world.getTier());
+	blueprint = new MapBlueprint(level, world.getTier(theworld));
 
     }
 

@@ -11,6 +11,7 @@ import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class UniqueGearLootGen extends BaseLootGen {
     UniqueBlueprint gearPrint;
@@ -21,8 +22,8 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     }
 
-    public UniqueGearLootGen(float multi, IWorldData world, int level) {
-	super(multi, world);
+    public UniqueGearLootGen(World theworld, float multi, IWorldData world, int level) {
+	super(theworld, multi, world);
 	gearPrint = new UniqueBlueprint(level, this.world_tier, true);
 
     }
