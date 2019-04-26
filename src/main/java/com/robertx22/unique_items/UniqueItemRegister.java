@@ -53,7 +53,10 @@ import com.robertx22.unique_items.swords.SwordWater;
 
 public class UniqueItemRegister {
 
-    public static void registerAll() {
+    /**
+     * this needs to be called before serialization of config
+     */
+    public static void register() {
 
 	// charms
 

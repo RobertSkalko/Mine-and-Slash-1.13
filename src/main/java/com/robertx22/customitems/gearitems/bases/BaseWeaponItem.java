@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.ItemTool;
 
-public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWeapon {
+public abstract class BaseWeaponItem extends ItemTool implements IWeapon {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 

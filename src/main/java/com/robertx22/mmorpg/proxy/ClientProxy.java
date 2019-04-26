@@ -3,7 +3,7 @@ package com.robertx22.mmorpg.proxy;
 import java.util.function.Supplier;
 
 import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
-import com.robertx22.mmorpg.Keybinds;
+import com.robertx22.mmorpg.registers.KeybindsRegister;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
@@ -22,17 +22,7 @@ public class ClientProxy implements IProxy {
     public void preInit(FMLCommonSetupEvent event) {
 
 	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
-
-	init();
-
-    }
-
-    public void init() {
-	// DEBUG
-	System.out.println("on Client side");
-
-	Keybinds.register();
-
+	KeybindsRegister.register();
 	TileEntityItemStackRenderer.instance = new ShieldRenderer(TileEntityItemStackRenderer.instance);
 
     }

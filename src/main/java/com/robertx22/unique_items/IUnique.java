@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.database.IGUID;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
@@ -18,7 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
+public interface IUnique extends IWeighted, ITiered, IGUID {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 

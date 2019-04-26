@@ -29,6 +29,10 @@ public class MapManager {
 
     }
 
+    /**
+     * // every save game has it's own dimensions, otherwise when you switch saves
+     * you // also get dimensions from your last save, which isn't nice
+     */
     public static void onStopServerUnRegisterDimensions() {
 
     }

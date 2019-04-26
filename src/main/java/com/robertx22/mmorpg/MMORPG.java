@@ -14,21 +14,16 @@ import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.Serialization;
 import com.robertx22.mmorpg.gui.GuiHandlerAll;
 import com.robertx22.mmorpg.proxy.ClientProxy;
-import com.robertx22.mmorpg.proxy.CommonProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
+import com.robertx22.mmorpg.registers.CapabilityRegister;
 import com.robertx22.mmorpg.registers.CommandRegister;
-import com.robertx22.mmorpg.registers.GearItemRegisters;
 import com.robertx22.mmorpg.registers.CurioClientRegister;
 import com.robertx22.mmorpg.registers.CurioSlotRegister;
+import com.robertx22.mmorpg.registers.GearItemRegisters;
+import com.robertx22.mmorpg.registers.OreGenRegister;
 import com.robertx22.mmorpg.registers.PacketRegister;
-import com.robertx22.network.DmgNumPacket;
-import com.robertx22.network.EntityUnitPackage;
-import com.robertx22.network.ParticlePackage;
-import com.robertx22.network.PlayerUnitPackage;
-import com.robertx22.network.WorldPackage;
-import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.WorldData;
+import com.robertx22.mmorpg.registers.RenderRegister;
 import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.unique_items.UniqueItemRegister;
 
@@ -36,8 +31,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
@@ -47,7 +40,6 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -84,16 +76,15 @@ public class MMORPG {
 
 	ModLoadingContext.get().registerConfig(Type.CLIENT, ClientContainer.INSTANCE.clientSpec);
 
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
 	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueue);
 
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
 	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		    () -> GuiHandlerAll::getClientGuiElement);
 
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::regRenders);
+	    FMLJavaModLoadingContext.get().getModEventBus().addListener(RenderRegister::regRenders);
 	    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
 	});
@@ -111,63 +102,33 @@ public class MMORPG {
 	spec.setConfig(configData);
     }
 
-    public void setup(FMLCommonSetupEvent event) {
+    public void preInit(FMLCommonSetupEvent event) {
 
 	System.out.println("Starting Setup");
-
-	PacketRegister.register();
 
 	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		() -> GuiHandlerAll::getClientGuiElement);
 
-	Serialization.generateConfig();
-
-	UniqueItemRegister.registerAll();
-
+	PacketRegister.register();
+	UniqueItemRegister.register();
 	GearItemRegisters.register();
-
 	ItemOre.Register();
-
-	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
-	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
-	MinecraftForge.EVENT_BUS.register(new DmgNumPacket());
-	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
-	MinecraftForge.EVENT_BUS.register(new WorldPackage());
-
-	CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
-		EntityData.DefaultImpl::new);
-
-	CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
-		WorldData.DefaultImpl::new);
-
-	// DeferredWorkQueue.runLater(() -> { CuriosAPI
-	// RegisterPackets.register(); // NetworkRegistry.createInstance
-
-//	});
-
-	if (ModConfig.Server.GENERATE_ORES) {
-
-	    int amount = 7;
-
-	    for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-		CommonProxy.genOre(ItemOre.Blocks.get(i), amount--);
-	    }
-
-	}
-
+	CapabilityRegister.register();
+	OreGenRegister.register();
+	Serialization.generateConfig();
 	proxy.preInit(event);
-
-    }
-
-    public void loadComplete(final FMLLoadCompleteEvent event) {
 
     }
 
     public void postInit(final InterModProcessEvent event) {
 
 	proxy.postInit(event);
-
+	CurioSlotRegister.reg();
 	Serialization.loadConfig();
+
+    }
+
+    public void loadComplete(final FMLLoadCompleteEvent event) {
 
     }
 
@@ -176,27 +137,16 @@ public class MMORPG {
 	CurioClientRegister.icons();
     }
 
-    private void enqueue(final InterModEnqueueEvent evt) {
-
-	CurioSlotRegister.reg();
-    }
-
     @SubscribeEvent
     public void start(FMLServerStartingEvent event) {
-
-	TestManager.RunAllTests();
-
 	MapManager.onStartServerRegisterDimensions();
-
 	CommandRegister.Register();
+	TestManager.RunAllTests();
 
     }
 
     @SubscribeEvent
     public void stop(FMLServerStoppedEvent event) {
-	// every save game has it's own dimensions, otherwise when you switch saves you
-	// also get dimensions from your last save, which isn't nice
-
 	MapManager.onStopServerUnRegisterDimensions();
     }
 

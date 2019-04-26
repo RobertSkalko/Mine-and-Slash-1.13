@@ -13,7 +13,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemArmor;
 
-public abstract class BaseArmorItem extends ItemArmor implements IGearItem {
+public abstract class BaseArmorItem extends ItemArmor {
 
     public static int MAX_GEAR_DURABILITY = 1000;
 
