@@ -20,18 +20,20 @@ public class MapManager {
 
 	ModDimension dim = WorldProviders.All.get(IWPType).newModDimension(name);
 
-	DimensionManager.registerDimension(dim.getRegistryName(), dim,
+	DimensionType type = DimensionManager.registerDimension(dim.getRegistryName(), dim,
 		new PacketBuffer(Unpooled.wrappedBuffer(new byte[] {})));
     }
 
-    public static void unRegister(DimensionType type) {
+    public static void unRegister(ResourceLocation res) {
 
-	DimensionManager.unregisterDimension(type.getId());
+	DimensionManager.unregisterDimension(DimensionType.byName(res).getId());
 
     }
 
     public static void onStartServerRegisterDimensions() {
 
+	// DimensionManager.getWorld(server, DimensionType.byName(res),
+	// resetUnloadDelay, forceLoad)
     }
 
     /**

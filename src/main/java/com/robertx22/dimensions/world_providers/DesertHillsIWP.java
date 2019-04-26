@@ -16,6 +16,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
 
     public DesertHillsIWP(DimensionType type) {
 	super(type);
+
     }
 
     @Override
