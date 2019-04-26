@@ -8,7 +8,7 @@ import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
@@ -53,7 +53,8 @@ import net.minecraftforge.fml.network.NetworkDirection;
 @Mod.EventBusSubscriber
 public class EntityData {
 
-    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "EntityData");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "entitydata");
+
     @CapabilityInject(UnitData.class)
     public static final Capability<UnitData> Data = null;
 
@@ -190,12 +191,17 @@ public class EntityData {
 
 		    @Override
 		    public NBTTagCompound serializeNBT() {
+
+			Data.getName();
+
 			return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+
 		    }
 
 		    @Override
 		    public void deserializeNBT(NBTTagCompound nbt) {
 			Data.getStorage().readNBT(Data, impl, null, nbt);
+
 		    }
 
 		    @Override
@@ -473,7 +479,7 @@ public class EntityData {
 
 		EntityPlayerMP mp = (EntityPlayerMP) player;
 
-		Main.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+		MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
 	    }
 	}
 

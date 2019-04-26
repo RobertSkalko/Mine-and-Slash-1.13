@@ -1,6 +1,6 @@
 package com.robertx22.uncommon;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.util.text.TextFormatting;
@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextFormatting;
 public class CLOC {
 
     private static String base(String s) {
-	return Main.proxy.translate(s);
+	return MMORPG.proxy.translate(s);
     }
 
     public static String tooltip(String str) {

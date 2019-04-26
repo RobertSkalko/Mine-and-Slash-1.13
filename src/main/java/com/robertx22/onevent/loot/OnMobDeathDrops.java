@@ -4,7 +4,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -63,7 +63,7 @@ public class OnMobDeathDrops {
 
 			    EntityPlayerMP mp = (EntityPlayerMP) event.getSource().getTrueSource();
 
-			    Main.sendToClient(packet, mp);
+			    MMORPG.sendToClient(packet, mp);
 			}
 		    }
 		}

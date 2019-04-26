@@ -18,7 +18,7 @@ public class ItemIceBomb extends BaseSpellItem {
 	super();
     }
 
-    @ObjectHolder(Ref.MODID + ":spell_Ice_bomb")
+    @ObjectHolder(Ref.MODID + ":spell_ice_bomb")
     public static final Item ITEM = null;
 
     @Override
@@ -33,7 +33,7 @@ public class ItemIceBomb extends BaseSpellItem {
 
     @Override
     public String GUID() {
-	return Ref.MODID + ":spell_Ice_bomb";
+	return Ref.MODID + ":spell_ice_bomb";
     }
 
 }

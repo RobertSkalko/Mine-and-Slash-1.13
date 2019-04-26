@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.ParticlePackage;
 
 import net.minecraft.entity.Entity;
@@ -15,7 +15,7 @@ public class ParticleUtils {
 	ParticlePackage packet = new ParticlePackage(name, x, y, z, xVel, yVel, zVel, radius, amount);
 
 	Chunk chunk = source.world.getChunk(source.getPosition());
-	Main.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), packet);
+	MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), packet);
 
     }
 

@@ -13,7 +13,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
@@ -191,12 +191,12 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    text += "Runed " + name(stack);
 	} else {
 
-	    if (prefix != null && ModConfig.Client.SHOW_AFFIXED_NAME.get()) {
+	    if (prefix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
 		text += prefix.BaseAffix().locName() + " ";
 	    }
 	    text += name(stack);
 
-	    if (suffix != null && ModConfig.Client.SHOW_AFFIXED_NAME.get()) {
+	    if (suffix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
 		text += " " + suffix.BaseAffix().locName() + " ";
 	    }
 	}

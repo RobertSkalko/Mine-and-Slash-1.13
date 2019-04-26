@@ -2,8 +2,8 @@ package com.robertx22.network;
 
 import java.util.function.Supplier;
 
-import com.robertx22.mmorpg.Main;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.MMORPG;
+import com.robertx22.mmorpg.config.ClientContainer;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -36,9 +36,9 @@ public class NoEnergyPacket {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
+		if (ClientContainer.INSTANCE.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
 
-		    EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+		    EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 		    player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
 
 		}

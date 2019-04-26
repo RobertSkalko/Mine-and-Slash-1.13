@@ -53,27 +53,30 @@ public class RegisterEntities {
 
     static {
 
-	FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new);
-	FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new);
-	ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new);
-	THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new);
+	FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
+	FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new,
+		"entity_frost_bolt");
+	ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
+	THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new,
+		"entity_thunder_bolt");
 
 	FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class,
-		SpellFlameExplosion.EntityFlameExplosion::new);
+		SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
 	FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class,
-		SpellFrostExplosion.EntityFrostExplosion::new);
+		SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
 	ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class,
-		SpellAcidExplosion.EntityAcidExplosion::new);
+		SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
 	THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class,
-		SpellLightningExplosion.EntityLightningExplosion::new);
+		SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
 
-	FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new);
-	FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new);
-	ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new);
-	THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new);
+	FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
+	FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
+	ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
+	THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new,
+		"entity_thunder_bomb");
 
-	STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new);
-	MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new);
+	STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, "staff_projectile");
+	MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new, "my_entity_arrow");
 
     }
 
@@ -85,11 +88,11 @@ public class RegisterEntities {
     }
 
     private static <T extends Entity> EntityType<T> newType(Class<? extends T> entityClass,
-	    Function<? super World, ? extends T> factory) {
+	    Function<? super World, ? extends T> factory, String id) {
 
 	EntityType<T> type = EntityType.Builder.create(entityClass, factory).tracker(64, 1, true)
 		.build(Ref.MODID + ":" + entityClass.getName());
-	type.setRegistryName(new ResourceLocation(Ref.MODID, entityClass.getName()));
+	type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 
 	ENTITY_TYPES.add(type);
 

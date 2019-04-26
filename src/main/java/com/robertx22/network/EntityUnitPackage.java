@@ -2,7 +2,7 @@ package com.robertx22.network;
 
 import java.util.function.Supplier;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -55,7 +55,7 @@ public class EntityUnitPackage {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+		final EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
 		if (player != null && player.world != null) {
 		    Entity entity = player.world.getEntityByID(pkt.id);

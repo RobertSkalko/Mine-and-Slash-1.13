@@ -1,6 +1,6 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.SLOC;
@@ -88,7 +88,7 @@ public abstract class BaseSpell implements IWeighted {
 
 		} else {
 		    if (caster instanceof EntityPlayerMP) {
-			Main.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
+			MMORPG.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
 
 		    }
 

@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class WorldData {
 
-    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "WorldData");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "worlddata");
 
     @CapabilityInject(IWorldData.class)
     public static final Capability<IWorldData> Data = null;

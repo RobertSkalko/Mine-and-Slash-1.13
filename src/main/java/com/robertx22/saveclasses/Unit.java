@@ -15,7 +15,7 @@ import com.robertx22.database.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.network.EntityUnitPackage;
@@ -359,7 +359,7 @@ public class Unit {
 
 	    Chunk chunk = entity.world.getChunk(entity.getPosition());
 
-	    Main.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
+	    MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
 
 	}
 

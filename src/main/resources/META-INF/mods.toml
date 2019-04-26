@@ -3,7 +3,7 @@ loaderVersion="[25,)"
 issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
 logoFile="${mod_icon}"
 [[mods]]
-modId="${mod_id}"
+modId="mmorpg"
 version="${version}"
 displayName="${mod_name}"
 displayURL="${mod_url}"

@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -70,13 +70,13 @@ public class BarsGUI extends Gui {
 		return;
 	    }
 
-	    if (ModConfig.Client.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Top_Left)) {
+	    if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Top_Left)) {
 		topleft.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ModConfig.Client.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle)) {
+	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle)) {
 		bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ModConfig.Client.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle_Corners)) {
+	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle_Corners)) {
 		bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ModConfig.Client.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Middle)) {
+	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Middle)) {
 		middle.Draw(this, mc, mc.player, event, unit, data);
 	    }
 	} catch (Exception e) {

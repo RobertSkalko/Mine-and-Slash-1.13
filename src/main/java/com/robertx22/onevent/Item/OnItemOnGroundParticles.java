@@ -3,7 +3,7 @@ package com.robertx22.onevent.Item;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.ClientContainer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
@@ -36,7 +36,7 @@ public class OnItemOnGroundParticles {
 	    return;
 	}
 
-	if (ModConfig.Client.RENDER_ITEM_ENTITY_RARITY_PARTICLES.get() == false) {
+	if (ClientContainer.INSTANCE.RENDER_ITEM_ENTITY_RARITY_PARTICLES.get() == false) {
 	    return;
 	}
 

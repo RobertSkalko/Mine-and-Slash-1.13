@@ -33,7 +33,7 @@ public class ManaRegenPotion extends SpellPotionBase {
     private ManaRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.mana_regen"));
+	this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.mana_regen"));
 
     }
 

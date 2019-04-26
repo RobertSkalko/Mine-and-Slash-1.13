@@ -2,7 +2,7 @@ package com.robertx22.network;
 
 import java.util.function.Supplier;
 
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
@@ -70,10 +70,10 @@ public class DmgNumPacket {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		if (pkt.isExp && ModConfig.Client.SHOW_FLOATING_EXP.get()) {
+		if (pkt.isExp && ClientContainer.INSTANCE.SHOW_FLOATING_EXP.get()) {
 		    OnDisplayDamage.displayParticle(pkt);
 
-		} else if (pkt.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE.get()) {
+		} else if (pkt.isExp == false && ClientContainer.INSTANCE.RENDER_FLOATING_DAMAGE.get()) {
 		    OnDisplayDamage.displayParticle(pkt);
 		}
 	    } catch (Exception e) {

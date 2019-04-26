@@ -2,7 +2,7 @@ package com.robertx22.network;
 
 import java.util.function.Supplier;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +43,7 @@ public class PlayerUnitPackage {
 	ctx.get().enqueueWork(() -> {
 	    try {
 
-		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+		final EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
 		if (player != null) {
 

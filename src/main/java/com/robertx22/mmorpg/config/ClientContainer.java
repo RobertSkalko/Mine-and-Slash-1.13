@@ -17,6 +17,7 @@ public class ClientContainer {
 		.configure(ClientContainer::new);
 	clientSpec = specPair.getRight();
 	INSTANCE = specPair.getLeft();
+
     }
 
     public BooleanValue RENDER_ITEM_ENTITY_RARITY_PARTICLES;
@@ -66,6 +67,8 @@ public class ClientContainer {
 		.define("PLAYER_GUI_TYPE", Player_GUIs.Middle);
 
 	builder.pop();
+
+	builder.build();
     }
 
 }

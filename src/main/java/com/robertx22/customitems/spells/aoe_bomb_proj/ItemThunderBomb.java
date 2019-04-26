@@ -18,7 +18,7 @@ public class ItemThunderBomb extends BaseSpellItem {
 	super();
     }
 
-    @ObjectHolder(Ref.MODID + ":spell_Thunder_bomb")
+    @ObjectHolder(Ref.MODID + ":spell_thunder_bomb")
     public static final Item ITEM = null;
 
     @Override
@@ -33,7 +33,7 @@ public class ItemThunderBomb extends BaseSpellItem {
 
     @Override
     public String GUID() {
-	return Ref.MODID + ":spell_Thunder_bomb";
+	return Ref.MODID + ":spell_thunder_bomb";
     }
 
 }

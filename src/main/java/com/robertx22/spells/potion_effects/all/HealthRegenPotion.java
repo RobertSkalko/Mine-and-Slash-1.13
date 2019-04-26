@@ -32,7 +32,7 @@ public class HealthRegenPotion extends SpellPotionBase {
     private HealthRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	this.setRegistryName(new ResourceLocation(Ref.MODID + ".effect.self_regen"));
+	this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.self_regen"));
 
     }
 

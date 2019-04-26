@@ -11,9 +11,9 @@ import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
@@ -111,7 +111,7 @@ public class DamageEffect extends EffectData
 	    Heal();
 	    RestoreMana();
 
-	    if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG.get()) {
+	    if (ClientContainer.INSTANCE.RENDER_CHAT_COMBAT_LOG.get()) {
 		LogCombat();
 	    }
 
@@ -119,7 +119,7 @@ public class DamageEffect extends EffectData
 
 		EntityPlayerMP player = (EntityPlayerMP) Source;
 		DmgNumPacket packet = new DmgNumPacket(Target, this.Element, FormatDamageNumber(this));
-		Main.Network.sendTo(packet, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+		MMORPG.Network.sendTo(packet, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
 
 	    }
 	}

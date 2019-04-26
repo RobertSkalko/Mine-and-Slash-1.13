@@ -1,6 +1,6 @@
 package com.robertx22.uncommon;
 
-import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 
 import net.minecraft.entity.Entity;
@@ -12,7 +12,7 @@ public class AttackUtils {
 
 	if (entity instanceof EntityPlayerMP) {
 
-	    Main.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) entity);
+	    MMORPG.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) entity);
 
 	}
     }
