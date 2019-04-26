@@ -76,7 +76,7 @@ public class OnLogin {
 
 	    EntityPlayer player = event.getPlayer();
 
-	    if (Load.hasUnit(player) == false) {
+	    if (Load.hasUnit(player)) {
 
 		UnitData data = Load.Unit(player);
 

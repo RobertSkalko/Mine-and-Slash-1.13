@@ -92,6 +92,14 @@ dependencies {
 }
 
 jar {
+   from configurations.embed.collect {
+    it.isDirectory() ? it : zipTree(it).matching {
+        exclude 'META-INF', 'META-INF/**'
+    }
+}
+}
+
+jar {
     manifest {
         attributes(["Specification-Title": "${mod_name}",
                     "Specification-Vendor": "${mod_author}",

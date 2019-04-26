@@ -8,7 +8,6 @@ import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class DmgNumPacket {
@@ -46,7 +45,7 @@ public class DmgNumPacket {
 	newpkt.height = buf.getFloat(5);
 	newpkt.isExp = buf.getBoolean(6);
 
-	newpkt.string = buf.readTextComponent().toString();
+	newpkt.string = buf.readString(30);
 
 	return newpkt;
 
@@ -61,7 +60,7 @@ public class DmgNumPacket {
 	tag.setFloat(5, packet.height);
 	tag.setBoolean(6, packet.isExp);
 
-	tag.writeTextComponent(new TextComponentString(packet.string));
+	tag.writeString(packet.string);
 
     }
 

@@ -191,9 +191,6 @@ public class EntityData {
 
 		    @Override
 		    public NBTTagCompound serializeNBT() {
-
-			Data.getName();
-
 			return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
 
 		    }

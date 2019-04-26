@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.gui.mobs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NeatConfig {
@@ -26,7 +27,7 @@ public class NeatConfig {
     public static boolean showOnlyFocused = true;
     public static boolean enableDebugInfo = true;
 
-    public static List<String> blacklist;
+    public static List<String> blacklist = new ArrayList();
 
     // public static Configuration config;
 
