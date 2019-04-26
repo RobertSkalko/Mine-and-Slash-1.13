@@ -29,7 +29,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public class RegisterEntities {
+public class EntityRegister {
 
     public static List<EntityType<?>> ENTITY_TYPES = new LinkedList();
 
@@ -91,7 +91,7 @@ public class RegisterEntities {
 	    Function<? super World, ? extends T> factory, String id) {
 
 	EntityType<T> type = EntityType.Builder.create(entityClass, factory).tracker(64, 1, true)
-		.build(Ref.MODID + ":" + entityClass.getName());
+		.build(Ref.MODID + ":" + id.toLowerCase());
 	type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 
 	ENTITY_TYPES.add(type);

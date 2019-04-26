@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.registers;
 
-public class CommandRegisters {
+public class CommandRegister {
     public static void Register() {
 
     }

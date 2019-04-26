@@ -2,7 +2,7 @@ package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.projectile.ItemThunderBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.mmorpg.registers.RegisterEntities;
+import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -15,7 +15,7 @@ public class SpellThunderBolt extends BaseSpellProjectile {
 
 	public EntityThunderBolt(World worldIn) {
 
-	    super(RegisterEntities.THUNDERBOLT, worldIn);
+	    super(EntityRegister.THUNDERBOLT, worldIn);
 
 	}
 

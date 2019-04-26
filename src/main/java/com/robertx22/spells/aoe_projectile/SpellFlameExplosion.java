@@ -2,7 +2,7 @@ package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemFlameExplosion;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
-import com.robertx22.mmorpg.registers.RegisterEntities;
+import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
@@ -16,7 +16,7 @@ public class SpellFlameExplosion extends BaseAoeSpellProjectile {
 
 	public EntityFlameExplosion(World worldIn) {
 
-	    super(RegisterEntities.FIREEXPLOSION, worldIn);
+	    super(EntityRegister.FIREEXPLOSION, worldIn);
 
 	}
 

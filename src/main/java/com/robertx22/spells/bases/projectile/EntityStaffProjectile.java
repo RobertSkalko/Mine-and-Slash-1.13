@@ -1,7 +1,7 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
-import com.robertx22.mmorpg.registers.RegisterEntities;
+import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -19,7 +19,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     ItemStack staff;
 
     public EntityStaffProjectile(World worldIn) {
-	super(RegisterEntities.STAFFPROJECTILE, worldIn);
+	super(EntityRegister.STAFFPROJECTILE, worldIn);
 
     }
 

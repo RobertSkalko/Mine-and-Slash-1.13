@@ -1,6 +1,6 @@
 package com.robertx22.customitems.gearitems;
 
-import com.robertx22.mmorpg.registers.RegisterEntities;
+import com.robertx22.mmorpg.registers.EntityRegister;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import net.minecraft.block.Block;
@@ -42,7 +42,7 @@ public class MyEntityArrow extends EntityArrow {
     private int knockbackStrength;
 
     public MyEntityArrow(World worldIn) {
-	super(RegisterEntities.MYARROW, worldIn);
+	super(EntityRegister.MYARROW, worldIn);
 
 	this.pickupStatus = MyEntityArrow.PickupStatus.DISALLOWED;
 

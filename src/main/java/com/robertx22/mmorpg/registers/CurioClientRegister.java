@@ -5,7 +5,7 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.util.ResourceLocation;
 import top.theillusivec4.curios.api.CuriosAPI;
 
-public class RegisterCurioClient {
+public class CurioClientRegister {
 
     public static void icons() {
 	CuriosAPI.registerIcon("charm", new ResourceLocation(Ref.MODID, "item/slots/empty_charm_slot"));

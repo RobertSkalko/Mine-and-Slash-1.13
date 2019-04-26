@@ -62,6 +62,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     public abstract BaseRuneItem byRarity(int rar);
 
     public BaseRuneItem(int rarity) {
+
 	super(new Properties().maxStackSize(1).defaultMaxDamage(0));
 	this.rarity = rarity;
 

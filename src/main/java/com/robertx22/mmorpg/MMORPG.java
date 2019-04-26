@@ -17,11 +17,11 @@ import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.CommonProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
-import com.robertx22.mmorpg.registers.CommandRegisters;
+import com.robertx22.mmorpg.registers.CommandRegister;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
-import com.robertx22.mmorpg.registers.RegisterCurioClient;
-import com.robertx22.mmorpg.registers.RegisterCurioSlot;
-import com.robertx22.mmorpg.registers.RegisterPackets;
+import com.robertx22.mmorpg.registers.CurioClientRegister;
+import com.robertx22.mmorpg.registers.CurioSlotRegister;
+import com.robertx22.mmorpg.registers.PacketRegister;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.ParticlePackage;
@@ -115,7 +115,7 @@ public class MMORPG {
 
 	System.out.println("Starting Setup");
 
-	RegisterPackets.register();
+	PacketRegister.register();
 
 	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		() -> GuiHandlerAll::getClientGuiElement);
@@ -173,12 +173,12 @@ public class MMORPG {
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
-	RegisterCurioClient.icons();
+	CurioClientRegister.icons();
     }
 
     private void enqueue(final InterModEnqueueEvent evt) {
 
-	RegisterCurioSlot.reg();
+	CurioSlotRegister.reg();
     }
 
     @SubscribeEvent
@@ -188,7 +188,7 @@ public class MMORPG {
 
 	MapManager.onStartServerRegisterDimensions();
 
-	CommandRegisters.Register();
+	CommandRegister.Register();
 
     }
 

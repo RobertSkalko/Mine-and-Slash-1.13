@@ -4,8 +4,8 @@ issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
 logoFile="${mod_icon}"
 [[mods]]
 modId="mmorpg"
-version="${version}"
-displayName="${mod_name}"
+version="${mod_version}"
+displayName="Mine and Slash"
 displayURL="${mod_url}"
 authors="${mod_author}"
 description='''

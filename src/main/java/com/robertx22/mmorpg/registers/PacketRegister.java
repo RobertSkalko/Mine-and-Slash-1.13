@@ -8,7 +8,7 @@ import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
 
-public class RegisterPackets {
+public class PacketRegister {
     public static void register() {
 	int index = 0;
 

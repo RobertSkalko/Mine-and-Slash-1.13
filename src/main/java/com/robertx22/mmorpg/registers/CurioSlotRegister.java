@@ -4,7 +4,7 @@ import net.minecraftforge.fml.InterModComms;
 import top.theillusivec4.curios.api.CuriosAPI;
 import top.theillusivec4.curios.api.imc.CurioIMCMessage;
 
-public class RegisterCurioSlot {
+public class CurioSlotRegister {
 
     public static void reg() {
 	InterModComms.sendTo("curios", CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage("charm"));
