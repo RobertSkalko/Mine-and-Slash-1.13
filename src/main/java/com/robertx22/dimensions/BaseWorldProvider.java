@@ -1,6 +1,5 @@
 package com.robertx22.dimensions;
 
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
@@ -31,11 +30,9 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
 
     @Override
     public int Weight() {
-	return this.UncommonWeight;
+	return UncommonWeight;
 
     }
-
-    public abstract Biome getBiome();
 
     @Override
     public boolean canDropChunk(int x, int z) {

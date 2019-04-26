@@ -33,7 +33,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
 	return Biomes.DESERT_HILLS;
     }
 
-    public static ModDimension newModDimension(String name) {
+    public ModDimension newModDimension(String name) {
 	return new ModDimension() {
 	    @Override
 	    public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> getFactory() {

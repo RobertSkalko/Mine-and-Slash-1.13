@@ -86,6 +86,7 @@ dependencies {
 	minecraft "net.minecraftforge:forge:${version_forge}"	
 	compile "top.theillusivec4.curios:curios:${version_curios}" // Trinkets, REQUIRED
 	//deobf "top.theillusivec4.curios:curios:${version_curios}"
+	compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}")
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:${version_autosave}" // Auto Nbt Saving, REQUIRED
     embed "info.loenwind.autosave:AutoSave:${version_autosave}" // Need for nbt saving		

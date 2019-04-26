@@ -1,5 +1,7 @@
 package com.robertx22.dimensions;
 
+import com.robertx22.db_lists.WorldProviders;
+
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -14,9 +16,12 @@ public class MapManager {
 	return DimensionType.byName(res) != null;
     }
 
-    public static void register(ResourceLocation res, ModDimension moddim) {
+    public static void register(String name, String IWPType) {
 
-	DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.wrappedBuffer(new byte[] {})));
+	ModDimension dim = WorldProviders.All.get(IWPType).newModDimension(name);
+
+	DimensionManager.registerDimension(dim.getRegistryName(), dim,
+		new PacketBuffer(Unpooled.wrappedBuffer(new byte[] {})));
     }
 
     public static void unRegister(DimensionType type) {
