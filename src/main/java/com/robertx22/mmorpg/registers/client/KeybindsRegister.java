@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.client;
 
 import org.lwjgl.glfw.GLFW;
 

@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.WorldData;

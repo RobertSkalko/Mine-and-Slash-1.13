@@ -3,7 +3,7 @@ package com.robertx22.mmorpg.proxy;
 import java.util.function.Supplier;
 
 import com.robertx22.items.gearitems.offhands.ShieldRenderer;
-import com.robertx22.mmorpg.registers.KeybindsRegister;
+import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 

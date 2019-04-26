@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import net.minecraftforge.fml.InterModComms;
 import top.theillusivec4.curios.api.CuriosAPI;

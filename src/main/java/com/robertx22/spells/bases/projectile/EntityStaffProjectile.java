@@ -1,7 +1,7 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.items.gearitems.weapons.ItemStaff;
-import com.robertx22.mmorpg.registers.EntityRegister;
+import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;

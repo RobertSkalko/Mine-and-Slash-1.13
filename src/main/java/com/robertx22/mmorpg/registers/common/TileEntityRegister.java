@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.blocks.item_modify_station.StartupModify;

@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import java.util.LinkedList;
 import java.util.List;

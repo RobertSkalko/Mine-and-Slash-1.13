@@ -2,7 +2,7 @@ package com.robertx22.spells.aoe_bomb_proj;
 
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemThunderBomb;
-import com.robertx22.mmorpg.registers.EntityRegister;
+import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
 import com.robertx22.spells.aoe_bomb_proj.bases.EntityBombProjectile;
 import com.robertx22.spells.bases.EffectCalculation;

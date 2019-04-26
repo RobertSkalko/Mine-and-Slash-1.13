@@ -1,9 +1,20 @@
 package com.robertx22.mmorpg.gui;
 
 import com.robertx22.blocks.gear_factory_station.GuiGearFactory;
+import com.robertx22.blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.blocks.gear_factory_station.TileGearFactory;
 import com.robertx22.blocks.item_modify_station.GuiInventoryModify;
+import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.blocks.item_modify_station.TileInventoryModify;
+import com.robertx22.blocks.map_device.GuiMap;
+import com.robertx22.blocks.map_device.StartupMap;
+import com.robertx22.blocks.map_device.TileMap;
+import com.robertx22.blocks.repair_station.GuiInventoryRepair;
+import com.robertx22.blocks.repair_station.StartupRepair;
+import com.robertx22.blocks.repair_station.TileInventoryRepair;
+import com.robertx22.blocks.salvage_station.GuiInventorySalvage;
+import com.robertx22.blocks.salvage_station.StartupSalvage;
+import com.robertx22.blocks.salvage_station.TileInventorySalvage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,21 +29,38 @@ public class GuiHandlerClient {
     public static GuiScreen getClientGuiElement(FMLPlayMessages.OpenContainer msg) {
 
 	EntityPlayer player = Minecraft.getInstance().player;
+	BlockPos pos = msg.getAdditionalData().readBlockPos();
+	TileEntity te = Minecraft.getInstance().world.getTileEntity(pos);
 
 	switch (msg.getId().getPath()) {
-	case "gear_factory_station": {
-	    BlockPos pos = msg.getAdditionalData().readBlockPos();
-	    TileEntity te = Minecraft.getInstance().world.getTileEntity(pos);
+
+	case StartupGearFactory.ID: {
 	    if (te instanceof TileGearFactory) {
 		return new GuiGearFactory((InventoryPlayer) player.inventory, (TileGearFactory) te);
 	    }
 	    break;
 	}
-	case "modify_station": {
-	    BlockPos pos = msg.getAdditionalData().readBlockPos();
-	    TileEntity te = Minecraft.getInstance().world.getTileEntity(pos);
+	case StartupModify.ID: {
 	    if (te instanceof TileInventoryModify) {
 		return new GuiInventoryModify((InventoryPlayer) player.inventory, (TileInventoryModify) te);
+	    }
+	    break;
+	}
+	case StartupSalvage.ID: {
+	    if (te instanceof TileInventorySalvage) {
+		return new GuiInventorySalvage((InventoryPlayer) player.inventory, (TileInventorySalvage) te);
+	    }
+	    break;
+	}
+	case StartupMap.ID: {
+	    if (te instanceof TileMap) {
+		return new GuiMap((InventoryPlayer) player.inventory, (TileMap) te);
+	    }
+	    break;
+	}
+	case StartupRepair.ID: {
+	    if (te instanceof TileInventoryRepair) {
+		return new GuiInventoryRepair((InventoryPlayer) player.inventory, (TileInventoryRepair) te);
 	    }
 	    break;
 	}

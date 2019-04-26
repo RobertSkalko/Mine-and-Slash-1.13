@@ -1,6 +1,6 @@
 package com.robertx22.items.gearitems;
 
-import com.robertx22.mmorpg.registers.EntityRegister;
+import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import net.minecraft.block.Block;

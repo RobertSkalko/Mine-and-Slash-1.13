@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.config.ModConfig;

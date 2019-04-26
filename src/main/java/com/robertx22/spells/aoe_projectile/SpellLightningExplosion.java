@@ -2,7 +2,7 @@ package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.items.spells.aoe_projectile.ItemLightningExplosion;
-import com.robertx22.mmorpg.registers.EntityRegister;
+import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
