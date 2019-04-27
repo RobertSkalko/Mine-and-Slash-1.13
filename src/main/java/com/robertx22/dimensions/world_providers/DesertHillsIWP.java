@@ -20,6 +20,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
 
     @Override
     public String GUID() {
+
 	return "deserthills";
     }
 
