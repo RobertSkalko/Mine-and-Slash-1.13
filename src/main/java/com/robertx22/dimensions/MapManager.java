@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class MapManager {
 
@@ -31,6 +32,9 @@ public class MapManager {
     }
 
     public static void onStartServerRegisterDimensions() {
+
+	ServerLifecycleHooks.getCurrentServer().getWorld(DimensionType.OVERWORLD).getMapStorage();
+	// ServerLifecycleHooks.getCurrentServer().getWorld(DimensionType.OVERWORLD).getcapa
 
 	// DimensionManager.getWorld(server, DimensionType.byName(res),
 	// resetUnloadDelay, forceLoad)

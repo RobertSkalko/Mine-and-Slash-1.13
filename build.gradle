@@ -83,15 +83,34 @@ configurations {
 
 dependencies {
 
+	//deobf "top.theillusivec4.curios:curios:${version_curios}"
+	//compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}")	
+
 	minecraft "net.minecraftforge:forge:${version_forge}"	
 	compile "top.theillusivec4.curios:curios:${version_curios}" // Trinkets, REQUIRED
-	//deobf "top.theillusivec4.curios:curios:${version_curios}"
-	compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}")
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:${version_autosave}" // Auto Nbt Saving, REQUIRED
     embed "info.loenwind.autosave:AutoSave:${version_autosave}" // Need for nbt saving		
 	
 }
+
+repositories {
+maven {
+// location of the maven that hosts JEI files
+name = "Progwml6 maven"
+url = "https://dvs1.progwml6.com/files/maven/"
+}
+}
+
+dependencies {
+/* minecraft dependency is here */
+
+// compile against the JEI API but do not include it at runtime
+compileOnly fg.deobf("mezz.jei:jei-${version_minecraft}:5.0.0.20:api")
+// at runtime, use the full JEI jar
+runtimeOnly fg.deobf("mezz.jei:jei-${version_minecraft}:5.0.0.20")
+}
+
 
 jar {
    from configurations.embed.collect {
