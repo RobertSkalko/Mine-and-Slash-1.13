@@ -1,5 +1,7 @@
 package com.robertx22.uncommon.datasaving;
 
+import com.robertx22.uncommon.capability.DimsData;
+import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
@@ -31,4 +33,14 @@ public class Load {
 	}
 	return null;
     }
+
+    public static IDimsData Dims(ICapabilityProvider provider) {
+
+	if (provider != null) {
+	    return provider.getCapability(DimsData.Data).orElse(new DimsData.DefaultImpl());
+
+	}
+	return null;
+    }
+
 }

@@ -69,7 +69,7 @@ public class EntityData {
     private static final String KILLS_OBJECT = "kils_object";
     private static final String MANA = "current_mana";
     private static final String ENERGY = "current_energy";
-    private static final String CURRENT_MAP_ID = "current_map_id";
+    private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
 
     public interface UnitData extends ICommonCapability {
@@ -152,9 +152,9 @@ public class EntityData {
 
 	void heal(EntityLivingBase entity, int healthrestored);
 
-	int getCurrentMapId();
+	String getCurrentMapId();
 
-	void setCurrentMapId(int id);
+	void setCurrentMapId(String res);
 
 	boolean hasCurrentMapId();
 
@@ -246,7 +246,7 @@ public class EntityData {
 	int rarity = 0;
 	String uuid = "";
 	String name = "";
-	int currentMapId = 0;
+	String currentMapResourceLoc = "";
 
 	float energy;
 	float mana;
@@ -261,7 +261,7 @@ public class EntityData {
 	    nbt.setString(UUID, uuid);
 	    nbt.setString(NAME, name);
 	    nbt.setBoolean(MOB_SAVED_ONCE, true);
-	    nbt.setInt(CURRENT_MAP_ID, currentMapId);
+	    nbt.setString(CURRENT_MAP_ID, currentMapResourceLoc);
 	    nbt.setBoolean(SET_MOB_STATS, setMobStats);
 
 	    if (unit != null) {
@@ -290,7 +290,7 @@ public class EntityData {
 	    this.name = value.getString(NAME);
 	    this.energy = value.getFloat(ENERGY);
 	    this.mana = value.getFloat(MANA);
-	    this.currentMapId = value.getInt(CURRENT_MAP_ID);
+	    this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
 	    this.setMobStats = value.getBoolean(SET_MOB_STATS);
 
 	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
@@ -767,23 +767,23 @@ public class EntityData {
 	}
 
 	@Override
-	public int getCurrentMapId() {
-	    return this.currentMapId;
+	public String getCurrentMapId() {
+	    return this.currentMapResourceLoc;
 	}
 
 	@Override
-	public void setCurrentMapId(int id) {
-	    this.currentMapId = id;
+	public void setCurrentMapId(String id) {
+	    this.currentMapResourceLoc = id;
 	}
 
 	@Override
 	public boolean hasCurrentMapId() {
-	    return this.currentMapId != 0;
+	    return this.currentMapResourceLoc.isEmpty() == false;
 	}
 
 	@Override
 	public void clearCurrentMapId() {
-	    this.currentMapId = 0;
+	    this.currentMapResourceLoc = "";
 	}
 
 	@Override

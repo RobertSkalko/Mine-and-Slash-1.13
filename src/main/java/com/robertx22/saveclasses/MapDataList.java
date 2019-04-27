@@ -8,7 +8,7 @@ import info.loenwind.autosave.annotations.Store;
 @Storable
 public class MapDataList {
 
-	@Store
-	public HashMap<Integer, DimensionData> dimDatas = new HashMap<Integer, DimensionData>();
+    @Store
+    public HashMap<String, DimensionData> dimDatas = new HashMap<String, DimensionData>();
 
 }

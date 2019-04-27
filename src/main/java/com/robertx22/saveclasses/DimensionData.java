@@ -1,9 +1,12 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
+import com.robertx22.dimensions.MapManager;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
 
 @Storable
@@ -13,26 +16,26 @@ public class DimensionData {
 
     }
 
-    public DimensionData(String name, String suffix, int id, IWP theclass) {
+    public DimensionData(DimensionType type, IWP theclass) {
 
-	this.Name = name;
-	this.suffix = suffix;
-	this.ID = id;
-	this.theclass = theclass.GUID();
+	this.IWPGuid = theclass.GUID();
+	this.ResourceLocationString = type.getRegistryName().toString();
+
     }
 
     @Store
-    public String Name;
+    public String ResourceLocationString;
     @Store
-    public int ID;
-    @Store
-    public String theclass;
-    @Store
-    public String suffix;
+    public String IWPGuid;
 
     public DimensionType getDimensionType() {
 
-	return null;
+	return MapManager.register(getResource(), WorldProviders.All.get(IWPGuid));
+
+    }
+
+    public ResourceLocation getResource() {
+	return new ResourceLocation(this.ResourceLocationString);
     }
 
 }

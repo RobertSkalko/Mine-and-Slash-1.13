@@ -1,7 +1,10 @@
 package com.robertx22.uncommon.capability;
 
+import com.robertx22.dimensions.IWP;
+import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.DimensionData;
+import com.robertx22.saveclasses.MapDataList;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
@@ -34,6 +37,72 @@ public class DimsData {
 
 	void setNBT(NBTTagCompound value);
 
+	void add(DimensionType type, IWP iwp);
+
+	void unregisterAll();
+
+	void registerAll();
+
+    }
+
+    static final String MAP_OBJECT = "map_data_list";
+    static final String ISRESERVED = "is_reserved";
+
+    public static class DefaultImpl implements IDimsData {
+	private NBTTagCompound nbt = new NBTTagCompound();
+
+	MapDataList mapdata = new MapDataList();
+	boolean reserved = false;
+
+	@Override
+	public NBTTagCompound getNBT() {
+
+	    nbt.setBoolean(ISRESERVED, reserved);
+
+	    if (mapdata != null) {
+		NBTTagCompound tag = new NBTTagCompound();
+		Writer.write(tag, mapdata);
+		nbt.setTag(MAP_OBJECT, tag);
+	    }
+
+	    return nbt;
+
+	}
+
+	@Override
+	public void setNBT(NBTTagCompound value) {
+	    this.nbt = value;
+
+	    this.reserved = nbt.getBoolean(ISRESERVED);
+
+	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
+	    if (mapnbt != null) {
+		Reader.read(mapnbt, mapdata);
+	    }
+
+	}
+
+	@Override
+	public void add(DimensionType type, IWP iwp) {
+	    this.mapdata.dimDatas.put(type.getRegistryName().toString(), new DimensionData(type, iwp));
+
+	}
+
+	@Override
+	public void unregisterAll() {
+	    for (DimensionData data : this.mapdata.dimDatas.values()) {
+		MapManager.expire(data.getResource());
+	    }
+
+	}
+
+	@Override
+	public void registerAll() {
+	    for (DimensionData data : this.mapdata.dimDatas.values()) {
+		MapManager.register(data.getResource(), data.IWPGuid);
+	    }
+
+	}
     }
 
     @Mod.EventBusSubscriber
@@ -84,44 +153,6 @@ public class DimsData {
 	public void readNBT(Capability<IDimsData> capability, IDimsData instance, EnumFacing side, INBTBase nbt) {
 
 	    instance.setNBT((NBTTagCompound) nbt);
-
-	}
-    }
-
-    static final String MAP_OBJECT = "mapObject";
-    static final String ISRESERVED = "is_reserved";
-
-    public static class DefaultImpl implements IDimsData {
-	private NBTTagCompound nbt = new NBTTagCompound();
-
-	MapItemData mapdata = new MapItemData();
-	boolean reserved = false;
-
-	@Override
-	public NBTTagCompound getNBT() {
-
-	    nbt.setBoolean(ISRESERVED, reserved);
-
-	    if (mapdata != null) {
-		NBTTagCompound tag = new NBTTagCompound();
-		Writer.write(tag, mapdata);
-		nbt.setTag(MAP_OBJECT, tag);
-	    }
-
-	    return nbt;
-
-	}
-
-	@Override
-	public void setNBT(NBTTagCompound value) {
-	    this.nbt = value;
-
-	    this.reserved = nbt.getBoolean(ISRESERVED);
-
-	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
-	    if (mapnbt != null) {
-		Reader.read(mapnbt, mapdata);
-	    }
 
 	}
     }

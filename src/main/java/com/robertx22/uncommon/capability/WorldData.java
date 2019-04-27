@@ -81,11 +81,15 @@ public class WorldData {
 
 	void teleportPlayerBack(EntityPlayer player);
 
+	void transferPlayersBack(World world);
+
 	MapWorldData getWorldData();
 
 	void setWorldData(MapWorldData data);
 
 	void passMinute(World world);
+
+	void passAllTime(World world);
 
 	void onPlayerDeath(EntityPlayer victim, World world);
 
@@ -359,7 +363,7 @@ public class WorldData {
 	    return this.originalDimension;
 	}
 
-	private void transferPlayersBack(World world) {
+	public void transferPlayersBack(World world) {
 
 	    if (world.playerEntities != null) {
 		List<EntityPlayer> players = new ArrayList<EntityPlayer>(world.playerEntities);
@@ -512,6 +516,15 @@ public class WorldData {
 	    }
 
 	    return DimensionsContainer.INSTANCE.getConfig(world).DROPS_UNIQUE_ITEMS;
+	}
+
+	@Override
+	public void passAllTime(World world) {
+
+	    this.minutesPassed += 500000;
+
+	    this.passMinute(world);
+
 	}
 
     }
