@@ -99,7 +99,7 @@ public class DimsData {
 	@Override
 	public void registerAll() {
 	    for (DimensionData data : this.mapdata.dimDatas.values()) {
-		MapManager.register(data.getResource(), data.IWPGuid);
+		MapManager.register(data.getResource(), data.getIWP());
 	    }
 
 	}

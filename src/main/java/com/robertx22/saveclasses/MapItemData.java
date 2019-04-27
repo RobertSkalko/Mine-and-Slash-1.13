@@ -2,7 +2,6 @@ package com.robertx22.saveclasses;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.Rarities;
@@ -11,12 +10,9 @@ import com.robertx22.dimensions.IWP;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
@@ -27,10 +23,8 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 @Storable
 public class MapItemData implements ISalvagable {
@@ -125,51 +119,7 @@ public class MapItemData implements ISalvagable {
 
 	UnitData unit = Load.Unit(player);
 
-	MapItemData map = this;
-
-	unit.setCurrentMapId(id);
-
-	// ModDimension
-
-	DimensionManager.registerDimension(name, type, data);
-
-	DimensionData dimData = getDimData(id, map.worldGeneratorName);
-
-	if (DimensionManager.isDimensionRegistered(id)) {
-	    DimensionManager.unregisterDimension(id);
-	}
-
-	DimensionManager.registerDimension(id, dimData.getDimensionType());
-	DimensionManager.initDimension(id);
-	World world = DimensionManager.getWorld(id);
-
-	IWorldData data = world.getCapability(WorldData.Data, null);
-	data.init(pos, ogworld, map, id, player);
-
-	MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
-		MapDatas.getLoc());
-
-	mapdatas.register(dimData);
-
-    }
-
-    public String findFreeDimensionId(EntityPlayer player, UnitData unit) {
-
-	if (unit.hasCurrentMapId()) {
-
-	    ResourceLocation res = new ResourceLocation(unit.getCurrentMapId());
-
-	    MapManager.expire(res);
-
-	}
-	ResourceLocation res = new ResourceLocation(unit.getCurrentMapId());
-
-	while (MapManager.isRegistered(res)) {
-
-	    res = new ResourceLocation(Ref.MODID, UUID.randomUUID().toString());
-	}
-
-	MapManager.register(res, this.getWorldProvider());
+	MapManager.createNewDim(player, unit, this, pos);
 
     }
 

@@ -49,7 +49,7 @@ public class WorldData {
 
 	boolean isSetForDelete();
 
-	int getWorldID();
+	String getWorldID();
 
 	int getTier(World world);
 
@@ -59,7 +59,7 @@ public class WorldData {
 
 	String getOwner();
 
-	void init(BlockPos pos, World world, MapItemData map, int dimensionId, EntityPlayer owner);
+	void init(BlockPos pos, World world, MapItemData map, String dimensionId, EntityPlayer owner);
 
 	void delete(EntityPlayer player, World mapworld);
 
@@ -159,7 +159,7 @@ public class WorldData {
     static final String MAP_OBJECT = "mapObject";
     static final String IS_INIT = "isInit";
     static final String ORIGINAL_DIM = "original_dimension";
-    static final String MAP_DIM = "map_dimension";
+    static final String MAP_DIM = "map_dimension_string";
     static final String DIDNT_SET_BACK_PORTAL = "didntSetBackPortal";
     static final String SAVE_NAME = "save_name";
     static final String POS_OBJ = "POS_OBJ";
@@ -180,7 +180,7 @@ public class WorldData {
 	String owner = "";
 	boolean isInit = false;
 	DimensionType originalDimension;
-	int mapDimension;
+	String mapDimension;
 	boolean didntSetBackPortal = true;
 	String saveName = "";
 	int minutesPassed;
@@ -195,7 +195,7 @@ public class WorldData {
 	    nbt.setString(OWNER, owner);
 	    nbt.setBoolean(IS_INIT, isInit);
 	    nbt.setString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
-	    nbt.setInt(MAP_DIM, mapDimension);
+	    nbt.setString(MAP_DIM, mapDimension);
 	    nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 	    nbt.setString(SAVE_NAME, saveName);
 	    nbt.setInt(MINUTES_PASSED, minutesPassed);
@@ -228,7 +228,7 @@ public class WorldData {
 	    owner = nbt.getString(OWNER);
 	    isInit = nbt.getBoolean(IS_INIT);
 	    this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
-	    this.mapDimension = nbt.getInt(MAP_DIM);
+	    this.mapDimension = nbt.getString(MAP_DIM);
 	    this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 	    this.saveName = nbt.getString(SAVE_NAME);
 	    this.minutesPassed = nbt.getInt(MINUTES_PASSED);
@@ -261,7 +261,7 @@ public class WorldData {
 	}
 
 	@Override
-	public int getWorldID() {
+	public String getWorldID() {
 	    return this.mapDimension;
 	}
 
@@ -298,7 +298,7 @@ public class WorldData {
 	}
 
 	@Override
-	public void init(BlockPos pos, World world, MapItemData map, int dimensionId, EntityPlayer owner) {
+	public void init(BlockPos pos, World world, MapItemData map, String dimensionId, EntityPlayer owner) {
 
 	    this.isMap = true;
 	    this.level = map.level;

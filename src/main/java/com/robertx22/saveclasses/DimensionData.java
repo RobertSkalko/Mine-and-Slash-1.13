@@ -23,6 +23,10 @@ public class DimensionData {
 
     }
 
+    public IWP getIWP() {
+	return WorldProviders.All.get(this.IWPGuid);
+    }
+
     @Store
     public String ResourceLocationString;
     @Store
@@ -30,7 +34,7 @@ public class DimensionData {
 
     public DimensionType getDimensionType() {
 
-	return MapManager.register(getResource(), WorldProviders.All.get(IWPGuid));
+	return MapManager.register(getResource(), this.getIWP());
 
     }
 

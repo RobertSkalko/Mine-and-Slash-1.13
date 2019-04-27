@@ -7,13 +7,17 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
@@ -53,7 +57,9 @@ public class MapManager {
 
     }
 
-    public void createNewDim(EntityPlayer player, UnitData unit, MapItemData map) {
+    public static void createNewDim(EntityPlayer player, UnitData unit, MapItemData map, BlockPos pos) {
+
+	freeCurrentDim(player, unit);
 
 	ResourceLocation res = new ResourceLocation(unit.getCurrentMapId());
 
@@ -62,13 +68,23 @@ public class MapManager {
 	    res = new ResourceLocation(Ref.MODID, UUID.randomUUID().toString());
 	}
 
-	MapManager.register(res, map.getWorldProvider());
+	DimensionType type = MapManager.register(res, map.getWorldProvider());
+
+	WorldServer world = DimensionManager.initWorld(getServer(), type);
 
 	unit.setCurrentMapId(res.toString());
 
+	IWorldData iworld = Load.World((World) world);
+
+	iworld.init(pos, world, map, res.toString(), player);
+
+	IDimsData dims = getDimsData();
+
+	dims.add(type, map.getWorldProvider());
+
     }
 
-    public void freeCurrentDim(EntityPlayer player, UnitData unit) {
+    private static void freeCurrentDim(EntityPlayer player, UnitData unit) {
 
 	if (unit.hasCurrentMapId()) {
 
@@ -90,6 +106,10 @@ public class MapManager {
      */
     public static void onStopServerUnRegisterDimensions() {
 	getDimsData().unregisterAll();
+    }
+
+    private static MinecraftServer getServer() {
+	return ServerLifecycleHooks.getCurrentServer();
     }
 
     public static IDimsData getDimsData() {
