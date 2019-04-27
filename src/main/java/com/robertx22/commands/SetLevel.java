@@ -16,8 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class SetLevel {
 
-    static int lvl;
-
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
 	commandDispatcher.register(Commands.literal("setlevel").requires(e -> e.hasPermissionLevel(2))
 		// .executes(e -> execute(e.getSource(), null, lvl))

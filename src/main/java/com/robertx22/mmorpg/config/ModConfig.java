@@ -16,8 +16,6 @@ public class ModConfig {
 
     public static EntityConfigs EntityTypeConfig = new EntityConfigs();
 
-    public static StatConfig BasePlayerStats = new StatConfig();
-
     public static RarityWeights RarityWeightConfig = new RarityWeights();
 
     public static ServerContainer Server = new ServerContainer();

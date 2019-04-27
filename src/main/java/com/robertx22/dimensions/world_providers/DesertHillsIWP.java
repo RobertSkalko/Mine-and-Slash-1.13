@@ -3,6 +3,7 @@ package com.robertx22.dimensions.world_providers;
 import java.util.function.Function;
 
 import com.robertx22.dimensions.BaseWorldProvider;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 
 import net.minecraft.init.Biomes;
@@ -30,17 +31,22 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
+    public void setModDim(ModDimension moddim) {
+	this.moddim = moddim;
+    }
+
+    @Override
     public Biome getBiome() {
 	return Biomes.DESERT_HILLS;
     }
 
-    public ModDimension newModDimension(ResourceLocation res) {
+    public ModDimension newModDimension() {
 	return new ModDimension() {
 	    @Override
 	    public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> getFactory() {
 		return DesertHillsIWP::new;
 	    }
-	}.setRegistryName(res);
+	}.setRegistryName(new ResourceLocation(Ref.MODID, this.GUID()));
     }
 
 }

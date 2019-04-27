@@ -1,16 +1,11 @@
 package com.robertx22.mmorpg;
 
-import java.nio.file.Path;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.WritingMode;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.items.unique_items.UniqueItemRegister;
-import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.dimensions.ConfigDimensionsSerialization;
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItemsSerialization;
@@ -21,6 +16,7 @@ import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.CurioClientRegister;
 import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.common.CapabilityRegister;
+import com.robertx22.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mmorpg.registers.common.CurioSlotRegister;
 import com.robertx22.mmorpg.registers.common.GearItemRegisters;
 import com.robertx22.mmorpg.registers.common.OreGenRegister;
@@ -31,14 +27,12 @@ import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
@@ -49,7 +43,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -79,8 +72,6 @@ public class MMORPG {
 
 	final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	ModLoadingContext.get().registerConfig(Type.CLIENT, ClientContainer.INSTANCE.clientSpec);
-
 	bus.addListener(this::preInit);
 	bus.addListener(this::postInit);
 	bus.addListener(this::serverSetup);
@@ -95,17 +86,6 @@ public class MMORPG {
 
 	});
 
-	loadConfig(ClientContainer.clientSpec, FMLPaths.CONFIGDIR.get().resolve("mmorpg-client.toml"));
-
-	// ForgeMod
-    }
-
-    public static void loadConfig(ForgeConfigSpec spec, Path path) {
-
-	final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave()
-		.writingMode(WritingMode.REPLACE).build();
-	configData.load();
-	spec.setConfig(configData);
     }
 
     public void preInit(FMLCommonSetupEvent event) {
@@ -115,6 +95,8 @@ public class MMORPG {
 	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
 		() -> GuiHandlerClient::getClientGuiElement);
 
+	ConfigRegister.register();
+	ConfigRegister.load();
 	PacketRegister.register();
 	UniqueItemRegister.register();
 	GearItemRegisters.register();

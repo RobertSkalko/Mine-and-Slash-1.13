@@ -59,7 +59,6 @@ public class DmgNumPacket {
 	tag.setDouble(4, packet.z);
 	tag.setFloat(5, packet.height);
 	tag.setBoolean(6, packet.isExp);
-
 	tag.writeString(packet.string);
 
     }

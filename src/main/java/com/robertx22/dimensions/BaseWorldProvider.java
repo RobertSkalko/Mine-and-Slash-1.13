@@ -9,9 +9,12 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.DebugGenSettings;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.ModDimension;
 
 public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
     DimensionType type;
+
+    public ModDimension moddim;
 
     public BaseWorldProvider(DimensionType type) {
 	this.type = type;
