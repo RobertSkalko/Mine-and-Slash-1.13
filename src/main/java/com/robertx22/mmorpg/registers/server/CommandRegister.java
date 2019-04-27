@@ -4,11 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.commands.SetLevel;
 
 import net.minecraft.command.CommandSource;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 public class CommandRegister {
-    public static void Register(final FMLDedicatedServerSetupEvent event) {
-	net.minecraft.command.Commands commands = event.getServerSupplier().get().getCommandManager();
+    public static void Register(final FMLServerStartingEvent event) {
+	net.minecraft.command.Commands commands = event.getServer().getCommandManager();
 	CommandDispatcher<CommandSource> dispatcher = commands.getDispatcher();
 
 	SetLevel.register(dispatcher);

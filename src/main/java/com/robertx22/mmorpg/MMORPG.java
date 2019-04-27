@@ -35,7 +35,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -74,7 +73,6 @@ public class MMORPG {
 
 	bus.addListener(this::preInit);
 	bus.addListener(this::postInit);
-	bus.addListener(this::serverSetup);
 
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -131,11 +129,14 @@ public class MMORPG {
     public void start(FMLServerStartingEvent event) {
 	MapManager.onStartServerRegisterDimensions();
 	TestManager.RunAllTests();
+	CommandRegister.Register(event);
 
     }
 
-    private void serverSetup(final FMLDedicatedServerSetupEvent event) {
+    @SubscribeEvent
+    public static void serverSetup(final FMLServerStartingEvent event) {
 	CommandRegister.Register(event);
+
     }
 
     @SubscribeEvent

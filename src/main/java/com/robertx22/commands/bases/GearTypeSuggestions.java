@@ -19,6 +19,7 @@ public class GearTypeSuggestions implements SuggestionProvider<CommandSource> {
 	    SuggestionsBuilder builder) throws CommandSyntaxException {
 
 	for (GearItemSlot slot : GearTypes.All.values()) {
+
 	    builder.suggest(slot.GUID());
 	}
 
