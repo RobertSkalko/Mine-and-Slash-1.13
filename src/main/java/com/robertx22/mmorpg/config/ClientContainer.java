@@ -9,7 +9,7 @@ import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class ClientContainer {
-    public static final String ID = "client";
+    public static final String NAME = "CLIENT";
 
     public static final ForgeConfigSpec spec;
     public static final ClientContainer INSTANCE;
@@ -31,7 +31,7 @@ public class ClientContainer {
     public ConfigValue<Player_GUIs> PLAYER_GUI_TYPE;
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
-	builder.comment("Client Settings").push(ID);
+	builder.comment("Client Settings").push(NAME);
 
 	RENDER_ITEM_ENTITY_RARITY_PARTICLES = builder.comment(".").translation("mmorpg.config.item_on_ground_particles")
 		.define("RENDER_ITEM_ENTITY_RARITY_PARTICLES", false);

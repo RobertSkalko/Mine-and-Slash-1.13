@@ -7,7 +7,7 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class StatConfig {
 
-    public static final String ID = "player_base_stats";
+    public static final String NAME = "BASE_STATS";
 
     public ConfigValue<Float> physical_damage;
     public ConfigValue<Float> physical_damage_per_level;
@@ -39,7 +39,7 @@ public class StatConfig {
     }
 
     StatConfig(ForgeConfigSpec.Builder builder) {
-	builder.comment("Player Base Stats").push(ID);
+	builder.comment("Player Base Stats").push(NAME);
 
 	physical_damage = builder.translation("mmorpg.stat.physical_damage").define("physical_damage", 3F);
 	physical_damage_per_level = builder.translation("mmorpg.stat.physical_damage_per_level")

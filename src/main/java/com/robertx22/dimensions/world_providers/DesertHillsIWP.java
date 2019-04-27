@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import com.robertx22.dimensions.BaseWorldProvider;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -21,13 +20,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
 
     @Override
     public String GUID() {
-
-	return "deserthills";
-    }
-
-    @Override
-    public String unlocString() {
-	return CLOC.word("desert_hills");
+	return "desert_hills";
     }
 
     @Override
@@ -46,7 +39,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
 	    public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> getFactory() {
 		return DesertHillsIWP::new;
 	    }
-	}.setRegistryName(new ResourceLocation(Ref.MODID, this.GUID()));
+	}.setRegistryName(new ResourceLocation(Ref.MODID, "dim_" + this.GUID()));
     }
 
 }

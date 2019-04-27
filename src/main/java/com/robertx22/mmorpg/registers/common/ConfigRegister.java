@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ClientContainer;
 import com.robertx22.mmorpg.config.StatConfig;
 
@@ -22,8 +23,11 @@ public class ConfigRegister {
     }
 
     public static void load() {
-	loadConfig(ClientContainer.spec, FMLPaths.CONFIGDIR.get().resolve("mmorpg-" + ClientContainer.ID + ".toml"));
-	loadConfig(StatConfig.spec, FMLPaths.CONFIGDIR.get().resolve("mmorpg-" + StatConfig.ID + ".toml"));
+	loadConfig(ClientContainer.spec,
+		FMLPaths.CONFIGDIR.get().resolve(Ref.NAME_NO_SPACE + "-" + ClientContainer.NAME + ".toml"));
+
+	loadConfig(StatConfig.spec,
+		FMLPaths.CONFIGDIR.get().resolve(Ref.NAME_NO_SPACE + "-" + StatConfig.NAME + ".toml"));
 
     }
 

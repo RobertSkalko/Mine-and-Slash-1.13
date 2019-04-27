@@ -30,6 +30,10 @@ public class OnItemOnGroundParticles {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onRenderItemParticles(ClientTickEvent event) {
 
+	if (Minecraft.getInstance().world == null) {
+	    return;
+	}
+
 	ticks++;
 
 	if (ticks < 17) {

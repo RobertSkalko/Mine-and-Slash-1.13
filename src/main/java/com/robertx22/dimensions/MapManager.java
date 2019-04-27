@@ -32,7 +32,7 @@ public class MapManager {
 
     public static DimensionType register(ResourceLocation res, IWP IWPType) {
 
-	ModDimension dim = WorldProviders.All.get(IWPType.GUID()).newModDimension();
+	ModDimension dim = WorldProviders.All.get(IWPType.GUID()).moddim;
 
 	DimensionType type = DimensionManager.registerDimension(dim.getRegistryName(), dim,
 		new PacketBuffer(Unpooled.wrappedBuffer(new byte[] {})));

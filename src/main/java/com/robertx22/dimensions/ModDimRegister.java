@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ModDimRegister {
 
     @SubscribeEvent
-    public static void reg(RegisterDimensionsEvent event) {
+    public static void registerAllModDims(RegisterDimensionsEvent event) {
 
 	for (IWP iwp : WorldProviders.All.values()) {
 	    iwp.setupModDim();

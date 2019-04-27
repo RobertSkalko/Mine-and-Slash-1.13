@@ -86,7 +86,7 @@ public class OnLogin {
 
 	    } else {
 		player.sendMessage(
-			new TextComponentString("Error, player has no capability!" + Ref.NAME + " mod is broken!"));
+			new TextComponentString("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
