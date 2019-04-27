@@ -32,6 +32,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
@@ -40,6 +41,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -75,10 +77,13 @@ public class MMORPG {
 
 	System.out.println("Starting Mine and Slash");
 
+	final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
 	ModLoadingContext.get().registerConfig(Type.CLIENT, ClientContainer.INSTANCE.clientSpec);
 
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::postInit);
+	bus.addListener(this::preInit);
+	bus.addListener(this::postInit);
+	bus.addListener(this::serverSetup);
 
 	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -143,9 +148,12 @@ public class MMORPG {
     @SubscribeEvent
     public void start(FMLServerStartingEvent event) {
 	MapManager.onStartServerRegisterDimensions();
-	CommandRegister.Register();
 	TestManager.RunAllTests();
 
+    }
+
+    private void serverSetup(final FMLDedicatedServerSetupEvent event) {
+	CommandRegister.Register(event);
     }
 
     @SubscribeEvent
