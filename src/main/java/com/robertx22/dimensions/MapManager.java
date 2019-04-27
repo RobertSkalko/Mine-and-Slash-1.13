@@ -57,7 +57,13 @@ public class MapManager {
 
     }
 
-    public static void createNewDim(EntityPlayer player, UnitData unit, MapItemData map, BlockPos pos) {
+    public static World getWorld(String res) {
+	DimensionType type = DimensionType.byName(new ResourceLocation(res));
+	return DimensionManager.initWorld(getServer(), type);
+    }
+
+    public static DimensionType createNewDim(World currentworld, EntityPlayer player, UnitData unit, MapItemData map,
+	    BlockPos pos) {
 
 	freeCurrentDim(player, unit);
 
@@ -76,11 +82,13 @@ public class MapManager {
 
 	IWorldData iworld = Load.World((World) world);
 
-	iworld.init(pos, world, map, res.toString(), player);
+	iworld.init(pos, currentworld, map, res.toString(), player);
 
 	IDimsData dims = getDimsData();
 
 	dims.add(type, map.getWorldProvider());
+
+	return type;
 
     }
 

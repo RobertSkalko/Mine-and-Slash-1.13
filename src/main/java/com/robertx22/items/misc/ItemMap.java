@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -124,7 +125,7 @@ public class ItemMap extends Item {
 	}
     }
 
-    public static void createMap(String id, BlockPos pos, World world, MapItemData data) {
+    public static void createMapPortal(DimensionType type, BlockPos pos, World world, MapItemData data) {
 	IWorldData currentdata = Load.World(world);
 
 	if (currentdata.isMapWorld()) {
@@ -133,14 +134,14 @@ public class ItemMap extends Item {
 
 	    if (data != null) {
 
-		summonPortal(world, pos, id);
+		summonPortal(world, pos, type);
 	    }
 	}
     }
 
-    private static void summonPortal(World world, BlockPos pos, String id) {
+    private static void summonPortal(World world, BlockPos pos, DimensionType type) {
 
-	spawnPortalBlock(world, pos, id);
+	spawnPortalBlock(world, pos, type);
 
 	spawnFrameBlock(world, pos.south());
 	spawnFrameBlock(world, pos.north());
@@ -154,9 +155,9 @@ public class ItemMap extends Item {
 
     }
 
-    private static void spawnPortalBlock(World world, BlockPos pos, String id) {
+    private static void spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
 	world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
-	TileMapPortal portal = new TileMapPortal(id);
+	TileMapPortal portal = new TileMapPortal(type);
 	world.setTileEntity(pos, portal);
     }
 

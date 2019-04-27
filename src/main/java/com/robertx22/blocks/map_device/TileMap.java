@@ -27,6 +27,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.dimension.DimensionType;
 
 public class TileMap extends BaseTile {
     @Override
@@ -104,33 +105,23 @@ public class TileMap extends BaseTile {
 
 		    UnitData unit = Load.Unit(player);
 
-		    String id = map.findFreeDimensionId(player, unit);
+		    DimensionType type = map.createDimension(world, p, player);
 
 		    // start map
 		    this.MapSlot().shrink(1);
 		    this.StartSlot().shrink(1);
 
-		    if (true)
-			try {
-			    throw new Exception("mapdevice");
-			} catch (Exception e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
-			}
-
-		    // map.createDimension(id, world, pos, player);
-
 		    BlockPos pos = this.pos.north(4);
-		    ItemMap.createMap(id, pos, world, map);
+		    ItemMap.createMapPortal(type, pos, world, map);
 
 		    BlockPos pos1 = this.pos.south(4);
-		    ItemMap.createMap(id, pos1, world, map);
+		    ItemMap.createMapPortal(type, pos1, world, map);
 
 		    BlockPos pos2 = this.pos.east(4);
-		    ItemMap.createMap(id, pos2, world, map);
+		    ItemMap.createMapPortal(type, pos2, world, map);
 
 		    BlockPos pos3 = this.pos.west(4);
-		    ItemMap.createMap(id, pos3, world, map);
+		    ItemMap.createMapPortal(type, pos3, world, map);
 
 		} else if (level != null) {
 

@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 @Storable
 public class MapItemData implements ISalvagable {
@@ -115,11 +116,11 @@ public class MapItemData implements ISalvagable {
 	return WorldProviders.All.get(this.worldGeneratorName);
     }
 
-    public void createDimension(String res, World ogworld, BlockPos pos, EntityPlayer player) {
+    public DimensionType createDimension(World ogworld, BlockPos pos, EntityPlayer player) {
 
 	UnitData unit = Load.Unit(player);
 
-	MapManager.createNewDim(player, unit, this, pos);
+	return MapManager.createNewDim(ogworld, player, unit, this, pos);
 
     }
 
