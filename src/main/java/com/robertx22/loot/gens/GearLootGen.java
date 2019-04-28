@@ -32,7 +32,7 @@ public class GearLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.get().GEAR_DROPRATE;
+        return ModConfig.INSTANCE.DropRates.get().GEAR_DROPRATE.get();
     }
 
     @Override

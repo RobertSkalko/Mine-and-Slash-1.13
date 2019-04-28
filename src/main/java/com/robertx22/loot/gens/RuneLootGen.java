@@ -30,7 +30,7 @@ public class RuneLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.get().RUNE_DROPRATE;
+        return ModConfig.INSTANCE.DropRates.get().RUNE_DROPRATE.get();
     }
 
     @Override

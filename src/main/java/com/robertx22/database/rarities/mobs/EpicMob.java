@@ -38,6 +38,6 @@ public class EpicMob extends BaseEpic implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.EPIC_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.get().EPIC_WEIGHT.get();
     }
 }

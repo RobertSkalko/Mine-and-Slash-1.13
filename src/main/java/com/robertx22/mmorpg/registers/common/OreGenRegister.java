@@ -13,7 +13,7 @@ import net.minecraftforge.common.BiomeManager;
 public class OreGenRegister {
     public static void register() {
 
-        if (ModConfig.INSTANCE.Server.get().GENERATE_ORES) {
+        if (ModConfig.INSTANCE.Server.get().GENERATE_ORES.get()) {
 
             int amount = 7;
 

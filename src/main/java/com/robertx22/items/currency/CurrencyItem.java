@@ -47,17 +47,21 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
     public int Weight() {
 
         if (Rank() == 0) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.COMMON_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().COMMON_WEIGHT
+                    .get();
         } else if (Rank() == 1) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.UNCOMMON_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().UNCOMMON_WEIGHT
+                    .get();
         } else if (Rank() == 2) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.RARE_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().RARE_WEIGHT.get();
         } else if (Rank() == 3) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.EPIC_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().EPIC_WEIGHT.get();
         } else if (Rank() == 4) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.LEGENDARY_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().LEGENDARY_WEIGHT
+                    .get();
         } else if (Rank() == 5) {
-            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.MYTHICAL_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.get().MYTHICAL_WEIGHT
+                    .get();
         }
         return 0;
 

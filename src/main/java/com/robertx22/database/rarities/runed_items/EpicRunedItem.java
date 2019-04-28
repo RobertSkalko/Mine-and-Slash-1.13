@@ -7,6 +7,6 @@ public class EpicRunedItem extends EpicItem {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.EPIC_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.get().EPIC_WEIGHT.get();
     }
 }

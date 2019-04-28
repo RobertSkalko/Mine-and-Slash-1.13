@@ -24,7 +24,7 @@ public class UncommonSpell extends BaseUncommon implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.UNCOMMON_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.get().UNCOMMON_WEIGHT.get();
     }
 
 }
