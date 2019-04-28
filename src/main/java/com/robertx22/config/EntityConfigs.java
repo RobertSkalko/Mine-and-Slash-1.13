@@ -1,25 +1,49 @@
 package com.robertx22.config;
 
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+
 public class EntityConfigs {
 
-    public EntityConfig NPC_CONFIG = new EntityConfig(0.3F, 0.3F);
+    public ConfigValue<EntityConfig> NPC_CONFIG;
+    public ConfigValue<EntityConfig> MOB_CONFIG;
+    public ConfigValue<EntityConfig> ANIMAL_CONFIG;
+    public ConfigValue<EntityConfig> OTHER_CONFIG;
 
-    public EntityConfig MOB_CONFIG = new EntityConfig(1, 1);
+    public EntityConfigs(ForgeConfigSpec.Builder builder) {
 
-    public EntityConfig ANIMAL_CONFIG = new EntityConfig(0.01F, 0.05F);
+        NPC_CONFIG = builder.translation("mmorpg.config.npc")
+                .define("NPC_CONFIG", new EntityConfig(builder, 0.3D, 0.3D));
 
-    public EntityConfig OTHER_CONFIG = new EntityConfig(0, 0);
+        MOB_CONFIG = builder.translation("mmorpg.config.mob")
+                .define("MOB_CONFIG", new EntityConfig(builder, 1D, 1D));
+
+        ANIMAL_CONFIG = builder.translation("mmorpg.config.animal")
+                .define("ANIMAL_CONFIG", new EntityConfig(builder, 0.01D, 0.05D));
+
+        OTHER_CONFIG = builder.translation("mmorpg.config.other")
+                .define("OTHER_CONFIG", new EntityConfig(builder, 0D, 0D));
+
+    }
 
     public static class EntityConfig {
 
-        public EntityConfig(float loot, float exp) {
-            this.LOOT_MULTI = loot;
-            this.EXP_MULTI = exp;
+        public DoubleValue LOOT_MULTI;
+        public DoubleValue EXP_MULTI;
+
+        public EntityConfig(ForgeConfigSpec.Builder builder, Double loot, Double exp) {
+
+            LOOT_MULTI = builder.translation("mmorpg.config.runed_gear_droprate")
+                    .defineInRange("LOOT_MULTI", loot, 0, 10000);
+
+            EXP_MULTI = builder.translation("mmorpg.config.runed_gear_droprate")
+                    .defineInRange("EXP_MULTI", exp, 0, 10000);
+
+            builder.pop();
+            builder.build();
+
         }
-
-        public float LOOT_MULTI = 0;
-
-        public float EXP_MULTI = 0;
 
     }
 }

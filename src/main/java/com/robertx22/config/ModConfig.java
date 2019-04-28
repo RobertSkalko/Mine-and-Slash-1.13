@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class ModConfig {
 
     public ConfigValue<EntityConfigs> EntityTypeConfig;
-    public ConfigValue<RarityDropratesConfig.RarityWeights> RarityWeightConfig;
+    public ConfigValue<RarityDropratesConfig> RarityWeightConfig;
     public ConfigValue<ServerContainer> Server;
     public ConfigValue<DropRatesContainer> DropRates;
     public ConfigValue<StatConfig> PlayerBaseStats;
@@ -44,7 +44,7 @@ public class ModConfig {
 
         RarityWeightConfig = builder.comment(".")
                 .translation("mmorpg.config.rarity_weights")
-                .define("RarityWeightConfig", new RarityWeights(builder));
+                .define("RarityWeightConfig", new RarityDropratesConfig(builder));
 
         builder.pop();
         builder.build();

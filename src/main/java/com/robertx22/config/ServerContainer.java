@@ -22,7 +22,7 @@ public class ServerContainer {
     public float EXPERIENCE_MULTIPLIER = 1F;
     public boolean LEVEL_UPS_COST_TOKEN = false;
     public int MAX_PLAYERS_PER_MAP = 5;
-    public EntitySystemChoice ENTITIES_UNDER_SYSTEM = EntitySystemChoice.All_Entities;
+    public ConfigValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM = EntitySystemChoice.All_Entities;
 
     ServerContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
