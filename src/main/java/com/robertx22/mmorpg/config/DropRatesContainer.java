@@ -10,4 +10,5 @@ public class DropRatesContainer {
     public float SPELL_DROPRATE = 4;
     public float CURRENCY_DROPRATE = 3;
     public float AWAKEN_RUNEWORD_DROPRATE = 0.25F;
+    public float COMPATIBLE_ITEMS_DROPRATE = 3F;
 }

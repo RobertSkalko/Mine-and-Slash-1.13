@@ -12,12 +12,20 @@ import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
 
-public class ConfigItem {
+public class ConfigItem implements IWeighted {
+
+    @Override
+    public int Weight() {
+        return this.dropWeight;
+    }
+
+    public transient String registryName = "";
 
     public enum creationTypes {
         NORMAL, RUNED, UNIQUE
@@ -26,6 +34,7 @@ public class ConfigItem {
     // public String itemID = "modid:itemid";
     public String itemType = "Sword";
 
+    public int dropWeight = 1000;
     public int uniqueItemWeight = 0;
     public int normalItemWeight = 80;
     public int runedItemWeight = 20;

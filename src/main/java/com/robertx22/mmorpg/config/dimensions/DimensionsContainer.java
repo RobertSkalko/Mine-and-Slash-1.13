@@ -1,8 +1,8 @@
 package com.robertx22.mmorpg.config.dimensions;
 
-import java.util.HashMap;
-
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class DimensionsContainer {
 
@@ -10,11 +10,11 @@ public class DimensionsContainer {
 
     public DimensionsContainer() {
 
-	if (dimensionsList.isEmpty()) {
-	    dimensionsList.put("minecraft:overworld", (DimensionConfig.Overworld()));
-	    dimensionsList.put("minecraft:the_end", (DimensionConfig.End()));
-	    dimensionsList.put("minecraft:the_nether", (DimensionConfig.Nether()));
-	}
+        if (dimensionsList.isEmpty()) {
+            dimensionsList.put("minecraft:overworld", (DimensionConfig.Overworld()));
+            dimensionsList.put("minecraft:the_end", (DimensionConfig.End()));
+            dimensionsList.put("minecraft:the_nether", (DimensionConfig.Nether()));
+        }
     }
 
     String version = "1.0";
@@ -24,29 +24,29 @@ public class DimensionsContainer {
     public HashMap<String, DimensionConfig> dimensionsList = new HashMap();
 
     public boolean hasConfig(World world) {
-	return hasConfig(world.getDimension().getType().getRegistryName().toString());
+        return hasConfig(world.getDimension().getType().getRegistryName().toString());
     }
 
     private boolean hasConfig(String id) {
-	if (dimensionsList.containsKey(id)) {
-	    return true;
-	}
+        if (dimensionsList.containsKey(id)) {
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     public DimensionConfig getConfig(World world) {
-	return getConfig(world.getDimension().getType().getRegistryName().toString());
+        return getConfig(world.getDimension().getType().getRegistryName().toString());
 
     }
 
     private DimensionConfig getConfig(String id) {
 
-	if (dimensionsList.containsKey(id)) {
-	    return this.dimensionsList.get(id);
-	}
+        if (dimensionsList.containsKey(id)) {
+            return this.dimensionsList.get(id);
+        }
 
-	return defaultconfig; // default
+        return defaultconfig; // default
     }
 
 }

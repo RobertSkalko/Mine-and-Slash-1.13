@@ -47,6 +47,8 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
             ConfigItems.INSTANCE = new Gson().fromJson(reader, ConfigItems.class);
 
+            ConfigItems.INSTANCE.validateAll();
+
             System.out.println("Items added to config: " + ConfigItems.INSTANCE.map.size());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
