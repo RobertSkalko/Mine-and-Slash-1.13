@@ -52,11 +52,11 @@ public class MMORPG {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
-    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder
-            .named(new ResourceLocation(Ref.MODID, "main_channel")).clientAcceptedVersions(PROTOCOL_VERSION::equals)
-            .serverAcceptedVersions(PROTOCOL_VERSION::equals).networkProtocolVersion(() -> PROTOCOL_VERSION)
+    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(Ref.MODID, "main_channel"))
+            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
+            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
+            .networkProtocolVersion(() -> PROTOCOL_VERSION)
             .simpleChannel();
-
 
     public MMORPG() {
         // Main.instance = this;
@@ -70,8 +70,8 @@ public class MMORPG {
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-            ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-                    () -> GuiHandlerClient::getClientGuiElement);
+            ModLoadingContext.get()
+                    .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
             FMLJavaModLoadingContext.get().getModEventBus().addListener(RenderRegister::regRenders);
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -84,8 +84,8 @@ public class MMORPG {
 
         System.out.println("Starting Setup");
 
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-                () -> GuiHandlerClient::getClientGuiElement);
+        ModLoadingContext.get()
+                .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
         ConfigRegister.register();
         ConfigRegister.load();
@@ -141,8 +141,9 @@ public class MMORPG {
     public static void onWorldLoad(FMLServerStartedEvent event) {
 
         if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
-            ServerLifecycleHooks.getCurrentServer().getGameRules().setOrCreateGameRule("naturalRegeneration", "false",
-                    ServerLifecycleHooks.getCurrentServer());
+            ServerLifecycleHooks.getCurrentServer()
+                    .getGameRules()
+                    .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks.getCurrentServer());
         }
 
     }
