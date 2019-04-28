@@ -4,17 +4,11 @@ public class RarityDropratesConfig {
     public static class RarityWeights {
 
         public RarityWeight ITEMS = new RarityWeight();
-
         public RarityWeight RUNED_ITEMS = new RarityWeight();
-
         public RarityWeight RUNES = RarityWeight.Runes();
-
         public RarityWeight MOBS = new RarityWeight();
-
         public RarityWeight MAPS = new RarityWeight();
-
         public RarityWeight CURRENCY = new RarityWeight();
-
         public RarityWeight SPELLS = new RarityWeight();
 
     }

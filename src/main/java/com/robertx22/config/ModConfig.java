@@ -1,36 +1,53 @@
 package com.robertx22.config;
 
-import com.robertx22.mmorpg.Ref;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import org.apache.commons.lang3.tuple.Pair;
 
-@EventBusSubscriber
 public class ModConfig {
 
-    // public static ClientContainer Client = new ClientContainer(new
-    // ForgeConfigSpec.Builder());
+    public ConfigValue<EntityConfigs> EntityTypeConfig;
+    public ConfigValue<RarityDropratesConfig.RarityWeights> RarityWeightConfig;
+    public ConfigValue<ServerContainer> Server;
+    public ConfigValue<DropRatesContainer> DropRates;
+    public ConfigValue<StatConfig> PlayerBaseStats;
 
-    public static EntityConfigs EntityTypeConfig = new EntityConfigs();
+    public static final String NAME = "MAIN_CONFIG";
+    public static final ForgeConfigSpec spec;
+    public static final ModConfig INSTANCE;
 
-    public static RarityDropratesConfig.RarityWeights RarityWeightConfig = new RarityDropratesConfig.RarityWeights();
+    static {
+        final Pair<ModConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ModConfig::new);
+        spec = specPair.getRight();
+        INSTANCE = specPair.getLeft();
 
-    public static ServerContainer Server = new ServerContainer();
+    }
 
-    public static DropRatesContainer DropRates = new DropRatesContainer();
+    ModConfig(ForgeConfigSpec.Builder builder) {
+        builder.comment("Mine and Slash Config").push(NAME);
 
-    @Mod.EventBusSubscriber
-    private static class EventHandler {
+        EntityTypeConfig = builder.comment(".")
+                .translation("mmorpg.word.entities")
+                .define("EntityTypeConfig", new EntityConfigs(builder));
 
-        @SubscribeEvent
-        public static void onConfigChanged(ConfigChangedEvent event) {
+        PlayerBaseStats = builder.comment(".")
+                .translation("mmorpg.word.base_player_stats")
+                .define("PlayerBaseStats", new StatConfig(builder));
 
-            if (event.getModID().equals(Ref.MODID)) {
-                System.out.println("Syncing Mine and Slash Config");
-            }
-        }
+        Server = builder.comment(".")
+                .translation("mmorpg.word.server")
+                .define("Server", new ServerContainer(builder));
 
+        DropRates = builder.comment(".")
+                .translation("mmorpg.config.droprates")
+                .define("DropRates", new DropRatesContainer(builder));
+
+        RarityWeightConfig = builder.comment(".")
+                .translation("mmorpg.config.rarity_weights")
+                .define("RarityWeightConfig", new RarityWeights(builder));
+
+        builder.pop();
+        builder.build();
     }
 
 }

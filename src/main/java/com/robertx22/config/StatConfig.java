@@ -2,7 +2,6 @@ package com.robertx22.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class StatConfig {
 
@@ -29,15 +28,6 @@ public class StatConfig {
     public ConfigValue<Float> energy_regen_per_level;
     public ConfigValue<Float> critical_damage;
     public ConfigValue<Float> critical_damage_per_level;
-
-    public static final ForgeConfigSpec spec;
-    public static final StatConfig INSTANCE;
-
-    static {
-        final Pair<StatConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(StatConfig::new);
-        spec = specPair.getRight();
-        INSTANCE = specPair.getLeft();
-    }
 
     StatConfig(ForgeConfigSpec.Builder builder) {
         builder.comment("Player Base Stats").push(NAME);

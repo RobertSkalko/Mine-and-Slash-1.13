@@ -1,11 +1,14 @@
 package com.robertx22.config;
 
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ServerContainer {
 
+    public static final String NAME = "SERVER";
+
     public boolean USE_COMPATIBILITY_ITEMS = false;
-    public boolean DISABLE_VANILLA_HP_REGEN = true;
+    public ForgeConfigSpec.BooleanValue DISABLE_VANILLA_HP_REGEN;
     public int MAXIMUM_WORN_RUNED_ITEMS = 3;
     public int MAXIMUM_WORN_UNIQUE_ITEMS = 3;
     public boolean GENERATE_ORES = true;
@@ -20,5 +23,16 @@ public class ServerContainer {
     public boolean LEVEL_UPS_COST_TOKEN = false;
     public int MAX_PLAYERS_PER_MAP = 5;
     public EntitySystemChoice ENTITIES_UNDER_SYSTEM = EntitySystemChoice.All_Entities;
+
+    ServerContainer(ForgeConfigSpec.Builder builder) {
+        builder.comment("Client Settings").push(NAME);
+
+        DISABLE_VANILLA_HP_REGEN = builder.comment(".")
+                .translation("mmorpg.word.entities")
+                .define("DISABLE_VANILLA_HP_REGEN", true);
+
+        builder.pop();
+        builder.build();
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.robertx22.config;
+package com.robertx22.config.base;
 
 public interface ISerializedConfig {
 

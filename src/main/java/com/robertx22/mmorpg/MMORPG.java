@@ -144,7 +144,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onWorldLoad(FMLServerStartedEvent event) {
 
-        if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
+        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
             ServerLifecycleHooks.getCurrentServer()
                     .getGameRules()
                     .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
