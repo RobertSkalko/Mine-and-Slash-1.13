@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config;
+package com.robertx22.config;
 
 public class EntityConfigs {
 
@@ -12,14 +12,14 @@ public class EntityConfigs {
 
     public static class EntityConfig {
 
-	public EntityConfig(float loot, float exp) {
-	    this.LOOT_MULTI = loot;
-	    this.EXP_MULTI = exp;
-	}
+        public EntityConfig(float loot, float exp) {
+            this.LOOT_MULTI = loot;
+            this.EXP_MULTI = exp;
+        }
 
-	public float LOOT_MULTI = 0;
+        public float LOOT_MULTI = 0;
 
-	public float EXP_MULTI = 0;
+        public float EXP_MULTI = 0;
 
     }
 }

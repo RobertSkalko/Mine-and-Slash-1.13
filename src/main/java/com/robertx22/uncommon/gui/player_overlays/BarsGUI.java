@@ -1,11 +1,10 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
-import com.robertx22.mmorpg.config.ClientContainer;
+import com.robertx22.config.ClientContainer;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Player_GUIs;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -22,8 +21,8 @@ public class BarsGUI extends Gui {
     MiddleOverlay middle = new MiddleOverlay();
 
     public BarsGUI(Minecraft mc) {
-	super();
-	this.mc = mc;
+        super();
+        this.mc = mc;
 
     }
 
@@ -34,54 +33,58 @@ public class BarsGUI extends Gui {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
 
-	try {
+        try {
 
-	    if (event.getType().equals(ElementType.HEALTH)) {
-		event.setCanceled(true);
-	    }
-	    if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
-		return;
-	    }
+            if (event.getType().equals(ElementType.HEALTH)) {
+                event.setCanceled(true);
+            }
+            if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
+                return;
+            }
 
-	    ticks++;
+            ticks++;
 
-	    if (ticks > 12) {
-		UnitData newData = Load.Unit(mc.player);
+            if (ticks > 12) {
+                UnitData newData = Load.Unit(mc.player);
 
-		ticks = 0;
+                ticks = 0;
 
-		Unit newUnit = null;
-		if (newData != null) {
-		    newUnit = newData.getUnit();
-		}
+                Unit newUnit = null;
+                if (newData != null) {
+                    newUnit = newData.getUnit();
+                }
 
-		if (newUnit != null) {
-		    unit = newUnit;
-		}
-		if (newData != null) {
-		    data = newData;
-		}
-	    }
+                if (newUnit != null) {
+                    unit = newUnit;
+                }
+                if (newData != null) {
+                    data = newData;
+                }
+            }
 
-	    if (unit == null || data == null || mc == null || mc.player == null) {
-		return;
-	    }
-	    if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
-		return;
-	    }
+            if (unit == null || data == null || mc == null || mc.player == null) {
+                return;
+            }
+            if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
+                return;
+            }
 
-	    if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Top_Left)) {
-		topleft.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle)) {
-		bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Bottom_Middle_Corners)) {
-		bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
-	    } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get().equals(Player_GUIs.Middle)) {
-		middle.Draw(this, mc, mc.player, event, unit, data);
-	    }
-	} catch (Exception e) {
-	    // e.printStackTrace();
-	}
+            if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+                    .equals(Player_GUIs.Top_Left)) {
+                topleft.Draw(this, mc, mc.player, event, unit, data);
+            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+                    .equals(Player_GUIs.Bottom_Middle)) {
+                bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
+            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+                    .equals(Player_GUIs.Bottom_Middle_Corners)) {
+                bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+                    .equals(Player_GUIs.Middle)) {
+                middle.Draw(this, mc, mc.player, event, unit, data);
+            }
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
 
     }
 

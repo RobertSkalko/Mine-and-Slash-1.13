@@ -1,13 +1,13 @@
-package com.robertx22.mmorpg.config.non_mine_items;
+package com.robertx22.config.non_mine_items;
 
-import com.robertx22.mmorpg.config.non_mine_items.ConfigItem.creationTypes;
+import com.robertx22.config.non_mine_items.ConfigItem.creationTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
 public class WeightedType implements IWeighted {
 
     public WeightedType(int weight, creationTypes type) {
-	this.weight = weight;
-	this.type = type;
+        this.weight = weight;
+        this.type = type;
     }
 
     public int weight;
@@ -16,7 +16,7 @@ public class WeightedType implements IWeighted {
 
     @Override
     public int Weight() {
-	return weight;
+        return weight;
     }
 
 }

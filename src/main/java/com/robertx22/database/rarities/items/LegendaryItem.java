@@ -1,50 +1,50 @@
 package com.robertx22.database.rarities.items;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class LegendaryItem extends BaseLegendary implements ItemRarity {
 
     @Override
     public int AffixChance() {
-	return 80;
+        return 80;
     }
 
     @Override
     public MinMax SecondaryStatsAmount() {
-	return new MinMax(2, 4);
+        return new MinMax(2, 4);
     }
 
     @Override
     public MinMax StatPercents() {
-	return new MinMax(25, 90);
+        return new MinMax(25, 90);
     }
 
     @Override
     public int SetChance() {
-	return 60;
+        return 60;
     }
 
     @Override
     public float specialItemChance() {
-	return 6.5F;
+        return 6.5F;
     }
 
     @Override
     public int Weight() {
-	return ModConfig.RarityWeightConfig.ITEMS.LEGENDARY_WEIGHT;
+        return ModConfig.RarityWeightConfig.ITEMS.LEGENDARY_WEIGHT;
     }
 
     @Override
     public int runeSlots() {
-	return 4;
+        return 4;
     }
 
     @Override
     public MinMax SpawnDurabilityHit() {
-	return new MinMax(75, 85);
+        return new MinMax(75, 85);
     }
 
 }

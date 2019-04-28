@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config;
+package com.robertx22.config;
 
 public interface ISerializedConfig {
 
@@ -11,7 +11,7 @@ public interface ISerializedConfig {
     public abstract void load();
 
     public default String getPath() {
-	return folder() + "/" + fileName();
+        return folder() + "/" + fileName();
     }
 
 }

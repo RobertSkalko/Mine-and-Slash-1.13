@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config.dimensions;
+package com.robertx22.config.dimensions;
 
 public class DimensionConfig {
 
@@ -7,31 +7,31 @@ public class DimensionConfig {
     }
 
     public static DimensionConfig Overworld() {
-	return new DimensionConfig(1, 100);
+        return new DimensionConfig(1, 100);
     }
 
     public static DimensionConfig Nether() {
-	return new DimensionConfig(10, 100);
+        return new DimensionConfig(10, 100);
     }
 
     public static DimensionConfig End() {
-	return new DimensionConfig(25, 100);
+        return new DimensionConfig(25, 100);
     }
 
     public static DimensionConfig DefaultExtra() {
-	return new DimensionConfig(1, 100);
+        return new DimensionConfig(1, 100);
     }
 
     public DimensionConfig(int min, int max) {
-	this.MINIMUM_MOB_LEVEL = min;
-	this.MAXIMUM_MOB_LEVEL = max;
+        this.MINIMUM_MOB_LEVEL = min;
+        this.MAXIMUM_MOB_LEVEL = max;
     }
 
     public DimensionConfig(int distance, int area, int min, int max) {
-	this.MOB_LEVEL_PER_DISTANCE = distance;
-	this.MOB_LEVEL_ONE_AREA = area;
-	this.MINIMUM_MOB_LEVEL = min;
-	this.MAXIMUM_MOB_LEVEL = max;
+        this.MOB_LEVEL_PER_DISTANCE = distance;
+        this.MOB_LEVEL_ONE_AREA = area;
+        this.MINIMUM_MOB_LEVEL = min;
+        this.MAXIMUM_MOB_LEVEL = max;
 
     }
 

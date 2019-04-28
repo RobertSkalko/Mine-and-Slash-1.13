@@ -1,10 +1,10 @@
-package com.robertx22.mmorpg.config.dimensions;
+package com.robertx22.config.dimensions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import com.robertx22.mmorpg.config.ISerializedConfig;
-import com.robertx22.mmorpg.config.non_mine_items.ConfigItems;
+import com.robertx22.config.ISerializedConfig;
+import com.robertx22.config.non_mine_items.ConfigItems;
 import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 
 import java.io.FileNotFoundException;

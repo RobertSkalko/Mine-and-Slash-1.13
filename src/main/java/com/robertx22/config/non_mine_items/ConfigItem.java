@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config.non_mine_items;
+package com.robertx22.config.non_mine_items;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;

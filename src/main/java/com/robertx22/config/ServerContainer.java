@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config;
+package com.robertx22.config;
 
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 

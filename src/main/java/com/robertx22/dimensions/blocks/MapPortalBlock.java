@@ -1,14 +1,13 @@
 package com.robertx22.dimensions.blocks;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.MapWorldData;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortal;
 import net.minecraft.block.material.Material;
@@ -34,95 +33,97 @@ public class MapPortalBlock extends BlockEndPortal {
 
     public MapPortalBlock() {
 
-	super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(100F));
-	this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
+        super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(100F));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
 
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-	event.getRegistry().register(new MapPortalBlock());
+        event.getRegistry().register(new MapPortalBlock());
 
     }
 
     @Override
-    public void onEntityCollision(IBlockState state, World world, BlockPos pos, Entity entity) {
-	try {
-	    if (world.isRemote == false && entity instanceof EntityPlayer) {
-		if (!entity.isBeingRidden() && entity.isNonBoss()) {
+    public void onEntityCollision(IBlockState state, World world, BlockPos pos,
+                                  Entity entity) {
+        try {
+            if (world.isRemote == false && entity instanceof EntityPlayer) {
+                if (!entity.isBeingRidden() && entity.isNonBoss()) {
 
-		    TileEntity en = world.getTileEntity(pos);
+                    TileEntity en = world.getTileEntity(pos);
 
-		    if (en instanceof TileMapPortal) {
-			TileMapPortal portal = (TileMapPortal) en;
+                    if (en instanceof TileMapPortal) {
+                        TileMapPortal portal = (TileMapPortal) en;
 
-			portal.ontick();
+                        portal.ontick();
 
-			if (portal.readyToTeleport()) {
+                        if (portal.readyToTeleport()) {
 
-			    // prevents infinite teleport loop xD makes sure you dont teleport to the same
-			    // dimension, forever
-			    if (portal.id != entity.dimension.getRegistryName().toString()) {
+                            // prevents infinite teleport loop xD makes sure you dont teleport to the same
+                            // dimension, forever
+                            if (portal.id != entity.dimension.getRegistryName()
+                                    .toString()) {
 
-				World mapworld = MapManager.getWorld(portal.id);
+                                World mapworld = MapManager.getWorld(portal.id);
 
-				IWorldData data = Load.World(mapworld);
+                                IWorldData data = Load.World(mapworld);
 
-				if (data == null) {
-				    entity.sendMessage(SLOC.chat("world_doesnt_exist"));
-				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                if (data == null) {
+                                    entity.sendMessage(SLOC.chat("world_doesnt_exist"));
+                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-				} else if (data.isSetForDelete()) {
-				    entity.sendMessage(SLOC.chat("world_is_closed"));
-				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                } else if (data.isSetForDelete()) {
+                                    entity.sendMessage(SLOC.chat("world_is_closed"));
+                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-				} else if (data.isMapWorld()) {
+                                } else if (data.isMapWorld()) {
 
-				    MapWorldData worlddata = data.getWorldData();
+                                    MapWorldData worlddata = data.getWorldData();
 
-				    if (worlddata.joinedPlayerIDs.size() < ModConfig.Server.MAX_PLAYERS_PER_MAP
-					    || worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+                                    if (worlddata.joinedPlayerIDs.size() < ModConfig.Server.MAX_PLAYERS_PER_MAP || worlddata.joinedPlayerIDs
+                                            .contains(entity.getUniqueID().toString())) {
 
-					if (worlddata.joinedPlayerIDs
-						.contains(entity.getUniqueID().toString()) == false) {
-					    worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
-					    data.setWorldData(worlddata);
-					}
+                                        if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID()
+                                                .toString()) == false) {
+                                            worlddata.joinedPlayerIDs.add(entity.getUniqueID()
+                                                    .toString());
+                                            data.setWorldData(worlddata);
+                                        }
 
-					entity.sendMessage(
-						SLOC.chat("traveling_to_mapworld").appendText(portal.id + ""));
+                                        entity.sendMessage(SLOC.chat("traveling_to_mapworld")
+                                                .appendText(portal.id + ""));
 
-					BlockPos pos1 = world.getSpawnPoint();
+                                        BlockPos pos1 = world.getSpawnPoint();
 
-					entity.changeDimension(mapworld.dimension.getType(),
-						new MyTeleporter(world, pos1, (EntityPlayer) entity));
+                                        entity.changeDimension(mapworld.dimension.getType(), new MyTeleporter(world, pos1, (EntityPlayer) entity));
 
-				    }
+                                    }
 
-				    if (worlddata.joinedPlayerIDs.size() > ModConfig.Server.MAX_PLAYERS_PER_MAP) {
-					entity.sendMessage(SLOC.chat("mapworld_max_capacity"));
+                                    if (worlddata.joinedPlayerIDs.size() > ModConfig.Server.MAX_PLAYERS_PER_MAP) {
+                                        entity.sendMessage(SLOC.chat("mapworld_max_capacity"));
 
-				    }
-				} else { // if not mapworld
-				    entity.sendMessage(SLOC.chat("not_mapworld"));
+                                    }
+                                } else { // if not mapworld
+                                    entity.sendMessage(SLOC.chat("not_mapworld"));
 
-				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-				}
-			    }
+                                }
+                            }
 
-			}
-		    }
-		}
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
-	return new TileMapPortal();
+        return new TileMapPortal();
     }
 
 }

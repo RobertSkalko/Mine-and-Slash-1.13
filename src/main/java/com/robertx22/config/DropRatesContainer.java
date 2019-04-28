@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config;
+package com.robertx22.config;
 
 public class DropRatesContainer {
 

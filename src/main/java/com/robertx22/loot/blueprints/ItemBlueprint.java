@@ -1,9 +1,9 @@
 package com.robertx22.loot.blueprints;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.create.RarityGen;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -11,10 +11,10 @@ public class ItemBlueprint {
 
     public ItemBlueprint(int level) {
 
-	if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-	    level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	}
-	this.level = level;
+        if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+            level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+        }
+        this.level = level;
 
     }
 
@@ -33,58 +33,60 @@ public class ItemBlueprint {
 
     public void SetSpecificRarity(int i) {
 
-	rarity = i;
-	RandomRarity = false;
+        rarity = i;
+        RandomRarity = false;
 
     }
 
     public int GetRarity() {
 
-	if (RandomRarity) {
+        if (RandomRarity) {
 
-	    if (minRarity > -1 || maxRarity < 5) {
-		ItemRarity rar = Rarities.Items
-			.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank());
+            if (minRarity > -1 || maxRarity < 5) {
+                ItemRarity rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
+                        .Rank());
 
-		while (rar.Rank() < minRarity || rar.Rank() > maxRarity) {
-		    rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank());
-		}
-		return rar.Rank();
+                while (rar.Rank() < minRarity || rar.Rank() > maxRarity) {
+                    rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
+                            .Rank());
+                }
+                return rar.Rank();
 
-	    } else {
-		return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank();
-	    }
-	} else {
-	    return rarity;
-	}
+            } else {
+                return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
+                        .Rank();
+            }
+        } else {
+            return rarity;
+        }
 
     }
 
     public int GetLevel() {
 
-	if (LevelRange) {
+        if (LevelRange) {
 
-	    int lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
+            int lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
 
-	    if (lvl < this.minLevel) {
-		lvl = this.minLevel;
-	    }
-	    if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-		lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	    }
+            if (lvl < this.minLevel) {
+                lvl = this.minLevel;
+            }
+            if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+                lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+            }
 
-	    return lvl;
+            return lvl;
 
-	} else {
-	    if (level < this.minLevel) {
-		level = this.minLevel;
-	    }
-	    if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-		level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	    }
+        } else {
+            if (level < this.minLevel) {
+                level = this.minLevel;
+            }
+            if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+                level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+            }
 
-	    return level;
-	}
+            return level;
+        }
 
     }
 }

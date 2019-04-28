@@ -1,10 +1,9 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,7 +15,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
-	return "item_levelup";
+        return "item_levelup";
     }
 
     private static final String name = "item_levelup";
@@ -26,44 +25,43 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 
     public ItemLevelUpGear() {
 
-	super(name);
+        super(name);
 
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemLevelUpGear());
+        event.getRegistry().register(new ItemLevelUpGear());
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
-	GearItemData gear = Gear.Load(stack);
-	gear.level++;
-	gear.timesLeveledUp++;
-	Gear.Save(stack, gear);
+        GearItemData gear = Gear.Load(stack);
+        gear.level++;
+        gear.timesLeveledUp++;
+        Gear.Save(stack, gear);
 
-	return stack;
+        return stack;
     }
 
     public static final int MAXIMUM_LEVEL_UPS = 10;
 
     @Override
     public int Rank() {
-	return 2;
+        return 2;
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS
-		&& gear.level < ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+        return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS && gear.level < ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
 
     }
 
     @Override
     public int Tier() {
-	return 5;
+        return 5;
     }
 
 }

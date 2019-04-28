@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config.non_mine_items;
+package com.robertx22.config.non_mine_items;
 
 import java.util.ArrayList;
 import java.util.HashMap;

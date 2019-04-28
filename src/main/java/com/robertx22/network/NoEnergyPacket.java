@@ -1,19 +1,18 @@
 package com.robertx22.network;
 
-import java.util.function.Supplier;
-
+import com.robertx22.config.ClientContainer;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.config.ClientContainer;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
+import java.util.function.Supplier;
+
 public class NoEnergyPacket {
 
     public enum MessageTypes {
-	NoEnergy, NoMana
+        NoEnergy, NoMana
     }
 
     public NoEnergyPacket() {
@@ -21,9 +20,9 @@ public class NoEnergyPacket {
 
     public static NoEnergyPacket decode(PacketBuffer buf) {
 
-	NoEnergyPacket newpkt = new NoEnergyPacket();
+        NoEnergyPacket newpkt = new NoEnergyPacket();
 
-	return newpkt;
+        return newpkt;
 
     }
 
@@ -31,24 +30,25 @@ public class NoEnergyPacket {
 
     }
 
-    public static void handle(final NoEnergyPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(final NoEnergyPacket pkt,
+                              Supplier<NetworkEvent.Context> ctx) {
 
-	ctx.get().enqueueWork(() -> {
-	    try {
+        ctx.get().enqueueWork(() -> {
+            try {
 
-		if (ClientContainer.INSTANCE.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
+                if (ClientContainer.INSTANCE.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
 
-		    EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
-		    player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
+                    EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
+                    player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
 
-		}
+                }
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-	ctx.get().setPacketHandled(true);
+        ctx.get().setPacketHandled(true);
 
     }
 

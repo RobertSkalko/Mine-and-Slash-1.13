@@ -1,11 +1,10 @@
 package com.robertx22.loot.gens;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.loot.create.MapGen;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -13,37 +12,38 @@ import net.minecraft.world.World;
 public class MapLootGen extends BaseLootGen {
     MapBlueprint blueprint;
 
-    public MapLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-	super(mob, player, world, victim);
+    public MapLootGen(UnitData mob, UnitData player, IWorldData world,
+                      EntityLivingBase victim) {
+        super(mob, player, world, victim);
 
-	blueprint = new MapBlueprint(mob.getLevel(), world.getTier(victim.world));
+        blueprint = new MapBlueprint(mob.getLevel(), world.getTier(victim.world));
 
     }
 
     public MapLootGen(World theworld, float multi, IWorldData world, int level) {
-	super(theworld, multi, world);
+        super(theworld, multi, world);
 
-	blueprint = new MapBlueprint(level, world.getTier(theworld));
+        blueprint = new MapBlueprint(level, world.getTier(theworld));
 
     }
 
     @Override
     public float BaseChance() {
-	return ModConfig.DropRates.MAP_DROPRATE;
+        return ModConfig.DropRates.MAP_DROPRATE;
     }
 
     @Override
     public boolean hasLevelDistancePunishment() {
-	return false;
+        return false;
     }
 
     @Override
     public ItemStack generateOne() {
-	if (blueprint.level >= ModConfig.Server.MAPS_DROP_AFTER_LEVEL) {
-	    return MapGen.Create(blueprint);
-	} else {
-	    return ItemStack.EMPTY;
-	}
+        if (blueprint.level >= ModConfig.Server.MAPS_DROP_AFTER_LEVEL) {
+            return MapGen.Create(blueprint);
+        } else {
+            return ItemStack.EMPTY;
+        }
 
     }
 

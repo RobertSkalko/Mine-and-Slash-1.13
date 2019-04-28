@@ -1,7 +1,8 @@
 package com.robertx22.uncommon.capability;
 
-import java.util.UUID;
-
+import com.robertx22.config.ModConfig;
+import com.robertx22.config.dimensions.DimensionConfig;
+import com.robertx22.config.dimensions.DimensionsContainer;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
@@ -9,9 +10,6 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.mmorpg.config.dimensions.DimensionConfig;
-import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
@@ -27,7 +25,6 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
-
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
@@ -50,6 +47,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkDirection;
+
+import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class EntityData {
@@ -74,763 +73,769 @@ public class EntityData {
 
     public interface UnitData extends ICommonCapability {
 
-	boolean needsToBeGivenStats();
+        boolean needsToBeGivenStats();
 
-	void freelySetLevel(int lvl);
+        void freelySetLevel(int lvl);
 
-	int getLevel();
+        int getLevel();
 
-	void setLevel(int lvl, EntityLivingBase entity);
+        void setLevel(int lvl, EntityLivingBase entity);
 
-	boolean increaseRarity(EntityLivingBase entity);
+        boolean increaseRarity(EntityLivingBase entity);
 
-	int getExp();
+        int getExp();
 
-	void setExp(int exp);
+        void setExp(int exp);
 
-	int GiveExp(EntityPlayer player, int i);
+        int GiveExp(EntityPlayer player, int i);
 
-	int GetExpRequiredForLevelUp();
+        int GetExpRequiredForLevelUp();
 
-	boolean CheckIfCanLevelUp();
+        boolean CheckIfCanLevelUp();
 
-	boolean LevelUp(EntityPlayer player);
+        boolean LevelUp(EntityPlayer player);
 
-	boolean CheckLevelCap();
+        boolean CheckLevelCap();
 
-	void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity);
+        void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity);
 
-	Unit getUnit();
+        Unit getUnit();
 
-	void setUnit(Unit unit, EntityLivingBase entity);
+        void setUnit(Unit unit, EntityLivingBase entity);
 
-	void setRarity(int rarity);
+        void setRarity(int rarity);
 
-	int getRarity();
+        int getRarity();
 
-	String getUUID();
+        String getUUID();
 
-	void setUUID(UUID id);
+        void setUUID(UUID id);
 
-	String getName(EntityLivingBase entity);
+        String getName(EntityLivingBase entity);
 
-	void HandleCloneEvent(UnitData old);
+        void HandleCloneEvent(UnitData old);
 
-	void recalculateStats(EntityLivingBase entity, IWorldData world);
+        void recalculateStats(EntityLivingBase entity, IWorldData world);
 
-	void forceSetUnit(Unit unit);
+        void forceSetUnit(Unit unit);
 
-	boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
+        boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
 
-	void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon);
+        void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
+                              ItemStack weapon);
 
-	void onMobKill(IWorldData world);
+        void onMobKill(IWorldData world);
 
-	int getLootBonusPerAffixKills(MapItemData map);
+        int getLootBonusPerAffixKills(MapItemData map);
 
-	void onLogin(EntityPlayer player);
+        void onLogin(EntityPlayer player);
 
-	float getCurrentMana();
+        float getCurrentMana();
 
-	float getCurrentEnergy();
+        float getCurrentEnergy();
 
-	void setCurrentEnergy(float i);
+        void setCurrentEnergy(float i);
 
-	void setCurrentMana(float i);
+        void setCurrentMana(float i);
 
-	boolean hasEnoughMana(float i);
+        boolean hasEnoughMana(float i);
 
-	boolean hasEnoughEnergy(float i);
+        boolean hasEnoughEnergy(float i);
 
-	void restoreMana(float i);
+        void restoreMana(float i);
 
-	void restoreEnergy(float i);
+        void restoreEnergy(float i);
 
-	void consumeMana(float i);
+        void consumeMana(float i);
 
-	void consumeEnergy(float i);
+        void consumeEnergy(float i);
 
-	void heal(EntityLivingBase entity, int healthrestored);
+        void heal(EntityLivingBase entity, int healthrestored);
 
-	String getCurrentMapId();
+        String getCurrentMapId();
 
-	void setCurrentMapId(String res);
+        void setCurrentMapId(String res);
 
-	boolean hasCurrentMapId();
+        boolean hasCurrentMapId();
 
-	void clearCurrentMapId();
+        void clearCurrentMapId();
 
-	void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
+        void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
 
-	boolean decreaseRarity(EntityLivingBase entity);
+        boolean decreaseRarity(EntityLivingBase entity);
 
-	boolean isWeapon(ItemStack stack);
+        boolean isWeapon(ItemStack stack);
     }
 
     @Mod.EventBusSubscriber
     public static class EventHandler {
 
-	@SubscribeEvent
-	public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+        @SubscribeEvent
+        public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-	    boolean can = false;
+            boolean can = false;
 
-	    if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.All_Entities)
-		    && event.getObject() instanceof EntityLivingBase) {
-		can = true;
-	    }
+            if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.All_Entities) && event
+                    .getObject() instanceof EntityLivingBase) {
+                can = true;
+            }
 
-	    if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.Mobs_And_Players)) {
-		if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
-		    can = true;
-		}
-	    }
+            if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.Mobs_And_Players)) {
+                if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
+                    can = true;
+                }
+            }
 
-	    if (can) {
+            if (can) {
 
-		event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
+                event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
 
-		    UnitData impl = new DefaultImpl();
-		    private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
+                    UnitData impl = new DefaultImpl();
+                    private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
 
-		    @Override
-		    public NBTTagCompound serializeNBT() {
-			return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+                    @Override
+                    public NBTTagCompound serializeNBT() {
+                        return (NBTTagCompound) Data.getStorage()
+                                .writeNBT(Data, impl, null);
 
-		    }
+                    }
 
-		    @Override
-		    public void deserializeNBT(NBTTagCompound nbt) {
-			Data.getStorage().readNBT(Data, impl, null, nbt);
+                    @Override
+                    public void deserializeNBT(NBTTagCompound nbt) {
+                        Data.getStorage().readNBT(Data, impl, null, nbt);
 
-		    }
+                    }
 
-		    @Override
-		    public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-			if (cap == Data) {
-			    return this.cap.cast();
-			}
-			return LazyOptional.empty();
-		    }
-		});
+                    @Override
+                    public <T> LazyOptional<T> getCapability(Capability<T> cap,
+                                                             EnumFacing side) {
+                        if (cap == Data) {
+                            return this.cap.cast();
+                        }
+                        return LazyOptional.empty();
+                    }
+                });
 
-	    }
-	}
+            }
+        }
 
     }
 
     public static class Storage implements IStorage<UnitData> {
-	@Override
-	public INBTBase writeNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side) {
+        @Override
+        public INBTBase writeNBT(Capability<UnitData> capability, UnitData instance,
+                                 EnumFacing side) {
 
-	    return instance.getNBT();
-	}
+            return instance.getNBT();
+        }
 
-	@Override
-	public void readNBT(Capability<UnitData> capability, UnitData instance, EnumFacing side, INBTBase nbt) {
+        @Override
+        public void readNBT(Capability<UnitData> capability, UnitData instance,
+                            EnumFacing side, INBTBase nbt) {
 
-	    instance.setNBT((NBTTagCompound) nbt);
+            instance.setNBT((NBTTagCompound) nbt);
 
-	}
+        }
 
     }
 
     public static class DefaultImpl implements UnitData {
-	private NBTTagCompound nbt = new NBTTagCompound();
-
-	boolean setMobStats = false;
-	Unit unit = null;
-	PlayerMapKillsData kills = null;
-	int level = 1;
-	int exp = 0;
-	int rarity = 0;
-	String uuid = "";
-	String name = "";
-	String currentMapResourceLoc = "";
-
-	float energy;
-	float mana;
-
-	@Override
-	public NBTTagCompound getNBT() {
-	    nbt.setFloat(MANA, mana);
-	    nbt.setFloat(ENERGY, energy);
-	    nbt.setInt(LEVEL, level);
-	    nbt.setInt(EXP, exp);
-	    nbt.setInt(RARITY, rarity);
-	    nbt.setString(UUID, uuid);
-	    nbt.setString(NAME, name);
-	    nbt.setBoolean(MOB_SAVED_ONCE, true);
-	    nbt.setString(CURRENT_MAP_ID, currentMapResourceLoc);
-	    nbt.setBoolean(SET_MOB_STATS, setMobStats);
-
-	    if (unit != null) {
-		NBTTagCompound unitnbt = new NBTTagCompound();
-
-		Writer.write(unitnbt, unit);
-		nbt.setTag(UNIT_OBJECT, unitnbt);
-	    }
-	    if (kills != null) {
-		NBTTagCompound killsnbt = new NBTTagCompound();
-		Writer.write(killsnbt, kills);
-		nbt.setTag(KILLS_OBJECT, killsnbt);
-	    }
+        private NBTTagCompound nbt = new NBTTagCompound();
+
+        boolean setMobStats = false;
+        Unit unit = null;
+        PlayerMapKillsData kills = null;
+        int level = 1;
+        int exp = 0;
+        int rarity = 0;
+        String uuid = "";
+        String name = "";
+        String currentMapResourceLoc = "";
+
+        float energy;
+        float mana;
+
+        @Override
+        public NBTTagCompound getNBT() {
+            nbt.setFloat(MANA, mana);
+            nbt.setFloat(ENERGY, energy);
+            nbt.setInt(LEVEL, level);
+            nbt.setInt(EXP, exp);
+            nbt.setInt(RARITY, rarity);
+            nbt.setString(UUID, uuid);
+            nbt.setString(NAME, name);
+            nbt.setBoolean(MOB_SAVED_ONCE, true);
+            nbt.setString(CURRENT_MAP_ID, currentMapResourceLoc);
+            nbt.setBoolean(SET_MOB_STATS, setMobStats);
+
+            if (unit != null) {
+                NBTTagCompound unitnbt = new NBTTagCompound();
+
+                Writer.write(unitnbt, unit);
+                nbt.setTag(UNIT_OBJECT, unitnbt);
+            }
+            if (kills != null) {
+                NBTTagCompound killsnbt = new NBTTagCompound();
+                Writer.write(killsnbt, kills);
+                nbt.setTag(KILLS_OBJECT, killsnbt);
+            }
 
-	    return nbt;
-
-	}
+            return nbt;
+
+        }
 
-	@Override
-	public void setNBT(NBTTagCompound value) {
-	    this.nbt = value;
-	    this.level = value.getInt(LEVEL);
-	    this.exp = value.getInt(EXP);
-	    this.rarity = value.getInt(RARITY);
-	    this.uuid = value.getString(UUID);
-	    this.name = value.getString(NAME);
-	    this.energy = value.getFloat(ENERGY);
-	    this.mana = value.getFloat(MANA);
-	    this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
-	    this.setMobStats = value.getBoolean(SET_MOB_STATS);
+        @Override
+        public void setNBT(NBTTagCompound value) {
+            this.nbt = value;
+            this.level = value.getInt(LEVEL);
+            this.exp = value.getInt(EXP);
+            this.rarity = value.getInt(RARITY);
+            this.uuid = value.getString(UUID);
+            this.name = value.getString(NAME);
+            this.energy = value.getFloat(ENERGY);
+            this.mana = value.getFloat(MANA);
+            this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
+            this.setMobStats = value.getBoolean(SET_MOB_STATS);
 
-	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
-	    if (object_nbt != null) {
-		unit = new Unit();
-		Reader.read(object_nbt, unit);
-	    }
+            NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
+            if (object_nbt != null) {
+                unit = new Unit();
+                Reader.read(object_nbt, unit);
+            }
 
-	    NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);
-	    if (kills_nbt != null) {
-		kills = new PlayerMapKillsData();
-		Reader.read(kills_nbt, kills);
-	    }
+            NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);
+            if (kills_nbt != null) {
+                kills = new PlayerMapKillsData();
+                Reader.read(kills_nbt, kills);
+            }
 
-	}
+        }
 
-	@Override
-	public int GetExpRequiredForLevelUp() {
+        @Override
+        public int GetExpRequiredForLevelUp() {
 
-	    int lvl = getLevel();
+            int lvl = getLevel();
 
-	    int tens = lvl / 10;
+            int tens = lvl / 10;
 
-	    if (lvl < 5) {
-		return 150 * lvl;
-	    }
+            if (lvl < 5) {
+                return 150 * lvl;
+            }
 
-	    if (lvl < 8) {
-		return 200 * lvl;
-	    }
+            if (lvl < 8) {
+                return 200 * lvl;
+            }
 
-	    return lvl * 500 + (tens * 2000);
+            return lvl * 500 + (tens * 2000);
 
-	}
+        }
 
-	@Override
-	public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
+        @Override
+        public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
 
-	    this.setMobStats = true;
+            this.setMobStats = true;
 
-	    DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
+            DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
 
-	    int lvl = 1;
+            int lvl = 1;
 
-	    if (data != null && data.isMapWorld()) {
-		lvl = data.getLevel();
-	    } else {
-		if (config.SINGLEPLAYER_MOB_SCALING) {
+            if (data != null && data.isMapWorld()) {
+                lvl = data.getLevel();
+            } else {
+                if (config.SINGLEPLAYER_MOB_SCALING) {
 
-		    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 9999);
+                    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 9999);
 
-		    if (player != null) {
-			lvl = Load.Unit(player).getLevel();
+                    if (player != null) {
+                        lvl = Load.Unit(player).getLevel();
 
-		    }
+                    }
 
-		} else {
-		    lvl = GetMobLevelByDistanceFromSpawn(entity, config);
-		}
-		if (lvl > config.MAXIMUM_MOB_LEVEL) {
-		    lvl = config.MAXIMUM_MOB_LEVEL;
-		}
-		if (lvl < config.MINIMUM_MOB_LEVEL) {
-		    lvl = config.MINIMUM_MOB_LEVEL;
-		}
+                } else {
+                    lvl = GetMobLevelByDistanceFromSpawn(entity, config);
+                }
+                if (lvl > config.MAXIMUM_MOB_LEVEL) {
+                    lvl = config.MAXIMUM_MOB_LEVEL;
+                }
+                if (lvl < config.MINIMUM_MOB_LEVEL) {
+                    lvl = config.MINIMUM_MOB_LEVEL;
+                }
 
-	    }
+            }
 
-	    if (lvl < 1) {
-		lvl = 1;
+            if (lvl < 1) {
+                lvl = 1;
 
-	    }
+            }
 
-	    this.level = lvl;
-	}
+            this.level = lvl;
+        }
 
-	public static int GetMobLevelByDistanceFromSpawn(Entity entity, DimensionConfig config) {
+        public static int GetMobLevelByDistanceFromSpawn(Entity entity,
+                                                         DimensionConfig config) {
 
-	    double distance = entity.world.getSpawnPoint().getDistance((int) entity.posX, (int) entity.posY,
-		    (int) entity.posZ);
+            double distance = entity.world.getSpawnPoint()
+                    .getDistance((int) entity.posX, (int) entity.posY, (int) entity.posZ);
 
-	    int lvl = 1;
+            int lvl = 1;
 
-	    if (distance < config.MOB_LEVEL_ONE_AREA) {
-		lvl = 1;
-	    } else {
+            if (distance < config.MOB_LEVEL_ONE_AREA) {
+                lvl = 1;
+            } else {
 
-		lvl = (int) (1 + (distance / config.MOB_LEVEL_PER_DISTANCE));
-	    }
+                lvl = (int) (1 + (distance / config.MOB_LEVEL_PER_DISTANCE));
+            }
 
-	    return lvl;
+            return lvl;
 
-	}
+        }
 
-	@Override
-	public int GiveExp(EntityPlayer player, int i) {
+        @Override
+        public int GiveExp(EntityPlayer player, int i) {
 
-	    i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
+            i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
 
-	    setExp(exp + i);
+            setExp(exp + i);
 
-	    if (exp > this.GetExpRequiredForLevelUp()) {
+            if (exp > this.GetExpRequiredForLevelUp()) {
 
-		if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
+                if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
 
-		    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-			this.LevelUp(player);
-		    }
-		}
+                    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
+                        this.LevelUp(player);
+                    }
+                }
 
-		return i;
-	    }
+                return i;
+            }
 
-	    return i;
+            return i;
 
-	}
+        }
 
-	@Override
-	public boolean CheckIfCanLevelUp() {
+        @Override
+        public boolean CheckIfCanLevelUp() {
 
-	    return getExp() >= GetExpRequiredForLevelUp();
+            return getExp() >= GetExpRequiredForLevelUp();
 
-	}
+        }
 
-	public int getRemainingExp() {
-	    int num = getExp() - GetExpRequiredForLevelUp();
+        public int getRemainingExp() {
+            int num = getExp() - GetExpRequiredForLevelUp();
 
-	    if (num < 0) {
-		num = 0;
-	    }
-	    return num;
-	}
+            if (num < 0) {
+                num = 0;
+            }
+            return num;
+        }
 
-	@Override
-	public boolean CheckLevelCap() {
-	    return getLevel() + 1 <= ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	}
+        @Override
+        public boolean CheckLevelCap() {
+            return getLevel() + 1 <= ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+        }
 
-	@Override
-	public boolean LevelUp(EntityPlayer player) {
+        @Override
+        public boolean LevelUp(EntityPlayer player) {
 
-	    if (!CheckIfCanLevelUp()) {
-		player.sendMessage(SLOC.chat("not_enough_experience"));
-	    } else if (!CheckLevelCap()) {
-		player.sendMessage(SLOC.chat("cannot_over_maximum_level"));
-	    }
+            if (!CheckIfCanLevelUp()) {
+                player.sendMessage(SLOC.chat("not_enough_experience"));
+            } else if (!CheckLevelCap()) {
+                player.sendMessage(SLOC.chat("cannot_over_maximum_level"));
+            }
 
-	    if (CheckIfCanLevelUp() && CheckLevelCap()) {
+            if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
-		this.setLevel(level + 1, player);
+                this.setLevel(level + 1, player);
 
-		setExp(getRemainingExp());
+                setExp(getRemainingExp());
 
-		player.sendMessage(SLOC.chat("levelup_success"));
+                player.sendMessage(SLOC.chat("levelup_success"));
 
-		return true;
-	    }
-	    return false;
-	}
+                return true;
+            }
+            return false;
+        }
 
-	@Override
-	public int getLevel() {
+        @Override
+        public int getLevel() {
 
-	    return level;
+            return level;
 
-	}
+        }
 
-	@Override
-	public void setLevel(int lvl, EntityLivingBase entity) {
-	    if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-		lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	    }
+        @Override
+        public void setLevel(int lvl, EntityLivingBase entity) {
+            if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+                lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+            }
 
-	    level = lvl;
+            level = lvl;
 
-	}
+        }
 
-	@Override
-	public int getExp() {
-	    return exp;
-	}
+        @Override
+        public int getExp() {
+            return exp;
+        }
 
-	@Override
-	public void setExp(int exp) {
-	    this.exp = exp;
-	}
+        @Override
+        public void setExp(int exp) {
+            this.exp = exp;
+        }
 
-	@Override
-	public void syncToClient(EntityPlayer player) {
-	    if (unit != null) {
-		PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
+        @Override
+        public void syncToClient(EntityPlayer player) {
+            if (unit != null) {
+                PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
 
-		EntityPlayerMP mp = (EntityPlayerMP) player;
+                EntityPlayerMP mp = (EntityPlayerMP) player;
 
-		MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
-	    }
-	}
+                MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+            }
+        }
 
-	@Override
-	public Unit getUnit() {
-	    return unit;
+        @Override
+        public Unit getUnit() {
+            return unit;
 
-	}
+        }
 
-	@Override
-	public void setUnit(Unit unit, EntityLivingBase entity) {
+        @Override
+        public void setUnit(Unit unit, EntityLivingBase entity) {
 
-	    this.unit = unit;
+            this.unit = unit;
 
-	}
+        }
 
-	@Override
-	public void setRarity(int rarity) {
-	    this.rarity = rarity;
+        @Override
+        public void setRarity(int rarity) {
+            this.rarity = rarity;
 
-	}
+        }
 
-	@Override
-	public int getRarity() {
-	    return rarity;
-	}
+        @Override
+        public int getRarity() {
+            return rarity;
+        }
 
-	@Override
-	public String getUUID() {
-	    return uuid;
-	}
+        @Override
+        public String getUUID() {
+            return uuid;
+        }
 
-	@Override
-	public void setUUID(UUID id) {
-	    uuid = id.toString();
-	}
+        @Override
+        public void setUUID(UUID id) {
+            uuid = id.toString();
+        }
 
-	@Override
-	public String getName(EntityLivingBase entity) {
+        @Override
+        public String getName(EntityLivingBase entity) {
 
-	    if (entity instanceof EntityPlayer) {
+            if (entity instanceof EntityPlayer) {
 
-		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + " "
-			+ entity.getDisplayName().getFormattedText();
+                return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + " " + entity
+                        .getDisplayName()
+                        .getFormattedText();
 
-	    } else {
-		MobRarity rarity = Rarities.Mobs.get(getRarity());
-		String rarityprefix = "";
-		String name = "";
+            } else {
+                MobRarity rarity = Rarities.Mobs.get(getRarity());
+                String rarityprefix = "";
+                String name = "";
 
-		name = entity.getDisplayName().getFormattedText();
-		rarityprefix = rarity.locName();
+                name = entity.getDisplayName().getFormattedText();
+                rarityprefix = rarity.locName();
 
-		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " "
-			+ name;
+                return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " " + name;
 
-	    }
-	}
+            }
+        }
 
-	@Override
-	public void HandleCloneEvent(UnitData old) {
-	    this.setNBT(old.getNBT());
-	}
+        @Override
+        public void HandleCloneEvent(UnitData old) {
+            this.setNBT(old.getNBT());
+        }
 
-	@Override
-	public void recalculateStats(EntityLivingBase entity, IWorldData world) {
+        @Override
+        public void recalculateStats(EntityLivingBase entity, IWorldData world) {
 
-	    unit.RecalculateStats(entity, this, level, world);
+            unit.RecalculateStats(entity, this, level, world);
 
-	}
+        }
 
-	@Override
-	public void forceSetUnit(Unit unit) {
-	    this.unit = unit;
-	}
+        @Override
+        public void forceSetUnit(Unit unit) {
+            this.unit = unit;
+        }
 
-	@Override
-	public boolean tryUseWeapon(EntityLivingBase source, ItemStack weapon) {
+        @Override
+        public boolean tryUseWeapon(EntityLivingBase source, ItemStack weapon) {
 
-	    try {
-		GearItemData weaponData = Gear.Load(weapon);
+            try {
+                GearItemData weaponData = Gear.Load(weapon);
 
-		if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+                if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-		    IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+                    IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-		    float energyCost = iwep.mechanic().GetEnergyCost();
+                    float energyCost = iwep.mechanic().GetEnergyCost();
 
-		    if (hasEnoughEnergy(energyCost) == false) {
-			AttackUtils.NoEnergyMessage(source);
-			return false;
+                    if (hasEnoughEnergy(energyCost) == false) {
+                        AttackUtils.NoEnergyMessage(source);
+                        return false;
 
-		    } else {
-			consumeEnergy(energyCost);
-			weapon.damageItem(1, source);
+                    } else {
+                        consumeEnergy(energyCost);
+                        weapon.damageItem(1, source);
 
-			return true;
+                        return true;
 
-		    }
+                    }
 
-		}
-	    } catch (Exception e) {
+                }
+            } catch (Exception e) {
 
-		e.printStackTrace();
-	    }
-	    return false;
-	}
+                e.printStackTrace();
+            }
+            return false;
+        }
 
-	public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon) {
+        public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
+                                     ItemStack weapon) {
 
-	    UnitData targetData = Load.Unit(target);
+            UnitData targetData = Load.Unit(target);
 
-	    GearItemData weaponData = Gear.Load(weapon);
+            GearItemData weaponData = Gear.Load(weapon);
 
-	    if (weapon != null && !weapon.isEmpty() && weaponData.GetBaseGearType() instanceof IWeapon) {
+            if (weapon != null && !weapon.isEmpty() && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-		IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
-		WeaponMechanic iWep = iwep.mechanic();
-		iWep.Attack(source, target, this, targetData);
+                IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+                WeaponMechanic iWep = iwep.mechanic();
+                iWep.Attack(source, target, this, targetData);
 
-	    }
-	}
+            }
+        }
 
-	@Override
-	public void onMobKill(IWorldData world) {
+        @Override
+        public void onMobKill(IWorldData world) {
 
-	    try {
+            try {
 
-		if (kills == null) {
-		    kills = new PlayerMapKillsData();
-		}
+                if (kills == null) {
+                    kills = new PlayerMapKillsData();
+                }
 
-		kills.onKill(world.getMap());
+                kills.onKill(world.getMap());
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-	}
+        }
 
-	@Override
-	public int getLootBonusPerAffixKills(MapItemData map) {
+        @Override
+        public int getLootBonusPerAffixKills(MapItemData map) {
 
-	    if (kills == null) {
-		return 0;
-	    } else {
-		return kills.getLootMulti(map);
-	    }
-	}
+            if (kills == null) {
+                return 0;
+            } else {
+                return kills.getLootMulti(map);
+            }
+        }
 
-	@Override
-	public void onLogin(EntityPlayer player) {
+        @Override
+        public void onLogin(EntityPlayer player) {
 
-	    try {
+            try {
 
-		// check if newbie
-		if (unit == null) {
-		    unit = new Unit();
-		    unit.InitPlayerStats();
-		    OnLogin.GiveStarterItems(player);
-		} else {
-		    getUnit().InitPlayerStats();
-		    recalculateStats(player, Load.World(player));
-		}
+                // check if newbie
+                if (unit == null) {
+                    unit = new Unit();
+                    unit.InitPlayerStats();
+                    OnLogin.GiveStarterItems(player);
+                } else {
+                    getUnit().InitPlayerStats();
+                    recalculateStats(player, Load.World(player));
+                }
 
-		if (kills == null) {
-		    kills = new PlayerMapKillsData();
-		}
+                if (kills == null) {
+                    kills = new PlayerMapKillsData();
+                }
 
-		kills.init();
+                kills.init();
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-	@Override
-	public float getCurrentMana() {
-	    return mana;
-	}
+        @Override
+        public float getCurrentMana() {
+            return mana;
+        }
 
-	@Override
-	public float getCurrentEnergy() {
-	    return energy;
-	}
+        @Override
+        public float getCurrentEnergy() {
+            return energy;
+        }
 
-	@Override
-	public void setCurrentEnergy(float i) {
-	    energy = i;
+        @Override
+        public void setCurrentEnergy(float i) {
+            energy = i;
 
-	}
+        }
 
-	@Override
-	public void setCurrentMana(float i) {
-	    mana = i;
+        @Override
+        public void setCurrentMana(float i) {
+            mana = i;
 
-	}
+        }
 
-	@Override
-	public boolean hasEnoughMana(float i) {
-	    return mana >= i;
-	}
+        @Override
+        public boolean hasEnoughMana(float i) {
+            return mana >= i;
+        }
 
-	@Override
-	public boolean hasEnoughEnergy(float i) {
-	    return energy >= i;
-	}
+        @Override
+        public boolean hasEnoughEnergy(float i) {
+            return energy >= i;
+        }
 
-	@Override
-	public void restoreMana(float i) {
-	    float max = unit.manaData().Value;
+        @Override
+        public void restoreMana(float i) {
+            float max = unit.manaData().Value;
 
-	    mana += i;
-	    if (mana > max) {
-		mana = (int) max;
-	    }
+            mana += i;
+            if (mana > max) {
+                mana = (int) max;
+            }
 
-	}
+        }
 
-	@Override
-	public void restoreEnergy(float i) {
-	    float max = unit.energyData().Value;
+        @Override
+        public void restoreEnergy(float i) {
+            float max = unit.energyData().Value;
 
-	    energy += i;
-	    if (energy > max) {
-		energy = (int) max;
-	    }
+            energy += i;
+            if (energy > max) {
+                energy = (int) max;
+            }
 
-	}
+        }
 
-	@Override
-	public void consumeMana(float i) {
-	    mana -= i;
-	    if (mana < 0) {
-		mana = 0;
-	    }
+        @Override
+        public void consumeMana(float i) {
+            mana -= i;
+            if (mana < 0) {
+                mana = 0;
+            }
 
-	}
+        }
 
-	@Override
-	public void consumeEnergy(float i) {
-	    energy -= i;
-	    if (energy < 0) {
-		energy = 0;
-	    }
+        @Override
+        public void consumeEnergy(float i) {
+            energy -= i;
+            if (energy < 0) {
+                energy = 0;
+            }
 
-	}
+        }
 
-	@Override
-	public void heal(EntityLivingBase entity, int healthrestored) {
-	    entity.heal(
-		    HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.Server.NON_MOD_HEAL_MULTI, entity));
-	}
+        @Override
+        public void heal(EntityLivingBase entity, int healthrestored) {
+            entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.Server.NON_MOD_HEAL_MULTI, entity));
+        }
 
-	@Override
-	public boolean increaseRarity(EntityLivingBase entity) {
+        @Override
+        public boolean increaseRarity(EntityLivingBase entity) {
 
-	    if (rarity == 5) {
-		return false;
-	    } else {
-		rarity = rarity + 1;
+            if (rarity == 5) {
+                return false;
+            } else {
+                rarity = rarity + 1;
 
-		return true;
+                return true;
 
-	    }
-	}
+            }
+        }
 
-	@Override
-	public boolean decreaseRarity(EntityLivingBase entity) {
+        @Override
+        public boolean decreaseRarity(EntityLivingBase entity) {
 
-	    if (rarity - 1 < 0) {
-		return false;
-	    } else {
-		rarity = rarity - 1;
+            if (rarity - 1 < 0) {
+                return false;
+            } else {
+                rarity = rarity - 1;
 
-		return true;
+                return true;
 
-	    }
-	}
+            }
+        }
 
-	@Override
-	public String getCurrentMapId() {
-	    return this.currentMapResourceLoc;
-	}
+        @Override
+        public String getCurrentMapId() {
+            return this.currentMapResourceLoc;
+        }
 
-	@Override
-	public void setCurrentMapId(String id) {
-	    this.currentMapResourceLoc = id;
-	}
+        @Override
+        public void setCurrentMapId(String id) {
+            this.currentMapResourceLoc = id;
+        }
 
-	@Override
-	public boolean hasCurrentMapId() {
-	    return this.currentMapResourceLoc.isEmpty() == false;
-	}
+        @Override
+        public boolean hasCurrentMapId() {
+            return this.currentMapResourceLoc.isEmpty() == false;
+        }
 
-	@Override
-	public void clearCurrentMapId() {
-	    this.currentMapResourceLoc = "";
-	}
+        @Override
+        public void clearCurrentMapId() {
+            this.currentMapResourceLoc = "";
+        }
 
-	@Override
-	public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
+        @Override
+        public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
 
-	    float cost = ModConfig.Server.UNARMED_ENERGY_COST;
+            float cost = ModConfig.Server.UNARMED_ENERGY_COST;
 
-	    if (this.hasEnoughEnergy(cost)) {
+            if (this.hasEnoughEnergy(cost)) {
 
-		this.consumeEnergy(cost);
-		int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
-		DamageEffect dmg = new DamageEffect(source, target, num);
+                this.consumeEnergy(cost);
+                int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
+                DamageEffect dmg = new DamageEffect(source, target, num);
 
-		dmg.Activate();
-	    }
-	}
+                dmg.Activate();
+            }
+        }
 
-	@Override
-	public boolean isWeapon(ItemStack stack) {
-	    try {
+        @Override
+        public boolean isWeapon(ItemStack stack) {
+            try {
 
-		if (stack == null || stack.isEmpty()) {
-		    return false;
-		}
+                if (stack == null || stack.isEmpty()) {
+                    return false;
+                }
 
-		GearItemData weaponData = Gear.Load(stack);
+                GearItemData weaponData = Gear.Load(stack);
 
-		if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+                if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-		    return true;
+                    return true;
 
-		}
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	    return false;
-	}
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
 
-	@Override
-	public void freelySetLevel(int lvl) {
-	    this.level = lvl;
-	}
+        @Override
+        public void freelySetLevel(int lvl) {
+            this.level = lvl;
+        }
 
-	@Override
-	public boolean needsToBeGivenStats() {
-	    return this.setMobStats == false;
-	}
+        @Override
+        public boolean needsToBeGivenStats() {
+            return this.setMobStats == false;
+        }
     }
 
 }

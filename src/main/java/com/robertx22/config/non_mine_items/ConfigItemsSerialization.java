@@ -1,12 +1,12 @@
-package com.robertx22.mmorpg.config.non_mine_items;
+package com.robertx22.config.non_mine_items;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import com.robertx22.config.ISerializedConfig;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.items.unique_items.IUnique;
-import com.robertx22.mmorpg.config.ISerializedConfig;
 import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.item.Item;
 

@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.config.dimensions;
+package com.robertx22.config.dimensions;
 
 import net.minecraft.world.World;
 

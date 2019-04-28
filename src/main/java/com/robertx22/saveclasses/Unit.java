@@ -1,11 +1,8 @@
 package com.robertx22.saveclasses;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.UUID;
-
+import com.robertx22.config.ModConfig;
+import com.robertx22.config.dimensions.DimensionConfig;
+import com.robertx22.config.dimensions.DimensionsContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.Stat;
@@ -16,9 +13,6 @@ import com.robertx22.database.stats.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.mmorpg.config.dimensions.DimensionConfig;
-import com.robertx22.mmorpg.config.dimensions.DimensionsContainer;
 import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -32,7 +26,6 @@ import com.robertx22.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
@@ -43,6 +36,12 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.fml.network.PacketDistributor;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 @Storable
 public class Unit {
@@ -68,373 +67,373 @@ public class Unit {
 
     public void InitMobStats() {
 
-	if (MyStats == null) {
-	    MyStats = new HashMap<String, StatData>();
-	    // adds all stats
-	    for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-		MyStats.put(stat.GUID(), new StatData(stat));
-	    }
+        if (MyStats == null) {
+            MyStats = new HashMap<String, StatData>();
+            // adds all stats
+            for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
+                MyStats.put(stat.GUID(), new StatData(stat));
+            }
 
-	}
+        }
 
     }
 
     public void InitPlayerStats() {
 
-	if (MyStats == null) {
-	    MyStats = new HashMap<String, StatData>();
+        if (MyStats == null) {
+            MyStats = new HashMap<String, StatData>();
 
-	    // adds all stats
-	    for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-		MyStats.put(stat.GUID(), new StatData(stat));
-	    }
+            // adds all stats
+            for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
+                MyStats.put(stat.GUID(), new StatData(stat));
+            }
 
-	} else {
-	    // adds new stats
-	    for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-		if (!MyStats.containsKey(stat.Guid())) {
-		    MyStats.put(stat.GUID(), new StatData(stat));
-		}
-	    }
-	    // removes stats that were deleted or renamed
-	    HashMap<String, StatData> stats = new HashMap<String, StatData>(MyStats);
-	    for (Entry<String, StatData> entry : stats.entrySet()) {
-		if (!Stats.All.containsKey(entry.getKey())) {
-		    MyStats.remove(entry.getKey());
-		}
-	    }
+        } else {
+            // adds new stats
+            for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
+                if (!MyStats.containsKey(stat.Guid())) {
+                    MyStats.put(stat.GUID(), new StatData(stat));
+                }
+            }
+            // removes stats that were deleted or renamed
+            HashMap<String, StatData> stats = new HashMap<String, StatData>(MyStats);
+            for (Entry<String, StatData> entry : stats.entrySet()) {
+                if (!Stats.All.containsKey(entry.getKey())) {
+                    MyStats.remove(entry.getKey());
+                }
+            }
 
-	}
+        }
 
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (obj == null) {
-	    return false;
-	}
+        if (obj == null) {
+            return false;
+        }
 
-	if (obj instanceof Unit) {
-	    return ((Unit) obj).GUID == this.GUID;
-	}
-	return false;
+        if (obj instanceof Unit) {
+            return ((Unit) obj).GUID == this.GUID;
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-	return GUID.hashCode();
+        return GUID.hashCode();
     }
 
-    public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource,
-	    float event_damage) {
+    public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target,
+                               UnitData unitsource, float event_damage) {
 
-	MobRarity rar = Rarities.Mobs.get(unitsource.getRarity());
+        MobRarity rar = Rarities.Mobs.get(unitsource.getRarity());
 
-	float mystat = unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+        float mystat = unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 
-	float vanilla = event_damage * unitsource.getLevel();
+        float vanilla = event_damage * unitsource.getLevel();
 
-	float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
+        float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
 
-	DamageEffect dmg = new DamageEffect(source, target, (int) num);
+        DamageEffect dmg = new DamageEffect(source, target, (int) num);
 
-	dmg.Activate();
+        dmg.Activate();
 
     }
 
     // Stat shortcuts
     public Health health() {
-	return (Health) MyStats.get(new Health().Guid()).GetStat();
+        return (Health) MyStats.get(new Health().Guid()).GetStat();
     }
 
     public Mana mana() {
-	return (Mana) MyStats.get(new Mana().Guid()).GetStat();
+        return (Mana) MyStats.get(new Mana().Guid()).GetStat();
     }
 
     public Energy energy() {
-	return (Energy) MyStats.get(new Energy().Guid()).GetStat();
+        return (Energy) MyStats.get(new Energy().Guid()).GetStat();
     }
 
     public StatData healthData() {
-	try {
-	    return MyStats.get(new Health().Guid());
-	} catch (Exception e) {
-	}
-	return null;
+        try {
+            return MyStats.get(new Health().Guid());
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     public StatData manaData() {
-	try {
-	    return MyStats.get(new Mana().Guid());
-	} catch (Exception e) {
+        try {
+            return MyStats.get(new Mana().Guid());
+        } catch (Exception e) {
 
-	}
-	return null;
+        }
+        return null;
     }
 
     public StatData energyData() {
-	try {
-	    return MyStats.get(new Energy().Guid());
-	} catch (Exception e) {
+        try {
+            return MyStats.get(new Energy().Guid());
+        } catch (Exception e) {
 
-	}
-	return null;
+        }
+        return null;
     }
 
     public static Unit Mob(EntityLivingBase entity, IWorldData data) {
 
-	Unit mob = new Unit();
-	mob.InitMobStats();
+        Unit mob = new Unit();
+        mob.InitMobStats();
 
-	UnitData endata = Load.Unit(entity);
+        UnitData endata = Load.Unit(entity);
 
-	endata.SetMobLevelAtSpawn(data, entity);
-	endata.setRarity(randomRarity(entity, endata.getLevel()));
+        endata.SetMobLevelAtSpawn(data, entity);
+        endata.setRarity(randomRarity(entity, endata.getLevel()));
 
-	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
-	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
+        CommonStatUtils.addMapAffixes(data, entity, mob, endata);
+        MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-	mob.RecalculateStats(entity, endata, endata.getLevel(), data);
+        mob.RecalculateStats(entity, endata, endata.getLevel(), data);
 
-	return mob;
+        return mob;
 
     }
 
     private static int randomRarity(EntityLivingBase entity, int level) {
 
-	double y = entity.posY;
+        double y = entity.posY;
 
-	int minRarity = 0;
+        int minRarity = 0;
 
-	if (entity.dimension.equals(DimensionType.OVERWORLD)) {
+        if (entity.dimension.equals(DimensionType.OVERWORLD)) {
 
-	    if (y < 50) {
-		minRarity = 1;
-	    }
-	    if (y < 30) {
-		minRarity = 2;
-	    }
-	}
+            if (y < 50) {
+                minRarity = 1;
+            }
+            if (y < 30) {
+                minRarity = 2;
+            }
+        }
 
-	List<MobRarity> rarities = Rarities.Mobs;
-	List<MobRarity> after = new ArrayList<MobRarity>();
+        List<MobRarity> rarities = Rarities.Mobs;
+        List<MobRarity> after = new ArrayList<MobRarity>();
 
-	DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
+        DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
 
-	for (MobRarity rar : rarities) {
-	    if (rar.Rank() >= minRarity) {
-		if (rar.Rank() == 4 && config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
+        for (MobRarity rar : rarities) {
+            if (rar.Rank() >= minRarity) {
+                if (rar.Rank() == 4 && config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
 
-		} else if (rar.Rank() == 5 && config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
+                } else if (rar.Rank() == 5 && config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
 
-		} else {
-		    after.add(rar);
-		}
-	    }
-	}
+                } else {
+                    after.add(rar);
+                }
+            }
+        }
 
-	MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
+        MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
 
-	return finalRarity.Rank();
+        return finalRarity.Rank();
 
     }
 
     protected void ClearStats() {
 
-	if (MyStats == null) {
-	    this.InitPlayerStats();
-	}
+        if (MyStats == null) {
+            this.InitPlayerStats();
+        }
 
-	for (StatData stat : MyStats.values()) {
-	    stat.Clear();
-	}
+        for (StatData stat : MyStats.values()) {
+            stat.Clear();
+        }
     }
 
     protected void CalcStats(UnitData data) {
 
-	MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, data));
+        MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, data));
     }
 
     class DirtyCheck {
-	int hp;
+        int hp;
 
-	public boolean isDirty(DirtyCheck newcheck) {
+        public boolean isDirty(DirtyCheck newcheck) {
 
-	    if (newcheck.hp != hp) {
-		return true;
-	    }
+            if (newcheck.hp != hp) {
+                return true;
+            }
 
-	    return false;
+            return false;
 
-	}
+        }
 
     }
 
     /**
      * @return checks if it should be synced to clients. Clients currently only see
-     *         health and status effects
+     * health and status effects
      */
     private DirtyCheck getDirtyCheck() {
 
-	DirtyCheck check = new DirtyCheck();
+        DirtyCheck check = new DirtyCheck();
 
-	check.hp = (int) MyStats.get(Health.GUID).Value;
+        check.hp = (int) MyStats.get(Health.GUID).Value;
 
-	return check;
+        return check;
     }
 
-    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level, IWorldData world) {
+    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level,
+                                 IWorldData world) {
 
-	if (data.getUnit() == null) {
-	    data.setUnit(this, entity);
-	}
+        if (data.getUnit() == null) {
+            data.setUnit(this, entity);
+        }
 
-	DirtyCheck old = getDirtyCheck();
+        DirtyCheck old = getDirtyCheck();
 
-	List<GearItemData> gears = PlayerStatUtils.getEquipsExcludingWeapon(entity); // slow but required
+        List<GearItemData> gears = PlayerStatUtils.getEquipsExcludingWeapon(entity); // slow but required
 
-	boolean gearIsValid = this.isGearCombinationValid(gears, entity);
+        boolean gearIsValid = this.isGearCombinationValid(gears, entity);
 
-	ItemStack weapon = entity.getHeldItemMainhand();
-	if (weapon != null) {
-	    GearItemData wep = Gear.Load(weapon);
-	    if (wep != null && wep.GetBaseGearType().slotType().equals(GearSlotType.Weapon)) {
-		gears.add(wep);
-	    }
+        ItemStack weapon = entity.getHeldItemMainhand();
+        if (weapon != null) {
+            GearItemData wep = Gear.Load(weapon);
+            if (wep != null && wep.GetBaseGearType()
+                    .slotType()
+                    .equals(GearSlotType.Weapon)) {
+                gears.add(wep);
+            }
 
-	}
+        }
 
-	ItemStack offhand = entity.getHeldItemOffhand();
-	if (offhand != null) {
-	    GearItemData off = Gear.Load(offhand);
-	    if (off != null && off.GetBaseGearType().slotType().equals(GearSlotType.OffHand)) {
-		gears.add(off);
-	    }
-	}
+        ItemStack offhand = entity.getHeldItemOffhand();
+        if (offhand != null) {
+            GearItemData off = Gear.Load(offhand);
+            if (off != null && off.GetBaseGearType()
+                    .slotType()
+                    .equals(GearSlotType.OffHand)) {
+                gears.add(off);
+            }
+        }
 
-	Unit copy = this.Clone();
+        Unit copy = this.Clone();
 
-	int tier = 0;
-	if (world != null) {
-	    tier = world.getTier(entity.world);
-	}
+        int tier = 0;
+        if (world != null) {
+            tier = world.getTier(entity.world);
+        }
 
-	ClearStats();
+        ClearStats();
 
-	MobRarity rar = Rarities.Mobs.get(data.getRarity());
+        MobRarity rar = Rarities.Mobs.get(data.getRarity());
 
-	float hpadded = entity.getMaxHealth() * data.getLevel();
-	if (!(entity instanceof EntityPlayer)) {
-	    hpadded *= 2F * rar.HealthMultiplier();
-	}
+        float hpadded = entity.getMaxHealth() * data.getLevel();
+        if (!(entity instanceof EntityPlayer)) {
+            hpadded *= 2F * rar.HealthMultiplier();
+        }
 
-	MyStats.get(Health.GUID).Flat += hpadded;
+        MyStats.get(Health.GUID).Flat += hpadded;
 
-	if (entity instanceof EntityPlayer) {
-	    PlayerStatUtils.AddPlayerBaseStats(data, this);
+        if (entity instanceof EntityPlayer) {
+            PlayerStatUtils.AddPlayerBaseStats(data, this);
 
-	} else {
-	    MobStatUtils.AddMobcStats(data, data.getLevel());
-	    MobStatUtils.AddMobTierStats(this, tier);
-	    MobStatUtils.worldMultiplierStats(entity.world, data);
-	}
+        } else {
+            MobStatUtils.AddMobcStats(data, data.getLevel());
+            MobStatUtils.AddMobTierStats(this, tier);
+            MobStatUtils.worldMultiplierStats(entity.world, data);
+        }
 
-	if (gearIsValid) {
-	    PlayerStatUtils.CountWornSets(entity, gears, this);
-	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level);
-	    PlayerStatUtils.AddAllSetStats(entity, this, level);
+        if (gearIsValid) {
+            PlayerStatUtils.CountWornSets(entity, gears, this);
+            PlayerStatUtils.AddAllGearStats(entity, gears, this, level);
+            PlayerStatUtils.AddAllSetStats(entity, this, level);
 
-	}
+        }
 
-	CommonStatUtils.AddStatusEffectStats(this, level);
-	CommonStatUtils.AddMapAffixStats(this, level);
-	PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
-	PlayerStatUtils.CalcTraits(data);
+        CommonStatUtils.AddStatusEffectStats(this, level);
+        CommonStatUtils.AddMapAffixStats(this, level);
+        PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
+        PlayerStatUtils.CalcTraits(data);
 
-	CalcStats(data);
+        CalcStats(data);
 
-	DirtyCheck newcheck = getDirtyCheck();
+        DirtyCheck newcheck = getDirtyCheck();
 
-	if (old.isDirty(newcheck)) {
+        if (old.isDirty(newcheck)) {
 
-	    Chunk chunk = entity.world.getChunk(entity.getPosition());
+            Chunk chunk = entity.world.getChunk(entity.getPosition());
 
-	    MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
-		    new EntityUnitPackage(entity, data));
+            MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
 
-	}
+        }
 
     }
 
-// gear check works on everything but the weapon.
+    // gear check works on everything but the weapon.
     public boolean isGearCombinationValid(List<GearItemData> gears, Entity en) {
 
-	int unique_items = countUniqueItems(gears);
+        int unique_items = countUniqueItems(gears);
 
-	if (unique_items > ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS) {
-	    if (en instanceof EntityPlayer) {
-		en.sendMessage(new TextComponentString(
-			"Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): "
-				+ ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS));
-	    }
-	    return false;
-	}
-	int runed_items = countRunedItems(gears);
+        if (unique_items > ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS) {
+            if (en instanceof EntityPlayer) {
+                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS));
+            }
+            return false;
+        }
+        int runed_items = countRunedItems(gears);
 
-	if (runed_items > ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS) {
-	    if (en instanceof EntityPlayer) {
-		en.sendMessage(new TextComponentString(
-			"Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): "
-				+ ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS));
-	    }
-	    return false;
-	}
+        if (runed_items > ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS) {
+            if (en instanceof EntityPlayer) {
+                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS));
+            }
+            return false;
+        }
 
-	// here i can go through all the items and then runewords and check if there is
-	// more than
+        // here i can go through all the items and then runewords and check if there is
+        // more than
 
-	return true;
+        return true;
 
     }
 
     private int countRunedItems(List<GearItemData> gears) {
 
-	int amount = 0;
+        int amount = 0;
 
-	for (GearItemData gear : gears) {
-	    if (gear.isRuned()) {
-		amount++;
-	    }
-	}
+        for (GearItemData gear : gears) {
+            if (gear.isRuned()) {
+                amount++;
+            }
+        }
 
-	return amount;
+        return amount;
 
     }
 
     private int countUniqueItems(List<GearItemData> gears) {
 
-	int amount = 0;
+        int amount = 0;
 
-	for (GearItemData gear : gears) {
-	    if (gear.isUnique) {
-		amount++;
-	    }
-	}
+        for (GearItemData gear : gears) {
+            if (gear.isUnique) {
+                amount++;
+            }
+        }
 
-	return amount;
+        return amount;
 
     }
 
     private Unit Clone() {
 
-	Unit clone = new Unit();
-	if (this.MyStats != null) {
-	    clone.MyStats = new HashMap<String, StatData>(this.MyStats);
-	} else {
-	    clone.MyStats = new HashMap<String, StatData>();
-	}
+        Unit clone = new Unit();
+        if (this.MyStats != null) {
+            clone.MyStats = new HashMap<String, StatData>(this.MyStats);
+        } else {
+            clone.MyStats = new HashMap<String, StatData>();
+        }
 
-	return clone;
+        return clone;
 
     }
 
