@@ -34,7 +34,7 @@ public class RareItem extends BaseRare implements ItemRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.ITEMS.RARE_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().ITEMS.get().RARE_WEIGHT.get();
     }
 
     @Override
@@ -48,3 +48,5 @@ public class RareItem extends BaseRare implements ItemRarity {
     }
 
 }
+
+

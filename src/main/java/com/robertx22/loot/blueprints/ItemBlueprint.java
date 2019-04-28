@@ -11,8 +11,8 @@ public class ItemBlueprint {
 
     public ItemBlueprint(int level) {
 
-        if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-            level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+        if (level > ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
+            level = ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
         }
         this.level = level;
 
@@ -71,8 +71,8 @@ public class ItemBlueprint {
             if (lvl < this.minLevel) {
                 lvl = this.minLevel;
             }
-            if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-                lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+            if (lvl > ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
+                lvl = ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
             }
 
             return lvl;
@@ -81,8 +81,8 @@ public class ItemBlueprint {
             if (level < this.minLevel) {
                 level = this.minLevel;
             }
-            if (level > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-                level = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+            if (level > ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
+                level = ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
             }
 
             return level;

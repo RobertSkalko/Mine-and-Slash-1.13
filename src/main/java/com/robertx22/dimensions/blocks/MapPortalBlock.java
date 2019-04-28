@@ -81,7 +81,8 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                     MapWorldData worlddata = data.getWorldData();
 
-                                    if (worlddata.joinedPlayerIDs.size() < ModConfig.Server.MAX_PLAYERS_PER_MAP || worlddata.joinedPlayerIDs
+                                    if (worlddata.joinedPlayerIDs.size() < ModConfig.INSTANCE.Server
+                                            .get().MAX_PLAYERS_PER_MAP.get() || worlddata.joinedPlayerIDs
                                             .contains(entity.getUniqueID().toString())) {
 
                                         if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID()
@@ -100,7 +101,8 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                     }
 
-                                    if (worlddata.joinedPlayerIDs.size() > ModConfig.Server.MAX_PLAYERS_PER_MAP) {
+                                    if (worlddata.joinedPlayerIDs.size() > ModConfig.INSTANCE.Server
+                                            .get().MAX_PLAYERS_PER_MAP.get()) {
                                         entity.sendMessage(SLOC.chat("mapworld_max_capacity"));
 
                                     }
