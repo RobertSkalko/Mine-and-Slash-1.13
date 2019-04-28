@@ -126,15 +126,9 @@ public class MMORPG {
     }
 
     @SubscribeEvent
-    public void start(FMLServerStartingEvent event) {
+    public static void start(FMLServerStartingEvent event) {
 	MapManager.onStartServerRegisterDimensions();
 	TestManager.RunAllTests();
-	CommandRegister.Register(event);
-
-    }
-
-    @SubscribeEvent
-    public static void serverSetup(final FMLServerStartingEvent event) {
 	CommandRegister.Register(event);
 
     }
