@@ -7,8 +7,8 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class ClientContainer {
-    public static final String NAME = "CLIENT";
 
+    public static final String NAME = "CLIENT";
     public static final ForgeConfigSpec spec;
     public static final ClientContainer INSTANCE;
 
