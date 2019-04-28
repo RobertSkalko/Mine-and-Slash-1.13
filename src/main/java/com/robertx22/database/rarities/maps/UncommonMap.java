@@ -24,7 +24,7 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.MAPS.UNCOMMON_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().UNCOMMON_WEIGHT.get();
     }
 
 }

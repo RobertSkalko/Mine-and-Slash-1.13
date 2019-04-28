@@ -24,6 +24,6 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.MAPS.LEGENDARY_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().LEGENDARY_WEIGHT.get();
     }
 }

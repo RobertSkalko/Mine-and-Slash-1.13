@@ -47,17 +47,17 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
     public int Weight() {
 
         if (Rank() == 0) {
-            return ModConfig.RarityWeightConfig.CURRENCY.COMMON_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.COMMON_WEIGHT;
         } else if (Rank() == 1) {
-            return ModConfig.RarityWeightConfig.CURRENCY.UNCOMMON_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.UNCOMMON_WEIGHT;
         } else if (Rank() == 2) {
-            return ModConfig.RarityWeightConfig.CURRENCY.RARE_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.RARE_WEIGHT;
         } else if (Rank() == 3) {
-            return ModConfig.RarityWeightConfig.CURRENCY.EPIC_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.EPIC_WEIGHT;
         } else if (Rank() == 4) {
-            return ModConfig.RarityWeightConfig.CURRENCY.LEGENDARY_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.LEGENDARY_WEIGHT;
         } else if (Rank() == 5) {
-            return ModConfig.RarityWeightConfig.CURRENCY.MYTHICAL_WEIGHT;
+            return ModConfig.INSTANCE.RarityWeightConfig.get().CURRENCY.MYTHICAL_WEIGHT;
         }
         return 0;
 

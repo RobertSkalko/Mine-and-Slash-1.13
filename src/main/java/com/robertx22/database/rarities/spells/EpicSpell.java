@@ -24,6 +24,6 @@ public class EpicSpell extends BaseEpic implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.SPELLS.EPIC_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.get().EPIC_WEIGHT.get();
     }
 }

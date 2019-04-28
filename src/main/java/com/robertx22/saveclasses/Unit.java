@@ -374,17 +374,20 @@ public class Unit {
 
         int unique_items = countUniqueItems(gears);
 
-        if (unique_items > ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS) {
+        if (unique_items > ModConfig.INSTANCE.Server.get().MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
             if (en instanceof EntityPlayer) {
-                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS));
+                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server
+                        .get().MAXIMUM_WORN_UNIQUE_ITEMS));
             }
             return false;
         }
+
         int runed_items = countRunedItems(gears);
 
-        if (runed_items > ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS) {
+        if (runed_items > ModConfig.INSTANCE.Server.get().MAXIMUM_WORN_RUNED_ITEMS.get()) {
             if (en instanceof EntityPlayer) {
-                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS));
+                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server
+                        .get().MAXIMUM_WORN_RUNED_ITEMS));
             }
             return false;
         }

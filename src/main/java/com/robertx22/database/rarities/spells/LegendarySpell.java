@@ -24,6 +24,6 @@ public class LegendarySpell extends BaseLegendary implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.SPELLS.LEGENDARY_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.LEGENDARY_WEIGHT;
     }
 }

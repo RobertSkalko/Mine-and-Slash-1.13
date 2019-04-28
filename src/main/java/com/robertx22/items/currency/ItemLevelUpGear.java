@@ -55,7 +55,7 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS && gear.level < ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+        return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS && gear.level < ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
 
     }
 

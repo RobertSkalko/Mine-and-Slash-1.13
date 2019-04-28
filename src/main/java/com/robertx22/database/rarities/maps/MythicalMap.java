@@ -24,7 +24,7 @@ public class MythicalMap extends BaseMythical implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.MAPS.MYTHICAL_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().MYTHICAL_WEIGHT.get();
     }
 
 }

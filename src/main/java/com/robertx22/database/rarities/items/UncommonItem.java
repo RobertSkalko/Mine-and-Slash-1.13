@@ -34,7 +34,7 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.ITEMS.UNCOMMON_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().ITEMS.get().UNCOMMON_WEIGHT.get();
     }
 
     @Override

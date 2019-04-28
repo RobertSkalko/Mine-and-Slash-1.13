@@ -29,7 +29,7 @@ public class MapLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.DropRates.MAP_DROPRATE;
+        return ModConfig.INSTANCE.DropRates.get().MAP_DROPRATE;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MapLootGen extends BaseLootGen {
 
     @Override
     public ItemStack generateOne() {
-        if (blueprint.level >= ModConfig.Server.MAPS_DROP_AFTER_LEVEL) {
+        if (blueprint.level >= ModConfig.INSTANCE.Server.get().MAPS_DROP_AFTER_LEVEL) {
             return MapGen.Create(blueprint);
         } else {
             return ItemStack.EMPTY;

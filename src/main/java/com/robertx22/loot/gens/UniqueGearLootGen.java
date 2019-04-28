@@ -30,7 +30,7 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.DropRates.UNIQUE_DROPRATE;
+        return ModConfig.INSTANCE.DropRates.get().UNIQUE_DROPRATE.get();
     }
 
     @Override

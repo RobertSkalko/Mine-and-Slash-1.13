@@ -7,6 +7,6 @@ public class MythicalRunedItem extends MythicalItem {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.RUNED_ITEMS.MYTHICAL_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.MYTHICAL_WEIGHT;
     }
 }

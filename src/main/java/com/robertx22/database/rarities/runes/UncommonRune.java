@@ -18,6 +18,6 @@ public class UncommonRune extends UncommonItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.RUNES.UNCOMMON_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().UNCOMMON_WEIGHT.get();
     }
 }

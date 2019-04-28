@@ -30,7 +30,7 @@ public class SpellLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.DropRates.SPELL_DROPRATE;
+        return ModConfig.INSTANCE.DropRates.get().SPELL_DROPRATE;
     }
 
     @Override

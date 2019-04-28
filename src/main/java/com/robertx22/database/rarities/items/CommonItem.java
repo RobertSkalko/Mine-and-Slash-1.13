@@ -34,7 +34,7 @@ public class CommonItem extends BaseCommon implements ItemRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.ITEMS.COMMON_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().ITEMS.get().COMMON_WEIGHT.get();
     }
 
     @Override

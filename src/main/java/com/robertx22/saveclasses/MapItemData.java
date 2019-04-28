@@ -68,7 +68,7 @@ public class MapItemData implements ISalvagable {
 
         int lvl = level + i;
 
-        if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+        if (lvl > ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
             return false;
         }
 

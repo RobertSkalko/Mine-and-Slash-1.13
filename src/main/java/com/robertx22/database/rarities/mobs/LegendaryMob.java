@@ -38,7 +38,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.RarityWeightConfig.MOBS.LEGENDARY_WEIGHT;
+        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.get().LEGENDARY_WEIGHT.get();
     }
 
 }
