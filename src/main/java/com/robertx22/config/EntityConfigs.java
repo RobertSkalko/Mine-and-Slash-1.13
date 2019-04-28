@@ -14,16 +14,19 @@ public class EntityConfigs {
     public EntityConfigs(ForgeConfigSpec.Builder builder) {
 
         NPC_CONFIG = builder.translation("mmorpg.config.npc")
-                .define("NPC_CONFIG", new EntityConfig(builder, 0.3D, 0.3D));
+                .define("NPC_CONFIG", new EntityConfig("npc", builder, 0.3D, 0.3D));
 
         MOB_CONFIG = builder.translation("mmorpg.config.mob")
-                .define("MOB_CONFIG", new EntityConfig(builder, 1D, 1D));
+                .define("MOB_CONFIG", new EntityConfig("mob", builder, 1.05D, 1.05D));
 
         ANIMAL_CONFIG = builder.translation("mmorpg.config.animal")
-                .define("ANIMAL_CONFIG", new EntityConfig(builder, 0.01D, 0.05D));
+                .define("ANIMAL_CONFIG", new EntityConfig("animal", builder, 0.01D, 0.05D));
 
         OTHER_CONFIG = builder.translation("mmorpg.config.other")
-                .define("OTHER_CONFIG", new EntityConfig(builder, 0D, 0D));
+                .define("OTHER_CONFIG", new EntityConfig("other", builder, 0D, 0D));
+
+        builder.pop();
+        builder.build();
 
     }
 
@@ -32,13 +35,14 @@ public class EntityConfigs {
         public DoubleValue LOOT_MULTI;
         public DoubleValue EXP_MULTI;
 
-        public EntityConfig(ForgeConfigSpec.Builder builder, Double loot, Double exp) {
+        public EntityConfig(String type, ForgeConfigSpec.Builder builder, Double loot,
+                            Double exp) {
 
-            LOOT_MULTI = builder.translation("mmorpg.config.runed_gear_droprate")
-                    .defineInRange("LOOT_MULTI", loot, 0, 10000);
+            LOOT_MULTI = builder.translation("mmorpg.config.loot_multi")
+                    .defineInRange(type + "_LOOT_MULTI", loot, 0D, 10000D);
 
-            EXP_MULTI = builder.translation("mmorpg.config.runed_gear_droprate")
-                    .defineInRange("EXP_MULTI", exp, 0, 10000);
+            EXP_MULTI = builder.translation("mmorpg.config.exp_multi")
+                    .defineInRange(type + "_EXP_MULTI", exp, 0D, 10000D);
 
             builder.pop();
             builder.build();
