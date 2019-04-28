@@ -24,6 +24,7 @@ public class ModConfig {
     }
 
     ModConfig(ForgeConfigSpec.Builder builder) {
+
         builder.comment("Mine and Slash Config").push(NAME);
 
         EntityTypeConfig = builder.comment(".")
