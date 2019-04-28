@@ -194,7 +194,9 @@ public class WorldData {
 	    nbt.setBoolean(SET_FOR_DELETE, setForDelete);
 	    nbt.setString(OWNER, owner);
 	    nbt.setBoolean(IS_INIT, isInit);
-	    nbt.setString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
+	    if (this.originalDimension != null) {
+			nbt.setString(ORIGINAL_DIM, originalDimension.getRegistryName().toString());
+		}
 	    nbt.setString(MAP_DIM, mapDimension);
 	    nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 	    nbt.setString(SAVE_NAME, saveName);
@@ -227,7 +229,9 @@ public class WorldData {
 	    setForDelete = nbt.getBoolean(SET_FOR_DELETE);
 	    owner = nbt.getString(OWNER);
 	    isInit = nbt.getBoolean(IS_INIT);
-	    this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
+	    if (nbt.hasKey(ORIGINAL_DIM)) {
+			this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
+		}
 	    this.mapDimension = nbt.getString(MAP_DIM);
 	    this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 	    this.saveName = nbt.getString(SAVE_NAME);

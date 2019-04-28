@@ -1,8 +1,5 @@
 package com.robertx22.mmorpg;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.items.unique_items.UniqueItemRegister;
@@ -15,15 +12,9 @@ import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.CurioClientRegister;
 import com.robertx22.mmorpg.registers.client.RenderRegister;
-import com.robertx22.mmorpg.registers.common.CapabilityRegister;
-import com.robertx22.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mmorpg.registers.common.CurioSlotRegister;
-import com.robertx22.mmorpg.registers.common.GearItemRegisters;
-import com.robertx22.mmorpg.registers.common.OreGenRegister;
-import com.robertx22.mmorpg.registers.common.PacketRegister;
+import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.testing.TestManager;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +37,8 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(Ref.MODID)
 @Mod.EventBusSubscriber
@@ -60,59 +53,60 @@ public class MMORPG {
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
     public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder
-	    .named(new ResourceLocation(Ref.MODID, "main_channel")).clientAcceptedVersions(PROTOCOL_VERSION::equals)
-	    .serverAcceptedVersions(PROTOCOL_VERSION::equals).networkProtocolVersion(() -> PROTOCOL_VERSION)
-	    .simpleChannel();
+            .named(new ResourceLocation(Ref.MODID, "main_channel")).clientAcceptedVersions(PROTOCOL_VERSION::equals)
+            .serverAcceptedVersions(PROTOCOL_VERSION::equals).networkProtocolVersion(() -> PROTOCOL_VERSION)
+            .simpleChannel();
+
 
     public MMORPG() {
-	// Main.instance = this;
+        // Main.instance = this;
 
-	System.out.println("Starting Mine and Slash");
+        System.out.println("Starting Mine and Slash");
 
-	final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	bus.addListener(this::preInit);
-	bus.addListener(this::postInit);
+        bus.addListener(this::preInit);
+        bus.addListener(this::postInit);
 
-	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-	    ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-		    () -> GuiHandlerClient::getClientGuiElement);
+            ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
+                    () -> GuiHandlerClient::getClientGuiElement);
 
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(RenderRegister::regRenders);
-	    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(RenderRegister::regRenders);
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
-	});
+        });
 
     }
 
     public void preInit(FMLCommonSetupEvent event) {
 
-	System.out.println("Starting Setup");
+        System.out.println("Starting Setup");
 
-	ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
-		() -> GuiHandlerClient::getClientGuiElement);
+        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY,
+                () -> GuiHandlerClient::getClientGuiElement);
 
-	ConfigRegister.register();
-	ConfigRegister.load();
-	PacketRegister.register();
-	UniqueItemRegister.register();
-	GearItemRegisters.register();
-	ItemOre.Register();
-	CapabilityRegister.register();
-	OreGenRegister.register();
-	ConfigItemsSerialization.INSTANCE.generateIfEmpty();
-	ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
-	proxy.preInit(event);
+        ConfigRegister.register();
+        ConfigRegister.load();
+        PacketRegister.register();
+        UniqueItemRegister.register();
+        GearItemRegisters.register();
+        ItemOre.Register();
+        CapabilityRegister.register();
+        OreGenRegister.register();
+        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
+        ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
+        proxy.preInit(event);
 
     }
 
     public void postInit(final InterModProcessEvent event) {
 
-	proxy.postInit(event);
-	CurioSlotRegister.reg();
-	ConfigItemsSerialization.INSTANCE.load();
-	ConfigDimensionsSerialization.INSTANCE.load();
+        proxy.postInit(event);
+        CurioSlotRegister.reg();
+        ConfigItemsSerialization.INSTANCE.load();
+        ConfigDimensionsSerialization.INSTANCE.load();
 
     }
 
@@ -122,20 +116,20 @@ public class MMORPG {
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
-	CurioClientRegister.icons();
+        CurioClientRegister.icons();
     }
 
     @SubscribeEvent
     public static void start(FMLServerStartingEvent event) {
-	MapManager.onStartServerRegisterDimensions();
-	TestManager.RunAllTests();
-	CommandRegister.Register(event);
+        MapManager.onStartServerRegisterDimensions();
+        TestManager.RunAllTests();
+        CommandRegister.Register(event);
 
     }
 
     @SubscribeEvent
     public void stop(FMLServerStoppedEvent event) {
-	MapManager.onStopServerUnRegisterDimensions();
+        MapManager.onStopServerUnRegisterDimensions();
     }
 
     @SubscribeEvent
@@ -146,16 +140,16 @@ public class MMORPG {
     @SubscribeEvent
     public static void onWorldLoad(FMLServerStartedEvent event) {
 
-	if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
-	    ServerLifecycleHooks.getCurrentServer().getGameRules().setOrCreateGameRule("naturalRegeneration", "false",
-		    ServerLifecycleHooks.getCurrentServer());
-	}
+        if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
+            ServerLifecycleHooks.getCurrentServer().getGameRules().setOrCreateGameRule("naturalRegeneration", "false",
+                    ServerLifecycleHooks.getCurrentServer());
+        }
 
     }
 
     public static <MSG> void sendToClient(MSG msg, EntityPlayerMP player) {
 
-	Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+        Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
     }
 
 }

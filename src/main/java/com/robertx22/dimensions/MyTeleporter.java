@@ -11,13 +11,14 @@ public class MyTeleporter extends Teleporter {
     private final BlockPos targetPos;
 
     public MyTeleporter(World world, BlockPos pos, EntityPlayer player) {
-	super((WorldServer) world);
-	this.targetPos = pos;
+        super((WorldServer) world);
+        this.targetPos = pos;
     }
+
 
     @Override
     public void placeEntity(World world, Entity entity, float yaw) {
-	entity.moveToBlockPosAndAngles(targetPos, yaw, entity.rotationPitch);
+        entity.moveToBlockPosAndAngles(targetPos, yaw, entity.rotationPitch);
     }
 
 }
