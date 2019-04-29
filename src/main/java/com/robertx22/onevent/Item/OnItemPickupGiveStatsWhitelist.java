@@ -24,7 +24,7 @@ public class OnItemPickupGiveStatsWhitelist {
                 return;
             }
 
-            if (ModConfig.INSTANCE.Server.get().USE_COMPATIBILITY_ITEMS.get() == false) {
+            if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
                 return;
             }
 

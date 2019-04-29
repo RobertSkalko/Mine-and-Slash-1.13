@@ -175,12 +175,12 @@ public class EntityData {
 
             boolean can = false;
 
-            if (ModConfig.INSTANCE.Server.get().ENTITIES_UNDER_SYSTEM.get()
+            if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof EntityLivingBase) {
                 can = true;
             }
 
-            if (ModConfig.INSTANCE.Server.get().ENTITIES_UNDER_SYSTEM.get()
+            if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.Mobs_And_Players)) {
                 if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
                     can = true;
@@ -394,13 +394,13 @@ public class EntityData {
         @Override
         public int GiveExp(EntityPlayer player, int i) {
 
-            i *= ModConfig.INSTANCE.Server.get().EXPERIENCE_MULTIPLIER.get();
+            i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
             setExp(exp + i);
 
             if (exp > this.GetExpRequiredForLevelUp()) {
 
-                if (ModConfig.INSTANCE.Server.get().LEVEL_UPS_COST_TOKEN.get() == false) {
+                if (ModConfig.INSTANCE.Server.LEVEL_UPS_COST_TOKEN.get() == false) {
 
                     if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
                         this.LevelUp(player);
@@ -432,7 +432,7 @@ public class EntityData {
 
         @Override
         public boolean CheckLevelCap() {
-            return getLevel() + 1 <= ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
+            return getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
         }
 
         @Override
@@ -466,8 +466,8 @@ public class EntityData {
 
         @Override
         public void setLevel(int lvl, EntityLivingBase entity) {
-            if (lvl > ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
-                lvl = ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get();
+            if (lvl > ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
+                lvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
             }
 
             level = lvl;
@@ -743,8 +743,9 @@ public class EntityData {
 
         @Override
         public void heal(EntityLivingBase entity, int healthrestored) {
-            entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server
-                    .get().NON_MOD_HEAL_MULTI.get().floatValue(), entity));
+            entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
+                    .get()
+                    .floatValue(), entity));
         }
 
         @Override
@@ -796,8 +797,7 @@ public class EntityData {
         @Override
         public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
 
-            float cost = ModConfig.INSTANCE.Server.get().UNARMED_ENERGY_COST.get()
-                    .floatValue();
+            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
             if (this.hasEnoughEnergy(cost)) {
 

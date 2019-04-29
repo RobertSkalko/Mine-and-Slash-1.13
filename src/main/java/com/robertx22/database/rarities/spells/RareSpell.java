@@ -24,6 +24,6 @@ public class RareSpell extends BaseRare implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.get().RARE_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.SPELLS.RARE_WEIGHT.get();
     }
 }

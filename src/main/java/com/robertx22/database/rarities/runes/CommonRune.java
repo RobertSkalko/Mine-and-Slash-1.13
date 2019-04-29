@@ -18,6 +18,6 @@ public class CommonRune extends CommonItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().COMMON_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNES.COMMON_WEIGHT.get();
     }
 }

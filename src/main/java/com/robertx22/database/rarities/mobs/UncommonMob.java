@@ -38,7 +38,7 @@ public class UncommonMob extends BaseUncommon implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.get().UNCOMMON_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MOBS.UNCOMMON_WEIGHT.get();
     }
 
 }

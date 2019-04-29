@@ -38,6 +38,6 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.get().RARE_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MOBS.RARE_WEIGHT.get();
     }
 }

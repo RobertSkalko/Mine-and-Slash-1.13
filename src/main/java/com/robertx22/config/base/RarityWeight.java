@@ -11,8 +11,8 @@ public class RarityWeight {
     public ForgeConfigSpec.IntValue LEGENDARY_WEIGHT;
     public ForgeConfigSpec.IntValue MYTHICAL_WEIGHT;
 
-    public RarityWeight(ForgeConfigSpec.Builder builder) {
-        builder.push("rarity_weight");
+    public RarityWeight(String prefix, ForgeConfigSpec.Builder builder) {
+        builder.push(prefix + "_rarity_weight");
 
         COMMON_WEIGHT = builder.translation("mmorpg.rarity.common")
                 .defineInRange("COMMON_WEIGHT", 25000, 0, 9999999);

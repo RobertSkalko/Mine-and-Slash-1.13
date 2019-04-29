@@ -24,6 +24,6 @@ public class RareMap extends BaseRare implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().RARE_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MAPS.RARE_WEIGHT.get();
     }
 }

@@ -24,6 +24,6 @@ public class CommonMap extends BaseCommon implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().COMMON_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MAPS.COMMON_WEIGHT.get();
     }
 }

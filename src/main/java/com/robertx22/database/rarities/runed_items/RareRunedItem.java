@@ -7,6 +7,6 @@ public class RareRunedItem extends RareItem {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.get().RARE_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNED_ITEMS.RARE_WEIGHT.get();
     }
 }

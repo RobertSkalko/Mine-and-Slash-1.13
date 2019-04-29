@@ -18,6 +18,6 @@ public class RareRune extends RareItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().RARE_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNES.RARE_WEIGHT.get();
     }
 }

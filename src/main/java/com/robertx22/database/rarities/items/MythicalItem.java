@@ -34,7 +34,7 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().ITEMS.get().MYTHICAL_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.ITEMS.MYTHICAL_WEIGHT.get();
     }
 
     @Override

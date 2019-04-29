@@ -32,13 +32,13 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.get().COMPATIBLE_ITEMS_DROPRATE.get();
+        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get();
     }
 
     @Override
     public ItemStack generateOne() {
 
-        if (ModConfig.INSTANCE.Server.get().USE_COMPATIBILITY_ITEMS.get() == true && mob != null) {
+        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && mob != null) {
 
             ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
                     .getAll()));

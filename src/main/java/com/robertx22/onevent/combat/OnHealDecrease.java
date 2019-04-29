@@ -17,7 +17,7 @@ public class OnHealDecrease {
         if (event.getEntityLiving() instanceof IMob || event.getEntityLiving() instanceof EntityMob || event
                 .getEntityLiving() instanceof EntityPlayer) {
 
-            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.get().NON_MOD_HEAL_MULTI
+            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
                     .get()
                     .floatValue());
 

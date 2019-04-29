@@ -21,7 +21,7 @@ public class MasterLootGen {
             return items;
         }
 
-        if (mob.getLevel() >= ModConfig.INSTANCE.Server.get().CURRENCY_DROP_AFTER_LEVEL.get()) {
+        if (mob.getLevel() >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
             items.addAll(new CurrencyLootGen(mob, player, world, victim).generate());
             items.addAll(new AwakenRuneWordLootGen(mob, player, world, victim).generate());
         }
@@ -30,7 +30,7 @@ public class MasterLootGen {
         items.addAll(new MapLootGen(mob, player, world, victim).generate());
         items.addAll(new RuneLootGen(mob, player, world, victim).generate());
         items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
-        if (ModConfig.INSTANCE.Server.get().USE_COMPATIBILITY_ITEMS.get()) {
+        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             items.addAll(new CompatibleItemLootGen(mob, player, world, victim).generate());
         }
 
@@ -49,7 +49,7 @@ public class MasterLootGen {
             return items;
         }
 
-        if (level >= ModConfig.INSTANCE.Server.get().CURRENCY_DROP_AFTER_LEVEL.get()) {
+        if (level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
             items.addAll(new CurrencyLootGen(theworld, multi, world).generate());
             items.addAll(new AwakenRuneWordLootGen(theworld, multi, world).generate());
         }
@@ -59,7 +59,7 @@ public class MasterLootGen {
         items.addAll(new MapLootGen(theworld, multi, world, level).generate());
         items.addAll(new RuneLootGen(theworld, multi, world, level).generate());
         items.addAll(new RunedGearLootGen(theworld, multi, world, level).generate());
-        if (ModConfig.INSTANCE.Server.get().USE_COMPATIBILITY_ITEMS.get()) {
+        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             items.addAll(new CompatibleItemLootGen(theworld, multi, world, level).generate());
         }
         if (world.dropsUniques(theworld)) {

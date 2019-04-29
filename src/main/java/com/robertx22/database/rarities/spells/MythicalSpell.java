@@ -24,7 +24,7 @@ public class MythicalSpell extends BaseMythical implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.get().MYTHICAL_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.SPELLS.MYTHICAL_WEIGHT.get();
     }
 
 }

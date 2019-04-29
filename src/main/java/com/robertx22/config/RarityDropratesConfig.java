@@ -18,13 +18,22 @@ public class RarityDropratesConfig {
     RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("rarity_weights");
 
-        ITEMS = builder.configure(RarityWeight::new).getLeft();
-        RUNED_ITEMS = builder.configure(RarityWeight::new).getLeft();
-        RUNES = builder.configure(RarityWeight::new).getLeft();
-        MOBS = builder.configure(RarityWeight::new).getLeft();
-        MAPS = builder.configure(RarityWeight::new).getLeft();
-        CURRENCY = builder.configure(RarityWeight::new).getLeft();
-        SPELLS = builder.configure(RarityWeight::new).getLeft();
+        ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("ITEM", builder))
+                .getLeft();
+        RUNED_ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNED_ITEMS", builder))
+                .getLeft();
+        RUNES = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNES", builder))
+                .getLeft();
+        MOBS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder))
+                .getLeft();
+        MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder))
+                .getLeft();
+
+        CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder))
+                .getLeft();
+
+        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder))
+                .getLeft();
 
         builder.pop();
     }

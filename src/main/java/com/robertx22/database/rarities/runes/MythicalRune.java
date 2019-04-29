@@ -18,6 +18,6 @@ public class MythicalRune extends MythicalItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().MYTHICAL_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNES.MYTHICAL_WEIGHT.get();
     }
 }

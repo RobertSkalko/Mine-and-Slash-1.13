@@ -7,7 +7,7 @@ public class LegendaryRunedItem extends LegendaryItem {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.get().
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNED_ITEMS.
                 LEGENDARY_WEIGHT.get();
     }
 }

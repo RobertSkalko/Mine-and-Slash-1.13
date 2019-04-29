@@ -18,6 +18,6 @@ public class EpicRune extends EpicItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().EPIC_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNES.EPIC_WEIGHT.get();
     }
 }

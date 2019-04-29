@@ -18,6 +18,6 @@ public class LegendaryRune extends LegendaryItem implements RuneRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNES.get().LEGENDARY_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNES.LEGENDARY_WEIGHT.get();
     }
 }

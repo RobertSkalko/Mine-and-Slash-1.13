@@ -28,7 +28,7 @@ public class CurrencyLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.get().CURRENCY_DROPRATE.get();
+        return ModConfig.INSTANCE.DropRates.CURRENCY_DROPRATE.get();
 
     }
 

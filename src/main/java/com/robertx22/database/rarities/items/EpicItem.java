@@ -36,7 +36,7 @@ public class EpicItem extends BaseEpic implements ItemRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().ITEMS.get().EPIC_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.ITEMS.EPIC_WEIGHT.get();
     }
 
     @Override

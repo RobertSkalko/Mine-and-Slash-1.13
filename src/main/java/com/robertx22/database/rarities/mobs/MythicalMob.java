@@ -38,7 +38,7 @@ public class MythicalMob extends BaseMythical implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MOBS.get().MYTHICAL_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MOBS.MYTHICAL_WEIGHT.get();
     }
 
 }

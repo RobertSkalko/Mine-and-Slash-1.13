@@ -49,7 +49,7 @@ public class ItemLevelNearestEntity extends Item {
 
                         UnitData data = Load.Unit(en);
 
-                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.get().MAXIMUM_PLAYER_LEVEL.get()) {
+                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
                             data.setLevel(data.getLevel() + 1, en);
 
                             player.getHeldItem(hand).shrink(1);

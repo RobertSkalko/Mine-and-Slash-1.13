@@ -24,6 +24,6 @@ public class CommonSpell extends BaseCommon implements SpellRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().SPELLS.get().COMMON_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.SPELLS.COMMON_WEIGHT.get();
     }
 }

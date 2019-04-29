@@ -11,18 +11,16 @@ public class EntityTypeUtils {
     public static float getLootMulti(Entity en) {
 
         if (isMob(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().MOB_CONFIG.get().LOOT_MULTI.get()
+            return ModConfig.INSTANCE.EntityTypeConfig.MOB_CONFIG.LOOT_MULTI.get()
                     .floatValue();
         } else if (isNPC(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().NPC_CONFIG.get().LOOT_MULTI.get()
+            return ModConfig.INSTANCE.EntityTypeConfig.NPC_CONFIG.LOOT_MULTI.get()
                     .floatValue();
         } else if (isAnimal(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().ANIMAL_CONFIG.get().LOOT_MULTI
-                    .get()
+            return ModConfig.INSTANCE.EntityTypeConfig.ANIMAL_CONFIG.LOOT_MULTI.get()
                     .floatValue();
         } else {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().OTHER_CONFIG.get().LOOT_MULTI
-                    .get()
+            return ModConfig.INSTANCE.EntityTypeConfig.OTHER_CONFIG.LOOT_MULTI.get()
                     .floatValue();
         }
 
@@ -31,17 +29,16 @@ public class EntityTypeUtils {
     public static float getExpMulti(Entity en) {
 
         if (isMob(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().MOB_CONFIG.get().EXP_MULTI.get()
+            return ModConfig.INSTANCE.EntityTypeConfig.MOB_CONFIG.EXP_MULTI.get()
                     .floatValue();
         } else if (isNPC(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().NPC_CONFIG.get().EXP_MULTI.get()
+            return ModConfig.INSTANCE.EntityTypeConfig.NPC_CONFIG.EXP_MULTI.get()
                     .floatValue();
         } else if (isAnimal(en)) {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().ANIMAL_CONFIG.get().EXP_MULTI
-                    .get()
+            return ModConfig.INSTANCE.EntityTypeConfig.ANIMAL_CONFIG.EXP_MULTI.get()
                     .floatValue();
         } else {
-            return ModConfig.INSTANCE.EntityTypeConfig.get().OTHER_CONFIG.get().EXP_MULTI.get()
+            return ModConfig.INSTANCE.EntityTypeConfig.OTHER_CONFIG.EXP_MULTI.get()
                     .floatValue();
         }
 

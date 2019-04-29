@@ -7,7 +7,7 @@ public class CommonRunedItem extends CommonItem {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().RUNED_ITEMS.get().COMMON_WEIGHT
+        return ModConfig.INSTANCE.RarityWeightConfig.RUNED_ITEMS.COMMON_WEIGHT
                 .get();
     }
 }

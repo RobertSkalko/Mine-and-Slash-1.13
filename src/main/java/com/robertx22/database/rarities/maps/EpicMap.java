@@ -24,6 +24,6 @@ public class EpicMap extends BaseEpic implements MapRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.get().MAPS.get().EPIC_WEIGHT.get();
+        return ModConfig.INSTANCE.RarityWeightConfig.MAPS.EPIC_WEIGHT.get();
     }
 }
