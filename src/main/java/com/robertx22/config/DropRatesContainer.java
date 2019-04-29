@@ -2,7 +2,6 @@ package com.robertx22.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import org.apache.commons.lang3.tuple.Pair;
 
 ;
 
@@ -17,18 +16,6 @@ public class DropRatesContainer {
     public ConfigValue<Float> CURRENCY_DROPRATE;
     public ConfigValue<Float> AWAKEN_RUNEWORD_DROPRATE;
     public ConfigValue<Float> COMPATIBLE_ITEMS_DROPRATE;
-
-    public static final String NAME = "DROP_RATES";
-    public static final ForgeConfigSpec spec;
-    public static final DropRatesContainer INSTANCE;
-
-    static {
-        final Pair<DropRatesContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder()
-                .configure(DropRatesContainer::new);
-        spec = specPair.getRight();
-        INSTANCE = specPair.getLeft();
-
-    }
 
     DropRatesContainer(ForgeConfigSpec.Builder builder) {
         builder.push("droprates");

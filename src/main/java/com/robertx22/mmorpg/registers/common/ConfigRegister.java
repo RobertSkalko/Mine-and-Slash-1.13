@@ -3,7 +3,6 @@ package com.robertx22.mmorpg.registers.common;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.robertx22.config.ClientContainer;
-import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -18,7 +17,7 @@ public class ConfigRegister {
         ModLoadingContext ctx = ModLoadingContext.get();
         ctx.registerConfig(Type.CLIENT, ClientContainer.INSTANCE.spec);
 
-        ctx.registerConfig(Type.COMMON, ModConfig.INSTANCE.spec);
+        //   ctx.registerConfig(Type.COMMON, ModConfig.INSTANCE.spec);
 
     }
 
@@ -26,8 +25,8 @@ public class ConfigRegister {
         loadConfig(ClientContainer.spec, FMLPaths.CONFIGDIR.get()
                 .resolve(Ref.NAME_NO_SPACE + "-" + ClientContainer.NAME + ".toml"));
 
-        loadConfig(ModConfig.spec, FMLPaths.CONFIGDIR.get()
-                .resolve(Ref.NAME_NO_SPACE + "-" + ModConfig.NAME + ".toml"));
+        // loadConfig(ModConfig.spec, FMLPaths.CONFIGDIR.get()
+        //        .resolve(Ref.NAME_NO_SPACE + "-" + ModConfig.NAME + ".toml"));
 
     }
 

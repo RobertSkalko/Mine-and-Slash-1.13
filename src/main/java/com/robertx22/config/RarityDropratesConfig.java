@@ -7,37 +7,24 @@ public class RarityDropratesConfig {
 
     public static final String NAME = "RARITY_WEIGHTS";
 
-    public ForgeConfigSpec.ConfigValue<RarityWeight> ITEMS;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> RUNED_ITEMS;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> RUNES;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> MOBS;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> MAPS;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> CURRENCY;
-    public ForgeConfigSpec.ConfigValue<RarityWeight> SPELLS;
+    public RarityWeight ITEMS;
+    public RarityWeight RUNED_ITEMS;
+    public RarityWeight RUNES;
+    public RarityWeight MOBS;
+    public RarityWeight MAPS;
+    public RarityWeight CURRENCY;
+    public RarityWeight SPELLS;
 
     RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("rarity_weights");
 
-        ITEMS = builder.translation("mmorpg.word.item")
-                .define("ITEMS", new RarityWeight(builder, "ITEMS"));
-
-        RUNED_ITEMS = builder.translation("mmorpg.word.runed_Item")
-                .define("RUNED_ITEMS", new RarityWeight(builder, "RUNED_ITEMS"));
-
-        RUNES = builder.translation("mmorpg.word.rune")
-                .define("RUNES", new RarityWeight(builder, "RUNES"));
-
-        MOBS = builder.translation("mmorpg.word.mob")
-                .define("MOBS", new RarityWeight(builder, "MOBS"));
-
-        MAPS = builder.translation("mmorpg.word.map")
-                .define("MAPS", new RarityWeight(builder, "MAPS"));
-
-        CURRENCY = builder.translation("mmorpg.word.currency")
-                .define("CURRENCY", new RarityWeight(builder, "CURRENCY"));
-
-        SPELLS = builder.translation("mmorpg.word.spell")
-                .define("SPELLS", new RarityWeight(builder, "SPELLS"));
+        ITEMS = builder.configure(RarityWeight::new).getLeft();
+        RUNED_ITEMS = builder.configure(RarityWeight::new).getLeft();
+        RUNES = builder.configure(RarityWeight::new).getLeft();
+        MOBS = builder.configure(RarityWeight::new).getLeft();
+        MAPS = builder.configure(RarityWeight::new).getLeft();
+        CURRENCY = builder.configure(RarityWeight::new).getLeft();
+        SPELLS = builder.configure(RarityWeight::new).getLeft();
 
         builder.pop();
     }

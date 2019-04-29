@@ -94,6 +94,7 @@ public class ServerContainer {
         ENTITIES_UNDER_SYSTEM = builder.comment(".")
                 .translation("mmorpg.word.")
                 .define("ENTITIES_UNDER_SYSTEM", EntitySystemChoice.All_Entities);
+
         builder.pop();
     }
 

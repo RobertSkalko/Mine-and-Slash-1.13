@@ -1,16 +1,15 @@
 package com.robertx22.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class EntityConfigs {
 
-    public ConfigValue<EntityConfig> NPC_CONFIG;
-    public ConfigValue<EntityConfig> MOB_CONFIG;
-    public ConfigValue<EntityConfig> ANIMAL_CONFIG;
-    public ConfigValue<EntityConfig> OTHER_CONFIG;
+    public EntityConfig NPC_CONFIG;
+    public EntityConfig MOB_CONFIG;
+    public EntityConfig ANIMAL_CONFIG;
+    public EntityConfig OTHER_CONFIG;
 
     public static final String NAME = "MAIN_CONFIG";
     public static final ForgeConfigSpec spec;
@@ -27,17 +26,17 @@ public class EntityConfigs {
     public EntityConfigs(ForgeConfigSpec.Builder builder) {
         builder.push("entity_configs");
 
-        NPC_CONFIG = builder.translation("mmorpg.config.npc")
-                .define("NPC_CONFIG", new EntityConfig("npc", 0.3D, 0.3D));
+        NPC_CONFIG = builder.configure((ForgeConfigSpec.Builder builder1) -> new EntityConfig(builder1, 0.3D, 0.3D))
+                .getLeft();
 
-        MOB_CONFIG = builder.translation("mmorpg.config.mob")
-                .define("MOB_CONFIG", new EntityConfig("mob", 1.05D, 1.05D));
+        MOB_CONFIG = builder.configure((ForgeConfigSpec.Builder builder1) -> new EntityConfig(builder1, 1D, 1D))
+                .getLeft();
 
-        ANIMAL_CONFIG = builder.translation("mmorpg.config.animal")
-                .define("ANIMAL_CONFIG", new EntityConfig("animal", 0.01D, 0.05D));
+        ANIMAL_CONFIG = builder.configure((ForgeConfigSpec.Builder builder1) -> new EntityConfig(builder1, 0.01D, 0.1D))
+                .getLeft();
 
-        OTHER_CONFIG = builder.translation("mmorpg.config.other")
-                .define("OTHER_CONFIG", new EntityConfig("other", 0D, 0D));
+        OTHER_CONFIG = builder.configure((ForgeConfigSpec.Builder builder1) -> new EntityConfig(builder1, 0D, 0D))
+                .getLeft();
 
         builder.pop();
 
@@ -48,14 +47,14 @@ public class EntityConfigs {
         public DoubleValue LOOT_MULTI;
         public DoubleValue EXP_MULTI;
 
-        public EntityConfig(String type, Double loot, Double exp) {
-            ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        public EntityConfig(ForgeConfigSpec.Builder builder, Double loot, Double exp) {
+            builder.push("entity_type");
 
             LOOT_MULTI = builder.translation("mmorpg.config.loot_multi")
-                    .defineInRange(type + "_LOOT_MULTI", loot, 0D, 10000D);
+                    .defineInRange("_LOOT_MULTI", loot, 0D, 10000D);
 
             EXP_MULTI = builder.translation("mmorpg.config.exp_multi")
-                    .defineInRange(type + "_EXP_MULTI", exp, 0D, 10000D);
+                    .defineInRange("_EXP_MULTI", exp, 0D, 10000D);
 
             builder.pop();
 
