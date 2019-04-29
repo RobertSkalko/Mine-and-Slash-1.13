@@ -2,11 +2,10 @@ package com.robertx22.onevent.world;
 
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -24,37 +23,34 @@ public class AllowMobSpawnsInMap {
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-	if (event.getWorld() instanceof World == false) {
-	    System.out.println("not instance of world");
-	    return;
-	}
+        if (event.getWorld() instanceof World == false) {
+            System.out.println("not instance of world");
+            return;
+        }
 
-	EntityLivingBase en = event.getEntityLiving();
+        EntityLivingBase en = event.getEntityLiving();
 
-	if (en instanceof EntityMob) {
+        if (en instanceof IMob) {
 
-	    EntityMob mob = (EntityMob) en;
+            IWorldData data = Load.World((World) event.getWorld());
 
-	    IWorldData data = Load.World((World) event.getWorld());
+            if (data.isMapWorld()) {
 
-	    if (data.isMapWorld()) {
+                if (en instanceof EntitySlime) {
 
-		if (en instanceof EntitySlime) {
+                    // no
+                } else {
+                    IBlockState iblockstate = en.world.getBlockState((new BlockPos(en)).down());
 
-		    // no
-		} else {
-		    IBlockState iblockstate = mob.world.getBlockState((new BlockPos(mob)).down());
+                    if (!iblockstate.canEntitySpawn(en)) {
+                        return;
+                    }
 
-		    if (!iblockstate.canEntitySpawn(mob)) {
-			return;
-		    }
+                    event.setResult(Result.ALLOW);
 
-		    if (mob.isNotColliding()) {
-			event.setResult(Result.ALLOW);
-		    }
-		}
-	    }
+                }
+            }
 
-	}
+        }
     }
 }

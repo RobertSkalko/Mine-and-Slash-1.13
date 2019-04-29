@@ -650,7 +650,6 @@ public class EntityData {
         public void onLogin(EntityPlayer player) {
 
             try {
-
                 // check if newbie
                 if (unit == null) {
                     unit = new Unit();

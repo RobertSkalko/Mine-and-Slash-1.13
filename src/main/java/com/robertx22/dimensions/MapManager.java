@@ -3,6 +3,7 @@ package com.robertx22.dimensions;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.capability.DimsData;
 import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -19,7 +20,10 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import org.apache.commons.io.FileUtils;
 
+import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MapManager {
@@ -33,12 +37,28 @@ public class MapManager {
 
         ModDimension dim = WorldProviders.All.get(IWPType.GUID()).moddim;
 
-        DimensionType type = DimensionManager.registerDimension(dim.getRegistryName(), dim,
-                new PacketBuffer(Unpooled.wrappedBuffer(new byte[]{})));
+        return DimensionManager.registerDimension(dim.getRegistryName(), dim, new PacketBuffer(Unpooled
+                .wrappedBuffer(new byte[]{})));
 
-        return type;
     }
 
+    public static void unRegister(World world) {
+
+        DimensionManager.unregisterDimension(world.getDimension().getType().getId());
+
+        DimsData.IDimsData dims = MapManager.getDimsData();
+
+        dims.remove(world);
+
+        try {
+            FileUtils.deleteDirectory(Objects.requireNonNull(WorldFileUtils.getWorldDirectory(world)));
+            System.out.println("Deleting a temporary map world to free up disk space!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static DimensionType fromResource(ResourceLocation res) {
         return DimensionType.byName(res);
@@ -63,8 +83,8 @@ public class MapManager {
 
     }
 
-
-    public static DimensionType createNewDim(World currentworld, EntityPlayer player, UnitData unit, MapItemData map,
+    public static DimensionType createNewDim(World currentworld, EntityPlayer player,
+                                             UnitData unit, MapItemData map,
                                              BlockPos pos) {
 
         freeCurrentDim(player, unit);
@@ -123,7 +143,8 @@ public class MapManager {
     }
 
     public static IDimsData getDimsData() {
-        return Load.Dims(ServerLifecycleHooks.getCurrentServer().getWorld(DimensionType.OVERWORLD));
+        return Load.Dims(ServerLifecycleHooks.getCurrentServer()
+                .getWorld(DimensionType.OVERWORLD));
     }
 
 }

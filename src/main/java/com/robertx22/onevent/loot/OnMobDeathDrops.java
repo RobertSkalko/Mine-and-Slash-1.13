@@ -11,7 +11,6 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,67 +24,70 @@ public class OnMobDeathDrops {
     @SubscribeEvent
     public static void mobOnDeathDrop(LivingDeathEvent event) {
 
-	if (event.getEntityLiving().world.isRemote) {
-	    return;
-	}
+        if (event.getEntityLiving().world.isRemote) {
+            return;
+        }
 
-	try {
+        try {
 
-	    EntityLivingBase entity = event.getEntityLiving();
+            EntityLivingBase entity = event.getEntityLiving();
 
-	    if (!(entity instanceof EntityPlayer)) {
-		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-		    if (Load.hasUnit(entity)) {
+            if (!(entity instanceof EntityPlayer)) {
+                if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+                    if (Load.hasUnit(entity)) {
 
-			float loot_multi = EntityTypeUtils.getLootMulti(entity);
-			float exp_multi = EntityTypeUtils.getExpMulti(entity);
+                        float loot_multi = EntityTypeUtils.getLootMulti(entity);
+                        float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
-			UnitData victim = Load.Unit(entity);
-			UnitData killer = Load.Unit(event.getSource().getTrueSource());
+                        UnitData victim = Load.Unit(entity);
+                        UnitData killer = Load.Unit(event.getSource().getTrueSource());
 
-			if (loot_multi > 0) {
+                        if (loot_multi > 0) {
 
-			    IWorldData world = Load.World(entity.world);
+                            IWorldData world = Load.World(entity.world);
 
-			    killer.onMobKill(world);
+                            killer.onMobKill(world);
 
-			    MasterLootGen.genAndDrop(victim, killer, world, entity);
+                            MasterLootGen.genAndDrop(victim, killer, world, entity);
 
-			}
+                        }
 
-			if (exp_multi > 0) {
-			    int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim,
-				    exp_multi);
+                        if (exp_multi > 0) {
+                            int exp = GiveExp((EntityLivingBase) event.getSource()
+                                    .getTrueSource(), killer, victim, exp_multi);
 
-			    DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature,
-				    "+" + DamageEffect.FormatNumber(exp) + " Exp!");
-			    packet.isExp = true;
+                            DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + DamageEffect
+                                    .FormatNumber(exp) + " Exp!");
+                            packet.isExp = true;
 
-			    EntityPlayerMP mp = (EntityPlayerMP) event.getSource().getTrueSource();
+                            EntityPlayerMP mp = (EntityPlayerMP) event.getSource()
+                                    .getTrueSource();
 
-			    MMORPG.sendToClient(packet, mp);
-			}
-		    }
-		}
-	    }
+                            MMORPG.sendToClient(packet, mp);
+                        }
+                    }
+                }
+            }
 
-	} catch (
+        } catch (
 
-	Exception e) {
-	    e.printStackTrace();
-	}
+                Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob, float multi) {
+    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob,
+                               float multi) {
 
-	int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill() * multi);
+        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
+                .ExpOnKill() * multi);
 
-	exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
+        exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 
-	exp = player.GiveExp((EntityPlayer) entity, exp);
+        exp = player.GiveExp((EntityPlayer) entity, exp);
 
-	return exp;
+        return exp;
 
     }
 

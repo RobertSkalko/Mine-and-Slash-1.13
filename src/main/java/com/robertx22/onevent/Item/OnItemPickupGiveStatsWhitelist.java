@@ -20,11 +20,11 @@ public class OnItemPickupGiveStatsWhitelist {
     public static void onItemCraftAddStats(PlayerContainerEvent event) {
 
         try {
-            if (event.getEntityPlayer().world.isRemote) {
+            if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
                 return;
             }
 
-            if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
+            if (event.getEntityPlayer().world.isRemote) {
                 return;
             }
 

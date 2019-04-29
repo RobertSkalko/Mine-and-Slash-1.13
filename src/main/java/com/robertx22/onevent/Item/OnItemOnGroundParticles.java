@@ -29,6 +29,10 @@ public class OnItemOnGroundParticles {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onRenderItemParticles(ClientTickEvent event) {
 
+        if (ClientContainer.INSTANCE.RENDER_ITEM_ENTITY_RARITY_PARTICLES.get() == false) {
+            return;
+        }
+
         if (Minecraft.getInstance().world == null) {
             return;
         }
@@ -36,10 +40,6 @@ public class OnItemOnGroundParticles {
         ticks++;
 
         if (ticks < 17) {
-            return;
-        }
-
-        if (ClientContainer.INSTANCE.RENDER_ITEM_ENTITY_RARITY_PARTICLES.get() == false) {
             return;
         }
 
