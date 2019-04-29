@@ -1,10 +1,8 @@
 package com.robertx22.potion_effects.all;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.potion_effects.SpellCast;
 import com.robertx22.potion_effects.SpellPotionBase;
 import com.robertx22.spells.self.SpellInstantHeal;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -21,19 +19,19 @@ public class CleansePoisonPotion extends SpellPotionBase {
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event) {
-	event.getRegistry().register(INSTANCE.finish());
+        event.getRegistry().register(INSTANCE.finish());
     }
 
     private CleansePoisonPotion() {
-	// boolean isBadEffectIn, int liquidColorIn
-	super(false, 4393423);
-	this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.cleanse_poison"));
+        // boolean isBadEffectIn, int liquidColorIn
+        super(false, 4393423);
+        this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.cleanse_poison"));
 
     }
 
     @Override
     public ResourceLocation getIconTexture() {
-	return new ResourceLocation(Ref.MODID, "textures/status_effects/cleanse_poison.png");
+        return new ResourceLocation(Ref.MODID, "textures/status_effects/cleanse_poison.png");
     }
 
     private static void apply(EntityLivingBase entity) {
@@ -42,38 +40,39 @@ public class CleansePoisonPotion extends SpellPotionBase {
 
     @Override
     public boolean canSelfCast() {
-	return true;
+        return true;
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, EntityLivingBase target, int amplifier, SpellCast cast) {
+    public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
+                         int amplifier) {
 
-	apply(target);
+        apply(target);
 
     }
 
     @Override
     public void performEffectEverySetTime(EntityLivingBase entity, int amplifier) {
 
-	try {
+        try {
 
-	    if (entity.world.isRemote) {
-		SpellInstantHeal.spawnHealParticles(entity, 1);
-	    } else {
+            if (entity.world.isRemote) {
+                SpellInstantHeal.spawnHealParticles(entity, 1);
+            } else {
 
-		if (entity.getActivePotionEffect(MobEffects.POISON) != null) {
-		    entity.removePotionEffect(MobEffects.POISON);
-		}
+                if (entity.getActivePotionEffect(MobEffects.POISON) != null) {
+                    entity.removePotionEffect(MobEffects.POISON);
+                }
 
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public int performEachXTicks() {
-	return 20;
+        return 20;
     }
 }

@@ -1,9 +1,5 @@
 package com.robertx22.potion_effects;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
@@ -15,174 +11,168 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public abstract class SpellPotionBase extends Potion {
 
     public SpellPotionBase finish() {
-	// This method is called from the registry callback, so our mod is the active
-	// mod
-	// The single parameter overload of setRegistryName uses the domain of the
-	// active mod automatically
-	setRegistryName(getName());
-	return this;
+        // This method is called from the registry callback, so our mod is the active
+        // mod
+        // The single parameter overload of setRegistryName uses the domain of the
+        // active mod automatically
+        setRegistryName(getName());
+        return this;
     }
 
-    public abstract void performEffectEverySetTime(EntityLivingBase entityLivingBaseIn, int amplifier);
+    public abstract void performEffectEverySetTime(EntityLivingBase entityLivingBaseIn,
+                                                   int amplifier);
 
     public abstract int performEachXTicks();
 
     public List<EntityLivingBase> getEntitiesAround(Entity en, float radius) {
 
-	return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getBoundingBox().grow(radius));
+        return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getBoundingBox()
+                .grow(radius));
     }
 
     @Override
     public void performEffect(EntityLivingBase en, int amplifier) {
 
-	if (en.ticksExisted % performEachXTicks() == 0)
-	    performEffectEverySetTime(en, amplifier);
+        if (en.ticksExisted % performEachXTicks() == 0)
+            performEffectEverySetTime(en, amplifier);
     }
 
     protected SpellPotionBase(boolean isBadEffectIn, int liquidColorIn) {
-	super(isBadEffectIn, liquidColorIn);
-	if (!isBadEffectIn) {
-	    setBeneficial();
-	}
+        super(isBadEffectIn, liquidColorIn);
+        if (!isBadEffectIn) {
+            setBeneficial();
+        }
     }
 
     public boolean canSelfCast() {
-	return false;
+        return false;
     }
 
     protected boolean isServerSideOnly() {
-	return true;
+        return true;
     }
 
     @Override
     public boolean isReady(int duration, int amplitude) {
-	// Controls whether performEffect is called
-	// System.out.printf("SpellPotionBase - isReady %d %d\n", duration, amplitude);
-	return duration >= 1;
+        // Controls whether performEffect is called
+        // System.out.printf("SpellPotionBase - isReady %d %d\n", duration, amplitude);
+        return duration >= 1;
     }
 
     @Override
     public boolean isInstant() {
-	return true;
+        return true;
     }
 
     // Called when the potion is being applied by an
     // AreaEffect or thrown potion bottle
     @Override
-    public void affectEntity(Entity applier, Entity caster, @Nonnull EntityLivingBase target, int amplifier,
-	    double health) {
+    public void affectEntity(Entity applier, Entity caster,
+                             @Nonnull EntityLivingBase target, int amplifier,
+                             double health) {
 
-	if (target.world.isRemote && isServerSideOnly())
-	    return;
+        if (target.world.isRemote && isServerSideOnly())
+            return;
 
-	SpellCast cast = new SpellCast(this, target);
-	if (cast == null) {
-	    return;
-	}
-
-	doEffect(applier, caster, target, amplifier, cast);
+        doEffect(applier, caster, target, amplifier);
     }
 
     @Override
-    public void applyAttributesModifiersToEntity(EntityLivingBase target, @Nonnull AbstractAttributeMap attributes,
-	    int amplifier) {
+    public void applyAttributesModifiersToEntity(EntityLivingBase target,
+                                                 @Nonnull AbstractAttributeMap attributes,
+                                                 int amplifier) {
 
-	if (!target.world.isRemote || !isServerSideOnly()) {
-	    SpellCast cast = new SpellCast(this, target);
-	    if (cast != null) {
-		onPotionAdd(cast, target, attributes, amplifier);
-	    }
-	}
+        if (!target.world.isRemote || !isServerSideOnly()) {
 
-	// Called on application
-	super.applyAttributesModifiersToEntity(target, attributes, amplifier);
+            onPotionAdd(target, attributes, amplifier);
+
+        }
+
+        // Called on application
+        super.applyAttributesModifiersToEntity(target, attributes, amplifier);
     }
 
     @Override
-    public void removeAttributesModifiersFromEntity(EntityLivingBase target, @Nonnull AbstractAttributeMap attributes,
-	    int amplifier) {
+    public void removeAttributesModifiersFromEntity(EntityLivingBase target,
+                                                    @Nonnull AbstractAttributeMap attributes,
+                                                    int amplifier) {
 
-	if (!target.world.isRemote || !isServerSideOnly()) {
-	    SpellCast cast = new SpellCast(this, target);
-	    if (cast != null) {
-		onPotionRemove(cast, target, attributes, amplifier);
-	    }
-	}
-
-	// Called on removal
-	super.removeAttributesModifiersFromEntity(target, attributes, amplifier);
+        // Called on removal
+        super.removeAttributesModifiersFromEntity(target, attributes, amplifier);
     }
 
-    public void onPotionAdd(SpellCast cast, EntityLivingBase target, AbstractAttributeMap attributes, int amplifier) {
+    public void onPotionAdd(EntityLivingBase target, AbstractAttributeMap attributes,
+                            int amplifier) {
     }
 
-    public void onPotionRemove(SpellCast cast, EntityLivingBase target, AbstractAttributeMap attributes,
-	    int amplifier) {
+    public void onPotionRemove(EntityLivingBase target, AbstractAttributeMap attributes,
+                               int amplifier) {
     }
 
-    public abstract void doEffect(Entity applier, Entity caster, EntityLivingBase target, int amplifier,
-	    SpellCast cast);
+    public abstract void doEffect(Entity applier, Entity caster, EntityLivingBase target,
+                                  int amplifier);
 
     protected boolean shouldShowParticles() {
-	return true;
+        return true;
     }
 
     protected boolean isAmbient() {
-	return false;
+        return false;
     }
 
     public PotionEffect toPotionEffect(int amplifier) {
-	return toPotionEffect(1, amplifier);
+        return toPotionEffect(1, amplifier);
     }
 
     public PotionEffect toPotionEffect(int duration, int amplifier) {
-	return new PotionEffect(this, duration, amplifier, isAmbient(), shouldShowParticles());
-    }
-
-    public SpellCast newSpellCast(Entity caster) {
-	return new SpellCast(this, caster);
+        return new PotionEffect(this, duration, amplifier, isAmbient(), shouldShowParticles());
     }
 
     @Override
     public boolean equals(Object other) {
-	// Only exact class matches work
-	return other != null && other.getClass() == getClass();
+        // Only exact class matches work
+        return other != null && other.getClass() == getClass();
 
-	// For subclasses, instead use
-	// return other != null && other.getClass().isAssignableFrom(getClass());
+        // For subclasses, instead use
+        // return other != null && other.getClass().isAssignableFrom(getClass());
     }
 
     @Override
     public int hashCode() {
-	int hash = 7;
-	hash = 31 * hash + getLiquidColor();
-	hash = 31 * hash + (isBadEffect() ? 1 : 0);
-	return hash;
+        int hash = 7;
+        hash = 31 * hash + getLiquidColor();
+        hash = 31 * hash + (isBadEffect() ? 1 : 0);
+        return hash;
     }
 
     public ResourceLocation getIconTexture() {
-	return null;
+        return null;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderInventoryEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z) {
+    public void renderInventoryEffect(PotionEffect effect,
+                                      net.minecraft.client.gui.Gui gui, int x, int y,
+                                      float z) {
 
-	if (gui != null && getIconTexture() != null) {
-	    Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-	    Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
-	}
+        if (gui != null && getIconTexture() != null) {
+            Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
+            Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderHUDEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z,
-	    float alpha) {
-	if (getIconTexture() != null) {
-	    Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-	    Gui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
-	}
+    public void renderHUDEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui,
+                                int x, int y, float z, float alpha) {
+        if (getIconTexture() != null) {
+            Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
+            Gui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
+        }
     }
 
 }

@@ -19,23 +19,19 @@ import java.util.Random;
 public class ChestGenerator implements IWorldGenerator {
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
-                         IChunkProvider chunkProvider) {
+    public void generate(Random random, int chunkX, int chunkZ, World world,
+                         IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
         IWorldData data = Load.World(world);
-
 
         if (data != null && data.isMapWorld()) {
 
             if (RandomUtils.roll(1F)) {
 
-
                 List<ItemStack> loot = MasterLootGen.gen(world, 2F, data, data.getLevel());
 
                 while (loot.size() < 2) {
-                    for (ItemStack stack : MasterLootGen.gen(world, 1F, data, data.getLevel())) {
-                        loot.add(stack);
-                    }
+                    loot.addAll(MasterLootGen.gen(world, 1F, data, data.getLevel()));
                 }
 
                 int x = chunkX * 16 + random.nextInt(8);
@@ -64,7 +60,6 @@ public class ChestGenerator implements IWorldGenerator {
         return new BlockPos(pos.getX(), y, pos.getZ());
 
     }
-
 
     private void genChest(World world, BlockPos pos, List<ItemStack> items) {
 
