@@ -16,7 +16,7 @@ public class RarityDropratesConfig {
     public ForgeConfigSpec.ConfigValue<RarityWeight> SPELLS;
 
     RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
-        builder.comment("Client Settings").push(NAME);
+        builder.push("rarity_weights");
 
         ITEMS = builder.translation("mmorpg.word.item")
                 .define("ITEMS", new RarityWeight(builder, "ITEMS"));
@@ -40,7 +40,6 @@ public class RarityDropratesConfig {
                 .define("SPELLS", new RarityWeight(builder, "SPELLS"));
 
         builder.pop();
-        builder.build();
     }
 
 }

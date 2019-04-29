@@ -29,7 +29,7 @@ public class ServerContainer {
     public ConfigValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
 
     ServerContainer(Builder builder) {
-        builder.comment("Client Settings").push(NAME);
+        builder.push("general");
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
                 .translation("mmorpg.word.entities")
@@ -94,9 +94,7 @@ public class ServerContainer {
         ENTITIES_UNDER_SYSTEM = builder.comment(".")
                 .translation("mmorpg.word.")
                 .define("ENTITIES_UNDER_SYSTEM", EntitySystemChoice.All_Entities);
-
         builder.pop();
-        builder.build();
     }
 
 }
