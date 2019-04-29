@@ -40,7 +40,7 @@ public class Hearthstone extends Item {
         super(new Properties().group(CreativeTabs.MyModTab));
         this.rarity = rarity;
         this.setup(rarity);
-        RegisterItemUtils.RegisterItemName(this, "hearthstone" + rarity);
+        RegisterItemUtils.RegisterItemName(this, "hearthstone/" + rarity);
     }
 
     int rarity;
@@ -65,11 +65,11 @@ public class Hearthstone extends Item {
     public static final int tickRate = 20;
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn,
-                              int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entity, int itemSlot,
+                              boolean isSelected) {
 
         try {
-            if (!worldIn.isRemote && entityIn instanceof EntityPlayer && entityIn.ticksExisted % tickRate == 0) {
+            if (!worldIn.isRemote && entity instanceof EntityPlayer && entity.ticksExisted % tickRate == 0) {
 
                 NBTTagCompound nbt = stack.getTag();
 
@@ -77,16 +77,18 @@ public class Hearthstone extends Item {
                     nbt = new NBTTagCompound();
                 }
 
+                decreaseCurrentCooldown(stack, tickRate);
+
                 if (nbt.getBoolean("porting")) {
 
                     BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
 
-                    if (pos.distanceSq(entityIn.getPosition()) > 3) {
+                    if (pos.distanceSq(entity.getPosition()) > 3) {
 
                         nbt.setBoolean("porting", false);
                         nbt.setInt("ticks", 0);
 
-                        entityIn.sendMessage(SLOC.chat("teleport_canceled"));
+                        entity.sendMessage(SLOC.chat("teleport_canceled"));
 
                     } else {
 
@@ -100,7 +102,7 @@ public class Hearthstone extends Item {
                                 nbt.setInt("ticks", 0);
                                 nbt.setBoolean("porting", false);
 
-                                teleportBack((EntityPlayer) entityIn);
+                                teleportBack((EntityPlayer) entity);
 
                                 stack.setCount(stack.getCount() - 1);
 
@@ -239,7 +241,7 @@ public class Hearthstone extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
+        Tooltip.add(CLOC.tooltip(""), tooltip);
 
     }
 
