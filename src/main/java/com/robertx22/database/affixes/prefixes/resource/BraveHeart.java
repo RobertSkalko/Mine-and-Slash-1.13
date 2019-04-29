@@ -1,0 +1,28 @@
+package com.robertx22.database.affixes.prefixes.resource;
+
+import com.robertx22.database.affixes.Prefix;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.percent.HealthRegenPercent;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class BraveHeart extends Prefix {
+
+    @Override
+    public String GUID() {
+        return "Brave Heart";
+    }
+
+    @Override
+    public List<StatMod> StatMods() {
+        return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent());
+    }
+
+    @Override
+    public int Weight() {
+        return this.LegendaryWeight;
+    }
+
+}

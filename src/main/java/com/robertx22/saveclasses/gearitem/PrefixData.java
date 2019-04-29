@@ -1,23 +1,22 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.robertx22.database.affixes.BaseAffix;
+import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.loot.create.StatGen;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
-import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
 import info.loenwind.autosave.annotations.Storable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Storable
 public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
@@ -29,57 +28,59 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
     }
 
     public PrefixData(GearItemData gear, String affixname, List<Integer> percents) {
-	super();
-	this.baseAffix = affixname;
-	this.percents = percents;
+        super();
+        this.baseAffix = affixname;
+        this.percents = percents;
 
     }
 
     @Override
     public void RerollFully(GearItemData gear) {
 
-	List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
-	Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
+        List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType()
+                .PossiblePrefixes());
+        Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
 
-	baseAffix = prefix.GUID();
+        baseAffix = prefix.GUID();
 
-	RerollNumbers(gear);
+        RerollNumbers(gear);
 
     }
 
     @Override
     public void RerollNumbers(GearItemData gear) {
 
-	percents = new ArrayList<Integer>();
+        percents = new ArrayList<Integer>();
 
-	for (StatMod mod : BaseAffix().StatMods()) {
-	    percents.add(StatGen.GenPercent(gear.GetRarity()));
+        for (StatMod mod : BaseAffix().StatMods()) {
+            percents.add(StatGen.GenPercent(gear.GetRarity()));
 
-	}
+        }
 
     }
 
     @Override
     public BaseAffix BaseAffix() {
-	return Prefixes.All().get(baseAffix);
+        return Prefixes.All().get(baseAffix);
     }
 
     @Override
     public List<String> GetTooltipString(GearItemData gear) {
 
-	BaseAffix affix = BaseAffix();
+        BaseAffix affix = BaseAffix();
 
-	List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
 
-	list.add(CLOC.word("prefix") + ": " + affix.locName());
+        list.add(CLOC.word("prefix") + ": " + affix.locName());
 
-	for (LevelAndStats part : this.GetAllStats(gear.level)) {
-	    for (StatModData data : part.mods) {
-		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
-	    }
-	}
+        for (LevelAndStats part : this.GetAllStats(gear.level)) {
+            for (StatModData data : part.mods) {
+                list.addAll(data.GetTooltipString(gear.GetRarity()
+                        .StatPercents(), part.level, true));
+            }
+        }
 
-	return list;
+        return list;
 
     }
 

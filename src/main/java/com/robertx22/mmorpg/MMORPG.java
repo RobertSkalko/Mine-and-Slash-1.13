@@ -1,12 +1,9 @@
 package com.robertx22.mmorpg;
 
 import com.robertx22.config.ModConfig;
-import com.robertx22.config.dimensions.ConfigDimensionsSerialization;
-import com.robertx22.config.non_mine_items.ConfigItemsSerialization;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.items.unique_items.UniqueItemRegister;
-import com.robertx22.mmorpg.gui.GuiHandlerClient;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -14,6 +11,7 @@ import com.robertx22.mmorpg.registers.client.CurioClientRegister;
 import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
+import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
@@ -99,18 +97,13 @@ public class MMORPG {
         ItemOre.Register();
         CapabilityRegister.register();
         OreGenRegister.register();
-        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
-        ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
         proxy.preInit(event);
-
     }
 
     public void postInit(final InterModProcessEvent event) {
 
         proxy.postInit(event);
         CurioSlotRegister.reg();
-        ConfigItemsSerialization.INSTANCE.load();
-        ConfigDimensionsSerialization.INSTANCE.load();
 
     }
 
@@ -132,12 +125,12 @@ public class MMORPG {
     }
 
     @SubscribeEvent
-    public void stop(FMLServerStoppedEvent event) {
+    public static void stop(FMLServerStoppedEvent event) {
         MapManager.onStopServerUnRegisterDimensions();
     }
 
     @SubscribeEvent
-    public void stopping(FMLServerStoppingEvent event) {
+    public static void stopping(FMLServerStoppingEvent event) {
 
     }
 

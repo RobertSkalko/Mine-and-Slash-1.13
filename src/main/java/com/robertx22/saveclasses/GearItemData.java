@@ -43,6 +43,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     @Store
     public boolean isUnique = false;
+
     @Store
     public String uniqueGUID;
 
@@ -60,7 +61,6 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     public boolean isRuned() {
         return runes != null;
-
     }
 
     public boolean changesItemStack() {

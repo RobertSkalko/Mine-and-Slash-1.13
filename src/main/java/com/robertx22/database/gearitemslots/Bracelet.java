@@ -1,10 +1,7 @@
 package com.robertx22.database.gearitemslots;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
+import com.robertx22.database.affixes.Prefix;
+import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
@@ -18,52 +15,52 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWate
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.items.gearitems.baubles.ItemBracelet;
-import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
-import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-
 import net.minecraft.item.Item;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Bracelet extends GearItemSlot {
 
     @Override
     public String GUID() {
-	return "Bracelet";
+        return "Bracelet";
     }
 
     @Override
     public List<Suffix> PossibleSuffixes() {
-	return new ArrayList<Suffix>(Suffixes.Jewerly);
+        return new ArrayList<Suffix>(Suffixes.Jewerly);
     }
 
     @Override
     public List<Prefix> PossiblePrefixes() {
-	return new ArrayList<Prefix>(Prefixes.Jewerly);
+        return new ArrayList<Prefix>(Prefixes.Jewerly);
     }
 
     @Override
     public List<StatMod> PrimaryStats() {
-	return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
-		new SpellNatureDamageFlat());
+        return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(), new SpellNatureDamageFlat());
     }
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-	return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
-		new NatureResistFlat());
+        return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(), new NatureResistFlat());
     }
 
     @Override
     public Item DefaultItem() {
-	return ItemBracelet.Items.get(0);
+        return ItemBracelet.Items.get(0);
     }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-	return ItemBracelet.Items;
+        return ItemBracelet.Items;
     }
 
     @Override
     public GearSlotType slotType() {
-	return GearSlotType.Jewerly;
+        return GearSlotType.Jewerly;
     }
 }

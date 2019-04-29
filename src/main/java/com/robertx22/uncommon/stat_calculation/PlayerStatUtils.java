@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.stat_calculation;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.Trait;
@@ -10,7 +11,6 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;

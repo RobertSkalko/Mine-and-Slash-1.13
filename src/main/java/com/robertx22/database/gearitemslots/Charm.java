@@ -1,10 +1,7 @@
 package com.robertx22.database.gearitemslots;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
+import com.robertx22.database.affixes.Prefix;
+import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
@@ -16,56 +13,57 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
-import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
-import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-
 import net.minecraft.item.Item;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Charm extends GearItemSlot {
 
     @Override
     public String GUID() {
-	return "Charm";
+        return "Charm";
     }
 
     @Override
     public List<Suffix> PossibleSuffixes() {
-	return new ArrayList<Suffix>(Suffixes.Weapon);
+        return new ArrayList<Suffix>(Suffixes.Weapon);
     }
 
     @Override
     public List<Prefix> PossiblePrefixes() {
-	return new ArrayList<Prefix>(Prefixes.Weapon);
+        return new ArrayList<Prefix>(Prefixes.Weapon);
     }
 
     @Override
     public List<StatMod> PrimaryStats() {
-	return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new NaturePeneFlat(), new ThunderPeneFlat(),
-		new ArmorPeneFlat());
+        return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new NaturePeneFlat(), new ThunderPeneFlat(), new ArmorPeneFlat());
     }
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-	return Arrays.asList(new ArmorFlat());
+        return Arrays.asList(new ArmorFlat());
     }
 
     @Override
     public Item DefaultItem() {
-	return ItemCharm.Items.get(0);
+        return ItemCharm.Items.get(0);
     }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-	return ItemCharm.Items;
+        return ItemCharm.Items;
     }
 
     @Override
     public int Weight() {
-	return 1000;
+        return 1000;
     }
 
     @Override
     public GearSlotType slotType() {
-	return GearSlotType.Jewerly;
+        return GearSlotType.Jewerly;
     }
 }

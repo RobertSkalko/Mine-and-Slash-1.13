@@ -1,16 +1,15 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.database.affixes.BaseAffix;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.robertx22.database.stats.StatMod;
-import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
-import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
-
-import info.loenwind.autosave.annotations.Storable;
-import info.loenwind.autosave.annotations.Store;
 
 @Storable
 public abstract class AffixData implements IStatsContainer, IRerollable {
@@ -26,18 +25,18 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
-	BaseAffix base = BaseAffix();
+        BaseAffix base = BaseAffix();
 
-	List<StatModData> list = new ArrayList<StatModData>();
+        List<StatModData> list = new ArrayList<StatModData>();
 
-	for (int i = 0; i < base.StatMods().size(); i++) {
+        for (int i = 0; i < base.StatMods().size(); i++) {
 
-	    StatMod mod = base.StatMods().get(i);
+            StatMod mod = base.StatMods().get(i);
 
-	    list.add(StatModData.Load(mod, percents.get(i)));
-	}
+            list.add(StatModData.Load(mod, percents.get(i)));
+        }
 
-	return Arrays.asList(new LevelAndStats(list, level));
+        return Arrays.asList(new LevelAndStats(list, level));
 
     }
 
