@@ -4,6 +4,7 @@ import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,7 +40,7 @@ public class Hearthstone extends Item {
         super(new Properties().group(CreativeTabs.MyModTab));
         this.rarity = rarity;
         this.setup(rarity);
-        RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
+        RegisterItemUtils.RegisterItemName(this, "hearthstone" + rarity);
     }
 
     int rarity;
@@ -136,6 +137,20 @@ public class Hearthstone extends Item {
                     stack.setTag(new NBTTagCompound());
                 }
 
+                if (this.getCurrentCooldown(stack) > 0) {
+                    player.sendMessage(SLOC.chat("cooldown_warning"));
+                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
+                }
+
+                if (Load.Unit(player).getLevel() < this.levelReq) {
+                    player.sendMessage(SLOC.chat("not_high_enough_level"));
+                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
+
+                }
+
+                this.decreaseUses(stack);
+                this.resetCooldown(stack);
+
                 stack.getTag().setBoolean("porting", true);
                 stack.getTag().setLong("pos", player.getPosition().toLong());
 
@@ -149,6 +164,74 @@ public class Hearthstone extends Item {
         }
 
         return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+    }
+
+    private int getRemainingUses(ItemStack stack) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        if (nbt.hasKey("uses")) {
+            return nbt.getInt("uses");
+        }
+        return this.totalUses;
+
+    }
+
+    private int getCurrentCooldown(ItemStack stack) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        if (nbt.hasKey("cooldown")) {
+            return nbt.getInt("cooldown");
+        }
+        return 0;
+
+    }
+
+    private void resetCooldown(ItemStack stack) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        nbt.setInt("cooldown", this.cooldownTimeMinute * 20);
+
+    }
+
+    private void decreaseCurrentCooldown(ItemStack stack, int ticks) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        int left = this.cooldownTimeMinute;
+
+        if (nbt.hasKey("cooldown")) {
+            left = nbt.getInt("cooldown");
+        }
+        left -= ticks;
+
+        nbt.setInt("uses", left);
+
+        stack.setTag(nbt);
+
+    }
+
+    private void decreaseUses(ItemStack stack) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        int left = this.totalUses;
+
+        if (nbt.hasKey("uses")) {
+            left = nbt.getInt("uses");
+        }
+        left--;
+
+        nbt.setInt("uses", left);
+
+        stack.setTag(nbt);
+
+        if (left < 1) {
+            stack.shrink(1);
+        }
+
     }
 
     @Override
