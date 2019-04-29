@@ -26,7 +26,6 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     protected ItemStack[] itemStacks;
 
-    protected static int timeNeededToCook = 5;
     public int ticks = 0;
     public short cookTime = 0;
     public int FuelRemaining = 0;

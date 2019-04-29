@@ -6,14 +6,15 @@ import net.minecraft.inventory.Container;
 public abstract class TileGui extends GuiContainer {
 
     public TileGui(Container inventorySlotsIn) {
-	super(inventorySlotsIn);
+        super(inventorySlotsIn);
 
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
-	this.drawDefaultBackground();
-	super.render(mouseX, mouseY, partialTicks);
-	this.renderHoveredToolTip(mouseX, mouseY);
+        this.drawDefaultBackground();
+        super.render(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+
     }
 }

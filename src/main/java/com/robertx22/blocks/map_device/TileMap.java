@@ -91,8 +91,6 @@ public class TileMap extends BaseTile {
 
                     world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
-                    // UnitData unit = Load.Unit(player);
-
                     DimensionType type = map.createDimension(world, p, player);
 
                     // start map
