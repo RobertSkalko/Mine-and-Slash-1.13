@@ -13,7 +13,7 @@ import com.robertx22.database.stats.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.network.EntityUnitPackage;
+import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -363,7 +363,7 @@ public class Unit {
 
             Chunk chunk = entity.world.getChunk(entity.getPosition());
 
-            MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPackage(entity, data));
+            MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPacket(entity, data));
 
         }
 

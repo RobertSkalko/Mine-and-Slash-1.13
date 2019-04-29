@@ -10,7 +10,7 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.network.PlayerUnitPackage;
+import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
@@ -490,7 +490,7 @@ public class EntityData {
         @Override
         public void syncToClient(EntityPlayer player) {
             if (unit != null) {
-                PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
+                PlayerUnitPacket packet = new PlayerUnitPacket(this.getNBT());
 
                 EntityPlayerMP mp = (EntityPlayerMP) player;
 

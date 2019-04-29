@@ -1,7 +1,7 @@
 package com.robertx22.onevent;
 
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.network.EntityUnitPackage;
+import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +22,7 @@ public class OnTrackEntity {
             if (entity.isEntityEqual(event.getEntityPlayer()) == false) {
                 if (Load.hasUnit(entity)) {
                     EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
-                    MMORPG.sendToClient(new EntityUnitPackage(entity), player);
+                    MMORPG.sendToClient(new EntityUnitPacket(entity), player);
                 }
 
             }

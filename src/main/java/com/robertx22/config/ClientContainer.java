@@ -20,7 +20,6 @@ public class ClientContainer {
 
     }
 
-    public BooleanValue RENDER_ITEM_ENTITY_RARITY_PARTICLES;
     public BooleanValue RENDER_CHAT_COMBAT_LOG;
     public BooleanValue SHOW_AFFIXED_NAME;
     public BooleanValue RENDER_FLOATING_DAMAGE;
@@ -31,10 +30,6 @@ public class ClientContainer {
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
-
-        RENDER_ITEM_ENTITY_RARITY_PARTICLES = builder.comment(".")
-                .translation("mmorpg.config.item_on_ground_particles")
-                .define("RENDER_ITEM_ENTITY_RARITY_PARTICLES", false);
 
         SHOW_AFFIXED_NAME = builder
 

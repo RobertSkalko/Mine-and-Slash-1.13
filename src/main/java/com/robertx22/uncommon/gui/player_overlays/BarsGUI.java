@@ -50,15 +50,15 @@ public class BarsGUI extends Gui {
                 ticks = 0;
 
                 Unit newUnit = null;
-                if (newData != null) {
-                    newUnit = newData.getUnit();
-                }
 
-                if (newUnit != null) {
-                    unit = newUnit;
-                }
                 if (newData != null) {
                     data = newData;
+                    if (newData != null) {
+                        newUnit = newData.getUnit();
+                    }
+                    if (newUnit != null) {
+                        unit = newUnit;
+                    }
                 }
             }
 

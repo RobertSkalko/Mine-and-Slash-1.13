@@ -5,7 +5,7 @@ import com.robertx22.database.stats.stat_types.resources.HealthRegen;
 import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.items.misc.ItemMapBackPortal;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.network.WorldPackage;
+import com.robertx22.network.IWorldPacket;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -75,7 +75,7 @@ public class OnTickLogic {
                     data.worldUpdateTicks = 0;
                     IWorldData mapdata = Load.World(player.world);
                     if (mapdata.isMapWorld()) {
-                        MMORPG.sendToClient(new WorldPackage(mapdata), player);
+                        MMORPG.sendToClient(new IWorldPacket(mapdata), player);
                     }
 
                 }
