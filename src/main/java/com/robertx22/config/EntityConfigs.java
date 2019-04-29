@@ -1,7 +1,7 @@
 package com.robertx22.config;
 
+import com.robertx22.config.base.EntityConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 
 public class EntityConfigs {
 
@@ -11,7 +11,7 @@ public class EntityConfigs {
     public EntityConfig OTHER_CONFIG;
 
     public EntityConfigs(ForgeConfigSpec.Builder builder) {
-        builder.push("entity_configs");
+        builder.push("ENTITIES");
 
         NPC_CONFIG = builder.configure((ForgeConfigSpec.Builder builder1) -> new EntityConfig("NPC", builder1, 0.3D, 0.3D))
                 .getLeft();
@@ -29,24 +29,4 @@ public class EntityConfigs {
 
     }
 
-    public static class EntityConfig {
-
-        public DoubleValue LOOT_MULTI;
-        public DoubleValue EXP_MULTI;
-
-        public EntityConfig(String prefix, ForgeConfigSpec.Builder builder, Double loot,
-                            Double exp) {
-            builder.push(prefix + "_entity_type");
-
-            LOOT_MULTI = builder.translation("mmorpg.config.loot_multi")
-                    .defineInRange("_LOOT_MULTI", loot, 0D, 10000D);
-
-            EXP_MULTI = builder.translation("mmorpg.config.exp_multi")
-                    .defineInRange("_EXP_MULTI", exp, 0D, 10000D);
-
-            builder.pop();
-
-        }
-
-    }
 }

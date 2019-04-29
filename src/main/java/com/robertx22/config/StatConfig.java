@@ -29,7 +29,7 @@ public class StatConfig {
     public ConfigValue<Float> critical_damage_per_level;
 
     StatConfig(ForgeConfigSpec.Builder builder) {
-        builder.push("base_stats");
+        builder.push("PLAYER_BASE_STATS");
 
         physical_damage = builder.translation("mmorpg.stat.physical_damage")
                 .define("physical_damage", 3F);

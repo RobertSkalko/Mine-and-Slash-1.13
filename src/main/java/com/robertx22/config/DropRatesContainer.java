@@ -18,7 +18,7 @@ public class DropRatesContainer {
     public ConfigValue<Float> COMPATIBLE_ITEMS_DROPRATE;
 
     DropRatesContainer(ForgeConfigSpec.Builder builder) {
-        builder.push("droprates");
+        builder.push("DROPRATES");
 
         RUNED_GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.runed_gear_droprate")

@@ -298,10 +298,13 @@ public class EntityData {
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
 
-            NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
-            if (object_nbt != null) {
-                unit = new Unit();
-                Reader.read(object_nbt, unit);
+            if (this.nbt.hasKey(UNIT_OBJECT)) {
+                INBTBase basenbt = this.nbt.getTag(UNIT_OBJECT);
+                if (basenbt != null) {
+                    NBTTagCompound object_nbt = (NBTTagCompound) basenbt;
+                    unit = new Unit(); // maybe unneded?
+                    Reader.read(object_nbt, unit);
+                }
             }
 
             NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);

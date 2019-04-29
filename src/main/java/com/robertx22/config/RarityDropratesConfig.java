@@ -5,8 +5,6 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class RarityDropratesConfig {
 
-    public static final String NAME = "RARITY_WEIGHTS";
-
     public RarityWeight ITEMS;
     public RarityWeight RUNED_ITEMS;
     public RarityWeight RUNES;
@@ -16,7 +14,7 @@ public class RarityDropratesConfig {
     public RarityWeight SPELLS;
 
     RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
-        builder.push("rarity_weights");
+        builder.push("RARITY_WEIGHT_CONTAINERS");
 
         ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("ITEM", builder))
                 .getLeft();
