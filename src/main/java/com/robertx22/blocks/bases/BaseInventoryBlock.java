@@ -17,43 +17,44 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class BaseInventoryBlock extends BlockContainer {
     protected BaseInventoryBlock(Properties prop) {
-	super(prop);
+        super(prop);
 
     }
 
     @Override
-    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
-	return this;
+    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos,
+                                        int fortune) {
+        return this;
     }
 
     @Override
     public void onPlayerDestroy(IWorld worldIn, BlockPos pos, IBlockState state) {
-	TileEntity tileEntity = worldIn.getTileEntity(pos);
-	if (tileEntity instanceof IInventory) {
-	    InventoryHelper.dropInventoryItems((World) worldIn, pos, (IInventory) tileEntity);
-	}
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof IInventory) {
+            InventoryHelper.dropInventoryItems((World) worldIn, pos, (IInventory) tileEntity);
+        }
     }
 
     @Override
     public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
-	TileEntity tileEntity = worldIn.getTileEntity(pos);
-	if (tileEntity instanceof IInventory) {
-	    InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
-	}
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof IInventory) {
+            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-	return BlockRenderLayer.SOLID;
+        return BlockRenderLayer.SOLID;
     }
 
     @Override
     public boolean isFullCube(IBlockState iBlockState) {
-	return false;
+        return false;
     }
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState iBlockState) {
-	return EnumBlockRenderType.MODEL;
+        return EnumBlockRenderType.MODEL;
     }
 }

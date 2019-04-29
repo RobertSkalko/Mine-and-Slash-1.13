@@ -1,17 +1,10 @@
 package com.robertx22.items.misc;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +16,11 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 @EventBusSubscriber
 public class ItemCapacitor extends Item {
 
@@ -30,11 +28,11 @@ public class ItemCapacitor extends Item {
 
     public ItemCapacitor(int rarity) {
 
-	super(new Properties().group(CreativeTabs.CurrencyTab));
+        super(new Properties().group(CreativeTabs.CurrencyTab));
 
-	this.rarity = rarity;
+        this.rarity = rarity;
 
-	RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
+        RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
     }
 
     int rarity;
@@ -43,25 +41,25 @@ public class ItemCapacitor extends Item {
 
     public Float GetFuelMultiplier() {
 
-	return RepairValues.get(rarity);
+        return RepairValues.get(rarity);
 
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
-	    ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-	Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
+        Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
 
-	Tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x", tooltip);
+        Tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x", tooltip);
 
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemCapacitor(x.Rank())));
-	Items.values().forEach((x) -> event.getRegistry().register(x));
+        Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemCapacitor(x.Rank())));
+        Items.values().forEach((x) -> event.getRegistry().register(x));
     }
 
 }
