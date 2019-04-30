@@ -9,8 +9,8 @@ import net.minecraft.util.text.TextFormatting;
 public class TooltipUtils {
 
     public static ITextComponent level(int lvl) {
-        return new TextComponentString(TextFormatting.YELLOW + "").appendSibling(CLOC.word("level"))
-                .appendText((": " + lvl));
+        return new TextComponentString(TextFormatting.YELLOW + "").appendSibling(CLOC.word("level")
+                .appendText((": " + lvl)));
     }
 
     public static ITextComponent rarity(Rarity rarity) {

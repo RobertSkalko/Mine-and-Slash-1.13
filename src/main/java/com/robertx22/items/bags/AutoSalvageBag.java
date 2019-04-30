@@ -29,14 +29,13 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import top.theillusivec4.curios.api.CuriosAPI;
 
@@ -189,7 +188,8 @@ public class AutoSalvageBag extends Item {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(CLOC.tooltip("bonus_salvage_chance") + ": " + this.getBonusSalvageChance() + "%", tooltip);
+        Tooltip.add(CLOC.tooltip("bonus_salvage_chance")
+                .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
 
         Tooltip.add("", tooltip);
 
@@ -209,21 +209,22 @@ public class AutoSalvageBag extends Item {
 
     }
 
-    public String getSalvagedRarities(List<Rarity> rarities, int rarity) {
+    public ITextComponent getSalvagedRarities(List<Rarity> rarities, int rarity) {
 
-        String text = "";
+        ITextComponent text = new TextComponentString("");
 
         for (ItemRarity rar : Rarities.Items) {
             if (rar.Rank() <= rarity) {
-                if (text.length() > 0) {
-                    text += TextFormatting.GRAY + ", ";
+                if (text.getSiblings().size() > 1) {
+                    text.appendText(", ").setStyle(Styles.GRAY);
                 }
-                text += rar.Color() + rar.locName();
+                text.appendSibling(rar.locName())
+                        .setStyle(new Style().setColor(rar.formatText()));
             }
         }
 
-        if (text.length() == 0) {
-            text += CLOC.word("none");
+        if (text.getSiblings().size() < 1) {
+            text.appendSibling(CLOC.word("none"));
         }
 
         return text;

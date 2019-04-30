@@ -10,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.ArrayList;
@@ -55,6 +54,9 @@ public interface IUnique extends IWeighted, ITiered, IGUID {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+
+        UniqueItemRegister.register();
+
         for (Item item : ITEMS.values()) {
 
             IUnique uniq = (IUnique) item;

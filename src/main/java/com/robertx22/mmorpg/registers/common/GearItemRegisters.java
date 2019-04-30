@@ -103,6 +103,9 @@ public class GearItemRegisters {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+
+        register();
+
         for (Item item : items) {
             event.getRegistry().register(item);
         }

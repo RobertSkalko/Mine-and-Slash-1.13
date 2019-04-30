@@ -18,7 +18,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import javax.annotation.Nullable;
@@ -49,7 +48,7 @@ public class ItemOre extends Item implements IWeighted {
 
     public ItemOre(String name, int rarity) {
 
-        super(new Properties().group(CreativeTabs.CurrencyTab));
+        super(new Properties().group(CreativeTabs.MyModTab));
 
         RegisterItemUtils.RegisterItemName(this, name);
 
@@ -80,6 +79,9 @@ public class ItemOre extends Item implements IWeighted {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+
+        Register();
+
         ItemOres.values().forEach((x) -> event.getRegistry().register(x));
         ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
     }

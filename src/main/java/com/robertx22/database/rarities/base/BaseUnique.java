@@ -1,7 +1,6 @@
 package com.robertx22.database.rarities.base;
 
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
-
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseUnique implements Rarity {
@@ -9,23 +8,28 @@ public abstract class BaseUnique implements Rarity {
     @Override
     public String GUID() {
 
-	return "Unique";
+        return "Unique";
     }
 
     @Override
     public int Rank() {
 
-	return -1;
+        return -1;
+    }
+
+    @Override
+    public TextFormatting formatText() {
+        return TextFormatting.YELLOW;
     }
 
     @Override
     public String Color() {
-	return TextFormatting.YELLOW.toString();
+        return TextFormatting.YELLOW.toString();
     }
 
     @Override
     public int Weight() {
-	return 0;
+        return 0;
     }
 
 }

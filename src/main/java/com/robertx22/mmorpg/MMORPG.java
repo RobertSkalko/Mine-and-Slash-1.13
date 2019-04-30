@@ -2,8 +2,6 @@ package com.robertx22.mmorpg;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.items.ores.ItemOre;
-import com.robertx22.items.unique_items.UniqueItemRegister;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -95,9 +93,6 @@ public class MMORPG {
         ConfigRegister.register();
         ConfigRegister.load();
         PacketRegister.register();
-        UniqueItemRegister.register();
-        GearItemRegisters.register();
-        ItemOre.Register();
         CapabilityRegister.register();
         OreGenRegister.register();
         proxy.preInit(event);

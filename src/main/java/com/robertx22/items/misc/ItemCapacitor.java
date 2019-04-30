@@ -15,7 +15,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import javax.annotation.Nullable;
@@ -30,7 +29,7 @@ public class ItemCapacitor extends Item {
 
     public ItemCapacitor(int rarity) {
 
-        super(new Properties().group(CreativeTabs.CurrencyTab));
+        super(new Properties().group(CreativeTabs.MyModTab));
 
         this.rarity = rarity;
 
@@ -54,7 +53,8 @@ public class ItemCapacitor extends Item {
 
         Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
 
-        Tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x", tooltip);
+        Tooltip.add(CLOC.tooltip("capacitor2")
+                .appendText(": " + this.GetFuelMultiplier() + "x"), tooltip);
 
     }
 

@@ -248,12 +248,20 @@ public class Hearthstone extends Item {
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(TooltipUtils.level(this.levelReq));
-        Tooltip.add(CLOC.word("cooldown: " + this.cooldownTimeMinute + CLOC.word("minutes") + ". " + CLOC
-                .word("left") + ": " + this.getCurrentCooldown(stack)), tooltip);
-        Tooltip.add(CLOC.word("uses") + ": " + this.totalUses + CLOC.word("left") + ": " + this
-                .getRemainingUses(stack), tooltip);
-        Tooltip.add(CLOC.word("activation_time: ")
-                .appendText(this.activationTime + ""), tooltip);
+        Tooltip.add(CLOC.word("cooldown")
+                .appendText(" " + this.cooldownTimeMinute)
+                .appendSibling(CLOC.word("minutes")
+                        .appendText(". ")
+                        .appendSibling(CLOC.word("left"))
+                        .appendText(": " + this.getCurrentCooldown(stack))), tooltip);
+
+        Tooltip.add(CLOC.word("uses")
+                .appendText(": " + this.totalUses)
+                .appendSibling(CLOC.word("left"))
+                .appendText(": " + this.getRemainingUses(stack)), tooltip);
+
+        Tooltip.add(CLOC.word("activation_time")
+                .appendText(": " + this.activationTime + ""), tooltip);
 
     }
 
