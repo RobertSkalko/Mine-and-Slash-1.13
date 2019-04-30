@@ -4,7 +4,6 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -17,9 +16,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnMobDeathDrops {
 
     @SubscribeEvent

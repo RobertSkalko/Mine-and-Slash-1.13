@@ -168,7 +168,7 @@ public class EntityData {
         boolean isWeapon(ItemStack stack);
     }
 
-    @EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber
     public static class EventHandler {
 
         @SubscribeEvent

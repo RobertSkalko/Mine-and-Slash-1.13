@@ -3,7 +3,6 @@ package com.robertx22.onevent.Item;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.non_mine_items.ConfigItem;
 import com.robertx22.config.non_mine_items.ConfigItems;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -12,9 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnItemPickupGiveStatsWhitelist {
 
     @SubscribeEvent

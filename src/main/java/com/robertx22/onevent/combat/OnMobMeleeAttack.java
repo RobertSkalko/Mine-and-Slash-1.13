@@ -1,6 +1,5 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -12,9 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnMobMeleeAttack {
     /**
      * On attack, cancel and spawn the real attack with my damage source, mobs don't

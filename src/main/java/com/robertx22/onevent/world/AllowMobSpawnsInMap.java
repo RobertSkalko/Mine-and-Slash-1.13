@@ -1,6 +1,5 @@
 package com.robertx22.onevent.world;
 
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.state.IBlockState;
@@ -12,9 +11,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class AllowMobSpawnsInMap {
 
     /**

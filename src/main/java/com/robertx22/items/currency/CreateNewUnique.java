@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect {
 
     private static final String name = "create_new_unique";

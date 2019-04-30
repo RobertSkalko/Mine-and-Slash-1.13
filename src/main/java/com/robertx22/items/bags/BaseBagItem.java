@@ -26,7 +26,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public abstract class BaseBagItem extends Item {
 
     public abstract int GuiNumber();

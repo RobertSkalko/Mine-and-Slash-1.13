@@ -43,7 +43,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class AutoSalvageBag extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();

@@ -23,12 +23,12 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class WorldData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "worlddata");
@@ -103,7 +103,7 @@ public class WorldData {
 
     }
 
-    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
     public static class EventHandler {
         @SubscribeEvent
         public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {

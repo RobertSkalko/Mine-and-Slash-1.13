@@ -1,15 +1,14 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.config.ModConfig;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnHurt {
 
     /**

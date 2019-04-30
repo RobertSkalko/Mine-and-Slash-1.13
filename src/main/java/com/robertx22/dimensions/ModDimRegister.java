@@ -6,7 +6,7 @@ import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ModDimRegister {
 
     @SubscribeEvent

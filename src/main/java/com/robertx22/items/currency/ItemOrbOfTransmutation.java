@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {

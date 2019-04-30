@@ -18,10 +18,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ItemLevelNearestEntity extends Item {
 
     @ObjectHolder(Ref.MODID + ":level_nearest_entity")
@@ -49,7 +49,8 @@ public class ItemLevelNearestEntity extends Item {
 
                         UnitData data = Load.Unit(en);
 
-                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
+                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
+                                .get()) {
                             data.setLevel(data.getLevel() + 1, en);
 
                             player.getHeldItem(hand).shrink(1);

@@ -27,7 +27,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.Arrays;
 import java.util.List;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class AttackInfusionItem extends BaseInfusionItem {
 
     public AttackInfusionItem() {

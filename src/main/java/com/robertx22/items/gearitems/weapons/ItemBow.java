@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.HashMap;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ItemBow extends BaseBow implements IWeapon {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

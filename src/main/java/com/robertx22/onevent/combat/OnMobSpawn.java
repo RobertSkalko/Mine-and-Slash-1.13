@@ -1,6 +1,5 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -9,9 +8,9 @@ import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnMobSpawn {
 
     @net.minecraftforge.eventbus.api.SubscribeEvent

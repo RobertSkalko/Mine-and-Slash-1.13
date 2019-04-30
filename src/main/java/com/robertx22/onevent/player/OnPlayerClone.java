@@ -1,13 +1,12 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnPlayerClone {
 
     @SubscribeEvent

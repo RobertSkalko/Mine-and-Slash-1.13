@@ -2,7 +2,6 @@ package com.robertx22.items.level_incentives;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
@@ -25,14 +24,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class Hearthstone extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();

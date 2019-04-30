@@ -19,9 +19,9 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class DimsData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "map_dims_data");
@@ -111,7 +111,7 @@ public class DimsData {
         }
     }
 
-    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber
     public static class EventHandler {
         @SubscribeEvent
         public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {

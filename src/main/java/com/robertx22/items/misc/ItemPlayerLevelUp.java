@@ -28,7 +28,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ItemPlayerLevelUp extends BaseItem {
 
     @ObjectHolder(Ref.MODID + ":player_levelup")

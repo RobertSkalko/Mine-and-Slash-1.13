@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public interface IUnique extends IWeighted, ITiered, IGUID {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
