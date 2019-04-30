@@ -2,6 +2,7 @@ package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import net.minecraft.util.text.ITextComponent;
 
 public interface Rarity extends IWeighted {
 
@@ -13,8 +14,8 @@ public interface Rarity extends IWeighted {
 
     int Weight();
 
-    public default String locName() {
-	return CLOC.rarity(GUID().toLowerCase());
+    public default ITextComponent locName() {
+        return CLOC.rarity(GUID().toLowerCase());
     }
 
 }

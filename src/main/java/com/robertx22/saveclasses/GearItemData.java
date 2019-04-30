@@ -318,12 +318,13 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         ItemRarity rarity = GetRarity();
         event.getToolTip()
-                .add(new TextComponentString(CLOC.word("rarity") + ": " + rarity.Color() + rarity
-                        .locName()));
+                .add(CLOC.word("rarity")
+                        .appendSibling(new TextComponentString(": ").appendSibling(new TextComponentString(rarity
+                                .Color()).appendSibling(rarity.locName()))));
 
         if (!this.isSalvagable) {
             event.getToolTip()
-                    .add(new TextComponentString(TextFormatting.RED + CLOC.word("unsalvagable")));
+                    .add(new TextComponentString(TextFormatting.RED).appendSibling(CLOC.word("unsalvagable")));
         }
 
         if (this.GetBaseGearType() instanceof IWeapon) {

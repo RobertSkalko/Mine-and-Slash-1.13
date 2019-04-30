@@ -183,7 +183,7 @@ public class WorldData {
         String owner = "";
         boolean isInit = false;
         DimensionType originalDimension;
-        String mapDimension;
+        String mapDimension = "";
         boolean didntSetBackPortal = true;
         String saveName = "";
         int minutesPassed;

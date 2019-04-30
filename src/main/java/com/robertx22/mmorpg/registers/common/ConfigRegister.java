@@ -18,8 +18,8 @@ public class ConfigRegister {
 
     public static void register() {
         ModLoadingContext ctx = ModLoadingContext.get();
-        ctx.registerConfig(Type.CLIENT, ClientContainer.INSTANCE.spec);
-        ctx.registerConfig(Type.COMMON, ModConfig.INSTANCE.spec);
+        ctx.registerConfig(Type.CLIENT, ClientContainer.spec);
+        ctx.registerConfig(Type.COMMON, ModConfig.spec);
 
         ConfigItemsSerialization.INSTANCE.generateIfEmpty();
         ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();

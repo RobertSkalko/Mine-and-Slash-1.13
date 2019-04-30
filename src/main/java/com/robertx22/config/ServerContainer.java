@@ -6,8 +6,6 @@ import static net.minecraftforge.common.ForgeConfigSpec.*;
 
 public class ServerContainer {
 
-    public static final String NAME = "SERVER";
-
     public BooleanValue USE_COMPATIBILITY_ITEMS;
     public BooleanValue DISABLE_VANILLA_HP_REGEN;
     public BooleanValue GENERATE_ORES;

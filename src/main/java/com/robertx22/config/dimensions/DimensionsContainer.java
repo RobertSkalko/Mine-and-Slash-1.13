@@ -24,7 +24,9 @@ public class DimensionsContainer {
     public HashMap<String, DimensionConfig> dimensionsList = new HashMap();
 
     public boolean hasConfig(World world) {
-        return hasConfig(world.getDimension().getType().getRegistryName().toString());
+        String id = getId(world);
+
+        return hasConfig(id);
     }
 
     private boolean hasConfig(String id) {
@@ -35,8 +37,26 @@ public class DimensionsContainer {
         return false;
     }
 
+    private String getId(World world) {
+
+        String id = "";
+
+        if (world != null && world.getDimension() != null) {
+            if (world.getDimension().getType().getRegistryName() != null)
+                id = world.getDimension().getType().getRegistryName().toString();
+        }
+        return id;
+    }
+
     public DimensionConfig getConfig(World world) {
-        return getConfig(world.getDimension().getType().getRegistryName().toString());
+        String id = getId(world);
+
+        if (dimensionsList.containsKey(id)) {
+
+            return getConfig(id);
+        }
+
+        return defaultconfig; // default
 
     }
 

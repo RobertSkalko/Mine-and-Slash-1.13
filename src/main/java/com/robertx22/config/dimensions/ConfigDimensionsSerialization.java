@@ -35,7 +35,7 @@ public class ConfigDimensionsSerialization implements ISerializedConfig {
 
         JsonReader reader;
         try {
-            reader = new JsonReader(new FileReader(folder()));
+            reader = new JsonReader(new FileReader(this.getPath()));
 
             DimensionsContainer.INSTANCE = new Gson().fromJson(reader, DimensionsContainer.class);
 

@@ -13,8 +13,10 @@ import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.testing.TestManager;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,6 +35,7 @@ import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
@@ -142,6 +145,23 @@ public class MMORPG {
                     .getGameRules()
                     .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
                             .getCurrentServer());
+        }
+
+    }
+
+    public static <MSG> void sendToTracking(MSG msg, EntityLivingBase entity) {
+
+        if (msg == null) {
+            System.out.println("msg is null wtf");
+            return;
+        }
+
+        Chunk chunk = entity.world.getChunk(entity.getPosition());
+
+        PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_CHUNK.with(() -> chunk);
+        if (target != null) {
+            Network.send(target, msg);
+
         }
 
     }

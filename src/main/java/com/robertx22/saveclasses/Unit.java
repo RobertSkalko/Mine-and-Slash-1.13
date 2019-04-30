@@ -33,9 +33,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -361,10 +359,7 @@ public class Unit {
 
         if (old.isDirty(newcheck)) {
 
-            Chunk chunk = entity.world.getChunk(entity.getPosition());
-
-            MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new EntityUnitPacket(entity, data));
-
+            MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
         }
 
     }

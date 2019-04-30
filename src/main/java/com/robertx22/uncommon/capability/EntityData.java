@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.capability;
 
+import com.robertx22.config.ClientContainer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.dimensions.DimensionConfig;
 import com.robertx22.config.dimensions.DimensionsContainer;
@@ -174,6 +175,8 @@ public class EntityData {
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
             boolean can = false;
+
+            ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get(); // TODO TEST
 
             if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof EntityLivingBase) {
