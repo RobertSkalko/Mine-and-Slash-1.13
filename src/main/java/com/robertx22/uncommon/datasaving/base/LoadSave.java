@@ -6,8 +6,6 @@ import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.lang.reflect.Type;
-
 public class LoadSave {
 
     //Use this if AutoSave ever stops working and you need to test the mod
@@ -16,7 +14,7 @@ public class LoadSave {
 
     private static final Gson gson = new GsonBuilder().create();
 
-    public static void Save(Object obj, NBTTagCompound nbt, String loc) {
+    public static NBTTagCompound Save(Object obj, NBTTagCompound nbt, String loc) {
 
         if (nbt == null) {
             nbt = new NBTTagCompound();
@@ -30,10 +28,12 @@ public class LoadSave {
             Writer.write(nbt, obj);
         }
 
+        return nbt;
+
     }
 
-    public static <OBJ extends Object> OBJ Load(OBJ newobj, NBTTagCompound nbt,
-                                                String loc) {
+    public static <OBJ extends Object> OBJ Load(Class theclass, OBJ newobj,
+                                                NBTTagCompound nbt, String loc) {
 
         if (nbt == null) {
             return null;
@@ -46,7 +46,7 @@ public class LoadSave {
                 return null;
             }
 
-            return gson.fromJson(json, (Type) newobj.getClass());
+            return (OBJ) gson.fromJson(json, theclass);
         } else {
 
             if (nbt.hasKey(loc)) {

@@ -18,7 +18,7 @@ public class Gear {
             return null;
         }
 
-        return LoadSave.Load(new GearItemData(), stack.getTag(), LOC);
+        return LoadSave.Load(GearItemData.class, new GearItemData(), stack.getTag(), LOC);
 
     }
 
@@ -31,7 +31,7 @@ public class Gear {
             stack.setTag(new NBTTagCompound());
         }
         if (gear != null) {
-            LoadSave.Save(gear, stack.getTag(), LOC);
+            stack.setTag(LoadSave.Save(gear, stack.getTag(), LOC));
         }
 
     }

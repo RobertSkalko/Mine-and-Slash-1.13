@@ -6,28 +6,23 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketCollectItem;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.items.*;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
@@ -146,38 +141,6 @@ public abstract class BaseBagItem extends Item {
                 }
             }
         }
-    }
-
-    @Override
-    public EnumActionResult onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-
-        TileEntity tile = world.getTileEntity(context.getPos());
-        if (tile != null) {
-            if (!world.isRemote) {
-                IItemHandler tileInv = null;
-                if (tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-                        .isPresent())
-                    tileInv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-                            .orElse(null);
-                else if (tile instanceof IInventory)
-                    tileInv = new InvWrapper((IInventory) tile);
-
-                if (tileInv == null)
-                    return EnumActionResult.FAIL;
-
-                IItemHandlerModifiable bagInv = (IItemHandlerModifiable) context.getItem()
-                        .getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-                for (int i = 0; i < bagInv.getSlots(); i++) {
-                    ItemStack flower = bagInv.getStackInSlot(i);
-                    bagInv.setStackInSlot(i, ItemHandlerHelper.insertItemStacked(tileInv, flower, false));
-                }
-            }
-
-            return EnumActionResult.SUCCESS;
-        }
-        return EnumActionResult.PASS;
     }
 
 }

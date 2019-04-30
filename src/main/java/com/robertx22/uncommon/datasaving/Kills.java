@@ -13,8 +13,8 @@ public class Kills {
         if (nbt == null) {
             return null;
         }
-       
-        return LoadSave.Load(new PlayerMapKillsData(), nbt, LOC);
+
+        return LoadSave.Load(PlayerMapKillsData.class, new PlayerMapKillsData(), nbt, LOC);
 
     }
 

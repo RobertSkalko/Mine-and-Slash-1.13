@@ -13,7 +13,7 @@ public class UnitNbt {
             return null;
         }
 
-        return LoadSave.Load(new Unit(), nbt, LOC);
+        return LoadSave.Load(Unit.class, new Unit(), nbt, LOC);
 
     }
 

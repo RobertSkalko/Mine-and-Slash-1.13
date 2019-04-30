@@ -115,7 +115,7 @@ public class MMORPG {
     }
 
     @SubscribeEvent
-    public static void start(FMLServerStartingEvent event) {
+    public static void onServerStarting(FMLServerStartingEvent event) {
         MapManager.onStartServerRegisterDimensions();
         TestManager.RunAllTests();
         CommandRegister.Register(event);
@@ -123,17 +123,17 @@ public class MMORPG {
     }
 
     @SubscribeEvent
-    public static void stop(FMLServerStoppedEvent event) {
+    public static void onServerStop(FMLServerStoppedEvent event) {
         MapManager.onStopServerUnRegisterDimensions();
     }
 
     @SubscribeEvent
-    public static void stopping(FMLServerStoppingEvent event) {
+    public static void onServerStopping(FMLServerStoppingEvent event) {
 
     }
 
     @SubscribeEvent
-    public static void onWorldLoad(FMLServerStartedEvent event) {
+    public static void onServerStarted(FMLServerStartedEvent event) {
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
             ServerLifecycleHooks.getCurrentServer()

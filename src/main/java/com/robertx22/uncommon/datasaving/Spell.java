@@ -18,7 +18,7 @@ public class Spell {
             return null;
         }
 
-        return LoadSave.Load(new SpellItemData(), stack.getTag(), LOC);
+        return LoadSave.Load(SpellItemData.class, new SpellItemData(), stack.getTag(), LOC);
 
     }
 

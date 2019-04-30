@@ -14,7 +14,7 @@ public class MapsNbt {
             return null;
         }
 
-        return LoadSave.Load(new MapDataList(), nbt, LOC);
+        return LoadSave.Load(MapDataList.class, new MapDataList(), nbt, LOC);
 
     }
 

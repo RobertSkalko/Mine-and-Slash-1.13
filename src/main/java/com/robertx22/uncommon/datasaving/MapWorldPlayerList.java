@@ -13,7 +13,7 @@ public class MapWorldPlayerList {
             return null;
         }
 
-        return LoadSave.Load(new MapWorldPlayerListData(), nbt, LOC);
+        return LoadSave.Load(MapWorldPlayerListData.class, new MapWorldPlayerListData(), nbt, LOC);
 
     }
 

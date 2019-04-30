@@ -18,7 +18,7 @@ public class Rune {
             return null;
         }
 
-        return LoadSave.Load(new RuneItemData(), stack.getTag(), LOC);
+        return LoadSave.Load(RuneItemData.class, new RuneItemData(), stack.getTag(), LOC);
 
     }
 

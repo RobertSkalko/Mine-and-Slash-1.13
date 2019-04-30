@@ -18,7 +18,7 @@ public class Map {
             return null;
         }
 
-        return LoadSave.Load(new MapItemData(), stack.getTag(), LOC);
+        return LoadSave.Load(MapItemData.class, new MapItemData(), stack.getTag(), LOC);
 
     }
 
@@ -42,7 +42,7 @@ public class Map {
             return null;
         }
 
-        return LoadSave.Load(new MapItemData(), nbt, NBT_LOC);
+        return LoadSave.Load(MapItemData.class, new MapItemData(), nbt, NBT_LOC);
 
     }
 
