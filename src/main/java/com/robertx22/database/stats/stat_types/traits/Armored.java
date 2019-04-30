@@ -1,12 +1,12 @@
 package com.robertx22.database.stats.stat_types.traits;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.Trait;
 import com.robertx22.database.stats.stat_mods.multi.defense.ArmorMulti;
 import com.robertx22.uncommon.interfaces.IAffectsOtherStats;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Armored extends Trait implements IAffectsOtherStats {
 
@@ -14,23 +14,18 @@ public class Armored extends Trait implements IAffectsOtherStats {
 
     @Override
     public String Guid() {
-	return GUID;
+        return GUID;
     }
 
     @Override
     public List<StatMod> getStats() {
-	return Arrays.asList(new ArmorMulti());
+        return Arrays.asList(new ArmorMulti());
 
-    }
-
-    @Override
-    public String Description() {
-	return "";
     }
 
     @Override
     public String unlocString() {
-	return "armored";
+        return "armored";
     }
 
 }

@@ -72,8 +72,9 @@ public abstract class BaseSpellItem extends Item {
 
             Tooltip.add("", tooltip);
 
-            Tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell()
-                    .GetDescription(data), tooltip);
+            Tooltip.add(data.GetSpell()
+                    .GetDescription(data)
+                    .setStyle(Styles.LIGHT_PURPLE), tooltip);
 
             Tooltip.add("", tooltip);
             Tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName(), tooltip);

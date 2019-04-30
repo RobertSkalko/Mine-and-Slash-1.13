@@ -13,6 +13,7 @@ import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
+import net.minecraft.util.text.ITextComponent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,13 +64,13 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
     }
 
     @Override
-    public List<String> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(GearItemData gear) {
 
         BaseAffix affix = BaseAffix();
 
-        List<String> list = new ArrayList<String>();
+        List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("suffix") + ": " + affix.locName());
+        list.add(CLOC.word("suffix").appendText(": ").appendSibling(affix.locName()));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

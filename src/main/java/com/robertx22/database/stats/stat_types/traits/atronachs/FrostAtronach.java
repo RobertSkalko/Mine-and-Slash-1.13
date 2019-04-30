@@ -1,12 +1,12 @@
 package com.robertx22.database.stats.stat_types.traits.atronachs;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.Trait;
 import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
 import com.robertx22.uncommon.interfaces.IAffectsOtherStats;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class FrostAtronach extends Trait implements IAffectsOtherStats {
 
@@ -14,22 +14,18 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
 
     @Override
     public String unlocString() {
-	return "frost_atronach";
+        return "frost_atronach";
     }
 
     @Override
     public String Guid() {
-	return GUID;
+        return GUID;
     }
 
     @Override
     public List<StatMod> getStats() {
-	return Arrays.asList(new SpellWaterDamageMulti());
+        return Arrays.asList(new SpellWaterDamageMulti());
 
     }
 
-    @Override
-    public String Description() {
-	return "";
-    }
 }

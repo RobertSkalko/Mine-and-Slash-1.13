@@ -1,12 +1,12 @@
 package com.robertx22.database.stats.stat_types.traits;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.Trait;
 import com.robertx22.database.stats.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.uncommon.interfaces.IAffectsOtherStats;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Golem extends Trait implements IAffectsOtherStats {
 
@@ -14,22 +14,17 @@ public class Golem extends Trait implements IAffectsOtherStats {
 
     @Override
     public String Guid() {
-	return GUID;
+        return GUID;
     }
 
     @Override
     public List<StatMod> getStats() {
-	return Arrays.asList(new HealthMulti());
+        return Arrays.asList(new HealthMulti());
 
-    }
-
-    @Override
-    public String Description() {
-	return "";
     }
 
     @Override
     public String unlocString() {
-	return "golem";
+        return "golem";
     }
 }

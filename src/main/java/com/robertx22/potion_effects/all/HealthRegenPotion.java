@@ -20,7 +20,7 @@ public class HealthRegenPotion extends SpellPotionBase {
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event) {
-        event.getRegistry().register(INSTANCE.finish());
+        event.getRegistry().register(INSTANCE);
     }
 
     private HealthRegenPotion() {

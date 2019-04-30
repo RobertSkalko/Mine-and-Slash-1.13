@@ -1,7 +1,6 @@
 package com.robertx22.blocks.gear_factory_station;
 
 import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
@@ -20,15 +19,15 @@ public class StartupGearFactory {
     public static ItemBlock itemBlockInventoryAdvanced;
 
     public static void preInitCommon() {
-	blockInventoryAdvanced = new BlockGearFactory();
-	blockInventoryAdvanced.setRegistryName(ID);
-	ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
+        blockInventoryAdvanced = new BlockGearFactory();
+        blockInventoryAdvanced.setRegistryName(ID);
+        ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 
-	itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Properties());
-	itemBlockInventoryAdvanced.setRegistryName(blockInventoryAdvanced.getRegistryName());
-	ForgeRegistries.ITEMS.register(itemBlockInventoryAdvanced);
+        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Properties());
+        itemBlockInventoryAdvanced.setRegistryName(blockInventoryAdvanced.getRegistryName());
+        ForgeRegistries.ITEMS.register(itemBlockInventoryAdvanced);
 
-	TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileGearFactory::new));
+        TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileGearFactory::new));
 
     }
 

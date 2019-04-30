@@ -27,6 +27,11 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
 
     }
 
+    @Override
+    public ITextComponent Description() {
+        return new TextComponentString("");
+    }
+
     // override if it has a condition
     public boolean condition(UnitData unit) {
         return true;

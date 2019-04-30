@@ -1,15 +1,15 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.text.ITextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Storable
 public class SocketsListData implements IStatsContainer, ITooltipList {
@@ -18,31 +18,31 @@ public class SocketsListData implements IStatsContainer, ITooltipList {
     public List<SocketData> sockets = new ArrayList();
 
     @Override
-    public List<String> GetTooltipString(GearItemData gear) {
-	List<String> list = new ArrayList<String>();
+    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+        List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-	if (sockets.size() > 0) {
+        if (sockets.size() > 0) {
 
-	    list.add(CLOC.word("socket") + ":");
+            list.add(CLOC.word("socket").appendText(":"));
 
-	    for (SocketData socket : sockets) {
-		list.addAll(socket.GetTooltipString(gear));
-	    }
-	}
+            for (SocketData socket : sockets) {
+                list.addAll(socket.GetTooltipString(gear));
+            }
+        }
 
-	return list;
+        return list;
     }
 
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
-	List<LevelAndStats> mods = new ArrayList();
+        List<LevelAndStats> mods = new ArrayList();
 
-	for (SocketData socket : sockets) {
-	    mods.addAll(socket.GetAllStats(level));
-	}
+        for (SocketData socket : sockets) {
+            mods.addAll(socket.GetAllStats(level));
+        }
 
-	return mods;
+        return mods;
 
     }
 

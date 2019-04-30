@@ -172,10 +172,12 @@ public class Hearthstone extends Item {
 
     private int getRemainingUses(ItemStack stack) {
 
-        NBTTagCompound nbt = stack.getTag();
+        if (stack.hasTag()) {
+            NBTTagCompound nbt = stack.getTag();
 
-        if (nbt.hasKey("uses")) {
-            return nbt.getInt("uses");
+            if (nbt.hasKey("uses")) {
+                return nbt.getInt("uses");
+            }
         }
         return this.totalUses;
 
@@ -183,10 +185,12 @@ public class Hearthstone extends Item {
 
     private int getCurrentCooldown(ItemStack stack) {
 
-        NBTTagCompound nbt = stack.getTag();
+        if (stack.hasTag()) {
+            NBTTagCompound nbt = stack.getTag();
 
-        if (nbt.hasKey("cooldown")) {
-            return nbt.getInt("cooldown");
+            if (nbt.hasKey("cooldown")) {
+                return nbt.getInt("cooldown");
+            }
         }
         return 0;
 

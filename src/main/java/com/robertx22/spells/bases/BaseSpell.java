@@ -8,31 +8,31 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted {
 
     public enum SpellType {
-	Single_Target_Projectile, Aoe_Projectile, Self_Heal, Aoe_Bomb_Projectile, Restore_Energy, Aoe_Damage_Nova
+        Single_Target_Projectile, Aoe_Projectile, Self_Heal, Aoe_Bomb_Projectile, Restore_Energy, Aoe_Damage_Nova
     }
 
     public String typeString() {
 
-	return this.Type().toString().replaceAll("_", " ");
+        return this.Type().toString().replaceAll("_", " ");
 
     }
 
     public boolean hasScalingValue() {
-	return true;
+        return true;
     }
 
     public boolean baseValueScalesWithLevel() {
-	return true;
+        return true;
     }
 
     public abstract SpellType Type();
@@ -59,43 +59,44 @@ public abstract class BaseSpell implements IWeighted {
 
     }
 
-    public abstract String GetDescription(SpellItemData data);
+    public abstract ITextComponent GetDescription(SpellItemData data);
 
     public int Weight() {
-	return 1000;
+        return 1000;
     }
 
-    public abstract boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data);
+    public abstract boolean cast(World world, EntityPlayer caster, EnumHand hand,
+                                 int ticksInUse, SpellItemData data);
 
     public boolean CanCast(EntityPlayer caster, SpellItemData data) {
 
-	if (!caster.world.isRemote) {
+        if (!caster.world.isRemote) {
 
-	    UnitData unit = Load.Unit(caster);
+            UnitData unit = Load.Unit(caster);
 
-	    if (unit != null) {
+            if (unit != null) {
 
-		if (data.level > unit.getLevel()) {
-		    caster.sendMessage(SLOC.chat("too_low_level"));
+                if (data.level > unit.getLevel()) {
+                    caster.sendMessage(SLOC.chat("too_low_level"));
 
-		    return false;
-		}
+                    return false;
+                }
 
-		if (unit.hasEnoughMana(data.GetManaCost())) {
-		    unit.consumeMana(data.GetManaCost());
+                if (unit.hasEnoughMana(data.GetManaCost())) {
+                    unit.consumeMana(data.GetManaCost());
 
-		    return true;
+                    return true;
 
-		} else {
-		    if (caster instanceof EntityPlayerMP) {
-			MMORPG.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
+                } else {
+                    if (caster instanceof EntityPlayerMP) {
+                        MMORPG.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
 
-		    }
+                    }
 
-		}
-	    }
-	}
-	return false;
+                }
+            }
+        }
+        return false;
 
     }
 

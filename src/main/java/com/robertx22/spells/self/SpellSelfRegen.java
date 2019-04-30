@@ -11,78 +11,79 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 public class SpellSelfRegen extends BaseSpellHeal {
 
     @Override
     public String GUID() {
-	return "spell_self_regen";
+        return "spell_self_regen";
     }
 
     @Override
     public int ManaCost() {
-	return 25;
+        return 25;
     }
 
     @Override
     public int BaseValue() {
-	return 5;
+        return 5;
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(HealthRegen.GUID, 0.5F);
+        return new EffectCalculation(HealthRegen.GUID, 0.5F);
 
     }
 
     @Override
     public Item SpellItem() {
-	return ItemSelfRegen.ITEM;
+        return ItemSelfRegen.ITEM;
     }
 
     @Override
-    public String GetDescription(SpellItemData data) {
-	return CLOC.tooltip("spell_self_regen");
+    public ITextComponent GetDescription(SpellItemData data) {
+        return CLOC.tooltip("spell_self_regen");
     }
 
     @Override
-    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
-	try {
+    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse,
+                        SpellItemData data) {
+        try {
 
-	    if (!world.isRemote) {
+            if (!world.isRemote) {
 
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
+                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 
-		UnitData unit = Load.Unit(caster);
+                UnitData unit = Load.Unit(caster);
 
-		int healed = (int) (data.GetBaseValue()
-			+ data.GetScalingValue() * unit.getUnit().healthData().Value / 100);
+                int healed = (int) (data.GetBaseValue() + data.GetScalingValue() * unit.getUnit()
+                        .healthData().Value / 100);
 
-		caster.addPotionEffect(new PotionEffect(HealthRegenPotion.INSTANCE, 400, healed));
+                caster.addPotionEffect(new PotionEffect(HealthRegenPotion.INSTANCE, 400, healed));
 
-		// spell buffs
-		SpellBuffCheck check = new SpellBuffCheck(this.Type());
-		SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
-		spelleffect.Activate();
-		checkSpellBuffs(caster, check);
-		//
+                // spell buffs
+                SpellBuffCheck check = new SpellBuffCheck(this.Type());
+                SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
+                spelleffect.Activate();
+                checkSpellBuffs(caster, check);
+                //
 
-	    } else {
+            } else {
 
-		spawnHealParticles(caster, 10);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+                spawnHealParticles(caster, 10);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	return true;
+        return true;
     }
 
 }

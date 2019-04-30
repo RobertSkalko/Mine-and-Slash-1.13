@@ -1,6 +1,5 @@
 package com.robertx22.uncommon.capability;
 
-import com.robertx22.config.ClientContainer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.dimensions.DimensionConfig;
 import com.robertx22.config.dimensions.DimensionsContainer;
@@ -38,6 +37,7 @@ import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
@@ -175,8 +175,6 @@ public class EntityData {
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
             boolean can = false;
-
-            ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get(); // TODO TEST
 
             if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof EntityLivingBase) {
@@ -537,11 +535,8 @@ public class EntityData {
 
             } else {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
-                String rarityprefix = "";
-                String name = "";
-
-                name = entity.getDisplayName().getFormattedText();
-                rarityprefix = rarity.locName();
+                ITextComponent rarityprefix = rarity.locName();
+                ITextComponent name = entity.getDisplayName();
 
                 return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " " + name;
 

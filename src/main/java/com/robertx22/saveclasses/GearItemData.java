@@ -254,9 +254,9 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     }
 
-    public void tooltip(List<ITextComponent> tooltip, List<String> strings) {
-        for (String str : strings) {
-            tooltip.add(new TextComponentString(str));
+    public void tooltip(List<ITextComponent> tooltip, List<ITextComponent> strings) {
+        for (ITextComponent str : strings) {
+            tooltip.add(str);
         }
     }
 
