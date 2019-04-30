@@ -14,7 +14,7 @@ public class BottomMiddleOverlay extends BasePlayerOverlay {
                      RenderGameOverlayEvent event, Unit unit, UnitData data) {
 
         int height = mc.mainWindow.getScaledHeight();
-        int width = mc.mainWindow.getScaledHeight();
+        int width = mc.mainWindow.getScaledWidth();
 
         // ENERGY
         int x = width / 2 - this.TEXTURE_WIDTH * 2;

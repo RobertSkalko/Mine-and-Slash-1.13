@@ -18,6 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -37,6 +38,8 @@ public abstract class BaseSpellItem extends Item {
         this.setRegistryName(GUID().toLowerCase());
 
     }
+
+    private static final ITextComponent prefix = new TextComponentString(" * ");
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn,
@@ -58,8 +61,10 @@ public abstract class BaseSpellItem extends Item {
             Tooltip.add(CLOC.word("stats")
                     .appendText(": ")
                     .setStyle(Styles.GREEN), tooltip);
-            Tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)), tooltip);
-            Tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)), tooltip);
+            Tooltip.add(prefix.appendSibling(data.GetManaDesc(moreInfo))
+                    .setStyle(Styles.RED), tooltip);
+            Tooltip.add(prefix.appendSibling(data.GetBaseDesc(moreInfo))
+                    .setStyle(Styles.RED), tooltip);
 
             if (spell.hasScalingValue()) {
                 Tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)), tooltip);

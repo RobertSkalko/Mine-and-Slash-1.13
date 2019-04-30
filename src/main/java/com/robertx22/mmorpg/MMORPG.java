@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -60,7 +61,8 @@ public class MMORPG {
             .simpleChannel();
 
     public MMORPG() {
-        // Main.instance = this;
+        // ForgeMod
+        // Main.instance = this; ForgeMod
 
         System.out.println("Starting Mine and Slash");
 
@@ -68,7 +70,8 @@ public class MMORPG {
 
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
-        bus.addListener((this::onServerStarting));
+
+        MinecraftForge.EVENT_BUS.addListener(this::onServerStarting);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

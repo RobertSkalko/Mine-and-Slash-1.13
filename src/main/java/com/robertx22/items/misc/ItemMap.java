@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemMap extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

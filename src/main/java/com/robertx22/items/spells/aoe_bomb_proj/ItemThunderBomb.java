@@ -4,18 +4,17 @@ import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
 import com.robertx22.spells.bases.BaseSpell;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemThunderBomb extends BaseSpellItem {
 
     public ItemThunderBomb() {
-	super();
+        super();
     }
 
     @ObjectHolder(Ref.MODID + ":spell_thunder_bomb")
@@ -23,17 +22,17 @@ public class ItemThunderBomb extends BaseSpellItem {
 
     @Override
     public BaseSpell Spell() {
-	return new SpellThunderBomb();
+        return new SpellThunderBomb();
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemThunderBomb());
+        event.getRegistry().register(new ItemThunderBomb());
     }
 
     @Override
     public String GUID() {
-	return Ref.MODID + ":spell_thunder_bomb";
+        return Ref.MODID + ":spell_thunder_bomb";
     }
 
 }

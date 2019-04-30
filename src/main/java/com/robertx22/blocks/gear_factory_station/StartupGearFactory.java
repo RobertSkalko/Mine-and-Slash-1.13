@@ -7,10 +7,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class StartupGearFactory {
 
     public static final String ID = Ref.MODID + ":gear_factory_station";
@@ -18,29 +18,27 @@ public class StartupGearFactory {
     @ObjectHolder(ID)
     public static TileEntityType<?> GEAR_FACTORY;
 
-    public static Block blockInventoryAdvanced;
-    public static ItemBlock itemBlockInventoryAdvanced;
+    public static Block BLOCK_GEAR_FACTORY;
+    public static ItemBlock ITEMBLOCK_GEAR_FACTORY;
 
     public static void preInitCommon() {
-
         TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileGearFactory::new));
-
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        blockInventoryAdvanced = new BlockGearFactory();
-        blockInventoryAdvanced.setRegistryName(ID);
+        BLOCK_GEAR_FACTORY = new BlockGearFactory();
+        BLOCK_GEAR_FACTORY.setRegistryName(ID);
 
-        event.getRegistry().register(blockInventoryAdvanced);
+        event.getRegistry().register(BLOCK_GEAR_FACTORY);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Item.Properties());
-        itemBlockInventoryAdvanced.setRegistryName(ID);
+        ITEMBLOCK_GEAR_FACTORY = new ItemBlock(BLOCK_GEAR_FACTORY, new Item.Properties());
+        ITEMBLOCK_GEAR_FACTORY.setRegistryName(ID);
 
-        event.getRegistry().register(itemBlockInventoryAdvanced);
+        event.getRegistry().register(ITEMBLOCK_GEAR_FACTORY);
     }
 
 }

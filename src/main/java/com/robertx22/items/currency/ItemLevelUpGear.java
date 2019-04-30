@@ -8,10 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
@@ -55,7 +55,8 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS && gear.level < ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
+        return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS && gear.level < ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
+                .get();
 
     }
 

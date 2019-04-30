@@ -4,18 +4,17 @@ import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.self.SpellInstantHeal;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInstantHeal extends BaseSpellItem {
 
     public ItemInstantHeal() {
-	super();
+        super();
     }
 
     @ObjectHolder(Ref.MODID + ":spell_instantheal")
@@ -23,17 +22,17 @@ public class ItemInstantHeal extends BaseSpellItem {
 
     @Override
     public BaseSpell Spell() {
-	return new SpellInstantHeal();
+        return new SpellInstantHeal();
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemInstantHeal());
+        event.getRegistry().register(new ItemInstantHeal());
     }
 
     @Override
     public String GUID() {
-	return Ref.MODID + ":spell_instantheal";
+        return Ref.MODID + ":spell_instantheal";
     }
 
 }

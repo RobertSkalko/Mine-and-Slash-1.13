@@ -30,6 +30,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -39,12 +40,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+@EventBusSubscriber
 public class HealthBarRenderer {
 
-    List<EntityLivingBase> renderedEntities = new ArrayList<>();
+    static List<EntityLivingBase> renderedEntities = new ArrayList<>();
 
     @SubscribeEvent
-    public void onRenderWorldLast(RenderWorldLastEvent event) {
+    public static void onRenderWorldLast(RenderWorldLastEvent event) {
         Minecraft mc = Minecraft.getInstance();
 
         if ((!NeatConfig.renderInF1 && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)
@@ -77,8 +79,8 @@ public class HealthBarRenderer {
         }
     }
 
-    public void renderHealthBar(EntityLivingBase passedEntity, float partialTicks,
-                                Entity viewPoint) {
+    public static void renderHealthBar(EntityLivingBase passedEntity, float partialTicks,
+                                       Entity viewPoint) {
         Stack<EntityLivingBase> ridingStack = new Stack<>();
 
         EntityLivingBase entity = passedEntity;
@@ -294,8 +296,8 @@ public class HealthBarRenderer {
         }
     }
 
-    private void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU,
-                            int intV) {
+    private static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU,
+                                   int intV) {
         try {
             Minecraft mc = Minecraft.getInstance();
             IBakedModel iBakedModel = mc.getItemRenderer()

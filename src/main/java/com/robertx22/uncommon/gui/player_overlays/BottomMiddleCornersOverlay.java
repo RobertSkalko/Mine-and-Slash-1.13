@@ -15,7 +15,7 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         // ENERGY
 
         int height = mc.mainWindow.getScaledHeight();
-        int width = mc.mainWindow.getScaledHeight();
+        int width = mc.mainWindow.getScaledWidth();
 
         int x = width / 2 + this.TEXTURE_WIDTH - 5;
         int y = height - 16 - this.TEXTURE_HEIGHT;

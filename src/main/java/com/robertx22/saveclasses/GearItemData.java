@@ -171,25 +171,27 @@ public class GearItemData implements ITooltip, ISalvagable {
         }
     }
 
-    public String GetDisplayName(ItemStack stack) {
+    public ITextComponent GetDisplayName(ItemStack stack) {
 
-        String text = GetRarity().Color();
+        ITextComponent text = new TextComponentString("");
 
         if (isUnique) {
             IUnique uniq = (IUnique) this.getItem();
-            text += uniq.locName();
+            text.appendSibling(uniq.locName());
 
         } else if (this.isRuned()) {
-            text += "Runed " + name(stack);
+            text.appendSibling(CLOC.word("runed")).appendSibling(name(stack));
         } else {
 
             if (prefix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
-                text += prefix.BaseAffix().locName() + " ";
+                text.appendSibling(prefix.BaseAffix().locName().appendText(" "));
             }
-            text += name(stack);
+            text.appendSibling(name(stack));
 
             if (suffix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
-                text += " " + suffix.BaseAffix().locName() + " ";
+                text.appendText(" ")
+                        .appendSibling(suffix.BaseAffix().locName())
+                        .appendText(" ");
             }
         }
         return text;
@@ -226,34 +228,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         return datas;
     }
 
-    public List<StatModData> mergeSameStats(List<StatModData> mods) {
-
-        List<StatModData> newmods = new ArrayList();
-
-        for (StatModData mod : mods) {
-
-            boolean add = true;
-
-            for (StatModData newmod : newmods) {
-
-                if (newmod.baseModName.equals(mod.baseModName)) {
-                    newmod.percent += mod.percent;
-                    add = false;
-                    break;
-
-                }
-
-            }
-
-            if (add) {
-                newmods.add(mod);
-            }
-        }
-
-        return newmods;
-
-    }
-
     public void tooltip(List<ITextComponent> tooltip, List<ITextComponent> strings) {
         for (ITextComponent str : strings) {
             tooltip.add(str);
@@ -266,7 +240,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         event.getToolTip().clear();
 
-        event.getToolTip().add(new TextComponentString(GetDisplayName(stack)));
+        event.getToolTip().add(GetDisplayName(stack));
         event.getToolTip().add(TooltipUtils.level(level));
 
         event.getToolTip().add(new TextComponentString(""));
@@ -295,9 +269,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         list.add(sockets);
         list.add(infusion);
 
-        for (
-
-                ITooltipList part : list) {
+        for (ITooltipList part : list) {
 
             if (part != null) {
                 tooltip(event.getToolTip(), part.GetTooltipString(this));
@@ -318,10 +290,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         }
 
         ItemRarity rarity = GetRarity();
-        event.getToolTip()
-                .add(CLOC.word("rarity")
-                        .appendSibling(new TextComponentString(": ").appendSibling(new TextComponentString(rarity
-                                .Color()).appendSibling(rarity.locName()))));
+        event.getToolTip().add(TooltipUtils.rarity(rarity));
 
         if (!this.isSalvagable) {
             event.getToolTip().add(CLOC.word("unsalvagable").setStyle(Styles.RED));

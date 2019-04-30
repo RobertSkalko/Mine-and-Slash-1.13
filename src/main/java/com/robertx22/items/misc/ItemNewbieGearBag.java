@@ -1,9 +1,5 @@
 package com.robertx22.items.misc;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.BaseItem;
@@ -14,7 +10,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -28,75 +23,79 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber
+import javax.annotation.Nullable;
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemNewbieGearBag extends BaseItem {
 
     @ObjectHolder(Ref.MODID + ":newbie_gear_bag")
     public static final Item ITEM = null;
 
     public ItemNewbieGearBag() {
-	super(new Properties().group(CreativeTabs.MyModTab));
+        super(new Properties().group(CreativeTabs.MyModTab));
 
-	RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
+        RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
     }
 
     public static int ITEMS_AMOUNT = 6;
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn,
+                                                    EnumHand handIn) {
 
-	if (!worldIn.isRemote) {
-	    try {
+        if (!worldIn.isRemote) {
+            try {
 
-		GearBlueprint weaponPrint = new GearBlueprint(1);
-		weaponPrint.SetSpecificType(new Sword().GUID());
-		weaponPrint.LevelRange = false;
+                GearBlueprint weaponPrint = new GearBlueprint(1);
+                weaponPrint.SetSpecificType(new Sword().GUID());
+                weaponPrint.LevelRange = false;
 
-		GearBlueprint print = new GearBlueprint(1);
-		print.LevelRange = false;
+                GearBlueprint print = new GearBlueprint(1);
+                print.LevelRange = false;
 
-		GearItemData wepData = GearGen.CreateData(weaponPrint);
-		wepData.isSalvagable = false;
+                GearItemData wepData = GearGen.CreateData(weaponPrint);
+                wepData.isSalvagable = false;
 
-		ItemStack weaponStack = GearGen.CreateStack(wepData);
-		playerIn.dropItem(weaponStack, false, true);
+                ItemStack weaponStack = GearGen.CreateStack(wepData);
+                playerIn.dropItem(weaponStack, false, true);
 
-		for (int i = 0; i < ITEMS_AMOUNT; i++) {
+                for (int i = 0; i < ITEMS_AMOUNT; i++) {
 
-		    GearItemData data = GearGen.CreateData(print);
-		    data.isSalvagable = false;
-		    ItemStack stack = GearGen.CreateStack(data);
+                    GearItemData data = GearGen.CreateData(print);
+                    data.isSalvagable = false;
+                    ItemStack stack = GearGen.CreateStack(data);
 
-		    playerIn.dropItem(stack, false, true);
-		}
+                    playerIn.dropItem(stack, false, true);
+                }
 
-		return new ActionResult<ItemStack>(EnumActionResult.PASS,
-			EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+                return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(playerIn
+                        .getHeldItem(handIn)));
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	}
-	return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemNewbieGearBag());
+        event.getRegistry().register(new ItemNewbieGearBag());
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
-	    ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-	Tooltip.add(CLOC.tooltip("newbie_gear_bag"), tooltip);
+        Tooltip.add(CLOC.tooltip("newbie_gear_bag"), tooltip);
 
-	Tooltip.add(CLOC.lore("newbie_gear_bag1"), tooltip);
-	Tooltip.add(CLOC.lore("newbie_gear_bag2"), tooltip);
+        Tooltip.add(CLOC.lore("newbie_gear_bag1"), tooltip);
+        Tooltip.add(CLOC.lore("newbie_gear_bag2"), tooltip);
 
     }
 

@@ -15,7 +15,7 @@ public class MiddleOverlay extends BasePlayerOverlay {
         // ENERGY
 
         int height = mc.mainWindow.getScaledHeight();
-        int width = mc.mainWindow.getScaledHeight();
+        int width = mc.mainWindow.getScaledWidth();
 
         int x = width / 2 + 5;
         int y = height - 53;
