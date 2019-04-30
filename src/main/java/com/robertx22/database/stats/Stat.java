@@ -97,8 +97,7 @@ public abstract class Stat implements IGUID {
 
         String minusplus = val > 0 ? "+" : "";
 
-        return NameText(IsSet, data).appendText(minusplus)
-                .appendText(printValue(data, level));
+        return NameText(IsSet, data).appendText(minusplus + printValue(data, level));
     }
 
     public List<ITextComponent> getTooltipList(MinMax minmax, StatModData data, int level,
@@ -127,7 +126,7 @@ public abstract class Stat implements IGUID {
             StatModData max = StatModData.Load(data.GetBaseMod(), minmax.Max);
 
             text.appendSibling(new TextComponentString(" (" + min.printValue(level) + " - " + max
-                    .printValue(level) + ")").setStyle(Styles.BLUE));
+                    .printValue(level) + ")")).setStyle(Styles.BLUE);
         }
 
         list.add(text);

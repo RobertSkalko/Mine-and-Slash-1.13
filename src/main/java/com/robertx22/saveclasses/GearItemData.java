@@ -229,9 +229,7 @@ public class GearItemData implements ITooltip, ISalvagable {
     }
 
     public void tooltip(List<ITextComponent> tooltip, List<ITextComponent> strings) {
-        for (ITextComponent str : strings) {
-            tooltip.add(str);
-        }
+        tooltip.addAll(strings);
     }
 
     @Override

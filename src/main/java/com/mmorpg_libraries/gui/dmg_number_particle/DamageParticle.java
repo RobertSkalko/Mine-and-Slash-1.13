@@ -7,6 +7,9 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
-public class DamageParticle extends Particle {
+public class DamageParticle extends Particle implements IParticleData {
 
     protected static final float GRAVITY = 0.15F;
     protected static final float SIZE = 3.0F;
@@ -126,4 +129,18 @@ public class DamageParticle extends Particle {
         return 3;
     }
 
+    @Override
+    public ParticleType<?> getType() {
+        return null;
+    }
+
+    @Override
+    public void write(PacketBuffer buffer) {
+
+    }
+
+    @Override
+    public String getParameters() {
+        return null;
+    }
 }
