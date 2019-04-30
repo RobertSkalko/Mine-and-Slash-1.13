@@ -66,6 +66,7 @@ public class MMORPG {
 
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
+        bus.addListener((this::onServerStarting));
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -114,8 +115,7 @@ public class MMORPG {
         CurioClientRegister.icons();
     }
 
-    @SubscribeEvent
-    public static void onServerStarting(FMLServerStartingEvent event) {
+    public void onServerStarting(FMLServerStartingEvent event) {
         MapManager.onStartServerRegisterDimensions();
         TestManager.RunAllTests();
         CommandRegister.Register(event);

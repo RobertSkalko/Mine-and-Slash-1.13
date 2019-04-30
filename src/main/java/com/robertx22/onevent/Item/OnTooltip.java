@@ -35,9 +35,6 @@ public class OnTooltip {
 
         stack = event.getItemStack();
 
-        if (stack == null) {
-            return;
-        }
         if (!stack.hasTag()) {
             return;
         }

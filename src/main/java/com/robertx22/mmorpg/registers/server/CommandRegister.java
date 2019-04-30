@@ -9,8 +9,11 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 public class CommandRegister {
     public static void Register(FMLServerStartingEvent event) {
-        net.minecraft.command.Commands commands = event.getServer().getCommandManager();
-        CommandDispatcher<CommandSource> dispatcher = commands.getDispatcher();
+        System.out.println("Registering Mine and Slash Commands.");
+
+        CommandDispatcher<CommandSource> dispatcher = event.getServer()
+                .getCommandManager()
+                .getDispatcher();
 
         SetLevel.register(dispatcher);
         GiveExp.register(dispatcher);
