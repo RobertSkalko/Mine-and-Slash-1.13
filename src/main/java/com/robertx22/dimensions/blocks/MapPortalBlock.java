@@ -4,7 +4,7 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.MapWorldData;
+import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -79,7 +79,7 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                 } else if (data.isMapWorld()) {
 
-                                    MapWorldData worlddata = data.getWorldData();
+                                    MapWorldPlayerListData worlddata = data.getWorldData();
 
                                     if (worlddata.joinedPlayerIDs.size() < ModConfig.INSTANCE.Server.MAX_PLAYERS_PER_MAP
                                             .get() || worlddata.joinedPlayerIDs.contains(entity

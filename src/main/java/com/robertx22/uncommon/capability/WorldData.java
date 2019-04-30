@@ -4,10 +4,10 @@ import com.robertx22.config.dimensions.DimensionsContainer;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.saveclasses.MapWorldData;
+import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
+import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.datasaving.MapWorldPlayerList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -83,9 +83,9 @@ public class WorldData {
 
         void transferPlayersBack(World world);
 
-        MapWorldData getWorldData();
+        MapWorldPlayerListData getWorldData();
 
-        void setWorldData(MapWorldData data);
+        void setWorldData(MapWorldPlayerListData data);
 
         void passMinute(World world);
 
@@ -175,7 +175,7 @@ public class WorldData {
 
         long mapDevicePos;
         MapItemData mapdata = new MapItemData();
-        MapWorldData mapworlddata = new MapWorldData();
+        MapWorldPlayerListData mapworlddata = new MapWorldPlayerListData();
         int tier = 0;
         int level = 0;
         boolean isMap = false;
@@ -208,14 +208,10 @@ public class WorldData {
             nbt.setBoolean(ISRESERVED, reserved);
 
             if (mapdata != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                Writer.write(tag, mapdata);
-                nbt.setTag(MAP_OBJECT, tag);
+                Map.Save(nbt, mapdata);
             }
             if (mapworlddata != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                Writer.write(tag, mapworlddata);
-                nbt.setTag(MAP_WORLD_OBJ, tag);
+                MapWorldPlayerList.Save(nbt, mapworlddata);
             }
 
             nbt.setLong(POS_OBJ, mapDevicePos);
@@ -242,15 +238,8 @@ public class WorldData {
             this.minutesPassed = nbt.getInt(MINUTES_PASSED);
             this.reserved = nbt.getBoolean(ISRESERVED);
 
-            NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
-            if (mapnbt != null) {
-                Reader.read(mapnbt, mapdata);
-            }
-
-            NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.getTag(MAP_WORLD_OBJ);
-            if (mapworldnbt != null) {
-                Reader.read(mapworldnbt, mapworlddata);
-            }
+            mapdata = Map.Load(nbt);
+            mapworlddata = MapWorldPlayerList.Load(nbt);
 
             this.mapDevicePos = nbt.getLong(POS_OBJ);
 
@@ -406,12 +395,12 @@ public class WorldData {
         }
 
         @Override
-        public MapWorldData getWorldData() {
+        public MapWorldPlayerListData getWorldData() {
             return this.mapworlddata;
         }
 
         @Override
-        public void setWorldData(MapWorldData data) {
+        public void setWorldData(MapWorldPlayerListData data) {
             this.mapworlddata = data;
         }
 

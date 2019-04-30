@@ -5,8 +5,7 @@ import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapDataList;
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
+import com.robertx22.uncommon.datasaving.MapsNbt;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -61,9 +60,8 @@ public class DimsData {
             nbt.setBoolean(ISRESERVED, reserved);
 
             if (mapdata != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                Writer.write(tag, mapdata);
-                nbt.setTag(MAP_OBJECT, tag);
+                MapsNbt.Save(nbt, mapdata);
+
             }
 
             return nbt;
@@ -76,10 +74,7 @@ public class DimsData {
 
             this.reserved = nbt.getBoolean(ISRESERVED);
 
-            NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
-            if (mapnbt != null) {
-                Reader.read(mapnbt, mapdata);
-            }
+            mapdata = MapsNbt.Load(nbt);
 
         }
 

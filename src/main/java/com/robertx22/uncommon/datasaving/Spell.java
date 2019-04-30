@@ -1,9 +1,7 @@
 package com.robertx22.uncommon.datasaving;
 
 import com.robertx22.saveclasses.SpellItemData;
-
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
+import com.robertx22.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -13,41 +11,29 @@ public class Spell {
 
     public static SpellItemData Load(ItemStack stack) {
 
-	if (stack == null) {
-	    return null;
-	}
-	if (!stack.hasTag()) {
-	    return null;
-	}
+        if (stack == null) {
+            return null;
+        }
+        if (!stack.hasTag()) {
+            return null;
+        }
 
-	SpellItemData data = null;
-	if (stack.getTag().hasKey(LOC)) {
-	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().getTag(LOC);
-	    data = new SpellItemData();
-	    Reader.read(nbt, data);
-	}
-
-	return data;
+        return LoadSave.Load(new SpellItemData(), stack.getTag(), LOC);
 
     }
 
-    public static void Save(ItemStack stack, SpellItemData spell) {
-	if (stack == null) {
-	    return;
-	}
-	if (!stack.hasTag()) {
-	    stack.setTag(new NBTTagCompound());
-	}
+    public static void Save(ItemStack stack, SpellItemData gear) {
 
-	if (spell != null) {
-	    NBTTagCompound object_nbt = new NBTTagCompound();
-	    Writer.write(object_nbt, spell);
-	    NBTTagCompound new_nbt = stack.getTag();
-	    new_nbt.setTag(LOC, object_nbt);
-	    new_nbt.setInt("rarity", spell.rarity);
-	    stack.setTag(new_nbt);
+        if (stack == null) {
+            return;
+        }
+        if (!stack.hasTag()) {
+            stack.setTag(new NBTTagCompound());
+        }
+        if (gear != null) {
+            LoadSave.Save(gear, stack.getTag(), LOC);
+        }
 
-	}
     }
 
 }

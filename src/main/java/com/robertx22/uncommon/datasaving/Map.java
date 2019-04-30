@@ -1,49 +1,61 @@
 package com.robertx22.uncommon.datasaving;
 
 import com.robertx22.saveclasses.MapItemData;
-
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
+import com.robertx22.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Map {
     private static final String LOC = "MAP_ITEM_DATA";
+    private static final String NBT_LOC = "mapObject";
 
     public static MapItemData Load(ItemStack stack) {
-	if (stack == null) {
-	    return null;
-	}
-	if (!stack.hasTag()) {
-	    return null;
-	}
-	MapItemData data = null;
-	if (stack.getTag().hasKey(LOC)) {
-	    NBTTagCompound nbt = (NBTTagCompound) stack.getTag().getTag(LOC);
-	    data = new MapItemData();
-	    Reader.read(nbt, data);
-	}
 
-	return data;
+        if (stack == null) {
+            return null;
+        }
+        if (!stack.hasTag()) {
+            return null;
+        }
+
+        return LoadSave.Load(new MapItemData(), stack.getTag(), LOC);
 
     }
 
     public static void Save(ItemStack stack, MapItemData gear) {
-	if (stack == null) {
-	    return;
-	}
 
-	if (!stack.hasTag()) {
-	    stack.setTag(new NBTTagCompound());
-	}
+        if (stack == null) {
+            return;
+        }
+        if (!stack.hasTag()) {
+            stack.setTag(new NBTTagCompound());
+        }
+        if (gear != null) {
+            LoadSave.Save(gear, stack.getTag(), LOC);
+        }
 
-	if (gear != null) {
-	    NBTTagCompound object_nbt = new NBTTagCompound();
-	    Writer.write(object_nbt, gear);
-	    NBTTagCompound new_nbt = stack.getTag();
-	    new_nbt.setTag(LOC, object_nbt);
-	    stack.setTag(new_nbt);
-
-	}
     }
+
+    public static MapItemData Load(NBTTagCompound nbt) {
+
+        if (nbt == null) {
+            return null;
+        }
+
+        return LoadSave.Load(new MapItemData(), nbt, NBT_LOC);
+
+    }
+
+    public static void Save(NBTTagCompound nbt, MapItemData gear) {
+
+        if (nbt == null) {
+            return;
+        }
+
+        if (gear != null) {
+            LoadSave.Save(gear, nbt, NBT_LOC);
+        }
+
+    }
+
 }

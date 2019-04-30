@@ -20,13 +20,13 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Kills;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
@@ -270,15 +270,11 @@ public class EntityData {
             nbt.setBoolean(SET_MOB_STATS, setMobStats);
 
             if (unit != null) {
-                NBTTagCompound unitnbt = new NBTTagCompound();
-
-                Writer.write(unitnbt, unit);
-                nbt.setTag(UNIT_OBJECT, unitnbt);
+                UnitNbt.Save(this.nbt, unit);
             }
+
             if (kills != null) {
-                NBTTagCompound killsnbt = new NBTTagCompound();
-                Writer.write(killsnbt, kills);
-                nbt.setTag(KILLS_OBJECT, killsnbt);
+                Kills.Save(this.nbt, kills);
             }
 
             return nbt;
@@ -298,19 +294,14 @@ public class EntityData {
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
 
-            if (this.nbt.hasKey(UNIT_OBJECT)) {
-                INBTBase basenbt = this.nbt.getTag(UNIT_OBJECT);
-                if (basenbt != null) {
-                    NBTTagCompound object_nbt = (NBTTagCompound) basenbt;
-                    unit = new Unit(); // maybe unneded?
-                    Reader.read(object_nbt, unit);
-                }
+            Unit newunit = UnitNbt.Load(this.nbt);
+            if (newunit != null) {
+                this.unit = newunit;
             }
 
-            NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);
-            if (kills_nbt != null) {
-                kills = new PlayerMapKillsData();
-                Reader.read(kills_nbt, kills);
+            PlayerMapKillsData killsdata = Kills.Load(this.nbt);
+            if (killsdata != null) {
+                this.kills = killsdata;
             }
 
         }
