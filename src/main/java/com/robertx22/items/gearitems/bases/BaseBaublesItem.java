@@ -12,14 +12,15 @@ public abstract class BaseBaublesItem extends Item {
 
     public BaseBaublesItem() {
 
-	super(new Properties().maxStackSize(1));
+        super(new Properties().maxStackSize(1));
 
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
+                                                    EnumHand hand) {
 
-	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
 }

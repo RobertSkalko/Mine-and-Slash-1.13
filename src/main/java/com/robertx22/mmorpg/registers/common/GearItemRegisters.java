@@ -18,18 +18,18 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class GearItemRegisters {
 
     private static List<Item> items = new ArrayList<Item>();
 
-    public static void register() {
+    private static void register() {
 
         for (ItemRarity rarity : Rarities.Items) {
 
@@ -103,6 +103,8 @@ public class GearItemRegisters {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+
+        System.out.println("Registering Gear Items!");
 
         register();
 

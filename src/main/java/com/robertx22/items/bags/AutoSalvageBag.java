@@ -170,7 +170,7 @@ public class AutoSalvageBag extends Item {
             nbt = new NBTTagCompound();
         }
 
-        Tooltip.add(CLOC.tooltip("auto_salvage_items") + "!", tooltip);
+        Tooltip.add(CLOC.tooltip("auto_salvage_items").appendText("!"), tooltip);
 
         Tooltip.add("", tooltip);
 
