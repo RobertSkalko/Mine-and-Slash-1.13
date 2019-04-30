@@ -63,7 +63,7 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
     public ITextComponent TraitText(StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        return STAT_PREFIX.appendSibling(basestat.localizedString())
+        return new TextComponentString(" * ").appendSibling(basestat.localizedString())
                 .setStyle(Styles.GREEN);
     }
 

@@ -3,6 +3,7 @@ package com.robertx22.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -33,7 +34,9 @@ public class SetLevel {
                 return 1;
             }
 
-            Load.Unit(player).setLevel(lvl, player);
+            EntityData.UnitData data = Load.Unit(player);
+
+            data.setLevel(lvl, player);
 
         }
 

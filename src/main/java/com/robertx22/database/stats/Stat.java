@@ -72,8 +72,6 @@ public abstract class Stat implements IGUID {
 
     }
 
-    public static TextComponentString STAT_PREFIX = new TextComponentString(" * ");
-
     public ITextComponent NameText(boolean IsSet, StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
@@ -85,7 +83,9 @@ public abstract class Stat implements IGUID {
         }
 
         if (IsSet) {
-            return STAT_PREFIX.appendSibling(str).appendText(": ").setStyle(Styles.RED);
+            return new TextComponentString(" * ").appendSibling(str)
+                    .appendText(": ")
+                    .setStyle(Styles.RED);
         } else {
             return str.appendText(": ").setStyle(Styles.RED);
         }

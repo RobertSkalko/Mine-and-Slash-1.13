@@ -70,7 +70,7 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
     public ITextComponent TraitText(StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        return STAT_PREFIX.appendSibling(basestat.localizedString())
+        return new TextComponentString(" * ").appendSibling(basestat.localizedString())
                 .setStyle(Styles.GREEN);
     }
 

@@ -38,8 +38,6 @@ public abstract class BaseSpellItem extends Item {
 
     }
 
-    private static final ITextComponent prefix = new TextComponentString(" * ");
-
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
@@ -61,14 +59,14 @@ public abstract class BaseSpellItem extends Item {
                     .appendText(": ")
                     .setStyle(Styles.GREEN), tooltip);
 
-            Tooltip.add(prefix.appendSibling(data.GetManaDesc(moreInfo))
+            Tooltip.add(new TextComponentString(" * ").appendSibling(data.GetManaDesc(moreInfo))
                     .setStyle(Styles.RED), tooltip);
 
-            Tooltip.add(prefix.appendSibling(data.GetBaseDesc(moreInfo))
+            Tooltip.add(new TextComponentString(" * ").appendSibling(data.GetBaseDesc(moreInfo))
                     .setStyle(Styles.RED), tooltip);
 
             if (spell.hasScalingValue()) {
-                Tooltip.add(prefix.appendSibling(data.GetScalingDesc(moreInfo)
+                Tooltip.add(new TextComponentString(" * ").appendSibling(data.GetScalingDesc(moreInfo)
                         .setStyle(Styles.RED)), tooltip);
             }
 
