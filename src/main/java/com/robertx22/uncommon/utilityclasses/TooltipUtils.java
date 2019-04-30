@@ -3,6 +3,7 @@ package com.robertx22.uncommon.utilityclasses;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.CLOC;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
@@ -17,7 +18,7 @@ public class TooltipUtils {
 
         return (CLOC.word("rarity")
                 .appendText(": ")
-                .appendText(rarity.Color())
-                .appendSibling(rarity.locName()));
+                .appendSibling(rarity.locName())
+                .setStyle(new Style().setColor(rarity.formatText())));
     }
 }

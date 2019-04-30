@@ -14,7 +14,6 @@ import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -157,9 +156,7 @@ public class MMORPG {
             return;
         }
 
-        Chunk chunk = entity.world.getChunk(entity.getPosition());
-
-        PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_CHUNK.with(() -> chunk);
+        PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY.with(() -> entity);
         if (target != null) {
             Network.send(target, msg);
 

@@ -19,7 +19,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -61,19 +60,24 @@ public abstract class BaseSpellItem extends Item {
             Tooltip.add(CLOC.word("stats")
                     .appendText(": ")
                     .setStyle(Styles.GREEN), tooltip);
+
             Tooltip.add(prefix.appendSibling(data.GetManaDesc(moreInfo))
                     .setStyle(Styles.RED), tooltip);
+
             Tooltip.add(prefix.appendSibling(data.GetBaseDesc(moreInfo))
                     .setStyle(Styles.RED), tooltip);
 
             if (spell.hasScalingValue()) {
-                Tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)), tooltip);
+                Tooltip.add(prefix.appendSibling(data.GetScalingDesc(moreInfo)
+                        .setStyle(Styles.RED)), tooltip);
             }
 
             Tooltip.add("", tooltip);
 
-            Tooltip.add(TextFormatting.AQUA + "Type: " + this.Spell()
-                    .typeString(), tooltip);
+            Tooltip.add(CLOC.word("type")
+                    .appendText(": ")
+                    .appendText(this.Spell().typeString())
+                    .setStyle(Styles.AQUA), tooltip);
 
             Tooltip.add("", tooltip);
 
@@ -82,7 +86,9 @@ public abstract class BaseSpellItem extends Item {
                     .setStyle(Styles.LIGHT_PURPLE), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName(), tooltip);
+
+            tooltip.add(TooltipUtils.rarity(rarity));
+
         }
     }
 

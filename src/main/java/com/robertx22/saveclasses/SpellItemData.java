@@ -13,6 +13,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 @Storable
 public class SpellItemData implements ISalvagable {
@@ -82,40 +83,45 @@ public class SpellItemData implements ISalvagable {
         return Rarities.Spells.get(this.rarity);
     }
 
-    public String GetScalingDesc(boolean moreInfo) {
+    public ITextComponent GetScalingDesc(boolean moreInfo) {
 
-        String text = CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue()
-                .GetStat()
-                .localizedString() + " " + CLOC.word("by") + " : " + (int) (GetScalingValue() * 100) + "%";
+        ITextComponent text = CLOC.word("scaling_value")
+                .appendText(": ")
+                .appendSibling(GetSpell().ScalingValue().GetStat().localizedString())
+                .appendText(" ")
+                .appendSibling(CLOC.word("by"))
+                .appendText(" : " + (int) (GetScalingValue() * 100) + "%");
 
         if (moreInfo) {
-            text += "" + " (" + MinScaling() + "-" + MaxScaling() + ")";
+            text.appendText(" (" + MinScaling() + "-" + MaxScaling() + ")");
         }
 
         return text;
 
     }
 
-    public String GetBaseDesc(boolean moreInfo) {
+    public ITextComponent GetBaseDesc(boolean moreInfo) {
 
-        String text = CLOC.word("base_value") + ": " + this.GetBaseValue();
+        ITextComponent text = CLOC.word("base_value")
+                .appendText(": " + this.GetBaseValue());
 
         if (moreInfo) {
 
-            text += "" + " (" + MinBase() + "-" + MaxBase() + ")";
+            text.appendText("" + " (" + MinBase() + "-" + MaxBase() + ")");
         }
 
         return text;
     }
 
-    public String GetManaDesc(boolean moreInfo) {
+    public ITextComponent GetManaDesc(boolean moreInfo) {
 
-        String text = CLOC.word("mana_cost") + ": " + this.GetManaCost();
+        ITextComponent text = CLOC.word("mana_cost")
+                .appendText(": " + this.GetManaCost());
 
         if (moreInfo) {
-
-            text += "" + " (" + MinMana() + "-" + MaxMana() + ")";
+            text.appendText(" (" + MinMana() + "-" + MaxMana() + ")");
         }
+
         return text;
     }
 
