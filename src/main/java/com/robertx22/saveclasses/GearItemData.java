@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.Styles;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
@@ -29,7 +30,6 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -68,21 +68,22 @@ public class GearItemData implements ITooltip, ISalvagable {
         return this.isNotFromMyMod == false;
     }
 
-    public String name(ItemStack stack) {
+    public ITextComponent name(ItemStack stack) {
 
         if (isUnique) {
             if (IUnique.ITEMS.containsKey(this.uniqueGUID)) {
                 return ((IUnique) IUnique.ITEMS.get(this.uniqueGUID)).locName();
-            } else {
-                return "error";
             }
         } else {
             if (gearTypeName.isEmpty()) {
-                return "error";
+
             } else {
-                return stack.getDisplayName().toString();
+                return stack.getDisplayName();
             }
         }
+
+        return new TextComponentString("error");
+
     }
 
     @Store
@@ -323,17 +324,16 @@ public class GearItemData implements ITooltip, ISalvagable {
                                 .Color()).appendSibling(rarity.locName()))));
 
         if (!this.isSalvagable) {
-            event.getToolTip()
-                    .add(new TextComponentString(TextFormatting.RED).appendSibling(CLOC.word("unsalvagable")));
+            event.getToolTip().add(CLOC.word("unsalvagable").setStyle(Styles.RED));
         }
 
         if (this.GetBaseGearType() instanceof IWeapon) {
             IWeapon iwep = (IWeapon) this.GetBaseGearType();
             event.getToolTip().add(new TextComponentString(""));
             event.getToolTip()
-                    .add(new TextComponentString(TextFormatting.GREEN + CLOC.stat("energy") + ": " + iwep
-                            .mechanic()
-                            .GetEnergyCost()));
+                    .add(CLOC.stat("energy")
+                            .appendText(": " + iwep.mechanic().GetEnergyCost())
+                            .setStyle(Styles.GREEN));
         }
 
         List<ITextComponent> tool = removeDoubleBlankLines(event.getToolTip());
@@ -386,13 +386,15 @@ public class GearItemData implements ITooltip, ISalvagable {
                     color = TextFormatting.DARK_GREEN;
                 }
 
-                for (String str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
+                for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
                         .GetTooltipString(this.GetRarity()
                                 .StatPercents(), data.getLevel(), false)) {
 
-                    String stat = StringUtils.stripControlCodes(str);
-
-                    String str2 = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
+                    String str2 = color + "" + new TextComponentString(entry.getKey() + " ")
+                            .appendSibling(CLOC.word("set")
+                                    .appendText(": ")
+                                    .appendSibling(str)
+                                    .setStyle(Styles.DARK_GREEN));
 
                     event.getToolTip().add(new TextComponentString(str2));
                 }

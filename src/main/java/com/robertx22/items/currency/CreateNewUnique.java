@@ -6,11 +6,11 @@ import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -21,7 +21,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String GUID() {
-	return "create_new_unique";
+        return "create_new_unique";
     }
 
     @ObjectHolder(Ref.MODID + ":create_new_unique")
@@ -29,56 +29,57 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     public CreateNewUnique() {
 
-	super(name);
+        super(name);
 
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new CreateNewUnique());
+        event.getRegistry().register(new CreateNewUnique());
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	UniqueBlueprint gearPrint = new UniqueBlueprint(gear.level, gear.uniqueStats.getUniqueItem().Tier(), false);
-	gearPrint.SetSpecificRarity(new UniqueItem().Rank());
-	gearPrint.LevelRange = false;
+        UniqueBlueprint gearPrint = new UniqueBlueprint(gear.level, gear.uniqueStats.getUniqueItem()
+                .Tier(), false);
+        gearPrint.SetSpecificRarity(new UniqueItem().Rank());
+        gearPrint.LevelRange = false;
 
-	GearItemData newgear = UniqueGearGen.CreateData(gearPrint);
+        GearItemData newgear = UniqueGearGen.CreateData(gearPrint);
 
-	int tries = 0; // in case there's only 1 unique in a tier
-	while (newgear.gearTypeName.equals(gear.gearTypeName) && tries < 10) {
-	    newgear = UniqueGearGen.CreateData(gearPrint);
-	    tries++;
-	}
+        int tries = 0; // in case there's only 1 unique in a tier
+        while (newgear.gearTypeName.equals(gear.gearTypeName) && tries < 10) {
+            newgear = UniqueGearGen.CreateData(gearPrint);
+            tries++;
+        }
 
-	gear.WriteOverDataThatShouldStay(newgear);
+        gear.WriteOverDataThatShouldStay(newgear);
 
-	return UniqueGearGen.CreateStack(newgear);
+        return UniqueGearGen.CreateStack(newgear);
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	if (gear != null && gear.isUnique) {
-	    return true;
-	}
+        if (gear != null && gear.isUnique) {
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     @Override
     public int Tier() {
-	return 13;
+        return 13;
     }
 
     @Override
     public int Rank() {
-	return 4;
+        return 4;
     }
 }

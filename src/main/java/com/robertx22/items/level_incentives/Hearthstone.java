@@ -2,6 +2,7 @@ package com.robertx22.items.level_incentives;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
@@ -247,7 +248,8 @@ public class Hearthstone extends Item {
                 .word("left") + ": " + this.getCurrentCooldown(stack)), tooltip);
         Tooltip.add(CLOC.word("uses") + ": " + this.totalUses + CLOC.word("left") + ": " + this
                 .getRemainingUses(stack), tooltip);
-        Tooltip.add(CLOC.word("activation_time: ") + this.activationTime, tooltip);
+        Tooltip.add(CLOC.word("activation_time: ")
+                .appendText(this.activationTime + ""), tooltip);
 
     }
 

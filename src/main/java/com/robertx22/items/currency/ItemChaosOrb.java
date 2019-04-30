@@ -4,11 +4,11 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
-	return "chaos_orb";
+        return "chaos_orb";
     }
 
     private static final String name = "chaos_orb";
@@ -26,45 +26,45 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
     public ItemChaosOrb() {
 
-	super(name);
+        super(name);
 
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemChaosOrb());
+        event.getRegistry().register(new ItemChaosOrb());
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
-	gear.chaosStats = new ChaosStatsData();
-	gear.chaosStats.RerollFully(gear);
-	Gear.Save(stack, gear);
+        GearItemData gear = Gear.Load(stack);
+        gear.chaosStats = new ChaosStatsData();
+        gear.chaosStats.RerollFully(gear);
+        Gear.Save(stack, gear);
 
-	return stack;
+        return stack;
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	if (gear.chaosStats == null && !gear.isRuned()) {
-	    return true;
-	}
+        if (gear.chaosStats == null && !gear.isRuned()) {
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     @Override
     public int Tier() {
-	return 3;
+        return 3;
     }
 
     @Override
     public int Rank() {
-	return 1;
+        return 1;
     }
 }

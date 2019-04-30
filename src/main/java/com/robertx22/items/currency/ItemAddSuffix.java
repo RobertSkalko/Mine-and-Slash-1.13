@@ -4,11 +4,11 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.uncommon.datasaving.Gear;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
-	return "add_suffix";
+        return "add_suffix";
     }
 
     private static final String name = "add_suffix";
@@ -26,42 +26,42 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
 
     public ItemAddSuffix() {
 
-	super(name);
+        super(name);
 
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemAddSuffix());
+        event.getRegistry().register(new ItemAddSuffix());
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	gear.suffix = new SuffixData();
-	gear.suffix.RerollFully(gear);
+        gear.suffix = new SuffixData();
+        gear.suffix.RerollFully(gear);
 
-	Gear.Save(stack, gear);
+        Gear.Save(stack, gear);
 
-	return stack;
+        return stack;
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	return gear != null && gear.suffix == null && !gear.isRuned();
+        return gear != null && gear.suffix == null && !gear.isRuned();
     }
 
     @Override
     public int Tier() {
-	return 10;
+        return 10;
     }
 
     @Override
     public int Rank() {
-	return 4;
+        return 4;
     }
 }

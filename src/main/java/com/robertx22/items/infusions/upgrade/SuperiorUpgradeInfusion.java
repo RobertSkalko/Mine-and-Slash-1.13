@@ -1,10 +1,10 @@
 package com.robertx22.items.infusions.upgrade;
 
 import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
 
     public SuperiorUpgradeInfusion() {
-	super(name);
+        super(name);
 
     }
 
@@ -23,37 +23,37 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new SuperiorUpgradeInfusion());
+        event.getRegistry().register(new SuperiorUpgradeInfusion());
     }
 
     @Override
     public int Tier() {
-	return 9;
+        return 9;
     }
 
     @Override
     public float critOnSuccessChance() {
-	return 10F;
+        return 10F;
     }
 
     @Override
     public float bonusSuccessChance() {
-	return 5F;
+        return 5F;
     }
 
     @Override
     public float majorFailureChance() {
-	return 4F;
+        return 4F;
     }
 
     @Override
     public String GUID() {
-	return name;
+        return name;
     }
 
     @Override
     public int Rank() {
-	return 2;
+        return 2;
     }
 
 }

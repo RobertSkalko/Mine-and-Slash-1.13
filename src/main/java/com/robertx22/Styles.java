@@ -10,6 +10,7 @@ public class Styles {
     public static Style GREEN = new Style().setColor(TextFormatting.GREEN);
     public static Style YELLOW = new Style().setColor(TextFormatting.YELLOW);
     public static Style RED = new Style().setColor(TextFormatting.RED);
+    public static Style DARK_GREEN = new Style().setColor(TextFormatting.DARK_GREEN);
 
 }
 

@@ -1,8 +1,5 @@
 package com.robertx22.items.infusions;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
@@ -20,18 +17,21 @@ import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureD
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.Arrays;
+import java.util.List;
 
 @EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AttackInfusionItem extends BaseInfusionItem {
 
     public AttackInfusionItem() {
-	super(name);
+        super(name);
 
     }
 
@@ -42,30 +42,27 @@ public class AttackInfusionItem extends BaseInfusionItem {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new AttackInfusionItem());
+        event.getRegistry().register(new AttackInfusionItem());
     }
 
     @Override
     public List<StatMod> weaponInfusions() {
-	return Arrays.asList(new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent(),
-		new NatureSpellToAttackFlat(), new WaterSpellToAttackFlat(), new ThunderSpellToAttackFlat(),
-		new FireSpellToAttackFlat());
+        return Arrays.asList(new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent(), new NatureSpellToAttackFlat(), new WaterSpellToAttackFlat(), new ThunderSpellToAttackFlat(), new FireSpellToAttackFlat());
     }
 
     @Override
     public List<StatMod> armorInfusions() {
-	return Arrays.asList(new SpellNatureDamagePercent(), new SpellFireDamagePercent(),
-		new SpellThunderDamagePercent(), new SpellWaterDamagePercent(), new PhysicalDamagePercent());
+        return Arrays.asList(new SpellNatureDamagePercent(), new SpellFireDamagePercent(), new SpellThunderDamagePercent(), new SpellWaterDamagePercent(), new PhysicalDamagePercent());
     }
 
     @Override
     public List<StatMod> jewerlyInfusions() {
-	return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new ThunderPeneFlat(), new NaturePeneFlat());
+        return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new ThunderPeneFlat(), new NaturePeneFlat());
     }
 
     @Override
     public String GUID() {
-	return name;
+        return name;
     }
 
 }

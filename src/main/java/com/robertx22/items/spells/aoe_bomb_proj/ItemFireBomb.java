@@ -4,10 +4,10 @@ import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.bases.BaseSpell;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ItemFireBomb extends BaseSpellItem {
 
     public ItemFireBomb() {
-	super();
+        super();
     }
 
     @ObjectHolder(Ref.MODID + ":spell_fire_bomb")
@@ -23,17 +23,17 @@ public class ItemFireBomb extends BaseSpellItem {
 
     @Override
     public BaseSpell Spell() {
-	return new SpellFireBomb();
+        return new SpellFireBomb();
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemFireBomb());
+        event.getRegistry().register(new ItemFireBomb());
     }
 
     @Override
     public String GUID() {
-	return Ref.MODID + ":spell_fire_bomb";
+        return Ref.MODID + ":spell_fire_bomb";
     }
 
 }
