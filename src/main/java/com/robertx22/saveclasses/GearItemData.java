@@ -23,6 +23,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.init.Items;
@@ -265,8 +266,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         event.getToolTip().clear();
 
         event.getToolTip().add(new TextComponentString(GetDisplayName(stack)));
-        event.getToolTip()
-                .add(new TextComponentString(TextFormatting.YELLOW + CLOC.word("level") + ": " + level));
+        event.getToolTip().add(TooltipUtils.level(level));
 
         event.getToolTip().add(new TextComponentString(""));
 

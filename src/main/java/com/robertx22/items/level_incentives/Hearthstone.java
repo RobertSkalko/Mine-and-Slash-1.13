@@ -7,6 +7,7 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -241,7 +242,12 @@ public class Hearthstone extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip(""), tooltip);
+        tooltip.add(TooltipUtils.level(this.levelReq));
+        Tooltip.add(CLOC.word("cooldown: " + this.cooldownTimeMinute + CLOC.word("minutes") + ". " + CLOC
+                .word("left") + ": " + this.getCurrentCooldown(stack)), tooltip);
+        Tooltip.add(CLOC.word("uses") + ": " + this.totalUses + CLOC.word("left") + ": " + this
+                .getRemainingUses(stack), tooltip);
+        Tooltip.add(CLOC.word("activation_time: ") + this.activationTime, tooltip);
 
     }
 

@@ -287,8 +287,8 @@
     "mmorpg.word.misc": "Misc",
     "mmorpg.word.not_mapworld": "Not a Map World",
     "mmorpg.word.put_map": "Put Map",
-    "_comment": "mmorpg.word.sacrifice_map_for_tier=Sacrifice Map For Tier",
-    "_comment": "mmorpg.word.sacrifice_map_for_level=Sacrifice Map For Level",
+	"mmorpg.word.sacrifice_map_for_tier=Sacrifice Map For Tier",
+	"mmorpg.word.sacrifice_map_for_level=Sacrifice Map For Level",
     "mmorpg.word.start": "Start",
     "mmorpg.word.dealt": "Dealt",
     "mmorpg.word.took": "Took",
@@ -313,10 +313,17 @@
     "mmorpg.word.bonus_success_rate": "Bonus Success Rate",
     "mmorpg.word.major_success_bonus": "Major Success Chance",
     "mmorpg.word.major_failure_chance": "Major Failure Chance",
-
-
-
-
+    "mmorpg.word.gears": "Gears",
+    "mmorpg.word.spells": "Spells",
+    "mmorpg.word.maps": "Maps",
+    "mmorpg.word.runes": "Runes",
+    "mmorpg.word.cooldown": "Cooldown",
+	"mmorpg.word.uses": "Uses",
+	"mmorpg.word.left": "None",
+	"mmorpg.word.minutes": "Minutes",
+	"mmorpg.word.activation_time": "Activation Time",	
+    "mmorpg.tooltip.bonus_salvage_chance": "Bonus salvage chance",
+    "mmorpg.tooltip.works_when_in_baubles_slot": "Works If Equipped",
 
     "_comment": "BIOME WORDS",
     "mmorpg.word.arid_highland": "Arid Highland",
@@ -854,14 +861,6 @@
     "mmorpg.word.runeword": "RuneWord",
 
     "mmorpg.tooltip.auto_salvage_items": "Automatically salvages items",
-    "mmorpg.word.gears": "Gears",
-    "mmorpg.word.spells": "Spells",
-    "mmorpg.word.maps": "Maps",
-    "mmorpg.word.runes": "Runes",
-    "mmorpg.word.none": "None",
-    "mmorpg.tooltip.bonus_salvage_chance": "Bonus salvage chance",
-    "mmorpg.tooltip.works_when_in_baubles_slot": "Works If Equipped",
-
     "mmorpg.tooltip.sal_info": "Press Shift For Setup Info",
     "mmorpg.tooltip.sal1": "Place An Item Of Maximum Rarity You want to",
     "mmorpg.tooltip.sal2": "salvage in your off-hand.",

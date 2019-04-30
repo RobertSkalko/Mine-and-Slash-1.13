@@ -1,10 +1,5 @@
 package com.robertx22.items.runes.base;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
@@ -40,15 +35,18 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
-
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect {
 
@@ -56,93 +54,94 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     public int Weight() {
-	return 1000;
+        return 1000;
     }
 
     public abstract BaseRuneItem byRarity(int rar);
 
     public BaseRuneItem(int rarity) {
 
-	super(new Properties().maxStackSize(1).defaultMaxDamage(0));
-	this.rarity = rarity;
+        super(new Properties().maxStackSize(1).defaultMaxDamage(0));
+        this.rarity = rarity;
 
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	RuneItemData rune = Rune.Load(currency);
+        RuneItemData rune = Rune.Load(currency);
 
-	gear.runes.insert(rune, gear);
+        gear.runes.insert(rune, gear);
 
-	Gear.Save(stack, gear);
+        Gear.Save(stack, gear);
 
-	return stack;
+        return stack;
 
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	if (gear != null && gear.isRuned()) {
-	    if (gear.runes == null) {
-		gear.runes = new RunesData();
-		Gear.Save(stack, gear);
-	    }
+        if (gear != null && gear.isRuned()) {
+            if (gear.runes == null) {
+                gear.runes = new RunesData();
+                Gear.Save(stack, gear);
+            }
 
-	    RuneItemData rune = Rune.Load(currency);
+            RuneItemData rune = Rune.Load(currency);
 
-	    if (rune != null) {
-		return gear.runes.canFit(gear, rune);
-	    }
-	}
+            if (rune != null) {
+                return gear.runes.canFit(gear, rune);
+            }
+        }
 
-	return false;
+        return false;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
-	    ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-	RuneItemData rune = Rune.Load(stack);
+        RuneItemData rune = Rune.Load(stack);
 
-	if (rune != null) {
+        if (rune != null) {
 
-	    Tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + rune.level, tooltip);
+            tooltip.add(TooltipUtils.level(rune.level));
 
-	    RuneRarity rar = rune.GetRarity();
+            RuneRarity rar = rune.GetRarity();
 
-	    if (rune.armor != null) {
-		Tooltip.add(CLOC.tooltip("stats_on_armor") + ":", tooltip);
-		for (String str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    Tooltip.add(str, tooltip);
-		}
-		Tooltip.add("", tooltip);
-	    }
-	    if (rune.weapon != null) {
+            if (rune.armor != null) {
+                Tooltip.add(CLOC.tooltip("stats_on_armor") + ":", tooltip);
+                for (String str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                    Tooltip.add(str, tooltip);
+                }
+                Tooltip.add("", tooltip);
+            }
+            if (rune.weapon != null) {
 
-		Tooltip.add(CLOC.tooltip("stats_on_weapon") + ":", tooltip);
-		for (String str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    Tooltip.add(str, tooltip);
-		}
-	    }
-	    if (rune.jewerly != null) {
+                Tooltip.add(CLOC.tooltip("stats_on_weapon") + ":", tooltip);
+                for (String str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                    Tooltip.add(str, tooltip);
+                }
+            }
+            if (rune.jewerly != null) {
 
-		Tooltip.add("", tooltip);
-		Tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":", tooltip);
-		for (String str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
-		    Tooltip.add(str, tooltip);
-		}
-		Tooltip.add("", tooltip);
-	    }
+                Tooltip.add("", tooltip);
+                Tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":", tooltip);
+                for (String str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                    Tooltip.add(str, tooltip);
+                }
+                Tooltip.add("", tooltip);
+            }
 
-	    Tooltip.add(CLOC.word("rarity") + ": " + rune.GetRarity().Color() + rune.GetRarity().locName(), tooltip);
+            Tooltip.add(CLOC.word("rarity") + ": " + rune.GetRarity()
+                    .Color() + rune.GetRarity().locName(), tooltip);
 
-	}
+        }
 
     }
 
@@ -155,33 +154,28 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     public abstract List<StatMod> jewerlyStat();
 
     public List<StatMod> spellDamageFlats() {
-	return Arrays.asList(new SpellFireDamageFlat(), new SpellWaterDamageFlat(), new SpellThunderDamageFlat(),
-		new SpellNatureDamageFlat());
+        return Arrays.asList(new SpellFireDamageFlat(), new SpellWaterDamageFlat(), new SpellThunderDamageFlat(), new SpellNatureDamageFlat());
     }
 
     public List<StatMod> spellDamageMultis() {
-	return Arrays.asList(new SpellFireDamageMulti(), new SpellWaterDamageMulti(), new SpellThunderDamageMulti(),
-		new SpellNatureDamageMulti());
+        return Arrays.asList(new SpellFireDamageMulti(), new SpellWaterDamageMulti(), new SpellThunderDamageMulti(), new SpellNatureDamageMulti());
     }
 
     public List<StatMod> resistFlats() {
-	return Arrays.asList(new FireResistFlat(), new WaterResistFlat(), new ThunderResistFlat(),
-		new NatureResistFlat());
+        return Arrays.asList(new FireResistFlat(), new WaterResistFlat(), new ThunderResistFlat(), new NatureResistFlat());
     }
 
     public List<StatMod> peneFlats() {
-	return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new ThunderPeneFlat(), new NaturePeneFlat());
+        return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new ThunderPeneFlat(), new NaturePeneFlat());
 
     }
 
     public List<StatMod> penePercents() {
-	return Arrays.asList(new FirePenePercent(), new WaterPenePercent(), new ThunderPenePercent(),
-		new NaturePenePercent());
+        return Arrays.asList(new FirePenePercent(), new WaterPenePercent(), new ThunderPenePercent(), new NaturePenePercent());
     }
 
     public List<StatMod> spellDamagePercents() {
-	return Arrays.asList(new SpellFireDamagePercent(), new SpellWaterDamagePercent(),
-		new SpellThunderDamagePercent(), new SpellNatureDamagePercent());
+        return Arrays.asList(new SpellFireDamagePercent(), new SpellWaterDamagePercent(), new SpellThunderDamagePercent(), new SpellNatureDamagePercent());
     }
 
 }
