@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import java.util.HashMap;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OnTickLogic {
 
     static final int TicksToUpdatePlayer = 18;

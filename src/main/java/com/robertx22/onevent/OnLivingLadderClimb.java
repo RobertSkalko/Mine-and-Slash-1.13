@@ -3,7 +3,7 @@ package com.robertx22.onevent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
-//@Mod.EventBusSubscriber
+//@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OnLivingLadderClimb {
 
     // this is a secret tool that will help us later

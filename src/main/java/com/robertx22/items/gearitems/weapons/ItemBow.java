@@ -25,7 +25,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemBow extends BaseBow implements IWeapon {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

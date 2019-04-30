@@ -1,5 +1,6 @@
 package com.robertx22.onevent.Item;
 
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
@@ -19,7 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OnTooltip {
 
     @SubscribeEvent
@@ -56,8 +57,7 @@ public class OnTooltip {
 
                 if (GuiScreen.isShiftKeyDown() == false) {
 
-                    event.getToolTip()
-                            .add(new TextComponentString(CLOC.tooltip("press_shift_more_info")));
+                    event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
                 }
 
             }
@@ -68,8 +68,9 @@ public class OnTooltip {
             if (map != null) {
                 event.getToolTip().add(new TextComponentString(""));
                 event.getToolTip()
-                        .add(new TextComponentString(TextFormatting.GOLD + CLOC.tooltip("affix_rarity_lootbonus") + ": " + unitdata
-                                .getLootBonusPerAffixKills(map) + "%"));
+                        .add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(CLOC
+                                .tooltip("affix_rarity_lootbonus"))
+                                .appendText(": " + unitdata.getLootBonusPerAffixKills(map) + "%"));
 
             }
         }

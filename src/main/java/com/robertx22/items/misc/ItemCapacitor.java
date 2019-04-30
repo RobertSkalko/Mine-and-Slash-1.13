@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemCapacitor extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();

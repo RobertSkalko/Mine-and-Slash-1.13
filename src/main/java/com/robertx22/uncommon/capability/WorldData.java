@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WorldData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "worlddata");
@@ -103,7 +103,7 @@ public class WorldData {
 
     }
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventHandler {
         @SubscribeEvent
         public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {

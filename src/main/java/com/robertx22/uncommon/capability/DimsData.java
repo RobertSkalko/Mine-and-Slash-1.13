@@ -21,7 +21,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DimsData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "map_dims_data");
@@ -111,7 +111,7 @@ public class DimsData {
         }
     }
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventHandler {
         @SubscribeEvent
         public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {

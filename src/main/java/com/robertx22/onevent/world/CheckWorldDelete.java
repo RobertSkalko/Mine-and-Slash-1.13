@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CheckWorldDelete {
 
     public static HashMap<ResourceLocation, Integer> idAndDeleteAttempts = new HashMap<ResourceLocation, Integer>();

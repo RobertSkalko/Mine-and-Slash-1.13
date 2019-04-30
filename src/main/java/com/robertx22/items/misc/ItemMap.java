@@ -1,9 +1,11 @@
 package com.robertx22.items.misc;
 
+import com.robertx22.Styles;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.dimensions.blocks.MapPortalBlock;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -20,18 +22,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemMap extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -63,27 +68,37 @@ public class ItemMap extends Item {
             Tooltip.add("", tooltip);
 
             try {
-                Tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider()
-                        .locName(), tooltip);
+                Tooltip.add(CLOC.word("world_type")
+                        .appendText(": ")
+                        .appendSibling(data.getWorldProvider().locName())
+                        .setStyle(new Style().setColor(TextFormatting.BLUE)), tooltip);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             Tooltip.add("", tooltip);
-            Tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier, tooltip);
+            Tooltip.add(CLOC.word("tier")
+                    .appendText(": " + data.tier)
+                    .setStyle(Styles.GOLD), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes, tooltip);
+            Tooltip.add(CLOC.word("minutes")
+                    .appendText(": " + data.minutes)
+                    .setStyle(Styles.GREEN), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data
-                    .getBonusLootAmount() + "%", tooltip);
+            Tooltip.add(CLOC.word("bonus_loot_amount")
+                    .appendText(": " + data.getBonusLootAmount() + "%")
+                    .setStyle(Styles.YELLOW), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName(), tooltip);
+
+            Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"), tooltip);
+            Tooltip.add(CLOC.tooltip("put_in_mapdevice")
+                    .setStyle(new Style().setColor(TextFormatting.BLUE)), tooltip);
 
         }
 
@@ -101,7 +116,7 @@ public class ItemMap extends Item {
             return;
         }
 
-        String str = "";
+        ITextComponent str = new TextComponentString("");
 
         if (affected.equals(AffectedEntities.Players)) {
             str = CLOC.word("player_affixes");
@@ -109,16 +124,16 @@ public class ItemMap extends Item {
             str = CLOC.word("mob_affixes");
         }
 
-        Tooltip.add(TextFormatting.GREEN + str, tooltip);
+        Tooltip.add(str.setStyle(Styles.GREEN), tooltip);
 
         for (MapAffixData affix : affixes) {
 
             for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-                for (String statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity)
+                for (ITextComponent statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity)
                         .StatPercents(), data.level, false)) {
 
-                    Tooltip.add(" * " + TextFormatting.RED + statstring, tooltip);
+                    Tooltip.add(" * " + TextFormatting.RED + statstring.setStyle(Styles.RED), tooltip);
                 }
 
             }

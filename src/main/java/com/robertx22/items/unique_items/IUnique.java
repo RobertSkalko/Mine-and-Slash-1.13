@@ -2,12 +2,15 @@ package com.robertx22.items.unique_items;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.ITiered;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public interface IUnique extends IWeighted, ITiered, IGUID {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
@@ -38,11 +41,11 @@ public interface IUnique extends IWeighted, ITiered, IGUID {
         return this.UncommonWeight;
     }
 
-    public default String locName() {
+    public default ITextComponent locName() {
         return CLOC.uniqueName(this.GUID());
     }
 
-    public default String locDesc() {
+    public default ITextComponent locDesc() {
         return CLOC.uniqueDesc(this.GUID());
     }
 

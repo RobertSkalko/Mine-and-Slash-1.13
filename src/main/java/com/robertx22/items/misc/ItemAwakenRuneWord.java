@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,7 +28,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     @ObjectHolder(Ref.MODID + ":awaken_runeword")
@@ -57,12 +58,14 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             Tooltip.add(runeword.locName()
                     .setStyle(new Style().setColor(TextFormatting.GOLD)), tooltip);
 
-            Tooltip.add(TextFormatting.GREEN runeword.getRuneWordComboString(), tooltip);
+            Tooltip.add(new TextComponentString(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
 
             Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);
 
             Tooltip.add("", tooltip);
-        } Tooltip.add(CLOC.tooltip("place_in_modify"), tooltip);
+
+        }
+        Tooltip.add(CLOC.tooltip("place_in_modify"), tooltip);
         Tooltip.add(CLOC.tooltip("unlocks_runeword_combo"), tooltip);
     }
 

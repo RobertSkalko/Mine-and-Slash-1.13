@@ -1,8 +1,5 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.text.DecimalFormat;
-import java.util.List;
-
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.Stat;
@@ -13,9 +10,12 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.text.ITextComponent;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 @Storable
 public class StatModData implements ITooltipString {
@@ -26,53 +26,53 @@ public class StatModData implements ITooltipString {
 
     public static StatModData NewRandom(GearItemData gear, StatMod mod) {
 
-	StatModData data = new StatModData();
+        StatModData data = new StatModData();
 
-	data.baseModName = mod.GUID();
-	data.type = mod.Type();
-	data.percent = StatGen.GenPercent(gear.GetRarity());
+        data.baseModName = mod.GUID();
+        data.type = mod.Type();
+        data.percent = StatGen.GenPercent(gear.GetRarity());
 
-	return data;
+        return data;
     }
 
     public static StatModData NewRandom(RuneRarity rar, StatMod mod) {
 
-	StatModData data = new StatModData();
+        StatModData data = new StatModData();
 
-	data.baseModName = mod.GUID();
-	data.type = mod.Type();
-	data.percent = StatGen.GenPercent(rar);
+        data.baseModName = mod.GUID();
+        data.type = mod.Type();
+        data.percent = StatGen.GenPercent(rar);
 
-	return data;
+        return data;
     }
 
     public static StatModData NewStatusEffect(int percent, StatMod mod) {
 
-	StatModData data = new StatModData();
+        StatModData data = new StatModData();
 
-	data.baseModName = mod.GUID();
-	data.type = mod.Type();
-	data.percent = percent;
+        data.baseModName = mod.GUID();
+        data.type = mod.Type();
+        data.percent = percent;
 
-	return data;
+        return data;
     }
 
     public static StatModData Load(StatMod mod, int percent) {
 
-	StatModData data = new StatModData();
+        StatModData data = new StatModData();
 
-	data.baseModName = mod.GUID();
-	data.type = mod.Type();
-	data.percent = percent;
+        data.baseModName = mod.GUID();
+        data.type = mod.Type();
+        data.percent = percent;
 
-	return data;
+        return data;
     }
 
     public void useOnPlayer(UnitData unit) {
-	String guid = this.GetBaseMod().GetBaseStat().Guid();
-	if (unit.getUnit().MyStats.containsKey(guid)) {
-	    unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
-	}
+        String guid = this.GetBaseMod().GetBaseStat().Guid();
+        if (unit.getUnit().MyStats.containsKey(guid)) {
+            unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
+        }
     }
 
     @Store
@@ -85,49 +85,50 @@ public class StatModData implements ITooltipString {
     public String baseModName;
 
     public StatMod GetBaseMod() {
-	return StatMods.All.get(baseModName);
+        return StatMods.All.get(baseModName);
     }
 
     public float GetActualVal(int level) {
 
-	StatMod mod = GetBaseMod();
+        StatMod mod = GetBaseMod();
 
-	Stat stat = mod.GetBaseStat();
+        Stat stat = mod.GetBaseStat();
 
-	float val = mod.GetFloatByPercent(percent);
+        float val = mod.GetFloatByPercent(percent);
 
-	if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
-	    val *= level;
-	}
+        if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
+            val *= level;
+        }
 
-	return val;
+        return val;
 
     }
 
     public String printValue(int level) {
 
-	float val = GetActualVal(level);
+        float val = GetActualVal(level);
 
-	DecimalFormat format = new DecimalFormat();
+        DecimalFormat format = new DecimalFormat();
 
-	if (val < 10) {
-	    format.setMaximumFractionDigits(1);
+        if (val < 10) {
+            format.setMaximumFractionDigits(1);
 
-	    return format.format(val);
+            return format.format(val);
 
-	} else {
+        } else {
 
-	    int intval = (int) val;
-	    return intval + "";
+            int intval = (int) val;
+            return intval + "";
 
-	}
+        }
 
     }
 
     @Override
-    public List<String> GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
+    public List<ITextComponent> GetTooltipString(MinMax minmax, int level,
+                                                 boolean IsNotSet) {
 
-	return GetBaseMod().GetBaseStat().getTooltipList(minmax, this, level, IsNotSet);
+        return GetBaseMod().GetBaseStat().getTooltipList(minmax, this, level, IsNotSet);
 
     }
 

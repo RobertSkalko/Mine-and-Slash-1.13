@@ -51,7 +51,7 @@ import net.minecraftforge.fml.network.NetworkDirection;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "entitydata");
@@ -168,7 +168,7 @@ public class EntityData {
         boolean isWeapon(ItemStack stack);
     }
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventHandler {
 
         @SubscribeEvent
