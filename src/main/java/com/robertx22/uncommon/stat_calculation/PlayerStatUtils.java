@@ -20,9 +20,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.CuriosAPI.FinderData;
-import top.theillusivec4.curios.api.inventory.CurioStackHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,6 +122,7 @@ public class PlayerStatUtils {
 
         if (entity instanceof EntityPlayer) {
 
+            /*
             @SuppressWarnings("unused") FinderData found = CuriosAPI.getCuriosHandler(entity)
                     .map(handler -> {
                         for (String id : handler.getCurioMap().keySet()) {
@@ -146,7 +144,7 @@ public class PlayerStatUtils {
                     .orElse(new FinderData("", 0, ItemStack.EMPTY));
 
             //
-
+*/
         }
         List<GearItemData> gearitems = new ArrayList<GearItemData>();
 

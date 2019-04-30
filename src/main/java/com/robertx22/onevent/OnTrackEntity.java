@@ -1,7 +1,6 @@
 package com.robertx22.onevent;
 
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
@@ -11,11 +10,13 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnTrackEntity {
 
     @SubscribeEvent
     public static void onEntityTrack(PlayerEvent.StartTracking event) {
+
+        // System.out.println("tracking");
 
         Entity entity = event.getTarget();
 

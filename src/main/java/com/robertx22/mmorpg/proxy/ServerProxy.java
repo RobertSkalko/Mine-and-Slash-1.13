@@ -11,11 +11,6 @@ import java.util.function.Supplier;
 public class ServerProxy implements IProxy {
 
     @Override
-    public String translate(String str) {
-        return "ERROR";
-    }
-
-    @Override
     public void preInit(FMLCommonSetupEvent event) {
         // TODO Auto-generated method stub
 

@@ -46,12 +46,12 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.network.NetworkDirection;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class EntityData {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "entitydata");
@@ -168,7 +168,7 @@ public class EntityData {
         boolean isWeapon(ItemStack stack);
     }
 
-    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
     public static class EventHandler {
 
         @SubscribeEvent

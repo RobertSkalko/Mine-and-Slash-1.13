@@ -39,13 +39,15 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
 @Mod(Ref.MODID)
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class MMORPG {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public static IProxy proxy = (IProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     // public static Main instance;
 
@@ -86,6 +88,7 @@ public class MMORPG {
 
     public void preInit(FMLCommonSetupEvent event) {
 
+        proxy.preInit(event);
         System.out.println("Starting Setup");
 
         ModLoadingContext.get()
@@ -96,7 +99,7 @@ public class MMORPG {
         PacketRegister.register();
         CapabilityRegister.register();
         OreGenRegister.register();
-        proxy.preInit(event);
+
     }
 
     public void postInit(final InterModProcessEvent event) {

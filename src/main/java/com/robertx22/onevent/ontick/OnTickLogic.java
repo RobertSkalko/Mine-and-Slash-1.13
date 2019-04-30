@@ -5,7 +5,6 @@ import com.robertx22.database.stats.stat_types.resources.HealthRegen;
 import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.items.misc.ItemMapBackPortal;
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.IWorldPacket;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -15,14 +14,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnTickLogic {
 
     static final int TicksToUpdatePlayer = 18;
@@ -33,7 +32,7 @@ public class OnTickLogic {
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
     @SubscribeEvent
-    public static void onTickLogic(TickEvent.PlayerTickEvent event) {
+    public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
 
         if (event.phase == Phase.END && event.side.equals(LogicalSide.SERVER)) {
 

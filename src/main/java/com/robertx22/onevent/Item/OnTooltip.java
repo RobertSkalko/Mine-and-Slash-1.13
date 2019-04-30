@@ -1,6 +1,5 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
@@ -17,14 +16,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+
+import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class OnTooltip {
 
     @SubscribeEvent
-    public static void onTooltip(ItemTooltipEvent event) {
+    public static void onItemTooltip(ItemTooltipEvent event) {
 
         if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null || !event
                 .getEntityPlayer().world.isRemote) {

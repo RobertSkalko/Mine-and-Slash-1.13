@@ -6,7 +6,6 @@ import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -18,6 +17,7 @@ import java.util.function.Supplier;
 
 public class ClientProxy implements IProxy {
 
+    @Override
     public void preInit(FMLCommonSetupEvent event) {
 
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
@@ -26,22 +26,12 @@ public class ClientProxy implements IProxy {
 
     }
 
-    public void postInit() {
+    @Override
+    public void postInit(InterModProcessEvent event) {
         // DEBUG
         System.out.println("on Client side");
 
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
-
-    }
-
-    @Override
-    public String translate(String str) {
-        return I18n.format(str);
-    }
-
-    @Override
-    public void postInit(InterModProcessEvent event) {
-        // TODO Auto-generated method stub
 
     }
 
