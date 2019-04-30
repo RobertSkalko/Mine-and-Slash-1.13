@@ -116,7 +116,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
             if (rune.armor != null) {
                 Tooltip.add(CLOC.tooltip("stats_on_armor") + ":", tooltip);
-                for (String str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
                 Tooltip.add("", tooltip);
@@ -124,7 +124,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             if (rune.weapon != null) {
 
                 Tooltip.add(CLOC.tooltip("stats_on_weapon") + ":", tooltip);
-                for (String str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
             }
@@ -132,7 +132,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
                 Tooltip.add("", tooltip);
                 Tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":", tooltip);
-                for (String str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
                 Tooltip.add("", tooltip);

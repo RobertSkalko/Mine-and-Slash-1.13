@@ -9,6 +9,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public abstract class GearItemSlot implements IWeighted {
 
     public abstract GearSlotType slotType();
 
-    public String locName() {
+    public ITextComponent locName() {
         return CLOC.geartype(GUID().toLowerCase());
     }
 

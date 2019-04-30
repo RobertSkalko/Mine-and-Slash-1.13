@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ItemCapacitor extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();

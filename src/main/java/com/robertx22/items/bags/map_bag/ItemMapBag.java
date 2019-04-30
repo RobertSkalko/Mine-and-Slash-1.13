@@ -21,7 +21,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ItemMapBag extends BaseBagItem {
 
     public static final int GUI_NUMBER = 356516;

@@ -355,7 +355,7 @@ public class TileInventoryRepair extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return new TextComponentString(CLOC.blank("block.mmorpg:repair_station"));
+        return CLOC.blank("block.mmorpg:repair_station");
     }
 
     @Override

@@ -65,13 +65,13 @@ public class GuiMap extends TileGui {
 
         final int MAP_XPOS = 90;
         final int MAP_YPOS = 15;
-        String map = CLOC.word("put_map");
+        String map = CLOC.word("put_map").getFormattedText();
         fontRenderer.drawString(map, MAP_XPOS - fontRenderer.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
                 .getRGB());
 
         final int START_XPOS = 88;
         final int START_YPOS = 85;
-        String start = CLOC.word("start");
+        String start = CLOC.word("start").getFormattedText();
         fontRenderer.drawString(start, START_XPOS - fontRenderer.getStringWidth(start) / 2, START_YPOS, Color.darkGray
                 .getRGB());
 

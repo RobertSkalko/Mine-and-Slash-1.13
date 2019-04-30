@@ -1,9 +1,5 @@
 package com.robertx22.saveclasses.rune;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
@@ -13,9 +9,14 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Storable
 public class RuneWordData implements IStatsContainer, ITooltipList {
@@ -34,7 +35,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
 
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
-	return Arrays.asList(new LevelAndStats(Mods, this.level));
+        return Arrays.asList(new LevelAndStats(Mods, this.level));
     }
 
     public RuneWordData() {
@@ -43,46 +44,47 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
 
     public RuneWordData(RunesData data, RuneWord word) {
 
-	level = data.getAverageLevel();
+        level = data.getAverageLevel();
 
-	int percent = data.getAveragePercents();
+        int percent = data.getAveragePercents();
 
-	name = word.GUID();
+        name = word.GUID();
 
-	rarity = data.getAverageRarity();
+        rarity = data.getAverageRarity();
 
-	Mods.clear();
+        Mods.clear();
 
-	for (StatMod mod : word.mods()) {
-	    Mods.add(StatModData.Load(mod, percent));
-	}
+        for (StatMod mod : word.mods()) {
+            Mods.add(StatModData.Load(mod, percent));
+        }
 
     }
 
     public RuneWord getRuneWord() {
-	return RuneWords.All.get(name);
+        return RuneWords.All.get(name);
     }
 
     public RuneRarity getRarity() {
-	return Rarities.Runes.get(rarity);
+        return Rarities.Runes.get(rarity);
     }
 
     @Override
-    public List<String> GetTooltipString(GearItemData gear) {
-	List<String> list = new ArrayList();
+    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+        List<ITextComponent> list = new ArrayList();
 
-	RuneRarity rar = this.getRarity();
+        RuneRarity rar = this.getRarity();
 
-	RuneWord word = getRuneWord();
+        RuneWord word = getRuneWord();
 
-	list.add(rar.Color() + "Rune Word: " + word.locName().toUpperCase());
-	// list.add("");
+        list.add(new TextComponentString(rar.Color() + "Rune Word: " + word.GUID()
+                .toUpperCase()));
+        // list.add("");
 
-	for (StatModData mod : this.Mods) {
-	    list.addAll(mod.GetTooltipString(rar.StatPercents(), level, true));
-	}
+        for (StatModData mod : this.Mods) {
+            list.addAll(mod.GetTooltipString(rar.StatPercents(), level, true));
+        }
 
-	return list;
+        return list;
     }
 
 }

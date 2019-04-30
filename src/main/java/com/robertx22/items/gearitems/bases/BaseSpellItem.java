@@ -1,5 +1,6 @@
 package com.robertx22.items.gearitems.bases;
 
+import com.robertx22.Styles;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.SpellItemData;
@@ -54,7 +55,9 @@ public abstract class BaseSpellItem extends Item {
 
             boolean moreInfo = GuiScreen.isShiftKeyDown();
 
-            Tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ", tooltip);
+            Tooltip.add(CLOC.word("stats")
+                    .appendText(": ")
+                    .setStyle(Styles.GREEN), tooltip);
             Tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)), tooltip);
             Tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)), tooltip);
 

@@ -158,7 +158,7 @@ public class TileMap extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return new TextComponentString(CLOC.blank("block.mmorpg:map_device"));
+        return CLOC.blank("block.mmorpg:map_device");
     }
 
     @Override

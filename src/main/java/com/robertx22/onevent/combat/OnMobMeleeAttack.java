@@ -1,12 +1,12 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,87 +19,92 @@ public class OnMobMeleeAttack {
     /**
      * On attack, cancel and spawn the real attack with my damage source, mobs don't
      * use energy but players do
-     * 
+     *
      * @param event
      */
     @SubscribeEvent
     public static void onMobMeleeAttack(LivingAttackEvent event) {
 
-	if (event.getEntityLiving().world.isRemote) {
-	    return;
-	}
+        if (event.getEntityLiving().world.isRemote) {
+            return;
+        }
 
-	if (event.getSource() instanceof MyDamageSource
-		|| event.getSource().getDamageType().equals(DamageEffect.DmgSourceName)) {
-	    return;
-	}
-	try {
-	    if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null
-		    || !(event.getSource().getTrueSource() instanceof EntityLivingBase)) {
-		return;
-	    }
+        if (event.getSource() instanceof MyDamageSource || event.getSource()
+                .getDamageType()
+                .equals(DamageEffect.DmgSourceName)) {
+            return;
+        }
+        try {
+            if (event.getEntityLiving() == null || event.getSource()
+                    .getTrueSource() == null || !(event.getSource()
+                    .getTrueSource() instanceof EntityLivingBase)) {
+                return;
+            }
 
-	    EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
+            EntityLivingBase source = (EntityLivingBase) event.getSource()
+                    .getTrueSource();
 
-	    EntityLivingBase target = event.getEntityLiving();
+            EntityLivingBase target = event.getEntityLiving();
 
-	    if (target.isAlive() == false) {
-		return; // stops attacking dead mobs
-	    }
+            if (target.isAlive() == false) {
+                return; // stops attacking dead mobs
+            }
 
-	    UnitData targetData = Load.Unit(target);
-	    UnitData sourceData = Load.Unit(source);
+            UnitData targetData = Load.Unit(target);
+            UnitData sourceData = Load.Unit(source);
 
-	    if (targetData == null || sourceData == null) {
-		return;
-	    }
+            if (targetData == null || sourceData == null) {
+                return;
+            }
 
-	    Unit targetUnit = targetData.getUnit();
-	    Unit sourceUnit = sourceData.getUnit();
+            Unit targetUnit = targetData.getUnit();
+            Unit sourceUnit = sourceData.getUnit();
 
-	    if (targetUnit == null || sourceUnit == null) {
-		return;
-	    }
+            if (targetUnit == null || sourceUnit == null) {
+                return;
+            }
 
-	    IWorldData world = Load.World(target.world);
+            IWorldData world = Load.World(target.world);
 
-	    if (world == null) {
-		return;
-	    }
+            if (world == null) {
+                return;
+            }
 
-	    targetData.recalculateStats(target, world);
-	    sourceData.recalculateStats(source, world);
+            targetData.recalculateStats(target, world);
+            sourceData.recalculateStats(source, world);
 
-	    if (source instanceof EntityPlayer) {
+            if (source instanceof EntityPlayer) {
 
-		ItemStack stack = source.getHeldItemMainhand();
+                ItemStack stack = source.getHeldItemMainhand();
 
-		if (sourceData.isWeapon(stack)) {
+                if (sourceData.isWeapon(stack)) {
 
-		    if (sourceData.tryUseWeapon(source, stack)) {
-			sourceData.attackWithWeapon(source, target, stack);
-		    }
+                    if (sourceData.tryUseWeapon(source, stack)) {
+                        sourceData.attackWithWeapon(source, target, stack);
+                    }
 
-		} else {
-		    sourceData.unarmedAttack(source, target);
-		}
+                } else {
+                    sourceData.unarmedAttack(source, target);
+                }
 
-	    } else { // if its a mob
+            } else { // if its a mob
 
-		sourceData.getUnit().MobBasicAttack(source, target, sourceData, event.getAmount());
+                sourceData.getUnit()
+                        .MobBasicAttack(source, target, sourceData, event.getAmount());
 
-		if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-		    EntityLivingBase defender = event.getEntityLiving();
-		    EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
-		    defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
-		}
+                if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
+                    EntityLivingBase defender = event.getEntityLiving();
+                    EntityLivingBase attacker = (EntityLivingBase) event.getSource()
+                            .getTrueSource();
+                    defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
+                }
 
-	    }
+            }
 
-	} catch (Exception e) {
-	    e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
 
-	}
+        }
 
     }
 

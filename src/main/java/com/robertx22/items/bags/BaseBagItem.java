@@ -31,7 +31,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
 public abstract class BaseBagItem extends Item {
 
     public abstract int GuiNumber();

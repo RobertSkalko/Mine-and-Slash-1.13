@@ -1,6 +1,5 @@
 package com.robertx22.dimensions;
 
-import com.robertx22.uncommon.CLOC;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
@@ -23,11 +22,11 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
 
     BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeprovidertype = BiomeProviderType.FIXED;
 
-
     @Override
     public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
 
-        SingleBiomeProviderSettings setting = biomeprovidertype.createSettings().setBiome(getBiome());
+        SingleBiomeProviderSettings setting = biomeprovidertype.createSettings()
+                .setBiome(getBiome());
 
         return ChunkGeneratorType.DEBUG.create(this.world, biomeprovidertype.create(setting), new DebugGenSettings());
 
@@ -35,7 +34,7 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
 
     @Override
     public String unlocString() {
-        return CLOC.word(this.GUID().toLowerCase());
+        return this.GUID().toLowerCase();
     }
 
     @Override

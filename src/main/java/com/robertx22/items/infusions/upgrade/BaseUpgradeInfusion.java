@@ -1,9 +1,6 @@
 package com.robertx22.items.infusions.upgrade;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.robertx22.Styles;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
@@ -12,78 +9,84 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurrencyItemEffect {
 
     public BaseUpgradeInfusion(String name) {
-	super(name);
+        super(name);
 
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
-	    ITooltipFlag flagIn) {
-	super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
 
-	Tooltip.add("", tooltip);
-	Tooltip.add(TextFormatting.GOLD + CLOC.word("bonus_success_rate") + ": " + this.bonusSuccessChance() + "%",
-		tooltip);
-	Tooltip.add(TextFormatting.GOLD + CLOC.word("major_success_bonus") + ": " + this.critOnSuccessChance() + "%",
-		tooltip);
-	Tooltip.add(TextFormatting.GOLD + CLOC.word("major_failure_chance") + ": " + this.majorFailureChance() + "%",
-		tooltip);
+        Tooltip.add("", tooltip);
+        Tooltip.add(CLOC.word("bonus_success_rate")
+                .appendText(": " + this.bonusSuccessChance() + "%")
+                .setStyle(Styles.GOLD), tooltip);
+
+        Tooltip.add(CLOC.word("major_success_bonus")
+                .appendText(": " + this.critOnSuccessChance() + "%")
+                .setStyle(Styles.GOLD), tooltip);
+        
+        Tooltip.add(CLOC.word("major_failure_chance")
+                .appendText(": " + this.majorFailureChance() + "%")
+                .setStyle(Styles.GOLD), tooltip);
 
     }
 
     public void TryUpgradeInfusion(InfusionData infusion) {
 
-	if (RandomUtils.roll(infusion.getChance() + this.bonusSuccessChance())) {
+        if (RandomUtils.roll(infusion.getChance() + this.bonusSuccessChance())) {
 
-	    if (RandomUtils.roll(this.critOnSuccessChance())) {
-		infusion.majorSuccess();
+            if (RandomUtils.roll(this.critOnSuccessChance())) {
+                infusion.majorSuccess();
 
-	    } else {
-		infusion.success();
-	    }
+            } else {
+                infusion.success();
+            }
 
-	} else {
-	    if (RandomUtils.roll(majorFailureChance())) {
-		infusion.majorFail();
-	    } else {
-		infusion.fail();
+        } else {
+            if (RandomUtils.roll(majorFailureChance())) {
+                infusion.majorFail();
+            } else {
+                infusion.fail();
 
-	    }
-	}
+            }
+        }
 
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	this.TryUpgradeInfusion(gear.infusion);
+        this.TryUpgradeInfusion(gear.infusion);
 
-	Gear.Save(stack, gear);
+        Gear.Save(stack, gear);
 
-	return stack;
+        return stack;
 
     }
 
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
-	GearItemData gear = Gear.Load(stack);
+        GearItemData gear = Gear.Load(stack);
 
-	return gear.infusion != null && gear.infusion.canUpgrade();
+        return gear.infusion != null && gear.infusion.canUpgrade();
 
     }
 

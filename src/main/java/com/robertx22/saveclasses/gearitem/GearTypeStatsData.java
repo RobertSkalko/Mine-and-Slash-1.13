@@ -1,9 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.robertx22.Styles;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.GearTypes;
@@ -13,10 +10,13 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.ITextComponent;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Storable
 public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsContainer {
@@ -31,60 +31,65 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
     public List<Integer> percents = new ArrayList<Integer>();
 
     public GearTypeStatsData(String GUID) {
-	this.geartypeGUID = GUID;
+        this.geartypeGUID = GUID;
     }
 
     @Override
     public void RerollFully(GearItemData gear) {
-	this.RerollNumbers(gear);
+        this.RerollNumbers(gear);
     }
 
     @Override
     public void RerollNumbers(GearItemData gear) {
 
-	percents.clear();
+        percents.clear();
 
-	for (StatMod mod : this.getGearType().slotTypeStats()) {
-	    percents.add(StatGen.GenPercent(gear.GetRarity()));
-	}
+        for (StatMod mod : this.getGearType().slotTypeStats()) {
+            percents.add(StatGen.GenPercent(gear.GetRarity()));
+        }
 
     }
 
     @Override
-    public List<String> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(GearItemData gear) {
 
-	List<String> list = new ArrayList<String>();
+        List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-	list.add(TextFormatting.GREEN + getGearType().locName() + " " + CLOC.word("stats") + ": ");
+        list.add(getGearType().locName()
+                .appendText(" ")
+                .appendSibling(CLOC.word("stats"))
+                .appendText(": ")
+                .setStyle(Styles.GREEN));
 
-	for (LevelAndStats part : this.GetAllStats(gear.level)) {
-	    for (StatModData data : part.mods) {
-		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
-	    }
-	}
+        for (LevelAndStats part : this.GetAllStats(gear.level)) {
+            for (StatModData data : part.mods) {
+                list.addAll(data.GetTooltipString(gear.GetRarity()
+                        .StatPercents(), part.level, true));
+            }
+        }
 
-	return list;
+        return list;
 
     }
 
     public GearItemSlot getGearType() {
-	return GearTypes.All.get(this.geartypeGUID);
+        return GearTypes.All.get(this.geartypeGUID);
     }
 
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
-	GearItemSlot slot = getGearType();
+        GearItemSlot slot = getGearType();
 
-	List<StatModData> list = new ArrayList<StatModData>();
+        List<StatModData> list = new ArrayList<StatModData>();
 
-	for (int i = 0; i < slot.slotTypeStats().size(); i++) {
+        for (int i = 0; i < slot.slotTypeStats().size(); i++) {
 
-	    StatMod mod = slot.slotTypeStats().get(i);
+            StatMod mod = slot.slotTypeStats().get(i);
 
-	    list.add(StatModData.Load(mod, percents.get(i)));
-	}
+            list.add(StatModData.Load(mod, percents.get(i)));
+        }
 
-	return Arrays.asList(new LevelAndStats(list, level));
+        return Arrays.asList(new LevelAndStats(list, level));
     }
 
 }

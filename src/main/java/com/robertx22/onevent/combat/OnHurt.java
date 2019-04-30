@@ -1,6 +1,7 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.EntityLivingBase;

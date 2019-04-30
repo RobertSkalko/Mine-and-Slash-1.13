@@ -1,5 +1,6 @@
 package com.robertx22.onevent.player;
 
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,7 +10,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class OnDeathInMap {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
