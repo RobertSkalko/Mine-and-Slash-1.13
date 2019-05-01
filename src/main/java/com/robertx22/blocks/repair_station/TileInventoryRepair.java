@@ -3,7 +3,6 @@ package com.robertx22.blocks.repair_station;
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemCapacitor;
 import com.robertx22.items.ores.ItemOre;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -355,7 +354,7 @@ public class TileInventoryRepair extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("block.mmorpg:repair_station");
+        return CLOC.blank("block.mmorpg.repair_station");
     }
 
     @Override
@@ -371,7 +370,7 @@ public class TileInventoryRepair extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + "gear_repair_station_gui";
+        return StartupRepair.ID;
     }
 
 }

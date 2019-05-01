@@ -8,6 +8,7 @@ import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 
 import java.util.HashMap;
 
@@ -362,8 +362,13 @@ public class TileGearFactory extends BaseTile {
     }
 
     @Override
+    public ITextComponent getName() {
+        return CLOC.blank(Ref.MODID + "." + StartupGearFactory.GEAR_FACTORY_ID);
+    }
+
+    @Override
     public ITextComponent getCustomName() {
-        return new TextComponentString("Factory");
+        return this.getName();
     }
 
     @Override

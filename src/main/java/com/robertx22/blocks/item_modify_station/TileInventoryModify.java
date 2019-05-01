@@ -11,7 +11,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import javax.annotation.Nullable;
@@ -259,12 +258,12 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("tile.mmorpg:modify_station.name");
+        return CLOC.blank("block.mmorpg.modify_station");
     }
 
     @Override
     public ITextComponent getCustomName() {
-        return new TextComponentString("");
+        return this.getName();
     }
 
     @Override

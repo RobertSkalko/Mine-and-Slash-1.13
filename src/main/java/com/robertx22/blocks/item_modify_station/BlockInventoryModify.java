@@ -31,20 +31,17 @@ public class BlockInventoryModify extends BaseInventoryBlock {
     public boolean onBlockActivated(IBlockState state, World world, BlockPos pos,
                                     EntityPlayer player, EnumHand hand, EnumFacing side,
                                     float hitX, float hitY, float hitZ) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return true;
+        }
 
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileInventoryModify) {
 
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
-
             IInteractionObject interact = (IInteractionObject) tile;
-
             NetworkHooks.openGui(entityPlayerMP, interact, pos);
-
-            //player.displayGui((TileInventoryModify) tile);
         }
 
         return true;

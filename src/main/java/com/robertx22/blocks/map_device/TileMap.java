@@ -1,8 +1,8 @@
 package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.items.misc.ItemMap;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Map;
@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
@@ -158,12 +157,12 @@ public class TileMap extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("block.mmorpg:map_device");
+        return CLOC.blank("block.mmorpg.map_device");
     }
 
     @Override
     public ITextComponent getCustomName() {
-        return new TextComponentString("");
+        return this.getName();
     }
 
     @Override
@@ -174,7 +173,7 @@ public class TileMap extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + "gear_map_device_gui";
+        return StartupModify.ID;
     }
 
 }

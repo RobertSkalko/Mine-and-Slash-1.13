@@ -1,5 +1,5 @@
 {
     "variants": {
-           "normal": { "model": "mmorpg:block/gear_factory_station_normal"}
+        "": { "model": "mmorpg:block/gear_factory_station_normal" }
     }
 }

@@ -1,7 +1,6 @@
 package com.robertx22.items.bags.currency_bag;
 
 import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -15,35 +14,38 @@ public class InteractCurrencyBag implements IInteractionObject {
     private final ItemStack stack;
 
     public InteractCurrencyBag(ItemStack stack) {
-	this.stack = stack;
+        this.stack = stack;
     }
 
     @Override
     public ITextComponent getName() {
-	return new TextComponentString(this.getGuiID());
+        return new TextComponentString(this.getGuiID());
     }
 
     @Override
     public boolean hasCustomName() {
 
-	return false;
+        return false;
     }
 
     @Override
     public ITextComponent getCustomName() {
 
-	return new TextComponentString(this.getGuiID());
+        return new TextComponentString(this.getGuiID());
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-	return new ContainerCurrencyBag(playerInventory, new InventoryCurrencyBag(stack));
+    public Container createContainer(InventoryPlayer playerInventory,
+                                     EntityPlayer playerIn) {
+        return new ContainerCurrencyBag(playerInventory, new InventoryCurrencyBag(stack));
 
     }
+
+    public static final String ID = Ref.MODID + ":currency_bag";
 
     @Override
     public String getGuiID() {
-	return Ref.MODID + ":currency_bag";
+        return ID;
     }
 
 }
