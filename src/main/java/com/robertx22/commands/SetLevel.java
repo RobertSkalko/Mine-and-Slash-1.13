@@ -33,12 +33,11 @@ public class SetLevel {
                 e.printStackTrace();
                 return 1;
             }
-
-            EntityData.UnitData data = Load.Unit(player);
-
-            data.setLevel(lvl, player);
-
         }
+        
+        EntityData.UnitData data = Load.Unit(player);
+
+        data.setLevel(lvl, player);
 
         return 0;
     }
