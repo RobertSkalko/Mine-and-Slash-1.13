@@ -42,14 +42,14 @@ public class ParticleGenPacket {
         ParticleGenPacket newpkt = new ParticleGenPacket();
 
         newpkt.name = tag.readString(30);
-        newpkt.x = tag.getDouble(0);
-        newpkt.y = tag.getDouble(1);
-        newpkt.z = tag.getDouble(2);
-        newpkt.xVel = tag.getDouble(3);
-        newpkt.yVel = tag.getDouble(4);
-        newpkt.zVel = tag.getDouble(5);
-        newpkt.radius = tag.getDouble(6);
-        newpkt.amount = tag.getInt(7);
+        newpkt.x = tag.readDouble();
+        newpkt.y = tag.readDouble();
+        newpkt.z = tag.readDouble();
+        newpkt.xVel = tag.readDouble();
+        newpkt.yVel = tag.readDouble();
+        newpkt.zVel = tag.readDouble();
+        newpkt.radius = tag.readDouble();
+        newpkt.amount = tag.readInt();
 
         return newpkt;
 
@@ -58,14 +58,14 @@ public class ParticleGenPacket {
     public static void encode(ParticleGenPacket packet, PacketBuffer tag) {
 
         tag.writeString(packet.name, 30);
-        tag.setDouble(0, packet.x);
-        tag.setDouble(1, packet.y);
-        tag.setDouble(2, packet.z);
-        tag.setDouble(3, packet.xVel);
-        tag.setDouble(4, packet.yVel);
-        tag.setDouble(5, packet.zVel);
-        tag.setDouble(6, packet.radius);
-        tag.setInt(7, packet.amount);
+        tag.writeDouble(packet.x);
+        tag.writeDouble(packet.y);
+        tag.writeDouble(packet.z);
+        tag.writeDouble(packet.xVel);
+        tag.writeDouble(packet.yVel);
+        tag.writeDouble(packet.zVel);
+        tag.writeDouble(packet.radius);
+        tag.writeInt(packet.amount);
 
     }
 

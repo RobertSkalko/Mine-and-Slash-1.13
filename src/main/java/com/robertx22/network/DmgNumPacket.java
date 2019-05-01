@@ -37,12 +37,12 @@ public class DmgNumPacket {
 
         DmgNumPacket newpkt = new DmgNumPacket();
 
-        newpkt.element = buf.getInt(1);
-        newpkt.x = buf.getDouble(2);
-        newpkt.y = buf.getDouble(3);
-        newpkt.z = buf.getDouble(4);
-        newpkt.height = buf.getFloat(5);
-        newpkt.isExp = buf.getBoolean(6);
+        newpkt.element = buf.readInt();
+        newpkt.x = buf.readDouble();
+        newpkt.y = buf.readDouble();
+        newpkt.z = buf.readDouble();
+        newpkt.height = buf.readFloat();
+        newpkt.isExp = buf.readBoolean();
 
         newpkt.string = buf.readString(30);
 
@@ -52,12 +52,12 @@ public class DmgNumPacket {
 
     public static void encode(DmgNumPacket packet, PacketBuffer tag) {
 
-        tag.setInt(1, packet.element);
-        tag.setDouble(2, packet.x);
-        tag.setDouble(3, packet.y);
-        tag.setDouble(4, packet.z);
-        tag.setFloat(5, packet.height);
-        tag.setBoolean(6, packet.isExp);
+        tag.writeInt(packet.element);
+        tag.writeDouble(packet.x);
+        tag.writeDouble(packet.y);
+        tag.writeDouble(packet.z);
+        tag.writeFloat(packet.height);
+        tag.writeBoolean(packet.isExp);
         tag.writeString(packet.string);
 
     }
