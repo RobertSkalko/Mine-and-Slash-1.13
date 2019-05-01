@@ -1,5 +1,6 @@
 package com.robertx22.blocks.item_modify_station;
 
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -21,12 +22,6 @@ public class StartupModify {
     public static Block blockInventoryAdvanced;
     public static ItemBlock itemBlockInventoryAdvanced;
 
-    public static void preInitCommon() {
-
-        TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileInventoryModify::new));
-
-    }
-
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         blockInventoryAdvanced = new BlockInventoryModify();
@@ -37,7 +32,8 @@ public class StartupModify {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Item.Properties());
+        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Item.Properties()
+                .group(CreativeTabs.MyModTab));
         itemBlockInventoryAdvanced.setRegistryName(ID);
 
         event.getRegistry().register(itemBlockInventoryAdvanced);

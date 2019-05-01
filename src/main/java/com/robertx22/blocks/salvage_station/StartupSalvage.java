@@ -1,5 +1,6 @@
 package com.robertx22.blocks.salvage_station;
 
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -20,12 +21,6 @@ public class StartupSalvage {
     public static Block blockInventoryAdvanced;
     public static ItemBlock itemBlockInventoryAdvanced;
 
-    public static void preInitCommon() {
-
-        TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileInventorySalvage::new));
-
-    }
-
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         blockInventoryAdvanced = new BlockInventorySalvage();
@@ -36,7 +31,8 @@ public class StartupSalvage {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Item.Properties());
+        itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced, new Item.Properties()
+                .group(CreativeTabs.MyModTab));
         itemBlockInventoryAdvanced.setRegistryName(ID);
 
         event.getRegistry().register(itemBlockInventoryAdvanced);

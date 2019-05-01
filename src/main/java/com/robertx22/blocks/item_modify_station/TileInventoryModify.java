@@ -81,6 +81,7 @@ public class TileInventoryModify extends BaseTile {
         super(StartupModify.GEAR_MODIFY);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
+
     }
 
     /**

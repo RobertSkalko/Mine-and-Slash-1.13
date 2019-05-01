@@ -1,6 +1,6 @@
 package com.robertx22.blocks.bases;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public abstract class BaseInventoryBlock extends BlockContainer {
+public abstract class BaseInventoryBlock extends Block {
     protected BaseInventoryBlock(Properties prop) {
         super(prop);
 
@@ -57,4 +57,10 @@ public abstract class BaseInventoryBlock extends BlockContainer {
     public EnumBlockRenderType getRenderType(IBlockState iBlockState) {
         return EnumBlockRenderType.MODEL;
     }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
 }
