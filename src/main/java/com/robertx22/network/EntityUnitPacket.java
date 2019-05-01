@@ -1,11 +1,10 @@
 package com.robertx22.network;
 
-import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -35,7 +34,7 @@ public class EntityUnitPacket {
 
         EntityUnitPacket newpkt = new EntityUnitPacket();
 
-        newpkt.id = buf.getInt(0);
+        newpkt.id = buf.readInt();
         newpkt.nbt = buf.readCompoundTag();
 
         return newpkt;
@@ -44,7 +43,7 @@ public class EntityUnitPacket {
 
     public static void encode(EntityUnitPacket packet, PacketBuffer tag) {
 
-        tag.setInt(0, packet.id);
+        tag.writeInt(packet.id);
         tag.writeCompoundTag(packet.nbt);
 
     }
@@ -55,17 +54,13 @@ public class EntityUnitPacket {
         ctx.get().enqueueWork(() -> {
             try {
 
-                final EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
+                Entity entity = Minecraft.getInstance().world.getEntityByID(pkt.id);
 
-                if (player != null && player.world != null) {
-                    Entity entity = player.world.getEntityByID(pkt.id);
+                if (entity instanceof EntityLivingBase) {
 
-                    if (entity instanceof EntityLivingBase) {
+                    EntityLivingBase en = (EntityLivingBase) entity;
 
-                        EntityLivingBase en = (EntityLivingBase) entity;
-
-                        Load.Unit(en).setNBT(pkt.nbt);
-                    }
+                    Load.Unit(en).setNBT(pkt.nbt);
                 }
 
             } catch (Exception e) {

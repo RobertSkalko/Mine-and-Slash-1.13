@@ -15,17 +15,15 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -166,17 +164,6 @@ public class HealthBarRenderer {
                 int g = 255;
                 int b = 0;
 
-                // MY CODE
-                int off = 0;
-
-                for (StatusEffectData statusdata : unit.statusEffects.values()) {
-                    renderIcon(off, 0, new ItemStack(statusdata.GetEffect()
-                            .ItemModel()), 16, 16);
-                    off -= 16;
-
-                }
-                //MY CODE
-
                 boolean useHue = !NeatConfig.colorByType;
                 if (useHue) {
                     float hue = Math.max(0F, (health / maxHealth) / 3F - 0.07F);
@@ -189,14 +176,11 @@ public class HealthBarRenderer {
                 GlStateManager.translatef(0F, pastTranslate, 0F);
 
                 float s = 0.5F;
-                String name = I18n.format(entity.getDisplayName().getFormattedText());
-                if (entity instanceof EntityLiving && ((EntityLiving) entity).hasCustomName())
-                    name = TextFormatting.ITALIC + ((EntityLiving) entity).getCustomName()
-                            .toString();
-                else if (entity instanceof EntityVillager)
-                    name = I18n.format("entity.Villager.name");
+                ITextComponent name = data.getName(entity);
 
-                float namel = mc.fontRenderer.getStringWidth(name) * s;
+                String namestring = name.getFormattedText();
+
+                float namel = mc.fontRenderer.getStringWidth(namestring) * s;
                 if (namel + 20 > size * 2)
                     size = namel / 2F + 10F;
                 float healthSize = size * (health / maxHealth);
@@ -244,7 +228,7 @@ public class HealthBarRenderer {
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef(-size, -4.5F, 0F);
                 GlStateManager.scalef(s, s, s);
-                mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
+                mc.fontRenderer.drawString(namestring, 0, 0, 0xFFFFFF);
 
                 GlStateManager.pushMatrix();
                 float s1 = 0.75F;
@@ -280,6 +264,17 @@ public class HealthBarRenderer {
                 mc.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
                 // SHOW ICONS HERE
+
+                // MY CODE
+                int off = 0;
+
+                for (StatusEffectData statusdata : unit.statusEffects.values()) {
+                    renderIcon(off, 0, new ItemStack(statusdata.GetEffect()
+                            .ItemModel()), 16, 16);
+                    off -= 16;
+
+                }
+                //MY CODE
 
                 GlStateManager.popMatrix();
 

@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.capability;
 
+import com.robertx22.Styles;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.dimensions.DimensionConfig;
 import com.robertx22.config.dimensions.DimensionsContainer;
@@ -38,7 +39,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -111,7 +113,7 @@ public class EntityData {
 
         void setUUID(UUID id);
 
-        String getName(EntityLivingBase entity);
+        ITextComponent getName(EntityLivingBase entity);
 
         void HandleCloneEvent(UnitData old);
 
@@ -526,20 +528,26 @@ public class EntityData {
         }
 
         @Override
-        public String getName(EntityLivingBase entity) {
+        public ITextComponent getName(EntityLivingBase entity) {
 
             if (entity instanceof EntityPlayer) {
 
-                return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + " " + entity
-                        .getDisplayName()
-                        .getFormattedText();
+                return new TextComponentString("[Lv:").appendText(this.getLevel() + "] " + " ")
+                        .appendSibling(entity.getDisplayName());
 
             } else {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
                 ITextComponent rarityprefix = rarity.locName();
                 ITextComponent name = entity.getDisplayName();
 
-                return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " " + name;
+                ITextComponent lvlcomp = new TextComponentString("[Lv:" + this.getLevel() + "] ")
+                        .setStyle(Styles.YELLOW);
+
+                ITextComponent suffix = rarityprefix.appendText(" ")
+                        .appendSibling(name)
+                        .setStyle(new Style().setColor(rarity.formatText()));
+
+                return lvlcomp.appendSibling(suffix);
 
             }
         }

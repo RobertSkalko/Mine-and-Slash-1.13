@@ -25,14 +25,15 @@ public class GiveUnique {
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests(new GearTypeSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("tier", IntegerArgumentType.integer(0, 30))
+                                        .then(Commands.argument("tier", IntegerArgumentType
+                                                .integer(0, 30))
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 5000))
                                                         .executes(e -> execute(e.getSource(), EntityArgument
                                                                 .getOnePlayer(e, "target"), StringArgumentType
                                                                 .getString(e, "type"), IntegerArgumentType
-                                                                .getInteger(e, "tier"), IntegerArgumentType
                                                                 .getInteger(e, "level"), IntegerArgumentType
+                                                                .getInteger(e, "tier"), IntegerArgumentType
                                                                 .getInteger(e, "amount")
 
                                                         ))))))));
