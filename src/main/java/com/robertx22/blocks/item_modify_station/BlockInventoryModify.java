@@ -1,16 +1,18 @@
 package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.bases.BaseInventoryBlock;
-import com.robertx22.blocks.gear_factory_station.TileGearFactory;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BlockInventoryModify extends BaseInventoryBlock {
 
@@ -34,8 +36,15 @@ public class BlockInventoryModify extends BaseInventoryBlock {
 
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile instanceof TileGearFactory) {
-            player.displayGui((TileGearFactory) tile);
+        if (tile instanceof TileInventoryModify) {
+
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+
+            IInteractionObject interact = (IInteractionObject) tile;
+
+            NetworkHooks.openGui(entityPlayerMP, interact, pos);
+
+            //player.displayGui((TileInventoryModify) tile);
         }
 
         return true;

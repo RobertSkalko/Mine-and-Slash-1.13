@@ -30,6 +30,10 @@ public class GuiHandlerClient {
         BlockPos pos = msg.getAdditionalData().readBlockPos();
         TileEntity te = Minecraft.getInstance().world.getTileEntity(pos);
 
+        if (te instanceof TileInventoryModify) {
+            return new GuiInventoryModify(player.inventory, (TileInventoryModify) te);
+        }
+
         switch (msg.getId().getPath()) {
 
             case StartupGearFactory.GEAR_FACTORY_ID: {

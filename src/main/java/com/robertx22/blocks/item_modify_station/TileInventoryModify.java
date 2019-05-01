@@ -2,7 +2,6 @@ package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.currency.ICurrencyItemEffect;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 
 import javax.annotation.Nullable;
 
@@ -222,10 +222,11 @@ public class TileInventoryModify extends BaseTile {
     }
 
     // standard code to look up what the human-readable name is
+
     @Nullable
     @Override
     public ITextComponent getDisplayName() {
-        return this.getDisplayName();
+        return new TextComponentTranslation("mmorpg.gear_modify");
     }
 
     private static final byte COOK_FIELD_ID = 0;
@@ -274,7 +275,7 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + "gear_modify_station_gui";
+        return StartupModify.ID;
     }
 
 }
