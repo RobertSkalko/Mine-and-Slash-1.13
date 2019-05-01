@@ -89,20 +89,22 @@ public class MapManager {
 
         freeCurrentDim(player, unit);
 
-        ResourceLocation res = new ResourceLocation(unit.getCurrentMapId());
+        ResourceLocation res = new ResourceLocation(Ref.MODID, UUID.randomUUID()
+                .toString());
 
         while (MapManager.isRegistered(res)) {
 
             res = new ResourceLocation(Ref.MODID, UUID.randomUUID().toString());
         }
 
-        DimensionType type = MapManager.register(res, map.getWorldProvider());
+        DimensionType type = MapManager.register(res, map.getWorldProvider())
+                .setRegistryName(res);
 
         WorldServer world = DimensionManager.initWorld(getServer(), type);
 
         unit.setCurrentMapId(res.toString());
 
-        IWorldData iworld = Load.World((World) world);
+        IWorldData iworld = Load.World(world);
 
         iworld.init(pos, currentworld, map, res.toString(), player);
 

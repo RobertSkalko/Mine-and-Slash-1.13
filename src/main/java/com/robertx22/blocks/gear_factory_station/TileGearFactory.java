@@ -6,7 +6,6 @@ import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.SpellItemGen;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -363,7 +362,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank(Ref.MODID + "." + StartupGearFactory.GEAR_FACTORY_ID);
+        return CLOC.blank(StartupGearFactory.GEAR_FACTORY_ID);
     }
 
     @Override
@@ -380,7 +379,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + ":gear_factory_gui";
+        return StartupGearFactory.GEAR_FACTORY_ID;
     }
 
 }

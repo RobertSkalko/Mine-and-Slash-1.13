@@ -276,6 +276,7 @@
     "mmorpg.word.minutes": "Minutes",
     "mmorpg.word.player_affixes": "Player Affixes",
     "mmorpg.word.mob_affixes": "Mob Affixes",
+	"mmorpg.word.all_affixes": "Affixes Affecting All",	
     "mmorpg.word.world_type": "World Type",
     "mmorpg.word.mana_cost": "Mana Cost",
     "mmorpg.word.base_value": "Base Value",

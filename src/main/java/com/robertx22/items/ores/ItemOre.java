@@ -81,14 +81,14 @@ public class ItemOre extends Item implements IWeighted {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
+        Register();
+
         ItemOres.values().forEach((x) -> event.getRegistry().register(x));
         ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
-        Register(); // block registry is fired first
 
         Blocks.values().forEach((x) -> event.getRegistry().register(x));
 

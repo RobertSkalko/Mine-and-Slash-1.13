@@ -1,7 +1,6 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
@@ -363,7 +362,7 @@ public class TileInventorySalvage extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("block.mmorpg:salvage_station");
+        return CLOC.blank(StartupSalvage.ID);
     }
 
     @Override
@@ -379,7 +378,7 @@ public class TileInventorySalvage extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + "gear_salvage_station_gui";
+        return StartupSalvage.ID;
     }
 
 }

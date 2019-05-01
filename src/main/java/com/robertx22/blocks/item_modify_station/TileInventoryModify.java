@@ -258,7 +258,7 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("block.mmorpg.modify_station");
+        return CLOC.blank(StartupModify.ID);
     }
 
     @Override

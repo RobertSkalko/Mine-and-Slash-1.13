@@ -30,7 +30,6 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -39,6 +38,11 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemMap extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+
+    public ItemMap() {
+        super(new Properties());
+
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -97,8 +101,7 @@ public class ItemMap extends Item {
             Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.tooltip("put_in_mapdevice")
-                    .setStyle(new Style().setColor(TextFormatting.BLUE)), tooltip);
+            Tooltip.add(CLOC.tooltip("put_in_mapdevice").setStyle(Styles.BLUE), tooltip);
 
         }
 
@@ -119,9 +122,11 @@ public class ItemMap extends Item {
         ITextComponent str = new TextComponentString("");
 
         if (affected.equals(AffectedEntities.Players)) {
-            str = CLOC.word("player_affixes");
+            str.appendSibling(CLOC.word("player_affixes"));
         } else if (affected.equals(AffectedEntities.Mobs)) {
-            str = CLOC.word("mob_affixes");
+            str.appendSibling(CLOC.word("mob_affixes"));
+        } else {
+            str.appendSibling(CLOC.word("all_affixes"));
         }
 
         Tooltip.add(str.setStyle(Styles.GREEN), tooltip);
@@ -133,7 +138,11 @@ public class ItemMap extends Item {
                 for (ITextComponent statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity)
                         .StatPercents(), data.level, false)) {
 
-                    Tooltip.add(" * " + TextFormatting.RED + statstring.setStyle(Styles.RED), tooltip);
+                    /*
+                    Tooltip.add(new TextComponentString(" * ").appendSibling(statstring)
+                            .setStyle(Styles.RED), tooltip);
+
+                     */
                 }
 
             }
@@ -181,11 +190,6 @@ public class ItemMap extends Item {
     private static void spawnFrameBlock(World world, BlockPos pos) {
 
         world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
-    }
-
-    public ItemMap() {
-        super(new Properties());
-
     }
 
 }

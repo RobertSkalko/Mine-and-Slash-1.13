@@ -359,13 +359,13 @@ public class GearItemData implements ITooltip, ISalvagable {
                         .GetTooltipString(this.GetRarity()
                                 .StatPercents(), data.getLevel(), false)) {
 
-                    String str2 = color + "" + new TextComponentString(entry.getKey() + " ")
-                            .appendSibling(CLOC.word("set")
-                                    .appendText(": ")
-                                    .appendSibling(str)
-                                    .setStyle(Styles.DARK_GREEN));
+                    ITextComponent comp = new TextComponentString(entry.getKey() + " ").appendSibling(CLOC
+                            .word("set")
+                            .appendText(": ")
+                            .appendSibling(str)
+                            .setStyle(Styles.BLUE.setColor(color)));
 
-                    event.getToolTip().add(new TextComponentString(str2));
+                    event.getToolTip().add(comp);
                 }
 
             }
