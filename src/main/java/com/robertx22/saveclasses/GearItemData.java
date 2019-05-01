@@ -282,7 +282,10 @@ public class GearItemData implements ITooltip, ISalvagable {
         if (isUnique) {
             IUnique unique = this.uniqueStats.getUniqueItem();
             event.getToolTip()
-                    .add(new TextComponentString("'" + unique.locDesc() + "'").setStyle(Styles.GREEN));
+                    .add(new TextComponentString("'").appendSibling(unique.locDesc())
+                            .appendText("'")
+                            .setStyle(Styles.GREEN));
+
             event.getToolTip().add(new TextComponentString(""));
 
         }

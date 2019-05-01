@@ -1,5 +1,6 @@
 package com.robertx22.items.gearitems.bases.armor_materials;
 
+import com.robertx22.mmorpg.Ref;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IArmorMaterial;
@@ -35,7 +36,7 @@ public class UncommonMat implements IArmorMaterial {
 
     @Override
     public String getName() {
-        return "uncommon";
+        return Ref.MODID + ":" + "uncommon";
     }
 
     @Override

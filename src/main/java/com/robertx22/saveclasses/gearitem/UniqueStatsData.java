@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Styles;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.loot.create.StatGen;
@@ -54,7 +55,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("unique_stats").appendText(":"));
+        list.add(CLOC.word("unique_stats").appendText(":").setStyle(Styles.YELLOW));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {
