@@ -71,7 +71,8 @@ public class ItemOre extends Item implements IWeighted {
         for (int i = 0; i < ItemOres.size(); i++) {
             BlockOre block = new BlockOre("ore_block" + i, Material.ROCK, ItemOres.get(i), 1);
             Blocks.put(i, block);
-            ItemBlock itemblock = (ItemBlock) new ItemBlock(block, new Properties()).setRegistryName("ore_block" + i);
+            ItemBlock itemblock = (ItemBlock) new ItemBlock(block, new Properties().group(CreativeTabs.MyModTab))
+                    .setRegistryName("ore_block" + i);
             ItemBlocks.put(i, itemblock);
         }
 
@@ -80,14 +81,15 @@ public class ItemOre extends Item implements IWeighted {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
-        Register();
-
         ItemOres.values().forEach((x) -> event.getRegistry().register(x));
         ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+
+        Register(); // block registry is fired first
+
         Blocks.values().forEach((x) -> event.getRegistry().register(x));
 
     }

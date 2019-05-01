@@ -1,7 +1,5 @@
 package com.robertx22.items.bags.loot_bag;
 
-import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -15,35 +13,36 @@ public class InteractLootBag implements IInteractionObject {
     private final ItemStack stack;
 
     public InteractLootBag(ItemStack stack) {
-	this.stack = stack;
+        this.stack = stack;
     }
 
     @Override
     public ITextComponent getName() {
-	return new TextComponentString(this.getGuiID());
+        return new TextComponentString(this.getGuiID());
     }
 
     @Override
     public boolean hasCustomName() {
 
-	return false;
+        return false;
     }
 
     @Override
     public ITextComponent getCustomName() {
 
-	return new TextComponentString(this.getGuiID());
+        return new TextComponentString(this.getGuiID());
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-	return new ContainerLootBag(playerInventory, new InventoryLootBag(stack));
+    public Container createContainer(InventoryPlayer playerInventory,
+                                     EntityPlayer playerIn) {
+        return new ContainerLootBag(playerInventory, new InventoryLootBag(stack));
 
     }
 
     @Override
     public String getGuiID() {
-	return Ref.MODID + ":loot_bag";
+        return ItemLootBag.ID;
     }
 
 }

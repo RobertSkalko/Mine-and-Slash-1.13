@@ -16,8 +16,14 @@ import com.robertx22.blocks.salvage_station.GuiInventorySalvage;
 import com.robertx22.blocks.salvage_station.StartupSalvage;
 import com.robertx22.blocks.salvage_station.TileInventorySalvage;
 import com.robertx22.items.bags.currency_bag.GuiCurrencyBag;
-import com.robertx22.items.bags.currency_bag.InteractCurrencyBag;
 import com.robertx22.items.bags.currency_bag.InventoryCurrencyBag;
+import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
+import com.robertx22.items.bags.loot_bag.GuiLootBag;
+import com.robertx22.items.bags.loot_bag.InventoryLootBag;
+import com.robertx22.items.bags.loot_bag.ItemLootBag;
+import com.robertx22.items.bags.map_bag.GuiMapBag;
+import com.robertx22.items.bags.map_bag.InventoryMapBag;
+import com.robertx22.items.bags.map_bag.ItemMapBag;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,15 +42,13 @@ public class GuiHandlerClient {
         BlockPos pos = null;
         TileEntity te = null;
 
-        try {
+        try { // if it's from tileentity, it will send pos data, otherwise not and causes errors
             pos = msg.getAdditionalData().readBlockPos();
             te = Minecraft.getInstance().world.getTileEntity(pos);
 
         } catch (Exception e) {
 
         }
-
-        String test = msg.getId().toString();
 
         if (te != null) {
             switch (msg.getId().toString()) {
@@ -80,16 +84,24 @@ public class GuiHandlerClient {
                     break;
                 }
             }
-        } else {
+        } else { // it means it's from a bag then, no tileentity but does have a hand boolean
             boolean isOffHand = msg.getAdditionalData().readBoolean();
 
             EnumHand hand = isOffHand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 
             switch (msg.getId().toString()) {
 
-                case InteractCurrencyBag.ID: {
+                case ItemCurrencyBag.ID: {
                     ItemStack item = player.getHeldItem(hand);
                     return new GuiCurrencyBag(player.inventory, new InventoryCurrencyBag(item));
+                }
+                case ItemLootBag.ID: {
+                    ItemStack item = player.getHeldItem(hand);
+                    return new GuiLootBag(player.inventory, new InventoryLootBag(item));
+                }
+                case ItemMapBag.ID: {
+                    ItemStack item = player.getHeldItem(hand);
+                    return new GuiMapBag(player.inventory, new InventoryMapBag(item));
                 }
 
             }

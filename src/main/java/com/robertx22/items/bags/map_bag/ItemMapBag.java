@@ -25,13 +25,15 @@ public class ItemMapBag extends BaseBagItem {
 
     public static final int GUI_NUMBER = 356516;
 
-    @ObjectHolder(Ref.MODID + ":map_bag")
+    public static final String ID = Ref.MODID + ":map_bag";
+
+    @ObjectHolder(ID)
     public static final Item ITEM = null;
 
     private static final String TAG_ITEMS = "InvItems";
 
     public ItemMapBag() {
-        super("map_bag");
+        super(ID);
 
     }
 

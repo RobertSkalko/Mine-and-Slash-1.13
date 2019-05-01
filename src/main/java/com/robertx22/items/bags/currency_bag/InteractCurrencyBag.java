@@ -1,6 +1,5 @@
 package com.robertx22.items.bags.currency_bag;
 
-import com.robertx22.mmorpg.Ref;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -41,11 +40,9 @@ public class InteractCurrencyBag implements IInteractionObject {
 
     }
 
-    public static final String ID = Ref.MODID + ":currency_bag";
-
     @Override
     public String getGuiID() {
-        return ID;
+        return ItemCurrencyBag.ID;
     }
 
 }

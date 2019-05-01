@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -30,13 +29,15 @@ public class ItemLootBag extends BaseBagItem {
 
     public static final int GUI_NUMBER = 356515;
 
-    @ObjectHolder(Ref.MODID + ":loot_bag")
+    public static final String ID = Ref.MODID + ":loot_bag";
+
+    @ObjectHolder(ID)
     public static final Item ITEM = null;
 
     private static final String TAG_ITEMS = "InvItems";
 
     public ItemLootBag() {
-        super("loot_bag");
+        super(ID);
 
     }
 

@@ -1,6 +1,5 @@
 package com.robertx22.items.bags.map_bag;
 
-import com.robertx22.mmorpg.Ref;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -43,7 +42,7 @@ public class InteractMapBag implements IInteractionObject {
 
     @Override
     public String getGuiID() {
-        return Ref.MODID + ":map_bag";
+        return ItemMapBag.ID;
     }
 
 }

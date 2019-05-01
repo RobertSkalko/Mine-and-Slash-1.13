@@ -25,9 +25,10 @@ public class TileEntityRegister {
     public static void onTileEntityRegistry(
             final RegistryEvent.Register<TileEntityType<?>> e) {
 
-        TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder.create(TileMapPortal::new));
-
         IForgeRegistry<TileEntityType<?>> r = e.getRegistry();
+
+        r.register(TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder
+                .create(TileMapPortal::new)));
 
         r.register(TileEntityType.register(StartupRepair.ID, TileEntityType.Builder.create(TileInventoryRepair::new)));
         r.register(TileEntityType.register(StartupModify.ID, TileEntityType.Builder.create(TileInventoryModify::new)));

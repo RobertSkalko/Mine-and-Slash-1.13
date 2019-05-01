@@ -24,15 +24,17 @@ import javax.annotation.Nonnull;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemCurrencyBag extends BaseBagItem {
 
+    public static final String ID = Ref.MODID + ":currency_bag";
+
     public static final int GUI_NUMBER = 356514;
 
-    @ObjectHolder(Ref.MODID + ":currency_bag")
+    @ObjectHolder(ID)
     public static final Item ITEM = null;
 
     private static final String TAG_ITEMS = "InvItems";
 
     public ItemCurrencyBag() {
-        super("currency_bag");
+        super(ID);
     }
 
     @SubscribeEvent

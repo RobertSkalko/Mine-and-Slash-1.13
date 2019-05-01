@@ -1,7 +1,6 @@
 package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
-import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
@@ -173,7 +172,7 @@ public class TileMap extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupModify.ID;
+        return StartupMap.ID;
     }
 
 }
