@@ -339,7 +339,7 @@ public class TileGearFactory extends BaseTile {
             return this.FuelRemaining;
         }
 
-        // System.err.println("Invalid field ID in TileInventorySmelting.getField:" +
+        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
         // id);
         return 0;
     }
@@ -351,7 +351,7 @@ public class TileGearFactory extends BaseTile {
         } else if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
             this.FuelRemaining = value;
         } else {
-            // System.err.println("Invalid field ID in TileInventorySmelting.setField:" +
+            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
             // id);
         }
     }

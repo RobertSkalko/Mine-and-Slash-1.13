@@ -282,7 +282,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         if (isUnique) {
             IUnique unique = this.uniqueStats.getUniqueItem();
             event.getToolTip()
-                    .add(new TextComponentString(TextFormatting.GREEN + "'" + unique.locDesc() + "'"));
+                    .add(new TextComponentString("'" + unique.locDesc() + "'").setStyle(Styles.GREEN));
             event.getToolTip().add(new TextComponentString(""));
 
         }
@@ -336,9 +336,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         if (this.set != null) {
             event.getToolTip()
-                    .add(new TextComponentString(TextFormatting.GREEN + "[Set]: " + TextFormatting.GRAY + set
-                            .GetSet()
-                            .Name()));
+                    .add(new TextComponentString("[Set]: " + set.GetSet()
+                            .Name()).setStyle(Styles.GREEN));
 
             for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
 

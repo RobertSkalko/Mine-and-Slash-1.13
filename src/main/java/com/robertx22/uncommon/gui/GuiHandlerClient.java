@@ -32,7 +32,7 @@ public class GuiHandlerClient {
 
         switch (msg.getId().getPath()) {
 
-            case StartupGearFactory.ID: {
+            case StartupGearFactory.GEAR_FACTORY_ID: {
                 if (te instanceof TileGearFactory) {
                     return new GuiGearFactory(player.inventory, (TileGearFactory) te);
                 }

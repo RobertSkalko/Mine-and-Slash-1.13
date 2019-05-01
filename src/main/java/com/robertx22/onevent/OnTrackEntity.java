@@ -16,18 +16,17 @@ public class OnTrackEntity {
     @SubscribeEvent
     public static void onEntityTrack(PlayerEvent.StartTracking event) {
 
-        // System.out.println("tracking");
-
         Entity entity = event.getTarget();
 
         if (entity instanceof EntityLivingBase) {
             if (entity.isEntityEqual(event.getEntityPlayer()) == false) {
                 if (Load.hasUnit(entity)) {
-                    EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
-                    MMORPG.sendToClient(new EntityUnitPacket(entity), player);
+                    MMORPG.sendToClient(new EntityUnitPacket(entity), (EntityPlayerMP) event
+                            .getEntityPlayer());
                 }
 
             }
+
         }
 
     }

@@ -269,7 +269,7 @@ public class HealthBarRenderer {
                     mc.fontRenderer.drawString(percStr, (int) (size / (s * s1)) - mc.fontRenderer
                             .getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
                 if (NeatConfig.enableDebugInfo && mc.gameSettings.showDebugInfo)
-                    mc.fontRenderer.drawString("ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
+                    mc.fontRenderer.drawString("GEAR_FACTORY_ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
                 GlStateManager.popMatrix();
 
                 GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);

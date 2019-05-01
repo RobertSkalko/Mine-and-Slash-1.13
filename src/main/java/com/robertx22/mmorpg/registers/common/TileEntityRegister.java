@@ -7,24 +7,24 @@ import com.robertx22.blocks.repair_station.StartupRepair;
 import com.robertx22.blocks.salvage_station.StartupSalvage;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Ref;
-
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TileEntityRegister {
 
     @SubscribeEvent
-    public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> e) {
-	TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder.create(TileMapPortal::new));
+    public static void onTileEntityRegistry(
+            final RegistryEvent.Register<TileEntityType<?>> e) {
+        TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder.create(TileMapPortal::new));
 
-	StartupRepair.preInitCommon();
-	StartupSalvage.preInitCommon();
-	StartupModify.preInitCommon();
-	StartupGearFactory.preInitCommon();
-	StartupMap.preInitCommon();
+        StartupRepair.preInitCommon();
+        StartupSalvage.preInitCommon();
+        StartupModify.preInitCommon();
+        StartupGearFactory.preInitCommon();
+        StartupMap.preInitCommon();
 
     }
 

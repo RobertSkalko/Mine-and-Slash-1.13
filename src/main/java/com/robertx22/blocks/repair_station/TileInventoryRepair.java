@@ -306,7 +306,7 @@ public class TileInventoryRepair extends BaseTile {
     // interested clients
     // The container code caches the fields and sends the client any fields which
     // have changed.
-    // The field ID is limited to byte, and the field value is limited to short. (if
+    // The field GEAR_FACTORY_ID is limited to byte, and the field value is limited to short. (if
     // you use more than this, they get cast down
     // in the network packets)
     // If you need more than this, or shorts are too small, use a custom packet in
@@ -325,7 +325,7 @@ public class TileInventoryRepair extends BaseTile {
             return this.FuelRemaining;
         }
 
-        // System.err.println("Invalid field ID in TileInventorySmelting.getField:" +
+        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
         // id);
         return 0;
     }
@@ -337,7 +337,7 @@ public class TileInventoryRepair extends BaseTile {
         } else if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
             this.FuelRemaining = value;
         } else {
-            // System.err.println("Invalid field ID in TileInventorySmelting.setField:" +
+            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
             // id);
         }
     }

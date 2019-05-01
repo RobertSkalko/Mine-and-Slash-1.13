@@ -330,7 +330,7 @@ public class TileInventorySalvage extends BaseTile {
         if (id == COOK_FIELD_ID)
             return cookTime;
 
-        // System.err.println("Invalid field ID in TileInventorySmelting.getField:" +
+        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
         // id);
         return 0;
     }
@@ -340,7 +340,7 @@ public class TileInventorySalvage extends BaseTile {
         if (id == COOK_FIELD_ID) {
             cookTime = (short) value;
         } else {
-            // System.err.println("Invalid field ID in TileInventorySmelting.setField:" +
+            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
             // id);
         }
     }

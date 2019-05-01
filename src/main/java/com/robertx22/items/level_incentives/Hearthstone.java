@@ -77,6 +77,7 @@ public class Hearthstone extends Item {
 
                 if (nbt == null) {
                     nbt = new NBTTagCompound();
+                    stack.setTag(nbt);
                 }
 
                 decreaseCurrentCooldown(stack, tickRate);

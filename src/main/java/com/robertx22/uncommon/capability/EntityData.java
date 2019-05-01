@@ -47,7 +47,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.network.NetworkDirection;
 
 import java.util.UUID;
 
@@ -486,7 +485,9 @@ public class EntityData {
 
                 EntityPlayerMP mp = (EntityPlayerMP) player;
 
-                MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+                MMORPG.sendToClient(packet, mp);
+
+                // MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
             }
         }
 
