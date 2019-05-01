@@ -1,9 +1,5 @@
 package com.robertx22.mmorpg.registers.common;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.Function;
-
 import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
@@ -19,16 +15,19 @@ import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Function;
+
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityRegister {
 
     public static List<EntityType<?>> ENTITY_TYPES = new LinkedList();
@@ -53,50 +52,46 @@ public class EntityRegister {
 
     static {
 
-	FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
-	FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new,
-		"entity_frost_bolt");
-	ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
-	THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new,
-		"entity_thunder_bolt");
+        FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
+        FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
+        ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
+        THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new, "entity_thunder_bolt");
 
-	FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class,
-		SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
-	FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class,
-		SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
-	ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class,
-		SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
-	THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class,
-		SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
+        FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class, SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
+        FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class, SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
+        ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class, SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
+        THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class, SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
 
-	FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
-	FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
-	ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
-	THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new,
-		"entity_thunder_bomb");
+        FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
+        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
+        ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
+        THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
 
-	STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, "staff_projectile");
-	MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new, "my_entity_arrow");
+        STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, "staff_projectile");
+        MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new, "my_entity_arrow");
 
     }
 
     @SubscribeEvent
-    public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event) {
+    public static void registerEntityTypes(
+            final RegistryEvent.Register<EntityType<?>> event) {
 
-	ENTITY_TYPES.forEach(entityType -> event.getRegistry().register(entityType));
+        ENTITY_TYPES.forEach(entityType -> event.getRegistry().register(entityType));
 
     }
 
-    private static <T extends Entity> EntityType<T> newType(Class<? extends T> entityClass,
-	    Function<? super World, ? extends T> factory, String id) {
+    private static <T extends Entity> EntityType<T> newType(
+            Class<? extends T> entityClass, Function<? super World, ? extends T> factory,
+            String id) {
 
-	EntityType<T> type = EntityType.Builder.create(entityClass, factory).tracker(64, 1, true)
-		.build(Ref.MODID + ":" + id.toLowerCase());
-	type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
+        EntityType<T> type = EntityType.Builder.create(entityClass, factory)
+                .tracker(64, 1, true)
+                .build(Ref.MODID + ":" + id.toLowerCase());
+        type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 
-	ENTITY_TYPES.add(type);
+        ENTITY_TYPES.add(type);
 
-	return type;
+        return type;
     }
 
 }

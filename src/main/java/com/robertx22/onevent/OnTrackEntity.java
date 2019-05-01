@@ -16,6 +16,14 @@ public class OnTrackEntity {
     @SubscribeEvent
     public static void onEntityTrack(PlayerEvent.StartTracking event) {
 
+        try {
+            if (event.getEntity().world.isRemote) {
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Entity entity = event.getTarget();
 
         if (entity instanceof EntityLivingBase) {

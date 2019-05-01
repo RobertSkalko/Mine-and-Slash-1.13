@@ -6,12 +6,11 @@ import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.CurioClientRegister;
-import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.testing.TestManager;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -60,7 +59,7 @@ public class MMORPG {
             .simpleChannel();
 
     public MMORPG() {
-        // ForgeMod
+        //ForgeMod
         // Main.instance = this; ForgeMod
 
         System.out.println("Starting Mine and Slash");
@@ -77,9 +76,6 @@ public class MMORPG {
             ModLoadingContext.get()
                     .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
-            FMLJavaModLoadingContext.get()
-                    .getModEventBus()
-                    .addListener(RenderRegister::regRenders);
             FMLJavaModLoadingContext.get()
                     .getModEventBus()
                     .addListener(this::clientSetup);
@@ -149,18 +145,14 @@ public class MMORPG {
 
     }
 
-    public static <MSG> void sendToTracking(MSG msg, EntityLivingBase entity) {
+    public static <MSG> void sendToTracking(MSG msg, Entity entity) {
 
         if (msg == null) {
             System.out.println("msg is null wtf");
             return;
         }
 
-        PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY.with(() -> entity);
-        if (target != null) {
-            Network.send(target, msg);
-
-        }
+        Network.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
 
     }
 

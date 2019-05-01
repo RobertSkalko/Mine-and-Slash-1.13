@@ -3,8 +3,6 @@ package com.robertx22.uncommon.utilityclasses;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.ParticleGenPacket;
 import net.minecraft.entity.Entity;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ParticleUtils {
 
@@ -15,8 +13,7 @@ public class ParticleUtils {
 
         ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount);
 
-        Chunk chunk = source.world.getChunk(source.getPosition());
-        MMORPG.Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), packet);
+        MMORPG.sendToTracking(packet, source);
 
     }
 

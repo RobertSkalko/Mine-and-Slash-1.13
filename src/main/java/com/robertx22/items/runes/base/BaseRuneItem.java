@@ -115,7 +115,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             RuneRarity rar = rune.GetRarity();
 
             if (rune.armor != null) {
-                Tooltip.add(CLOC.tooltip("stats_on_armor") + ":", tooltip);
+                Tooltip.add(CLOC.tooltip("stats_on_armor").appendText(":"), tooltip);
                 for (ITextComponent str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -123,7 +123,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             }
             if (rune.weapon != null) {
 
-                Tooltip.add(CLOC.tooltip("stats_on_weapon") + ":", tooltip);
+                Tooltip.add(CLOC.tooltip("stats_on_weapon").appendText(":"), tooltip);
                 for (ITextComponent str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -131,15 +131,14 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             if (rune.jewerly != null) {
 
                 Tooltip.add("", tooltip);
-                Tooltip.add(CLOC.tooltip("stats_on_jewerly") + ":", tooltip);
+                Tooltip.add(CLOC.tooltip("stats_on_jewerly").appendText(":"), tooltip);
                 for (ITextComponent str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
                 Tooltip.add("", tooltip);
             }
 
-            Tooltip.add(CLOC.word("rarity") + ": " + rune.GetRarity()
-                    .Color() + rune.GetRarity().locName(), tooltip);
+            Tooltip.add(TooltipUtils.rarity(rune.GetRarity()), tooltip);
 
         }
 
