@@ -37,10 +37,10 @@ public class CLOC {
 
     public static ITextComponent uniqueName(String str) {
 
-        return base("item." + Ref.MODID + ".unique." + str + ".name");
+        return base("item." + Ref.MODID + ".unique." + str);
 
     }
-
+    
     public static ITextComponent uniqueDesc(String str) {
 
         return base(Ref.MODID + ".unique.tooltip." + str);

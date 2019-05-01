@@ -22,8 +22,6 @@ public class StartupRepair {
 
     public static void preInitCommon() {
 
-        TileEntityType.register(ID + "_entity", TileEntityType.Builder.create(TileInventoryRepair::new));
-
     }
 
     @SubscribeEvent

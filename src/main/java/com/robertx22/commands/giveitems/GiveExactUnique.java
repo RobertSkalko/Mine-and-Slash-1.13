@@ -24,21 +24,19 @@ public class GiveExactUnique {
                         .then(Commands.argument("uniqueID", StringArgumentType.word())
                                 .suggests(new UniqueItemsSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("tier", IntegerArgumentType.integer(0, 30))
-                                                .then(Commands.argument("amount", IntegerArgumentType
-                                                        .integer(1, 5000))
-                                                        .executes(e -> execute(e.getSource(), EntityArgument
-                                                                .getOnePlayer(e, "target"), StringArgumentType
-                                                                .getString(e, "uniqueID"), IntegerArgumentType
-                                                                .getInteger(e, "tier"), IntegerArgumentType
-                                                                .getInteger(e, "level"), IntegerArgumentType
-                                                                .getInteger(e, "amount")
+                                        .then(Commands.argument("amount", IntegerArgumentType
+                                                .integer(1, 5000))
+                                                .executes(e -> execute(e.getSource(), EntityArgument
+                                                        .getOnePlayer(e, "target"), StringArgumentType
+                                                        .getString(e, "uniqueID"), IntegerArgumentType
+                                                        .getInteger(e, "level"), IntegerArgumentType
+                                                        .getInteger(e, "amount")
 
-                                                        ))))))));
+                                                )))))));
     }
 
     private static int execute(CommandSource commandSource, @Nullable EntityPlayer player,
-                               String id, int lvl, int tier, int amount) {
+                               String id, int lvl, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -49,7 +47,7 @@ public class GiveExactUnique {
             }
         }
 
-        UniqueBlueprint blueprint = new UniqueBlueprint(lvl, tier, true);
+        UniqueBlueprint blueprint = new UniqueBlueprint(lvl, 0, true);
         blueprint.SetSpecificRarity(new UniqueItem().Rank());
         blueprint.setSpecificID(id);
 

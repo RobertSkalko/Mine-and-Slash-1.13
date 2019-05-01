@@ -7,11 +7,11 @@ import com.robertx22.items.unique_items.IUnique;
 public abstract class BaseUniqueBracelet extends ItemBracelet implements IUnique {
 
     public BaseUniqueBracelet() {
-	IUnique.ITEMS.put(GUID(), this);
+        IUnique.ITEMS.put(GUID(), this);
     }
 
     @Override
     public String slot() {
-	return new Bracelet().GUID();
+        return new Bracelet().GUID();
     }
 }

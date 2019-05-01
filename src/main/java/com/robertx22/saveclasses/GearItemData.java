@@ -180,7 +180,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             text.appendSibling(uniq.locName());
 
         } else if (this.isRuned()) {
-            text.appendSibling(CLOC.word("runed")).appendSibling(name(stack));
+            text.appendSibling(CLOC.word("runed").appendSibling(name(stack)));
         } else {
 
             if (prefix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
