@@ -1,5 +1,5 @@
 {
     "variants": {
-           "normal": { "model": "mmorpg:salvage_station_normal"}
+           "normal": { "model": "mmorpg:block/salvage_station_normal"}
     }
 }

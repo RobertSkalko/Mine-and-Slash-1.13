@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "mmorpg:modify_station_normal" }
+        "": { "model": "mmorpg:block/modify_station_normal" }
     }
 }

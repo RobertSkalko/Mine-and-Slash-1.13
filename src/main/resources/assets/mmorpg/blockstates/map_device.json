@@ -1,5 +1,5 @@
 {
     "variants": {
-           "normal": { "model": "mmorpg:map_device_normal"}
+           "normal": { "model": "mmorpg:block/map_device_normal"}
     }
 }

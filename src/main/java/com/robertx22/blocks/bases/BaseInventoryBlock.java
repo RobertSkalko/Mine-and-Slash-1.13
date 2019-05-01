@@ -5,15 +5,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class BaseInventoryBlock extends Block {
     protected BaseInventoryBlock(Properties prop) {
@@ -22,8 +18,24 @@ public abstract class BaseInventoryBlock extends Block {
     }
 
     @Override
+    public boolean isBlockNormalCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isSolid(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
     public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos,
                                         int fortune) {
+
         return this;
     }
 
@@ -41,21 +53,6 @@ public abstract class BaseInventoryBlock extends Block {
         if (tileEntity instanceof IInventory) {
             InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
         }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState iBlockState) {
-        return false;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState iBlockState) {
-        return EnumBlockRenderType.MODEL;
     }
 
     @Override

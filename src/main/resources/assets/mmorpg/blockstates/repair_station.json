@@ -1,5 +1,5 @@
 {
     "variants": {
-           "normal": { "model": "mmorpg:repair_station_normal"}
+           "normal": { "model": "mmorpg:block/repair_station_normal"}
     }
 }
