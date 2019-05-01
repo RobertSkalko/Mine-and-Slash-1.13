@@ -8,6 +8,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 public class CommandRegister {
+
     public static void Register(FMLServerStartingEvent event) {
         System.out.println("Registering Mine and Slash Commands.");
 

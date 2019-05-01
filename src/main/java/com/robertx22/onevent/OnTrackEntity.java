@@ -29,6 +29,7 @@ public class OnTrackEntity {
         if (entity instanceof EntityLivingBase) {
             if (entity.isEntityEqual(event.getEntityPlayer()) == false) {
                 if (Load.hasUnit(entity)) {
+
                     MMORPG.sendToClient(new EntityUnitPacket(entity), (EntityPlayerMP) event
                             .getEntityPlayer());
                 }
