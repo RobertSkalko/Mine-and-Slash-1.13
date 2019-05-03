@@ -12,16 +12,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 
 public class TileInventorySalvage extends BaseTile {
 
@@ -73,13 +68,6 @@ public class TileInventorySalvage extends BaseTile {
     public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
     public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
-    /**
-     * The number of ticks the current item has been cooking
-     */
-    private short cookTime;
-    /**
-     * The number of ticks required to cook an item
-     */
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventorySalvage() {
@@ -97,8 +85,6 @@ public class TileInventorySalvage extends BaseTile {
         double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
-
-    int ticks = 0;
 
     @Override
     public void tick() {
@@ -230,90 +216,6 @@ public class TileInventorySalvage extends BaseTile {
         markDirty();
         return true;
     }
-
-    @Override
-    public NBTTagCompound write(NBTTagCompound parentNBTTagCompound) {
-        super.write(parentNBTTagCompound); // The super call is required to save and load the tiles location
-
-        NBTTagList dataForAllSlots = new NBTTagList();
-        for (int i = 0; i < this.itemStacks.length; ++i) {
-            if (!this.itemStacks[i].isEmpty()) { // isEmpty()
-                NBTTagCompound dataForThisSlot = new NBTTagCompound();
-                dataForThisSlot.setByte("Slot", (byte) i);
-                this.itemStacks[i].write(dataForThisSlot);
-                dataForAllSlots.add(dataForThisSlot);
-            }
-        }
-        // the array of hashmaps is then inserted into the parent hashmap for the
-        // container
-        parentNBTTagCompound.setTag("Items", dataForAllSlots);
-
-        // Save everything else
-        parentNBTTagCompound.setShort("CookTime", cookTime);
-
-        return parentNBTTagCompound;
-    }
-
-    // This is where you load the data that you saved in write
-    @Override
-    public void read(NBTTagCompound nbtTagCompound) {
-        super.read(nbtTagCompound); // The super call is required to save and load the tiles location
-        final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
-        NBTTagList dataForAllSlots = nbtTagCompound.getList("Items", NBT_TYPE_COMPOUND);
-
-        Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty EMPTY_ITEM
-        for (int i = 0; i < dataForAllSlots.size(); ++i) {
-            NBTTagCompound dataForOneSlot = dataForAllSlots.getCompound(i);
-            byte slotNumber = dataForOneSlot.getByte("Slot");
-            if (slotNumber >= 0 && slotNumber < this.itemStacks.length) {
-                this.itemStacks[slotNumber] = ItemStack.read(dataForOneSlot);
-            }
-        }
-
-        // Load everything else. Trim the arrays (or pad with 0) to make sure they have
-        // the correct number of elements
-        cookTime = nbtTagCompound.getShort("CookTime");
-
-    }
-
-    //	// When the world loads from disk, the server needs to send the TileEntity information to the client
-    //	//  it uses getUpdatePacket(), getUpdateTag(), onDataPacket(), and handleUpdateTag() to do this
-    @Override
-    @Nullable
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound updateTagDescribingTileEntityState = getUpdateTag();
-        final int METADATA = 0;
-        return new SPacketUpdateTileEntity(this.pos, METADATA, updateTagDescribingTileEntityState);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        NBTTagCompound updateTagDescribingTileEntityState = pkt.getNbtCompound();
-        handleUpdateTag(updateTagDescribingTileEntityState);
-    }
-
-    /*
-     * Creates a tag containing the TileEntity information, used by vanilla to
-     * transmit from server to client Warning - although our getUpdatePacket() uses
-     * this method, vanilla also calls it directly, so don't remove it.
-     */
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        NBTTagCompound nbtTagCompound = new NBTTagCompound();
-        write(nbtTagCompound);
-        return nbtTagCompound;
-    }
-
-    /*
-     * Populates this TileEntity with information from the tag, used by vanilla to
-     * transmit from server to client Warning - although our onDataPacket() uses
-     * this method, vanilla also calls it directly, so don't remove it.
-     */
-    @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
-        this.read(tag);
-    }
-    // ------------------------
 
     @Override
     public boolean hasCustomName() {
