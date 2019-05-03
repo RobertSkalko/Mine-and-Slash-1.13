@@ -35,7 +35,7 @@ public class ServerContainer {
 
         USE_COMPATIBILITY_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")
-                .define("USE_COMPATIBILITY_ITEMS", false);
+                .define("USE_COMPATIBILITY_ITEMS", true);
 
         GENERATE_ORES = builder.comment(".")
                 .translation("mmorpg.word.")

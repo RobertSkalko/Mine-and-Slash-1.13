@@ -39,7 +39,6 @@ public class OnTickLogic {
             try {
 
                 EntityPlayerMP player = (EntityPlayerMP) event.player;
-
                 PlayerTickData data = PlayerTickDatas.get(player.getUniqueID());
 
                 if (data == null) {

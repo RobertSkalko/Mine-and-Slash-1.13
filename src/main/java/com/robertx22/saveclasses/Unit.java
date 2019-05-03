@@ -273,6 +273,10 @@ public class Unit {
      */
     private DirtyCheck getDirtyCheck() {
 
+        if (MyStats == null || MyStats.isEmpty()) {
+            this.InitPlayerStats();
+        }
+
         DirtyCheck check = new DirtyCheck();
 
         check.hp = (int) MyStats.get(Health.GUID).Value;

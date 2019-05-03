@@ -9,14 +9,18 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class OnPlayerClone {
 
+    public static final String PERS_DATA_LOC = "mmorpg:pers_entity_data";
+
+    // TODO THIS NEEDS A FORGE FIX. EITHER THAT OR I BASICALLY MAKE MY OWN SAVE SYSTEM (OR USE ENTITYDATA.PERSISTENT TAG
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
 
         if (!event.getEntityPlayer().world.isRemote) {
 
             EntityPlayer player = event.getEntityPlayer();
+            EntityPlayer original = event.getOriginal();
 
-            Load.Unit(player).HandleCloneEvent(Load.Unit(event.getOriginal()));
+            Load.Unit(player).setNBT(Load.Unit(event.getOriginal()).getNBT());
 
         }
 

@@ -72,8 +72,13 @@ public class EntityData {
     private static final String ENERGY = "current_energy";
     private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
+    private static final String NEWBIE_STATUS = "is_a_newbie";
 
     public interface UnitData extends ICommonCapability {
+
+        boolean isNewbie();
+
+        void setNewbieStatus(boolean bool);
 
         boolean needsToBeGivenStats();
 
@@ -254,6 +259,7 @@ public class EntityData {
         String uuid = "";
         String name = "";
         String currentMapResourceLoc = "";
+        boolean isNewbie = true;
 
         float energy;
         float mana;
@@ -270,6 +276,7 @@ public class EntityData {
             nbt.setBoolean(MOB_SAVED_ONCE, true);
             nbt.setString(CURRENT_MAP_ID, currentMapResourceLoc);
             nbt.setBoolean(SET_MOB_STATS, setMobStats);
+            nbt.setBoolean(NEWBIE_STATUS, this.isNewbie);
 
             if (unit != null) {
                 UnitNbt.Save(this.nbt, unit);
@@ -295,6 +302,7 @@ public class EntityData {
             this.mana = value.getFloat(MANA);
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
+            this.isNewbie = value.getBoolean(NEWBIE_STATUS);
 
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
@@ -560,6 +568,10 @@ public class EntityData {
         @Override
         public void recalculateStats(EntityLivingBase entity, IWorldData world) {
 
+            if (unit == null) {
+                unit = new Unit();
+            }
+
             unit.RecalculateStats(entity, this, level, world);
 
         }
@@ -648,14 +660,16 @@ public class EntityData {
         public void onLogin(EntityPlayer player) {
 
             try {
-                // check if newbie
+
                 if (unit == null) {
                     unit = new Unit();
-                    unit.InitPlayerStats();
+                }
+                unit.InitPlayerStats();
+
+                // check if newbie
+                if (isNewbie()) {
+                    setNewbieStatus(false);
                     OnLogin.GiveStarterItems(player);
-                } else {
-                    getUnit().InitPlayerStats();
-                    recalculateStats(player, Load.World(player));
                 }
 
                 if (kills == null) {
@@ -833,6 +847,16 @@ public class EntityData {
         @Override
         public void freelySetLevel(int lvl) {
             this.level = lvl;
+        }
+
+        @Override
+        public boolean isNewbie() {
+            return isNewbie;
+        }
+
+        @Override
+        public void setNewbieStatus(boolean bool) {
+            isNewbie = bool;
         }
 
         @Override

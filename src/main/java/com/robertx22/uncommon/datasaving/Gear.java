@@ -31,7 +31,7 @@ public class Gear {
             stack.setTag(new NBTTagCompound());
         }
         if (gear != null) {
-            stack.setTag(LoadSave.Save(gear, stack.getTag(), LOC));
+            LoadSave.Save(gear, stack.getTag(), LOC);
         }
 
     }
