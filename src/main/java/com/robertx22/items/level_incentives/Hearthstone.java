@@ -42,7 +42,10 @@ public class Hearthstone extends Item {
 
     public Hearthstone(int rarity) {
 
-        super(new Properties().group(CreativeTabs.MyModTab));
+        super(new Properties().group(CreativeTabs.MyModTab)
+                .maxStackSize(1)
+                .defaultMaxDamage(0));
+        
         this.rarity = rarity;
         this.setup(rarity);
         RegisterItemUtils.RegisterItemName(this, "hearthstone/" + rarity);
@@ -74,13 +77,13 @@ public class Hearthstone extends Item {
                               boolean isSelected) {
 
         try {
-            if (!worldIn.isRemote && entity instanceof EntityPlayer && entity.ticksExisted % tickRate == 0) {
+            if (entity.ticksExisted % tickRate == 0 && entity instanceof EntityPlayer) {
 
                 if (worldIn.isRemote) {
                     NBTTagCompound nbt = stack.getTag();
                     if (nbt != null && nbt.getBoolean("porting")) {
 
-                        ParticleUtils.spawnParticles(Particles.POOF, (EntityPlayer) entity, 5);
+                        ParticleUtils.spawnParticles(Particles.CRIT, (EntityPlayer) entity, 5);
                     }
 
                 } else {
@@ -144,8 +147,8 @@ public class Hearthstone extends Item {
         if (pos == null) {
             player.sendMessage(SLOC.chat("no_bed"));
         } else {
+            player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 
-            player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
         }
     }
 
