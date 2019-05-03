@@ -2,7 +2,7 @@ package com.robertx22.potion_effects.all;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.SpellPotionBase;
-import com.robertx22.spells.self.SpellInstantHeal;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -57,7 +57,7 @@ public class CleansePoisonPotion extends SpellPotionBase {
         try {
 
             if (entity.world.isRemote) {
-                SpellInstantHeal.spawnHealParticles(entity, 1);
+                ParticleUtils.spawnHealParticles(entity, 1);
             } else {
 
                 if (entity.getActivePotionEffect(MobEffects.POISON) != null) {

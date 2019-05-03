@@ -2,12 +2,11 @@ package com.robertx22.potion_effects.all;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.SpellPotionBase;
-import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Particles;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -47,7 +46,7 @@ public class EnergyRegenPotion extends SpellPotionBase {
         try {
 
             if (entity.world.isRemote) {
-                SpellInstantHeal.spawnParticles(Particles.HAPPY_VILLAGER, entity, 5);
+                ParticleUtils.spawnEnergyRestoreParticles(entity, 5);
             } else {
                 UnitData data = Load.Unit(entity);
                 data.restoreEnergy(amplifier);

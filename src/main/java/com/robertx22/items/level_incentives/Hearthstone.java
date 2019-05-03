@@ -1,17 +1,20 @@
 package com.robertx22.items.level_incentives;
 
+import com.robertx22.Styles;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Particles;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,7 +52,7 @@ public class Hearthstone extends Item {
 
     private void setup(int rarity) {
         levelReq = levelReqs.get(rarity);
-        activationTime = activationTimes.get(rarity);
+        activationTimeSeconds = activationTimes.get(rarity);
         cooldownTimeMinute = cooldownTimeMinutes.get(rarity);
         totalUses = totalUsesList.get(rarity);
     }
@@ -60,7 +63,7 @@ public class Hearthstone extends Item {
     public static final List<Integer> totalUsesList = Arrays.asList(3, 10, 25, 50, 250, 1000);
 
     public Integer levelReq;
-    public Integer activationTime;
+    public Integer activationTimeSeconds;
     public Integer cooldownTimeMinute;
     public Integer totalUses;
 
@@ -73,48 +76,60 @@ public class Hearthstone extends Item {
         try {
             if (!worldIn.isRemote && entity instanceof EntityPlayer && entity.ticksExisted % tickRate == 0) {
 
-                NBTTagCompound nbt = stack.getTag();
+                if (worldIn.isRemote) {
+                    NBTTagCompound nbt = stack.getTag();
+                    if (nbt != null && nbt.getBoolean("porting")) {
 
-                if (nbt == null) {
-                    nbt = new NBTTagCompound();
-                    stack.setTag(nbt);
-                }
-
-                decreaseCurrentCooldown(stack, tickRate);
-
-                if (nbt.getBoolean("porting")) {
-
-                    BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
-
-                    if (pos.distanceSq(entity.getPosition()) > 3) {
-
-                        nbt.setBoolean("porting", false);
-                        nbt.setInt("ticks", 0);
-
-                        entity.sendMessage(SLOC.chat("teleport_canceled"));
-
-                    } else {
-
-                        if (nbt.hasKey("ticks")) {
-
-                            int ticks = nbt.getInt("ticks");
-                            nbt.setInt("ticks", ticks + tickRate);
-
-                            if (ticks > 20 * this.activationTime) {
-
-                                nbt.setInt("ticks", 0);
-                                nbt.setBoolean("porting", false);
-
-                                teleportBack((EntityPlayer) entity);
-
-                                stack.setCount(stack.getCount() - 1);
-
-                            }
-                        } else {
-                            nbt.setInt("ticks", tickRate);
-                        }
-
+                        ParticleUtils.spawnParticles(Particles.POOF, (EntityPlayer) entity, 5);
                     }
+
+                } else {
+
+                    NBTTagCompound nbt = stack.getTag();
+
+                    if (nbt == null) {
+                        nbt = new NBTTagCompound();
+                        stack.setTag(nbt);
+                    }
+
+                    decreaseCurrentCooldown(stack, tickRate);
+
+                    if (nbt.getBoolean("porting")) {
+
+                        BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
+
+                        if (pos.distanceSq(entity.getPosition()) > 3) {
+
+                            nbt.setBoolean("porting", false);
+                            nbt.setInt("ticks", 0);
+                            this.setCooldownToZero(stack);
+
+                            entity.sendMessage(SLOC.chat("teleport_canceled"));
+
+                        } else {
+
+                            if (nbt.hasKey("ticks")) {
+
+                                ParticleUtils.spawnParticles(Particles.HEART, (EntityPlayer) entity, 10);
+
+                                int ticks = nbt.getInt("ticks");
+                                nbt.setInt("ticks", ticks + tickRate);
+
+                                if (ticks > 20 * this.activationTimeSeconds) {
+
+                                    nbt.setInt("ticks", 0);
+                                    nbt.setBoolean("porting", false);
+
+                                    teleportBack((EntityPlayer) entity);
+
+                                }
+                            } else {
+                                nbt.setInt("ticks", tickRate);
+                            }
+
+                        }
+                    }
+
                 }
             }
         } catch (Exception e) {
@@ -124,9 +139,14 @@ public class Hearthstone extends Item {
 
     private void teleportBack(EntityPlayer player) {
 
-        player.attemptTeleport(player.bedLocation.getX(), player.bedLocation.getY(), player.bedLocation
-                .getZ());
+        BlockPos pos = player.getBedLocation(player.world.getDimension().getType());
 
+        if (pos == null) {
+            player.sendMessage(SLOC.chat("no_bed"));
+        } else {
+
+            player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
+        }
     }
 
     @Override
@@ -142,15 +162,16 @@ public class Hearthstone extends Item {
                     stack.setTag(new NBTTagCompound());
                 }
 
-                if (this.getCurrentCooldown(stack) > 0) {
+                if (this.getCurrentCooldownMinutes(stack) > 0) {
                     player.sendMessage(SLOC.chat("cooldown_warning"));
+                    stack.getTag().setBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
                 }
 
                 if (Load.Unit(player).getLevel() < this.levelReq) {
                     player.sendMessage(SLOC.chat("not_high_enough_level"));
+                    stack.getTag().setBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
-
                 }
 
                 this.decreaseUses(stack);
@@ -184,13 +205,13 @@ public class Hearthstone extends Item {
 
     }
 
-    private int getCurrentCooldown(ItemStack stack) {
+    private int getCurrentCooldownMinutes(ItemStack stack) {
 
         if (stack.hasTag()) {
             NBTTagCompound nbt = stack.getTag();
 
             if (nbt.hasKey("cooldown")) {
-                return nbt.getInt("cooldown");
+                return nbt.getInt("cooldown") / 20 / 60; // ticks;
             }
         }
         return 0;
@@ -201,7 +222,15 @@ public class Hearthstone extends Item {
 
         NBTTagCompound nbt = stack.getTag();
 
-        nbt.setInt("cooldown", this.cooldownTimeMinute * 20);
+        nbt.setInt("cooldown", this.cooldownTimeMinute * 20 * 60);
+
+    }
+
+    private void setCooldownToZero(ItemStack stack) {
+
+        NBTTagCompound nbt = stack.getTag();
+
+        nbt.setInt("cooldown", 0);
 
     }
 
@@ -209,16 +238,16 @@ public class Hearthstone extends Item {
 
         NBTTagCompound nbt = stack.getTag();
 
-        int left = this.cooldownTimeMinute;
-
         if (nbt.hasKey("cooldown")) {
-            left = nbt.getInt("cooldown");
+            int left = nbt.getInt("cooldown");
+
+            left -= ticks;
+
+            if (left > -1) { // dont keep reducing bellow 0
+                nbt.setInt("cooldown", left);
+                stack.setTag(nbt);
+            }
         }
-        left -= ticks;
-
-        nbt.setInt("uses", left);
-
-        stack.setTag(nbt);
 
     }
 
@@ -248,21 +277,32 @@ public class Hearthstone extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(TooltipUtils.level(this.levelReq));
+        Tooltip.add("", tooltip);
+
         Tooltip.add(CLOC.word("cooldown")
                 .appendText(" " + this.cooldownTimeMinute)
+                .appendText(" ")
                 .appendSibling(CLOC.word("minutes")
                         .appendText(". ")
                         .appendSibling(CLOC.word("left"))
-                        .appendText(": " + this.getCurrentCooldown(stack))), tooltip);
+                        .appendText(": " + this.getCurrentCooldownMinutes(stack)))
+                .setStyle(Styles.BLUE), tooltip);
 
         Tooltip.add(CLOC.word("uses")
                 .appendText(": " + this.totalUses)
+                .appendText(" ")
                 .appendSibling(CLOC.word("left"))
-                .appendText(": " + this.getRemainingUses(stack)), tooltip);
+                .appendText(": " + this.getRemainingUses(stack))
+                .setStyle(Styles.GREEN), tooltip);
 
         Tooltip.add(CLOC.word("activation_time")
-                .appendText(": " + this.activationTime + ""), tooltip);
+                .appendText(": " + this.activationTimeSeconds + " ")
+                .appendSibling(CLOC.word("seconds"))
+                .setStyle(Styles.RED), tooltip);
+
+        Tooltip.add("", tooltip);
+
+        tooltip.add(TooltipUtils.level(this.levelReq));
 
     }
 

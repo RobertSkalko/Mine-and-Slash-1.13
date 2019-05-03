@@ -269,6 +269,7 @@
     "mmorpg.word.unique_stats": "Unique Stats",
     "mmorpg.word.level": "Level",
 	"mmorpg.word.set": "Set",
+	"mmorpg.word.seconds": "Seconds",
   	"mmorpg.word.none": "None",
     "mmorpg.word.rarity": "Rarity",
     "mmorpg.word.unsalvagable": "Unsalvagable",
@@ -637,6 +638,8 @@
 
 
     "_comment": "CHAT MESSAGESS",
+	"mmorpg.chat.no_bed": "Bed not found.",  
+	"mmorpg.chat.cooldown_warning": "Cooldown not met.",
     "mmorpg.chat.levelup_success": "You have Leveled Up!",
     "mmorpg.chat.low_weapon_durability": "Weapon Durability is Too Low.",
     "mmorpg.chat.teleport_canceled": "Teleport Canceled, Please don't move while teleporting.",

@@ -2,9 +2,9 @@ package com.robertx22.potion_effects.all;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.SpellPotionBase;
-import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -60,7 +60,7 @@ public class AoeRegenPotion extends SpellPotionBase {
         for (EntityLivingBase en : this.getEntitiesAround(entity, 3F)) {
 
             if (en.world.isRemote) {
-                SpellInstantHeal.spawnHealParticles(en, 3);
+                ParticleUtils.spawnHealParticles(en, 3);
             } else {
                 Load.Unit(en).heal(en, (int) data.getUnit().healthData().Value / 50);
 

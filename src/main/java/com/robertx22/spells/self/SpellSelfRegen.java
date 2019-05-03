@@ -10,6 +10,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -77,7 +78,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
 
             } else {
 
-                spawnHealParticles(caster, 10);
+                ParticleUtils.spawnHealParticles(caster, 10);
             }
         } catch (Exception e) {
             e.printStackTrace();
