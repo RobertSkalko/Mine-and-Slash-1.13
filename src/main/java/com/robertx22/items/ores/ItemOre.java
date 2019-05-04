@@ -1,8 +1,8 @@
 package com.robertx22.items.ores;
 
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.items.blocks.BlockOre;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IWeighted;
@@ -64,15 +64,24 @@ public class ItemOre extends Item implements IWeighted {
 
     }
 
-    public static void Register() {
+    public static void RegisterItems() {
+
         Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x
                 .Rank())));
 
-        for (int i = 0; i < ItemOres.size(); i++) {
-            BlockOre block = new BlockOre("ore_block" + i, Material.ROCK, ItemOres.get(i), 1);
+    }
+
+    public static void RegisterBlocks() {
+
+        for (ItemRarity rarity : Rarities.Items) {
+
+            int i = rarity.Rank();
+
+            BlockOre block = new BlockOre(i, Material.ROCK);
             Blocks.put(i, block);
+
             ItemBlock itemblock = (ItemBlock) new ItemBlock(block, new Properties().group(CreativeTabs.MyModTab))
-                    .setRegistryName("ore_block" + i);
+                    .setRegistryName(Ref.MODID + ":ore_block" + i);
             ItemBlocks.put(i, itemblock);
         }
 
@@ -81,7 +90,9 @@ public class ItemOre extends Item implements IWeighted {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
-        Register();
+        RegisterItems();
+
+        // Register();
 
         ItemOres.values().forEach((x) -> event.getRegistry().register(x));
         ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
@@ -89,6 +100,8 @@ public class ItemOre extends Item implements IWeighted {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+
+        RegisterBlocks();
 
         Blocks.values().forEach((x) -> event.getRegistry().register(x));
 

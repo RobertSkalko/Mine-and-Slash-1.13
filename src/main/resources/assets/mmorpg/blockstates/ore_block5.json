@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "all": "mmorpg:blocks/ore_block5"
+            "all": "mmorpg:block/ore_block5"
         }
     },
     "variants": {
