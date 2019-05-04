@@ -190,7 +190,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         }
 
-        // text.setStyle(Styles.RED.setColor(this.GetRarity().textFormatColor()));
+        text.setStyle(new net.minecraft.util.text.Style().setColor(this.GetRarity()
+                .textFormatColor()));
 
         return text;
 
@@ -235,6 +236,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         tip.clear();
 
         tip.add(GetDisplayName(stack));
+
         tip.add(TooltipUtils.level(level));
 
         tip.add(new TextComponentString(""));
@@ -247,7 +249,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         if (primaryStats != null) {
             tip.addAll(primaryStats.GetTooltipString(this));
         }
-
         if (runes != null) {
             tip.addAll(runes.GetTooltipString(this));
         }
@@ -268,7 +269,6 @@ public class GearItemData implements ITooltip, ISalvagable {
             if (part != null) {
                 tip.addAll(part.GetTooltipString(this));
                 tip.add(new TextComponentString(""));
-
             }
 
         }

@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Styles;
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.stats.StatMod;
@@ -70,7 +71,10 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("suffix").appendText(": ").appendSibling(affix.locName()));
+        list.add(CLOC.word("suffix")
+                .appendText(": ")
+                .appendSibling(affix.locName())
+                .setStyle(Styles.GRAY));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {
