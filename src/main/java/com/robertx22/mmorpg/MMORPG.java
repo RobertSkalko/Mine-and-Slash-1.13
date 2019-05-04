@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -69,8 +68,6 @@ public class MMORPG {
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
 
-        MinecraftForge.EVENT_BUS.addListener(this::onServerStarting);
-
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
             ModLoadingContext.get()
@@ -116,7 +113,8 @@ public class MMORPG {
         CurioClientRegister.icons();
     }
 
-    public void onServerStarting(FMLServerStartingEvent event) {
+    @SubscribeEvent
+    public static void onServerStarting(FMLServerStartingEvent event) {
         MapManager.onStartServerRegisterDimensions();
         TestManager.RunAllTests();
         CommandRegister.Register(event);

@@ -1,5 +1,9 @@
 package com.robertx22.uncommon.develeper;
 
+import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,39 +11,40 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.db_lists.Rarities;
-
 public class GenJsonFiles {
 
     public static void Gen() throws IOException {
 
-	List<String> names = Arrays.asList("boots", "helmet", "chest", "pants", "ring", "sword");
+        //List<String> names = Arrays.asList("boots", "helmet", "chest", "pants", "ring", "sword");
 
-	List<String> list = Files.readAllLines(Paths.get("C:\\Users\\User\\Desktop\\jsonfile.json"));
+        List<String> names = Arrays.asList("shield");
 
-	String json = "";
-	for (String str : list) {
-	    json += str + "\n";
-	}
+        List<String> list = Files.readAllLines(Paths.get("C:\\Users\\User\\Desktop\\jsonfile.json"));
 
-	for (String name : names) {
+        String json = "";
+        for (String str : list) {
+            json += str + "\n";
+        }
 
-	    for (ItemRarity rarity : Rarities.Items) {
+        for (String name : names) {
 
-		String finalname = name + rarity.Rank();
+            for (ItemRarity rarity : Rarities.Items) {
 
-		byte[] file = json.replaceAll("NAME", finalname).getBytes();
+                String finalname = name + rarity.Rank();
 
-		Path path = Paths.get("C:\\Users\\User\\Desktop\\Jsons\\" + finalname + ".json");
+                byte[] file = json.replaceAll("NAME", finalname).getBytes();
 
-		// Files.createDirectory(path);
+                Path path = Paths.get("C:\\Users\\User\\Desktop\\Jsons\\" + finalname + ".json");
 
-		Files.write(path, file);
+                Files.createDirectory(Paths.get("C:\\Users\\User\\Desktop\\Jsons\\"));
 
-	    }
+                new File(path.toString()).createNewFile();
 
-	}
+                Files.write(path, file);
+
+            }
+
+        }
 
     }
 }

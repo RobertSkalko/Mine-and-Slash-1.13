@@ -6,9 +6,9 @@ public class TestManager {
 
     public static void RunAllTests() {
 
-	if (RunTests) {
+        if (RunTests) {
 
-	}
+        }
 
     }
 
