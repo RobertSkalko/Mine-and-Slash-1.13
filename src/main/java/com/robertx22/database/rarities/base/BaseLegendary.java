@@ -18,7 +18,7 @@ public abstract class BaseLegendary implements Rarity {
     }
 
     @Override
-    public TextFormatting formatText() {
+    public TextFormatting textFormatColor() {
         return TextFormatting.GOLD;
     }
 

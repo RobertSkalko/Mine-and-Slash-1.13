@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Styles;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.loot.create.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -52,7 +53,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("primary_stats").appendText(":"));
+        list.add(CLOC.word("primary_stats").appendText(":").setStyle(Styles.GRAY));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

@@ -17,7 +17,7 @@ public abstract class BaseCommon implements Rarity {
     }
 
     @Override
-    public TextFormatting formatText() {
+    public TextFormatting textFormatColor() {
         return TextFormatting.GRAY;
     }
 

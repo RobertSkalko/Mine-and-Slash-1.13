@@ -15,7 +15,7 @@ public interface Rarity extends IWeighted {
 
     int Weight();
 
-    TextFormatting formatText();
+    TextFormatting textFormatColor();
 
     public default ITextComponent locName() {
         return CLOC.rarity(GUID().toLowerCase());

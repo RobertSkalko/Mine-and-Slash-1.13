@@ -1,5 +1,6 @@
 package com.robertx22.onevent.Item;
 
+import com.robertx22.Styles;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
@@ -54,7 +55,9 @@ public class OnTooltip {
 
                 if (GuiScreen.isShiftKeyDown() == false) {
 
-                    event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
+                    event.getToolTip()
+                            .add(CLOC.tooltip("press_shift_more_info")
+                                    .setStyle(Styles.BLUE));
                 }
 
             }

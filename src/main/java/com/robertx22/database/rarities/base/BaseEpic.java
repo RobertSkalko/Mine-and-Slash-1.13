@@ -18,7 +18,7 @@ public abstract class BaseEpic implements Rarity {
     }
 
     @Override
-    public TextFormatting formatText() {
+    public TextFormatting textFormatColor() {
         return TextFormatting.BLUE;
     }
 

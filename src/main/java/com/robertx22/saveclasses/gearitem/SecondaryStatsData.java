@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Styles;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.loot.create.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -73,7 +74,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("secondary_stats").appendText(":"));
+        list.add(CLOC.word("secondary_stats").appendText(":").setStyle(Styles.GRAY));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

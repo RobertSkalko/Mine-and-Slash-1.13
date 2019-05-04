@@ -125,8 +125,10 @@ public abstract class Stat implements IGUID {
             StatModData min = StatModData.Load(data.GetBaseMod(), minmax.Min);
             StatModData max = StatModData.Load(data.GetBaseMod(), minmax.Max);
 
-            text.appendSibling(new TextComponentString(" (" + min.printValue(level) + " - " + max
-                    .printValue(level) + ")")).setStyle(Styles.BLUE);
+            ITextComponent extraInfo = new TextComponentString(" (" + min.printValue(level) + " - " + max
+                    .printValue(level) + ")").setStyle(Styles.BLUE);
+
+            text.appendSibling(extraInfo);
         }
 
         list.add(text);

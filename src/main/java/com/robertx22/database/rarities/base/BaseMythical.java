@@ -18,7 +18,7 @@ public abstract class BaseMythical implements Rarity {
     }
 
     @Override
-    public TextFormatting formatText() {
+    public TextFormatting textFormatColor() {
         return TextFormatting.LIGHT_PURPLE;
     }
 

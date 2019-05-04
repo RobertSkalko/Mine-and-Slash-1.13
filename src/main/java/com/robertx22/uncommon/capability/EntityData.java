@@ -553,7 +553,7 @@ public class EntityData {
 
                 ITextComponent suffix = rarityprefix.appendText(" ")
                         .appendSibling(name)
-                        .setStyle(new Style().setColor(rarity.formatText()));
+                        .setStyle(new Style().setColor(rarity.textFormatColor()));
 
                 return lvlcomp.appendSibling(suffix);
 

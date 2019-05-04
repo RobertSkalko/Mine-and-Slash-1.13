@@ -22,7 +22,7 @@ public abstract class BaseUncommon implements Rarity {
     }
 
     @Override
-    public TextFormatting formatText() {
+    public TextFormatting textFormatColor() {
         return TextFormatting.GREEN;
     }
 

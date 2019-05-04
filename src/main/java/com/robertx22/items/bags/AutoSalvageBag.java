@@ -217,7 +217,7 @@ public class AutoSalvageBag extends Item {
                     text.appendText(", ").setStyle(Styles.GRAY);
                 }
                 text.appendSibling(rar.locName())
-                        .setStyle(new Style().setColor(rar.formatText()));
+                        .setStyle(new Style().setColor(rar.textFormatColor()));
             }
         }
 

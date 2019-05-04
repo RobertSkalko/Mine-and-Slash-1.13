@@ -19,6 +19,6 @@ public class TooltipUtils {
         return (CLOC.word("rarity")
                 .appendText(": ")
                 .appendSibling(rarity.locName())
-                .setStyle(new Style().setColor(rarity.formatText())));
+                .setStyle(new Style().setColor(rarity.textFormatColor())));
     }
 }
