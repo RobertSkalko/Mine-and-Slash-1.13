@@ -1,73 +1,76 @@
 package com.robertx22.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 
 public class StatConfig {
 
     public static final String NAME = "BASE_STATS";
 
-    public ConfigValue<Float> physical_damage;
-    public ConfigValue<Float> physical_damage_per_level;
-    public ConfigValue<Float> mana;
-    public ConfigValue<Float> mana_per_level;
-    public ConfigValue<Float> energy;
-    public ConfigValue<Float> energy_per_level;
-    public ConfigValue<Float> mana_regen;
-    public ConfigValue<Float> mana_regen_per_level;
-    public ConfigValue<Float> health_regen;
-    public ConfigValue<Float> health_regen_per_level;
-    public ConfigValue<Float> armor;
-    public ConfigValue<Float> armor_per_level;
-    public ConfigValue<Float> health;
-    public ConfigValue<Float> health_per_level;
-    public ConfigValue<Float> critical_hit;
-    public ConfigValue<Float> critical_hit_per_level;
-    public ConfigValue<Float> energy_regen;
-    public ConfigValue<Float> energy_regen_per_level;
-    public ConfigValue<Float> critical_damage;
-    public ConfigValue<Float> critical_damage_per_level;
+    public DoubleValue physical_damage;
+    public DoubleValue physical_damage_per_level;
+    public DoubleValue mana;
+    public DoubleValue mana_per_level;
+    public DoubleValue energy;
+    public DoubleValue energy_per_level;
+    public DoubleValue mana_regen;
+    public DoubleValue mana_regen_per_level;
+    public DoubleValue health_regen;
+    public DoubleValue health_regen_per_level;
+    public DoubleValue armor;
+    public DoubleValue armor_per_level;
+    public DoubleValue health;
+    public DoubleValue health_per_level;
+    public DoubleValue critical_hit;
+    public DoubleValue critical_hit_per_level;
+    public DoubleValue energy_regen;
+    public DoubleValue energy_regen_per_level;
+    public DoubleValue critical_damage;
+    public DoubleValue critical_damage_per_level;
 
     StatConfig(ForgeConfigSpec.Builder builder) {
         builder.push("PLAYER_BASE_STATS");
 
         physical_damage = builder.translation("mmorpg.stat.physical_damage")
-                .define("physical_damage", 3F);
+                .defineInRange("physical_damage", 3F, 0, 100000);
         physical_damage_per_level = builder.translation("mmorpg.stat.physical_damage_per_level")
-                .define("physical_damage_per_level", 0.3F);
-        mana = builder.translation("mmorpg.stat.mana").define("mana", 50F);
+                .defineInRange("physical_damage_per_level", 0.3F, 0, 100000);
+        mana = builder.translation("mmorpg.stat.mana")
+                .defineInRange("mana", 50F, 0, 100000);
         mana_per_level = builder.translation("mmorpg.stat.mana_per_level")
-                .define("mana_per_level", 0F);
-        energy = builder.translation("mmorpg.stat.energy").define("energy", 100F);
+                .defineInRange("mana_per_level", 0F, 0, 100000);
+        energy = builder.translation("mmorpg.stat.energy")
+                .defineInRange("energy", 100F, 0, 100000);
         energy_per_level = builder.translation("mmorpg.stat.energy_per_level")
-                .define("energy_per_level", 0F);
+                .defineInRange("energy_per_level", 0F, 0, 100000);
         mana_regen = builder.translation("mmorpg.stat.mana_regen")
-                .define("mana_regen", 3F);
+                .defineInRange("mana_regen", 3F, 0, 100000);
         mana_regen_per_level = builder.translation("mmorpg.stat.mana_regen_per_level")
-                .define("mana_regen_per_level", 0F);
-
+                .defineInRange("mana_regen_per_level", 0F, 0, 100000);
         health_regen = builder.translation("mmorpg.stat.health_regen")
-                .define("health_regen", 5F);
+                .defineInRange("health_regen", 5F, 0, 100000);
         health_regen_per_level = builder.translation("mmorpg.stat.health_regen_per_level")
-                .define("health_regen_per_level", 1F);
-        armor = builder.translation("mmorpg.stat.armor").define("armor", 10F);
+                .defineInRange("health_regen_per_level", 1F, 0, 100000);
+        armor = builder.translation("mmorpg.stat.armor")
+                .defineInRange("armor", 10F, 0, 100000);
         armor_per_level = builder.translation("mmorpg.stat.armor_per_level")
-                .define("armor_per_level", 5F);
-        health = builder.translation("mmorpg.stat.health").define("health", 100F);
+                .defineInRange("armor_per_level", 5F, 0, 100000);
+        health = builder.translation("mmorpg.stat.health")
+                .defineInRange("health", 100F, 0, 100000);
         health_per_level = builder.translation("mmorpg.stat.health_per_level")
-                .define("health_per_level", 10F);
+                .defineInRange("health_per_level", 10F, 0, 100000);
         critical_hit = builder.translation("mmorpg.stat.critical_hit")
-                .define("critical_hit", 1F);
+                .defineInRange("critical_hit", 1F, 0, 100000);
         critical_hit_per_level = builder.translation("mmorpg.stat.critical_hit_per_level")
-                .define("critical_hit_per_level", 0F);
+                .defineInRange("critical_hit_per_level", 0F, 0, 100000);
         energy_regen = builder.translation("mmorpg.stat.energy_regen")
-                .define("energy_regen", 5F);
+                .defineInRange("energy_regen", 5F, 0, 100000);
         energy_regen_per_level = builder.translation("mmorpg.stat.energy_regen_per_level")
-                .define("energy_regen_per_level", 0F);
+                .defineInRange("energy_regen_per_level", 0F, 0, 100000);
         critical_damage = builder.translation("mmorpg.stat.critical_damage")
-                .define("critical_damage", 0F);
+                .defineInRange("critical_damage", 0F, 0, 100000);
         critical_damage_per_level = builder.translation("mmorpg.stat.critical_damage_per_level")
-                .define("critical_damage_per_level", 0F);
+                .defineInRange("critical_damage_per_level", 0F, 0, 100000);
 
         builder.pop();
 

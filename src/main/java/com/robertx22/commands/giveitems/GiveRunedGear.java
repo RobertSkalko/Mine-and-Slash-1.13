@@ -24,14 +24,15 @@ public class GiveRunedGear {
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests(new GearTypeSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
+                                        .then(Commands.argument("rarity", IntegerArgumentType
+                                                .integer(0, 5))
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 5000))
                                                         .executes(e -> execute(e.getSource(), EntityArgument
                                                                 .getOnePlayer(e, "target"), StringArgumentType
                                                                 .getString(e, "type"), IntegerArgumentType
-                                                                .getInteger(e, "rarity"), IntegerArgumentType
                                                                 .getInteger(e, "level"), IntegerArgumentType
+                                                                .getInteger(e, "rarity"), IntegerArgumentType
                                                                 .getInteger(e, "amount")
 
                                                         ))))))));

@@ -24,6 +24,8 @@ public class ConfigRegister {
         ConfigItemsSerialization.INSTANCE.generateIfEmpty();
         ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
 
+        // ForgeMod
+
     }
 
     public static void load() {
@@ -44,7 +46,9 @@ public class ConfigRegister {
                 .autosave()
                 .writingMode(WritingMode.REPLACE)
                 .build();
+
         configData.load();
+
         spec.setConfig(configData);
     }
 }

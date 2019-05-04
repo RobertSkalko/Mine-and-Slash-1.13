@@ -23,7 +23,7 @@ public class AwakenRuneWordLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.AWAKEN_RUNEWORD_DROPRATE.get();
+        return ModConfig.INSTANCE.DropRates.AWAKEN_RUNEWORD_DROPRATE.get().floatValue();
 
     }
 

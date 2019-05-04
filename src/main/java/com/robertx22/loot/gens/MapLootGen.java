@@ -29,7 +29,7 @@ public class MapLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.MAP_DROPRATE.get();
+        return ModConfig.INSTANCE.DropRates.MAP_DROPRATE.get().floatValue();
     }
 
     @Override

@@ -99,6 +99,7 @@ public class GuiGearFactory extends GuiContainer {
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
             drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
+
         }
 
     }

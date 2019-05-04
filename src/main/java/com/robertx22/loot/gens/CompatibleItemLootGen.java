@@ -32,7 +32,7 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get();
+        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get().floatValue();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
                 ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
 
-                config.create(stack, mob);
+                return config.create(stack, mob);
             }
 
         }

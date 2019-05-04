@@ -30,6 +30,7 @@ public class MasterLootGen {
         items.addAll(new MapLootGen(mob, player, world, victim).generate());
         items.addAll(new RuneLootGen(mob, player, world, victim).generate());
         items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
+
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             items.addAll(new CompatibleItemLootGen(mob, player, world, victim).generate());
         }

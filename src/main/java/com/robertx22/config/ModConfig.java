@@ -33,7 +33,7 @@ public class ModConfig {
         PlayerBaseStats = builder.configure(StatConfig::new).getLeft();
 
         builder.pop();
-        builder.build();
+        //builder.build();
     }
 
 }
