@@ -24,7 +24,7 @@ public class ServerContainer {
     public DoubleValue EXPERIENCE_MULTIPLIER;
     public DoubleValue UNARMED_ENERGY_COST;
 
-    public ConfigValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
+    public EnumValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
@@ -91,7 +91,7 @@ public class ServerContainer {
 
         ENTITIES_UNDER_SYSTEM = builder.comment(".")
                 .translation("mmorpg.word.")
-                .define("ENTITIES_UNDER_SYSTEM", EntitySystemChoice.All_Entities);
+                .defineEnum("ENTITIES_UNDER_SYSTEM", EntitySystemChoice.All_Entities);
 
         builder.pop();
     }

@@ -3,7 +3,7 @@ package com.robertx22.config;
 import com.robertx22.uncommon.enumclasses.Player_GUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class ClientContainer {
@@ -26,7 +26,8 @@ public class ClientContainer {
     public BooleanValue RENDER_MOB_HEALTH_GUI;
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_FLOATING_EXP;
-    public ConfigValue<Player_GUIs> PLAYER_GUI_TYPE;
+
+    public EnumValue<Player_GUIs> PLAYER_GUI_TYPE;
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
@@ -67,11 +68,9 @@ public class ClientContainer {
                 .translation("mmorpg.config.floating_exp")
                 .define("SHOW_FLOATING_EXP", true);
 
-        PLAYER_GUI_TYPE = builder
-
-                .comment(".")
+        PLAYER_GUI_TYPE = builder.comment(".")
                 .translation("mmorpg.config.player_gui_overlay_type")
-                .define("PLAYER_GUI_TYPE", Player_GUIs.Middle);
+                .defineEnum("PLAYER_GUI_TYPE", Player_GUIs.Middle);
 
         builder.pop();
         // builder.build();
