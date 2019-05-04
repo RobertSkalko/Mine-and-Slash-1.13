@@ -11,7 +11,7 @@ public class EpicMat implements IArmorMaterial {
 
     @Override
     public int getDurability(EntityEquipmentSlot slotIn) {
-        return 700;
+        return 1000;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class RareMat implements IArmorMaterial {
 
     @Override
     public int getDurability(EntityEquipmentSlot slotIn) {
-        return 700;
+        return 900;
     }
 
     @Override
