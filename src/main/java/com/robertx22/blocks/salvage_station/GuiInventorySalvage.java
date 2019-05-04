@@ -62,14 +62,15 @@ public class GuiInventorySalvage extends TileGui {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        fontRenderer.drawString(tileEntity.getDisplayName()
-                .getUnformattedComponentText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+
+        fontRenderer.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+                .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
 
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(CLOC.word("progress") + ": ");
+            hoveringText.add(CLOC.translate(CLOC.word("progress")) + ": ");
             int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }

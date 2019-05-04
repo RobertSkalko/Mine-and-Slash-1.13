@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -31,6 +32,11 @@ public class ServerProxy implements IProxy {
     @Override
     public EntityPlayer getPlayerEntityFromContext(Supplier<Context> ctx) {
         return ctx.get().getSender();
+    }
+
+    @Override
+    public String translate(ITextComponent comp) {
+        return "error";
     }
 
 }

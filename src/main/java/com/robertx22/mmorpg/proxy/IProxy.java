@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -19,4 +20,6 @@ public interface IProxy {
     EntityPlayer getPlayerEntityFromContext(Supplier<NetworkEvent.Context> ctx);
 
     // void regRenders(ModelRegistryEvent evt);
+
+    String translate(ITextComponent comp);
 }

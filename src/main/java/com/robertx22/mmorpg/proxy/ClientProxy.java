@@ -6,7 +6,9 @@ import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -44,6 +46,11 @@ public class ClientProxy implements IProxy {
     @Override
     public EntityPlayer getPlayerEntityFromContext(Supplier<Context> ctx) {
         return Minecraft.getInstance().player;
+    }
+
+    @Override
+    public String translate(ITextComponent comp) {
+        return I18n.format(comp.getUnformattedComponentText());
     }
 
 }
