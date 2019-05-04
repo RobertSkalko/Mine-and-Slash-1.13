@@ -14,9 +14,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-
-import javax.annotation.Nullable;
 
 public class TileInventorySalvage extends BaseTile {
 
@@ -256,20 +253,9 @@ public class TileInventorySalvage extends BaseTile {
         return this.getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-        return this.getName();
-    }
-
     @Override
     public ITextComponent getName() {
-        return CLOC.blank(StartupSalvage.ID);
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return new TextComponentString("");
+        return CLOC.blank("block.mmorpg.salvage_station");
     }
 
     @Override

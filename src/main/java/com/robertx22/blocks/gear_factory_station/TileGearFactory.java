@@ -362,12 +362,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank(StartupGearFactory.GEAR_FACTORY_ID);
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return this.getName();
+        return CLOC.blank("block.mmorpg.repair_station");
     }
 
     @Override

@@ -13,9 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-
-import javax.annotation.Nullable;
 
 public class TileInventoryRepair extends BaseTile {
 
@@ -346,20 +343,9 @@ public class TileInventoryRepair extends BaseTile {
         return NUMBER_OF_FIELDS;
     }
 
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-        return this.getName();
-    }
-
     @Override
     public ITextComponent getName() {
         return CLOC.blank("block.mmorpg.repair_station");
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return new TextComponentString("");
     }
 
     @Override

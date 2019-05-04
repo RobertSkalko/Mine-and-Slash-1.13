@@ -30,6 +30,17 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     public short cookTime = 0;
     public int FuelRemaining = 0;
 
+    @Nullable
+    @Override
+    public ITextComponent getDisplayName() {
+        return this.getName();
+    }
+
+    @Override
+    public ITextComponent getCustomName() {
+        return this.getName();
+    }
+
     // OVERRIDE IF AUTOMATABLE
     @Override
     public int[] inputSlots() {

@@ -16,8 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
-import javax.annotation.Nullable;
-
 public class TileMap extends BaseTile {
     @Override
     public boolean isAutomatable() {
@@ -148,20 +146,9 @@ public class TileMap extends BaseTile {
         return 0;
     }
 
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-        return this.getName();
-    }
-
     @Override
     public ITextComponent getName() {
         return CLOC.blank("block.mmorpg.map_device");
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return this.getName();
     }
 
     @Override

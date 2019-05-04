@@ -11,9 +11,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
-
-import javax.annotation.Nullable;
 
 public class TileInventoryModify extends BaseTile {
 
@@ -222,12 +219,6 @@ public class TileInventoryModify extends BaseTile {
 
     // standard code to look up what the human-readable name is
 
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-        return new TextComponentTranslation("mmorpg.gear_modify");
-    }
-
     private static final byte COOK_FIELD_ID = 0;
     private static final byte NUMBER_OF_FIELDS = 1;
 
@@ -258,12 +249,7 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank(StartupModify.ID);
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return this.getName();
+        return CLOC.blank("block.mmorpg.modify_station");
     }
 
     @Override

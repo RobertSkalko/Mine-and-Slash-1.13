@@ -76,14 +76,14 @@ public class GuiGearFactory extends GuiContainer {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        fontRenderer.drawString(tileEntity.getDisplayName()
-                .getUnformattedComponentText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+        fontRenderer.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+                .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
 
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(CLOC.word("progress") + ": ");
+            hoveringText.add(CLOC.translate(CLOC.word("progress")) + ": ");
             int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
@@ -93,7 +93,7 @@ public class GuiGearFactory extends GuiContainer {
         for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
-                hoveringText.add(CLOC.word("fuel") + ": " + tileEntity.secondsOfFuelRemaining(i));
+                hoveringText.add(CLOC.translate(CLOC.word("fuel")) + ": " + tileEntity.secondsOfFuelRemaining(i));
             }
         }
         // If hoveringText is not empty draw the hovering text
