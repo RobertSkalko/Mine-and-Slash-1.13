@@ -18,8 +18,7 @@ public abstract class BaseWeaponItem extends ItemTool implements IWeapon {
 
     public BaseWeaponItem() {
 
-        super(2F, 2F, ItemTier.DIAMOND, EFFECTIVE_ON, new Properties().defaultMaxDamage(1000)
-                .maxStackSize(1));
+        super(2F, 2F, ItemTier.DIAMOND, EFFECTIVE_ON, new Properties().defaultMaxDamage(1000));
 
     }
 
