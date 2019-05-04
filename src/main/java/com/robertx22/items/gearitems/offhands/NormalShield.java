@@ -6,13 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NormalShield extends ItemShield {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
@@ -24,7 +22,8 @@ public class NormalShield extends ItemShield {
     ResourceLocation resource = new ResourceLocation("");
 
     public NormalShield(String name) {
-        super(new Properties().defaultMaxDamage(750));
+
+        super(new Properties().defaultMaxDamage(750).setTEISR(ShieldRenderer::new));
 
         resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
 

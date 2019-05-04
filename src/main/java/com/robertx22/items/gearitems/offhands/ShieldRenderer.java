@@ -7,31 +7,38 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ShieldRenderer extends TileEntityItemStackRenderer {
-    public final TileEntityItemStackRenderer parent;
+import java.util.concurrent.Callable;
+
+public class ShieldRenderer extends TileEntityItemStackRenderer implements Callable<TileEntityItemStackRenderer> {
+    public final TileEntityItemStackRenderer instance;
 
     private final ModelShield modelShield = new ModelShield();
 
-    public ShieldRenderer(TileEntityItemStackRenderer renderer) {
-	parent = renderer;
-
+    public ShieldRenderer() {
+        instance = this;
     }
 
     @Override
     public void renderByItem(ItemStack stack) {
-	super.renderByItem(stack);
-	Item item = stack.getItem();
-	if (item instanceof NormalShield) {
+        Item item = stack.getItem();
 
-	    NormalShield shield = (NormalShield) item;
+        if (item instanceof NormalShield) {
 
-	    Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
-	    GlStateManager.pushMatrix();
-	    GlStateManager.scaled(1.0, -1.0, -1.0);
-	    modelShield.render();
-	    GlStateManager.popMatrix();
+            NormalShield shield = (NormalShield) item;
 
-	}
+            Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
+            GlStateManager.pushMatrix();
+            GlStateManager.scaled(1.0, -1.0, -1.0);
+            modelShield.render();
+            GlStateManager.popMatrix();
+
+        }
+        
     }
 
+    @Override
+    public TileEntityItemStackRenderer call() throws Exception {
+        return instance;
+    }
 }
+

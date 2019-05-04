@@ -245,7 +245,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
                 dataForAllSlots.add(dataForThisSlot);
             }
         }
-        // the array of hashmaps is then inserted into the parent hashmap for the
+        // the array of hashmaps is then inserted into the instance hashmap for the
         // container
         parentNBTTagCompound.setTag("Items", dataForAllSlots);
 
