@@ -19,6 +19,9 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.commons.io.FileUtils;
 
@@ -26,7 +29,17 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class MapManager {
+
+    @SubscribeEvent
+    public static void registerAllModDims(RegisterDimensionsEvent event) {
+
+        for (IWP iwp : WorldProviders.All.values()) {
+            iwp.setupModDim();
+        }
+
+    }
 
     public static boolean isRegistered(ResourceLocation res) {
 

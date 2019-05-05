@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,22 +16,18 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AllowMobSpawnsInMap {
 
     /**
+     * TODO MAYBE SET MAPS TO BE NIGHT ONLY?
      * allows mobs to spawn at all times, even daylight. Some mobs are blacklisted
      * like slimes or non mobs
      */
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-        if (event.getWorld() instanceof World == false) {
-            System.out.println("not instance of world");
-            return;
-        }
-
         EntityLivingBase en = event.getEntityLiving();
 
         if (en instanceof IMob) {
 
-            IWorldData data = Load.World((World) event.getWorld());
+            IWorldData data = Load.World(event.getWorld().getWorld());
 
             if (data.isMapWorld()) {
 
