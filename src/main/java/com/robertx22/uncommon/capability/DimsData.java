@@ -134,12 +134,17 @@ public class DimsData {
 
         @Override
         public NBTTagCompound serializeNBT() {
-            return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+            if (Data != null && Data.getStorage() != null) {
+                return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+            }
+            return new NBTTagCompound();
         }
 
         @Override
         public void deserializeNBT(NBTTagCompound nbt) {
-            Data.getStorage().readNBT(Data, impl, null, nbt);
+            if (Data != null && Data.getStorage() != null) {
+                Data.getStorage().readNBT(Data, impl, null, nbt);
+            }
         }
 
         @Override

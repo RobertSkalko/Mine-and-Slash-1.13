@@ -45,7 +45,7 @@ public class Hearthstone extends Item {
         super(new Properties().group(CreativeTabs.MyModTab)
                 .maxStackSize(1)
                 .defaultMaxDamage(0));
-        
+
         this.rarity = rarity;
         this.setup(rarity);
         RegisterItemUtils.RegisterItemName(this, "hearthstone/" + rarity);

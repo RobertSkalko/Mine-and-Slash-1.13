@@ -145,6 +145,14 @@ public class MapManager {
     }
 
     public static IDimsData getDimsData() {
+
+        // this shit is obsfucated so i opted for capability instead
+        /*
+        ServerLifecycleHooks.getCurrentServer()
+                .getWorld(DimensionType.OVERWORLD)
+                .getMapStorage().
+                */
+
         return Load.Dims(ServerLifecycleHooks.getCurrentServer()
                 .getWorld(DimensionType.OVERWORLD));
     }
