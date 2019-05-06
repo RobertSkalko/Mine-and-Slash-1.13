@@ -7,11 +7,15 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.*;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Particles;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,91 +25,19 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Hearthstone extends Item {
-
-    public static String COOLDOWN_TAG = "hearthstone.cooldown";
-
-    @Mod.EventBusSubscriber
-    public static class Event {
-
-        public static final int tickRate = 20;
-
-        @SubscribeEvent
-        public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
-
-            if (event.phase == TickEvent.Phase.END && event.side.equals(LogicalSide.SERVER)) {
-                EntityPlayerMP player = (EntityPlayerMP) event.player;
-
-                if (player.ticksExisted % tickRate == 0) {
-
-                    Hearthstone.decreaseCurrentCooldown(player, tickRate);
-                    
-                }
-
-            }
-        }
-
-        @SubscribeEvent
-        public static void onItemTooltip(ItemTooltipEvent event) {
-
-            if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null || !event
-                    .getEntityPlayer().world.isRemote) {
-                return;
-            }
-
-            ItemStack stack;
-
-            stack = event.getItemStack();
-
-            if (stack.getItem() instanceof Hearthstone) {
-
-                Hearthstone stone = (Hearthstone) stack.getItem();
-                EntityPlayer player = event.getEntityPlayer();
-                List<ITextComponent> tooltip = event.getToolTip();
-
-                Tooltip.add("", tooltip);
-
-                Tooltip.add(CLOC.word(COOLDOWN_TAG)
-                        .appendText(" " + stone.cooldownTimeMinute)
-                        .appendText(" ")
-                        .appendSibling(CLOC.word("minutes")
-                                .appendText(". ")
-                                .appendSibling(CLOC.word("left"))
-                                .appendText(": " + stone.getCurrentCooldownMinutes(player)))
-                        .setStyle(Styles.BLUE), tooltip);
-
-                Tooltip.add(CLOC.word("uses")
-                        .appendText(": " + stone.totalUses)
-                        .appendText(" ")
-                        .appendSibling(CLOC.word("left"))
-                        .appendText(": " + stone.getRemainingUses(stack))
-                        .setStyle(Styles.GREEN), tooltip);
-
-                Tooltip.add(CLOC.word("activation_time")
-                        .appendText(": " + stone.activationTimeSeconds + " ")
-                        .appendSibling(CLOC.word("seconds"))
-                        .setStyle(Styles.RED), tooltip);
-
-                Tooltip.add("", tooltip);
-
-                tooltip.add(TooltipUtils.level(stone.levelReq));
-
-            }
-
-        }
-    }
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -125,18 +57,18 @@ public class Hearthstone extends Item {
     private void setup(int rarity) {
         levelReq = levelReqs.get(rarity);
         activationTimeSeconds = activationTimes.get(rarity);
-        cooldownTimeMinute = cooldownTimeMinutes.get(rarity);
+        blocksTeleported = distanceTeleportedBlocks.get(rarity);
         totalUses = totalUsesList.get(rarity);
     }
 
     public static final List<Integer> levelReqs = Arrays.asList(1, 10, 25, 50, 75, 100);
     public static final List<Integer> activationTimes = Arrays.asList(10, 8, 7, 6, 5, 3);
-    public static final List<Integer> cooldownTimeMinutes = Arrays.asList(60, 50, 40, 30, 20, 10);
+    public static final List<Integer> distanceTeleportedBlocks = Arrays.asList(500, 1000, 2500, 5000, 15000, 100000);
     public static final List<Integer> totalUsesList = Arrays.asList(3, 10, 25, 50, 250, 1000);
 
     public Integer levelReq;
     public Integer activationTimeSeconds;
-    public Integer cooldownTimeMinute;
+    public Integer blocksTeleported;
     public Integer totalUses;
 
     public static final int tickRate = 20;
@@ -150,9 +82,15 @@ public class Hearthstone extends Item {
 
                 if (worldIn.isRemote) {
                     NBTTagCompound nbt = stack.getTag();
+
                     if (nbt != null && nbt.getBoolean("porting")) {
 
-                        ParticleUtils.spawnParticles(Particles.CRIT, (EntityPlayer) entity, 5);
+                        if (nbt.getInt("ticks") < tickRate + 1) {
+                            player.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.5F, 1);
+
+                        }
+                        ParticleUtils.spawnParticles(Particles.HAPPY_VILLAGER, (EntityPlayer) entity, 15);
+
                     }
 
                 } else {
@@ -172,7 +110,6 @@ public class Hearthstone extends Item {
 
                             nbt.setBoolean("porting", false);
                             nbt.setInt("ticks", 0);
-                            this.setCooldownToZero((EntityPlayer) entity);
 
                             entity.sendMessage(SLOC.chat("teleport_canceled"));
 
@@ -209,7 +146,7 @@ public class Hearthstone extends Item {
 
     private void teleportBack(EntityPlayer player) {
 
-        BlockPos pos = player.getBedLocation(player.world.getDimension().getType());
+        BlockPos pos = getLoc(player);
 
         if (pos == null) {
             player.sendMessage(SLOC.chat("no_bed"));
@@ -217,6 +154,30 @@ public class Hearthstone extends Item {
             player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 
         }
+    }
+
+    private BlockPos getLoc(EntityPlayer player) {
+        return player.getBedLocation();
+
+    }
+
+    private boolean distanceCanBeTeleported(EntityPlayer player) {
+
+        BlockPos place = getLoc(player);
+        BlockPos current = player.getPosition();
+
+        double distance = place.getDistance(current);
+
+        if (distance < this.blocksTeleported) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private boolean hasLoc(EntityPlayer player) {
+        return getLoc(player) != null;
     }
 
     @Override
@@ -232,8 +193,14 @@ public class Hearthstone extends Item {
                     stack.setTag(new NBTTagCompound());
                 }
 
-                if (this.getCurrentCooldownMinutes(player) > 0) {
-                    player.sendMessage(SLOC.chat("cooldown_warning"));
+                if (this.hasLoc(player) == false) {
+                    player.sendMessage(SLOC.chat("no_bed"));
+                    stack.getTag().setBoolean("porting", false);
+                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
+                }
+
+                if (this.distanceCanBeTeleported(player) == false) {
+                    player.sendMessage(SLOC.chat("distance_warning"));
                     stack.getTag().setBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
                 }
@@ -245,7 +212,6 @@ public class Hearthstone extends Item {
                 }
 
                 this.decreaseUses(stack);
-                this.resetCooldown(player);
 
                 stack.getTag().setBoolean("porting", true);
                 stack.getTag().setLong("pos", player.getPosition().toLong());
@@ -257,6 +223,7 @@ public class Hearthstone extends Item {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
         return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
@@ -272,51 +239,6 @@ public class Hearthstone extends Item {
             }
         }
         return this.totalUses;
-
-    }
-
-    private int getCurrentCooldownMinutes(EntityPlayer player) {
-
-        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
-
-        if (nbt.hasKey(COOLDOWN_TAG)) {
-            return nbt.getInt(COOLDOWN_TAG) / 20 / 60; // ticks;
-        }
-
-        return 0;
-
-    }
-
-    private void resetCooldown(EntityPlayer player) {
-
-        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
-
-        nbt.setInt(COOLDOWN_TAG, this.cooldownTimeMinute * 20 * 60);
-
-    }
-
-    private void setCooldownToZero(EntityPlayer player) {
-
-        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
-
-        nbt.setInt(COOLDOWN_TAG, 0);
-
-    }
-
-    public static void decreaseCurrentCooldown(EntityPlayer player, int ticks) {
-
-        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
-
-        if (nbt.hasKey(COOLDOWN_TAG)) {
-            int left = nbt.getInt(COOLDOWN_TAG);
-
-            left -= ticks;
-
-            if (left > -1) { // dont keep reducing bellow 0
-                nbt.setInt(COOLDOWN_TAG, left);
-                // stack.setTag(nbt);
-            }
-        }
 
     }
 
@@ -338,6 +260,37 @@ public class Hearthstone extends Item {
         if (left < 1) {
             stack.shrink(1);
         }
+
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        Tooltip.add("", tooltip);
+
+        Tooltip.add(CLOC.word("distance")
+                .appendText(" " + this.blocksTeleported)
+                .appendText(" ")
+                .appendSibling(CLOC.word("blocks").appendText(". "))
+                .setStyle(Styles.BLUE), tooltip);
+
+        Tooltip.add(CLOC.word("uses")
+                .appendText(": " + this.totalUses)
+                .appendText(" ")
+                .appendSibling(CLOC.word("left"))
+                .appendText(": " + this.getRemainingUses(stack))
+                .setStyle(Styles.GREEN), tooltip);
+
+        Tooltip.add(CLOC.word("activation_time")
+                .appendText(": " + this.activationTimeSeconds + " ")
+                .appendSibling(CLOC.word("seconds"))
+                .setStyle(Styles.RED), tooltip);
+
+        Tooltip.add("", tooltip);
+
+        tooltip.add(TooltipUtils.level(this.levelReq));
 
     }
 

@@ -266,6 +266,8 @@
     "mmorpg.prefix.inner_spirit": "Inner Spirit",
 
     "_comment": "WORDS",
+	"mmorpg.word.distance": "Distance",
+	"mmorpg.word.blocks": "Blocks",
 	"mmorpg.word.runed": "Runed",
     "mmorpg.word.percent": "Percent",
     "mmorpg.word.prefix": "Prefix",
