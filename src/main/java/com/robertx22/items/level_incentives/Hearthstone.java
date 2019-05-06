@@ -7,13 +7,10 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.Tooltip;
-import com.robertx22.uncommon.utilityclasses.TooltipUtils;
-import net.minecraft.client.util.ITooltipFlag;
+import com.robertx22.uncommon.utilityclasses.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Particles;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,19 +21,91 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Hearthstone extends Item {
+
+    public static String COOLDOWN_TAG = "hearthstone.cooldown";
+
+    @Mod.EventBusSubscriber
+    public static class Event {
+
+        public static final int tickRate = 20;
+
+        @SubscribeEvent
+        public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
+
+            if (event.phase == TickEvent.Phase.END && event.side.equals(LogicalSide.SERVER)) {
+                EntityPlayerMP player = (EntityPlayerMP) event.player;
+
+                if (player.ticksExisted % tickRate == 0) {
+
+                    Hearthstone.decreaseCurrentCooldown(player, tickRate);
+                    
+                }
+
+            }
+        }
+
+        @SubscribeEvent
+        public static void onItemTooltip(ItemTooltipEvent event) {
+
+            if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null || !event
+                    .getEntityPlayer().world.isRemote) {
+                return;
+            }
+
+            ItemStack stack;
+
+            stack = event.getItemStack();
+
+            if (stack.getItem() instanceof Hearthstone) {
+
+                Hearthstone stone = (Hearthstone) stack.getItem();
+                EntityPlayer player = event.getEntityPlayer();
+                List<ITextComponent> tooltip = event.getToolTip();
+
+                Tooltip.add("", tooltip);
+
+                Tooltip.add(CLOC.word(COOLDOWN_TAG)
+                        .appendText(" " + stone.cooldownTimeMinute)
+                        .appendText(" ")
+                        .appendSibling(CLOC.word("minutes")
+                                .appendText(". ")
+                                .appendSibling(CLOC.word("left"))
+                                .appendText(": " + stone.getCurrentCooldownMinutes(player)))
+                        .setStyle(Styles.BLUE), tooltip);
+
+                Tooltip.add(CLOC.word("uses")
+                        .appendText(": " + stone.totalUses)
+                        .appendText(" ")
+                        .appendSibling(CLOC.word("left"))
+                        .appendText(": " + stone.getRemainingUses(stack))
+                        .setStyle(Styles.GREEN), tooltip);
+
+                Tooltip.add(CLOC.word("activation_time")
+                        .appendText(": " + stone.activationTimeSeconds + " ")
+                        .appendSibling(CLOC.word("seconds"))
+                        .setStyle(Styles.RED), tooltip);
+
+                Tooltip.add("", tooltip);
+
+                tooltip.add(TooltipUtils.level(stone.levelReq));
+
+            }
+
+        }
+    }
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -95,8 +164,6 @@ public class Hearthstone extends Item {
                         stack.setTag(nbt);
                     }
 
-                    decreaseCurrentCooldown(stack, tickRate);
-
                     if (nbt.getBoolean("porting")) {
 
                         BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
@@ -105,7 +172,7 @@ public class Hearthstone extends Item {
 
                             nbt.setBoolean("porting", false);
                             nbt.setInt("ticks", 0);
-                            this.setCooldownToZero(stack);
+                            this.setCooldownToZero((EntityPlayer) entity);
 
                             entity.sendMessage(SLOC.chat("teleport_canceled"));
 
@@ -165,7 +232,7 @@ public class Hearthstone extends Item {
                     stack.setTag(new NBTTagCompound());
                 }
 
-                if (this.getCurrentCooldownMinutes(stack) > 0) {
+                if (this.getCurrentCooldownMinutes(player) > 0) {
                     player.sendMessage(SLOC.chat("cooldown_warning"));
                     stack.getTag().setBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
@@ -178,7 +245,7 @@ public class Hearthstone extends Item {
                 }
 
                 this.decreaseUses(stack);
-                this.resetCooldown(stack);
+                this.resetCooldown(player);
 
                 stack.getTag().setBoolean("porting", true);
                 stack.getTag().setLong("pos", player.getPosition().toLong());
@@ -208,47 +275,46 @@ public class Hearthstone extends Item {
 
     }
 
-    private int getCurrentCooldownMinutes(ItemStack stack) {
+    private int getCurrentCooldownMinutes(EntityPlayer player) {
 
-        if (stack.hasTag()) {
-            NBTTagCompound nbt = stack.getTag();
+        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
 
-            if (nbt.hasKey("cooldown")) {
-                return nbt.getInt("cooldown") / 20 / 60; // ticks;
-            }
+        if (nbt.hasKey(COOLDOWN_TAG)) {
+            return nbt.getInt(COOLDOWN_TAG) / 20 / 60; // ticks;
         }
+
         return 0;
 
     }
 
-    private void resetCooldown(ItemStack stack) {
+    private void resetCooldown(EntityPlayer player) {
 
-        NBTTagCompound nbt = stack.getTag();
+        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
 
-        nbt.setInt("cooldown", this.cooldownTimeMinute * 20 * 60);
-
-    }
-
-    private void setCooldownToZero(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getTag();
-
-        nbt.setInt("cooldown", 0);
+        nbt.setInt(COOLDOWN_TAG, this.cooldownTimeMinute * 20 * 60);
 
     }
 
-    private void decreaseCurrentCooldown(ItemStack stack, int ticks) {
+    private void setCooldownToZero(EntityPlayer player) {
 
-        NBTTagCompound nbt = stack.getTag();
+        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
 
-        if (nbt.hasKey("cooldown")) {
-            int left = nbt.getInt("cooldown");
+        nbt.setInt(COOLDOWN_TAG, 0);
+
+    }
+
+    public static void decreaseCurrentCooldown(EntityPlayer player, int ticks) {
+
+        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(player);
+
+        if (nbt.hasKey(COOLDOWN_TAG)) {
+            int left = nbt.getInt(COOLDOWN_TAG);
 
             left -= ticks;
 
             if (left > -1) { // dont keep reducing bellow 0
-                nbt.setInt("cooldown", left);
-                stack.setTag(nbt);
+                nbt.setInt(COOLDOWN_TAG, left);
+                // stack.setTag(nbt);
             }
         }
 
@@ -272,40 +338,6 @@ public class Hearthstone extends Item {
         if (left < 1) {
             stack.shrink(1);
         }
-
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        Tooltip.add("", tooltip);
-
-        Tooltip.add(CLOC.word("cooldown")
-                .appendText(" " + this.cooldownTimeMinute)
-                .appendText(" ")
-                .appendSibling(CLOC.word("minutes")
-                        .appendText(". ")
-                        .appendSibling(CLOC.word("left"))
-                        .appendText(": " + this.getCurrentCooldownMinutes(stack)))
-                .setStyle(Styles.BLUE), tooltip);
-
-        Tooltip.add(CLOC.word("uses")
-                .appendText(": " + this.totalUses)
-                .appendText(" ")
-                .appendSibling(CLOC.word("left"))
-                .appendText(": " + this.getRemainingUses(stack))
-                .setStyle(Styles.GREEN), tooltip);
-
-        Tooltip.add(CLOC.word("activation_time")
-                .appendText(": " + this.activationTimeSeconds + " ")
-                .appendSibling(CLOC.word("seconds"))
-                .setStyle(Styles.RED), tooltip);
-
-        Tooltip.add("", tooltip);
-
-        tooltip.add(TooltipUtils.level(this.levelReq));
 
     }
 
