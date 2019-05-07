@@ -21,7 +21,7 @@ public class GiveUnique {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("giveunique")
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests(new GearTypeSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
@@ -30,7 +30,7 @@ public class GiveUnique {
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 5000))
                                                         .executes(e -> execute(e.getSource(), EntityArgument
-                                                                .getOnePlayer(e, "target"), StringArgumentType
+                                                                .getPlayer(e, "target"), StringArgumentType
                                                                 .getString(e, "type"), IntegerArgumentType
                                                                 .getInteger(e, "level"), IntegerArgumentType
                                                                 .getInteger(e, "tier"), IntegerArgumentType

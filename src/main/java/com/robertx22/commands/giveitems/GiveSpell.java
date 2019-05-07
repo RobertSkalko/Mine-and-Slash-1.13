@@ -20,7 +20,7 @@ public class GiveSpell {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("givespell")
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests(new SpellSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
@@ -29,7 +29,7 @@ public class GiveSpell {
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 5000))
                                                         .executes(e -> execute(e.getSource(), EntityArgument
-                                                                .getOnePlayer(e, "target"), StringArgumentType
+                                                                .getPlayer(e, "target"), StringArgumentType
                                                                 .getString(e, "type"), IntegerArgumentType
                                                                 .getInteger(e, "rarity"), IntegerArgumentType
                                                                 .getInteger(e, "level"), IntegerArgumentType

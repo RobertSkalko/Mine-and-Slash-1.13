@@ -18,9 +18,9 @@ public class SetLevel {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("setlevel")
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("level", IntegerArgumentType.integer())
-                                .executes(e -> execute(e.getSource(), EntityArgument.getOnePlayer(e, "target"), IntegerArgumentType
+                                .executes(e -> execute(e.getSource(), EntityArgument.getPlayer(e, "target"), IntegerArgumentType
                                         .getInteger(e, "level"))))));
     }
 

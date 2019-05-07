@@ -487,21 +487,21 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound compound) {
-        compound.setInt("xTile", this.xTile);
-        compound.setInt("yTile", this.yTile);
-        compound.setInt("zTile", this.zTile);
+        compound.putInt("xTile", this.xTile);
+        compound.putInt("yTile", this.yTile);
+        compound.putInt("zTile", this.zTile);
 
-        compound.setByte("shake", (byte) this.throwableShake);
-        compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+        compound.putByte("shake", (byte) this.throwableShake);
+        compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
         if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof EntityPlayer) {
             this.throwerName = this.thrower.getName().toString();
         }
 
-        compound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);
-        compound.setBoolean("doGroundProc", this.getDoExpireProc());
-        compound.setInt("airProcTime", this.getAirProcTime());
-        compound.setInt("deathTime", this.getDeathTime());
+        compound.putString("ownerName", this.throwerName == null ? "" : this.throwerName);
+        compound.putBoolean("doGroundProc", this.getDoExpireProc());
+        compound.putInt("airProcTime", this.getAirProcTime());
+        compound.putInt("deathTime", this.getDeathTime());
     }
 
     /**

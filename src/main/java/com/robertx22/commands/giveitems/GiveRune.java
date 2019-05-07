@@ -18,14 +18,14 @@ public class GiveRune {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("giverune")
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("level", IntegerArgumentType.integer())
                                 .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
                                         .then(Commands.argument("amount", IntegerArgumentType
                                                 .integer(1, 30000))
 
                                                 .executes(e -> run(e.getSource(), EntityArgument
-                                                        .getOnePlayer(e, "target"), IntegerArgumentType
+                                                        .getPlayer(e, "target"), IntegerArgumentType
                                                         .getInteger(e, "level"), IntegerArgumentType
                                                         .getInteger(e, "rarity"), IntegerArgumentType
                                                         .getInteger(e, "amount")

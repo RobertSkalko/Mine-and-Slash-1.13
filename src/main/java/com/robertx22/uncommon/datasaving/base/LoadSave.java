@@ -22,7 +22,7 @@ public class LoadSave {
 
         if (useGSON) {
             String json = gson.toJson(obj);
-            nbt.setString(loc + GSONLOC, json);
+            nbt.putString(loc + GSONLOC, json);
 
         } else {
             Writer.write(nbt, obj);
@@ -49,8 +49,8 @@ public class LoadSave {
             return (OBJ) gson.fromJson(json, theclass);
         } else {
 
-            if (nbt.hasKey(loc)) {
-                NBTTagCompound thenbt = (NBTTagCompound) nbt.getTag(loc);
+            if (nbt.contains(loc)) {
+                NBTTagCompound thenbt = (NBTTagCompound) nbt.get(loc);
                 Reader.read(thenbt, newobj);
             }
 

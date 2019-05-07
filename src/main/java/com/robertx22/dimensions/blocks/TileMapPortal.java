@@ -54,8 +54,8 @@ public class TileMapPortal extends TileEntity {
     public NBTTagCompound write(NBTTagCompound nbt) {
 	super.write(nbt); // The super call is required to save and load the tile loc
 
-	nbt.setString("dim_Id_string", id);
-	nbt.setInt("ticks", ticks);
+	nbt.putString("dim_Id_string", id);
+	nbt.putInt("ticks", ticks);
 
 	return nbt;
     }

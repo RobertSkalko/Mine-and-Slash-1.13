@@ -191,21 +191,21 @@ public class WorldData {
 
         @Override
         public NBTTagCompound getNBT() {
-            nbt.setInt(TIER, tier);
-            nbt.setInt(LEVEL, level);
-            nbt.setBoolean(IS_MAP_WORLD, isMap);
-            nbt.setBoolean(SET_FOR_DELETE, setForDelete);
-            nbt.setString(OWNER, owner);
-            nbt.setBoolean(IS_INIT, isInit);
+            nbt.putInt(TIER, tier);
+            nbt.putInt(LEVEL, level);
+            nbt.putBoolean(IS_MAP_WORLD, isMap);
+            nbt.putBoolean(SET_FOR_DELETE, setForDelete);
+            nbt.putString(OWNER, owner);
+            nbt.putBoolean(IS_INIT, isInit);
             if (this.originalDimension != null) {
-                nbt.setString(ORIGINAL_DIM, originalDimension.getRegistryName()
+                nbt.putString(ORIGINAL_DIM, originalDimension.getRegistryName()
                         .toString());
             }
-            nbt.setString(MAP_DIM, mapDimension);
-            nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
-            nbt.setString(SAVE_NAME, saveName);
-            nbt.setInt(MINUTES_PASSED, minutesPassed);
-            nbt.setBoolean(ISRESERVED, reserved);
+            nbt.putString(MAP_DIM, mapDimension);
+            nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
+            nbt.putString(SAVE_NAME, saveName);
+            nbt.putInt(MINUTES_PASSED, minutesPassed);
+            nbt.putBoolean(ISRESERVED, reserved);
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
@@ -214,7 +214,7 @@ public class WorldData {
                 MapWorldPlayerList.Save(nbt, mapworlddata);
             }
 
-            nbt.setLong(POS_OBJ, mapDevicePos);
+            nbt.putLong(POS_OBJ, mapDevicePos);
 
             return nbt;
 
@@ -229,7 +229,7 @@ public class WorldData {
             setForDelete = nbt.getBoolean(SET_FOR_DELETE);
             owner = nbt.getString(OWNER);
             isInit = nbt.getBoolean(IS_INIT);
-            if (nbt.hasKey(ORIGINAL_DIM)) {
+            if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
             }
             this.mapDimension = nbt.getString(MAP_DIM);

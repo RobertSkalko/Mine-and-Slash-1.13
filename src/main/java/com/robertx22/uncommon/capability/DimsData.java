@@ -57,7 +57,7 @@ public class DimsData {
         @Override
         public NBTTagCompound getNBT() {
 
-            nbt.setBoolean(ISRESERVED, reserved);
+            nbt.putBoolean(ISRESERVED, reserved);
 
             if (mapdata != null) {
                 MapsNbt.Save(nbt, mapdata);

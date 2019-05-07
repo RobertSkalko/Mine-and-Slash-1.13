@@ -88,32 +88,32 @@ public class AutoSalvageBag extends Item {
 
                 GearItemData gear = Gear.Load(stack);
                 if (gear != null) {
-                    nbt.setInt("gear", gear.Rarity);
+                    nbt.putInt("gear", gear.Rarity);
                     successChat(player);
                 }
                 SpellItemData spell = Spell.Load(stack);
                 if (spell != null) {
-                    nbt.setInt("spell", spell.rarity);
+                    nbt.putInt("spell", spell.rarity);
                     successChat(player);
                 }
                 MapItemData map = Map.Load(stack);
                 if (map != null) {
-                    nbt.setInt("map", map.rarity);
+                    nbt.putInt("map", map.rarity);
                     successChat(player);
                 }
                 RuneItemData rune = Rune.Load(stack);
                 if (rune != null) {
-                    nbt.setInt("rune", rune.rarity);
+                    nbt.putInt("rune", rune.rarity);
                     successChat(player);
                 }
 
                 bag.setTag(nbt);
 
             } else {
-                nbt.setInt("gear", -1);
-                nbt.setInt("spell", -1);
-                nbt.setInt("map", -1);
-                nbt.setInt("rune", -1);
+                nbt.putInt("gear", -1);
+                nbt.putInt("spell", -1);
+                nbt.putInt("map", -1);
+                nbt.putInt("rune", -1);
 
                 player.sendMessage(new TextComponentString("Bag Config Cleared"));
             }
@@ -258,7 +258,7 @@ public class AutoSalvageBag extends Item {
     private int getGear(NBTTagCompound nbt) {
 
         if (nbt != null) {
-            if (nbt.hasKey("gear")) {
+            if (nbt.contains("gear")) {
                 return nbt.getInt("gear");
             }
         }
@@ -268,7 +268,7 @@ public class AutoSalvageBag extends Item {
 
     private int getSpell(NBTTagCompound nbt) {
         if (nbt != null) {
-            if (nbt.hasKey("spell")) {
+            if (nbt.contains("spell")) {
                 return nbt.getInt("spell");
             }
         }
@@ -278,7 +278,7 @@ public class AutoSalvageBag extends Item {
 
     private int getRune(NBTTagCompound nbt) {
         if (nbt != null) {
-            if (nbt.hasKey("rune")) {
+            if (nbt.contains("rune")) {
                 return nbt.getInt("rune");
             }
         }
@@ -289,7 +289,7 @@ public class AutoSalvageBag extends Item {
     private int getMap(NBTTagCompound nbt) {
         if (nbt != null) {
 
-            if (nbt.hasKey("map")) {
+            if (nbt.contains("map")) {
                 return nbt.getInt("map");
             }
         }

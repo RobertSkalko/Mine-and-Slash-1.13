@@ -12,15 +12,14 @@ import javax.annotation.Nullable;
 
 public class GiveExp {
 
-
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("giveexp").requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+        commandDispatcher.register(Commands.literal("giveexp")
+                .requires(e -> e.hasPermissionLevel(2))
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("exp", IntegerArgumentType.integer())
-                                .executes(ctx -> run(EntityArgument.getOnePlayer(ctx, "target"),
-                                        IntegerArgumentType.getInteger(ctx, "exp"))))));
+                                .executes(ctx -> run(EntityArgument.getPlayer(ctx, "target"), IntegerArgumentType
+                                        .getInteger(ctx, "exp"))))));
     }
-
 
     private static int run(@Nullable EntityPlayer player, int exp) {
 

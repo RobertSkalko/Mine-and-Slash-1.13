@@ -20,14 +20,14 @@ public class GiveExactUnique {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("giveexactunique")
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.singlePlayer())
+                .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("uniqueID", StringArgumentType.word())
                                 .suggests(new UniqueItemsSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
                                         .then(Commands.argument("amount", IntegerArgumentType
                                                 .integer(1, 5000))
                                                 .executes(e -> execute(e.getSource(), EntityArgument
-                                                        .getOnePlayer(e, "target"), StringArgumentType
+                                                        .getPlayer(e, "target"), StringArgumentType
                                                         .getString(e, "uniqueID"), IntegerArgumentType
                                                         .getInteger(e, "level"), IntegerArgumentType
                                                         .getInteger(e, "amount")

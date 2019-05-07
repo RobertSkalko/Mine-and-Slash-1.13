@@ -108,30 +108,30 @@ public class Hearthstone extends Item {
 
                         if (pos.distanceSq(entity.getPosition()) > 3) {
 
-                            nbt.setBoolean("porting", false);
-                            nbt.setInt("ticks", 0);
+                            nbt.putBoolean("porting", false);
+                            nbt.putInt("ticks", 0);
 
                             entity.sendMessage(SLOC.chat("teleport_canceled"));
 
                         } else {
 
-                            if (nbt.hasKey("ticks")) {
+                            if (nbt.contains("ticks")) {
 
                                 ParticleUtils.spawnParticles(Particles.HEART, (EntityPlayer) entity, 10);
 
                                 int ticks = nbt.getInt("ticks");
-                                nbt.setInt("ticks", ticks + tickRate);
+                                nbt.putInt("ticks", ticks + tickRate);
 
                                 if (ticks > 20 * this.activationTimeSeconds) {
 
-                                    nbt.setInt("ticks", 0);
-                                    nbt.setBoolean("porting", false);
+                                    nbt.putInt("ticks", 0);
+                                    nbt.putBoolean("porting", false);
 
                                     teleportBack((EntityPlayer) entity);
 
                                 }
                             } else {
-                                nbt.setInt("ticks", tickRate);
+                                nbt.putInt("ticks", tickRate);
                             }
 
                         }
@@ -195,26 +195,26 @@ public class Hearthstone extends Item {
 
                 if (this.hasLoc(player) == false) {
                     player.sendMessage(SLOC.chat("no_bed"));
-                    stack.getTag().setBoolean("porting", false);
+                    stack.getTag().putBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
                 }
 
                 if (this.distanceCanBeTeleported(player) == false) {
                     player.sendMessage(SLOC.chat("distance_warning"));
-                    stack.getTag().setBoolean("porting", false);
+                    stack.getTag().putBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
                 }
 
                 if (Load.Unit(player).getLevel() < this.levelReq) {
                     player.sendMessage(SLOC.chat("not_high_enough_level"));
-                    stack.getTag().setBoolean("porting", false);
+                    stack.getTag().putBoolean("porting", false);
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
                 }
 
                 this.decreaseUses(stack);
 
-                stack.getTag().setBoolean("porting", true);
-                stack.getTag().setLong("pos", player.getPosition().toLong());
+                stack.getTag().putBoolean("porting", true);
+                stack.getTag().putLong("pos", player.getPosition().toLong());
 
                 player.sendMessage(SLOC.chat("teleport_begin"));
 
@@ -234,7 +234,7 @@ public class Hearthstone extends Item {
         if (stack.hasTag()) {
             NBTTagCompound nbt = stack.getTag();
 
-            if (nbt.hasKey("uses")) {
+            if (nbt.contains("uses")) {
                 return nbt.getInt("uses");
             }
         }
@@ -248,12 +248,12 @@ public class Hearthstone extends Item {
 
         int left = this.totalUses;
 
-        if (nbt.hasKey("uses")) {
+        if (nbt.contains("uses")) {
             left = nbt.getInt("uses");
         }
         left--;
 
-        nbt.setInt("uses", left);
+        nbt.putInt("uses", left);
 
         stack.setTag(nbt);
 

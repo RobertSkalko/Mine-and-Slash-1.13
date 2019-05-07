@@ -14,10 +14,10 @@ public class PlayerUtils {
         try {
 
             nbt = (NBTTagCompound) player.getEntityData()
-                    .getTag(EntityPlayer.PERSISTED_NBT_TAG);
+                    .get(EntityPlayer.PERSISTED_NBT_TAG);
 
-            if (nbt.hasKey(MY_MOD_TAG)) {
-                nbt = (NBTTagCompound) nbt.getTag(MY_MOD_TAG);
+            if (nbt.contains(MY_MOD_TAG)) {
+                nbt = (NBTTagCompound) nbt.get(MY_MOD_TAG);
             }
 
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class PlayerUtils {
     }
 
     public static void setPestistentNBT(EntityPlayer player, NBTTagCompound nbt) {
-        player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, nbt);
+        player.getEntityData().put(EntityPlayer.PERSISTED_NBT_TAG, nbt);
     }
 
 }

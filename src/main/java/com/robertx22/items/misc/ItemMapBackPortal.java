@@ -54,22 +54,22 @@ public class ItemMapBackPortal extends Item {
 
                     if (pos.distanceSq(entityIn.getPosition()) > 2) {
 
-                        nbt.setBoolean("porting", false);
-                        nbt.setInt("ticks", 0);
+                        nbt.putBoolean("porting", false);
+                        nbt.putInt("ticks", 0);
 
                         entityIn.sendMessage(SLOC.chat("teleport_canceled"));
 
                     } else {
 
-                        if (nbt.hasKey("ticks")) {
+                        if (nbt.contains("ticks")) {
 
                             int ticks = nbt.getInt("ticks");
-                            nbt.setInt("ticks", ticks + 1);
+                            nbt.putInt("ticks", ticks + 1);
 
                             if (ticks > 100) {
 
-                                nbt.setInt("ticks", 0);
-                                nbt.setBoolean("porting", false);
+                                nbt.putInt("ticks", 0);
+                                nbt.putBoolean("porting", false);
 
                                 IWorldData data = Load.World(worldIn);
                                 data.teleportPlayerBack((EntityPlayer) entityIn);
@@ -78,7 +78,7 @@ public class ItemMapBackPortal extends Item {
 
                             }
                         } else {
-                            nbt.setInt("ticks", 1);
+                            nbt.putInt("ticks", 1);
                         }
 
                     }
@@ -104,10 +104,10 @@ public class ItemMapBackPortal extends Item {
                             player.getHeldItem(hand).setTag(new NBTTagCompound());
                         }
 
-                        player.getHeldItem(hand).getTag().setBoolean("porting", true);
+                        player.getHeldItem(hand).getTag().putBoolean("porting", true);
                         player.getHeldItem(hand)
                                 .getTag()
-                                .setLong("pos", player.getPosition().toLong());
+                                .putLong("pos", player.getPosition().toLong());
 
                         player.sendMessage(SLOC.chat("teleport_begin"));
 

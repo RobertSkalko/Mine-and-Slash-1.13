@@ -240,19 +240,19 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         for (int i = 0; i < this.itemStacks.length; ++i) {
             if (!this.itemStacks[i].isEmpty()) { // isEmpty()
                 NBTTagCompound dataForThisSlot = new NBTTagCompound();
-                dataForThisSlot.setByte("Slot", (byte) i);
+                dataForThisSlot.putByte("Slot", (byte) i);
                 this.itemStacks[i].write(dataForThisSlot);
                 dataForAllSlots.add(dataForThisSlot);
             }
         }
         // the array of hashmaps is then inserted into the instance hashmap for the
         // container
-        parentNBTTagCompound.setTag("Items", dataForAllSlots);
+        parentNBTTagCompound.put("Items", dataForAllSlots);
 
         // Save everything else
-        parentNBTTagCompound.setShort("CookTime", cookTime);
+        parentNBTTagCompound.putShort("CookTime", cookTime);
 
-        parentNBTTagCompound.setInt("fuel", this.FuelRemaining);
+        parentNBTTagCompound.putInt("fuel", this.FuelRemaining);
         return parentNBTTagCompound;
     }
 
