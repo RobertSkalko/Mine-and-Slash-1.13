@@ -86,9 +86,9 @@ public class Hearthstone extends Item {
                     if (nbt != null && nbt.getBoolean("porting")) {
 
                         if (nbt.getInt("ticks") < tickRate + 1) {
-                            player.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.5F, 1);
-
+                            entity.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.5F, 1);
                         }
+
                         ParticleUtils.spawnParticles(Particles.HAPPY_VILLAGER, (EntityPlayer) entity, 15);
 
                     }
