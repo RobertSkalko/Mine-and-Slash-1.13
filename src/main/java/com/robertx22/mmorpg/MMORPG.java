@@ -70,6 +70,7 @@ public class MMORPG {
         bus.addListener(this::postInit);
         bus.addListener(this::interModEnqueue);
         bus.addListener(this::clientSetup);
+        bus.addListener(this::loadComplete);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -112,6 +113,7 @@ public class MMORPG {
     }
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
+        TestManager.RunAllTests();
 
     }
 
@@ -123,7 +125,6 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
         MapManager.onStartServerRegisterDimensions();
-        TestManager.RunAllTests();
         CommandRegister.Register(event);
 
     }

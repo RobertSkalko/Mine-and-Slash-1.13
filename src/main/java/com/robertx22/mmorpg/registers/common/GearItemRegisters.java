@@ -27,7 +27,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GearItemRegisters {
 
-    private static List<Item> items = new ArrayList<Item>();
+    public static List<Item> items = new ArrayList<Item>();
 
     private static void register() {
 

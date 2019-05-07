@@ -1,5 +1,6 @@
 package com.robertx22.items.bags;
 
+import com.mmorpg_libraries.curios.interfaces.ISalvageBag;
 import com.robertx22.Styles;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
@@ -44,7 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class AutoSalvageBag extends Item {
+public class AutoSalvageBag extends Item implements ISalvageBag {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

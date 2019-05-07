@@ -6,6 +6,8 @@ public class TestManager {
 
     public static void RunAllTests() {
 
+        //GenerateCurioDataJsons.generate();
+
         if (RunTests) {
 
         }

@@ -105,7 +105,7 @@ public final class WizardryUtilities {
     /**
      * Shorthand for
      * {@link WizardryUtilities#getEntitiesWithinRadius(double, double, double, double, World, Class)}
-     * with EntityLivingBase as the entity type. This is by far the most common use
+     * with EntityLivingBase as the entity curioTypeName. This is by far the most common use
      * for that method, which is why this shorthand exists.
      *
      * @param radius The search radius
@@ -121,7 +121,7 @@ public final class WizardryUtilities {
     }
 
     /**
-     * Returns all entities of the specified type within the specified radius of the
+     * Returns all entities of the specified curioTypeName within the specified radius of the
      * given coordinates. This is different to using a raw AABB because a raw AABB
      * will search in a cube volume rather than a sphere. Note that this does not
      * exclude any entities; if any specific entities are to be excluded this must

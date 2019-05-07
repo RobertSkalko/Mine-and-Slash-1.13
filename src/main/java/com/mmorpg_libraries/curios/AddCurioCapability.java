@@ -1,6 +1,6 @@
 package com.mmorpg_libraries.curios;
 
-import com.robertx22.items.gearitems.baubles.ItemCharm;
+import com.mmorpg_libraries.curios.interfaces.ICuriosType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,7 +21,7 @@ public class AddCurioCapability {
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<ItemStack> evt) {
 
-        if (evt.getObject().getItem() instanceof ItemCharm) {
+        if (evt.getObject().getItem() instanceof ICuriosType) {
 
             ICurio curio = new ICurio() {
 
@@ -30,6 +30,7 @@ public class AddCurioCapability {
                     return true;
                 }
             };
+
             evt.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
                 private final LazyOptional<ICurio> curioOpt = LazyOptional.of(() -> curio);
 
