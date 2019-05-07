@@ -1,4 +1,4 @@
-package com.mmorpg_libraries.gui.dmg_number_particle;
+package com.mmorpg_libraries.dmg_number_particle;
 
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.uncommon.enumclasses.Elements;

@@ -1,4 +1,4 @@
-package com.mmorpg_libraries.gui.neat_mob_overlay;
+package com.mmorpg_libraries.neat_mob_overlay;
 
 import java.util.ArrayList;
 import java.util.List;

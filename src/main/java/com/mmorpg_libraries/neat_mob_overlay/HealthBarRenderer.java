@@ -1,4 +1,4 @@
-package com.mmorpg_libraries.gui.neat_mob_overlay;
+package com.mmorpg_libraries.neat_mob_overlay;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;

@@ -1,6 +1,6 @@
 package com.robertx22.network;
 
-import com.mmorpg_libraries.gui.dmg_number_particle.OnDisplayDamage;
+import com.mmorpg_libraries.dmg_number_particle.OnDisplayDamage;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityLivingBase;

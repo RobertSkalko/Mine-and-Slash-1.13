@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.mmorpg_libraries.gui.neat_mob_overlay.HealthBarRenderer;
+import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import net.minecraft.client.Minecraft;
