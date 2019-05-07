@@ -1,12 +1,16 @@
 package com.robertx22.mmorpg;
 
+import com.mmorpg_libraries.curios.CurioClientSetup;
+import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
-import com.robertx22.mmorpg.registers.client.CurioClientRegister;
-import com.robertx22.mmorpg.registers.common.*;
+import com.robertx22.mmorpg.registers.common.CapabilityRegister;
+import com.robertx22.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mmorpg.registers.common.OreGenRegister;
+import com.robertx22.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.testing.TestManager;
@@ -20,10 +24,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -67,15 +68,18 @@ public class MMORPG {
 
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
+        bus.addListener(this::interModEnqueue);
+        bus.addListener(this::clientSetup);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
             ModLoadingContext.get()
                     .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
-            FMLJavaModLoadingContext.get()
+            /*FMLJavaModLoadingContext.get()
                     .getModEventBus()
                     .addListener(this::clientSetup);
+                    */
 
         });
 
@@ -100,8 +104,11 @@ public class MMORPG {
     public void postInit(final InterModProcessEvent event) {
 
         proxy.postInit(event);
-        CurioSlotRegister.reg();
 
+    }
+
+    private void interModEnqueue(final InterModEnqueueEvent event) {
+        RegisterCurioSlots.register(event);
     }
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
@@ -110,7 +117,7 @@ public class MMORPG {
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
-        CurioClientRegister.icons();
+        CurioClientSetup.setup(event);
     }
 
     @SubscribeEvent

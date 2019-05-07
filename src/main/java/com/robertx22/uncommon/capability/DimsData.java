@@ -95,6 +95,11 @@ public class DimsData {
 
         @Override
         public void registerAll() {
+
+            if (this.mapdata == null || this.mapdata.dimDatas == null) {
+                return;
+            }
+
             for (DimensionData data : this.mapdata.dimDatas.values()) {
                 MapManager.register(data.getResource(), data.getIWP());
             }
