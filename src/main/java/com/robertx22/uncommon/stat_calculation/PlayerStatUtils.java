@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.stat_calculation;
 
+import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.Stat;
@@ -122,29 +123,8 @@ public class PlayerStatUtils {
 
         if (entity instanceof EntityPlayer) {
 
-            /*
-            @SuppressWarnings("unused") FinderData found = CuriosAPI.getCuriosHandler(entity)
-                    .map(handler -> {
-                        for (String id : handler.getCurioMap().keySet()) {
-                            CurioStackHandler stackHandler = handler.getStackHandler(id);
+            list.addAll(MyCurioUtils.getAllSlots((EntityPlayer) entity));
 
-                            if (stackHandler != null) {
-
-                                for (int i = 0; i < stackHandler.getSlots(); i++) {
-                                    ItemStack stack = stackHandler.getStackInSlot(i);
-
-                                    if (!stack.isEmpty()) {
-                                        list.add(stack);
-                                    }
-                                }
-                            }
-                        }
-                        return new FinderData("", 0, ItemStack.EMPTY);
-                    })
-                    .orElse(new FinderData("", 0, ItemStack.EMPTY));
-
-            //
-*/
         }
         List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
