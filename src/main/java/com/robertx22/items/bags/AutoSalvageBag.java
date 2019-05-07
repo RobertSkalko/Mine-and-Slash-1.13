@@ -1,5 +1,7 @@
 package com.robertx22.items.bags;
 
+import com.mmorpg_libraries.curios.CurioSlots;
+import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.mmorpg_libraries.curios.interfaces.ISalvageBag;
 import com.robertx22.Styles;
 import com.robertx22.database.rarities.ItemRarity;
@@ -21,6 +23,7 @@ import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -298,61 +301,52 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPickupItem(EntityItemPickupEvent event) {
+    @Mod.EventBusSubscriber
+    public static class Event {
 
-        if (event.getEntityPlayer() != null) {
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void onPickupItem(EntityItemPickupEvent event) {
 
-            EntityPlayer player = event.getEntityPlayer();
+            if (event.getEntityPlayer() != null) {
 
-            if (!player.world.isRemote) {
+                EntityPlayer player = event.getEntityPlayer();
 
-                ItemStack stack = event.getItem().getItem();
-/* TODO
-                for (int i = 0; i < AutoSalvageBag.Items.size(); i++) {
+                if (!player.world.isRemote) {
 
-                    Item item = AutoSalvageBag.Items.get(i);
+                    ItemStack bag = MyCurioUtils.getSlot(player, CurioSlots.SALVAGE_BAG);
 
-                    /*
-                    if (CuriosAPI.getCurioEquipped(item, player) != null) {
+                    if (bag.getItem() instanceof AutoSalvageBag) {
 
-                        if (CuriosAPI.getCurioEquipped(item, player)
-                                .getStack()
-                                .getItem() instanceof AutoSalvageBag) {
-                            AutoSalvageBag salvageBag = (AutoSalvageBag) CuriosAPI.getCurioEquipped(item, player)
-                                    .getStack()
-                                    .getItem();
+                        ItemStack stack = event.getItem().getItem();
+                        ISalvagable sal = getSalvagable(stack);
 
+                        if (sal != null) {
+                            AutoSalvageBag salvageBag = (AutoSalvageBag) bag.getItem();
 
+                            if (salvageBag.shouldSalvageItem(sal, stack.getTag())) {
 
-                    ISalvagable sal = getSalvagable(stack);
+                                ItemStack result = salvageBag.getSalvageResultForItem(sal);
 
-                    if (sal != null) {
+                                stack.setCount(0);
 
-                        if (salvageBag.shouldSalvageItem(sal, stack.getTag())) {
+                                EntityItem enitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, result);
+                                enitem.setNoPickupDelay();
+                                player.world.spawnEntity(enitem);
 
-                            ItemStack result = salvageBag.getSalvageResultForItem(sal);
-
-                            stack.setCount(0);
-
-                            EntityItem enitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, result);
-                            enitem.setNoPickupDelay();
-                            player.world.spawnEntity(enitem);
-
+                            }
                         }
-                    }
-                }
-            */
-                return;
 
+                    }
+
+                }
             }
         }
-    }
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        Rarities.Items.forEach((x) -> Items.put(x.Rank(), new AutoSalvageBag(x.Rank())));
-        Items.values().forEach((x) -> event.getRegistry().register(x));
-    }
+        @SubscribeEvent
+        public static void registerItems(RegistryEvent.Register<Item> event) {
+            Rarities.Items.forEach((x) -> Items.put(x.Rank(), new AutoSalvageBag(x.Rank())));
+            Items.values().forEach((x) -> event.getRegistry().register(x));
+        }
 
+    }
 }
