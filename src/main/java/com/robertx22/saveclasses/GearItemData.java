@@ -154,6 +154,28 @@ public class GearItemData implements ITooltip, ISalvagable {
         return GearTypes.All.get(gearTypeName);
     }
 
+    public int getPowerLevel() {
+
+        int power = 0;
+
+        for (IStatsContainer container : this.GetAllStatContainers()) {
+
+            for (LevelAndStats stats : container.GetAllStats(1)) {
+
+                for (StatModData mod : stats.mods) {
+
+                    power += mod.percent;
+
+                }
+
+            }
+
+        }
+
+        return power;
+
+    }
+
     public ItemRarity GetRarity() {
 
         if (isUnique) {

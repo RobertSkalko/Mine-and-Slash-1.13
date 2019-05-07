@@ -58,6 +58,12 @@ public class OnTooltip {
                     event.getToolTip()
                             .add(CLOC.tooltip("press_shift_more_info")
                                     .setStyle(Styles.BLUE));
+                } else {
+
+                    event.getToolTip()
+                            .add(new TextComponentString("Power LeveL: " + gear.getPowerLevel())
+                                    .setStyle(Styles.GOLD));
+
                 }
 
             }
