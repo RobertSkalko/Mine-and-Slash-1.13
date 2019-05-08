@@ -21,9 +21,9 @@ public class NormalShield extends ItemShield {
 
     ResourceLocation resource = new ResourceLocation("");
 
-    public NormalShield(String name) {
+    public NormalShield(Properties prop, String name) {
 
-        super(new Properties().defaultMaxDamage(750).setTEISR(ShieldRenderer::new));
+        super(prop);
 
         resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
 

@@ -22,4 +22,6 @@ public interface IProxy {
     // void regRenders(ModelRegistryEvent evt);
 
     String translate(ITextComponent comp);
+
+    // java.util.function.Supplier<java.util.concurrent.Callable<net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer>> setTEISR();
 }

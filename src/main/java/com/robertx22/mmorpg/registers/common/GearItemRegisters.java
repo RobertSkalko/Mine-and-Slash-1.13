@@ -11,13 +11,16 @@ import com.robertx22.items.gearitems.baubles.ItemCharm;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.items.gearitems.baubles.ItemRing;
 import com.robertx22.items.gearitems.offhands.NormalShield;
+import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.items.gearitems.weapons.*;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.items.runes.*;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
@@ -59,8 +62,11 @@ public class GearItemRegisters {
             regRarities(new ItaItem(rank), ItaItem.Items, "runes/" + new ItaItem(rank).name()
                     .toLowerCase(), rank);
 
+            Item.Properties properties = new Item.Properties().defaultMaxDamage(750);
+            DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> properties.setTEISR(ShieldRenderer::new));
+
             // offhands
-            regRarities(new NormalShield("normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
+            regRarities(new NormalShield(properties, "normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
                     .Rank());
 
             // weapons

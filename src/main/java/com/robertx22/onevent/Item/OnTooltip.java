@@ -21,7 +21,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber
+@EventBusSubscriber(Dist.CLIENT)
 public class OnTooltip {
 
     @SubscribeEvent

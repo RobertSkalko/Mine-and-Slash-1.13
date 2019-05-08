@@ -94,6 +94,9 @@ public class MMORPG {
         ModLoadingContext.get()
                 .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
+        //ModLoadingContext.get()
+        //       .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
+
         ConfigRegister.register();
         ConfigRegister.load();
         PacketRegister.register();

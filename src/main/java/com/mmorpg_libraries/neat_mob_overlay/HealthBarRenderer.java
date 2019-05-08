@@ -26,6 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.CLIENT)
 public class HealthBarRenderer {
 
     static List<EntityLivingBase> renderedEntities = new ArrayList<>();
