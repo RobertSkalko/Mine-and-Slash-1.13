@@ -6,13 +6,8 @@ import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
@@ -28,11 +23,6 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
 
         super(name);
 
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemAddSuffix());
     }
 
     @Override

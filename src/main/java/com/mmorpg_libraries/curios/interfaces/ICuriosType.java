@@ -4,4 +4,8 @@ public interface ICuriosType {
 
     String curioTypeName();
 
+    default boolean rightClickEquip() {
+        return true;
+    }
+
 }

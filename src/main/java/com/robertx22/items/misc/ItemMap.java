@@ -5,7 +5,6 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.dimensions.blocks.MapPortalBlock;
 import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -29,13 +28,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemMap extends Item {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -138,11 +135,8 @@ public class ItemMap extends Item {
                 for (ITextComponent statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity)
                         .StatPercents(), data.level, false)) {
 
-                    /*
-                    Tooltip.add(new TextComponentString(" * ").appendSibling(statstring)
-                            .setStyle(Styles.RED), tooltip);
+                    Tooltip.add(new TextComponentString(" * ").appendSibling(statstring), tooltip);
 
-                     */
                 }
 
             }

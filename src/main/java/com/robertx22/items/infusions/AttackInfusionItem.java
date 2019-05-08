@@ -18,16 +18,11 @@ import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunder
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AttackInfusionItem extends BaseInfusionItem {
 
     public AttackInfusionItem() {
@@ -39,11 +34,6 @@ public class AttackInfusionItem extends BaseInfusionItem {
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new AttackInfusionItem());
-    }
 
     @Override
     public List<StatMod> weaponInfusions() {

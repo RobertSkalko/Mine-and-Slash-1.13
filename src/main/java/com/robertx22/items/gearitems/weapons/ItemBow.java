@@ -22,7 +22,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.HashMap;
 
@@ -74,9 +73,9 @@ public class ItemBow extends BaseBow implements IWeapon {
             boolean flag = entityplayer.isCreative() || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 
             int i = this.getMaxItemUseDuration(stack) - timeLeft;
-            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, flag);
-            if (i < 0)
-                return;
+            // i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, flag);
+            //if (i < 0)
+            //   return;
 
             float f = getArrowVelocity(i);
 
@@ -96,33 +95,23 @@ public class ItemBow extends BaseBow implements IWeapon {
                     }
                     // else shoot
 
-                    // HERE I FIRE 3 ARROS WITH OFFSET SO ITS AOE
-                    for (int y = 0; y < arrowCount; y++) {
+                    float rotaY = entityplayer.rotationYaw;
 
-                        float rotaY = entityplayer.rotationYaw;
+                    MyEntityArrow entityarrow = new MyEntityArrow(worldIn, entityplayer, sourcedata, stack);
+                    entityarrow.shoot(entityplayer, entityplayer.rotationPitch, rotaY, 0.0F, f * 3F, 1F);
 
-                        if (y == 0) {
-                            rotaY -= 10;
-                        }
-                        if (y == 1) {
-                            rotaY += 10;
-                        }
+                    int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
-                        MyEntityArrow entityarrow = new MyEntityArrow(worldIn, entityplayer, sourcedata, stack);
-                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, rotaY, 0.0F, f * 3F, 1F);
-
-                        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-
-                        if (k > 0) {
-                            entityarrow.setKnockbackStrength(k);
-                        }
-
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                            entityarrow.setFire(100);
-                        }
-
-                        worldIn.spawnEntity(entityarrow);
+                    if (k > 0) {
+                        entityarrow.setKnockbackStrength(k);
                     }
+
+                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+                        entityarrow.setFire(100);
+                    }
+
+                    worldIn.spawnEntity(entityarrow);
+
                 }
 
                 worldIn.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (this.random

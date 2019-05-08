@@ -7,7 +7,6 @@ import com.robertx22.Styles;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.ISalvagable;
 import com.robertx22.saveclasses.MapItemData;
@@ -32,10 +31,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,7 +45,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AutoSalvageBag extends Item implements ISalvageBag {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
@@ -217,11 +214,11 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         for (ItemRarity rar : Rarities.Items) {
             if (rar.Rank() <= rarity) {
-                if (text.getSiblings().size() > 1) {
-                    text.appendText(", ").setStyle(Styles.GRAY);
+
+                if (text.getSiblings().size() > 0) {
+                    text.appendText(TextFormatting.GRAY + ", ");
                 }
-                text.appendSibling(rar.locName())
-                        .setStyle(new Style().setColor(rar.textFormatColor()));
+                text.appendText(rar.textFormatColor() + "").appendSibling(rar.locName());
             }
         }
 
@@ -323,7 +320,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
                         if (sal != null) {
                             AutoSalvageBag salvageBag = (AutoSalvageBag) bag.getItem();
 
-                            if (salvageBag.shouldSalvageItem(sal, stack.getTag())) {
+                            if (salvageBag.shouldSalvageItem(sal, bag.getTag())) {
 
                                 ItemStack result = salvageBag.getSalvageResultForItem(sal);
 
@@ -340,12 +337,6 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
                 }
             }
-        }
-
-        @SubscribeEvent
-        public static void registerItems(RegistryEvent.Register<Item> event) {
-            Rarities.Items.forEach((x) -> Items.put(x.Rank(), new AutoSalvageBag(x.Rank())));
-            Items.values().forEach((x) -> event.getRegistry().register(x));
         }
 
     }

@@ -1,10 +1,139 @@
 package com.robertx22.mmorpg.registers.common;
 
+import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
+import com.robertx22.items.bags.AutoSalvageBag;
+import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
+import com.robertx22.items.bags.loot_bag.ItemLootBag;
+import com.robertx22.items.bags.map_bag.ItemMapBag;
+import com.robertx22.items.currency.*;
+import com.robertx22.items.infusions.AttackInfusionItem;
+import com.robertx22.items.infusions.DefenseInfusionItem;
+import com.robertx22.items.infusions.ResourceInfusionItem;
+import com.robertx22.items.infusions.upgrade.NormalUpgradeInfusion;
+import com.robertx22.items.infusions.upgrade.SuperiorUpgradeInfusion;
+import com.robertx22.items.infusions.upgrade.WondrousUpgradeInfusion;
+import com.robertx22.items.level_incentives.Hearthstone;
+import com.robertx22.items.misc.*;
+import com.robertx22.items.spells.aoe_bomb_proj.ItemAcidBomb;
+import com.robertx22.items.spells.aoe_bomb_proj.ItemFireBomb;
+import com.robertx22.items.spells.aoe_bomb_proj.ItemIceBomb;
+import com.robertx22.items.spells.aoe_bomb_proj.ItemThunderBomb;
+import com.robertx22.items.spells.aoe_projectile.ItemAcidExplosion;
+import com.robertx22.items.spells.aoe_projectile.ItemFlameExplosion;
+import com.robertx22.items.spells.aoe_projectile.ItemFrostExplosion;
+import com.robertx22.items.spells.aoe_projectile.ItemLightningExplosion;
+import com.robertx22.items.spells.nova.ItemFireNova;
+import com.robertx22.items.spells.nova.ItemFrostNova;
+import com.robertx22.items.spells.nova.ItemPoisonNova;
+import com.robertx22.items.spells.nova.ItemThunderNova;
+import com.robertx22.items.spells.projectile.ItemAcidBolt;
+import com.robertx22.items.spells.projectile.ItemFireBolt;
+import com.robertx22.items.spells.projectile.ItemFrostBolt;
+import com.robertx22.items.spells.projectile.ItemThunderBolt;
+import com.robertx22.items.spells.self.ItemInstantHeal;
+import com.robertx22.items.spells.self.ItemSelfRegen;
 import com.robertx22.mmorpg.Ref;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+
+        putInLists();
+        registerSingles(event);
+        registerLists(event);
+    }
+
+    private static void putInLists() {
+
+        for (ItemRarity x : Rarities.Items) {
+            AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
+            Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
+            ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
+
+        }
+
+    }
+
+    private static void registerLists(RegistryEvent.Register<Item> event) {
+
+        IForgeRegistry<Item> r = event.getRegistry();
+
+        AutoSalvageBag.Items.values().forEach((x) -> r.register(x));
+        Hearthstone.Items.values().forEach((x) -> r.register(x));
+        ItemCapacitor.Items.values().forEach((x) -> r.register(x));
+
+    }
+
+    private static void registerSingles(RegistryEvent.Register<Item> event) {
+
+        IForgeRegistry<Item> r = event.getRegistry();
+
+        r.register(new ItemCurrencyBag());
+        r.register(new ItemLootBag());
+        r.register(new ItemMapBag());
+
+        r.register(new CreateNewUnique());
+        r.register(new ItemAddPrefix());
+        r.register(new ItemAddSecondaryStat());
+        r.register(new ItemAddSuffix());
+        r.register(new ItemChaosOrb());
+        r.register(new ItemLevelUpGear());
+        r.register(new ItemNumberReroll());
+        r.register(new ItemOrbOfTransmutation());
+        r.register(new ItemRandomizePrefix());
+        r.register(new ItemRandomizeSuffix());
+        r.register(new ItemStoneOfHope());
+        r.register(new RerollPrefixNumbers());
+        r.register(new RerollSuffixNumbers());
+        r.register(new RerollUniqueNumbers());
+
+        r.register(new NormalUpgradeInfusion());
+        r.register(new SuperiorUpgradeInfusion());
+        r.register(new WondrousUpgradeInfusion());
+        r.register(new AttackInfusionItem());
+        r.register(new DefenseInfusionItem());
+        r.register(new ResourceInfusionItem());
+
+        r.register(new ItemAwakenRuneWord());
+        r.register(new ItemIncreaseRarityNearestEntity());
+        r.register(new ItemLevelNearestEntity());
+        r.register(new ItemMapBackPortal());
+        r.register(new ItemNewbieGearBag());
+        r.register(new ItemPlayerLevelUp());
+
+        r.register(new ItemAcidBolt());
+        r.register(new ItemFireBolt());
+        r.register(new ItemFrostBolt());
+        r.register(new ItemThunderBolt());
+
+        r.register(new ItemAcidBomb());
+        r.register(new ItemFireBomb());
+        r.register(new ItemIceBomb());
+        r.register(new ItemThunderBomb());
+
+        r.register(new ItemFireNova());
+        r.register(new ItemFrostNova());
+        r.register(new ItemThunderNova());
+        r.register(new ItemPoisonNova());
+
+        r.register(new ItemAcidExplosion());
+        r.register(new ItemFrostExplosion());
+        r.register(new ItemLightningExplosion());
+        r.register(new ItemFlameExplosion());
+
+        r.register(new ItemInstantHeal());
+        r.register(new ItemSelfRegen());
+
+    }
+
 }
 
 

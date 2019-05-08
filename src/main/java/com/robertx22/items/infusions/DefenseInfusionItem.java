@@ -10,16 +10,11 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResis
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DefenseInfusionItem extends BaseInfusionItem {
 
     public DefenseInfusionItem() {
@@ -31,11 +26,6 @@ public class DefenseInfusionItem extends BaseInfusionItem {
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new DefenseInfusionItem());
-    }
 
     @Override
     public List<StatMod> weaponInfusions() {

@@ -20,15 +20,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     @ObjectHolder(Ref.MODID + ":awaken_runeword")
@@ -67,11 +63,6 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
         }
         Tooltip.add(CLOC.tooltip("place_in_modify"), tooltip);
         Tooltip.add(CLOC.tooltip("unlocks_runeword_combo"), tooltip);
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemAwakenRuneWord());
     }
 
     @Override

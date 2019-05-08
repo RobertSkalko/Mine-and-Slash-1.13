@@ -8,12 +8,8 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect {
 
     private static final String name = "create_new_unique";
@@ -30,11 +26,6 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
         super(name);
 
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new CreateNewUnique());
     }
 
     @Override

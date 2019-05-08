@@ -7,4 +7,9 @@ public interface ISalvageBag extends ICuriosType {
     public default String curioTypeName() {
         return CurioSlots.SALVAGE_BAG.name;
     }
+
+    @Override
+    default boolean rightClickEquip() {
+        return false;
+    }
 }

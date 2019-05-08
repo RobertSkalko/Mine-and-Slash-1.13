@@ -12,15 +12,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemMapBag extends BaseBagItem {
 
     public static final int GUI_NUMBER = 356516;
@@ -47,11 +43,6 @@ public class ItemMapBag extends BaseBagItem {
             });
         }
         return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemMapBag());
     }
 
     public boolean IsValidItem(ItemStack stack) {

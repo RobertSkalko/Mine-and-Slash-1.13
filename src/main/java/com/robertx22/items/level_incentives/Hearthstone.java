@@ -2,8 +2,6 @@ package com.robertx22.items.level_incentives;
 
 import com.robertx22.Styles;
 import com.robertx22.db_lists.CreativeTabs;
-import com.robertx22.db_lists.Rarities;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
@@ -27,16 +25,12 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Hearthstone extends Item {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
@@ -292,12 +286,6 @@ public class Hearthstone extends Item {
 
         tooltip.add(TooltipUtils.level(this.levelReq));
 
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        Rarities.Items.forEach((x) -> Items.put(x.Rank(), new Hearthstone(x.Rank())));
-        Items.values().forEach((x) -> event.getRegistry().register(x));
     }
 
 }

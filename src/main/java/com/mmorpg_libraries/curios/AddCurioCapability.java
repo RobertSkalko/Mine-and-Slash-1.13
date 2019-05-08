@@ -23,11 +23,13 @@ public class AddCurioCapability {
 
         if (evt.getObject().getItem() instanceof ICuriosType) {
 
+            ICuriosType type = (ICuriosType) evt.getObject().getItem();
+
             ICurio curio = new ICurio() {
 
                 @Override
                 public boolean canRightClickEquip() {
-                    return true;
+                    return type.rightClickEquip();
                 }
             };
 
@@ -38,7 +40,9 @@ public class AddCurioCapability {
                 @Override
                 public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap,
                                                          @Nullable EnumFacing side) {
+
                     return CuriosCapability.ITEM.orEmpty(cap, curioOpt);
+
                 }
             });
         }
