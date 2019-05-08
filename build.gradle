@@ -83,10 +83,7 @@ configurations {
 
 dependencies {
 
-	minecraft "net.minecraftforge:forge:${version_forge}"	
-	
-	//compile files("jars/curios-1.13.2-0.11-deobf.jar")
-	
+	minecraft "net.minecraftforge:forge:${version_forge}"		
 
 	compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED	
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED

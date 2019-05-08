@@ -1,8 +1,8 @@
 package com.robertx22.network;
 
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -54,7 +54,7 @@ public class EntityUnitPacket {
         ctx.get().enqueueWork(() -> {
             try {
 
-                Entity entity = Minecraft.getInstance().world.getEntityByID(pkt.id);
+                Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityByID(pkt.id);
 
                 if (entity instanceof EntityLivingBase) {
 

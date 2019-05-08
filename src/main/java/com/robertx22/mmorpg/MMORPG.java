@@ -38,6 +38,10 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod(Ref.MODID)
@@ -69,7 +73,6 @@ public class MMORPG {
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
         bus.addListener(this::interModEnqueue);
-        bus.addListener(this::clientSetup);
         bus.addListener(this::loadComplete);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -77,10 +80,7 @@ public class MMORPG {
             ModLoadingContext.get()
                     .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
-            /*FMLJavaModLoadingContext.get()
-                    .getModEventBus()
-                    .addListener(this::clientSetup);
-                    */
+            bus.addListener(this::clientSetup);
 
         });
 
@@ -142,12 +142,30 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
-        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
-            ServerLifecycleHooks.getCurrentServer()
-                    .getGameRules()
-                    .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
-                            .getCurrentServer());
-        }
+        // bandaid fix for config value nullpointer hopefully
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        Runnable noteThread = new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
+                        ServerLifecycleHooks.getCurrentServer()
+                                .getGameRules()
+                                .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
+                                        .getCurrentServer());
+                    }
+
+                    scheduler.shutdown();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        };
+        scheduler.schedule(noteThread, 5, TimeUnit.SECONDS);
 
     }
 
