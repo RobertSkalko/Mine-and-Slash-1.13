@@ -19,14 +19,10 @@ import javax.annotation.Nonnull;
 
 public class ItemMapBag extends BaseBagItem {
 
-    public static final int GUI_NUMBER = 356516;
-
     public static final String ID = Ref.MODID + ":map_bag";
 
     @ObjectHolder(ID)
     public static final Item ITEM = null;
-
-    private static final String TAG_ITEMS = "InvItems";
 
     public ItemMapBag() {
         super(ID);
@@ -55,11 +51,6 @@ public class ItemMapBag extends BaseBagItem {
         }
 
         return false;
-    }
-
-    @Override
-    public int GuiNumber() {
-        return GUI_NUMBER;
     }
 
 }

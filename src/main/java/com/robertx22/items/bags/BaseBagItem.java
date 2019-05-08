@@ -2,7 +2,6 @@ package com.robertx22.items.bags;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,23 +12,17 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public abstract class BaseBagItem extends Item {
-
-    public abstract int GuiNumber();
 
     public abstract boolean IsValidItem(ItemStack stack);
 
     public static int size = 9 * 6;
-
-    private static final String TAG_ITEMS = "InvItems";
 
     public BaseBagItem(String name) {
 
@@ -70,22 +63,5 @@ public abstract class BaseBagItem extends Item {
         }
 
     }
-
-    // I THINK ITS NOT NEEDED
-    /*
-     * @Override public void inventoryTick(ItemStack stack, World world, Entity
-     * entityIn, int slot, boolean selected) { if (stack.getTag() != null &&
-     * stack.getTag().contains(TAG_ITEMS)) { NBTTagList oldData =
-     * stack.getTag().getList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND); IItemHandler
-     * newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,
-     * null).orElse(null);
-     *
-     * if (newInv != null) {
-     * CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
-     *
-     * stack.getTag().remove(TAG_ITEMS);
-     *
-     * if (stack.getTag().size() == 0) stack.setTag(null); } } }
-     */
 
 }

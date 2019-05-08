@@ -23,14 +23,10 @@ import javax.annotation.Nonnull;
 
 public class ItemLootBag extends BaseBagItem {
 
-    public static final int GUI_NUMBER = 356515;
-
     public static final String ID = Ref.MODID + ":loot_bag";
 
     @ObjectHolder(ID)
     public static final Item ITEM = null;
-
-    private static final String TAG_ITEMS = "InvItems";
 
     public ItemLootBag() {
         super(ID);
@@ -69,11 +65,6 @@ public class ItemLootBag extends BaseBagItem {
 
         }
         return false;
-    }
-
-    @Override
-    public int GuiNumber() {
-        return GUI_NUMBER;
     }
 
 }

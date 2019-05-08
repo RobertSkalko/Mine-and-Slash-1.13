@@ -22,12 +22,8 @@ public class ItemCurrencyBag extends BaseBagItem {
 
     public static final String ID = Ref.MODID + ":currency_bag";
 
-    public static final int GUI_NUMBER = 356514;
-
     @ObjectHolder(ID)
     public static final Item ITEM = null;
-
-    private static final String TAG_ITEMS = "InvItems";
 
     public ItemCurrencyBag() {
         super(ID);
@@ -49,11 +45,6 @@ public class ItemCurrencyBag extends BaseBagItem {
 
         return stack.getItem() instanceof ICurrencyItemEffect || stack.getItem() instanceof CurrencyItem || stack
                 .getItem() instanceof ItemOre;
-    }
-
-    @Override
-    public int GuiNumber() {
-        return GUI_NUMBER;
     }
 
 }

@@ -8,4 +8,5 @@ public interface INecklace extends ICuriosType {
     public default String curioTypeName() {
         return CurioSlots.NECKLACE.name;
     }
+
 }

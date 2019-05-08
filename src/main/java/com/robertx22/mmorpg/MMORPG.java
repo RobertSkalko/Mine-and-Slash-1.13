@@ -77,9 +77,6 @@ public class MMORPG {
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-            ModLoadingContext.get()
-                    .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
-
             bus.addListener(this::clientSetup);
 
         });
@@ -90,12 +87,6 @@ public class MMORPG {
 
         proxy.preInit(event);
         System.out.println("Starting Setup");
-
-        ModLoadingContext.get()
-                .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
-
-        //ModLoadingContext.get()
-        //       .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
         ConfigRegister.register();
         ConfigRegister.load();
@@ -123,6 +114,10 @@ public class MMORPG {
     public void clientSetup(final FMLClientSetupEvent event) {
 
         CurioClientSetup.setup(event);
+
+        ModLoadingContext.get()
+                .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
+
     }
 
     @SubscribeEvent
