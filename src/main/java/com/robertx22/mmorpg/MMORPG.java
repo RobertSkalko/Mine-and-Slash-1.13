@@ -75,6 +75,9 @@ public class MMORPG {
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ConfigRegister.register();
+        ConfigRegister.load();
+
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);
         bus.addListener(this::interModEnqueue);
@@ -92,8 +95,6 @@ public class MMORPG {
 
         System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
-        ConfigRegister.register();
-        ConfigRegister.load();
         PacketRegister.register();
         CapabilityRegister.register();
         OreGenRegister.register();

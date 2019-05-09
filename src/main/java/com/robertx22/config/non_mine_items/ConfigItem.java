@@ -10,7 +10,7 @@ import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.RunedGearGen;
 import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -88,17 +88,17 @@ public class ConfigItem implements IWeighted {
 
     }
 
-    public ItemStack create(ItemStack stack, UnitData data) {
+    public ItemStack create(ItemStack stack, int level) {
 
         switch (getCreationType()) {
             case NORMAL:
-                createNormal(stack, data);
+                createNormal(stack, level);
                 break;
             case UNIQUE:
-                createUnique(stack, data);
+                createUnique(stack, level);
                 break;
             case RUNED:
-                createRuned(stack, data);
+                createRuned(stack, level);
                 break;
 
         }
@@ -114,13 +114,13 @@ public class ConfigItem implements IWeighted {
         return result.type;
     }
 
-    private int getLevel(UnitData data) {
+    private int getLevel(EntityData.UnitData data) {
         return this.itemIsPlayerLevel ? data.getLevel() : this.itemLevelIfDoesntUsePlayerLevel;
     }
 
-    private ItemStack createNormal(ItemStack stack, UnitData data) {
+    private ItemStack createNormal(ItemStack stack, int level) {
 
-        GearBlueprint blueprint = new GearBlueprint(getLevel(data));
+        GearBlueprint blueprint = new GearBlueprint(level);
         blueprint.SetSpecificType(this.itemType);
         blueprint.LevelRange = this.levelVariance > 0;
         blueprint.LevelVariance = this.levelVariance;
@@ -136,9 +136,9 @@ public class ConfigItem implements IWeighted {
 
     }
 
-    private ItemStack createUnique(ItemStack stack, UnitData data) {
+    private ItemStack createUnique(ItemStack stack, int level) {
 
-        UniqueBlueprint blueprint = new UniqueBlueprint(getLevel(data), this.uniqueId);
+        UniqueBlueprint blueprint = new UniqueBlueprint(level, this.uniqueId);
         blueprint.uniqueIsRandom = this.uniqueIsRandom;
         blueprint.tier = randomUniqueUpToTier;
         blueprint.map_tier = this.randomUniqueUpToTier;
@@ -151,7 +151,7 @@ public class ConfigItem implements IWeighted {
         gear.isNotFromMyMod = true;
 
         if (gear.uniqueGUID != null || !IUnique.ITEMS.containsKey(gear.uniqueGUID)) {
-            return createNormal(stack, data);
+            return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);
         }
@@ -160,9 +160,9 @@ public class ConfigItem implements IWeighted {
 
     }
 
-    private ItemStack createRuned(ItemStack stack, UnitData data) {
+    private ItemStack createRuned(ItemStack stack, int level) {
 
-        RunedGearBlueprint blueprint = new RunedGearBlueprint(getLevel(data));
+        RunedGearBlueprint blueprint = new RunedGearBlueprint(level);
         blueprint.SetSpecificType(this.itemType);
         blueprint.LevelRange = this.levelVariance > 0;
         blueprint.LevelVariance = this.levelVariance;

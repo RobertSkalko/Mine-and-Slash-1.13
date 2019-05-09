@@ -58,6 +58,16 @@ public class ItemRegister {
             Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
 
+            for (ItemRarity rarity : Rarities.Items) {
+                for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
+                    for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
+                        String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
+                        ItemLootbox.Items.put(reg, new ItemLootbox(size, type, rarity.Rank())
+                                .setRegistryName(reg));
+                    }
+                }
+            }
+
         }
 
     }
@@ -69,6 +79,7 @@ public class ItemRegister {
         AutoSalvageBag.Items.values().forEach((x) -> r.register(x));
         Hearthstone.Items.values().forEach((x) -> r.register(x));
         ItemCapacitor.Items.values().forEach((x) -> r.register(x));
+        ItemLootbox.Items.values().forEach((x) -> r.register(x));
 
     }
 

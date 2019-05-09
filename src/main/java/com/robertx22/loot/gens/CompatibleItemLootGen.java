@@ -40,22 +40,27 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && mob != null) {
 
-            ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
-                    .getAll()));
-
-            ResourceLocation res = new ResourceLocation(config.registryName);
-
-            if (ForgeRegistries.ITEMS.containsKey(res)) {
-
-                ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-
-                return config.create(stack, mob);
-            }
-
+            return gen(mob.getLevel());
         }
 
         return ItemStack.EMPTY;
 
+    }
+
+    public static ItemStack gen(int level) {
+
+        ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
+                .getAll()));
+
+        ResourceLocation res = new ResourceLocation(config.registryName);
+
+        if (ForgeRegistries.ITEMS.containsKey(res)) {
+
+            ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+
+            return config.create(stack, level);
+        }
+        return ItemStack.EMPTY;
     }
 
 }

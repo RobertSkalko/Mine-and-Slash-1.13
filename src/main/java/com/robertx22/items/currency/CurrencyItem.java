@@ -26,7 +26,7 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
     public abstract String GUID();
 
     public CurrencyItem(String name) {
-        super(new ItemDefault());
+        super(new ItemDefault().maxStackSize(64));
 
         RegisterItemUtils.RegisterItemName(this, name);
 

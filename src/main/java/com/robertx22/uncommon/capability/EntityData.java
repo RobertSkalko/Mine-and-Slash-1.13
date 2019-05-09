@@ -185,9 +185,8 @@ public class EntityData {
             if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof EntityLivingBase) {
                 can = true;
-            }
 
-            if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
+            } else if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.Mobs_And_Players)) {
                 if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
                     can = true;

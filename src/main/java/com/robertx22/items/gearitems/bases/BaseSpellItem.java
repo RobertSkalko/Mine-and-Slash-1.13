@@ -75,7 +75,7 @@ public abstract class BaseSpellItem extends Item {
 
             Tooltip.add("", tooltip);
 
-            Tooltip.add(CLOC.word("curioTypeName")
+            Tooltip.add(CLOC.word("type")
                     .appendText(": ")
                     .appendText(this.Spell().typeString())
                     .setStyle(Styles.AQUA), tooltip);

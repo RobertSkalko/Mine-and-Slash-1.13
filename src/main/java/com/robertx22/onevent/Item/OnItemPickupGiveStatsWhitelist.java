@@ -52,7 +52,7 @@ public class OnItemPickupGiveStatsWhitelist {
                                 data = Load.Unit(player);
                             }
 
-                            stack = config.create(stack, data);
+                            stack = config.create(stack, data.getLevel());
 
                             event.getEntityPlayer().inventory.markDirty();
 

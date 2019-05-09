@@ -65,8 +65,6 @@ public class OnTickLogic {
                         int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
                         unit_capa.heal(player, healthrestored);
 
-                        unit_capa.setUnit(unit, player);
-
                     }
                 }
 
@@ -96,8 +94,7 @@ public class OnTickLogic {
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
-                    UnitData unit_capa = Load.Unit(player);
-                    unit_capa.syncToClient(player);
+                    Load.Unit(player).syncToClient(player);
                 }
 
                 PlayerTickDatas.put(player.getUniqueID(), data);
