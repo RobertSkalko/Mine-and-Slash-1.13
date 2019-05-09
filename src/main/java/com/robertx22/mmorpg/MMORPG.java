@@ -75,8 +75,8 @@ public class MMORPG {
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ConfigRegister.register();
-        ConfigRegister.load();
+        ConfigRegister.register(); // MUST BE IN MAIN CLASS
+        ConfigRegister.load();  // MUST BE IN MAIN CLASS
 
         bus.addListener(this::preInit);
         bus.addListener(this::postInit);

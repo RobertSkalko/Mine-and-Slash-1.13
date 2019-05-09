@@ -30,6 +30,7 @@ public class MasterLootGen {
         items.addAll(new MapLootGen(mob, player, world, victim).generate());
         items.addAll(new RuneLootGen(mob, player, world, victim).generate());
         items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
+        items.addAll(new LootBoxGen(mob, player, world, victim).generate());
 
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             items.addAll(new CompatibleItemLootGen(mob, player, world, victim).generate());
@@ -60,6 +61,8 @@ public class MasterLootGen {
         items.addAll(new MapLootGen(theworld, multi, world, level).generate());
         items.addAll(new RuneLootGen(theworld, multi, world, level).generate());
         items.addAll(new RunedGearLootGen(theworld, multi, world, level).generate());
+        items.addAll(new LootBoxGen(theworld, multi, world).generate());
+
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             items.addAll(new CompatibleItemLootGen(theworld, multi, world, level).generate());
         }

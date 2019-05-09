@@ -14,6 +14,7 @@ public class DropRatesContainer {
     public DoubleValue CURRENCY_DROPRATE;
     public DoubleValue AWAKEN_RUNEWORD_DROPRATE;
     public DoubleValue COMPATIBLE_ITEMS_DROPRATE;
+    public DoubleValue LOOTBOX_DROPRATE;
 
     DropRatesContainer(ForgeConfigSpec.Builder builder) {
         builder.push("DROPRATES");
@@ -21,6 +22,10 @@ public class DropRatesContainer {
         RUNED_GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.runed_gear_droprate")
                 .defineInRange("RUNED_GEAR_DROPRATE", 1.8D, 0, 1000);
+
+        LOOTBOX_DROPRATE = builder.comment(".")
+                .translation("mmorpg.config.lootbox_droprate")
+                .defineInRange("LOOTBOX_DROPRATE", 0.05D, 0, 1000);
 
         RUNE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.rune_droprate")
@@ -32,7 +37,7 @@ public class DropRatesContainer {
 
         GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.gear_droprate")
-                .defineInRange("GEAR_DROPRATE", 7.5F, 0, 1000);
+                .defineInRange("GEAR_DROPRATE", 7.4F, 0, 1000);
 
         UNIQUE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.unique_droprate")
@@ -48,11 +53,11 @@ public class DropRatesContainer {
 
         AWAKEN_RUNEWORD_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.awaken_runeword_droprate")
-                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.25F, 0, 1000);
+                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.2F, 0, 1000);
 
         COMPATIBLE_ITEMS_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.compatible_items_droprate")
-                .defineInRange("COMPATIBLE_ITEMS_DROPRATE", 3F, 0, 1000);
+                .defineInRange("COMPATIBLE_ITEMS_DROPRATE", 2F, 0, 1000);
 
         builder.pop();
 

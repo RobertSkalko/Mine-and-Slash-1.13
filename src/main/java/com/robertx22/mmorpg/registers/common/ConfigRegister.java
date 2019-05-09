@@ -28,9 +28,9 @@ public class ConfigRegister {
 
     public static void load() {
         loadConfig(ClientContainer.spec, FMLPaths.CONFIGDIR.get()
-                .resolve(Ref.NAME_NO_SPACE + "-" + ClientContainer.NAME + ".toml"));
+                .resolve(Ref.MODID + "-" + "client" + ".toml")); // needs to be modid
         loadConfig(ModConfig.spec, FMLPaths.CONFIGDIR.get()
-                .resolve(Ref.NAME_NO_SPACE + "-" + ModConfig.NAME + ".toml"));
+                .resolve(Ref.MODID + "-" + "common" + ".toml"));
 
         ConfigItemsSerialization.INSTANCE.load();
         ConfigDimensionsSerialization.INSTANCE.load();
