@@ -24,8 +24,6 @@ public class ConfigRegister {
         ConfigItemsSerialization.INSTANCE.generateIfEmpty();
         ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
 
-        // ForgeMod
-
     }
 
     public static void load() {

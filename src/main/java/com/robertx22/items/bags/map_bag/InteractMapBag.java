@@ -25,6 +25,7 @@ public class InteractMapBag implements IInteractionObject {
     public boolean hasCustomName() {
 
         return false;
+
     }
 
     @Override

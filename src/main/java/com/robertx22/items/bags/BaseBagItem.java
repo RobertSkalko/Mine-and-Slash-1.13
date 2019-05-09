@@ -3,15 +3,23 @@ package com.robertx22.items.bags;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.IInteractionObject;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -22,6 +30,8 @@ public abstract class BaseBagItem extends Item {
 
     public abstract boolean IsValidItem(ItemStack stack);
 
+    public abstract IInteractionObject getInteractionObject(ItemStack stack);
+
     public static int size = 9 * 6;
 
     public BaseBagItem(String name) {
@@ -29,6 +39,18 @@ public abstract class BaseBagItem extends Item {
         super(new ItemSingle().group(CreativeTabs.MyModTab));
         RegisterItemUtils.RegisterItemName(this, name);
 
+    }
+
+    @Nonnull
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
+                                                    @Nonnull EnumHand hand) {
+        if (!world.isRemote) {
+            NetworkHooks.openGui((EntityPlayerMP) player, getInteractionObject(player.getHeldItem(hand)), buf -> {
+                buf.writeBoolean(hand == EnumHand.OFF_HAND);
+            });
+        }
+        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
     @Nonnull

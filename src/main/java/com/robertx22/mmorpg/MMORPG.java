@@ -2,22 +2,27 @@ package com.robertx22.mmorpg;
 
 import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
+import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
+import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mmorpg.registers.common.OreGenRegister;
 import com.robertx22.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
+import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -85,8 +90,7 @@ public class MMORPG {
 
     public void preInit(FMLCommonSetupEvent event) {
 
-        proxy.preInit(event);
-        System.out.println("Starting Setup");
+        System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
         ConfigRegister.register();
         ConfigRegister.load();
@@ -97,12 +101,12 @@ public class MMORPG {
     }
 
     public void postInit(final InterModProcessEvent event) {
-
-        proxy.postInit(event);
+        System.out.println(Ref.MODID + ":InterModProcessEvent");
 
     }
 
     private void interModEnqueue(final InterModEnqueueEvent event) {
+        System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
     }
 
@@ -114,7 +118,9 @@ public class MMORPG {
     public void clientSetup(final FMLClientSetupEvent event) {
 
         CurioClientSetup.setup(event);
-
+        MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
+        MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
+        KeybindsRegister.register();
         ModLoadingContext.get()
                 .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
@@ -140,7 +146,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
-        // bandaid fix for config value nullpointer hopefully
+        // bandaid fix for config value nullpointer hopefully (DAMNIT NOW ENTITYDATA GIVES NULLPOINTER)
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         Runnable noteThread = new Runnable() {
             @Override
