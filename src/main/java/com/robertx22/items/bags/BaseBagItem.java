@@ -67,10 +67,7 @@ public abstract class BaseBagItem extends Item {
 
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-            if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
-            else
-                return null;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
         }
 
         @Override

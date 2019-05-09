@@ -35,6 +35,7 @@
     "block.mmorpg.map_device": "Map Device",
 
     "_comment": "ITEM TOOLTIPS",
+	"mmorpg.tooltip.lootbox": "What could be inside?",   
     "mmorpg.tooltip.ore": "Precious Ore that can be used in many ways",
     "mmorpg.tooltip.player_levelup": "If your experience bar is full, use this item to levelup!",
     "mmorpg.tooltip.newbie_gear_bag": "Creates a pack of level one gear.",

@@ -1,5 +1,6 @@
 package com.robertx22.items.misc;
 
+import com.robertx22.Styles;
 import com.robertx22.config.ModConfig;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
@@ -13,11 +14,13 @@ import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.RunedGearGen;
 import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.loot.gens.CompatibleItemLootGen;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,8 +28,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -240,4 +247,14 @@ public class ItemLootbox extends BaseItem implements IWeighted {
     public int Weight() {
         return weight;
     }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        tooltip.add(CLOC.tooltip("lootbox").setStyle(Styles.GREEN));
+
+    }
+
 }
