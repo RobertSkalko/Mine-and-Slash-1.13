@@ -41,6 +41,12 @@ public class MapManager {
 
     }
 
+    public static DimensionType getDimension(ResourceLocation res) {
+
+        return DimensionType.byName(res);
+
+    }
+
     public static boolean isRegistered(ResourceLocation res) {
 
         return DimensionType.byName(res) != null;

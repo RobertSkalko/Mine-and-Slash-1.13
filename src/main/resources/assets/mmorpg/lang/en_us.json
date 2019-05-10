@@ -21,6 +21,8 @@
     "block.mmorpg.ore_block4": "Legendary Ore Block",
     "block.mmorpg.ore_block5": "Mythical Ore Block",
 
+	"block.mmorpg.attunement_altar": "Attunement Altar",
+
     "_comment": "# CREATIVE TAB",
     "itemGroup.mmorpg_main": "Mine and Slash",
     "itemGroup.mmorpg_uniques": "Unique Gear",
@@ -651,7 +653,7 @@
 
     "_comment": "CHAT MESSAGESS",
 	
-	
+	"mmorpg.chat.not_attunement_altar": "That is not an Attunement Altar",  	
 	"mmorpg.chat.not_attuned": "Not Attuned to any Attunement Altars.",  
 	"mmorpg.chat.attunement_set": "You have attuned your Hearthstone to this altar.",  	
 	"mmorpg.chat.no_bed": "Bed not found.",  	

@@ -3,6 +3,7 @@ package com.robertx22.items.level_incentives;
 import com.robertx22.Styles;
 import com.robertx22.blocks.simple.AttunementBlock;
 import com.robertx22.db_lists.CreativeTabs;
+import com.robertx22.dimensions.MapManager;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.datasaving.Load;
@@ -14,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -22,9 +24,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -147,29 +152,44 @@ public class Hearthstone extends Item {
     public void teleportBack(EntityPlayer player, ItemStack stack) {
 
         BlockPos pos = getLoc(stack);
-        pos = pos.up();
 
-        if (pos == null) {
-            player.sendMessage(SLOC.chat("not_attuned"));
-        } else {
+        if (stack.hasTag() && stack.getTag().contains("dim") && pos != null) {
+            pos = pos.up();
+            String dim = stack.getTag().getString("dim");
+            ResourceLocation res = new ResourceLocation(dim);
+            DimensionType type = MapManager.getDimension(res);
+
+            if (player.dimension != type) {
+                player.changeDimension(type);
+            }
+
             player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+
+        } else {
+            player.sendMessage(SLOC.chat("not_attuned"));
 
         }
     }
 
     public BlockPos getLoc(ItemStack stack) {
 
-        if (stack.hasTag() && stack.getTag().contains("loc")) {
+        if (stack.hasTag() && stack.getTag().contains("loc") && stack.getTag()
+                .contains("dim")) {
+
             return BlockPos.fromLong(stack.getTag().getLong("loc"));
         }
 
         return null;
     }
 
-    public void setLoc(ItemStack stack, BlockPos pos) {
+    public void setLoc(ItemStack stack, BlockPos pos, DimensionType type) {
 
-        stack.getTag().putLong("loc", pos.toLong());
+        ResourceLocation loc = DimensionType.getKey(type);
 
+        if (loc != null) {
+            stack.getTag().putLong("loc", pos.toLong());
+            stack.getTag().putString("dim", loc.toString());
+        }
     }
 
     public boolean distanceCanBeTeleported(EntityPlayer player, ItemStack stack) {
@@ -198,7 +218,7 @@ public class Hearthstone extends Item {
         public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock evt) {
             if (evt.getSide().equals(LogicalSide.SERVER)) {
 
-                EntityPlayer player = evt.getEntityPlayer();
+                EntityPlayerMP player = (EntityPlayerMP) evt.getEntityPlayer();
                 IBlockState block = player.world.getBlockState(evt.getPos());
 
                 ItemStack stack = evt.getItemStack();
@@ -210,7 +230,10 @@ public class Hearthstone extends Item {
                 Hearthstone item = (Hearthstone) evt.getItemStack().getItem();
 
                 if (block.getBlock().equals(AttunementBlock.BLOCK)) {
-                    item.setLoc(stack, new BlockPos(evt.getHitVec()));
+
+                    DimensionType type = evt.getWorld().getDimension().getType();
+
+                    item.setLoc(stack, new BlockPos(evt.getHitVec()), type);
                     player.sendMessage(SLOC.chat("attunement_set"));
 
                 } else {
@@ -219,7 +242,7 @@ public class Hearthstone extends Item {
             }
 
         }
-        
+
     }
 
     private int getRemainingUses(ItemStack stack) {
@@ -285,11 +308,20 @@ public class Hearthstone extends Item {
             Tooltip.add(CLOC.word("position")
                     .appendText(": " + locTooltip(stack))
                     .setStyle(Styles.GOLD), tooltip);
+
+            Tooltip.add(new TextComponentString(dimTooltip(stack)).setStyle(Styles.BLUE), tooltip);
+
         }
 
         Tooltip.add("", tooltip);
 
         tooltip.add(TooltipUtils.level(this.levelReq));
+
+    }
+
+    private String dimTooltip(ItemStack stack) {
+
+        return stack.getTag().getString("dim");
 
     }
 
