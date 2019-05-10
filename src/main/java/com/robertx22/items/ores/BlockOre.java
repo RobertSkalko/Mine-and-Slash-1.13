@@ -25,6 +25,7 @@ public class BlockOre extends Block {
 
     }
 
+    @Override
     public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos,
                                         int fortune) {
 

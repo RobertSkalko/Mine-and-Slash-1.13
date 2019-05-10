@@ -1,6 +1,7 @@
 package com.robertx22.items.level_incentives;
 
 import com.robertx22.Styles;
+import com.robertx22.blocks.simple.AttunementBlock;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
@@ -9,6 +10,7 @@ import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +27,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -121,7 +127,7 @@ public class Hearthstone extends Item {
                                     nbt.putInt("ticks", 0);
                                     nbt.putBoolean("porting", false);
 
-                                    teleportBack((EntityPlayer) entity);
+                                    teleportBack((EntityPlayer) entity, stack);
 
                                 }
                             } else {
@@ -138,26 +144,37 @@ public class Hearthstone extends Item {
         }
     }
 
-    private void teleportBack(EntityPlayer player) {
+    public void teleportBack(EntityPlayer player, ItemStack stack) {
 
-        BlockPos pos = getLoc(player);
+        BlockPos pos = getLoc(stack);
+        pos = pos.up();
 
         if (pos == null) {
-            player.sendMessage(SLOC.chat("no_bed"));
+            player.sendMessage(SLOC.chat("not_attuned"));
         } else {
             player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 
         }
     }
 
-    private BlockPos getLoc(EntityPlayer player) {
-        return player.getBedLocation();
+    public BlockPos getLoc(ItemStack stack) {
+
+        if (stack.hasTag() && stack.getTag().contains("loc")) {
+            return BlockPos.fromLong(stack.getTag().getLong("loc"));
+        }
+
+        return null;
+    }
+
+    public void setLoc(ItemStack stack, BlockPos pos) {
+
+        stack.getTag().putLong("loc", pos.toLong());
 
     }
 
-    private boolean distanceCanBeTeleported(EntityPlayer player) {
+    public boolean distanceCanBeTeleported(EntityPlayer player, ItemStack stack) {
 
-        BlockPos place = getLoc(player);
+        BlockPos place = getLoc(stack);
         BlockPos current = player.getPosition();
 
         double distance = place.getDistance(current);
@@ -170,57 +187,39 @@ public class Hearthstone extends Item {
 
     }
 
-    private boolean hasLoc(EntityPlayer player) {
-        return getLoc(player) != null;
+    public boolean hasLoc(ItemStack stack) {
+        return getLoc(stack) != null;
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    EnumHand hand) {
+    @Mod.EventBusSubscriber
+    public static class Event {
 
-        if (!world.isRemote) {
-            try {
+        @SubscribeEvent
+        public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock evt) {
+            if (evt.getSide().equals(LogicalSide.SERVER)) {
 
-                ItemStack stack = player.getHeldItem(hand);
+                EntityPlayer player = evt.getEntityPlayer();
+                IBlockState block = player.world.getBlockState(evt.getPos());
 
-                if (!stack.hasTag()) {
-                    stack.setTag(new NBTTagCompound());
+                ItemStack stack = evt.getItemStack();
+
+                if (stack.getItem() instanceof Hearthstone == false) {
+                    return;
                 }
 
-                if (this.hasLoc(player) == false) {
-                    player.sendMessage(SLOC.chat("no_bed"));
-                    stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
+                Hearthstone item = (Hearthstone) evt.getItemStack().getItem();
+
+                if (block.getBlock().equals(AttunementBlock.BLOCK)) {
+                    item.setLoc(stack, new BlockPos(evt.getHitVec()));
+                    player.sendMessage(SLOC.chat("attunement_set"));
+
+                } else {
+                    player.sendMessage(SLOC.chat("not_attunement_altar"));
                 }
-
-                if (this.distanceCanBeTeleported(player) == false) {
-                    player.sendMessage(SLOC.chat("distance_warning"));
-                    stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
-                }
-
-                if (Load.Unit(player).getLevel() < this.levelReq) {
-                    player.sendMessage(SLOC.chat("not_high_enough_level"));
-                    stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
-                }
-
-                this.decreaseUses(stack);
-
-                stack.getTag().putBoolean("porting", true);
-                stack.getTag().putLong("pos", player.getPosition().toLong());
-
-                player.sendMessage(SLOC.chat("teleport_begin"));
-
-                return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
         }
-
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+        
     }
 
     private int getRemainingUses(ItemStack stack) {
@@ -282,10 +281,77 @@ public class Hearthstone extends Item {
                 .appendSibling(CLOC.word("seconds"))
                 .setStyle(Styles.RED), tooltip);
 
+        if (getLoc(stack) != null) {
+            Tooltip.add(CLOC.word("position")
+                    .appendText(": " + locTooltip(stack))
+                    .setStyle(Styles.GOLD), tooltip);
+        }
+
         Tooltip.add("", tooltip);
 
         tooltip.add(TooltipUtils.level(this.levelReq));
 
+    }
+
+    private String locTooltip(ItemStack stack) {
+
+        BlockPos pos = this.getLoc(stack);
+
+        return "x: " + pos.getX() + " y: " + pos.getY() + " z: " + pos.getZ();
+
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
+                                                    EnumHand hand) {
+
+        if (world.isRemote == false) {
+
+            ItemStack stack = player.getHeldItem(hand);
+
+            if (stack.getItem() instanceof Hearthstone == false) {
+                return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+            }
+
+            Hearthstone item = (Hearthstone) stack.getItem();
+
+            try {
+
+                if (!stack.hasTag()) {
+                    stack.setTag(new NBTTagCompound());
+                }
+
+                if (item.hasLoc(stack) == false) {
+                    player.sendMessage(SLOC.chat("not_attuned"));
+                    stack.getTag().putBoolean("porting", false);
+                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                }
+
+                if (item.distanceCanBeTeleported(player, stack) == false) {
+                    player.sendMessage(SLOC.chat("distance_warning"));
+                    stack.getTag().putBoolean("porting", false);
+                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                }
+
+                if (Load.Unit(player).getLevel() < item.levelReq) {
+                    player.sendMessage(SLOC.chat("not_high_enough_level"));
+                    stack.getTag().putBoolean("porting", false);
+                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                }
+
+                item.decreaseUses(stack);
+
+                stack.getTag().putBoolean("porting", true);
+                stack.getTag().putLong("pos", player.getPosition().toLong());
+
+                player.sendMessage(SLOC.chat("teleport_begin"));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
     }
 
 }

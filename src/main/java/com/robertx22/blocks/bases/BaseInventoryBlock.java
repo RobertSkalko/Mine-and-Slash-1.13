@@ -1,6 +1,5 @@
 package com.robertx22.blocks.bases;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -11,25 +10,10 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public abstract class BaseInventoryBlock extends Block {
+public abstract class BaseInventoryBlock extends NonFullBlock {
     protected BaseInventoryBlock(Properties prop) {
         super(prop);
 
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isSolid(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
     }
 
     @Override

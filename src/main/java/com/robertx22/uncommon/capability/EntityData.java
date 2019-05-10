@@ -38,6 +38,7 @@ import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -194,38 +195,36 @@ public class EntityData {
             }
 
             if (can) {
-
-                event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
-
-                    UnitData impl = new DefaultImpl();
-                    private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
-
-                    @Override
-                    public NBTTagCompound serializeNBT() {
-                        return (NBTTagCompound) Data.getStorage()
-                                .writeNBT(Data, impl, null);
-
-                    }
-
-                    @Override
-                    public void deserializeNBT(NBTTagCompound nbt) {
-                        Data.getStorage().readNBT(Data, impl, null, nbt);
-
-                    }
-
-                    @Override
-                    public <T> LazyOptional<T> getCapability(Capability<T> cap,
-                                                             EnumFacing side) {
-                        if (cap == Data) {
-                            return this.cap.cast();
-                        }
-                        return LazyOptional.empty();
-                    }
-                });
-
+                event.addCapability(RESOURCE, new Provider());
             }
         }
 
+    }
+
+    public static class Provider implements ICapabilitySerializable<NBTTagCompound> {
+
+        UnitData impl = new DefaultImpl();
+        private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
+
+        @Override
+        public NBTTagCompound serializeNBT() {
+            return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
+
+        }
+
+        @Override
+        public void deserializeNBT(NBTTagCompound nbt) {
+            Data.getStorage().readNBT(Data, impl, null, nbt);
+
+        }
+
+        @Override
+        public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+            if (cap == Data) {
+                return this.cap.cast();
+            }
+            return LazyOptional.empty();
+        }
     }
 
     public static class Storage implements IStorage<UnitData> {
@@ -348,27 +347,17 @@ public class EntityData {
             } else {
                 if (config.SINGLEPLAYER_MOB_SCALING) {
 
-                    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 9999);
+                    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 3999);
 
                     if (player != null) {
                         lvl = Load.Unit(player).getLevel();
-
                     }
 
                 } else {
                     lvl = GetMobLevelByDistanceFromSpawn(entity, config);
                 }
-                if (lvl > config.MAXIMUM_MOB_LEVEL) {
-                    lvl = config.MAXIMUM_MOB_LEVEL;
-                }
-                if (lvl < config.MINIMUM_MOB_LEVEL) {
-                    lvl = config.MINIMUM_MOB_LEVEL;
-                }
 
-            }
-
-            if (lvl < 1) {
-                lvl = 1;
+                lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
 
             }
 
@@ -469,11 +458,9 @@ public class EntityData {
 
         @Override
         public void setLevel(int lvl, EntityLivingBase entity) {
-            if (lvl > ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
-                lvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-            }
 
-            level = lvl;
+            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
+                    .get());
 
         }
 
@@ -491,12 +478,8 @@ public class EntityData {
         public void syncToClient(EntityPlayer player) {
             if (unit != null) {
                 PlayerUnitPacket packet = new PlayerUnitPacket(this.getNBT());
-
                 EntityPlayerMP mp = (EntityPlayerMP) player;
-
                 MMORPG.sendToClient(packet, mp);
-
-                // MMORPG.Network.sendTo(packet, mp.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
             }
         }
 

@@ -268,6 +268,7 @@
 
     "_comment": "WORDS",
 	"mmorpg.word.distance": "Distance",
+	"mmorpg.word.position": "Position",
 	"mmorpg.word.blocks": "Blocks",
 	"mmorpg.word.runed": "Runed",
     "mmorpg.word.percent": "Percent",
@@ -649,7 +650,11 @@
 
 
     "_comment": "CHAT MESSAGESS",
-	"mmorpg.chat.no_bed": "Bed not found.",  
+	
+	
+	"mmorpg.chat.not_attuned": "Not Attuned to any Attunement Altars.",  
+	"mmorpg.chat.attunement_set": "You have attuned your Hearthstone to this altar.",  	
+	"mmorpg.chat.no_bed": "Bed not found.",  	
 	"mmorpg.chat.cooldown_warning": "Cooldown not met.",
     "mmorpg.chat.levelup_success": "You have Leveled Up!",
     "mmorpg.chat.low_weapon_durability": "Weapon Durability is Too Low.",
