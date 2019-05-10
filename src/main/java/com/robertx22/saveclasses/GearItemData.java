@@ -410,54 +410,59 @@ public class GearItemData implements ITooltip, ISalvagable {
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
-        if (this.isSalvagable == false) {
-            return ItemStack.EMPTY;
-        }
+        if (this.isSalvagable) { // problems with issalvagable?
+            ItemStack stack = ItemStack.EMPTY;
+            int tier = 0;
 
-        ItemStack stack = ItemStack.EMPTY;
-        int tier = 0;
+            int min = 1;
+            int max = 3;
 
-        int min = 1;
-        int max = 3;
-
-        min = tryIncreaseAmount(salvageBonus, min);
-        max = tryIncreaseAmount(salvageBonus, max);
-
-        if (isUnique) {
-            try {
-                tier = this.uniqueStats.getUniqueItem().Tier();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
-
-            Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
-                    .CollectionToList(CurrencyItem.ITEMS), tier));
+            min = tryIncreaseAmount(salvageBonus, min);
+            max = tryIncreaseAmount(salvageBonus, max);
 
             if (isUnique) {
-                int amount = RandomUtils.RandomRange(min, max + (tier / 5));
-                stack.setCount(amount);
+                try {
+                    tier = this.uniqueStats.getUniqueItem().Tier();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            stack = new ItemStack(item);
-        } else {
+            if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-            int amount = RandomUtils.RandomRange(min, max);
+                Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
+                        .CollectionToList(CurrencyItem.ITEMS), tier));
 
-            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(Rarity);
-            stack = new ItemStack(ore);
-            stack.setCount(amount);
+                if (isUnique) {
+                    int amount = RandomUtils.RandomRange(min, max + (tier / 5));
+                    stack.setCount(amount);
+                }
 
-        }
+                stack = new ItemStack(item);
+            } else {
 
-        return stack;
+                int amount = RandomUtils.RandomRange(min, max);
+
+                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(Rarity);
+                stack = new ItemStack(ore);
+                stack.setCount(amount);
+
+            }
+
+            return stack;
+        } else
+            return ItemStack.EMPTY;
+
     }
 
     @Override
     public int getSalvagedRarity() {
         return this.Rarity;
+    }
+
+    @Override
+    public boolean isSalvagable() {
+        return this.isSalvagable;
     }
 
 }

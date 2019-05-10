@@ -171,4 +171,9 @@ public class SpellItemData implements ISalvagable {
         return stack;
     }
 
+    @Override
+    public boolean isSalvagable() {
+        return true;
+    }
+
 }

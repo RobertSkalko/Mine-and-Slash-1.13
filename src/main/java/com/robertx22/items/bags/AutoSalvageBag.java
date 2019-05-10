@@ -79,7 +79,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         if (!world.isRemote) {
             ItemStack bag = player.getHeldItem(hand);
 
-            NBTTagCompound nbt = bag.serializeNBT();
+            NBTTagCompound nbt = bag.getTag();
 
             if (nbt == null) {
                 nbt = new NBTTagCompound();
@@ -110,8 +110,6 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
                     successChat(player);
                 }
 
-                bag.setTag(nbt);
-
             } else {
                 nbt.putInt("gear", -1);
                 nbt.putInt("spell", -1);
@@ -120,6 +118,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
                 player.sendMessage(new TextComponentString("Bag Config Cleared"));
             }
+            bag.setTag(nbt);
         }
 
         return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
@@ -237,23 +236,25 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         int rarity = sal.getSalvagedRarity();
 
-        if (sal instanceof GearItemData) {
-            if (rarity <= getGear(nbt)) {
-                return true;
-            }
-        } else if (sal instanceof SpellItemData) {
-            if (rarity <= getSpell(nbt)) {
-                return true;
-            }
-        } else if (sal instanceof MapItemData) {
-            if (rarity <= getMap(nbt)) {
-                return true;
-            }
-        } else if (sal instanceof RuneItemData) {
-            if (rarity <= getRune(nbt)) {
-                return true;
-            }
+        if (sal.isSalvagable()) {
+            if (sal instanceof GearItemData) {
+                if (rarity <= getGear(nbt)) {
+                    return true;
+                }
+            } else if (sal instanceof SpellItemData) {
+                if (rarity <= getSpell(nbt)) {
+                    return true;
+                }
+            } else if (sal instanceof MapItemData) {
+                if (rarity <= getMap(nbt)) {
+                    return true;
+                }
+            } else if (sal instanceof RuneItemData) {
+                if (rarity <= getRune(nbt)) {
+                    return true;
+                }
 
+            }
         }
 
         return false;
@@ -326,13 +327,15 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
                             if (salvageBag.shouldSalvageItem(sal, bag.getTag())) {
 
                                 ItemStack result = salvageBag.getSalvageResultForItem(sal);
+                                if (result.isEmpty() == false) {
+                                    stack.setCount(0);
 
-                                stack.setCount(0);
-
-                                EntityItem enitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, result);
-                                enitem.setNoPickupDelay();
-                                player.world.spawnEntity(enitem);
-
+                                    EntityItem enitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, result);
+                                    enitem.setNoPickupDelay();
+                                    player.world.spawnEntity(enitem);
+                                } else {
+                                    // this shouldnt happen
+                                }
                             }
                         }
 

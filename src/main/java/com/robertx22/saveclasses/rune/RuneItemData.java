@@ -10,7 +10,6 @@ import com.robertx22.saveclasses.ISalvagable;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
@@ -23,15 +22,15 @@ public class RuneItemData implements ISalvagable {
 
     }
 
-    public RuneItemData(int level, String name, int rarity, StatModData weapon, StatModData armor,
-	    StatModData jewerly) {
+    public RuneItemData(int level, String name, int rarity, StatModData weapon,
+                        StatModData armor, StatModData jewerly) {
 
-	this.name = name;
-	this.level = level;
-	this.rarity = rarity;
-	this.weapon = weapon;
-	this.armor = armor;
-	this.jewerly = jewerly;
+        this.name = name;
+        this.level = level;
+        this.rarity = rarity;
+        this.weapon = weapon;
+        this.armor = armor;
+        this.jewerly = jewerly;
     }
 
     @Store
@@ -49,15 +48,15 @@ public class RuneItemData implements ISalvagable {
 
     public StatModData getModFor(GearItemData gear) {
 
-	GearItemSlot slot = gear.GetBaseGearType();
+        GearItemSlot slot = gear.GetBaseGearType();
 
-	if (slot.slotType().equals(GearItemSlot.GearSlotType.Armor)) {
-	    return armor;
-	} else if (slot.slotType().equals(GearItemSlot.GearSlotType.Jewerly)) {
-	    return jewerly;
-	}
+        if (slot.slotType().equals(GearItemSlot.GearSlotType.Armor)) {
+            return armor;
+        } else if (slot.slotType().equals(GearItemSlot.GearSlotType.Jewerly)) {
+            return jewerly;
+        }
 
-	return weapon;
+        return weapon;
 
     }
 
@@ -66,41 +65,46 @@ public class RuneItemData implements ISalvagable {
 
     @Override
     public int getSalvagedRarity() {
-	return this.rarity;
+        return this.rarity;
     }
 
     public RuneRarity GetRarity() {
 
-	return Rarities.Runes.get(rarity);
+        return Rarities.Runes.get(rarity);
 
     }
 
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
-	int min = tryIncreaseAmount(salvageBonus, 1);
-	int max = tryIncreaseAmount(salvageBonus, 2);
+        int min = tryIncreaseAmount(salvageBonus, 1);
+        int max = tryIncreaseAmount(salvageBonus, 2);
 
-	ItemStack stack = ItemStack.EMPTY;
+        ItemStack stack = ItemStack.EMPTY;
 
-	if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+        if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-	    Item item = (Item) RandomUtils
-		    .WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), 10));
+            Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
+                    .CollectionToList(CurrencyItem.ITEMS), 10));
 
-	    stack = new ItemStack(item);
-	} else {
+            stack = new ItemStack(item);
+        } else {
 
-	    int amount = RandomUtils.RandomRange(min, max);
+            int amount = RandomUtils.RandomRange(min, max);
 
-	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
+            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
 
-	    stack = new ItemStack(ore);
-	    stack.setCount(amount);
+            stack = new ItemStack(ore);
+            stack.setCount(amount);
 
-	}
+        }
 
-	return stack;
+        return stack;
+    }
+
+    @Override
+    public boolean isSalvagable() {
+        return true;
     }
 
 }
