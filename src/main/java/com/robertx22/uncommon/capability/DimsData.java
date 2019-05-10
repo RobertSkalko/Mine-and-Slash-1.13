@@ -21,6 +21,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import javax.annotation.Nonnull;
+
 @EventBusSubscriber
 public class DimsData {
 
@@ -152,6 +154,7 @@ public class DimsData {
             }
         }
 
+        @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
             if (cap == Data) {

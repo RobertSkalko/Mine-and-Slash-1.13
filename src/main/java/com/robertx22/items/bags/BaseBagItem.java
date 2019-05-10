@@ -65,9 +65,13 @@ public abstract class BaseBagItem extends Item {
         private final IItemHandler inv = new ItemStackHandler(size);
         private final LazyOptional<IItemHandler> opt = LazyOptional.of(() -> inv);
 
+        @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
+            if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
+            }
+            return LazyOptional.empty();
         }
 
         @Override
