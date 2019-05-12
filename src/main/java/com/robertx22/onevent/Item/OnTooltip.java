@@ -1,14 +1,17 @@
 package com.robertx22.onevent.Item;
 
 import com.robertx22.Styles;
+import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.datasaving.Spell;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
@@ -27,6 +30,10 @@ public class OnTooltip {
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
 
+        if (GuiScreen.isCtrlKeyDown()) {
+            return;
+        }
+
         if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null || !event
                 .getEntityPlayer().world.isRemote) {
             return;
@@ -41,44 +48,50 @@ public class OnTooltip {
         }
 
         UnitData unitdata = Load.Unit(event.getEntityPlayer());
-        Unit unit = null;
-        if (unitdata != null) {
-            unit = unitdata.getUnit();
+
+        if (unitdata == null) {
+            return;
         }
-        if (GuiScreen.isCtrlKeyDown() == false) {
 
-            GearItemData gear = Gear.Load(stack);
+        Unit unit = unitdata.getUnit();
 
-            if (unit != null && gear != null) {
+        if (unit == null) {
+            return;
+        }
 
-                gear.BuildTooltip(stack, event, unit, Load.Unit(event.getEntityPlayer()));
+        GearItemData gear = Gear.Load(stack);
 
-                if (GuiScreen.isShiftKeyDown() == false) {
+        if (gear != null) {
 
+            gear.BuildTooltip(stack, event, unit, Load.Unit(event.getEntityPlayer()));
+
+            if (GuiScreen.isShiftKeyDown() == false) {
+                event.getToolTip()
+                        .add(CLOC.tooltip("press_shift_more_info").setStyle(Styles.BLUE));
+            } else {
+                event.getToolTip()
+                        .add(new TextComponentString("Power LeveL: " + gear.getPowerLevel())
+                                .setStyle(Styles.GOLD));
+            }
+
+        } else {
+
+            SpellItemData data = Spell.Load(stack);
+
+            if (data != null) {
+                BaseSpellItem.BuildTooltip(data, event.getToolTip());
+            } else {
+                MapItemData map = Map.Load(stack);
+                if (map != null) {
+                    event.getToolTip().add(new TextComponentString(""));
                     event.getToolTip()
-                            .add(CLOC.tooltip("press_shift_more_info")
-                                    .setStyle(Styles.BLUE));
-                } else {
-
-                    event.getToolTip()
-                            .add(new TextComponentString("Power LeveL: " + gear.getPowerLevel())
-                                    .setStyle(Styles.GOLD));
+                            .add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(CLOC
+                                    .tooltip("affix_rarity_lootbonus"))
+                                    .appendText(": " + unitdata.getLootBonusPerAffixKills(map) + "%"));
 
                 }
-
             }
-        }
 
-        if (unitdata != null) {
-            MapItemData map = Map.Load(stack);
-            if (map != null) {
-                event.getToolTip().add(new TextComponentString(""));
-                event.getToolTip()
-                        .add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(CLOC
-                                .tooltip("affix_rarity_lootbonus"))
-                                .appendText(": " + unitdata.getLootBonusPerAffixKills(map) + "%"));
-
-            }
         }
 
     }

@@ -53,6 +53,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 @EventBusSubscriber
@@ -222,6 +223,7 @@ public class EntityData {
 
         }
 
+        @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
             if (cap == Data) {

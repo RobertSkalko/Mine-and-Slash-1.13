@@ -59,11 +59,11 @@ public class Suffixes {
         }
     };
 
-    private static HashMap<String, Suffix> all = null;
+    public static HashMap<String, Suffix> all = new HashMap<>();
 
     public static HashMap<String, Suffix> All() {
 
-        if (all == null) {
+        if (all.isEmpty()) {
 
             List<Suffix> list = new ArrayList<Suffix>();
             list.addAll(Weapon);

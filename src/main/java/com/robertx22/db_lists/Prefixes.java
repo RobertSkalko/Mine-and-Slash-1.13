@@ -80,11 +80,11 @@ public class Prefixes {
         }
     };
 
-    private static HashMap<String, Prefix> all = null;
+    public static HashMap<String, Prefix> all = new HashMap<>();
 
     public static HashMap<String, Prefix> All() {
 
-        if (all == null) {
+        if (all.isEmpty()) {
 
             List<Prefix> list = new ArrayList<Prefix>();
             list.addAll(Weapon);

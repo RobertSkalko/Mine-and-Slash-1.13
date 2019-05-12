@@ -10,7 +10,6 @@ import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,11 +19,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class BaseSpellItem extends Item {
@@ -40,12 +36,7 @@ public abstract class BaseSpellItem extends Item {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        SpellItemData data = Spell.Load(stack);
+    public static void BuildTooltip(SpellItemData data, List<ITextComponent> tooltip) {
 
         if (data != null && data.GetSpell() != null) {
 
@@ -77,7 +68,7 @@ public abstract class BaseSpellItem extends Item {
 
             Tooltip.add(CLOC.word("type")
                     .appendText(": ")
-                    .appendText(this.Spell().typeString())
+                    .appendText(spell.typeString())
                     .setStyle(Styles.AQUA), tooltip);
 
             Tooltip.add("", tooltip);
@@ -91,6 +82,7 @@ public abstract class BaseSpellItem extends Item {
             tooltip.add(TooltipUtils.rarity(rarity));
 
         }
+
     }
 
     @Nonnull

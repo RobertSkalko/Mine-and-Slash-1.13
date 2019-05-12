@@ -1,5 +1,6 @@
-package com.robertx22.api;
+package com.robertx22.api.event_subs;
 
+import com.robertx22.api.MineAndSlashEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

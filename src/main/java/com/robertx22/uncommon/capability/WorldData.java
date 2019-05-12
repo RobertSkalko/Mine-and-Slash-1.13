@@ -25,6 +25,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,6 +124,7 @@ public class WorldData {
                     Data.getStorage().readNBT(Data, impl, null, nbt);
                 }
 
+                @Nonnull
                 @Override
                 public <T> LazyOptional<T> getCapability(Capability<T> cap,
                                                          EnumFacing side) {

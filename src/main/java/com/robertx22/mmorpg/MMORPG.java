@@ -3,7 +3,12 @@ package com.robertx22.mmorpg;
 import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
+import com.robertx22.api.DatabaseIMCProcess;
+import com.robertx22.api.msg_types.RuneWordMSG;
+import com.robertx22.api.msg_types.SetMSG;
 import com.robertx22.config.ModConfig;
+import com.robertx22.database.runewords.slots_2.RuneWordBloom;
+import com.robertx22.database.sets.armors.BarbarianArmor;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
@@ -27,6 +32,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
@@ -78,8 +84,8 @@ public class MMORPG {
         ConfigRegister.register(); // MUST BE IN MAIN CLASS
         ConfigRegister.load();  // MUST BE IN MAIN CLASS
 
-        bus.addListener(this::preInit);
-        bus.addListener(this::postInit);
+        bus.addListener(this::commonSetupEvent);
+        bus.addListener(this::interModProcessEvent);
         bus.addListener(this::interModEnqueue);
         bus.addListener(this::loadComplete);
 
@@ -91,7 +97,7 @@ public class MMORPG {
 
     }
 
-    public void preInit(FMLCommonSetupEvent event) {
+    public void commonSetupEvent(FMLCommonSetupEvent event) {
 
         System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
@@ -101,14 +107,20 @@ public class MMORPG {
 
     }
 
-    public void postInit(final InterModProcessEvent event) {
-        System.out.println(Ref.MODID + ":InterModProcessEvent");
-
-    }
-
     private void interModEnqueue(final InterModEnqueueEvent event) {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
+
+        InterModComms.sendTo(Ref.MODID, "test", () -> new SetMSG(new BarbarianArmor()) {
+        });
+        InterModComms.sendTo(Ref.MODID, "test", () -> new RuneWordMSG(new RuneWordBloom()) {
+        });
+
+    }
+
+    private void interModProcessEvent(final InterModProcessEvent event) {
+        System.out.println(Ref.MODID + ":InterModProcessEvent");
+        DatabaseIMCProcess.proc(event);
     }
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
