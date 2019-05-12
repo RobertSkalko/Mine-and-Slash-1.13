@@ -23,6 +23,7 @@ public class GearTypes {
                 put(new Staff().GUID(), new Staff());
                 put(new Axe().GUID(), new Axe());
                 put(new Shield().GUID(), new Shield());
+                put(new Torch().GUID(), new Torch());
 
             }
 

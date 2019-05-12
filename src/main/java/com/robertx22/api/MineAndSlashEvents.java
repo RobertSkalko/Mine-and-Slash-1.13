@@ -13,7 +13,7 @@ public class MineAndSlashEvents {
 
         public GiveExpEvent(EntityPlayer entity, UnitData playerdata, int exp) {
             super(entity);
-            playerCapability = playerdata;
+            this.playerCapability = playerdata;
             this.experience = exp;
             this.setResult(Result.ALLOW);
         }

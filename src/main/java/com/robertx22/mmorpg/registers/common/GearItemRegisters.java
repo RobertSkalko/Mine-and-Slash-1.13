@@ -10,6 +10,7 @@ import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.items.gearitems.baubles.ItemRing;
+import com.robertx22.items.gearitems.offhands.MyTorch;
 import com.robertx22.items.gearitems.offhands.NormalShield;
 import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.items.gearitems.weapons.*;
@@ -68,6 +69,7 @@ public class GearItemRegisters {
             // offhands
             regRarities(new NormalShield(properties, "normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
                     .Rank());
+            regRarities(new MyTorch(), MyTorch.Items, "torch/torch", rarity.Rank());
 
             // weapons
             regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
