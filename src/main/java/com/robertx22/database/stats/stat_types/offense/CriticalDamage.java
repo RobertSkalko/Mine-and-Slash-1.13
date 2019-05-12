@@ -1,49 +1,49 @@
 package com.robertx22.database.stats.stat_types.offense;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.StatEffects.offense.CriticalDamageEffect;
+import com.robertx22.database.stats.stat_effects.offense.CriticalDamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CriticalDamage extends Stat implements IStatEffects {
     public static String GUID = "Critical Damage";
 
     @Override
     public String unlocString() {
-	return "critical_damage";
+        return "critical_damage";
     }
 
     @Override
     public List<IStatEffect> GetEffects() {
-	return Arrays.asList(new CriticalDamageEffect());
+        return Arrays.asList(new CriticalDamageEffect());
     }
 
     public CriticalDamage() {
-	this.BaseFlat = 20;
+        this.BaseFlat = 20;
     }
 
     @Override
     public String Guid() {
-	return GUID;
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return false;
+        return false;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return true;
+        return true;
     }
 
 }

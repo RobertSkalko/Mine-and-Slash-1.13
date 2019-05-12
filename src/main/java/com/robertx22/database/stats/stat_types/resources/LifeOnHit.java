@@ -1,25 +1,25 @@
 package com.robertx22.database.stats.stat_types.resources;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.StatEffects.LifeOnHitEffect;
+import com.robertx22.database.stats.stat_effects.LifeOnHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LifeOnHit extends Stat implements IStatEffects {
     public static String GUID = "Life On Hit";
 
     @Override
     public List<IStatEffect> GetEffects() {
-	return Arrays.asList(new LifeOnHitEffect());
+        return Arrays.asList(new LifeOnHitEffect());
     }
 
     @Override
     public String unlocString() {
-	return "life_on_hit";
+        return "life_on_hit";
     }
 
     public LifeOnHit() {
@@ -27,22 +27,22 @@ public class LifeOnHit extends Stat implements IStatEffects {
 
     @Override
     public String Guid() {
-	return GUID;
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return true;
+        return true;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
+        return false;
     }
 
 }
