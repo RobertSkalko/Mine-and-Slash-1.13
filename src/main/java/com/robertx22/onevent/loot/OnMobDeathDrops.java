@@ -85,7 +85,7 @@ public class OnMobDeathDrops {
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 
-        exp = player.GiveExp((EntityPlayer) entity, exp);
+        exp = player.PostGiveExpEvent((EntityPlayer) entity, exp);
 
         return exp;
 

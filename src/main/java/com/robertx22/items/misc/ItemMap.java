@@ -15,6 +15,7 @@ import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -176,14 +177,26 @@ public class ItemMap extends Item {
     }
 
     private static void spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
-        world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
-        TileMapPortal portal = new TileMapPortal(type);
-        world.setTileEntity(pos, portal);
+
+        Block block = world.getBlockState(pos).getBlock();
+
+        if (block.equals(Blocks.AIR) || block.equals(MapPortalBlock.BLOCK)) {
+
+            world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
+            TileMapPortal portal = new TileMapPortal(type);
+            world.setTileEntity(pos, portal);
+        }
     }
+
+    private static Block FRAME_BLOCK = Blocks.COBBLESTONE;
 
     private static void spawnFrameBlock(World world, BlockPos pos) {
 
-        world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
+        Block block = world.getBlockState(pos).getBlock();
+        if (block.equals(Blocks.AIR) || block.equals(FRAME_BLOCK)) {
+
+            world.setBlockState(pos, FRAME_BLOCK.getDefaultState(), 2);
+        }
     }
 
 }

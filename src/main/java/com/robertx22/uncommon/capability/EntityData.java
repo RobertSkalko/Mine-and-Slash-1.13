@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.Styles;
+import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.dimensions.DimensionConfig;
 import com.robertx22.config.dimensions.DimensionsContainer;
@@ -42,6 +43,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -76,6 +78,8 @@ public class EntityData {
     private static final String NEWBIE_STATUS = "is_a_newbie";
 
     public interface UnitData extends ICommonCapability {
+
+        int PostGiveExpEvent(EntityPlayer player, int exp);
 
         boolean isNewbie();
 
@@ -354,7 +358,7 @@ public class EntityData {
                     }
 
                 } else {
-                    lvl = GetMobLevelByDistanceFromSpawn(entity, config);
+                    lvl = GetMobLevelByDistanceFromSpawn(entity, config) + config.MINIMUM_MOB_LEVEL - 1;
                 }
 
                 lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
@@ -384,9 +388,17 @@ public class EntityData {
         }
 
         @Override
-        public int GiveExp(EntityPlayer player, int i) {
+        public int PostGiveExpEvent(EntityPlayer player, int i) {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
+
+            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(player, this, i));
+
+            return i;
+        }
+
+        @Override
+        public int GiveExp(EntityPlayer player, int i) {
 
             setExp(exp + i);
 
@@ -401,9 +413,7 @@ public class EntityData {
 
                 return i;
             }
-
             return i;
-
         }
 
         @Override

@@ -1,4 +1,4 @@
-package com.robertx22.structures;
+package com.robertx22.uncommon.structures;
 
 import com.robertx22.mmorpg.Ref;
 
