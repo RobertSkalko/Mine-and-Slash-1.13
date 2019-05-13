@@ -15,13 +15,18 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Mod.EventBusSubscriber
-public class MyTorch extends Item {
+public class MyTorch extends Item implements IEffectItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public MyTorch() {
@@ -41,8 +46,12 @@ public class MyTorch extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player,
                                                     EnumHand handIn) {
-
         ItemStack itemstack = player.getHeldItem(handIn);
+
+        if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
+            return new ActionResult<>(EnumActionResult.FAIL, itemstack);
+        }
+
         player.setActiveHand(handIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
@@ -51,44 +60,39 @@ public class MyTorch extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
                                      EntityLivingBase player) {
 
-        if (player instanceof EntityPlayer) {
+        // stops using it when you want to right click a spell
+        if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
+            return stack;
+        }
 
-            EntityPlayer p = (EntityPlayer) player;
+        if (worldIn.isRemote == false) {
 
-            // stops using it when you want to right click a spell
-            if (p.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
+            EntityData.UnitData data = Load.Unit(player);
 
-                if (worldIn.isRemote == false) {
+            float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data.getUnit()
+                    .manaData().Value);
 
-                    EntityData.UnitData data = Load.Unit(player);
+            float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data.getUnit()
+                    .energyData().Value);
 
-                    float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data
-                            .getUnit()
-                            .manaData().Value);
-
-                    float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data
-                            .getUnit()
-                            .energyData().Value);
-
-                    if (manarestored > energyrestored) {
-                        if (manarestored > 0) {
-                            data.restoreMana(manarestored);
-                        }
-                    } else {
-                        if (energyrestored > 0) {
-                            data.restoreEnergy(energyrestored);
-                        }
-                    }
-
-                    player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 3));
-                    player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 350, 2));
-                } else {
-                    ParticleUtils.spawnEnergyRestoreParticles(player, 4);
-                    ParticleUtils.spawnManaRestoreParticles(player, 4);
-                    player.playSound(SoundEvents.AMBIENT_UNDERWATER_ENTER, 0.3F, 0);
+            if (manarestored > energyrestored) {
+                if (manarestored > 0) {
+                    data.restoreMana(manarestored);
+                }
+            } else {
+                if (energyrestored > 0) {
+                    data.restoreEnergy(energyrestored);
                 }
             }
+
+            player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 3));
+            player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 350, 2));
+        } else {
+            ParticleUtils.spawnEnergyRestoreParticles(player, 4);
+            ParticleUtils.spawnManaRestoreParticles(player, 4);
+            player.playSound(SoundEvents.AMBIENT_UNDERWATER_ENTER, 0.3F, 0);
         }
+
         return stack;
     }
 
@@ -102,5 +106,18 @@ public class MyTorch extends Item {
         }
         return 0;
 
+    }
+
+    @Override
+    public List<ITextComponent> getEffectTooltip(boolean moreInfo) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new TextComponentString(""));
+        list.add(new TextComponentString(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
+        if (moreInfo) {
+            list.add(new TextComponentString(color() + "Restores Mana/Energy Based on Missing Amount"));
+        }
+        return list;
     }
 }

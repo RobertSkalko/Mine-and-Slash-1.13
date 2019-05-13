@@ -5,11 +5,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class NormalShield extends ItemShield {
+public class NormalShield extends ItemShield implements IEffectItem {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -26,6 +31,20 @@ public class NormalShield extends ItemShield {
     @Override
     public boolean isShield(ItemStack stack, @Nullable EntityLivingBase entity) {
         return true;
+
+    }
+
+    @Override
+    public List<ITextComponent> getEffectTooltip(boolean moreInfo) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new TextComponentString(""));
+        list.add(new TextComponentString(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
+        if (moreInfo) {
+            list.add(new TextComponentString(color() + "DMG Reduced Based on Block Strength"));
+        }
+        return list;
     }
 
 }

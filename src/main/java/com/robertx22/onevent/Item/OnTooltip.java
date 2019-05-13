@@ -2,6 +2,7 @@ package com.robertx22.onevent.Item;
 
 import com.robertx22.Styles;
 import com.robertx22.items.gearitems.bases.BaseSpellItem;
+import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
@@ -92,6 +93,12 @@ public class OnTooltip {
                 }
             }
 
+        }
+
+        if (stack.getItem() instanceof IEffectItem) {
+            IEffectItem effect = (IEffectItem) stack.getItem();
+            event.getToolTip()
+                    .addAll(effect.getEffectTooltip(GuiScreen.isShiftKeyDown()));
         }
 
     }

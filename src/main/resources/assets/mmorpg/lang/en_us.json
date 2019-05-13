@@ -49,6 +49,12 @@
 
     "_comment": "RARITY ITEM NAMES",
 	
+	"item.mmorpg.torch.torch0": "§7Torch",
+    "item.mmorpg.torch.torch1": "§aTorch",
+    "item.mmorpg.torch.torch2": "§eTorch",
+    "item.mmorpg.torch.torch3": "§9Torch",
+    "item.mmorpg.torch.torch4": "§6Torch",
+    "item.mmorpg.torch.torch5": "§dTorch",
 	"item.mmorpg.shields.normal_shield0": "§7Shield",
 	"item.mmorpg.shields.normal_shield1": "§aShield",
 	"item.mmorpg.shields.normal_shield2": "§eShield",
