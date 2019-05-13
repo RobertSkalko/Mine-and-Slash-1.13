@@ -13,6 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.stream.Collectors;
+
 public class CompatibleItemLootGen extends BaseLootGen {
 
     EntityData.UnitData mob;
@@ -50,16 +52,22 @@ public class CompatibleItemLootGen extends BaseLootGen {
     public static ItemStack gen(int level) {
 
         ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
-                .getAll()));
+                .getAll()
+                .stream()
+                .filter(x -> x.statsAddedOnlyOnDrop == false)
+                .collect(Collectors.toList())));
 
-        ResourceLocation res = new ResourceLocation(config.registryName);
+        if (config != null) {
+            ResourceLocation res = new ResourceLocation(config.registryName);
 
-        if (ForgeRegistries.ITEMS.containsKey(res)) {
+            if (ForgeRegistries.ITEMS.containsKey(res)) {
 
-            ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+                ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
 
-            return config.create(stack, level);
+                return config.create(stack, level);
+            }
         }
+
         return ItemStack.EMPTY;
     }
 

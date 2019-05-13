@@ -10,11 +10,11 @@ import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.RunedGearGen;
 import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 
@@ -31,7 +31,6 @@ public class ConfigItem implements IWeighted {
         NORMAL, RUNED, UNIQUE
     }
 
-    // public String itemID = "modid:itemid";
     public String itemType = "Sword";
 
     public int dropWeight = 1000;
@@ -44,14 +43,15 @@ public class ConfigItem implements IWeighted {
     public int minRarity = 0;
     public int maxRarity = 5;
 
-    public boolean itemIsPlayerLevel = true;
-
-    public int itemLevelIfDoesntUsePlayerLevel = 1;
-
     public int levelVariance = 0;
 
     public String uniqueId = "";
     public boolean uniqueIsRandom = true;
+
+    public int minLevel = 1;
+    public int maxLevel = 100;
+
+    public boolean statsAddedOnlyOnDrop = false;
 
     public boolean isValid() throws Exception {
 
@@ -63,8 +63,7 @@ public class ConfigItem implements IWeighted {
                 }
             }
             if (matches == false) {
-                System.out.println("Unique Id doesn't exist");
-                return false;
+                throw new Exception("Unique Id doesn't exist: " + this.uniqueId);
             }
         }
 
@@ -75,20 +74,19 @@ public class ConfigItem implements IWeighted {
             }
         }
         if (matchtype == false) {
-            System.out.println("Gear Type doesn't exist");
-            return false;
+            throw new Exception("Gear Type doesn't exist: " + this.itemType);
         }
-
         if (normalItemWeight < 1 && this.runedItemWeight < 1 && this.uniqueItemWeight < 1) {
-            System.out.println("Weights can't all be 0");
-            return false;
+            throw new Exception("Weights can't all be 0 on an item: ");
         }
 
         return true;
 
     }
-
+    
     public ItemStack create(ItemStack stack, int level) {
+
+        level = this.getLevel(level);
 
         switch (getCreationType()) {
             case NORMAL:
@@ -114,8 +112,8 @@ public class ConfigItem implements IWeighted {
         return result.type;
     }
 
-    private int getLevel(EntityData.UnitData data) {
-        return this.itemIsPlayerLevel ? data.getLevel() : this.itemLevelIfDoesntUsePlayerLevel;
+    private int getLevel(int playerlevel) {
+        return MathHelper.clamp(playerlevel, minLevel, maxLevel);
     }
 
     private ItemStack createNormal(ItemStack stack, int level) {

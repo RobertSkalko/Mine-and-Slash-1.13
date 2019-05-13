@@ -15,7 +15,7 @@ public class ConfigItems {
 
     public static ConfigItems INSTANCE = new ConfigItems();
 
-    String version = "1.0";
+    String version = "1.1";
 
     public HashMap<String, ConfigItem> map = new HashMap();
 

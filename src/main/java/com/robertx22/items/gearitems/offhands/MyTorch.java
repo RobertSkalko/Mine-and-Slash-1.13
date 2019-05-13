@@ -27,7 +27,7 @@ public class MyTorch extends Item {
 
     @Override
     public EnumAction getUseAction(ItemStack stack) {
-        return EnumAction.BLOCK;
+        return EnumAction.EAT;
     }
 
     @Override
