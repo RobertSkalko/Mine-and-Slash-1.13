@@ -83,7 +83,7 @@ public class ConfigItem implements IWeighted {
         return true;
 
     }
-    
+
     public ItemStack create(ItemStack stack, int level) {
 
         level = this.getLevel(level);

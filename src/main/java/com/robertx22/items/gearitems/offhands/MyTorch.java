@@ -1,10 +1,13 @@
 package com.robertx22.items.gearitems.offhands;
 
+import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,12 +30,12 @@ public class MyTorch extends Item {
 
     @Override
     public EnumAction getUseAction(ItemStack stack) {
-        return EnumAction.EAT;
+        return EnumAction.NONE;
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 10;
+        return 20;
     }
 
     @Override
@@ -48,28 +51,44 @@ public class MyTorch extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
                                      EntityLivingBase player) {
 
-        if (worldIn.isRemote == false) {
+        if (player instanceof EntityPlayer) {
 
-            EntityData.UnitData data = Load.Unit(player);
+            EntityPlayer p = (EntityPlayer) player;
 
-            float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data.getUnit()
-                    .manaData().Value);
+            // stops using it when you want to right click a spell
+            if (p.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
 
-            float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data.getUnit()
-                    .energyData().Value);
+                if (worldIn.isRemote == false) {
 
-            if (manarestored > 0) {
-                data.restoreMana(manarestored);
+                    EntityData.UnitData data = Load.Unit(player);
+
+                    float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data
+                            .getUnit()
+                            .manaData().Value);
+
+                    float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data
+                            .getUnit()
+                            .energyData().Value);
+
+                    if (manarestored > energyrestored) {
+                        if (manarestored > 0) {
+                            data.restoreMana(manarestored);
+                        }
+                    } else {
+                        if (energyrestored > 0) {
+                            data.restoreEnergy(energyrestored);
+                        }
+                    }
+
+                    player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 3));
+                    player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 350, 2));
+                } else {
+                    ParticleUtils.spawnEnergyRestoreParticles(player, 4);
+                    ParticleUtils.spawnManaRestoreParticles(player, 4);
+                    player.playSound(SoundEvents.AMBIENT_UNDERWATER_ENTER, 0.3F, 0);
+                }
             }
-
-            if (energyrestored > 0) {
-                data.restoreEnergy(energyrestored);
-            }
-
-            player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 350, 2));
-            player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 350, 2));
         }
-
         return stack;
     }
 
@@ -78,7 +97,7 @@ public class MyTorch extends Item {
         float missing = max - current;
 
         if (missing > 20) {
-            missing /= 35;
+            missing /= 20;
             return missing;
         }
         return 0;
