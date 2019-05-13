@@ -23,7 +23,7 @@ public class OnHurt {
         if (event.getSource() instanceof MyDamageSource) {
             return;
         }
-
+        
         // mobs take much less damage from any source other than my mods. This is
         // required or else there's no point in getting legendary weapons if a diamond
         // sword more damage

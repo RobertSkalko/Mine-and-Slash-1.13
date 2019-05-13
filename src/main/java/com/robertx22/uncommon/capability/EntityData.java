@@ -77,8 +77,13 @@ public class EntityData {
     private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
+    private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
 
     public interface UnitData extends ICommonCapability {
+
+        void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
+
+        boolean shouldDropLoot(EntityLivingBase entity);
 
         int PostGiveExpEvent(EntityPlayer player, int exp);
 
@@ -265,6 +270,8 @@ public class EntityData {
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
 
+        float dmgByNonPlayers = 0;
+
         float energy;
         float mana;
 
@@ -272,6 +279,7 @@ public class EntityData {
         public NBTTagCompound getNBT() {
             nbt.putFloat(MANA, mana);
             nbt.putFloat(ENERGY, energy);
+            nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
             nbt.putInt(LEVEL, level);
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
@@ -303,6 +311,7 @@ public class EntityData {
             this.uuid = value.getString(UUID);
             this.name = value.getString(NAME);
             this.energy = value.getFloat(ENERGY);
+            this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
             this.mana = value.getFloat(MANA);
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
@@ -387,6 +396,27 @@ public class EntityData {
 
             return lvl;
 
+        }
+
+        @Override
+        public void onDamage(EntityLivingBase attacker, EntityLivingBase defender,
+                             float dmg) {
+
+            if (attacker instanceof EntityPlayer == false) {
+                if (defender instanceof EntityPlayer == false) {
+                    this.dmgByNonPlayers += dmg;
+                }
+            }
+        }
+
+        @Override
+        public boolean shouldDropLoot(EntityLivingBase entity) {
+
+            if (entity.getMaxHealth() * 0.5F > this.dmgByNonPlayers) {
+                return true;
+            }
+
+            return false;
         }
 
         @Override

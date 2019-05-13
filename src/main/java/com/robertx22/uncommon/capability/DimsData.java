@@ -82,7 +82,7 @@ public class DimsData {
 
         @Override
         public void add(DimensionType type, IWP iwp) {
-            this.mapdata.dimDatas.put(type.getRegistryName()
+            this.mapdata.dimDatas.put(DimensionType.getKey(type)
                     .toString(), new DimensionData(type, iwp));
 
         }

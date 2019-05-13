@@ -56,8 +56,10 @@ public class MapManager {
 
         ModDimension dim = WorldProviders.All.get(IWPType.GUID()).moddim;
 
-        return DimensionManager.registerDimension(dim.getRegistryName(), dim, new PacketBuffer(Unpooled
-                .wrappedBuffer(new byte[]{})));
+        ResourceLocation loc = new ResourceLocation(UUID.randomUUID()
+                .toString() + dim.getRegistryName().toString());
+
+        return DimensionManager.registerDimension(loc, dim, new PacketBuffer(Unpooled.wrappedBuffer(new byte[]{})));
 
     }
 

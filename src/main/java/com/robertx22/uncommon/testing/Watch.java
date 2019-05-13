@@ -25,6 +25,29 @@ public class Watch {
 
     }
 
+    public String getPrint() {
+
+        stop.stop();
+        Long time = stop.getTime(unit);
+        if (time > min) {
+            return "Action took: " + time + " " + unit.name().toLowerCase();
+
+        }
+        return "";
+
+    }
+
+    public void print(String str) {
+
+        stop.stop();
+        Long time = stop.getTime(unit);
+        if (time > min) {
+            System.out.println(str + "Action took: " + time + " " + unit.name()
+                    .toLowerCase());
+
+        }
+    }
+
     public void print() {
 
         stop.stop();
