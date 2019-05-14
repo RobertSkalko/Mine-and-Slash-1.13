@@ -16,7 +16,7 @@ public class EnergyRegenPotion extends SpellPotionBase {
     private EnergyRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.energy_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, "energy_regen"));
 
     }
 

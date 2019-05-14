@@ -16,7 +16,7 @@ public class AoeRegenPotion extends SpellPotionBase {
     private AoeRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.aoe_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, "aoe_regen"));
 
     }
 

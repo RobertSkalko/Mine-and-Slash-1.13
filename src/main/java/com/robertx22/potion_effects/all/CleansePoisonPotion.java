@@ -15,7 +15,7 @@ public class CleansePoisonPotion extends SpellPotionBase {
     private CleansePoisonPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "effect.cleanse_poison"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, "cleanse_poison"));
 
     }
 

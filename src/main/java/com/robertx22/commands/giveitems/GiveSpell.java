@@ -31,8 +31,8 @@ public class GiveSpell {
                                                         .executes(e -> execute(e.getSource(), EntityArgument
                                                                 .getPlayer(e, "target"), StringArgumentType
                                                                 .getString(e, "type"), IntegerArgumentType
-                                                                .getInteger(e, "rarity"), IntegerArgumentType
                                                                 .getInteger(e, "level"), IntegerArgumentType
+                                                                .getInteger(e, "rarity"), IntegerArgumentType
                                                                 .getInteger(e, "amount")
 
                                                         ))))))));
@@ -52,6 +52,7 @@ public class GiveSpell {
         }
 
         SpellBlueprint blueprint = new SpellBlueprint(lvl);
+        blueprint.LevelRange = false;
         if (rarity > -1) {
             blueprint.SetSpecificRarity(rarity);
         }
