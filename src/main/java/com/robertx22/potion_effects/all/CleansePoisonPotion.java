@@ -15,29 +15,18 @@ public class CleansePoisonPotion extends SpellPotionBase {
     private CleansePoisonPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "cleanse_poison"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
     @Override
-    public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/cleanse_poison.png");
-    }
-
-    private static void apply(EntityLivingBase entity) {
-
-    }
-
-    @Override
-    public boolean canSelfCast() {
-        return true;
+    public String GUID() {
+        return "cleanse_poison";
     }
 
     @Override
     public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
                          int amplifier) {
-
-        apply(target);
 
     }
 

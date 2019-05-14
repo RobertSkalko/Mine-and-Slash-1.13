@@ -16,17 +16,13 @@ public class ManaRegenPotion extends SpellPotionBase {
     private ManaRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "mana_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
     @Override
-    public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/mana_regen.png");
-    }
-
-    private static void apply(EntityLivingBase entity) {
-
+    public String GUID() {
+        return "mana_regen";
     }
 
     @Override
@@ -37,8 +33,6 @@ public class ManaRegenPotion extends SpellPotionBase {
     @Override
     public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
                          int amplifier) {
-
-        apply(target);
 
     }
 

@@ -16,29 +16,18 @@ public class AoeRegenPotion extends SpellPotionBase {
     private AoeRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "aoe_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
     @Override
-    public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/aoe_regen.png");
-    }
-
-    private static void apply(EntityLivingBase entity) {
-
-    }
-
-    @Override
-    public boolean canSelfCast() {
-        return true;
+    public String GUID() {
+        return "aoe_regen";
     }
 
     @Override
     public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
                          int amplifier) {
-
-        apply(target);
 
     }
 

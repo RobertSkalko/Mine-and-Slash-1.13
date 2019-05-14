@@ -16,29 +16,18 @@ public class HealthRegenPotion extends SpellPotionBase {
     private HealthRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "self_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
     @Override
-    public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/regen.png");
-    }
-
-    private static void apply(EntityLivingBase entity) {
-
-    }
-
-    @Override
-    public boolean canSelfCast() {
-        return true;
+    public String GUID() {
+        return "self_regen";
     }
 
     @Override
     public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
                          int amplifier) {
-
-        apply(target);
 
     }
 

@@ -1,7 +1,6 @@
 package com.robertx22.onevent.Item;
 
 import com.robertx22.Styles;
-import com.robertx22.items.gearitems.bases.BaseSpellItem;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
@@ -65,7 +64,7 @@ public class OnTooltip {
 
         if (gear != null) {
 
-            gear.BuildTooltip(stack, event, unit, Load.Unit(event.getEntityPlayer()));
+            gear.BuildTooltip(stack, event, unit, unitdata);
 
             if (GuiScreen.isShiftKeyDown() == false) {
                 event.getToolTip()
@@ -77,11 +76,10 @@ public class OnTooltip {
             }
 
         } else {
-
             SpellItemData data = Spell.Load(stack);
 
             if (data != null) {
-                BaseSpellItem.BuildTooltip(data, event.getToolTip());
+                data.BuildTooltip(stack, event, unit, unitdata);
             } else {
                 MapItemData map = Map.Load(stack);
                 if (map != null) {

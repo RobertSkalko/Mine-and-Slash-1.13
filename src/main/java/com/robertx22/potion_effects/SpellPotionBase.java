@@ -1,5 +1,6 @@
 package com.robertx22.potion_effects;
 
+import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
@@ -17,7 +18,10 @@ import java.util.List;
 public abstract class SpellPotionBase extends Potion {
 
     public abstract void performEffectEverySetTime(EntityLivingBase entityLivingBaseIn,
+
                                                    int amplifier);
+
+    public abstract String GUID();
 
     public abstract int performEachXTicks();
 
@@ -25,6 +29,10 @@ public abstract class SpellPotionBase extends Potion {
 
         return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getBoundingBox()
                 .grow(radius));
+    }
+
+    public ResourceLocation getIconTexture() {
+        return new ResourceLocation(Ref.MODID, "textures/status_effects/" + GUID() + ".png");
     }
 
     @Override
@@ -140,10 +148,6 @@ public abstract class SpellPotionBase extends Potion {
         hash = 31 * hash + getLiquidColor();
         hash = 31 * hash + (isBadEffect() ? 1 : 0);
         return hash;
-    }
-
-    public ResourceLocation getIconTexture() {
-        return null;
     }
 
     @OnlyIn(Dist.CLIENT)

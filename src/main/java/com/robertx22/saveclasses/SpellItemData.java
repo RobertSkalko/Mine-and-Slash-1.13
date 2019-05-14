@@ -1,22 +1,34 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.Styles;
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Spells;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
+import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.Tooltip;
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+import java.util.List;
 
 @Storable
-public class SpellItemData implements ISalvagable {
+public class SpellItemData implements ISalvagable, ITooltip {
 
     public SpellItemData() {
 
@@ -35,7 +47,7 @@ public class SpellItemData implements ISalvagable {
     @Store
     public String spellGUID;
     @Store
-    public int rarity;
+    public int rarity = 0;
     @Store
     public int manaCostPercent = 100;
     @Store
@@ -176,4 +188,52 @@ public class SpellItemData implements ISalvagable {
         return true;
     }
 
+    @Override
+    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
+                             EntityData.UnitData data) {
+
+        List<ITextComponent> tooltip = event.getToolTip();
+
+        if (GetSpell() != null) {
+
+            BaseSpell spell = GetSpell();
+
+            ItemRarity rarity = Rarities.Items.get(this.rarity);
+
+            tooltip.add(TooltipUtils.level(level));
+            Tooltip.add("", tooltip);
+
+            boolean moreInfo = GuiScreen.isShiftKeyDown();
+
+            Tooltip.add(CLOC.word("stats")
+                    .appendText(": ")
+                    .setStyle(Styles.GREEN), tooltip);
+
+            Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
+
+            Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetBaseDesc(moreInfo)), tooltip);
+
+            if (spell.hasScalingValue()) {
+                Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetScalingDesc(moreInfo)), tooltip);
+            }
+
+            Tooltip.add("", tooltip);
+
+            Tooltip.add(CLOC.word("type")
+                    .appendText(": ")
+                    .appendText(spell.typeString())
+                    .setStyle(Styles.AQUA), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            Tooltip.add(GetSpell().GetDescription(this)
+                    .setStyle(Styles.LIGHT_PURPLE), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            tooltip.add(TooltipUtils.rarity(rarity));
+
+        }
+
+    }
 }

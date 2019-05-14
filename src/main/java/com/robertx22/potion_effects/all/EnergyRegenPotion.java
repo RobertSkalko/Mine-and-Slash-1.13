@@ -16,18 +16,13 @@ public class EnergyRegenPotion extends SpellPotionBase {
     private EnergyRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
         super(false, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "energy_regen"));
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
     @Override
-    public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/energy_regen.png");
-    }
-
-    @Override
-    public boolean canSelfCast() {
-        return true;
+    public String GUID() {
+        return "energy_regen";
     }
 
     @Override
