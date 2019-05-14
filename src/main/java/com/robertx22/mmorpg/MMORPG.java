@@ -107,8 +107,8 @@ public class MMORPG {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
 
-        // InterModComms.sendTo(Ref.MODID, "test", () -> new SetMSG(new BarbarianArmor()) {
-        //});
+        // InterModComms.sendTo(Ref.MODID, "test", () -> new CompatibleItemMSG("itemid", new MyConfigItem()) {
+        // });
 
     }
 

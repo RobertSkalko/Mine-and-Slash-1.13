@@ -61,22 +61,18 @@ public class Suffixes {
 
     public static HashMap<String, Suffix> all = new HashMap<>();
 
-    public static HashMap<String, Suffix> All() {
+    static {
+        List<Suffix> list = new ArrayList<Suffix>();
+        list.addAll(Weapon);
+        list.addAll(Armor);
+        list.addAll(Jewerly);
 
-        if (all.isEmpty()) {
-
-            List<Suffix> list = new ArrayList<Suffix>();
-            list.addAll(Weapon);
-            list.addAll(Armor);
-            list.addAll(Jewerly);
-
-            HashMap<String, Suffix> map = new HashMap<String, Suffix>();
-
-            for (Suffix s : list) {
-                map.put(s.GUID(), s);
-            }
-            all = map;
+        for (Suffix s : list) {
+            all.put(s.GUID(), s);
         }
+    }
+
+    public static HashMap<String, Suffix> All() {
 
         return all;
     }
