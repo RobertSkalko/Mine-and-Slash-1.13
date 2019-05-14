@@ -7,21 +7,11 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
 public class EnergyRegenPotion extends SpellPotionBase {
 
     public static final EnergyRegenPotion INSTANCE = new EnergyRegenPotion();
-
-    @SubscribeEvent
-    public static void register(RegistryEvent.Register<Potion> event) {
-        event.getRegistry().register(INSTANCE);
-    }
 
     private EnergyRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn

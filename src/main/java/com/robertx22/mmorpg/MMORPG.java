@@ -24,6 +24,7 @@ import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -194,6 +195,10 @@ public class MMORPG {
         }
 
         Network.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
+
+        if (entity instanceof EntityPlayer) {
+            sendToClient(msg, (EntityPlayerMP) entity);
+        }
 
     }
 
