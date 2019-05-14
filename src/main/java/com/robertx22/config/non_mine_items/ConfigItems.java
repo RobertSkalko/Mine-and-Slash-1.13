@@ -21,15 +21,21 @@ public class ConfigItems {
 
     private List<ConfigItem> list = new ArrayList();
 
+    public void refreshList() {
+
+        list = new ArrayList<>();
+
+        for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
+            entry.getValue().registryName = entry.getKey();
+            list.add(entry.getValue());
+
+        }
+    }
+
     public List<ConfigItem> getAll() {
 
         if (list.isEmpty()) {
-
-            for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
-                entry.getValue().registryName = entry.getKey();
-                list.add(entry.getValue());
-
-            }
+            refreshList();
         }
 
         return list;

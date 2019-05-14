@@ -15,7 +15,7 @@ public class DatabaseIMCProcess {
 
     private static void process(MineAndSlashMSG MSG) {
 
-        System.out.println("Registering: " + MSG.toString());
+        System.out.println("Registering Mine and Slash MSG: " + MSG.toString());
         MSG.register();
 
     }
