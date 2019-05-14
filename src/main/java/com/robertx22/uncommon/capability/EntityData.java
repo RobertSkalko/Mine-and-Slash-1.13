@@ -412,7 +412,8 @@ public class EntityData {
         @Override
         public boolean shouldDropLoot(EntityLivingBase entity) {
 
-            if (entity.getMaxHealth() * 0.5F > this.dmgByNonPlayers) {
+            if (entity.getMaxHealth() * ModConfig.INSTANCE.Server.STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT
+                    .get() >= this.dmgByNonPlayers) {
                 return true;
             }
 

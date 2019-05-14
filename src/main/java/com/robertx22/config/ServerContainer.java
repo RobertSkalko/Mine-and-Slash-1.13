@@ -23,6 +23,7 @@ public class ServerContainer {
     public DoubleValue NON_MOD_HEAL_MULTI;
     public DoubleValue EXPERIENCE_MULTIPLIER;
     public DoubleValue UNARMED_ENERGY_COST;
+    public DoubleValue STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT;
 
     public EnumValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
 
@@ -72,6 +73,10 @@ public class ServerContainer {
         NON_MOD_DAMAGE_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("NON_MOD_DAMAGE_MULTI", 0.03D, 0D, 100000D);
+
+        STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT", 0.5D, 0D, 1D);
 
         MOB_ENVIRONMENT_DAMAGE_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
