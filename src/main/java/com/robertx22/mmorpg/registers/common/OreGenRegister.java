@@ -5,12 +5,10 @@ import com.robertx22.items.ores.ItemOre;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.CompositeFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.MinableConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraftforge.common.BiomeManager;
-
-import java.util.Objects;
 
 public class OreGenRegister {
     public static void register() {
@@ -33,17 +31,15 @@ public class OreGenRegister {
 
     public static void genOre(Block block, int amount) {
 
-        CountRangeConfig count = new CountRangeConfig(amount, 0, 0, 60);
+        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
+        MinableConfig minableConfig = new MinableConfig(MinableConfig.IS_ROCK, block.getDefaultState(), 8);
+        CompositeFeature<MinableConfig, CountRangeConfig> feature = Biome.createCompositeFeature(Feature.MINABLE, minableConfig, Biome.COUNT_RANGE, countConfig);
 
-        for (BiomeManager.BiomeType biomeType : BiomeManager.BiomeType.values()) {
-            for (BiomeManager.BiomeEntry biomeEntry : Objects.requireNonNull(BiomeManager.getBiomes(biomeType))) {
-                biomeEntry.biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome
-                        .createCompositeFeature(Feature.MINABLE, new MinableConfig(MinableConfig.IS_ROCK, block
-                                .getDefaultState(), 8), Biome.COUNT_RANGE, count
+        for (Biome biome : Biome.BIOMES) {
+            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);
 
-                        ));
-            }
         }
+
     }
 
 }

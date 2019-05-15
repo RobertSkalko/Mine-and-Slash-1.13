@@ -33,17 +33,17 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         Tooltip.add("", tooltip);
-        Tooltip.add(CLOC.word("bonus_success_rate")
-                .appendText(": " + this.bonusSuccessChance() + "%")
-                .setStyle(Styles.GOLD), tooltip);
+        Tooltip.add(Styles.GOLDCOMP()
+                .appendSibling(CLOC.word("bonus_success_rate")
+                        .appendText(": " + this.bonusSuccessChance() + "%")), tooltip);
 
-        Tooltip.add(CLOC.word("major_success_bonus")
-                .appendText(": " + this.critOnSuccessChance() + "%")
-                .setStyle(Styles.GOLD), tooltip);
-        
-        Tooltip.add(CLOC.word("major_failure_chance")
-                .appendText(": " + this.majorFailureChance() + "%")
-                .setStyle(Styles.GOLD), tooltip);
+        Tooltip.add(Styles.GOLDCOMP()
+                .appendSibling(CLOC.word("major_success_bonus")
+                        .appendText(": " + this.critOnSuccessChance() + "%")), tooltip);
+
+        Tooltip.add(Styles.GOLDCOMP()
+                .appendSibling(CLOC.word("major_failure_chance")
+                        .appendText(": " + this.majorFailureChance() + "%")), tooltip);
 
     }
 

@@ -80,26 +80,27 @@ public class ItemMap extends Item {
             }
 
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.word("tier")
-                    .appendText(": " + data.tier)
-                    .setStyle(Styles.GOLD), tooltip);
+            Tooltip.add(Styles.GOLDCOMP()
+                    .appendSibling(CLOC.word("tier")
+                            .appendText(": " + data.tier)), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.word("minutes")
-                    .appendText(": " + data.minutes)
-                    .setStyle(Styles.GREEN), tooltip);
+            Tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(CLOC.word("minutes")
+                            .appendText(": " + data.minutes)), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.word("bonus_loot_amount")
-                    .appendText(": " + data.getBonusLootAmount() + "%")
-                    .setStyle(Styles.YELLOW), tooltip);
+            Tooltip.add(Styles.YELLOWCOMP()
+                    .appendSibling(CLOC.word("bonus_loot_amount")
+                            .appendText(": " + data.getBonusLootAmount() + "%")), tooltip);
 
             Tooltip.add("", tooltip);
 
             Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
 
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.tooltip("put_in_mapdevice").setStyle(Styles.BLUE), tooltip);
+            Tooltip.add(Styles.BLUECOMP()
+                    .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
 
         }
 
@@ -127,7 +128,7 @@ public class ItemMap extends Item {
             str.appendSibling(CLOC.word("all_affixes"));
         }
 
-        Tooltip.add(str.setStyle(Styles.GREEN), tooltip);
+        Tooltip.add(Styles.GREENCOMP().appendSibling(str), tooltip);
 
         for (MapAffixData affix : affixes) {
 

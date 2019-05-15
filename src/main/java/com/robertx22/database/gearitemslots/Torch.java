@@ -2,8 +2,9 @@ package com.robertx22.database.gearitemslots;
 
 import com.robertx22.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.EnergyFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.items.gearitems.offhands.MyTorch;
 import net.minecraft.item.Item;
@@ -36,7 +37,7 @@ public class Torch extends BaseOffHand {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new ArmorFlat());
+        return Arrays.asList(new ManaFlat(), new EnergyFlat());
     }
 
 }

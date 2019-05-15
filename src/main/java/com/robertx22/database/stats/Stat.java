@@ -83,11 +83,11 @@ public abstract class Stat implements IGUID {
         }
 
         if (IsSet) {
-            return new TextComponentString(" * ").appendSibling(str)
-                    .appendText(": ")
-                    .setStyle(Styles.RED);
+            return Styles.REDCOMP()
+                    .appendSibling(new TextComponentString(" * ").appendSibling(str)
+                            .appendText(": "));
         } else {
-            return str.appendText(": ").setStyle(Styles.RED);
+            return Styles.REDCOMP().appendSibling(str.appendText(": "));
         }
     }
 

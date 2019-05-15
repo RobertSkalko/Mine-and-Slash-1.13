@@ -286,30 +286,31 @@ public class Hearthstone extends Item {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(CLOC.word("distance")
-                .appendText(" " + this.blocksTeleported)
-                .appendText(" ")
-                .appendSibling(CLOC.word("blocks").appendText(". "))
-                .setStyle(Styles.BLUE), tooltip);
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.word("distance")
+                        .appendText(" " + this.blocksTeleported)
+                        .appendText(" ")
+                        .appendSibling(CLOC.word("blocks").appendText(". "))), tooltip);
 
-        Tooltip.add(CLOC.word("uses")
-                .appendText(": " + this.totalUses)
-                .appendText(" ")
-                .appendSibling(CLOC.word("left"))
-                .appendText(": " + this.getRemainingUses(stack))
-                .setStyle(Styles.GREEN), tooltip);
+        Tooltip.add(Styles.GREENCOMP()
+                .appendSibling(CLOC.word("uses")
+                        .appendText(": " + this.totalUses)
+                        .appendText(" ")
+                        .appendSibling(CLOC.word("left"))
+                        .appendText(": " + this.getRemainingUses(stack))), tooltip);
 
-        Tooltip.add(CLOC.word("activation_time")
-                .appendText(": " + this.activationTimeSeconds + " ")
-                .appendSibling(CLOC.word("seconds"))
-                .setStyle(Styles.RED), tooltip);
+        Tooltip.add(Styles.REDCOMP()
+                .appendSibling(CLOC.word("activation_time")
+                        .appendText(": " + this.activationTimeSeconds + " ")
+                        .appendSibling(CLOC.word("seconds"))), tooltip);
 
         if (getLoc(stack) != null) {
-            Tooltip.add(CLOC.word("position")
-                    .appendText(": " + locTooltip(stack))
-                    .setStyle(Styles.GOLD), tooltip);
+            Tooltip.add(Styles.GOLDCOMP()
+                    .appendSibling(CLOC.word("position")
+                            .appendText(": " + locTooltip(stack))), tooltip);
 
-            Tooltip.add(new TextComponentString(dimTooltip(stack)).setStyle(Styles.BLUE), tooltip);
+            Tooltip.add(Styles.BLUECOMP()
+                    .appendSibling(new TextComponentString(dimTooltip(stack))), tooltip);
 
         }
 

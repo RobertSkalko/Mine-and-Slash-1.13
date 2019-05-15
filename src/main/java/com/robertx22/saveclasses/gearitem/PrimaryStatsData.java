@@ -53,7 +53,8 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("primary_stats").appendText(":").setStyle(Styles.GRAY));
+        list.add(Styles.GRAYCOMP()
+                .appendSibling(CLOC.word("primary_stats").appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

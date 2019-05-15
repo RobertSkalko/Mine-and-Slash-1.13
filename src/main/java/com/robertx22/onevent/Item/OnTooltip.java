@@ -68,11 +68,13 @@ public class OnTooltip {
 
             if (GuiScreen.isShiftKeyDown() == false) {
                 event.getToolTip()
-                        .add(CLOC.tooltip("press_shift_more_info").setStyle(Styles.BLUE));
+                        .add(Styles.BLUECOMP()
+                                .appendSibling(CLOC.tooltip("press_shift_more_info")));
             } else {
                 event.getToolTip()
-                        .add(new TextComponentString("Power LeveL: " + gear.getPowerLevel())
-                                .setStyle(Styles.GOLD));
+                        .add(Styles.GOLDCOMP()
+                                .appendSibling(new TextComponentString("Power LeveL: " + gear
+                                        .getPowerLevel())));
             }
 
         } else {

@@ -55,11 +55,11 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(getGearType().locName()
-                .appendText(" ")
-                .appendSibling(CLOC.word("stats"))
-                .appendText(": ")
-                .setStyle(Styles.GREEN));
+        list.add(Styles.GREENCOMP()
+                .appendSibling(getGearType().locName()
+                        .appendText(" ")
+                        .appendSibling(CLOC.word("stats"))
+                        .appendText(": ")));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

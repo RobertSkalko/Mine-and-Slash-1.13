@@ -74,7 +74,8 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("secondary_stats").appendText(":").setStyle(Styles.GRAY));
+        list.add(Styles.GRAYCOMP()
+                .appendSibling(CLOC.word("secondary_stats").appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

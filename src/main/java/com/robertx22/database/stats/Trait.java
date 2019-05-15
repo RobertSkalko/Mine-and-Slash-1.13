@@ -70,8 +70,8 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
     public ITextComponent TraitText(StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        return new TextComponentString(" * ").appendSibling(basestat.localizedString())
-                .setStyle(Styles.GREEN);
+        return Styles.GREENCOMP()
+                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.localizedString()));
     }
 
     @Override
@@ -86,7 +86,9 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
         Trait trait = (Trait) basestat;
 
         if (GuiScreen.isShiftKeyDown()) {
-            text.appendText(" ").appendSibling(trait.Description().setStyle(Styles.GRAY));
+            text.appendSibling(Styles.GRAYCOMP())
+                    .appendText(" ")
+                    .appendSibling(trait.Description());
         }
 
         list.add(text);

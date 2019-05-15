@@ -10,10 +10,7 @@ import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.mmorpg.registers.common.CapabilityRegister;
-import com.robertx22.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mmorpg.registers.common.OreGenRegister;
-import com.robertx22.mmorpg.registers.common.PacketRegister;
+import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
@@ -100,6 +97,7 @@ public class MMORPG {
         PacketRegister.register();
         CapabilityRegister.register();
         OreGenRegister.register();
+        WorldGenRegisters.register();
 
     }
 

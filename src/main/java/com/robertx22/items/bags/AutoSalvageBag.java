@@ -175,16 +175,20 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(CLOC.word("gears").appendText(":").setStyle(Styles.YELLOW), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(CLOC.word("gears").appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items), this.getGear(nbt)), tooltip);
 
-        Tooltip.add(CLOC.word("spells").appendText(":").setStyle(Styles.YELLOW), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(CLOC.word("spells").appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells), this.getSpell(nbt)), tooltip);
 
-        Tooltip.add(CLOC.word("maps").appendText(":").setStyle(Styles.YELLOW), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(CLOC.word("maps").appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps), this.getMap(nbt)), tooltip);
 
-        Tooltip.add(CLOC.word("runes").appendText(":").setStyle(Styles.YELLOW), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(CLOC.word("runes").appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes), this.getRune(nbt)), tooltip);
 
         Tooltip.add("", tooltip);
@@ -199,7 +203,9 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         if (GuiScreen.isShiftKeyDown() == false) {
 
-            Tooltip.add(CLOC.tooltip("sal_info").setStyle(Styles.GREEN), tooltip);
+            Tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(CLOC.tooltip("sal_info")), tooltip);
+
         } else {
             Tooltip.add(CLOC.tooltip("sal1"), tooltip);
             Tooltip.add(CLOC.tooltip("sal2"), tooltip);

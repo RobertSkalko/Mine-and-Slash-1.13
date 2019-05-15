@@ -253,7 +253,7 @@ public class ItemLootbox extends BaseItem implements IWeighted {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(CLOC.tooltip("lootbox").setStyle(Styles.GREEN));
+        tooltip.add(Styles.GREENCOMP().appendSibling(CLOC.tooltip("lootbox")));
 
     }
 

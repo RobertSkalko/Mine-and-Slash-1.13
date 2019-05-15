@@ -73,10 +73,10 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("prefix")
-                .appendText(": ")
-                .appendSibling(affix.locName())
-                .setStyle(Styles.GRAY));
+        list.add(Styles.GRAYCOMP()
+                .appendSibling(CLOC.word("prefix")
+                        .appendText(": ")
+                        .appendSibling(affix.locName())));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

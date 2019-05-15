@@ -12,6 +12,7 @@ import com.robertx22.uncommon.CLOC;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,7 +56,8 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(CLOC.word("unique_stats").appendText(":").setStyle(Styles.YELLOW));
+        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(CLOC.word("unique_stats")
+                .appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(gear.level)) {
             for (StatModData data : part.mods) {

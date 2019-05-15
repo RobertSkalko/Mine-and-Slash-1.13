@@ -299,9 +299,10 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         if (isUnique) {
             IUnique unique = this.uniqueStats.getUniqueItem();
-            tip.add(new TextComponentString("'").appendSibling(unique.locDesc())
-                    .appendText("'")
-                    .setStyle(Styles.GREEN));
+            tip.add(Styles.GREENCOMP()
+                    .appendSibling(new TextComponentString("'"))
+                    .appendSibling(unique.locDesc())
+                    .appendText("'"));
 
             tip.add(new TextComponentString(""));
 
@@ -311,15 +312,15 @@ public class GearItemData implements ITooltip, ISalvagable {
         tip.add(TooltipUtils.rarity(rarity));
 
         if (!this.isSalvagable) {
-            tip.add(CLOC.word("unsalvagable").setStyle(Styles.RED));
+            tip.add(Styles.REDCOMP().appendSibling(CLOC.word("unsalvagable")));
         }
 
         if (this.GetBaseGearType() instanceof IWeapon) {
             IWeapon iwep = (IWeapon) this.GetBaseGearType();
             tip.add(new TextComponentString(""));
-            tip.add(CLOC.stat("energy")
-                    .appendText(": " + iwep.mechanic().GetEnergyCost())
-                    .setStyle(Styles.GREEN));
+            tip.add(Styles.GREENCOMP()
+                    .appendSibling(CLOC.stat("energy")
+                            .appendText(": " + iwep.mechanic().GetEnergyCost())));
         }
 
         List<ITextComponent> tool = removeDoubleBlankLines(tip);
@@ -355,8 +356,9 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         if (this.set != null) {
             event.getToolTip()
-                    .add(new TextComponentString("[Set]: " + set.GetSet()
-                            .Name()).setStyle(Styles.GREEN));
+                    .add(Styles.GREENCOMP()
+                            .appendSibling(new TextComponentString("[Set]: " + set.GetSet()
+                                    .Name())));
 
             for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
 
@@ -375,11 +377,10 @@ public class GearItemData implements ITooltip, ISalvagable {
                         .GetTooltipString(this.GetRarity()
                                 .StatPercents(), data.getLevel(), false)) {
 
-                    ITextComponent comp = new TextComponentString(entry.getKey() + " ").appendSibling(CLOC
-                            .word("set")
+                    ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
+                            .getKey() + " ").appendSibling(CLOC.word("set")
                             .appendText(": ")
-                            .appendSibling(str)
-                            .setStyle(Styles.BLUE.setColor(color)));
+                            .appendSibling(str)));
 
                     event.getToolTip().add(comp);
                 }

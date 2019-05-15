@@ -91,10 +91,10 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 
         if (isEmpty() == false) {
 
-            list.add(new TextComponentString("+" + this.currentLevel + " ").appendSibling(CLOC
-                    .word("infusion")
-                    .appendText(": ")
-                    .setStyle(Styles.LIGHT_PURPLE)));
+            list.add(Styles.LIGHT_PURPLECOMP()
+                    .appendSibling(new TextComponentString("+" + this.currentLevel + " ").appendSibling(CLOC
+                            .word("infusion")
+                            .appendText(": "))));
 
             for (LevelAndStats part : this.GetAllStats(gear.level)) {
                 for (StatModData data : part.mods) {

@@ -205,9 +205,8 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
             boolean moreInfo = GuiScreen.isShiftKeyDown();
 
-            Tooltip.add(CLOC.word("stats")
-                    .appendText(": ")
-                    .setStyle(Styles.GREEN), tooltip);
+            Tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(CLOC.word("stats").appendText(": ")), tooltip);
 
             Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
 
@@ -219,15 +218,15 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
             Tooltip.add("", tooltip);
 
-            Tooltip.add(CLOC.word("type")
-                    .appendText(": ")
-                    .appendText(spell.typeString())
-                    .setStyle(Styles.AQUA), tooltip);
+            Tooltip.add(Styles.AQUACOMP()
+                    .appendSibling(CLOC.word("type")
+                            .appendText(": ")
+                            .appendText(spell.typeString())), tooltip);
 
             Tooltip.add("", tooltip);
 
-            Tooltip.add(GetSpell().GetDescription(this)
-                    .setStyle(Styles.LIGHT_PURPLE), tooltip);
+            Tooltip.add(Styles.LIGHT_PURPLECOMP()
+                    .appendSibling(GetSpell().GetDescription(this)), tooltip);
 
             Tooltip.add("", tooltip);
 

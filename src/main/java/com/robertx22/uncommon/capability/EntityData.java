@@ -3,8 +3,6 @@ package com.robertx22.uncommon.capability;
 import com.robertx22.Styles;
 import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
-import com.robertx22.config.dimensions.DimensionConfig;
-import com.robertx22.config.dimensions.DimensionsContainer;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
@@ -29,6 +27,7 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
+import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
@@ -352,49 +351,7 @@ public class EntityData {
         public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
 
             this.setMobStats = true;
-
-            DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
-
-            int lvl = 1;
-
-            if (data != null && data.isMapWorld()) {
-                lvl = data.getLevel();
-            } else {
-                if (config.SINGLEPLAYER_MOB_SCALING) {
-
-                    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 3999);
-
-                    if (player != null) {
-                        lvl = Load.Unit(player).getLevel();
-                    }
-
-                } else {
-                    lvl = GetMobLevelByDistanceFromSpawn(entity, config) + config.MINIMUM_MOB_LEVEL - 1;
-                }
-
-                lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
-
-            }
-
-            this.level = lvl;
-        }
-
-        public static int GetMobLevelByDistanceFromSpawn(Entity entity,
-                                                         DimensionConfig config) {
-
-            double distance = entity.world.getSpawnPoint()
-                    .getDistance((int) entity.posX, (int) entity.posY, (int) entity.posZ);
-
-            int lvl = 1;
-
-            if (distance < config.MOB_LEVEL_ONE_AREA) {
-                lvl = 1;
-            } else {
-
-                lvl = (int) (1 + (distance / config.MOB_LEVEL_PER_DISTANCE));
-            }
-
-            return lvl;
+            this.level = LevelUtils.determineLevel(data, entity.world, entity.getPosition());
 
         }
 
@@ -573,8 +530,8 @@ public class EntityData {
                 ITextComponent rarityprefix = rarity.locName();
                 ITextComponent name = entity.getDisplayName();
 
-                ITextComponent lvlcomp = new TextComponentString("[Lv:" + this.getLevel() + "] ")
-                        .setStyle(Styles.YELLOW);
+                ITextComponent lvlcomp = Styles.YELLOWCOMP()
+                        .appendSibling(new TextComponentString("[Lv:" + this.getLevel() + "] "));
 
                 ITextComponent suffix = rarityprefix.appendText(" ")
                         .appendSibling(name)

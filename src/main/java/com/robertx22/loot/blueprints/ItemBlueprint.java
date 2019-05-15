@@ -6,6 +6,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.create.RarityGen;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.util.math.MathHelper;
 
 public class ItemBlueprint {
 
@@ -64,29 +65,17 @@ public class ItemBlueprint {
 
     public int GetLevel() {
 
+        int lvl = level;
+
         if (LevelRange) {
 
-            int lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
+            lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
 
-            if (lvl < this.minLevel) {
-                lvl = this.minLevel;
-            }
-            if (lvl > ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
-                lvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-            }
+            level = lvl;
 
-            return lvl;
-
-        } else {
-            if (level < this.minLevel) {
-                level = this.minLevel;
-            }
-            if (level > ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
-                level = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-            }
-
-            return level;
         }
+        return MathHelper.clamp(lvl, this.minLevel, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
+                .get());
 
     }
 }

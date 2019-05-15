@@ -4,12 +4,15 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.loot.gens.*;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MasterLootGen {
 
@@ -83,6 +86,27 @@ public class MasterLootGen {
             victim.entityDropItem(stack, 1F);
         }
 
+    }
+
+    public static List<ItemStack> genAmount(BlockPos pos, int amount, World theworld,
+                                            IWorldData iworlddata) {
+
+        int level = LevelUtils.determineLevel(iworlddata, theworld, pos);
+
+        List<ItemStack> loot = new ArrayList<>();
+
+        while (loot.size() < amount) {
+            loot.addAll(MasterLootGen.gen(theworld, amount * 10F, iworlddata, level)
+                    .stream()
+                    .filter(x -> x.isEmpty() == false)
+                    .collect(Collectors.toList()));
+        }
+
+        while (loot.size() > amount && loot.size() > 0) {
+            loot.remove(0);
+        }
+
+        return loot;
     }
 
 }
