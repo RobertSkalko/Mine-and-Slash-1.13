@@ -39,6 +39,10 @@ public class WorldData {
 
     public interface IWorldData {
 
+        void setPermaDeath(boolean bool);
+
+        boolean isPermaDeath();
+
         boolean dropsUniques(World world);
 
         NBTTagCompound getNBT();
@@ -171,6 +175,7 @@ public class WorldData {
     static final String MAP_WORLD_OBJ = "MAP_WORLD_OBJ";
     static final String MINUTES_PASSED = "minutes_passed";
     static final String ISRESERVED = "is_reserved";
+    static final String ISPERMADEATH = "ISPERMADEATH";
 
     public static class DefaultImpl implements IWorldData {
         private NBTTagCompound nbt = new NBTTagCompound();
@@ -190,6 +195,7 @@ public class WorldData {
         String saveName = "";
         int minutesPassed;
         boolean reserved = false;
+        boolean isPermaDeath = false;
 
         @Override
         public NBTTagCompound getNBT() {
@@ -199,6 +205,7 @@ public class WorldData {
             nbt.putBoolean(SET_FOR_DELETE, setForDelete);
             nbt.putString(OWNER, owner);
             nbt.putBoolean(IS_INIT, isInit);
+            nbt.putBoolean(ISPERMADEATH, isPermaDeath);
             if (this.originalDimension != null) {
                 nbt.putString(ORIGINAL_DIM, originalDimension.getRegistryName()
                         .toString());
@@ -231,6 +238,7 @@ public class WorldData {
             setForDelete = nbt.getBoolean(SET_FOR_DELETE);
             owner = nbt.getString(OWNER);
             isInit = nbt.getBoolean(IS_INIT);
+            isPermaDeath = nbt.getBoolean(ISPERMADEATH);
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
             }
@@ -477,18 +485,31 @@ public class WorldData {
         @Override
         public void onPlayerDeath(EntityPlayer victim, World world) {
 
-            int punishment = 5;
+            if (this.isPermaDeath()) {
 
-            for (EntityPlayer player : world.playerEntities) {
-                player.sendMessage(SLOC.chat("player_died_mapworld")
-                        .appendText(" " + victim.getDisplayName()
-                                .getFormattedText() + " ")
-                        .appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
+                this.minutesPassed += 555555;
+
+                for (EntityPlayer player : world.playerEntities) {
+                    player.sendMessage(SLOC.chat("player_died_mapworld")
+                            .appendText(" " + victim.getDisplayName()
+                                    .getFormattedText() + " ")
+                            .appendText("World closing due to permadeath"));
+                }
+
+            } else {
+                int punishment = 5;
+
+                for (EntityPlayer player : world.playerEntities) {
+                    player.sendMessage(SLOC.chat("player_died_mapworld")
+                            .appendText(" " + victim.getDisplayName()
+                                    .getFormattedText() + " ")
+                            .appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
+                }
+
+                this.minutesPassed += punishment;
+
+                announceTimeLeft(world);
             }
-
-            this.minutesPassed += punishment;
-
-            announceTimeLeft(world);
 
             checkDeletition(world);
 
@@ -508,6 +529,16 @@ public class WorldData {
         @Override
         public boolean isOwner(EntityPlayer player) {
             return player.getUniqueID().toString().equals(this.owner);
+        }
+
+        @Override
+        public void setPermaDeath(boolean bool) {
+            this.isPermaDeath = bool;
+        }
+
+        @Override
+        public boolean isPermaDeath() {
+            return isPermaDeath;
         }
 
         @Override

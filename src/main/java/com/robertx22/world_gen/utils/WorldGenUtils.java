@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.Heightmap;
 
 import java.util.List;
 
@@ -26,4 +27,10 @@ public class WorldGenUtils {
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
         }
     }
+
+    public static BlockPos getFirstSurfaceBlock(IWorld world, BlockPos pos) {
+        return world.getHeight(Heightmap.Type.MOTION_BLOCKING, pos);
+
+    }
+
 }

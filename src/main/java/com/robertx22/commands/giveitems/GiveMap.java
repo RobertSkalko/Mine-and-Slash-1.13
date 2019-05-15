@@ -37,7 +37,7 @@ public class GiveMap {
     }
 
     private static int run(CommandSource commandSource, @Nullable EntityPlayer player,
-                           int lvl, int rarity, int amount, int tier) {
+                           int lvl, int rarity, int tier, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -52,7 +52,7 @@ public class GiveMap {
         if (rarity > -1) {
             blueprint.SetSpecificRarity(rarity);
         }
-
+        
         for (int i = 0; i < amount; i++) {
             player.addItemStackToInventory(MapGen.Create(blueprint));
         }

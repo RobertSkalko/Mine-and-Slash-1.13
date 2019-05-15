@@ -85,6 +85,9 @@ public class OnTooltip {
             } else {
                 MapItemData map = Map.Load(stack);
                 if (map != null) {
+
+                    map.BuildTooltip(stack, event, unit, unitdata);
+
                     event.getToolTip().add(new TextComponentString(""));
                     event.getToolTip()
                             .add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(CLOC

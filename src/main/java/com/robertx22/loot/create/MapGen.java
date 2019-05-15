@@ -1,8 +1,5 @@
 package com.robertx22.loot.create;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.MapAffixes;
@@ -16,61 +13,67 @@ import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapGen {
     public static ItemStack Create(MapBlueprint blueprint) {
 
-	blueprint.level = blueprint.level + 1; // temp hotfix for too many low level maps
+        blueprint.level = blueprint.level + 1; // temp hotfix for too many low level maps
 
-	MapItemData data = new MapItemData();
-	MapRarity rarity = Rarities.Maps.get(blueprint.GetRarity());
-	ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));
+        MapItemData data = new MapItemData();
+        MapRarity rarity = Rarities.Maps.get(blueprint.GetRarity());
+        ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));
 
-	data.rarity = rarity.Rank();
+        data.rarity = rarity.Rank();
 
-	IWP iwp = ((IWP) RandomUtils.WeightedRandom(ListUtils.CollectionToList(WorldProviders.All.values())));
+        IWP iwp = ((IWP) RandomUtils.WeightedRandom(ListUtils.CollectionToList(WorldProviders.All
+                .values())));
 
-	data.worldGeneratorName = iwp.GUID();
+        data.worldGeneratorName = iwp.GUID();
 
-	data.minutes = RandomUtils.RandomRange(15, 60);
+        data.minutes = RandomUtils.RandomRange(15, 60);
 
-	data.tier = blueprint.getTier();
+        data.tier = blueprint.getTier();
 
-	data.level = blueprint.GetLevel();
+        data.isPermaDeath = blueprint.getIsPermaDeath();
 
-	data = genAffixes(data, rarity);
+        data.level = blueprint.GetLevel();
 
-	Map.Save(stack, data);
+        data = genAffixes(data, rarity);
 
-	return stack;
+        Map.Save(stack, data);
+
+        return stack;
 
     }
 
     private static MapItemData genAffixes(MapItemData map, MapRarity rarity) {
 
-	int amount = RandomUtils.RandomRange(rarity.AffixAmount().Min, rarity.AffixAmount().Max);
+        int amount = RandomUtils.RandomRange(rarity.AffixAmount().Min, rarity.AffixAmount().Max);
 
-	List<String> affixes = new ArrayList<String>();
+        List<String> affixes = new ArrayList<String>();
 
-	for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < amount; i++) {
 
-	    BaseMapAffix affix = (BaseMapAffix) RandomUtils
-		    .WeightedRandom(ListUtils.CollectionToList(MapAffixes.All.values()));
+            BaseMapAffix affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
+                    .values()));
 
-	    while (affixes.contains(affix.GUID())) {
-		affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All.values()));
-	    }
+            while (affixes.contains(affix.GUID())) {
+                affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
+                        .values()));
+            }
 
-	    int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
+            int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
 
-	    map.affixes.add(new MapAffixData(affix, percent));
-	    affixes.add(affix.GUID());
+            map.affixes.add(new MapAffixData(affix, percent));
+            affixes.add(affix.GUID());
 
-	}
+        }
 
-	return map;
+        return map;
     }
 
 }

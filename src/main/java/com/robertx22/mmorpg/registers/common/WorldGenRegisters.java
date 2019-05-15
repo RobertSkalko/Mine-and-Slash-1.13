@@ -15,6 +15,7 @@ public class WorldGenRegisters {
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, randomSurfaceChest);
+
         }
 
     }

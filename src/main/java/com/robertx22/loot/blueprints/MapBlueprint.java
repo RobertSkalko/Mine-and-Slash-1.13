@@ -5,12 +5,16 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.create.RarityGen;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.util.math.MathHelper;
 
 public class MapBlueprint extends ItemBlueprint {
 
+    public static final int PERMADEATH_CHANCE = 10;
+    private static final int MAX_MAP_TIER = 20;
+
     public MapBlueprint(int level, int worldTier) {
-	super(level);
-	this.setTier(worldTier);
+        super(level);
+        this.setTier(worldTier);
 
     }
 
@@ -18,52 +22,51 @@ public class MapBlueprint extends ItemBlueprint {
     private boolean tierRange = true;
     private int tierVariance = 2;
 
-    private static final int MAX_MAP_TIER = 20;
-
     public void setTier(int i) {
-	tier = i;
+        tier = i;
     }
 
     public int getTier() {
 
-	if (tierRange) {
-	    int thetier = RandomUtils.RandomRange(tier - tierVariance, tier + tierVariance);
+        if (tierRange) {
+            int thetier = RandomUtils.RandomRange(tier - tierVariance, tier + tierVariance);
 
-	    if (thetier < 1) {
-		thetier = 1;
-	    }
-	    if (thetier > MAX_MAP_TIER) {
-		thetier = MAX_MAP_TIER;
-	    }
+            return MathHelper.clamp(thetier, 1, MAX_MAP_TIER);
 
-	    return thetier;
+        } else {
+            return tier;
+        }
 
-	} else {
-	    return tier;
-	}
+    }
+
+    public boolean getIsPermaDeath() {
+
+        return RandomUtils.roll(PERMADEATH_CHANCE);
 
     }
 
     @Override
     public int GetRarity() {
 
-	if (RandomRarity) {
+        if (RandomRarity) {
 
-	    if (minRarity > -1) {
-		MapRarity rar = Rarities.Maps
-			.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank());
+            if (minRarity > -1) {
+                MapRarity rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
+                        .Rank());
 
-		while (rar.Rank() < minRarity) {
-		    rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank());
-		}
-		return rar.Rank();
+                while (rar.Rank() < minRarity) {
+                    rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
+                            .Rank());
+                }
+                return rar.Rank();
 
-	    } else {
-		return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank();
-	    }
-	} else {
-	    return rarity;
-	}
+            } else {
+                return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
+                        .Rank();
+            }
+        } else {
+            return rarity;
+        }
 
     }
 }
