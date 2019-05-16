@@ -26,12 +26,12 @@ public class RandomSurfaceChancePlacement extends BasePlacement<ChanceConfig> {
 
             IWorldData iworlddata = Load.World(worldIn.getWorld()); // TODO TEST IF THIS WORKS ON MAPWORLDS, maybe the world instance is not full enough?
 
-            if (iworlddata.isMapWorld()) {
-                int x = random.nextInt(16);
-                int z = random.nextInt(16);
-                BlockPos blockpos = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING, pos.add(x, 0, z));
-                featureIn.place(worldIn, chunkGenerator, random, blockpos, featureConfig);
-            }
+            // if (iworlddata.isMapWorld()) { TODO
+            int x = 0;//random.nextInt(16);
+            int z = 0;//random.nextInt(16);
+            BlockPos blockpos = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING, pos.add(x, 0, z));
+            featureIn.place(worldIn, chunkGenerator, random, blockpos, featureConfig);
+            // }
             return true;
         }
 

@@ -52,7 +52,7 @@ public class GiveMap {
         if (rarity > -1) {
             blueprint.SetSpecificRarity(rarity);
         }
-        
+
         for (int i = 0; i < amount; i++) {
             player.addItemStackToInventory(MapGen.Create(blueprint));
         }
