@@ -1,5 +1,6 @@
 package com.robertx22.loot;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -11,19 +12,23 @@ import net.minecraft.item.ItemStack;
 
 public class LootUtils {
 
-    static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
+    static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 5;
 
     // prevents lvl 50 players farming lvl 1 mobs
     public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player,
                                                      float chance) {
 
-        if (player.getLevel() > mob.getLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
+        int difference = Math.abs(player.getLevel() - mob.getLevel());
+        int maxlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
-            float levelDiff = mob.getLevel() / player.getLevel();
+        if (difference > LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
 
-            if (levelDiff < 0.2F) {
-                levelDiff = 0.2F;
+            // if a high lvl player is killing higher than max lvl mobs
+            if (player.getLevel() == maxlvl && mob.getLevel() > maxlvl) {
+                return chance;
             }
+
+            float levelDiff = player.getLevel() / player.getLevel() + difference;
 
             return chance * levelDiff;
 

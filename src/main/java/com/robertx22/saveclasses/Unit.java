@@ -284,6 +284,20 @@ public class Unit {
         return check;
     }
 
+    private float getHpAdded(EntityLivingBase entity, MobRarity rar, UnitData data) {
+
+        float hpadded = entity.getMaxHealth() * data.getLevel();
+
+        if (entity instanceof EntityPlayer) {
+            hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
+
+        } else {
+            hpadded *= 2F * rar.HealthMultiplier();
+        }
+
+        return hpadded;
+    }
+
     public void RecalculateStats(EntityLivingBase entity, UnitData data, int level,
                                  IWorldData world) {
 
@@ -329,10 +343,7 @@ public class Unit {
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
 
-        float hpadded = entity.getMaxHealth() * data.getLevel();
-        if (!(entity instanceof EntityPlayer)) {
-            hpadded *= 2F * rar.HealthMultiplier();
-        }
+        float hpadded = getHpAdded(entity, rar, data);
 
         MyStats.get(Health.GUID).Flat += hpadded;
 

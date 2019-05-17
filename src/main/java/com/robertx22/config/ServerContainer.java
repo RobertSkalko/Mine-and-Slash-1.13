@@ -24,11 +24,16 @@ public class ServerContainer {
     public DoubleValue EXPERIENCE_MULTIPLIER;
     public DoubleValue UNARMED_ENERGY_COST;
     public DoubleValue STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT;
+    public DoubleValue PLAYER_HEART_TO_HEALTH_CONVERSION;
 
     public EnumValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("PLAYER_HEART_TO_HEALTH_CONVERSION", 1D, 0D, 100D);
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
                 .translation("mmorpg.word.entities")

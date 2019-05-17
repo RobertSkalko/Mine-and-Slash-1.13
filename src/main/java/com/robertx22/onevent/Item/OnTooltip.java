@@ -46,7 +46,7 @@ public class OnTooltip {
         }
 
     }
-    
+
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onItemTooltip(ItemTooltipEvent event) {
 
