@@ -12,13 +12,8 @@ public class GhostProjectileTrait extends SpellBuffTrait {
     public static String GUID = "Ghost Projectile";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "ghost_projectile";
     }
 
     @Override

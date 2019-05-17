@@ -13,7 +13,7 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
     public static String GUID = "Earth Atronach";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -23,8 +23,4 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
 
     }
 
-    @Override
-    public String unlocString() {
-        return "earth_atronach";
-    }
 }

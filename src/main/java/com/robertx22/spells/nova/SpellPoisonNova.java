@@ -16,7 +16,7 @@ public class SpellPoisonNova extends BaseNovaSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new NatureResist().Guid(), scaling);
+	return new EffectCalculation(new NatureResist().GUID(), scaling);
     }
 
     @Override

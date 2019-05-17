@@ -14,12 +14,7 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
     public static String GUID = "Barbarian";
 
     @Override
-    public String unlocString() {
-        return "barbarian";
-    }
-
-    @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

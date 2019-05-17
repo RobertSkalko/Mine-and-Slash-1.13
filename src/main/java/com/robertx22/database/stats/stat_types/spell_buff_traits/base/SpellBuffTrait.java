@@ -42,7 +42,7 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
 
     @Override
     public ITextComponent Description() {
-        return CLOC.tooltip(this.unlocString());
+        return CLOC.tooltip(this.GUID().toLowerCase().replaceAll(" ", "_"));
     }
 
     @Override
@@ -64,7 +64,7 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
         return Styles.GREENCOMP()
-                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.localizedString()));
+                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.locName()));
     }
 
     @Override

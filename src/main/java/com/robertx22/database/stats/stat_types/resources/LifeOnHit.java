@@ -17,16 +17,11 @@ public class LifeOnHit extends Stat implements IStatEffects {
         return Arrays.asList(new LifeOnHitEffect());
     }
 
-    @Override
-    public String unlocString() {
-        return "life_on_hit";
-    }
-
     public LifeOnHit() {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

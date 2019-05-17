@@ -16,7 +16,7 @@ public class SpellFireNova extends BaseNovaSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new FireResist().Guid(), scaling);
+	return new EffectCalculation(new FireResist().GUID(), scaling);
     }
 
     @Override

@@ -9,18 +9,13 @@ public class ThunderResist extends BaseEleResist {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
-    }
-
-    @Override
-    public String unlocString() {
-	return "thunder_resist";
+        return Elements.Thunder;
     }
 
 }

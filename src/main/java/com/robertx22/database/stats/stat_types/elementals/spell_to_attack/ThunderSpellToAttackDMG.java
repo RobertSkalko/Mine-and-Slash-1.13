@@ -12,22 +12,18 @@ public class ThunderSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
     @Override
     public Stat StatThatGiveDamage() {
-	return new AttackThunderDamage();
+        return new AttackThunderDamage();
     }
 
-    @Override
-    public String unlocString() {
-	return "thunder_spell_to_attack";
-    }
 }

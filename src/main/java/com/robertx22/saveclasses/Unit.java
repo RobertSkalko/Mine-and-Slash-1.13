@@ -89,7 +89,7 @@ public class Unit {
         } else {
             // adds new stats
             for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-                if (!MyStats.containsKey(stat.Guid())) {
+                if (!MyStats.containsKey(stat.GUID())) {
                     MyStats.put(stat.GUID(), new StatData(stat));
                 }
             }
@@ -141,20 +141,20 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-        return (Health) MyStats.get(new Health().Guid()).GetStat();
+        return (Health) MyStats.get(new Health().GUID()).GetStat();
     }
 
     public Mana mana() {
-        return (Mana) MyStats.get(new Mana().Guid()).GetStat();
+        return (Mana) MyStats.get(new Mana().GUID()).GetStat();
     }
 
     public Energy energy() {
-        return (Energy) MyStats.get(new Energy().Guid()).GetStat();
+        return (Energy) MyStats.get(new Energy().GUID()).GetStat();
     }
 
     public StatData healthData() {
         try {
-            return MyStats.get(new Health().Guid());
+            return MyStats.get(new Health().GUID());
         } catch (Exception e) {
         }
         return null;
@@ -162,7 +162,7 @@ public class Unit {
 
     public StatData manaData() {
         try {
-            return MyStats.get(new Mana().Guid());
+            return MyStats.get(new Mana().GUID());
         } catch (Exception e) {
 
         }
@@ -171,7 +171,7 @@ public class Unit {
 
     public StatData energyData() {
         try {
-            return MyStats.get(new Energy().Guid());
+            return MyStats.get(new Energy().GUID());
         } catch (Exception e) {
 
         }

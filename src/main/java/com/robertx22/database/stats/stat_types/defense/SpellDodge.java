@@ -13,11 +13,6 @@ public class SpellDodge extends Stat implements IStatEffects {
     public static String GUID = "Spell Dodge";
 
     @Override
-    public String unlocString() {
-        return "spell_dodge";
-    }
-
-    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new SpellDodgeEffect());
     }
@@ -26,7 +21,7 @@ public class SpellDodge extends Stat implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

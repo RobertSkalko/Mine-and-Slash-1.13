@@ -69,7 +69,7 @@ public class StatModData implements ITooltipString {
     }
 
     public void useOnPlayer(UnitData unit) {
-        String guid = this.GetBaseMod().GetBaseStat().Guid();
+        String guid = this.GetBaseMod().GetBaseStat().GUID();
         if (unit.getUnit().MyStats.containsKey(guid)) {
             unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
         }

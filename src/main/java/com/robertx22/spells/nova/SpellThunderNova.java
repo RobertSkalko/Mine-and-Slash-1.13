@@ -16,7 +16,7 @@ public class SpellThunderNova extends BaseNovaSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new ThunderResist().Guid(), scaling);
+	return new EffectCalculation(new ThunderResist().GUID(), scaling);
     }
 
     @Override

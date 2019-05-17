@@ -9,18 +9,13 @@ public class WaterResist extends BaseEleResist {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
-    }
-
-    @Override
-    public String unlocString() {
-	return "water_resist";
+        return Elements.Water;
     }
 
 }

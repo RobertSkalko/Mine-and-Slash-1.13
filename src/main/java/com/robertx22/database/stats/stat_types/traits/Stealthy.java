@@ -13,7 +13,7 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
     public static String GUID = "Stealthy";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -23,8 +23,4 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
 
     }
 
-    @Override
-    public String unlocString() {
-        return "stealthy";
-    }
 }

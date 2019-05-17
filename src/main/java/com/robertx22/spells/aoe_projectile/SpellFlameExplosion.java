@@ -33,7 +33,7 @@ public class SpellFlameExplosion extends BaseAoeSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellFireDamage().Guid(), 0.25F);
+	return new EffectCalculation(new SpellFireDamage().GUID(), 0.25F);
     }
 
     @Override

@@ -6,33 +6,28 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class EnergyRegen extends Stat {
     public static String GUID = "Energy Regen";
 
-    @Override
-    public String unlocString() {
-	return "energy_regen";
-    }
-
     public EnergyRegen() {
 
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return false;
+        return false;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
+        return false;
     }
 
 }

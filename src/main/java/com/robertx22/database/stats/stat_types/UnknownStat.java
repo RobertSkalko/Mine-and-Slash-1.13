@@ -11,28 +11,23 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public String unlocString() {
-	return "unknown_stat";
-    }
-
-    @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return true;
+        return true;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
+        return false;
     }
 
 }

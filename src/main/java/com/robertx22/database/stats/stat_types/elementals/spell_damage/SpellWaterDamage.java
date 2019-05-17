@@ -9,28 +9,23 @@ public class SpellWaterDamage extends BaseSpellDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return true;
+        return true;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
-    }
-
-    @Override
-    public String unlocString() {
-	return "spell_water_damage";
+        return false;
     }
 
 }

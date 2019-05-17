@@ -12,16 +12,11 @@ import java.util.List;
 public class ArmorPenetration extends Stat implements IStatEffects {
     public static String GUID = "Armor Penetration";
 
-    @Override
-    public String unlocString() {
-        return "armor_penetration";
-    }
-
     public ArmorPenetration() {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

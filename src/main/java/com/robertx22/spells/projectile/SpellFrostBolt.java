@@ -31,7 +31,7 @@ public class SpellFrostBolt extends BaseSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellWaterDamage().Guid(), 0.5F);
+	return new EffectCalculation(new SpellWaterDamage().GUID(), 0.5F);
     }
 
     @Override

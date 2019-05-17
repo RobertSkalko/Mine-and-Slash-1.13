@@ -17,16 +17,11 @@ public class Lifesteal extends Stat implements IStatEffects {
         return Arrays.asList(new LifestealEffect());
     }
 
-    @Override
-    public String unlocString() {
-        return "lifesteal";
-    }
-
     public Lifesteal() {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

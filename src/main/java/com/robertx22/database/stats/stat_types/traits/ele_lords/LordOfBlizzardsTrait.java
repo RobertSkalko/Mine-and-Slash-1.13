@@ -18,13 +18,8 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return "Lord Of Blizzards";
-    }
-
-    @Override
-    public String unlocString() {
-        return "lord_of_blizzards";
     }
 
 }

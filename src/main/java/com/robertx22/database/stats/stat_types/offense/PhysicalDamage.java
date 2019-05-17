@@ -7,31 +7,27 @@ public class PhysicalDamage extends Stat {
     public static String GUID = "Physical Damage";
 
     public PhysicalDamage() {
-	this.StatMinimum = 1;
+        this.StatMinimum = 1;
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return true;
+        return true;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
+        return false;
     }
 
-    @Override
-    public String unlocString() {
-	return "physical_damage";
-    }
 }

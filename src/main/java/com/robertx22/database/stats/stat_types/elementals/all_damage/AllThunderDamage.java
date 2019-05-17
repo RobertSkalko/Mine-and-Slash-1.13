@@ -6,17 +6,13 @@ public class AllThunderDamage extends AllEleDamageBase {
     public static String GUID = "All Thunder Damage";
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
-    @Override
-    public String unlocString() {
-	return "all_thunder_damage";
-    }
 }

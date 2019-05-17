@@ -6,18 +6,13 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 public class HammerDamage extends WeaponDamageStat {
 
     @Override
-    public String unlocString() {
-	return "hammer_damage";
-    }
-
-    @Override
     public WeaponTypes weaponType() {
-	return WeaponTypes.Hammer;
+        return WeaponTypes.Hammer;
     }
 
     @Override
-    public String Guid() {
-	return "Hammer Damage";
+    public String GUID() {
+        return "Hammer Damage";
     }
 
 }

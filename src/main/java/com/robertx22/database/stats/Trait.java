@@ -71,7 +71,7 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
         return Styles.GREENCOMP()
-                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.localizedString()));
+                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.locName()));
     }
 
     @Override

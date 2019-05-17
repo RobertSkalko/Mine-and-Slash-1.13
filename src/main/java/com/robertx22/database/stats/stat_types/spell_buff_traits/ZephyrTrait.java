@@ -12,13 +12,8 @@ public class ZephyrTrait extends SpellBuffTrait {
     public static String GUID = "Zephyr's Speed";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "zephyr_speed";
     }
 
     @Override

@@ -12,22 +12,18 @@ public class WaterSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
     @Override
     public Stat StatThatGiveDamage() {
-	return new SpellWaterDamage();
+        return new SpellWaterDamage();
     }
 
-    @Override
-    public String unlocString() {
-	return "water_spell_to_attack";
-    }
 }

@@ -33,7 +33,7 @@ public class SpellThunderBomb extends BaseBombSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellThunderDamage().Guid(), this.damageScaling);
+	return new EffectCalculation(new SpellThunderDamage().GUID(), this.damageScaling);
     }
 
     @Override

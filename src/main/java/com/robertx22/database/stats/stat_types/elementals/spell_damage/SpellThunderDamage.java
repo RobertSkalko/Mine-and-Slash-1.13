@@ -9,28 +9,23 @@ public class SpellThunderDamage extends BaseSpellDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return true;
+        return true;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
-    }
-
-    @Override
-    public String unlocString() {
-	return "spell_thunder_damage";
+        return false;
     }
 
 }

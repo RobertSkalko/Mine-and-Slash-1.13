@@ -32,7 +32,7 @@ public class SpellFireBolt extends BaseSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellFireDamage().Guid(), 0.5F);
+	return new EffectCalculation(new SpellFireDamage().GUID(), 0.5F);
     }
 
     @Override

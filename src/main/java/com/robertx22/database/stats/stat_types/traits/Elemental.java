@@ -16,7 +16,7 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     public static String GUID = "Elemental";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -29,11 +29,6 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     public List<StatMod> getStats() {
         return Arrays.asList(new SpellWaterDamageMulti(), new SpellNatureDamageMulti(), new SpellThunderDamageMulti(), new SpellFireDamageMulti());
 
-    }
-
-    @Override
-    public String unlocString() {
-        return "Elemental";
     }
 
 }

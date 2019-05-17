@@ -22,7 +22,7 @@ public class CriticalHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -39,11 +39,6 @@ public class CriticalHit extends Stat implements IStatEffects {
     @Override
     public boolean IsPercent() {
         return true;
-    }
-
-    @Override
-    public String unlocString() {
-        return "critical_hit";
     }
 
 }

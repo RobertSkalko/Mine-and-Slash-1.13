@@ -9,17 +9,12 @@ public class AttackNatureDamage extends BaseElementalAttackDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
-    }
-
-    @Override
-    public String unlocString() {
-	return "attack_nature_damage";
+        return Elements.Nature;
     }
 }

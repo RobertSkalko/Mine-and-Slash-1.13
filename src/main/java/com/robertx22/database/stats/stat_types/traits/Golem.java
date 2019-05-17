@@ -13,7 +13,7 @@ public class Golem extends Trait implements IAffectsOtherStats {
     public static String GUID = "Golem";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -23,8 +23,4 @@ public class Golem extends Trait implements IAffectsOtherStats {
 
     }
 
-    @Override
-    public String unlocString() {
-        return "golem";
-    }
 }

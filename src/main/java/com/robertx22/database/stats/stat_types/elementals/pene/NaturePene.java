@@ -20,7 +20,7 @@ public class NaturePene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -29,8 +29,4 @@ public class NaturePene extends BasePene implements IStatEffects {
         return Elements.Nature;
     }
 
-    @Override
-    public String unlocString() {
-        return "nature_penetration";
-    }
 }

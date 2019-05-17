@@ -18,13 +18,8 @@ public class LordOfEarthquakesTrait extends Trait implements IAffectsOtherStats 
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return "Lord Of Earthquakes";
-    }
-
-    @Override
-    public String unlocString() {
-        return "Lord_Of_Earthquakes";
     }
 
 }

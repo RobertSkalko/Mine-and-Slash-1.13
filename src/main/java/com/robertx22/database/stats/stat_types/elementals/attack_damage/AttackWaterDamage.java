@@ -9,17 +9,13 @@ public class AttackWaterDamage extends BaseElementalAttackDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
-    @Override
-    public String unlocString() {
-	return "attack_water_damage";
-    }
 }

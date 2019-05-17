@@ -9,18 +9,13 @@ public class NatureResist extends BaseEleResist {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
-    }
-
-    @Override
-    public String unlocString() {
-	return "nature_resist";
+        return Elements.Nature;
     }
 
 }

@@ -16,7 +16,7 @@ public class SpellFrostNova extends BaseNovaSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new WaterResist().Guid(), scaling);
+	return new EffectCalculation(new WaterResist().GUID(), scaling);
     }
 
     @Override

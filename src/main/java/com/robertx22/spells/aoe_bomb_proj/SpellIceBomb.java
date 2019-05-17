@@ -33,7 +33,7 @@ public class SpellIceBomb extends BaseBombSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellWaterDamage().Guid(), this.damageScaling);
+	return new EffectCalculation(new SpellWaterDamage().GUID(), this.damageScaling);
     }
 
     @Override

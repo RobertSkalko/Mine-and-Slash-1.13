@@ -13,11 +13,6 @@ public class Dodge extends Stat implements IStatEffects {
     public static String GUID = "Dodge";
 
     @Override
-    public String unlocString() {
-        return "dodge";
-    }
-
-    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new DodgeEffect());
     }
@@ -27,7 +22,7 @@ public class Dodge extends Stat implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

@@ -33,10 +33,10 @@ public abstract class BaseTransferMod extends Stat implements IStatTransfer {
 
 	for (TransferMethod stat : this.Transfer()) {
 
-	    float val = copy.MyStats.get(stat.converted.Guid()).Flat * data.Value /* percent */ / 100;
+	    float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
 
-	    unit.MyStats.get(stat.converted.Guid()).Flat -= val;
-	    unit.MyStats.get(stat.statThatBenefits.Guid()).Flat += val;
+	    unit.MyStats.get(stat.converted.GUID()).Flat -= val;
+	    unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
 
 	}
 

@@ -12,13 +12,8 @@ public class BuffManaRegenTrait extends SpellBuffTrait {
     public static String GUID = "Buff Mana Regen";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "buff_mana_regen";
     }
 
     @Override

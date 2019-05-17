@@ -34,7 +34,7 @@ public class SpellAcidExplosion extends BaseAoeSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellNatureDamage().Guid(), 0.25F);
+	return new EffectCalculation(new SpellNatureDamage().GUID(), 0.25F);
     }
 
     @Override

@@ -26,11 +26,11 @@ public class CommonStatUtils {
 
                     StatData stat = unit.MyStats.get(data.GetBaseMod()
                             .GetBaseStat()
-                            .Guid());
+                            .GUID());
                     if (stat == null) {
                         System.out.println("Error! can't load a stat called: " + data.GetBaseMod()
                                 .GetBaseStat()
-                                .Guid());
+                                .GUID());
                     } else {
                         stat.Add(data, level);
                     }
@@ -74,11 +74,11 @@ public class CommonStatUtils {
         for (MapAffixData status : unit.mapAffixes.values()) {
             List<StatModData> datas = status.GetAllStats();
             for (StatModData data : datas) {
-                StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
+                StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().GUID());
                 if (stat == null) {
                     System.out.println("Error! can't load a stat called: " + data.GetBaseMod()
                             .GetBaseStat()
-                            .Guid());
+                            .GUID());
                 } else {
                     stat.Add(data, level);
 

@@ -13,7 +13,7 @@ public class Armored extends Trait implements IAffectsOtherStats {
     public static String GUID = "Armored";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -21,11 +21,6 @@ public class Armored extends Trait implements IAffectsOtherStats {
     public List<StatMod> getStats() {
         return Arrays.asList(new ArmorMulti());
 
-    }
-
-    @Override
-    public String unlocString() {
-        return "armored";
     }
 
 }

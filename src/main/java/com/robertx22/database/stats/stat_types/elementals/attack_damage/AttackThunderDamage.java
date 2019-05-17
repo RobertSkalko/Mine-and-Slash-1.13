@@ -9,17 +9,13 @@ public class AttackThunderDamage extends BaseElementalAttackDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
-    @Override
-    public String unlocString() {
-	return "attack_thunder_damage";
-    }
 }

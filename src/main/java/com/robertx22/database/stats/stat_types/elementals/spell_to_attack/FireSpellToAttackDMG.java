@@ -12,22 +12,18 @@ public class FireSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Fire;
+        return Elements.Fire;
     }
 
     @Override
     public Stat StatThatGiveDamage() {
-	return new SpellFireDamage();
+        return new SpellFireDamage();
     }
 
-    @Override
-    public String unlocString() {
-	return "fire_spell_to_attack";
-    }
 }

@@ -12,13 +12,8 @@ public class BuffEnergyRegenTrait extends SpellBuffTrait {
     public static String GUID = "Buff Energy Regen";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "buff_energy_regen";
     }
 
     @Override

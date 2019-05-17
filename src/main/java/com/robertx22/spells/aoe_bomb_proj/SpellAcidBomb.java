@@ -34,7 +34,7 @@ public class SpellAcidBomb extends BaseBombSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellNatureDamage().Guid(), this.damageScaling);
+	return new EffectCalculation(new SpellNatureDamage().GUID(), this.damageScaling);
     }
 
     @Override

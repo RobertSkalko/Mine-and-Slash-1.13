@@ -20,7 +20,7 @@ public class FirePene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -29,8 +29,4 @@ public class FirePene extends BasePene implements IStatEffects {
         return Elements.Fire;
     }
 
-    @Override
-    public String unlocString() {
-        return "fire_penetration";
-    }
 }

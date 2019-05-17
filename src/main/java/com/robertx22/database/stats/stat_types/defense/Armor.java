@@ -13,16 +13,11 @@ public class Armor extends UsableStat implements IStatEffects {
 
     public static String GUID = "Armor";
 
-    @Override
-    public String unlocString() {
-        return "armor";
-    }
-
     public Armor() {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

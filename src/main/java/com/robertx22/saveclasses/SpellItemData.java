@@ -99,7 +99,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
         ITextComponent text = CLOC.word("scaling_value")
                 .appendText(": ")
-                .appendSibling(GetSpell().ScalingValue().GetStat().localizedString())
+                .appendSibling(GetSpell().ScalingValue().GetStat().locName())
                 .appendText(" ")
                 .appendSibling(CLOC.word("by"))
                 .appendText(" : " + (int) (GetScalingValue() * 100) + "%");

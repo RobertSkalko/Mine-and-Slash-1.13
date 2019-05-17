@@ -9,6 +9,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
+import com.robertx22.uncommon.interfaces.ILocName;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.ITextComponent;
@@ -18,20 +19,13 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID {
+public abstract class Stat implements IGUID, ILocName {
 
     public Stat() {
     }
 
-    @Override
-    public String GUID() {
-        return Guid();
-    }
-
-    public abstract String unlocString();
-
-    public ITextComponent localizedString() {
-        return CLOC.stat(unlocString().toLowerCase().replaceAll(" ", "_"));
+    public ITextComponent locName() {
+        return CLOC.stat(this.GUID().toLowerCase().replaceAll(" ", "_"));
     }
 
     public int MaximumPercent = 0;
@@ -44,7 +38,8 @@ public abstract class Stat implements IGUID {
 
     public abstract boolean IsPercent();
 
-    public abstract String Guid();
+    @Override
+    public abstract String GUID();
 
     public abstract boolean ScalesToLevel();
 
@@ -76,7 +71,7 @@ public abstract class Stat implements IGUID {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
 
-        ITextComponent str = basestat.localizedString();
+        ITextComponent str = basestat.locName();
 
         if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
             str.appendText(" ").appendSibling(CLOC.word("percent"));

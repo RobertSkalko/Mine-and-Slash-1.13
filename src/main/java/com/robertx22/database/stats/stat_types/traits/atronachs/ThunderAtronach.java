@@ -13,12 +13,7 @@ public class ThunderAtronach extends Trait implements IAffectsOtherStats {
     public static String GUID = "Thunder Atronach";
 
     @Override
-    public String unlocString() {
-        return "thunder_atronach";
-    }
-
-    @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

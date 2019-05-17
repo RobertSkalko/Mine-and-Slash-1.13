@@ -12,13 +12,8 @@ public class HomingTrait extends SpellBuffTrait {
     public static String GUID = "Homing";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "homing_projectile";
     }
 
     @Override

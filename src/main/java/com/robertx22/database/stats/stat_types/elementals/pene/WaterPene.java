@@ -20,7 +20,7 @@ public class WaterPene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 
@@ -29,8 +29,4 @@ public class WaterPene extends BasePene implements IStatEffects {
         return Elements.Water;
     }
 
-    @Override
-    public String unlocString() {
-        return "water_penetration";
-    }
 }

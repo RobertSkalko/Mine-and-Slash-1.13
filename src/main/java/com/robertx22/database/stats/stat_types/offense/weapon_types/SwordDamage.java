@@ -6,18 +6,13 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 public class SwordDamage extends WeaponDamageStat {
 
     @Override
-    public String unlocString() {
-	return "sword_damage";
-    }
-
-    @Override
     public WeaponTypes weaponType() {
-	return WeaponTypes.Sword;
+        return WeaponTypes.Sword;
     }
 
     @Override
-    public String Guid() {
-	return "Sword Damage";
+    public String GUID() {
+        return "Sword Damage";
     }
 
 }

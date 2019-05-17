@@ -11,28 +11,23 @@ public class Mana extends FillableStat {
     }
 
     @Override
-    public String unlocString() {
-	return "mana";
-    }
-
-    @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return false;
+        return false;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public boolean IsPercent() {
-	return false;
+        return false;
     }
 
 }

@@ -12,13 +12,8 @@ public class LightTrait extends SpellBuffTrait {
     public static String GUID = "Shining Light";
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public String unlocString() {
-        return "shining_light";
     }
 
     @Override

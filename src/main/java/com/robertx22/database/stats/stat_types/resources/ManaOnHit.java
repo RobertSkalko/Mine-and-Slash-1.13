@@ -17,16 +17,11 @@ public class ManaOnHit extends Stat implements IStatEffects {
         return Arrays.asList(new ManaOnHitEffect());
     }
 
-    @Override
-    public String unlocString() {
-        return "mana_on_hit";
-    }
-
     public ManaOnHit() {
     }
 
     @Override
-    public String Guid() {
+    public String GUID() {
         return GUID;
     }
 

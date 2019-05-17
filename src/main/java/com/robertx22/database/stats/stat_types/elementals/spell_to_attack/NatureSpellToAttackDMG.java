@@ -12,22 +12,18 @@ public class NatureSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
+        return Elements.Nature;
     }
 
     @Override
     public Stat StatThatGiveDamage() {
-	return new SpellNatureDamage();
+        return new SpellNatureDamage();
     }
 
-    @Override
-    public String unlocString() {
-	return "nature_spell_to_attack";
-    }
 }

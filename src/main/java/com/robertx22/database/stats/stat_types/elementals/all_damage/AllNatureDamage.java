@@ -6,17 +6,13 @@ public class AllNatureDamage extends AllEleDamageBase {
     public static String GUID = "All Nature Damage";
 
     @Override
-    public String Guid() {
-	return GUID;
+    public String GUID() {
+        return GUID;
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
+        return Elements.Nature;
     }
 
-    @Override
-    public String unlocString() {
-	return "all_nature_damage";
-    }
 }

@@ -56,13 +56,13 @@ public class OnTickLogic {
                         unit_capa.recalculateStats(player, mapdata);
                         Unit unit = unit_capa.getUnit();
 
-                        int manarestored = (int) unit.MyStats.get(new ManaRegen().Guid()).Value;
+                        int manarestored = (int) unit.MyStats.get(new ManaRegen().GUID()).Value;
                         unit_capa.restoreMana(manarestored);
 
-                        int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Guid()).Value;
+                        int energyrestored = (int) unit.MyStats.get(new EnergyRegen().GUID()).Value;
                         unit_capa.restoreEnergy(energyrestored);
 
-                        int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
+                        int healthrestored = (int) unit.MyStats.get(new HealthRegen().GUID()).Value;
                         unit_capa.heal(player, healthrestored);
 
                     }
