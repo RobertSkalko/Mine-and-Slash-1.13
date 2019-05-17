@@ -1,5 +1,7 @@
 package com.robertx22.config.non_mine_items;
 
+import com.robertx22.mmorpg.Ref;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,9 @@ public class ConfigItems {
 
     public void addAll(ConfigItems items) {
         if (items != null && items.map != null) {
+            for (String regname : items.map.keySet()) {
+                System.out.println(Ref.MODID + ":Added Compatible Item: " + regname);
+            }
             this.map.putAll(items.map);
             this.refreshList();
         } else {

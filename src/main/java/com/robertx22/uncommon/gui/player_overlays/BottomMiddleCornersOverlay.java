@@ -9,21 +9,27 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
 
+    private static final int X_OFFSET_OFFHAND = -20;
+    private static final int X_OFFSET_NO_OFFHAND = 5;
+
     @Override
     public void Draw(Gui gui, Minecraft mc, EntityLivingBase entity,
                      RenderGameOverlayEvent event, Unit unit, UnitData data) {
         // ENERGY
 
+        int offsetx = entity.getHeldItemOffhand()
+                .isEmpty() ? X_OFFSET_NO_OFFHAND : X_OFFSET_OFFHAND;
+
         int height = mc.mainWindow.getScaledHeight();
         int width = mc.mainWindow.getScaledWidth();
 
-        int x = width / 2 + this.TEXTURE_WIDTH - 5;
+        int x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         int y = height - 16 - this.TEXTURE_HEIGHT;
 
         this.DrawBar(mc, gui, unit, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, false, data, x, y);
 
         // MANA
-        x = width / 2 + this.TEXTURE_WIDTH - 5;
+        x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         y = height - 15;
 
         this.DrawBar(mc, gui, unit, manatexturepath, data.getCurrentMana(), unit.manaData().Value, false, data, x, y);
@@ -31,7 +37,7 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         // MANA
 
         // HEALTH
-        x = width / 2 - this.TEXTURE_WIDTH * 2 + 5;
+        x = width / 2 - this.TEXTURE_WIDTH * 2 + offsetx;
         y = height - 16 - this.TEXTURE_HEIGHT;
 
         this.DrawBar(mc, gui, unit, healthtexturepath, unit.health()
@@ -40,7 +46,7 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         // HEALTH
 
         // EXP
-        x = width / 2 - this.TEXTURE_WIDTH * 2 + 5;
+        x = width / 2 - this.TEXTURE_WIDTH * 2 + offsetx;
         y = height - 15;
 
         this.DrawBar(mc, gui, unit, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), true, data, x, y);

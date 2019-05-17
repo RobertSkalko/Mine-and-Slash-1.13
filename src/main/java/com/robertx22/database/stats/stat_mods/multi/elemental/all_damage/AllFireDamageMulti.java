@@ -8,13 +8,13 @@ public class AllFireDamageMulti extends BaseEleMulti {
 
     @Override
     public Stat GetBaseStat() {
-	return new AllFireDamage();
+        return new AllFireDamage();
 
     }
 
     @Override
     public String GUID() {
-	return "AllFireDamageMulti";
+        return "AllFireDamageMulti";
     }
 
 }

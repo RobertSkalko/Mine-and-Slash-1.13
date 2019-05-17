@@ -26,54 +26,46 @@ public class ClientContainer {
     public BooleanValue RENDER_MOB_HEALTH_GUI;
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_FLOATING_EXP;
+    public BooleanValue SHOW_VANILLA_HEARTS;
 
     public EnumValue<Player_GUIs> PLAYER_GUI_TYPE;
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
 
-        SHOW_AFFIXED_NAME = builder
-
-                .comment(".")
+        SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")
                 .define("SHOW_AFFIXED_NAME", false);
 
-        RENDER_CHAT_COMBAT_LOG = builder
+        SHOW_VANILLA_HEARTS = builder.comment(".")
+                .translation("mmorpg.config.show_vanilla_hearts")
+                .define("SHOW_VANILLA_HEARTS", true);
 
-                .comment(".")
+        RENDER_CHAT_COMBAT_LOG = builder.comment(".")
                 .translation("mmorpg.config.chat_combat_log")
                 .define("RENDER_CHAT_COMBAT_LOG", false);
 
-        RENDER_FLOATING_DAMAGE = builder
-
-                .comment(".")
+        RENDER_FLOATING_DAMAGE = builder.comment(".")
                 .translation("mmorpg.config.floating_damage_numbers")
                 .define("RENDER_FLOATING_DAMAGE", true);
 
-        RENDER_MOB_HEALTH_GUI = builder
-
-                .comment(".")
+        RENDER_MOB_HEALTH_GUI = builder.comment(".")
                 .translation("mmorpg.config.mob_health_bar")
                 .define("RENDER_MOB_HEALTH_GUI", true);
 
-        SHOW_LOW_ENERGY_MANA_WARNING = builder
-
-                .comment(".")
+        SHOW_LOW_ENERGY_MANA_WARNING = builder.comment(".")
                 .translation("mmorpg.config.low_resource_warnings")
                 .define("SHOW_LOW_ENERGY_MANA_WARNING", true);
 
-        SHOW_FLOATING_EXP = builder
-
-                .comment(".")
+        SHOW_FLOATING_EXP = builder.comment(".")
                 .translation("mmorpg.config.floating_exp")
                 .define("SHOW_FLOATING_EXP", true);
 
         PLAYER_GUI_TYPE = builder.comment(".")
                 .translation("mmorpg.config.player_gui_overlay_type")
-                .defineEnum("PLAYER_GUI_TYPE", Player_GUIs.Middle);
+                .defineEnum("PLAYER_GUI_TYPE", Player_GUIs.Bottom_Middle_Corners);
 
         builder.pop();
-        // builder.build();
     }
 
 }

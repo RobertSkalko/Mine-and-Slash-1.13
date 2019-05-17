@@ -30,14 +30,23 @@ public class BarsGUI extends Gui {
     UnitData data;
     int ticks = 0;
 
+    private void handleHeartGui(RenderGameOverlayEvent event) {
+
+        if (event.getType()
+                .equals(ElementType.HEALTH) && ClientContainer.INSTANCE.SHOW_VANILLA_HEARTS
+                .get() == false) {
+            event.setCanceled(true);
+        }
+
+    }
+
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
 
         try {
 
-            if (event.getType().equals(ElementType.HEALTH)) {
-                event.setCanceled(true);
-            }
+            handleHeartGui(event);
+
             if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
                 return;
             }
@@ -53,7 +62,7 @@ public class BarsGUI extends Gui {
 
                 if (newData != null) {
                     data = newData;
-                    if (newData != null) {
+                    if (newData.getUnit() != null) {
                         newUnit = newData.getUnit();
                     }
                     if (newUnit != null) {

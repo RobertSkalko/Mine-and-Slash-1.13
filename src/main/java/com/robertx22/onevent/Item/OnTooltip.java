@@ -1,6 +1,7 @@
 package com.robertx22.onevent.Item;
 
 import com.robertx22.Styles;
+import com.robertx22.config.non_mine_items.ConfigItems;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
@@ -28,7 +29,25 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(Dist.CLIENT)
 public class OnTooltip {
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void showCompatibleItem(ItemTooltipEvent event) {
+
+        ItemStack stack = event.getItemStack();
+
+        if (stack.getItem().getRegistryName() != null) {
+            if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
+                    .getRegistryName()
+                    .toString())) {
+
+                event.getToolTip()
+                        .add(new TextComponentString(Styles.RED + "Compatible Mine and Slash Item"));
+
+            }
+        }
+
+    }
+    
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onItemTooltip(ItemTooltipEvent event) {
 
         if (GuiScreen.isCtrlKeyDown()) {
@@ -45,6 +64,7 @@ public class OnTooltip {
         stack = event.getItemStack();
 
         if (!stack.hasTag()) {
+
             return;
         }
 
@@ -76,7 +96,6 @@ public class OnTooltip {
                                 .appendSibling(new TextComponentString("Power LeveL: " + gear
                                         .getPowerLevel())));
             }
-
         } else {
             SpellItemData data = Spell.Load(stack);
 
