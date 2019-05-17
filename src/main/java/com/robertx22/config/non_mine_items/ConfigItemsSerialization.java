@@ -10,10 +10,12 @@ import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.item.Item;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ConfigItemsSerialization implements ISerializedConfig {
 
@@ -26,8 +28,6 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
 
-        generateConfigTutorials();
-
     }
 
     public String fileName() {
@@ -36,27 +36,33 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
     @Override
     public String folder() {
-        return SerializationUtils.CONFIG_PATH;
+        return SerializationUtils.CONFIG_PATH + "compatible_items/";
     }
 
     public void load() {
 
         JsonReader reader;
         try {
-            reader = new JsonReader(new FileReader(this.getPath()));
 
-            ConfigItems.INSTANCE = new Gson().fromJson(reader, ConfigItems.class);
+            for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
 
-            ConfigItems.INSTANCE.validateAll();
+                reader = new JsonReader(new FileReader(file.getPath()));
+                ConfigItems.INSTANCE.addAll(new Gson().fromJson(reader, ConfigItems.class));
 
+            }
             System.out.println("Items added to config: " + ConfigItems.INSTANCE.map.size());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
         }
+
+        ConfigItems.INSTANCE.validateAll();
+
     }
 
-    private void generateConfigTutorials() {
+    // needs to be done after unique items are actually registered.
+    public void generateConfigTutorials() {
         genListOfUniqueItems();
         genListOfItemTypes();
     }

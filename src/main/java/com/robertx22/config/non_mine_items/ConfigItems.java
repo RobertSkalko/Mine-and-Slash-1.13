@@ -15,7 +15,7 @@ public class ConfigItems {
 
     public static ConfigItems INSTANCE = new ConfigItems();
 
-    String version = "1.1";
+    String version = "1.2";
 
     public HashMap<String, ConfigItem> map = new HashMap();
 
@@ -29,6 +29,15 @@ public class ConfigItems {
             entry.getValue().registryName = entry.getKey();
             list.add(entry.getValue());
 
+        }
+    }
+
+    public void addAll(ConfigItems items) {
+        if (items != null && items.map != null) {
+            this.map.putAll(items.map);
+            this.refreshList();
+        } else {
+            System.out.println("File in compatible items folder is not a correct one");
         }
     }
 

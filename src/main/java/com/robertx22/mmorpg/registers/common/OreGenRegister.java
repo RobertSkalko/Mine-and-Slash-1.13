@@ -37,7 +37,6 @@ public class OreGenRegister {
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);
-
         }
 
     }

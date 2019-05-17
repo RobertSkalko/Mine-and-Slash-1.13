@@ -15,7 +15,7 @@ import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.spells.bases.BaseSpell;
 
 public class MineAndSlashAPI {
-    
+
     public enum GearFamilly {
         Armor, Weapon, Jewerly, All
     }

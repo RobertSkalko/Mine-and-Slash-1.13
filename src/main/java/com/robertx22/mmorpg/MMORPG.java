@@ -3,8 +3,8 @@ package com.robertx22.mmorpg;
 import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
-import com.robertx22.api.DatabaseIMCProcess;
 import com.robertx22.config.ModConfig;
+import com.robertx22.config.non_mine_items.ConfigItemsSerialization;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
@@ -56,8 +56,6 @@ public class MMORPG {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
-    // public static Main instance;
-
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
     public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(Ref.MODID, "main_channel"))
@@ -67,8 +65,6 @@ public class MMORPG {
             .simpleChannel();
 
     public MMORPG() {
-        //ForgeMod
-        // Main.instance = this; ForgeMod
 
         System.out.println("Starting Mine and Slash");
 
@@ -104,15 +100,12 @@ public class MMORPG {
     private void interModEnqueue(final InterModEnqueueEvent event) {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
-
-        // InterModComms.sendTo(Ref.MODID, "test", () -> new CompatibleItemMSG("itemid", new MyConfigItem()) {
-        // });
-
     }
 
     private void interModProcessEvent(final InterModProcessEvent event) {
         System.out.println(Ref.MODID + ":InterModProcessEvent");
-        DatabaseIMCProcess.proc(event);
+        ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
+
     }
 
     public void loadComplete(final FMLLoadCompleteEvent event) {

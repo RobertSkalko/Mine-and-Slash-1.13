@@ -16,6 +16,7 @@ import java.nio.file.Path;
 
 public class ConfigRegister {
 
+    // MUST BE CALLED IN MAIN CLASS
     public static void register() {
         ModLoadingContext ctx = ModLoadingContext.get();
         ctx.registerConfig(Type.CLIENT, ClientContainer.spec);
@@ -26,6 +27,7 @@ public class ConfigRegister {
 
     }
 
+    // MUST BE CALLED IN MAIN CLASS
     public static void load() {
         loadConfig(ClientContainer.spec, FMLPaths.CONFIGDIR.get()
                 .resolve(Ref.MODID + "-" + "client" + ".toml")); // needs to be modid
