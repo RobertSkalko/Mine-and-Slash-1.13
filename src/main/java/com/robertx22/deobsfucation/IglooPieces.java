@@ -41,13 +41,13 @@ public class IglooPieces {
     public static void addPieces(TemplateManager templateManager, BlockPos pos,
                                  Rotation rotation, List<StructurePiece> pieceList,
                                  Random rand, IglooConfig config) {
-        if (rand.nextDouble() < 0.5D) {
-            int randInt = rand.nextInt(8) + 4;
-            pieceList.add(new Piece(templateManager, IGLOO_BOTTOM_RES, pos, rotation, randInt * 3));
 
-            for (int i = 0; i < randInt - 1; ++i) {
-                pieceList.add(new Piece(templateManager, IGLOO_MIDDLE_RES, pos, rotation, i * 3));
-            }
+        int randInt = rand.nextInt(8) + 3; //4
+
+        pieceList.add(new Piece(templateManager, IGLOO_BOTTOM_RES, pos, rotation, randInt * 3));
+
+        for (int i = 0; i < randInt - 1; ++i) {
+            pieceList.add(new Piece(templateManager, IGLOO_MIDDLE_RES, pos, rotation, i * 3));
         }
 
         pieceList.add(new Piece(templateManager, IGLOO_TOP_RES, pos, rotation, 0));

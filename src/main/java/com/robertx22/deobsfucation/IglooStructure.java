@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.structure.ScatteredStructure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class IglooStructure extends ScatteredStructure<IglooConfig> {
+public class IglooStructure extends ScatteredStructure<MyIglooConfig> {
     protected String getStructureName() {
         return "Igloo";
     }
@@ -26,7 +26,7 @@ public class IglooStructure extends ScatteredStructure<IglooConfig> {
                                        SharedSeedRandom random, int x, int z) {
         Biome biome = generator.getBiomeProvider()
                 .getBiome(new BlockPos((x << 4) + 9, 0, (z << 4) + 9), Biomes.PLAINS);
-        return new IglooStructure.Start(worldIn, generator, random, x, z, biome);
+        return new Start(worldIn, generator, random, x, z, biome);
     }
 
     protected int getSeedModifier() {
