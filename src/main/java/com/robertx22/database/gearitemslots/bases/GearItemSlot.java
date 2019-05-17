@@ -6,6 +6,7 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.BaseTraitMod;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.interfaces.ILocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class GearItemSlot implements IWeighted {
+public abstract class GearItemSlot implements IWeighted, ILocName {
 
     public enum GearSlotType {
         Weapon, Armor, Jewerly, OffHand
@@ -25,6 +26,7 @@ public abstract class GearItemSlot implements IWeighted {
 
     public abstract GearSlotType slotType();
 
+    @Override
     public ITextComponent locName() {
         return CLOC.geartype(GUID().toLowerCase());
     }

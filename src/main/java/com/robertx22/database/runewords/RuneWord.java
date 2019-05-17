@@ -3,21 +3,21 @@ package com.robertx22.database.runewords;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.interfaces.ILocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public abstract class RuneWord implements IWeighted {
+public abstract class RuneWord implements IWeighted, ILocName {
 
     public abstract List<StatMod> mods();
 
     public abstract String GUID();
 
-    public abstract String unlocName();
-
+    @Override
     public ITextComponent locName() {
-        return CLOC.word(unlocName());
+        return CLOC.word(GUID().toLowerCase().replaceAll(" ", "_"));
     }
 
     public abstract List<BaseRuneItem> runes();

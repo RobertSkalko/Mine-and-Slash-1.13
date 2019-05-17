@@ -2,12 +2,13 @@ package com.robertx22.database.affixes;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.uncommon.interfaces.ILocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public abstract class BaseAffix implements IWeighted, IGUID {
+public abstract class BaseAffix implements IWeighted, IGUID, ILocName {
 
     public BaseAffix() {
     }

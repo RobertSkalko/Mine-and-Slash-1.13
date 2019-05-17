@@ -1,24 +1,20 @@
 package com.robertx22.database.map_affixes;
 
-import java.util.List;
-
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
+import java.util.List;
+
 public abstract class BaseMapAffix implements IWeighted {
 
-	public abstract String Name();
+    public abstract String GUID();
 
-	public String GUID() {
-		return Name();
-	}
+    public abstract List<StatModData> Stats(int percent);
 
-	public abstract List<StatModData> Stats(int percent);
+    @Override
+    public int Weight() {
+        return this.UncommonWeight;
+    }
 
-	@Override
-	public int Weight() {
-		return this.UncommonWeight;
-	}
-
-	public abstract boolean isBeneficial();
+    public abstract boolean isBeneficial();
 }

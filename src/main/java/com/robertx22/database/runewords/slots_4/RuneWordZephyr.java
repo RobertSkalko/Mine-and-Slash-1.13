@@ -1,8 +1,5 @@
 package com.robertx22.database.runewords.slots_4;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
@@ -15,26 +12,24 @@ import com.robertx22.items.runes.MosItem;
 import com.robertx22.items.runes.XahItem;
 import com.robertx22.items.runes.base.BaseRuneItem;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class RuneWordZephyr extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-	return Arrays.asList(new ZephyrFlat(), new EnergyRegenFlat(), new ThunderResistFlat(), new ArmorFlat());
+        return Arrays.asList(new ZephyrFlat(), new EnergyRegenFlat(), new ThunderResistFlat(), new ArmorFlat());
     }
 
     @Override
     public String GUID() {
-	return "Zephyr";
+        return "Zephyr";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
-	return Arrays.asList(new MosItem(0), new XahItem(0), new CenItem(0), new BerItem(0));
-    }
-
-    @Override
-    public String unlocName() {
-	return "zephyr";
+        return Arrays.asList(new MosItem(0), new XahItem(0), new CenItem(0), new BerItem(0));
     }
 
 }
