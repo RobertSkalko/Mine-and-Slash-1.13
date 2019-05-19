@@ -26,7 +26,7 @@ import java.util.Map.Entry;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
+    private DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
         super(source, target);
 
         this.Number = dmg;
@@ -96,19 +96,21 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         }
 
-        if (fullyblocked == false) {
-            /// Target.hurtResistantTime = Target.hurtResistantTime; // 0; // this allows to add bonus damages at the same second
-            // Target.attackEntityFrom(dmgsource, dmg);
-            Target.setHealth(Target.getHealth() - dmg);
+        // MAYBE DO ALL BONUS ELE DMG HERE TOGETHER WITH THE BASE ATK?
 
-            if (this.getEffectType().equals(EffectTypes.SPELL)) {
-                knockback();
-            }
+        if (fullyblocked == false) {
+
+            // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
+            int hurttime = Target.hurtResistantTime;
+            Target.hurtResistantTime = 0;
+            Target.attackEntityFrom(dmgsource, dmg);
+            Target.hurtResistantTime = hurttime;
+            //
 
             addBonusElementDamage();
             Heal();
             RestoreMana();
-            
+
             if (ClientContainer.INSTANCE.RENDER_CHAT_COMBAT_LOG.get()) {
                 LogCombat();
             }
@@ -121,12 +123,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             }
         }
-
-    }
-
-    private void knockback() {
-
-        Target.knockBack(Source, 0.4F, Source.posX - Target.posX, Source.posZ - Target.posZ);
 
     }
 
@@ -147,9 +143,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     private void addBonusElementDamage() {
         for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
-                bonus.setEffectType(EffectTypes.BONUS_ATTACK, this.weaponType);
+                DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.Element = entry.getKey();
+                bonus.needsToRecalcStats = false;
                 bonus.Activate();
             }
         }

@@ -16,6 +16,8 @@ import java.util.List;
 
 public abstract class EffectData {
 
+    boolean needsToRecalcStats = true;
+
     public EffectData(EntityLivingBase source, EntityLivingBase target) {
 
         this.Source = source;
@@ -38,13 +40,13 @@ public abstract class EffectData {
 
                 sourceUnit = sourceData.getUnit();
 
-                if (sourceUnit != null) {
-                    sourceData.recalculateStats(source, world);
-                } else if (targetUnit != null) {
-                    targetData.recalculateStats(target, world);
+                if (sourceUnit != null && targetUnit == null) {
+                    if (this.needsToRecalcStats) {
+                        sourceData.recalculateStats(source, world);
+                        targetData.recalculateStats(target, world);
+                    }
                 } else {
                     this.canceled = true;
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();

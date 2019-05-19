@@ -1,5 +1,6 @@
 package com.robertx22.spells.bases;
 
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -23,9 +24,12 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
     @Override
     public void Activate(DamageData dmgdata, EntityLivingBase target) {
-        DamageEffect dmg = new DamageEffect(dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
+
+        int num = dmgdata.spellItem.GetDamage(dmgdata.casterUnit.getUnit());
+
+        DamageEffect dmg = new DamageEffect(dmgdata.caster, target, num, dmgdata.casterUnit, Load
+                .Unit(target), EffectTypes.SPELL, WeaponTypes.None);
         dmg.Element = this.element;
-        dmg.setEffectType(EffectTypes.SPELL, WeaponTypes.None);
         dmg.Activate();
 
     }
