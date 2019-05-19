@@ -21,9 +21,7 @@ public class BowWeaponMechanic extends WeaponMechanic {
                           EntityData.UnitData unitsource,
                           EntityData.UnitData targetUnit) {
 
-        // double attack :3
-        super.Attack(source, target, unitsource, targetUnit);
-        super.Attack(source, target, unitsource, targetUnit);
+        super.AttackXTimes(source, target, unitsource, targetUnit, 2);
 
         return true;
     }

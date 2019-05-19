@@ -10,6 +10,7 @@ public class ServerContainer {
     public BooleanValue DISABLE_VANILLA_HP_REGEN;
     public BooleanValue GENERATE_ORES;
     public BooleanValue LEVEL_UPS_COST_TOKEN;
+    public BooleanValue USE_ATTACK_COOLDOWN;
 
     public IntValue MAXIMUM_WORN_RUNED_ITEMS;
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
@@ -34,6 +35,10 @@ public class ServerContainer {
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("PLAYER_HEART_TO_HEALTH_CONVERSION", 1D, 0D, 100D);
+
+        USE_ATTACK_COOLDOWN = builder.comment(".")
+                .translation("mmorpg.word")
+                .define("USE_ATTACK_COOLDOWN", true);
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
                 .translation("mmorpg.word.entities")

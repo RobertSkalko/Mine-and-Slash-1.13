@@ -21,6 +21,19 @@ public abstract class WeaponMechanic {
         dmg.Activate();
 
         return true;
-
     }
+
+    public boolean AttackXTimes(EntityLivingBase source, EntityLivingBase target,
+                                UnitData unitsource, UnitData targetUnit, int times) {
+
+        int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+        DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
+
+        for (int i = 0; i < times; i++) {
+            dmg.Activate();
+        }
+
+        return true;
+    }
+
 }

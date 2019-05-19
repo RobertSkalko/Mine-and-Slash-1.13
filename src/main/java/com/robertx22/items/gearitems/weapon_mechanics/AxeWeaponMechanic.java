@@ -21,9 +21,7 @@ public class AxeWeaponMechanic extends WeaponMechanic {
     public boolean Attack(EntityLivingBase source, EntityLivingBase target,
                           UnitData unitsource, UnitData targetUnit) {
 
-        // double attack :3
-        super.Attack(source, target, unitsource, targetUnit);
-        super.Attack(source, target, unitsource, targetUnit);
+        super.AttackXTimes(source, target, unitsource, targetUnit, 2);
 
         return true;
     }

@@ -1,5 +1,6 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -46,13 +47,14 @@ public class OnMobMeleeAttack {
                     .getTrueSource();
             EntityLivingBase target = event.getEntityLiving();
 
-            // REQUIRED for attack cooldown
-            if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
-                return;
-            }
-
             if (target.isAlive() == false) {
                 return; // stops attacking dead mobs
+            }
+
+            if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
+                if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
+                    return;
+                }
             }
 
             UnitData targetData = Load.Unit(target);
