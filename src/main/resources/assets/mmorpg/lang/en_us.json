@@ -243,7 +243,12 @@
     "mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
     "mmorpg.suffix.of_vitality": "Of Vitality",
     "mmorpg.suffix.of_rock_skin": "Of Rock Skin",
-    "mmorpg.suffix.of_critical_damage": "Of Critical Damage",
+    "mmorpg.suffix.of_critical_damage": "Of Critical Damage",	
+	"mmorpg.suffix.ofvampirism": "Of Vampirism",
+	"mmorpg.suffix.offorce": "Of Force",
+	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
+	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
+	"mmorpg.suffix.ofthedepths": "Of The Depths",	
 
     "_comment": "PREFIXES",
     "mmorpg.prefix.flame_imbued": "Flame Imbued",
@@ -577,6 +582,15 @@
 	"mmorpg.stat.water_to_fire_transfer": "Water to Fire Transfer",
 	"mmorpg.stat.highdodgeaddcritdamage": "Crit Damage on High Dodge",
 	"mmorpg.stat.lifesteal": "Lifesteal",
+	"mmorpg.stat.bonusexpflat": "Bonus Experience",
+	
+	"mmorpg.stat.strength": "Strength",
+	"mmorpg.stat.vitality": "Vitality",
+	"mmorpg.stat.dexterity": "Dexterity",
+	"mmorpg.stat.wisdom": "Wisdom",
+	"mmorpg.stat.stamina": "Stamina",
+	"mmorpg.stat.intelligence": "Intelligence",
+	
 
     "_comment": "ITEM TOOLTIPS",
 

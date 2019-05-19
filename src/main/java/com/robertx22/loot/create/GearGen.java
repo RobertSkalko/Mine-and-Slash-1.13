@@ -5,10 +5,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.gearitem.PrefixData;
-import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
-import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
-import com.robertx22.saveclasses.gearitem.SuffixData;
+import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
@@ -33,6 +30,11 @@ public class GearGen {
 
         data.secondaryStats = new SecondaryStatsData();
         data.secondaryStats.RerollFully(data);
+
+        if (blueprint.getsChaosStats()) {
+            data.chaosStats = new ChaosStatsData();
+            data.chaosStats.RerollFully(data);
+        }
 
         if (RandomUtils.roll(rarity.AffixChance())) {
 

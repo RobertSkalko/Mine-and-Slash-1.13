@@ -1,9 +1,8 @@
 package com.robertx22.db_lists;
 
-import java.util.HashMap;
-
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
+import com.robertx22.database.stats.stat_types.core_stats.*;
 import com.robertx22.database.stats.stat_types.defense.Armor;
 import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
@@ -56,38 +55,17 @@ import com.robertx22.database.stats.stat_types.elementals.transfers.thunder_to.T
 import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToFireTransfer;
 import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToNatureTransfer;
 import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToThunderTransfer;
+import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.AxeDamage;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.BowDamage;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.HammerDamage;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.StaffDamage;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.SwordDamage;
-import com.robertx22.database.stats.stat_types.resources.Energy;
-import com.robertx22.database.stats.stat_types.resources.EnergyRegen;
-import com.robertx22.database.stats.stat_types.resources.Health;
-import com.robertx22.database.stats.stat_types.resources.HealthRegen;
-import com.robertx22.database.stats.stat_types.resources.LifeOnHit;
-import com.robertx22.database.stats.stat_types.resources.Lifesteal;
-import com.robertx22.database.stats.stat_types.resources.Mana;
-import com.robertx22.database.stats.stat_types.resources.ManaOnHit;
-import com.robertx22.database.stats.stat_types.resources.ManaRegen;
+import com.robertx22.database.stats.stat_types.offense.weapon_types.*;
+import com.robertx22.database.stats.stat_types.resources.*;
 import com.robertx22.database.stats.stat_types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.database.stats.stat_types.resources.conversions.ManaToEnergyConversion;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.BuffEnergyRegenTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.BuffManaRegenTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.GhostProjectileTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.HomingTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.LightTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.PurityTrait;
-import com.robertx22.database.stats.stat_types.spell_buff_traits.ZephyrTrait;
-import com.robertx22.database.stats.stat_types.traits.Armored;
-import com.robertx22.database.stats.stat_types.traits.Elemental;
-import com.robertx22.database.stats.stat_types.traits.Golem;
-import com.robertx22.database.stats.stat_types.traits.Lucky;
-import com.robertx22.database.stats.stat_types.traits.Stealthy;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.*;
+import com.robertx22.database.stats.stat_types.traits.*;
 import com.robertx22.database.stats.stat_types.traits.atronachs.EarthAtronach;
 import com.robertx22.database.stats.stat_types.traits.atronachs.FireAtronach;
 import com.robertx22.database.stats.stat_types.traits.atronachs.FrostAtronach;
@@ -109,164 +87,175 @@ import com.robertx22.database.stats.stat_types.traits.low_crit_hit.LowCritHitAdd
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 
+import java.util.HashMap;
+
 public class Stats {
 
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
-	{
-	    {
+        {
+            {
 
-		// spell buffs
-		put(new HomingTrait().GUID(), new HomingTrait());
-		put(new GhostProjectileTrait().GUID(), new GhostProjectileTrait());
-		put(new ZephyrTrait().GUID(), new ZephyrTrait());
-		put(new LightTrait().GUID(), new LightTrait());
-		put(new PurityTrait().GUID(), new PurityTrait());
-		put(new BuffEnergyRegenTrait().GUID(), new BuffEnergyRegenTrait());
-		put(new BuffManaRegenTrait().GUID(), new BuffManaRegenTrait());
+                put(new Strength().GUID(), new Strength());
+                put(new Dexterity().GUID(), new Dexterity());
+                put(new Wisdom().GUID(), new Wisdom());
+                put(new Intelligence().GUID(), new Intelligence());
+                put(new Stamina().GUID(), new Stamina());
+                put(new Vitality().GUID(), new Vitality());
 
-		// spell buffs
+                put(new BonusExp().GUID(), new BonusExp());
 
-		put(new EnergyToManaConversion().GUID(), new EnergyToManaConversion());
-		put(new ManaToEnergyConversion().GUID(), new ManaToEnergyConversion());
+                // spell buffs
+                put(new HomingTrait().GUID(), new HomingTrait());
+                put(new GhostProjectileTrait().GUID(), new GhostProjectileTrait());
+                put(new ZephyrTrait().GUID(), new ZephyrTrait());
+                put(new LightTrait().GUID(), new LightTrait());
+                put(new PurityTrait().GUID(), new PurityTrait());
+                put(new BuffEnergyRegenTrait().GUID(), new BuffEnergyRegenTrait());
+                put(new BuffManaRegenTrait().GUID(), new BuffManaRegenTrait());
 
-		// conditional traits
-		put(new HighCritAddArmor().GUID(), new HighCritAddArmor());
-		put(new HighCritAddLifesteal().GUID(), new HighCritAddLifesteal());
-		put(new HighDodgeAddCritDamage().GUID(), new HighDodgeAddCritDamage());
-		put(new HighDodgeAddPhysDamage().GUID(), new HighDodgeAddPhysDamage());
+                // spell buffs
 
-		put(new LowDodgeAddArmor().GUID(), new LowDodgeAddArmor());
-		put(new LowDodgeAddCritHit().GUID(), new LowDodgeAddCritHit());
-		put(new LowCritHitAddDodge().GUID(), new LowCritHitAddDodge());
-		put(new LowCritHitAddHealth().GUID(), new LowCritHitAddHealth());
+                put(new EnergyToManaConversion().GUID(), new EnergyToManaConversion());
+                put(new ManaToEnergyConversion().GUID(), new ManaToEnergyConversion());
 
-		// lord traits
-		put(new LordOfVolcanoesTrait().GUID(), new LordOfVolcanoesTrait());
-		put(new LordOfBlizzardsTrait().GUID(), new LordOfBlizzardsTrait());
-		put(new LordOfThunderstormsTrait().GUID(), new LordOfThunderstormsTrait());
-		put(new LordOfEarthquakesTrait().GUID(), new LordOfEarthquakesTrait());
+                // conditional traits
+                put(new HighCritAddArmor().GUID(), new HighCritAddArmor());
+                put(new HighCritAddLifesteal().GUID(), new HighCritAddLifesteal());
+                put(new HighDodgeAddCritDamage().GUID(), new HighDodgeAddCritDamage());
+                put(new HighDodgeAddPhysDamage().GUID(), new HighDodgeAddPhysDamage());
 
-		// weapon damages
+                put(new LowDodgeAddArmor().GUID(), new LowDodgeAddArmor());
+                put(new LowDodgeAddCritHit().GUID(), new LowDodgeAddCritHit());
+                put(new LowCritHitAddDodge().GUID(), new LowCritHitAddDodge());
+                put(new LowCritHitAddHealth().GUID(), new LowCritHitAddHealth());
 
-		put(new HammerDamage().GUID(), new HammerDamage());
-		put(new SwordDamage().GUID(), new SwordDamage());
-		put(new BowDamage().GUID(), new BowDamage());
-		put(new AxeDamage().GUID(), new AxeDamage());
-		put(new StaffDamage().GUID(), new StaffDamage());
+                // lord traits
+                put(new LordOfVolcanoesTrait().GUID(), new LordOfVolcanoesTrait());
+                put(new LordOfBlizzardsTrait().GUID(), new LordOfBlizzardsTrait());
+                put(new LordOfThunderstormsTrait().GUID(), new LordOfThunderstormsTrait());
+                put(new LordOfEarthquakesTrait().GUID(), new LordOfEarthquakesTrait());
 
-		put(UnknownStat.GUID, new UnknownStat());
-		// Resources
-		put(Health.GUID, new Health());
-		put(HealthRegen.GUID, new HealthRegen());
-		put(Lifesteal.GUID, new Lifesteal());
-		put(LifeOnHit.GUID, new LifeOnHit());
+                // weapon damages
 
-		put(Mana.GUID, new Mana());
-		put(ManaRegen.GUID, new ManaRegen());
-		put(ManaOnHit.GUID, new ManaOnHit());
+                put(new HammerDamage().GUID(), new HammerDamage());
+                put(new SwordDamage().GUID(), new SwordDamage());
+                put(new BowDamage().GUID(), new BowDamage());
+                put(new AxeDamage().GUID(), new AxeDamage());
+                put(new StaffDamage().GUID(), new StaffDamage());
 
-		put(Energy.GUID, new Energy());
-		put(EnergyRegen.GUID, new EnergyRegen());
-		// Resources
+                put(UnknownStat.GUID, new UnknownStat());
+                // Resources
+                put(Health.GUID, new Health());
+                put(HealthRegen.GUID, new HealthRegen());
+                put(Lifesteal.GUID, new Lifesteal());
+                put(LifeOnHit.GUID, new LifeOnHit());
 
-		put(BlockStrength.GUID, new BlockStrength());
+                put(Mana.GUID, new Mana());
+                put(ManaRegen.GUID, new ManaRegen());
+                put(ManaOnHit.GUID, new ManaOnHit());
 
-		put(Armor.GUID, new Armor());
-		put(ArmorPenetration.GUID, new ArmorPenetration());
-		put(CriticalDamage.GUID, new CriticalDamage());
-		put(CriticalHit.GUID, new CriticalHit());
-		put(PhysicalDamage.GUID, new PhysicalDamage());
+                put(Energy.GUID, new Energy());
+                put(EnergyRegen.GUID, new EnergyRegen());
+                // Resources
 
-		// Elemental
-		put(SpellFireDamage.GUID, new SpellFireDamage());
-		put(SpellWaterDamage.GUID, new SpellWaterDamage());
-		put(SpellThunderDamage.GUID, new SpellThunderDamage());
-		put(SpellNatureDamage.GUID, new SpellNatureDamage());
+                put(BlockStrength.GUID, new BlockStrength());
 
-		put(AttackFireDamage.GUID, new AttackFireDamage());
-		put(AttackWaterDamage.GUID, new AttackWaterDamage());
-		put(AttackThunderDamage.GUID, new AttackThunderDamage());
-		put(AttackNatureDamage.GUID, new AttackNatureDamage());
+                put(Armor.GUID, new Armor());
+                put(ArmorPenetration.GUID, new ArmorPenetration());
+                put(CriticalDamage.GUID, new CriticalDamage());
+                put(CriticalHit.GUID, new CriticalHit());
+                put(PhysicalDamage.GUID, new PhysicalDamage());
 
-		put(AllFireDamage.GUID, new AllFireDamage());
-		put(AllWaterDamage.GUID, new AllWaterDamage());
-		put(AllThunderDamage.GUID, new AllThunderDamage());
-		put(AllNatureDamage.GUID, new AllNatureDamage());
+                // Elemental
+                put(SpellFireDamage.GUID, new SpellFireDamage());
+                put(SpellWaterDamage.GUID, new SpellWaterDamage());
+                put(SpellThunderDamage.GUID, new SpellThunderDamage());
+                put(SpellNatureDamage.GUID, new SpellNatureDamage());
 
-		put(FireResist.GUID, new FireResist());
-		put(NatureResist.GUID, new NatureResist());
-		put(WaterResist.GUID, new WaterResist());
-		put(ThunderResist.GUID, new ThunderResist());
+                put(AttackFireDamage.GUID, new AttackFireDamage());
+                put(AttackWaterDamage.GUID, new AttackWaterDamage());
+                put(AttackThunderDamage.GUID, new AttackThunderDamage());
+                put(AttackNatureDamage.GUID, new AttackNatureDamage());
 
-		put(FirePene.GUID, new FirePene());
-		put(NaturePene.GUID, new NaturePene());
-		put(WaterPene.GUID, new WaterPene());
-		put(ThunderPene.GUID, new ThunderPene());
-		// Elemental
+                put(AllFireDamage.GUID, new AllFireDamage());
+                put(AllWaterDamage.GUID, new AllWaterDamage());
+                put(AllThunderDamage.GUID, new AllThunderDamage());
+                put(AllNatureDamage.GUID, new AllNatureDamage());
 
-		put(Dodge.GUID, new Dodge());
-		put(SpellDodge.GUID, new SpellDodge());
+                put(FireResist.GUID, new FireResist());
+                put(NatureResist.GUID, new NatureResist());
+                put(WaterResist.GUID, new WaterResist());
+                put(ThunderResist.GUID, new ThunderResist());
 
-		// traits
-		put(Golem.GUID, new Golem());
-		put(Elemental.GUID, new Elemental());
-		put(Lucky.GUID, new Lucky());
-		put(Barbarian.GUID, new Barbarian());
-		put(Stealthy.GUID, new Stealthy());
-		put(ClumsyScholar.GUID, new ClumsyScholar());
-		put(Crippled.GUID, new Crippled());
-		put(Diseased.GUID, new Diseased());
-		put(Armored.GUID, new Armored());
+                put(FirePene.GUID, new FirePene());
+                put(NaturePene.GUID, new NaturePene());
+                put(WaterPene.GUID, new WaterPene());
+                put(ThunderPene.GUID, new ThunderPene());
+                // Elemental
 
-		put(EarthAtronach.GUID, new EarthAtronach());
-		put(FrostAtronach.GUID, new FrostAtronach());
-		put(FireAtronach.GUID, new FireAtronach());
-		put(ThunderAtronach.GUID, new ThunderAtronach());
+                put(Dodge.GUID, new Dodge());
+                put(SpellDodge.GUID, new SpellDodge());
 
-		put(FireSpellToAttackDMG.GUID, new FireSpellToAttackDMG());
-		put(WaterSpellToAttackDMG.GUID, new WaterSpellToAttackDMG());
-		put(ThunderSpellToAttackDMG.GUID, new ThunderSpellToAttackDMG());
-		put(NatureSpellToAttackDMG.GUID, new NatureSpellToAttackDMG());
+                // traits
+                put(Golem.GUID, new Golem());
+                put(Elemental.GUID, new Elemental());
+                put(Lucky.GUID, new Lucky());
+                put(Barbarian.GUID, new Barbarian());
+                put(Stealthy.GUID, new Stealthy());
+                put(ClumsyScholar.GUID, new ClumsyScholar());
+                put(Crippled.GUID, new Crippled());
+                put(Diseased.GUID, new Diseased());
+                put(Armored.GUID, new Armored());
 
-		// traits
+                put(EarthAtronach.GUID, new EarthAtronach());
+                put(FrostAtronach.GUID, new FrostAtronach());
+                put(FireAtronach.GUID, new FireAtronach());
+                put(ThunderAtronach.GUID, new ThunderAtronach());
 
-		// elemental conversions
-		put(new WaterToThunderConversion().GUID(), new WaterToThunderConversion());
-		put(new WaterToNatureConversion().GUID(), new WaterToNatureConversion());
-		put(new WaterToFireConversion().GUID(), new WaterToFireConversion());
+                put(FireSpellToAttackDMG.GUID, new FireSpellToAttackDMG());
+                put(WaterSpellToAttackDMG.GUID, new WaterSpellToAttackDMG());
+                put(ThunderSpellToAttackDMG.GUID, new ThunderSpellToAttackDMG());
+                put(NatureSpellToAttackDMG.GUID, new NatureSpellToAttackDMG());
 
-		put(new FireToThunderConversion().GUID(), new FireToThunderConversion());
-		put(new FireToNatureConversion().GUID(), new FireToNatureConversion());
-		put(new FireToWaterConversion().GUID(), new FireToWaterConversion());
+                // traits
 
-		put(new ThunderToWaterConversion().GUID(), new ThunderToWaterConversion());
-		put(new ThunderToNatureConversion().GUID(), new ThunderToNatureConversion());
-		put(new ThunderToFireConversion().GUID(), new ThunderToFireConversion());
+                // elemental conversions
+                put(new WaterToThunderConversion().GUID(), new WaterToThunderConversion());
+                put(new WaterToNatureConversion().GUID(), new WaterToNatureConversion());
+                put(new WaterToFireConversion().GUID(), new WaterToFireConversion());
 
-		put(new NatureToThunderConversion().GUID(), new NatureToThunderConversion());
-		put(new NatureToWaterConversion().GUID(), new NatureToWaterConversion());
-		put(new NatureToFireConversion().GUID(), new NatureToFireConversion());
-		// elemental conversions
+                put(new FireToThunderConversion().GUID(), new FireToThunderConversion());
+                put(new FireToNatureConversion().GUID(), new FireToNatureConversion());
+                put(new FireToWaterConversion().GUID(), new FireToWaterConversion());
 
-		// elemental Transfers
-		put(new WaterToThunderTransfer().GUID(), new WaterToThunderTransfer());
-		put(new WaterToNatureTransfer().GUID(), new WaterToNatureTransfer());
-		put(new WaterToFireTransfer().GUID(), new WaterToFireTransfer());
+                put(new ThunderToWaterConversion().GUID(), new ThunderToWaterConversion());
+                put(new ThunderToNatureConversion().GUID(), new ThunderToNatureConversion());
+                put(new ThunderToFireConversion().GUID(), new ThunderToFireConversion());
 
-		put(new FireToThunderTransfer().GUID(), new FireToThunderTransfer());
-		put(new FireToNatureTransfer().GUID(), new FireToNatureTransfer());
-		put(new FireToWaterTransfer().GUID(), new FireToWaterTransfer());
+                put(new NatureToThunderConversion().GUID(), new NatureToThunderConversion());
+                put(new NatureToWaterConversion().GUID(), new NatureToWaterConversion());
+                put(new NatureToFireConversion().GUID(), new NatureToFireConversion());
+                // elemental conversions
 
-		put(new ThunderToWaterTransfer().GUID(), new ThunderToWaterTransfer());
-		put(new ThunderToNatureTransfer().GUID(), new ThunderToNatureTransfer());
-		put(new ThunderToFireTransfer().GUID(), new ThunderToFireTransfer());
+                // elemental Transfers
+                put(new WaterToThunderTransfer().GUID(), new WaterToThunderTransfer());
+                put(new WaterToNatureTransfer().GUID(), new WaterToNatureTransfer());
+                put(new WaterToFireTransfer().GUID(), new WaterToFireTransfer());
 
-		put(new NatureToThunderTransfer().GUID(), new NatureToThunderTransfer());
-		put(new NatureToWaterTransfer().GUID(), new NatureToWaterTransfer());
-		put(new NatureToFireTransfer().GUID(), new NatureToFireTransfer());
-		// elemental Transfers
+                put(new FireToThunderTransfer().GUID(), new FireToThunderTransfer());
+                put(new FireToNatureTransfer().GUID(), new FireToNatureTransfer());
+                put(new FireToWaterTransfer().GUID(), new FireToWaterTransfer());
 
-	    }
-	}
+                put(new ThunderToWaterTransfer().GUID(), new ThunderToWaterTransfer());
+                put(new ThunderToNatureTransfer().GUID(), new ThunderToNatureTransfer());
+                put(new ThunderToFireTransfer().GUID(), new ThunderToFireTransfer());
+
+                put(new NatureToThunderTransfer().GUID(), new NatureToThunderTransfer());
+                put(new NatureToWaterTransfer().GUID(), new NatureToWaterTransfer());
+                put(new NatureToFireTransfer().GUID(), new NatureToFireTransfer());
+                // elemental Transfers
+
+            }
+        }
     };
 }

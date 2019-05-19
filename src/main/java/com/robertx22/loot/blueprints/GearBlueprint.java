@@ -23,6 +23,11 @@ public class GearBlueprint extends ItemBlueprint {
 
     public String gearType = "";
     public boolean RandomGearType = true;
+    public float chaosStatChance = 1;
+
+    public boolean getsChaosStats() {
+        return RandomUtils.roll(chaosStatChance);
+    }
 
     public void SetSpecificType(String type) {
 

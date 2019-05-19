@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFl
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
@@ -38,7 +39,7 @@ public class Necklace extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new HealthRegenFlat());
+        return Arrays.asList(new HealthRegenFlat(), new BonusExpFlat());
     }
 
     @Override

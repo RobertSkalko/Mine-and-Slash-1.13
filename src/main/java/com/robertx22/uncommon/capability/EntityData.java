@@ -4,6 +4,7 @@ import com.robertx22.Styles;
 import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.gearitems.bases.IWeapon;
@@ -377,6 +378,8 @@ public class EntityData {
         public int PostGiveExpEvent(EntityPlayer player, int i) {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
+
+            i *= (double) this.getUnit().MyStats.get(new BonusExp().GUID()).Value / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(player, this, i));
 

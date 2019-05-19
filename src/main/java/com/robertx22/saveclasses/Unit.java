@@ -366,7 +366,7 @@ public class Unit {
         CommonStatUtils.AddStatusEffectStats(this, level);
         CommonStatUtils.AddMapAffixStats(this, level);
         PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
-        PlayerStatUtils.CalcTraits(data);
+        PlayerStatUtils.CalcTraitsAndCoreStats(data);
 
         CalcStats(data);
 

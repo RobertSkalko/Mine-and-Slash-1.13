@@ -4,6 +4,7 @@ import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.BaseTraitMod;
+import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.ILocName;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +27,10 @@ public abstract class GearItemSlot implements IWeighted, ILocName {
     public abstract String GUID();
 
     public abstract GearSlotType slotType();
+
+    public List<StatMod> coreStatMods() {
+        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
+    }
 
     @Override
     public ITextComponent locName() {

@@ -4,8 +4,8 @@ import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.ArmorPeneFlat;
+import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
@@ -44,7 +44,7 @@ public class Charm extends GearItemSlot {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new ArmorFlat());
+        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
     @Override

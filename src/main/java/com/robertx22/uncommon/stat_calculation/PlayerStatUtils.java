@@ -6,6 +6,7 @@ import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.Trait;
+import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
@@ -71,7 +72,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void CalcTraits(UnitData unit) {
+    public static void CalcTraitsAndCoreStats(UnitData unit) {
 
         for (StatData statdata : unit.getUnit().MyStats.values()) {
             Stat stat = statdata.GetStat();
@@ -79,7 +80,9 @@ public class PlayerStatUtils {
                 if (stat instanceof Trait) {
                     Trait affects = (Trait) stat;
                     affects.TryAffectOtherStats(unit);
-
+                } else if (stat instanceof ICoreStat) {
+                    ICoreStat core = (ICoreStat) stat;
+                    core.addToOtherStats(unit, statdata);
                 }
             }
         }

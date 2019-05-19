@@ -4,6 +4,7 @@ import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
@@ -31,7 +32,7 @@ public abstract class BaseArmor extends GearItemSlot {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new ArmorFlat());
+        return Arrays.asList(new ArmorFlat(), new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
     @Override
