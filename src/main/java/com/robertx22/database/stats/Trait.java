@@ -2,6 +2,7 @@ package com.robertx22.database.stats;
 
 import com.robertx22.Styles;
 import com.robertx22.database.MinMax;
+import com.robertx22.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -70,8 +71,16 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
     public ITextComponent TraitText(StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        return Styles.GREENCOMP()
+        ITextComponent comp = Styles.GREENCOMP()
                 .appendSibling(new TextComponentString(" * ").appendSibling(basestat.locName()));
+
+        if (basestat instanceof INameSuffix) {
+            INameSuffix suffix = (INameSuffix) basestat;
+            comp.appendSibling(suffix.locSuffix());
+        }
+        
+        return comp;
+
     }
 
     @Override

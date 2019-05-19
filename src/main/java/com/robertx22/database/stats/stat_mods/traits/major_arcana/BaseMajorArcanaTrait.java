@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.stat_mods.major_arcana;
+package com.robertx22.database.stats.stat_mods.traits.major_arcana;
 
 import com.robertx22.database.stats.stat_mods.BaseTraitMod;
 import com.robertx22.uncommon.interfaces.IWeighted;
