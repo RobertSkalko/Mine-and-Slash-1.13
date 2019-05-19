@@ -22,9 +22,10 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Kills;
-import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
+import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -97,6 +98,9 @@ public class EntityData {
 
         int getLevel();
 
+        void mobBasicAttack(EntityLivingBase source, EntityLivingBase target,
+                            UnitData sourcedata, UnitData targetdata, float event_damage);
+
         void setLevel(int lvl, EntityLivingBase entity);
 
         boolean increaseRarity(EntityLivingBase entity);
@@ -140,7 +144,7 @@ public class EntityData {
         boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
 
         void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
-                              ItemStack weapon);
+                              ItemStack weapon, UnitData targetdata);
 
         void onMobKill(IWorldData world);
 
@@ -178,7 +182,8 @@ public class EntityData {
 
         void clearCurrentMapId();
 
-        void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
+        void unarmedAttack(EntityLivingBase source, EntityLivingBase target,
+                           UnitData targetdata);
 
         boolean decreaseRarity(EntityLivingBase entity);
 
@@ -326,6 +331,25 @@ public class EntityData {
             if (killsdata != null) {
                 this.kills = killsdata;
             }
+
+        }
+
+        @Override
+        public void mobBasicAttack(EntityLivingBase source, EntityLivingBase target,
+                                   UnitData sourcedata, UnitData targetdata,
+                                   float event_damage) {
+
+            MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
+
+            float mystat = sourcedata.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+
+            float vanilla = event_damage * sourcedata.getLevel();
+
+            float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
+
+            DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+
+            dmg.Activate();
 
         }
 
@@ -595,9 +619,7 @@ public class EntityData {
         }
 
         public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
-                                     ItemStack weapon) {
-
-            UnitData targetData = Load.Unit(target);
+                                     ItemStack weapon, UnitData targetdata) {
 
             GearItemData weaponData = Gear.Load(weapon);
 
@@ -605,7 +627,7 @@ public class EntityData {
 
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();
-                iWep.Attack(source, target, this, targetData);
+                iWep.Attack(source, target, this, targetdata);
 
             }
         }
@@ -790,7 +812,8 @@ public class EntityData {
         }
 
         @Override
-        public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
+        public void unarmedAttack(EntityLivingBase source, EntityLivingBase target,
+                                  UnitData targetdata) {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
@@ -798,7 +821,7 @@ public class EntityData {
 
                 this.consumeEnergy(cost);
                 int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
-                DamageEffect dmg = new DamageEffect(source, target, num);
+                DamageEffect dmg = new DamageEffect(source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();
             }

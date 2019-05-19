@@ -34,6 +34,7 @@ public class OnMobMeleeAttack {
                 .equals(DamageEffect.DmgSourceName)) {
             return;
         }
+
         try {
             if (event.getEntityLiving() == null || event.getSource()
                     .getTrueSource() == null || !(event.getSource()
@@ -43,8 +44,12 @@ public class OnMobMeleeAttack {
 
             EntityLivingBase source = (EntityLivingBase) event.getSource()
                     .getTrueSource();
-
             EntityLivingBase target = event.getEntityLiving();
+
+            // REQUIRED for attack cooldown
+            if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
+                return;
+            }
 
             if (target.isAlive() == false) {
                 return; // stops attacking dead mobs
@@ -80,17 +85,16 @@ public class OnMobMeleeAttack {
                 if (sourceData.isWeapon(stack)) {
 
                     if (sourceData.tryUseWeapon(source, stack)) {
-                        sourceData.attackWithWeapon(source, target, stack);
+                        sourceData.attackWithWeapon(source, target, stack, targetData);
                     }
 
                 } else {
-                    sourceData.unarmedAttack(source, target);
+                    sourceData.unarmedAttack(source, target, targetData);
                 }
 
             } else { // if its a mob
 
-                sourceData.getUnit()
-                        .MobBasicAttack(source, target, sourceData, event.getAmount());
+                sourceData.mobBasicAttack(source, target, sourceData, targetData, event.getAmount());
 
                 if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
                     EntityLivingBase defender = event.getEntityLiving();

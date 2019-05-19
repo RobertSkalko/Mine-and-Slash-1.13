@@ -9,5 +9,5 @@ public abstract class BaseMajorArcanaTrait extends BaseTraitMod {
     public int Weight() {
         return IWeighted.MythicWeight;
     }
-    
+
 }

@@ -1,9 +1,5 @@
 package com.robertx22.uncommon.effectdatas;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
@@ -11,10 +7,13 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.interfaces.IStatEffect;
-import com.robertx22.uncommon.interfaces.IStatEffects;
 import com.robertx22.uncommon.interfaces.IStatEffect.EffectSides;
-
+import com.robertx22.uncommon.interfaces.IStatEffects;
 import net.minecraft.entity.EntityLivingBase;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
@@ -24,127 +23,127 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
     public SpellBuffEffect(EntityLivingBase source, IBuffableSpell buffable) {
 
-	super(source, null);
-	this.canceled = false;
-	// a bit funky, didn't expect effects with just 1 entity
+        super(source, null);
+        this.canceled = false;
+        // a bit funky, didn't expect effects with just 1 entity
 
-	this.buffable = buffable;
+        this.buffable = buffable;
 
-	this.Source = source;
+        this.Source = source;
 
-	this.sourceData = Load.Unit(source);
+        this.sourceData = Load.Unit(source);
 
-	IWorldData world = Load.World(source.world);
+        IWorldData world = Load.World(source.world);
 
-	try {
-	    sourceUnit = sourceData.getUnit();
+        try {
+            sourceUnit = sourceData.getUnit();
 
-	    if (sourceUnit != null) {
-		sourceData.recalculateStats(source, world);
+            if (sourceUnit != null) {
+                sourceData.recalculateStats(source, world);
 
-	    } else {
-		this.canceled = true;
+            } else {
+                this.canceled = true;
 
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     protected void activate() {
-	buffable.setBuff(buff);
+        buffable.setBuff(buff);
     }
 
     public void Activate() {
 
-	if (Source == null || canceled == true || sourceUnit == null || sourceData == null)
-	    return;
+        if (Source == null || canceled == true || sourceUnit == null || sourceData == null)
+            return;
 
-	TryApplyEffects(this.GetSource());
+        TryApplyEffects(this.GetSource());
 
-	if (this.canceled != true) {
+        if (this.canceled != true) {
 
-	    sourceData.setUnit(sourceUnit, Source);
+            sourceData.setUnit(sourceUnit, Source);
 
-	    activate();
+            activate();
 
-	}
+        }
     }
 
     // start
 
     protected EffectData TryApplyEffects(Unit unit) {
 
-	if (this.canceled) {
-	    return this;
-	}
+        if (this.canceled) {
+            return this;
+        }
 
-	EffectData Data = this;
+        EffectData Data = this;
 
-	List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
+        List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-	Effects = AddEffects(Effects, unit);
+        Effects = AddEffects(Effects, unit);
 
-	Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
+        Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 
-	for (EffectUnitStat item : Effects) {
-	    if (item.stat.Value != 0) {
-		if (AffectsThisUnit(item.effect, Data, item.source)) {
-		    item.effect.TryModifyEffect(Data, item.source, item.stat, item.stat.GetStat());
-		}
+        for (EffectUnitStat item : Effects) {
+            if (item.stat.Value != 0) {
+                if (AffectsThisUnit(item.effect, Data, item.source)) {
+                    item.effect.TryModifyEffect(Data, item.source, item.stat, item.stat.GetStat());
+                }
 
-	    }
-	}
+            }
+        }
 
-	return Data;
+        return Data;
     }
 
     public boolean AffectsThisUnit(IStatEffect effect, EffectData data, Unit source) {
 
-	if (effect.Side().equals(EffectSides.Target)) {
-	    return source.equals(data.targetUnit);
+        if (effect.Side().equals(EffectSides.Target)) {
+            return source.equals(data.targetUnit);
 
-	} else {
-	    return source.equals(data.sourceUnit);
-	}
+        } else {
+            return source.equals(data.sourceUnit);
+        }
     }
 
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
-	if (unit != null) {
-	    for (StatData stat : unit.MyStats.values()) {
-		if (stat.GetStat() instanceof IStatEffects) {
-		    for (IStatEffect effect : ((IStatEffects) stat.GetStat()).GetEffects()) {
-			effects.add(new EffectUnitStat(effect, unit, stat));
-		    }
+        if (unit != null) {
+            for (StatData stat : unit.MyStats.values()) {
+                if (stat.GetStat() instanceof IStatEffects) {
+                    for (IStatEffect effect : ((IStatEffects) stat.GetStat()).GetEffects()) {
+                        effects.add(new EffectUnitStat(effect, unit, stat));
+                    }
 
-		}
+                }
 
-	    }
-	}
-	return effects;
+            }
+        }
+        return effects;
     }
 
     @Override
     public void setBuff(SpellBuffType buff) {
-	this.buff = buff;
+        this.buff = buff;
 
     }
 
     @Override
     public SpellBuffType getBuff() {
-	return buff;
+        return buff;
     }
 
     @Override
     public void setBuffType(SpellType type) {
-	this.buffable.setBuffType(type);
+        this.buffable.setBuffType(type);
 
     }
 
     @Override
     public SpellType getBuffType() {
-	return this.buffable.getBuffType();
+        return this.buffable.getBuffType();
     }
 
 }

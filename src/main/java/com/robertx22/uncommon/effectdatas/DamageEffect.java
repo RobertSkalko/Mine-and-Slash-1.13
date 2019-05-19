@@ -94,18 +94,21 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             dmgsource.setDamageBypassesArmor();
 
-        } else {
-
         }
 
         if (fullyblocked == false) {
-            Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
-            Target.attackEntityFrom(dmgsource, dmg);
+            /// Target.hurtResistantTime = Target.hurtResistantTime; // 0; // this allows to add bonus damages at the same second
+            // Target.attackEntityFrom(dmgsource, dmg);
+            Target.setHealth(Target.getHealth() - dmg);
+
+            if (this.getEffectType().equals(EffectTypes.SPELL)) {
+                knockback();
+            }
 
             addBonusElementDamage();
             Heal();
             RestoreMana();
-
+            
             if (ClientContainer.INSTANCE.RENDER_CHAT_COMBAT_LOG.get()) {
                 LogCombat();
             }
@@ -118,6 +121,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             }
         }
+
+    }
+
+    private void knockback() {
+
+        Target.knockBack(Source, 0.4F, Source.posX - Target.posX, Source.posZ - Target.posZ);
 
     }
 
