@@ -12,6 +12,7 @@ import com.robertx22.uncommon.interfaces.ITrait;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +77,10 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
 
         if (basestat instanceof INameSuffix) {
             INameSuffix suffix = (INameSuffix) basestat;
-            comp.appendSibling(suffix.locSuffix());
+            comp.appendText(TextFormatting.LIGHT_PURPLE + " * (");
+            comp.appendSibling(suffix.locSuffix().appendText(") *"));
         }
-        
+
         return comp;
 
     }

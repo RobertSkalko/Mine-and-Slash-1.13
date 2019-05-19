@@ -90,6 +90,7 @@ import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfBlizzardsFl
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfEarthquakesFlat;
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
+import com.robertx22.database.stats.stat_mods.traits.major_arcana.*;
 
 import java.util.HashMap;
 
@@ -98,6 +99,29 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+                // major arcana tarot
+                put(new JudgementFlat().GUID(), new JudgementFlat());
+                put(new StrengthArcanaFlat().GUID(), new StrengthArcanaFlat());
+                put(new HermitFlat().GUID(), new HermitFlat());
+                put(new ChariotFlat().GUID(), new ChariotFlat());
+                put(new DeathFlat().GUID(), new DeathFlat());
+                put(new HangedManFlat().GUID(), new HangedManFlat());
+                put(new JusticeFlat().GUID(), new JusticeFlat());
+                put(new HighPriestessFlat().GUID(), new HighPriestessFlat());
+                put(new TemperanceFlat().GUID(), new TemperanceFlat());
+                put(new TheEmperorFlat().GUID(), new TheEmperorFlat());
+                put(new TheDevilFlat().GUID(), new TheDevilFlat());
+                put(new TheEmpressFlat().GUID(), new TheEmpressFlat());
+                put(new TheFoolFlat().GUID(), new TheFoolFlat());
+                put(new TheHierophantFlat().GUID(), new TheHierophantFlat());
+                put(new TheMagicianFlat().GUID(), new TheMagicianFlat());
+                put(new TheMoonFlat().GUID(), new TheMoonFlat());
+                put(new TheSunFlat().GUID(), new TheSunFlat());
+                put(new TheWorldFlat().GUID(), new TheWorldFlat());
+                put(new TowerFlat().GUID(), new TowerFlat());
+                put(new WheelOfFortuneFlat().GUID(), new WheelOfFortuneFlat());
+                // major arcana tarot
+
                 put(new StrengthFlat().GUID(), new StrengthFlat());
                 put(new DexterityFlat().GUID(), new DexterityFlat());
                 put(new WisdomFlat().GUID(), new WisdomFlat());

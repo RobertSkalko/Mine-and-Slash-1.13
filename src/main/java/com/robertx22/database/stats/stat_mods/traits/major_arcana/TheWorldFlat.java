@@ -1,16 +1,16 @@
 package com.robertx22.database.stats.stat_mods.traits.major_arcana;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.stat_types.traits.major_arcana.TheFool;
+import com.robertx22.database.stats.stat_types.traits.major_arcana.TheWorld;
 
-public class TheFoolFlat extends BaseMajorArcanaTrait {
+public class TheWorldFlat extends BaseMajorArcanaTrait {
     @Override
     public Stat GetBaseStat() {
-        return new TheFool();
+        return new TheWorld();
     }
 
     @Override
     public String GUID() {
-        return "TheFoolFlat";
+        return "TheWorldFlat";
     }
 }

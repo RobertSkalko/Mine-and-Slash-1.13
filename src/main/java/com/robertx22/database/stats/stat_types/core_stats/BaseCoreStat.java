@@ -32,7 +32,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     @Override
     public void addToOtherStats(UnitData unitdata, StatData data) {
 
-        float percent = data.Value / this.amountToReach100Percent() * 100;
+        float percent = data.Value / (this.amountToReach100Percent() * unitdata.getLevel()) * 100;
 
         for (StatMod statmod : this.statsThatBenefit()) {
             StatModData.Load(statmod, (int) percent).useOnPlayer(unitdata);

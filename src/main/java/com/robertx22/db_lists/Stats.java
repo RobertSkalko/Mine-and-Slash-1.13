@@ -86,6 +86,7 @@ import com.robertx22.database.stats.stat_types.traits.low_crit_hit.LowCritHitAdd
 import com.robertx22.database.stats.stat_types.traits.low_crit_hit.LowCritHitAddHealth;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
+import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
 
 import java.util.HashMap;
 
@@ -94,6 +95,29 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+
+                // major arcana tarot
+                put(new Judgement().GUID(), new Judgement());
+                put(new StrengthArcana().GUID(), new StrengthArcana());
+                put(new Hermit().GUID(), new Hermit());
+                put(new Chariot().GUID(), new Chariot());
+                put(new Death().GUID(), new Death());
+                put(new HangedMan().GUID(), new HangedMan());
+                put(new Justice().GUID(), new Justice());
+                put(new HighPriestess().GUID(), new HighPriestess());
+                put(new Temperance().GUID(), new Temperance());
+                put(new TheEmperor().GUID(), new TheEmperor());
+                put(new TheDevil().GUID(), new TheDevil());
+                put(new TheEmpress().GUID(), new TheEmpress());
+                put(new TheFool().GUID(), new TheFool());
+                put(new TheHierophant().GUID(), new TheHierophant());
+                put(new TheMagician().GUID(), new TheMagician());
+                put(new TheMoon().GUID(), new TheMoon());
+                put(new TheSun().GUID(), new TheSun());
+                put(new TheWorld().GUID(), new TheWorld());
+                put(new Tower().GUID(), new Tower());
+                put(new WheelOfFortune().GUID(), new WheelOfFortune());
+                // major arcana tarot
 
                 put(new Strength().GUID(), new Strength());
                 put(new Dexterity().GUID(), new Dexterity());
