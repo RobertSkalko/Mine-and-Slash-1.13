@@ -6,7 +6,7 @@ import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
+import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.entity.EntityLivingBase;
@@ -50,7 +50,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
         if (!world.isRemote) {
 
-            ColoredRedstoneUtils.SpawnNovaRedstone(this.Element(), caster, radius, 200);
+            ElementalParticleUtils.SpawnNovaParticle(this.Element(), caster, radius, 200);
 
             List<EntityLivingBase> list = WizardryUtilities.getEntitiesWithinRadius(radius, caster, EntityLivingBase.class);
 

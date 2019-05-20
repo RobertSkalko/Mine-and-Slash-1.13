@@ -93,8 +93,6 @@ public class GearItemData implements ITooltip, ISalvagable {
     @Store
     public UniqueStatsData uniqueStats;
     @Store
-    public GearTypeStatsData gearTypeStats;
-    @Store
     public PrimaryStatsData primaryStats;
     @Store
     public SecondaryStatsData secondaryStats;
@@ -229,7 +227,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         IfNotNullAdd(suffix, list);
         IfNotNullAdd(chaosStats, list);
         IfNotNullAdd(uniqueStats, list);
-        IfNotNullAdd(gearTypeStats, list);
         IfNotNullAdd(sockets, list);
         IfNotNullAdd(infusion, list);
         IfNotNullAdd(runes, list);
@@ -282,7 +279,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         list.add(suffix);
 
         list.add(chaosStats);
-        list.add(gearTypeStats);
         list.add(sockets);
         list.add(infusion);
 
@@ -321,6 +317,8 @@ public class GearItemData implements ITooltip, ISalvagable {
             tip.add(Styles.GREENCOMP()
                     .appendSibling(CLOC.stat("energy")
                             .appendText(": " + iwep.mechanic().GetEnergyCost())));
+            tip.add(new TextComponentString(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
+                    .tooltipDesc()));
         }
 
         List<ITextComponent> tool = removeDoubleBlankLines(tip);
@@ -398,7 +396,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         IfNotNullAdd(suffix, list);
         IfNotNullAdd(chaosStats, list);
         IfNotNullAdd(uniqueStats, list);
-        IfNotNullAdd(gearTypeStats, list);
         return list;
     }
 

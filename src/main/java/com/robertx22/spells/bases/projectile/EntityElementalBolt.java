@@ -5,7 +5,7 @@ import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.projectile.Targeting.TargetType;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
+import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityType;
@@ -101,7 +101,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
             ticks++;
             if (ticks > 1) {
                 ticks = 0;
-                ColoredRedstoneUtils.SpawnAoeRedstone(element(), this, 0.15F, 15);
+                ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
             }
 
         }

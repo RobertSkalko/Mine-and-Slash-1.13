@@ -1,5 +1,6 @@
 package com.robertx22.items.gearitems.weapon_mechanics;
 
+import com.robertx22.Styles;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -9,11 +10,18 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HammerWeaponMechanic extends WeaponMechanic {
+
+    @Override
+    public ITextComponent tooltipDesc() {
+        return new TextComponentString(Styles.GREEN + "Aoe Attack");
+    }
 
     @Override
     public float GetEnergyCost() {

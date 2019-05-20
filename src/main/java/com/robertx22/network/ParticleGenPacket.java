@@ -2,6 +2,7 @@ package com.robertx22.network;
 
 import com.robertx22.database.particle_gens.ParticleGen;
 import com.robertx22.db_lists.ParticleGens;
+import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -18,12 +19,14 @@ public class ParticleGenPacket {
     private double zVel;
     private double radius;
     private int amount;
+    private String element;
 
     public ParticleGenPacket() {
     }
 
     public ParticleGenPacket(String name, double x, double y, double z, double xVel,
-                             double yVel, double zVel, double radius, int amount) {
+                             double yVel, double zVel, double radius, int amount,
+                             Elements element) {
 
         this.name = name;
         this.x = x;
@@ -34,6 +37,7 @@ public class ParticleGenPacket {
         this.zVel = zVel;
         this.radius = radius;
         this.amount = amount;
+        this.element = element.toString();
 
     }
 
@@ -50,6 +54,7 @@ public class ParticleGenPacket {
         newpkt.zVel = tag.readDouble();
         newpkt.radius = tag.readDouble();
         newpkt.amount = tag.readInt();
+        newpkt.element = tag.readString(30);
 
         return newpkt;
 
@@ -66,7 +71,7 @@ public class ParticleGenPacket {
         tag.writeDouble(packet.zVel);
         tag.writeDouble(packet.radius);
         tag.writeInt(packet.amount);
-
+        tag.writeString(packet.element, 20);
     }
 
     public static void handle(final ParticleGenPacket message,
@@ -77,7 +82,8 @@ public class ParticleGenPacket {
 
                 ParticleGen gen = ParticleGens.All.get(message.name);
 
-                gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel, message.radius, message.amount);
+                gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel, message.radius, message.amount, Elements
+                        .valueOf(message.element));
             } catch (Exception e) {
                 e.printStackTrace();
             }

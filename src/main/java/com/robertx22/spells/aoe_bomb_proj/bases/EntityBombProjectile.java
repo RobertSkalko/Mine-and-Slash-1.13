@@ -5,7 +5,7 @@ import com.robertx22.potion_effects.all.ManaRegenPotion;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.Targeting;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.ColoredRedstoneUtils;
+import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.entity.EntityLivingBase;
@@ -55,7 +55,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         } else {
 
-            ColoredRedstoneUtils.SpawnAoeRedstone(element(), this, this.radius(), 300);
+            ElementalParticleUtils.SpawnAoeParticle(element(), this, this.radius(), 300);
 
         }
 

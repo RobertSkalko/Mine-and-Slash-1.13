@@ -6,8 +6,12 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.text.ITextComponent;
 
 public abstract class WeaponMechanic {
+
+    public abstract ITextComponent tooltipDesc();
+
     public abstract float GetEnergyCost();
 
     public abstract WeaponTypes weaponType();

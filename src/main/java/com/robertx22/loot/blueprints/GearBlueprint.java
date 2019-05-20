@@ -5,8 +5,6 @@ import com.robertx22.database.sets.Set;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Sets;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
@@ -39,22 +37,6 @@ public class GearBlueprint extends ItemBlueprint {
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public GearTypeStatsData genGearTypeStats(GearItemData data) {
-
-        if (data.GetBaseGearType().slotTypeStats().size() > 0) {
-
-            GearTypeStatsData stats = new GearTypeStatsData(data.GetBaseGearType()
-                    .GUID());
-            stats.RerollFully(data);
-
-            return stats;
-
-        }
-
-        return null;
 
     }
 

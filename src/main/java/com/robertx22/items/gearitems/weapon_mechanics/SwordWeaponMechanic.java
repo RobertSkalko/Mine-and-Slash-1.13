@@ -1,18 +1,26 @@
 package com.robertx22.items.gearitems.weapon_mechanics;
 
+import com.robertx22.Styles;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class SwordWeaponMechanic extends WeaponMechanic {
 
     @Override
+    public ITextComponent tooltipDesc() {
+        return new TextComponentString(Styles.GREEN + "Normal Attack");
+    }
+
+    @Override
     public float GetEnergyCost() {
-	return 4;
+        return 4;
     }
 
     @Override
     public WeaponTypes weaponType() {
-	return WeaponTypes.Sword;
+        return WeaponTypes.Sword;
     }
 
 }
