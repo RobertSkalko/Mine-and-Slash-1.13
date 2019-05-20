@@ -1,6 +1,6 @@
 package com.robertx22.items.spells.aoe_bomb_proj;
 
-import com.robertx22.items.gearitems.bases.BaseSpellItem;
+import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
 import com.robertx22.spells.bases.BaseSpell;

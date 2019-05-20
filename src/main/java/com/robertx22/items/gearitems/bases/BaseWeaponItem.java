@@ -4,13 +4,12 @@ import com.google.common.collect.Sets;
 import com.robertx22.uncommon.SLOC;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.ItemTool;
 
 import java.util.Set;
 
-public abstract class BaseWeaponItem extends ItemTool implements IWeapon {
+public abstract class BaseWeaponItem extends Item implements IWeapon {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 
@@ -18,7 +17,7 @@ public abstract class BaseWeaponItem extends ItemTool implements IWeapon {
 
     public BaseWeaponItem() {
 
-        super(2F, 2F, ItemTier.DIAMOND, EFFECTIVE_ON, new Properties().defaultMaxDamage(1000));
+        super(new Properties().defaultMaxDamage(1000));
 
     }
 

@@ -40,14 +40,20 @@ public abstract class EffectData {
 
                 sourceUnit = sourceData.getUnit();
 
-                if (sourceUnit != null && targetUnit == null) {
+                if (sourceUnit != null) {
                     if (this.needsToRecalcStats) {
                         sourceData.recalculateStats(source, world);
-                        targetData.recalculateStats(target, world);
                     }
                 } else {
                     this.canceled = true;
                 }
+                if (targetUnit != null) {
+                    if (this.needsToRecalcStats) {
+                        targetData.recalculateStats(target, world);
+                    }
+
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

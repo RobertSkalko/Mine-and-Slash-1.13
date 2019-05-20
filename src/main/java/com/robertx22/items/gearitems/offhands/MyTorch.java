@@ -1,6 +1,6 @@
 package com.robertx22.items.gearitems.offhands;
 
-import com.robertx22.items.gearitems.bases.BaseSpellItem;
+import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;

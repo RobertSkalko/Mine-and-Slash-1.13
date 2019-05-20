@@ -1,6 +1,6 @@
 package com.robertx22.items.spells.nova;
 
-import com.robertx22.items.gearitems.bases.BaseSpellItem;
+import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.nova.SpellFrostNova;

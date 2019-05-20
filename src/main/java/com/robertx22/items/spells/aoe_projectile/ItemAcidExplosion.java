@@ -1,6 +1,6 @@
 package com.robertx22.items.spells.aoe_projectile;
 
-import com.robertx22.items.gearitems.bases.BaseSpellItem;
+import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
 import com.robertx22.spells.bases.BaseSpell;

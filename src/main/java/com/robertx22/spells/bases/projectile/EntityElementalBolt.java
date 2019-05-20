@@ -122,7 +122,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
         SetReady(effect, data);
         setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1F, 1.0F); // start velocity
+        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.3F, 0.5F); // start velocity
 
         world.spawnEntity(this);
     }
