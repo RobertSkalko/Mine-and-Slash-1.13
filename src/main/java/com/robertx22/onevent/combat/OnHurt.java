@@ -26,7 +26,6 @@ public class OnHurt {
                 Entity attacker = event.getSource().getTrueSource();
 
                 if (attacker instanceof EntityPlayer == false) {
-
                     UnitData data = Load.Unit(event.getEntityLiving());
                     if (data != null) {
                         data.onDamagedByNonPlayer(event.getAmount());

@@ -52,7 +52,7 @@ public class Unit {
     public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
 
     @Store
-    public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>();
+    public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>(); // possibly not needed as i can just get affixes from world?
 
     @Store
     public String GUID = UUID.randomUUID().toString();
@@ -354,7 +354,6 @@ public class Unit {
         DirtyCheck newcheck = getDirtyCheck();
 
         if (old.isDirty(newcheck)) {
-
             MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
         }
 

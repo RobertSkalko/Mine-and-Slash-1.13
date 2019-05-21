@@ -27,7 +27,7 @@ public enum Elements {
     }
 
     public static class RGB {
-        public RGB(int R, int G, int B) {
+        RGB(int R, int G, int B) {
             this.R = R;
             this.G = G;
             this.B = B;
@@ -38,7 +38,7 @@ public enum Elements {
         private int B;
 
         public float getR() {
-            return R / 255.0F;
+            return R / 255.0F; // you need to divide by 255 for the color to work as intended..
         }
 
         public float getG() {

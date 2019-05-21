@@ -79,6 +79,7 @@ public class EntityData {
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
+    private static final String WEP_HASH = "WEP_HASH";
 
     public interface UnitData extends ICommonCapability {
 
@@ -274,6 +275,7 @@ public class EntityData {
         String name = "";
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
+        int wepHash = 0;
 
         float dmgByNonPlayers = 0;
 
@@ -294,6 +296,7 @@ public class EntityData {
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
+            nbt.putInt(WEP_HASH, wepHash);
 
             if (unit != null) {
                 UnitNbt.Save(this.nbt, unit);
@@ -321,6 +324,7 @@ public class EntityData {
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
             this.isNewbie = value.getBoolean(NEWBIE_STATUS);
+            this.wepHash = value.getInt(WEP_HASH);
 
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
@@ -577,8 +581,22 @@ public class EntityData {
                 unit = new Unit();
             }
 
-            unit.RecalculateStats(entity, this, level, world);
+            if (needsToRecalcStats(entity)) {
+                unit.RecalculateStats(entity, this, level, world);
+            }
+        }
 
+        // experimental, this could reduce recalculation by 2 or 3 times!
+        private boolean needsToRecalcStats(EntityLivingBase entity) {
+            int hash = entity.getHeldItemMainhand().hashCode();
+
+            if (hash != this.wepHash || wepHash == 0) {
+                this.wepHash = hash;
+
+                return true;
+            }
+
+            return false;
         }
 
         @Override

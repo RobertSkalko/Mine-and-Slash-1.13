@@ -72,6 +72,7 @@ public class MobStatUtils {
         return val + (val * tier * 10 / 100);
     }
 
+    // this apparently takes 60 ms
     public static void AddRandomMobStatusEffects(EntityLivingBase entity, Unit unit,
                                                  MobRarity rarity) {
 

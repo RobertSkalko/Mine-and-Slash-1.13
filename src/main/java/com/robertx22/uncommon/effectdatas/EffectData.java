@@ -16,7 +16,7 @@ import java.util.List;
 
 public abstract class EffectData {
 
-    boolean needsToRecalcStats = true;
+    boolean needsToRecalcStats = false; // test maybe not needed
 
     public EffectData(EntityLivingBase source, EntityLivingBase target) {
 
@@ -43,6 +43,7 @@ public abstract class EffectData {
                 if (sourceUnit != null) {
                     if (this.needsToRecalcStats) {
                         sourceData.recalculateStats(source, world);
+                        //TEST MAYBE NOT NEEDED
                     }
                 } else {
                     this.canceled = true;
