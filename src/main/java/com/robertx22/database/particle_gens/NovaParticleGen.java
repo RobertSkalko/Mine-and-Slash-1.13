@@ -1,14 +1,13 @@
 package com.robertx22.database.particle_gens;
 
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.client.Minecraft;
-import net.minecraft.particles.RedstoneParticleData;
 
 public class NovaParticleGen extends ParticleGen {
 
     @Override
-    public void Summon(double x, double y, double z, double xVel, double yVel,
-                       double zVel, double radius, int amount, Elements element) {
+    public void Summon(double x, double y, double z, double radius, int amount,
+                       Elements element) {
+
         for (int i = 0; i < amount; i++) {
 
             double u = Math.random();
@@ -19,7 +18,7 @@ public class NovaParticleGen extends ParticleGen {
             double ypos = y;
             double zpos = z + (radius * Math.cos(phi));
 
-            Minecraft.getInstance().world.addParticle(new RedstoneParticleData((float) xVel, (float) yVel, (float) zVel, 1F), true, xpos, ypos, zpos, 1, 1, 1);
+            this.spawnRedstone(element, xpos, ypos, zpos);
 
         }
     }

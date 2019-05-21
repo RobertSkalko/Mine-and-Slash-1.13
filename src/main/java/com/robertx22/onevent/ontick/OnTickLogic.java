@@ -39,17 +39,6 @@ public class OnTickLogic {
             try {
 
                 EntityPlayerMP player = (EntityPlayerMP) event.player;
-/*
-                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
-                    Particle water = new WaterParticle(Minecraft.getInstance()
-                            .getTextureManager(), player.world, player.posX, player.posY, player.posZ, 1, 1, 1);
-
-                    Minecraft.getInstance().particles.addEffect(water);
-
-                });
-                
- */
 
                 PlayerTickData data = PlayerTickDatas.get(player.getUniqueID());
 

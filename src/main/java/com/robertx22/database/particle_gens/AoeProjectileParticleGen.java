@@ -1,14 +1,12 @@
 package com.robertx22.database.particle_gens;
 
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.Particle;
 
 public class AoeProjectileParticleGen extends ParticleGen {
 
     @Override
-    public void Summon(double x, double y, double z, double xVel, double yVel,
-                       double zVel, double radius, int amount, Elements element) {
+    public void Summon(double x, double y, double z, double radius, int amount,
+                       Elements element) {
         for (int i = 0; i < amount; i++) {
 
             double u = Math.random();
@@ -19,11 +17,7 @@ public class AoeProjectileParticleGen extends ParticleGen {
             double ypos = y + (radius * Math.sin(phi) * Math.sin(theta));
             double zpos = z + (radius * Math.cos(phi));
 
-            Particle particle = this.getParticleByElement(Minecraft.getInstance(), element, Minecraft
-                    .getInstance().world, xpos, ypos, zpos);
-
-            Minecraft.getInstance().particles.addEffect(particle);
-
+            this.spawnRedstone(element, xpos, ypos, zpos);
         }
     }
 

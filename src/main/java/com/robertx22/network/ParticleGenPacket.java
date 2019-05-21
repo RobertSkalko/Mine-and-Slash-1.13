@@ -82,7 +82,7 @@ public class ParticleGenPacket {
 
                 ParticleGen gen = ParticleGens.All.get(message.name);
 
-                gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel, message.radius, message.amount, Elements
+                gen.Summon(message.x, message.y, message.z, message.radius, message.amount, Elements
                         .valueOf(message.element));
             } catch (Exception e) {
                 e.printStackTrace();
