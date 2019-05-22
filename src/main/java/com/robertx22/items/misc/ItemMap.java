@@ -1,7 +1,7 @@
 package com.robertx22.items.misc;
 
-import com.robertx22.dimensions.blocks.MapPortalBlock;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -57,9 +57,9 @@ public class ItemMap extends Item {
 
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block.equals(Blocks.AIR) || block.equals(MapPortalBlock.BLOCK)) {
+        if (block.equals(Blocks.AIR) || block.equals(BlockRegister.PORTAL_BLOCK)) {
 
-            world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
+            world.setBlockState(pos, BlockRegister.PORTAL_BLOCK.getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal(type);
             world.setTileEntity(pos, portal);
         }

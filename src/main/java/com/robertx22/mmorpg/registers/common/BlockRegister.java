@@ -7,6 +7,8 @@ import com.robertx22.blocks.repair_station.BlockInventoryRepair;
 import com.robertx22.blocks.salvage_station.BlockInventorySalvage;
 import com.robertx22.blocks.simple.AttunementBlock;
 import com.robertx22.db_lists.CreativeTabs;
+import com.robertx22.dimensions.blocks.MapPortalBlock;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -28,6 +30,8 @@ public class BlockRegister {
     public static final String GEAR_REPAIR_ID = Ref.MODID + ":repair_station";
     public static final String ATTUNEMENT_ALTAR_ID = Ref.MODID + ":attunement_altar";
 
+    @ObjectHolder(Ref.MODID + ":map_portal_block")
+    public static Block PORTAL_BLOCK;
     // NEW BLOCK
     @ObjectHolder(ATTUNEMENT_ALTAR_ID)
     public static Block ATTUNEMENT_ALTAR_BLOCK;
@@ -79,6 +83,9 @@ public class BlockRegister {
         reg.register(new BlockInventoryRepair().setRegistryName(GEAR_REPAIR_ID));
         reg.register(new BlockInventoryModify().setRegistryName(GEAR_MODIFY_ID));
         reg.register(new AttunementBlock().setRegistryName(ATTUNEMENT_ALTAR_ID));
+        reg.register(new MapPortalBlock());
+
+        ItemOre.RegisterBlocks(event);
     }
 
     @SubscribeEvent
@@ -93,5 +100,6 @@ public class BlockRegister {
         reg.register(new ItemBlock(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
         reg.register(new ItemBlock(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
 
+        ItemOre.RegisterItems(event);
     }
 }

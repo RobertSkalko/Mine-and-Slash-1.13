@@ -6,7 +6,6 @@ import com.robertx22.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.weapon_mechanics.BowWeaponMechanic;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -21,11 +20,9 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemBow extends BaseBow implements IWeapon {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

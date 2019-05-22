@@ -20,27 +20,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MapPortalBlock extends BlockEndPortal {
-
-    @ObjectHolder(Ref.MODID + ":map_portal_block")
-    public static Block BLOCK = null;
 
     public MapPortalBlock() {
 
         super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(100F));
         this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
-
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(new MapPortalBlock());
 
     }
 

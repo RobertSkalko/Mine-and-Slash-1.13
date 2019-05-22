@@ -19,15 +19,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemOre extends Item implements IWeighted {
     public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
     public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
@@ -67,14 +64,17 @@ public class ItemOre extends Item implements IWeighted {
 
     }
 
-    public static void RegisterItems() {
+    public static void RegisterItems(RegistryEvent.Register<Item> event) {
 
         Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x
                 .Rank())));
 
+        ItemOres.values().forEach((x) -> event.getRegistry().register(x));
+        ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
+
     }
 
-    public static void RegisterBlocks() {
+    public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
 
         for (ItemRarity rarity : Rarities.Items) {
 
@@ -87,24 +87,6 @@ public class ItemOre extends Item implements IWeighted {
                     .setRegistryName(Ref.MODID + ":ore_block" + i);
             ItemBlocks.put(i, itemblock);
         }
-
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-
-        RegisterItems();
-
-        // Register();
-
-        ItemOres.values().forEach((x) -> event.getRegistry().register(x));
-        ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
-        RegisterBlocks();
 
         Blocks.values().forEach((x) -> event.getRegistry().register(x));
 
