@@ -54,7 +54,7 @@ public class OnTickLogic {
 
                         IWorldData mapdata = Load.World(player.world);
                         UnitData unit_capa = Load.Unit(player);
-                        unit_capa.forceRecalculateStats(player, mapdata);
+                        unit_capa.forceRecalculateStats(player, mapdata); // has to do this cus curios doesnt call equipsChanged event
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.MyStats.get(new ManaRegen().GUID()).Value;
