@@ -88,7 +88,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 
                     UnitData sourcedata = Load.Unit(entityplayer);
 
-                    if (sourcedata.tryUseWeapon(entityplayer, stack) == false) {
+                    if (sourcedata.tryUseWeapon(sourcedata.getWeaponData(entityplayer), entityplayer) == false) {
 
                         return;
 

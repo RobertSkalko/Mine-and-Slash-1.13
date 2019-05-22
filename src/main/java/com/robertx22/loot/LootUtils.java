@@ -70,7 +70,7 @@ public class LootUtils {
         float after_world = after_mob_health;
 
         if (world.isMapWorld()) {
-            after_world = after_mob_health * 1 + world.getMap()
+            after_world = after_mob_health * 1 + (float) world.getMap()
                     .getBonusLootAmount() / 100;
         }
         if (entity instanceof EntitySlime) {

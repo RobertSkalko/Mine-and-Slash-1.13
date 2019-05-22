@@ -35,7 +35,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -82,6 +81,8 @@ public class EntityData {
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
 
     public interface UnitData extends ICommonCapability {
+
+        GearItemData getWeaponData(EntityLivingBase entity);
 
         void setEquipsChanged(boolean bool);
 
@@ -146,10 +147,10 @@ public class EntityData {
 
         void forceSetUnit(Unit unit);
 
-        boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
+        boolean tryUseWeapon(GearItemData gear, EntityLivingBase entity);
 
-        void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
-                              ItemStack weapon, UnitData targetdata);
+        void attackWithWeapon(GearItemData gear, EntityLivingBase source,
+                              EntityLivingBase target, UnitData targetdata);
 
         void onMobKill(IWorldData world);
 
@@ -192,7 +193,7 @@ public class EntityData {
 
         boolean decreaseRarity(EntityLivingBase entity);
 
-        boolean isWeapon(ItemStack stack);
+        boolean isWeapon(GearItemData gear);
     }
 
     @EventBusSubscriber
@@ -616,10 +617,14 @@ public class EntityData {
         }
 
         @Override
-        public boolean tryUseWeapon(EntityLivingBase source, ItemStack weapon) {
+        public GearItemData getWeaponData(EntityLivingBase entity) {
+            return Gear.Load(entity.getHeldItemMainhand());
+        }
+
+        @Override
+        public boolean tryUseWeapon(GearItemData weaponData, EntityLivingBase source) {
 
             try {
-                GearItemData weaponData = Gear.Load(weapon);
 
                 if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
 
@@ -633,7 +638,7 @@ public class EntityData {
 
                     } else {
                         consumeEnergy(energyCost);
-                        weapon.damageItem(1, source);
+                        //weapon.damageItem(1, source);
 
                         return true;
 
@@ -647,12 +652,10 @@ public class EntityData {
             return false;
         }
 
-        public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target,
-                                     ItemStack weapon, UnitData targetdata) {
+        public void attackWithWeapon(GearItemData weaponData, EntityLivingBase source,
+                                     EntityLivingBase target, UnitData targetdata) {
 
-            GearItemData weaponData = Gear.Load(weapon);
-
-            if (weapon != null && !weapon.isEmpty() && weaponData.GetBaseGearType() instanceof IWeapon) {
+            if (weaponData.GetBaseGearType() instanceof IWeapon) {
 
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();
@@ -857,19 +860,14 @@ public class EntityData {
         }
 
         @Override
-        public boolean isWeapon(ItemStack stack) {
+        public boolean isWeapon(GearItemData gear) {
             try {
 
-                if (stack == null || stack.isEmpty()) {
+                if (gear == null) {
                     return false;
                 }
-
-                GearItemData weaponData = Gear.Load(stack);
-
-                if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
-
+                if (gear.GetBaseGearType() instanceof IWeapon) {
                     return true;
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();

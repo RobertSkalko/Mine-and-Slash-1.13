@@ -1,6 +1,7 @@
 package com.robertx22.items.gearitems;
 
 import com.robertx22.mmorpg.registers.common.EntityRegister;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
@@ -107,7 +108,9 @@ public class MyEntityArrow extends EntityArrow {
 
                             // super.onHit(raytraceResultIn);
 
-                            sourceData.attackWithWeapon((EntityLivingBase) this.shootingEntity, entitylivingbase, this.weapon, Load
+                            GearItemData weapondata = sourceData.getWeaponData((EntityLivingBase) this.shootingEntity);
+
+                            sourceData.attackWithWeapon(weapondata, (EntityLivingBase) this.shootingEntity, entitylivingbase, Load
                                     .Unit(entitylivingbase));
 
                             entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);

@@ -36,15 +36,14 @@ public class OnMobDeathDrops {
                 if (event.getSource().getTrueSource() instanceof EntityPlayer) {
                     if (Load.hasUnit(entity)) {
 
-                        float loot_multi = EntityTypeUtils.getLootMulti(entity);
-                        float exp_multi = EntityTypeUtils.getExpMulti(entity);
-
                         UnitData victim = Load.Unit(entity);
                         UnitData killer = Load.Unit(event.getSource().getTrueSource());
 
                         if (victim.shouldDropLoot(entity) == false) {
                             return;
                         }
+                        float loot_multi = EntityTypeUtils.getLootMulti(entity);
+                        float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
                         if (loot_multi > 0) {
 

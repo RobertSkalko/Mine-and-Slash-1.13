@@ -1,6 +1,7 @@
 package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -9,7 +10,6 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -82,12 +82,11 @@ public class OnMobMeleeAttack {
 
             if (source instanceof EntityPlayer) {
 
-                ItemStack stack = source.getHeldItemMainhand();
+                GearItemData weapondata = sourceData.getWeaponData(source);
 
-                if (sourceData.isWeapon(stack)) {
-
-                    if (sourceData.tryUseWeapon(source, stack)) {
-                        sourceData.attackWithWeapon(source, target, stack, targetData);
+                if (sourceData.isWeapon(weapondata)) {
+                    if (sourceData.tryUseWeapon(weapondata, source)) {
+                        sourceData.attackWithWeapon(weapondata, source, target, targetData);
                     }
 
                 } else {

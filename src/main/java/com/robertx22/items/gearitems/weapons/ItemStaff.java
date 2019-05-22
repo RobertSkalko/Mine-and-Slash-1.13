@@ -5,6 +5,7 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -63,7 +64,9 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                     data.recalculateStats(player, Load.World(player.world));
 
-                    if (data.tryUseWeapon(player, stack)) {
+                    GearItemData weapondata = data.getWeaponData(player);
+
+                    if (data.tryUseWeapon(weapondata, player)) {
 
                         EntityStaffProjectile projectile = new EntityStaffProjectile(world);
                         projectile.SetReady(stack);
