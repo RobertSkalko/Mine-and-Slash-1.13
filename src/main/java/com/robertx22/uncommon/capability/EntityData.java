@@ -590,9 +590,14 @@ public class EntityData {
         private boolean needsToRecalcStats(EntityLivingBase entity) {
             int hash = entity.getHeldItemMainhand().hashCode();
 
-            if (hash != this.wepHash || wepHash == 0) {
-                this.wepHash = hash;
+            if (entity instanceof EntityPlayer) {
+                if (hash != this.wepHash || wepHash == 0) {
+                    this.wepHash = hash;
 
+                    return true;
+                }
+            } else {
+                // mobs dont get ticked to regen, so they need to always recalc stats or i need a "armor changed" boolean
                 return true;
             }
 

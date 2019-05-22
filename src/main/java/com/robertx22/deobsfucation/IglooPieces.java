@@ -41,7 +41,6 @@ public class IglooPieces {
     public static void addPieces(TemplateManager templateManager, BlockPos pos,
                                  Rotation rotation, List<StructurePiece> pieceList,
                                  Random rand, IglooConfig config) {
-
         int randInt = rand.nextInt(8) + 3; //4
 
         pieceList.add(new Piece(templateManager, IGLOO_BOTTOM_RES, pos, rotation, randInt * 3));
