@@ -26,8 +26,8 @@ public class WorldGenRegisters {
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, randomSurfaceChest);
 
-            biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, iglootest);
-            biome.addStructure(IGLOO, new MyIglooConfig());
+            // biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, iglootest);
+            //biome.addStructure(IGLOO, new MyIglooConfig());
 
         }
 

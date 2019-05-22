@@ -14,10 +14,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public class OnItemPickupGiveStatsWhitelist {
+public class OnContainerCompatibleItem {
 
     @SubscribeEvent
-    public static void onItemCraftAddStats(PlayerContainerEvent event) {
+    public static void onContainerCompatibleItem(PlayerContainerEvent event) {
 
         try {
             if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
