@@ -1,6 +1,7 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
@@ -68,7 +69,7 @@ public class TileInventorySalvage extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventorySalvage() {
-        super(StartupSalvage.GEAR_SALVAGE);
+        super(BlockRegister.GEAR_SALVAGE);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
     }
@@ -266,7 +267,7 @@ public class TileInventorySalvage extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupSalvage.ID;
+        return BlockRegister.GEAR_SALVAGE_ID;
     }
 
 }

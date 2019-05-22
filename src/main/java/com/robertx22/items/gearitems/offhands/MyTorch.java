@@ -19,13 +19,11 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Mod.EventBusSubscriber
 public class MyTorch extends Item implements IEffectItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

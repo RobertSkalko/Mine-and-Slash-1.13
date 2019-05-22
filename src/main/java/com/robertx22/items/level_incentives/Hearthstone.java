@@ -1,7 +1,6 @@
 package com.robertx22.items.level_incentives;
 
 import com.robertx22.Styles;
-import com.robertx22.blocks.simple.AttunementBlock;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.uncommon.CLOC;
@@ -11,11 +10,9 @@ import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -32,10 +29,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -209,40 +202,6 @@ public class Hearthstone extends Item {
 
     public boolean hasLoc(ItemStack stack) {
         return getLoc(stack) != null;
-    }
-
-    @Mod.EventBusSubscriber
-    public static class Event {
-
-        @SubscribeEvent
-        public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock evt) {
-            if (evt.getSide().equals(LogicalSide.SERVER)) {
-
-                EntityPlayerMP player = (EntityPlayerMP) evt.getEntityPlayer();
-                IBlockState block = player.world.getBlockState(evt.getPos());
-
-                ItemStack stack = evt.getItemStack();
-
-                if (stack.getItem() instanceof Hearthstone == false) {
-                    return;
-                }
-
-                Hearthstone item = (Hearthstone) evt.getItemStack().getItem();
-
-                if (block.getBlock().equals(AttunementBlock.BLOCK)) {
-
-                    DimensionType type = evt.getWorld().getDimension().getType();
-
-                    item.setLoc(stack, new BlockPos(evt.getHitVec()), type);
-                    player.sendMessage(SLOC.chat("attunement_set"));
-
-                } else {
-                    player.sendMessage(SLOC.chat("not_attunement_altar"));
-                }
-            }
-
-        }
-
     }
 
     private int getRemainingUses(ItemStack stack) {

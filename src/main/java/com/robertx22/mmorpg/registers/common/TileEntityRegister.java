@@ -1,14 +1,9 @@
 package com.robertx22.mmorpg.registers.common;
 
-import com.robertx22.blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.blocks.gear_factory_station.TileGearFactory;
-import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.blocks.item_modify_station.TileInventoryModify;
-import com.robertx22.blocks.map_device.StartupMap;
 import com.robertx22.blocks.map_device.TileMap;
-import com.robertx22.blocks.repair_station.StartupRepair;
 import com.robertx22.blocks.repair_station.TileInventoryRepair;
-import com.robertx22.blocks.salvage_station.StartupSalvage;
 import com.robertx22.blocks.salvage_station.TileInventorySalvage;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Ref;
@@ -30,11 +25,15 @@ public class TileEntityRegister {
         r.register(TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder
                 .create(TileMapPortal::new)));
 
-        r.register(TileEntityType.register(StartupRepair.ID, TileEntityType.Builder.create(TileInventoryRepair::new)));
-        r.register(TileEntityType.register(StartupModify.ID, TileEntityType.Builder.create(TileInventoryModify::new)));
-        r.register(TileEntityType.register(StartupSalvage.ID, TileEntityType.Builder.create(TileInventorySalvage::new)));
-        r.register(TileEntityType.register(StartupMap.ID, TileEntityType.Builder.create(TileMap::new)));
-        r.register(TileEntityType.register(StartupGearFactory.GEAR_FACTORY_ID, TileEntityType.Builder
+        r.register(TileEntityType.register(BlockRegister.GEAR_REPAIR_ID, TileEntityType.Builder
+                .create(TileInventoryRepair::new)));
+        r.register(TileEntityType.register(BlockRegister.GEAR_MODIFY_ID, TileEntityType.Builder
+                .create(TileInventoryModify::new)));
+        r.register(TileEntityType.register(BlockRegister.GEAR_SALVAGE_ID, TileEntityType.Builder
+                .create(TileInventorySalvage::new)));
+        r.register(TileEntityType.register(BlockRegister.MAP_DEVICE_ID, TileEntityType.Builder
+                .create(TileMap::new)));
+        r.register(TileEntityType.register(BlockRegister.GEAR_FACTORY_ID, TileEntityType.Builder
                 .create(TileGearFactory::new)));
 
     }

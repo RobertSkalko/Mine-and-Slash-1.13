@@ -2,6 +2,7 @@ package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.currency.ICurrencyItemEffect;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -74,7 +75,7 @@ public class TileInventoryModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventoryModify() {
-        super(StartupModify.GEAR_MODIFY);
+        super(BlockRegister.GEAR_MODIFY);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
 
@@ -260,7 +261,7 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupModify.ID;
+        return BlockRegister.GEAR_MODIFY_ID;
     }
 
 }

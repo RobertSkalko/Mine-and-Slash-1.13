@@ -6,6 +6,7 @@ import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.create.GearGen;
 import com.robertx22.loot.create.SpellItemGen;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -113,7 +114,7 @@ public class TileGearFactory extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearFactory() {
-        super(StartupGearFactory.GEAR_FACTORY);
+        super(BlockRegister.GEAR_FACTORY);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
     }
@@ -362,7 +363,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public ITextComponent getName() {
-        return CLOC.blank("block.mmorpg.repair_station");
+        return CLOC.blank("block.mmorpg.factory_station");
     }
 
     @Override
@@ -374,7 +375,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupGearFactory.GEAR_FACTORY_ID;
+        return BlockRegister.GEAR_FACTORY_ID;
     }
 
 }

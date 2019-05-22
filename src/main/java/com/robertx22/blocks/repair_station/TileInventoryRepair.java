@@ -3,6 +3,7 @@ package com.robertx22.blocks.repair_station;
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemCapacitor;
 import com.robertx22.items.ores.ItemOre;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -64,7 +65,7 @@ public class TileInventoryRepair extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileInventoryRepair() {
-        super(StartupRepair.GEAR_REPAIR);
+        super(BlockRegister.GEAR_REPAIR);
 
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
@@ -356,7 +357,7 @@ public class TileInventoryRepair extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupRepair.ID;
+        return BlockRegister.GEAR_REPAIR_ID;
     }
 
 }

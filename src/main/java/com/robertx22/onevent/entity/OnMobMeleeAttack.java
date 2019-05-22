@@ -77,7 +77,7 @@ public class OnMobMeleeAttack {
                 return;
             }
 
-            targetData.recalculateStats(target, world); // possibly not needed cus effectdata calculates anyway?
+            targetData.recalculateStats(target, world);
             sourceData.recalculateStats(source, world);
 
             if (source instanceof EntityPlayer) {

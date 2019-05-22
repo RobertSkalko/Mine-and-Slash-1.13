@@ -2,6 +2,7 @@ package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemMap;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Map;
@@ -44,7 +45,7 @@ public class TileMap extends BaseTile {
     }
 
     public TileMap() {
-        super(StartupMap.MAP_DEVICE);
+        super(BlockRegister.MAP_DEVICE);
 
         itemStacks = new ItemStack[4];
         clear();
@@ -159,7 +160,7 @@ public class TileMap extends BaseTile {
 
     @Override
     public String getGuiID() {
-        return StartupMap.ID;
+        return BlockRegister.MAP_DEVICE_ID;
     }
 
 }
