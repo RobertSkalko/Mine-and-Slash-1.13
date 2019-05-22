@@ -1,4 +1,4 @@
-package com.robertx22.onevent;
+package com.robertx22.onevent.entity;
 
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.EntityUnitPacket;

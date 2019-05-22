@@ -1,4 +1,4 @@
-package com.robertx22.onevent.combat;
+package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
 import net.minecraft.entity.monster.EntityMob;

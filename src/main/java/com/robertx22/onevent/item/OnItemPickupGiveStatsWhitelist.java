@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Item;
+package com.robertx22.onevent.item;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.non_mine_items.ConfigItem;

@@ -79,9 +79,11 @@ public class EntityData {
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
-    private static final String WEP_HASH = "WEP_HASH";
+    private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
 
     public interface UnitData extends ICommonCapability {
+
+        void setEquipsChanged(boolean bool);
 
         void onDamagedByNonPlayer(float dmg);
 
@@ -139,6 +141,8 @@ public class EntityData {
         void HandleCloneEvent(UnitData old);
 
         void recalculateStats(EntityLivingBase entity, IWorldData world);
+
+        void forceRecalculateStats(EntityLivingBase entity, IWorldData world);
 
         void forceSetUnit(Unit unit);
 
@@ -275,7 +279,7 @@ public class EntityData {
         String name = "";
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
-        int wepHash = 0;
+        boolean equipsChanged = true;
 
         float dmgByNonPlayers = 0;
 
@@ -296,7 +300,7 @@ public class EntityData {
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
-            nbt.putInt(WEP_HASH, wepHash);
+            nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
 
             if (unit != null) {
                 UnitNbt.Save(this.nbt, unit);
@@ -324,7 +328,7 @@ public class EntityData {
             this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
             this.isNewbie = value.getBoolean(NEWBIE_STATUS);
-            this.wepHash = value.getInt(WEP_HASH);
+            this.equipsChanged = value.getBoolean(EQUIPS_CHANGED);
 
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
@@ -382,6 +386,11 @@ public class EntityData {
             this.setMobStats = true;
             this.level = LevelUtils.determineLevel(data, entity.world, entity.getPosition());
 
+        }
+
+        @Override
+        public void setEquipsChanged(boolean bool) {
+            this.equipsChanged = bool;
         }
 
         @Override
@@ -581,27 +590,24 @@ public class EntityData {
                 unit = new Unit();
             }
 
-            if (needsToRecalcStats(entity)) {
+            if (needsToRecalcStats()) {
                 unit.RecalculateStats(entity, this, level, world);
             }
         }
 
-        // experimental, this could reduce recalculation by 2 or 3 times!
-        private boolean needsToRecalcStats(EntityLivingBase entity) {
-            int hash = entity.getHeldItemMainhand().hashCode();
+        @Override
+        public void forceRecalculateStats(EntityLivingBase entity, IWorldData world) {
 
-            if (entity instanceof EntityPlayer) {
-                if (hash != this.wepHash || wepHash == 0) {
-                    this.wepHash = hash;
-
-                    return true;
-                }
-            } else {
-                // mobs dont get ticked to regen, so they need to always recalc stats or i need a "armor changed" boolean
-                return true;
+            if (unit == null) {
+                unit = new Unit();
             }
+            unit.RecalculateStats(entity, this, level, world);
+        }
 
-            return false;
+        // This reduces stat calculation by about 4 TIMES!
+        private boolean needsToRecalcStats() {
+
+            return this.equipsChanged;
         }
 
         @Override

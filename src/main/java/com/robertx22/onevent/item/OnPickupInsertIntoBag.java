@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Item;
+package com.robertx22.onevent.item;
 
 import com.robertx22.items.bags.BaseBagItem;
 import net.minecraft.entity.player.EntityPlayerMP;

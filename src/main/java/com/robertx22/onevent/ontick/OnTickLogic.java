@@ -54,7 +54,7 @@ public class OnTickLogic {
 
                         IWorldData mapdata = Load.World(player.world);
                         UnitData unit_capa = Load.Unit(player);
-                        unit_capa.recalculateStats(player, mapdata);
+                        unit_capa.forceRecalculateStats(player, mapdata);
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.MyStats.get(new ManaRegen().GUID()).Value;

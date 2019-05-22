@@ -282,6 +282,8 @@ public class Unit {
     public void RecalculateStats(EntityLivingBase entity, UnitData data, int level,
                                  IWorldData world) {
 
+        data.setEquipsChanged(false);
+
         if (data.getUnit() == null) {
             data.setUnit(this, entity);
         }
