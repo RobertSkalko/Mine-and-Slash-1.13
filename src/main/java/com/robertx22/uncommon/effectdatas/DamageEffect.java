@@ -145,7 +145,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.Element = entry.getKey();
-                bonus.needsToRecalcStats = false;
+                //bonus.needsToRecalcStats = false; not needed anymore as i use actual equipsChanged boolean
                 bonus.Activate();
             }
         }

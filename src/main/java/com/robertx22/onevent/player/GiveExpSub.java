@@ -1,4 +1,4 @@
-package com.robertx22.api.event_subs;
+package com.robertx22.onevent.player;
 
 import com.robertx22.api.MineAndSlashEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,3 +28,4 @@ public class GiveExpSub {
         }
     }
 }
+

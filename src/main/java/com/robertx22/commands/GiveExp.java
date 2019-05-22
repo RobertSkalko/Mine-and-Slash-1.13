@@ -24,7 +24,7 @@ public class GiveExp {
     private static int run(@Nullable EntityPlayer player, int exp) {
 
         try {
-            Load.Unit(player).PostGiveExpEvent(player, exp);
+            Load.Unit(player).GiveExp(player, exp);
         } catch (Exception e) {
             e.printStackTrace();
         }

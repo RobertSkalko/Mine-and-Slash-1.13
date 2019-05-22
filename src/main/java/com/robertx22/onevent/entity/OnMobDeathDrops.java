@@ -56,7 +56,7 @@ public class OnMobDeathDrops {
                         }
 
                         if (exp_multi > 0) {
-                            int exp = GiveExp((EntityLivingBase) event.getSource()
+                            int exp = GiveExp(entity, (EntityLivingBase) event.getSource()
                                     .getTrueSource(), killer, victim, exp_multi);
 
                             DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + DamageEffect
@@ -80,15 +80,15 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob,
-                               float multi) {
+    private static int GiveExp(EntityLivingBase victim, EntityLivingBase entity,
+                               UnitData player, UnitData mob, float multi) {
 
         int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
                 .ExpOnKill() * multi);
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 
-        exp = player.PostGiveExpEvent((EntityPlayer) entity, exp);
+        exp = player.PostGiveExpEvent(victim, (EntityPlayer) entity, exp);
 
         return exp;
 

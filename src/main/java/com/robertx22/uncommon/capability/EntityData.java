@@ -90,7 +90,7 @@ public class EntityData {
 
         boolean shouldDropLoot(EntityLivingBase entity);
 
-        int PostGiveExpEvent(EntityPlayer player, int exp);
+        int PostGiveExpEvent(EntityLivingBase killed, EntityPlayer player, int exp);
 
         boolean isNewbie();
 
@@ -413,13 +413,13 @@ public class EntityData {
         }
 
         @Override
-        public int PostGiveExpEvent(EntityPlayer player, int i) {
+        public int PostGiveExpEvent(EntityLivingBase killed, EntityPlayer player, int i) {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
             i *= (double) this.getUnit().MyStats.get(new BonusExp().GUID()).Value / 100 + 1;
 
-            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(player, this, i));
+            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 
             return i;
         }
