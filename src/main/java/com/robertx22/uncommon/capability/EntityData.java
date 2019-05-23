@@ -68,10 +68,7 @@ public class EntityData {
     private static final String RARITY = "rarity";
     private static final String EXP = "exp";
     private static final String UUID = "uuid";
-    private static final String NAME = "name";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
-    private static final String UNIT_OBJECT = "unit_object";
-    private static final String KILLS_OBJECT = "kils_object";
     private static final String MANA = "current_mana";
     private static final String ENERGY = "current_energy";
     private static final String CURRENT_MAP_ID = "current_map_resource_loc";
@@ -277,7 +274,6 @@ public class EntityData {
         int exp = 0;
         int rarity = 0;
         String uuid = "";
-        String name = "";
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
@@ -296,7 +292,6 @@ public class EntityData {
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
             nbt.putString(UUID, uuid);
-            nbt.putString(NAME, name);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
@@ -322,7 +317,6 @@ public class EntityData {
             this.exp = value.getInt(EXP);
             this.rarity = value.getInt(RARITY);
             this.uuid = value.getString(UUID);
-            this.name = value.getString(NAME);
             this.energy = value.getFloat(ENERGY);
             this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
             this.mana = value.getFloat(MANA);
