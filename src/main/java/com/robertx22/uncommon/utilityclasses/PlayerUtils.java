@@ -1,11 +1,10 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerUtils {
-
-    private static String MY_MOD_TAG = "mmorpg.mine_and_slash";
 
     public static NBTTagCompound getPersistentNBT(EntityPlayer player) {
 
@@ -13,17 +12,18 @@ public class PlayerUtils {
 
         try {
 
-            nbt = (NBTTagCompound) player.getEntityData()
-                    .get(EntityPlayer.PERSISTED_NBT_TAG);
+            INBTBase basenbt = player.getEntityData().get(EntityPlayer.PERSISTED_NBT_TAG);
 
-            if (nbt.contains(MY_MOD_TAG)) {
-                nbt = (NBTTagCompound) nbt.get(MY_MOD_TAG);
+            if (basenbt != null) {
+                nbt = (NBTTagCompound) basenbt;
+            }
+            if (nbt == null) {
+                nbt = new NBTTagCompound();
             }
 
         } catch (Exception e) {
-
             nbt = new NBTTagCompound();
-
+            e.printStackTrace();
         }
 
         return nbt;
@@ -31,6 +31,7 @@ public class PlayerUtils {
     }
 
     public static void setPestistentNBT(EntityPlayer player, NBTTagCompound nbt) {
+
         player.getEntityData().put(EntityPlayer.PERSISTED_NBT_TAG, nbt);
     }
 
