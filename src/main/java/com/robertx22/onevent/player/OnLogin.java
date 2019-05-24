@@ -3,14 +3,18 @@ package com.robertx22.onevent.player;
 import com.robertx22.database.gearitemslots.*;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
+import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.create.MapGen;
 import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -54,6 +58,23 @@ public class OnLogin {
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
         player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
+
+        // TESTING MAPS
+        MapBlueprint map = new MapBlueprint(1, 1);
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapGen.Create(map));
+
+        ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
+        seeds.setCount(64);
+        player.inventory.addItemStackToInventory(seeds);
+
+        ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
+        mapdevice.setCount(64);
+        player.inventory.addItemStackToInventory(mapdevice);
 
     }
 

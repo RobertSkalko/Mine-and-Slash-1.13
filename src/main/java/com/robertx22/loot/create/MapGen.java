@@ -4,8 +4,6 @@ import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.MapAffixes;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.db_lists.WorldProviders;
-import com.robertx22.dimensions.IWP;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
@@ -28,11 +26,6 @@ public class MapGen {
         ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));
 
         data.rarity = rarity.Rank();
-
-        IWP iwp = ((IWP) RandomUtils.WeightedRandom(ListUtils.CollectionToList(WorldProviders.All
-                .values())));
-
-        data.worldGeneratorName = iwp.GUID();
 
         data.minutes = RandomUtils.RandomRange(15, 60);
 

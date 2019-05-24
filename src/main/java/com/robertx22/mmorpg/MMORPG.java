@@ -100,6 +100,7 @@ public class MMORPG {
     private void interModEnqueue(final InterModEnqueueEvent event) {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
+
     }
 
     private void interModProcessEvent(final InterModProcessEvent event) {

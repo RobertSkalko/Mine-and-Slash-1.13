@@ -129,7 +129,7 @@ public class ContainerInventoryModify extends Container {
     }
 
     // Called when a progress bar update is received from the server. The two values
-    // (id and data) are the same two
+    // (id and dataInstance) are the same two
     // values given to sendWindowProperty. In this case we are using fields so we
     // just pass them to the tileEntity.
     @OnlyIn(Dist.CLIENT)

@@ -14,7 +14,6 @@ public class DesertHillsIWP extends BaseWorldProvider {
 
     public DesertHillsIWP(DimensionType type) {
         super(type);
-
     }
 
     @Override
@@ -23,15 +22,11 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
-    public void setModDim(ModDimension moddim) {
-        this.moddim = moddim;
-    }
-
-    @Override
     public Biome getBiome() {
         return Biomes.DESERT_HILLS;
     }
 
+    @Override
     public ModDimension newModDimension() {
         return new ModDimension() {
             @Override

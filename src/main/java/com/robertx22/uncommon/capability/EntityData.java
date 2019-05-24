@@ -19,6 +19,8 @@ import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.bases.BaseProvider;
+import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Kills;
@@ -35,9 +37,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -45,15 +45,11 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import javax.annotation.Nonnull;
 import java.util.UUID;
 
 @EventBusSubscriber
@@ -78,6 +74,8 @@ public class EntityData {
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
 
     public interface UnitData extends ICommonCapability {
+
+        void syncToClient(EntityPlayer player);
 
         GearItemData getWeaponData(EntityLivingBase entity);
 
@@ -219,49 +217,17 @@ public class EntityData {
 
     }
 
-    public static class Provider implements ICapabilitySerializable<NBTTagCompound> {
-
-        UnitData impl = new DefaultImpl();
-        private final LazyOptional<UnitData> cap = LazyOptional.of(() -> impl);
+    public static class Provider extends BaseProvider<UnitData> {
 
         @Override
-        public NBTTagCompound serializeNBT() {
-            return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
-
+        public UnitData defaultImpl() {
+            return new DefaultImpl();
         }
 
         @Override
-        public void deserializeNBT(NBTTagCompound nbt) {
-            Data.getStorage().readNBT(Data, impl, null, nbt);
-
+        public Capability<UnitData> dataInstance() {
+            return Data;
         }
-
-        @Nonnull
-        @Override
-        public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-            if (cap == Data) {
-                return this.cap.cast();
-            }
-            return LazyOptional.empty();
-        }
-    }
-
-    public static class Storage implements IStorage<UnitData> {
-        @Override
-        public INBTBase writeNBT(Capability<UnitData> capability, UnitData instance,
-                                 EnumFacing side) {
-
-            return instance.getNBT();
-        }
-
-        @Override
-        public void readNBT(Capability<UnitData> capability, UnitData instance,
-                            EnumFacing side, INBTBase nbt) {
-
-            instance.setNBT((NBTTagCompound) nbt);
-
-        }
-
     }
 
     public static class DefaultImpl implements UnitData {
@@ -888,6 +854,10 @@ public class EntityData {
         public boolean needsToBeGivenStats() {
             return this.setMobStats == false;
         }
+    }
+
+    public static class Storage extends BaseStorage<UnitData> {
+
     }
 
 }

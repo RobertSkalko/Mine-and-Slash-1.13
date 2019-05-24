@@ -256,7 +256,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         return parentNBTTagCompound;
     }
 
-    // This is where you load the data that you saved in write
+    // This is where you load the dataInstance that you saved in write
     @Override
     public void read(NBTTagCompound nbtTagCompound) {
         super.read(nbtTagCompound); // The super call is required to save and load the tiles location

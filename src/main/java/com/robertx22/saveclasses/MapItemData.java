@@ -5,8 +5,6 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.db_lists.WorldProviders;
-import com.robertx22.dimensions.IWP;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
@@ -57,8 +55,8 @@ public class MapItemData implements ISalvagable, ITooltip {
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
-    @Store
-    public String worldGeneratorName;
+    //@Store
+    // public String worldGeneratorName;
 
     @Override
     public int getSalvagedRarity() {
@@ -128,16 +126,12 @@ public class MapItemData implements ISalvagable, ITooltip {
         return list;
     }
 
-    public IWP getWorldProvider() {
-        return WorldProviders.All.get(this.worldGeneratorName);
-    }
-
     public DimensionType createDimension(World ogworld, BlockPos pos,
                                          EntityPlayer player) {
 
         UnitData unit = Load.Unit(player);
 
-        return MapManager.createNewDim(ogworld, player, unit, this, pos);
+        return MapManager.initNewDimension(ogworld, player, unit, this, pos);
 
     }
 
@@ -198,16 +192,6 @@ public class MapItemData implements ISalvagable, ITooltip {
             addAffixTypeToTooltip(this, tooltip, AffectedEntities.All);
 
             Tooltip.add("", tooltip);
-
-            try {
-                Tooltip.add(Styles.BLUECOMP()
-                        .appendSibling(CLOC.word("world_type")
-                                .appendText(": ")
-                                .appendSibling(getWorldProvider().locName())), tooltip);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GOLDCOMP()

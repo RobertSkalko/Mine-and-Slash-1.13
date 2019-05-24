@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
  * <p>
  * ContainerSmelting is used to link the client side gui to the server side
  * inventory and it is where you add the slots holding items. It is also used to
- * send server side data such as progress bars to the client for use in guis
+ * send server side dataInstance such as progress bars to the client for use in guis
  */
 public class ContainerGearFactory extends Container {
 
@@ -205,7 +205,7 @@ public class ContainerGearFactory extends Container {
     }
 
     // Called when a progress bar update is received from the server. The two values
-    // (id and data) are the same two
+    // (id and dataInstance) are the same two
     // values given to sendWindowProperty. In this case we are using fields so we
     // just pass them to the tileEntity.
 

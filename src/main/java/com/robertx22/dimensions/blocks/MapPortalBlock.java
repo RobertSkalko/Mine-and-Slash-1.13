@@ -2,7 +2,6 @@ package com.robertx22.dimensions.blocks;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
@@ -20,12 +19,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 public class MapPortalBlock extends BlockEndPortal {
 
     public MapPortalBlock() {
 
-        super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(100F));
+        super(Block.Properties.create(Material.PORTAL)
+                .hardnessAndResistance(100F)
+                .doesNotBlockMovement());
         this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
 
     }
@@ -46,10 +48,12 @@ public class MapPortalBlock extends BlockEndPortal {
 
                         if (portal.readyToTeleport()) {
 
+                            ResourceLocation loc = DimensionType.getKey(entity.world.getDimension()
+                                    .getType());
+
                             // prevents infinite teleport loop xD makes sure you dont teleport to the same
                             // dimension, forever
-                            if (portal.id != entity.dimension.getRegistryName()
-                                    .toString()) {
+                            if (portal.id != loc.toString()) {
 
                                 World mapworld = MapManager.getWorld(portal.id);
 
@@ -63,7 +67,7 @@ public class MapPortalBlock extends BlockEndPortal {
                                     entity.sendMessage(SLOC.chat("world_is_closed"));
                                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-                                } else if (data.isMapWorld()) {
+                                } else if (data.isMapWorld()) { // TODO
 
                                     MapWorldPlayerListData worlddata = data.getWorldData();
 
@@ -84,7 +88,12 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                         BlockPos pos1 = world.getSpawnPoint();
 
-                                        entity.changeDimension(mapworld.dimension.getType(), new MyTeleporter(world, pos1, (EntityPlayer) entity));
+                                        DimensionType type = mapworld.getDimension()
+                                                .getType();
+
+                                        entity.changeDimension(type);
+
+                                        // entity.changeDimension(mapworld.dimension.getType(), new MyTeleporter(world, pos1, (EntityPlayer) entity));
 
                                     }
 

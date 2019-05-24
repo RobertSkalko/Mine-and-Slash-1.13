@@ -2,12 +2,14 @@ package com.robertx22.dimensions;
 
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.DimsData;
 import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.testing.Watch;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
@@ -15,7 +17,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
@@ -27,6 +28,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber
@@ -36,7 +38,7 @@ public class MapManager {
     public static void registerAllModDims(RegisterDimensionsEvent event) {
 
         for (IWP iwp : WorldProviders.All.values()) {
-            iwp.setupModDim();
+            // iwp.setupModDim();
         }
 
     }
@@ -52,15 +54,25 @@ public class MapManager {
         return DimensionType.byName(res) != null;
     }
 
+    static Random rand = new Random();
+
+    public static DimensionType getDimensionType(ResourceLocation res) {
+        return DimensionType.byName(res);
+    }
+
     public static DimensionType register(ResourceLocation res, IWP IWPType) {
 
-        ModDimension dim = WorldProviders.All.get(IWPType.GUID()).moddim;
+        DimensionType type = getDimensionType(res);
 
-        ResourceLocation loc = new ResourceLocation(UUID.randomUUID()
-                .toString() + dim.getRegistryName().toString());
+        if (type != null) {
+            return type;
+        } else {
 
-        return DimensionManager.registerDimension(loc, dim, new PacketBuffer(Unpooled.wrappedBuffer(new byte[]{})));
+            ModDimension moddim = IWPType.newModDimension();
 
+            return DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
+                    .wrappedBuffer(new byte[]{})));
+        }
     }
 
     public static void unRegister(World world) {
@@ -98,40 +110,86 @@ public class MapManager {
 
     }
 
+    public static World getWorld(DimensionType type) {
+        return getWorld(getResourceLocation(type).toString());
+    }
+
     public static World getWorld(String res) {
-        DimensionType type = DimensionType.byName(new ResourceLocation(res));
-        return DimensionManager.initWorld(getServer(), type);
+        DimensionType type = getDimensionType(new ResourceLocation(res));
+
+        if (type == DimensionType.OVERWORLD) {
+            return getServer().getWorld(type);
+        } else {
+
+            World world = DimensionManager.getWorld(getServer(), type, false, true);
+
+            if (world != null) {
+                return world;
+            }
+
+            return DimensionManager.initWorld(getServer(), type);
+        }
+    }
+
+    public static ResourceLocation getResourceLocation(DimensionType type) {
+
+        ResourceLocation loc = DimensionType.getKey(type);
+        String str = loc.toString();
+
+        if (str.contains(Ref.MODID) == false && str.contains("minecraft") == false) {
+            loc = new ResourceLocation(Ref.MODID, loc.toString());
+        }
+
+        return loc;
+    }
+
+    public static DimensionType preRegisterDimension(IDimsData data) {
+
+        ResourceLocation res = randomResourceLoc();
+
+        IWP iwp = WorldProviders.INSTANCE.random();
+
+        DimensionType type = MapManager.register(res, iwp);
+
+        data.add(type, iwp);
+
+        return type;
 
     }
 
-    public static DimensionType createNewDim(World currentworld, EntityPlayer player,
-                                             UnitData unit, MapItemData map,
-                                             BlockPos pos) {
-
-        freeCurrentDim(player, unit);
-
+    private static ResourceLocation randomResourceLoc() {
         ResourceLocation res = new ResourceLocation(Ref.MODID, UUID.randomUUID()
-                .toString());
+                .toString() + "_mine_and_slash_dim");
 
         while (MapManager.isRegistered(res)) {
 
-            res = new ResourceLocation(Ref.MODID, UUID.randomUUID().toString());
+            res = new ResourceLocation(Ref.MODID, UUID.randomUUID()
+                    .toString() + "_mine_and_slash_dim");
         }
 
-        DimensionType type = MapManager.register(res, map.getWorldProvider())
-                .setRegistryName(res);
+        return res;
 
-        WorldServer world = DimensionManager.initWorld(getServer(), type);
+    }
 
-        unit.setCurrentMapId(res.toString());
+    public static DimensionType initNewDimension(World currentworld, EntityPlayer player,
+                                                 UnitData unit, MapItemData map,
+                                                 BlockPos pos) {
 
-        IWorldData iworld = Load.World(world);
-
-        iworld.init(pos, currentworld, map, res.toString(), player);
+        freeCurrentDim(player, unit);
 
         IDimsData dims = getDimsData();
 
-        dims.add(type, map.getWorldProvider());
+        DimensionData data = dims.getFreeDimension();
+        DimensionType type = data.getDimensionType();
+        ResourceLocation res = getResourceLocation(type);
+
+        World world = getWorld(type);
+
+        unit.setCurrentMapId(res.toString());
+
+        WorldData.IWorldData iworld = Load.World(world);
+
+        iworld.init(pos, currentworld, map, res.toString(), player);
 
         return type;
 
@@ -151,6 +209,15 @@ public class MapManager {
 
     public static void onStartServerRegisterDimensions() {
         getDimsData().registerAll();
+
+        IDimsData dims = getDimsData();
+
+        Watch total = new Watch();
+        for (int i = 0; i < 100; i++) {
+            MapManager.preRegisterDimension(dims);
+        }
+        total.print("Pre-Registering Dimensions took: ");
+
     }
 
     /**
@@ -161,7 +228,7 @@ public class MapManager {
         getDimsData().unregisterAll();
     }
 
-    private static MinecraftServer getServer() {
+    public static MinecraftServer getServer() {
         return ServerLifecycleHooks.getCurrentServer();
     }
 
@@ -174,8 +241,7 @@ public class MapManager {
                 .getMapStorage().
                 */
 
-        return Load.Dims(ServerLifecycleHooks.getCurrentServer()
-                .getWorld(DimensionType.OVERWORLD));
+        return Load.Dims(getServer().getWorld(DimensionType.OVERWORLD));
     }
 
 }

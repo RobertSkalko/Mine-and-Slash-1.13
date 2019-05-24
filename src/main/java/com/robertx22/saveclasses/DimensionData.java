@@ -20,7 +20,7 @@ public class DimensionData {
     public DimensionData(DimensionType type, IWP theclass) {
 
         this.IWPGuid = theclass.GUID();
-        this.ResourceLocationString = type.getRegistryName().toString();
+        this.ResourceLocationString = MapManager.getResourceLocation(type).toString();
 
     }
 
@@ -36,7 +36,13 @@ public class DimensionData {
 
     public DimensionType getDimensionType() {
 
-        return MapManager.register(getResource(), this.getIWP());
+        DimensionType type = MapManager.getDimensionType(getResource());
+
+        if (type == null) {
+            new Exception("DIMENSION TYPE CAN'T BE NULL").printStackTrace();
+        }
+
+        return type;
 
     }
 

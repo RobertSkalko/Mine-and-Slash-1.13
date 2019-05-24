@@ -5,23 +5,20 @@ import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapDataList;
+import com.robertx22.uncommon.capability.bases.BaseProvider;
+import com.robertx22.uncommon.capability.bases.BaseStorage;
+import com.robertx22.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.MapsNbt;
-import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
-import javax.annotation.Nonnull;
 
 @EventBusSubscriber
 public class DimsData {
@@ -31,11 +28,7 @@ public class DimsData {
     @CapabilityInject(IDimsData.class)
     public static final Capability<IDimsData> Data = null;
 
-    public interface IDimsData {
-
-        NBTTagCompound getNBT();
-
-        void setNBT(NBTTagCompound value);
+    public interface IDimsData extends ICommonCapability {
 
         void add(DimensionType type, IWP iwp);
 
@@ -45,9 +38,10 @@ public class DimsData {
 
         void remove(World world);
 
+        DimensionData getFreeDimension();
+
     }
 
-    static final String MAP_OBJECT = "map_data_list";
     static final String ISRESERVED = "is_reserved";
 
     public static class DefaultImpl implements IDimsData {
@@ -110,11 +104,30 @@ public class DimsData {
 
         @Override
         public void remove(World world) {
-            this.mapdata.dimDatas.remove(world.getDimension()
-                    .getType()
-                    .getRegistryName()
-                    .toString());
+            this.mapdata.dimDatas.remove(MapManager.getResourceLocation(world.getDimension()
+                    .getType()).toString());
 
+        }
+
+        @Override
+        public DimensionData getFreeDimension() {
+
+            for (DimensionData data : this.mapdata.dimDatas.values()) {
+
+                DimensionType type = data.getDimensionType();
+
+                World world = MapManager.getWorld(type);
+
+                WorldData.IWorldData worlddata = Load.World(world);
+
+                if (worlddata.isFree()) {
+                    worlddata.setIsFree(false);
+                    return data;
+                }
+
+            }
+
+            return null;
         }
     }
 
@@ -135,50 +148,21 @@ public class DimsData {
 
     }
 
-    public static class Provider implements ICapabilitySerializable<NBTTagCompound> {
-        IDimsData impl = new DefaultImpl();
-        private final LazyOptional<IDimsData> cap = LazyOptional.of(() -> impl);
+    public static class Provider extends BaseProvider<IDimsData> {
 
         @Override
-        public NBTTagCompound serializeNBT() {
-            if (Data != null && Data.getStorage() != null) {
-                return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
-            }
-            return new NBTTagCompound();
+        public IDimsData defaultImpl() {
+            return new DefaultImpl();
         }
 
         @Override
-        public void deserializeNBT(NBTTagCompound nbt) {
-            if (Data != null && Data.getStorage() != null) {
-                Data.getStorage().readNBT(Data, impl, null, nbt);
-            }
-        }
-
-        @Nonnull
-        @Override
-        public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
-            if (cap == Data) {
-                return this.cap.cast();
-            }
-            return LazyOptional.empty();
+        public Capability<IDimsData> dataInstance() {
+            return Data;
         }
     }
 
-    public static class Storage implements IStorage<IDimsData> {
-        @Override
-        public INBTBase writeNBT(Capability<IDimsData> capability, IDimsData instance,
-                                 EnumFacing side) {
+    public static class Storage extends BaseStorage<IDimsData> {
 
-            return instance.getNBT();
-        }
-
-        @Override
-        public void readNBT(Capability<IDimsData> capability, IDimsData instance,
-                            EnumFacing side, INBTBase nbt) {
-
-            instance.setNBT((NBTTagCompound) nbt);
-
-        }
     }
 
 }

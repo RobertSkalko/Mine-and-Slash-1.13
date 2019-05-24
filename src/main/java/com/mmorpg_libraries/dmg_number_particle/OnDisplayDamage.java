@@ -36,7 +36,7 @@ public class OnDisplayDamage {
         Minecraft.getInstance().particles.addEffect(damageIndicator);
 
         // TODO PROBABLY DOESNT WORK
-        // Minecraft.getInstance().world.addParticle((IParticleData) damageIndicator, true, data.x, data.y, data.z, 1D, 1D, 1D);
+        // Minecraft.getInstance().world.addParticle((IParticleData) damageIndicator, true, dataInstance.x, dataInstance.y, dataInstance.z, 1D, 1D, 1D);
 
     }
 

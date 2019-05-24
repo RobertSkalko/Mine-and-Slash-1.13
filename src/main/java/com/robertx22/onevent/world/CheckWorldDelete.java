@@ -1,6 +1,5 @@
 package com.robertx22.onevent.world;
 
-import com.robertx22.dimensions.MapManager;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.util.ResourceLocation;
@@ -47,7 +46,7 @@ public class CheckWorldDelete {
                         IWorldData data = Load.World(world);
 
                         if (data.isSetForDelete()) {
-                            MapManager.unRegister(world);
+                            //  MapManager.unRegister(world); TODO
                         }
                         scheduler.shutdown();
 
@@ -61,7 +60,7 @@ public class CheckWorldDelete {
                 }
 
             };
-            scheduler.schedule(noteThread, 3, TimeUnit.SECONDS);
+            // scheduler.schedule(noteThread, 3, TimeUnit.SECONDS); TODO
         }
     }
 

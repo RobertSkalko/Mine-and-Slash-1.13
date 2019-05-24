@@ -38,7 +38,7 @@ public class GuiHandlerClient {
         BlockPos pos = null;
         TileEntity te = null;
 
-        try { // if it's from tileentity, it will send pos data, otherwise not and causes errors
+        try { // if it's from tileentity, it will send pos dataInstance, otherwise not and causes errors
             pos = msg.getAdditionalData().readBlockPos();
             te = Minecraft.getInstance().world.getTileEntity(pos);
 

@@ -32,9 +32,7 @@ public class Load {
     public static IWorldData World(ICapabilityProvider provider) {
 
         if (provider != null) {
-            return provider.getCapability(WorldData.Data)
-                    .orElse(new WorldData.DefaultImpl());
-
+            return provider.getCapability(WorldData.Data).orElse(null);
         }
         return null;
     }

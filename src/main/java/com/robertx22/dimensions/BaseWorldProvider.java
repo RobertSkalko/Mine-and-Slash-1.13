@@ -4,20 +4,24 @@ import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.OverworldDimension;
+import net.minecraft.world.dimension.EndDimension;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.DebugGenSettings;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.ModDimension;
 
-public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
-    DimensionType type;
+public abstract class BaseWorldProvider extends EndDimension implements IWP {
 
-    public ModDimension moddim;
+    protected ModDimension moddim;
 
     public BaseWorldProvider(DimensionType type) {
-        this.type = type;
+        super(type);
+        this.setModDim();
+    }
+
+    public void setModDim() {
+        this.moddim = this.newModDimension();
     }
 
     BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeprovidertype = BiomeProviderType.FIXED;
@@ -30,11 +34,6 @@ public abstract class BaseWorldProvider extends OverworldDimension implements IW
 
         return ChunkGeneratorType.DEBUG.create(this.world, biomeprovidertype.create(setting), new DebugGenSettings());
 
-    }
-
-    @Override
-    public String unlocString() {
-        return this.GUID().toLowerCase();
     }
 
     @Override

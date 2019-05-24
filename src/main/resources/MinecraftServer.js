@@ -17,27 +17,12 @@ function initializeCoreMod() {
                     var method = methods[m];
 
                     if (method.name === "getWorlds" || method.name === "func_212370_w") {
-                        print("MMORPG Found method ", method.toString());
+                        print("MMORPG Found method getWorlds() ", method.toString());
                         var code = method.instructions;
                         var instr = code.toArray();
-                        var count = 0;
+                        code = new MethodInsnNode(opcodes.INVOKESTATIC, "com/robertx22/CoreMod", "getWorlds", "(Lnet/minecraft/server/MinecraftServer;)", false)
+                        break;
 
-                        for (var i = 0; i < instr.length; i++) {
-                            var instruction = instr[i];
-
-                            if (instruction.getOpcode() == opcodes.GOTO) {
-                                count++;
-
-                                if (count > 1) {
-                                    instruction = instruction.getPrevious().getPrevious();
-                                    print("Found node ", instruction.toString());
-                                    code.insertBefore(inst, new VarInsnNode(opcodes.ALOAD, 0))
-                                    code.insertBefore(instruction, new MethodInsnNode(opcodes.INVOKESTATIC, "com/robertx22/CoreMod", "getWorlds", "(Lnet/minecraft/server/MinecraftServer;)V", false))
-                                    code.insertBefore(inst, new JumpInsnNode(opcodes.GOTO, jumpLabel))
-                                    break;
-                                }
-                            }
-                        }
                     }
                 }
                 return classNode;

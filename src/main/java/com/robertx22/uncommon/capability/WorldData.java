@@ -1,31 +1,29 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.capability.bases.BaseProvider;
+import com.robertx22.uncommon.capability.bases.BaseStorage;
+import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.MapWorldPlayerList;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,11 @@ public class WorldData {
     @CapabilityInject(IWorldData.class)
     public static final Capability<IWorldData> Data = null;
 
-    public interface IWorldData {
+    public interface IWorldData extends ICommonCapability {
+
+        boolean isFree();
+
+        void setIsFree(boolean bool);
 
         void setPermaDeath(boolean bool);
 
@@ -108,55 +110,26 @@ public class WorldData {
 
     }
 
-    @EventBusSubscriber(modid = Ref.MODID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber
     public static class EventHandler {
+
         @SubscribeEvent
         public static void onWorldConstuct(AttachCapabilitiesEvent<World> event) {
-
-            event.addCapability(RESOURCE, new ICapabilitySerializable<NBTTagCompound>() {
-
-                IWorldData impl = new DefaultImpl();
-                private final LazyOptional<IWorldData> cap = LazyOptional.of(() -> impl);
-
-                @Override
-                public NBTTagCompound serializeNBT() {
-                    return (NBTTagCompound) Data.getStorage().writeNBT(Data, impl, null);
-                }
-
-                @Override
-                public void deserializeNBT(NBTTagCompound nbt) {
-                    Data.getStorage().readNBT(Data, impl, null, nbt);
-                }
-
-                @Nonnull
-                @Override
-                public <T> LazyOptional<T> getCapability(Capability<T> cap,
-                                                         EnumFacing side) {
-                    if (cap == Data) {
-                        return this.cap.cast();
-                    }
-                    return LazyOptional.empty();
-                }
-            });
-
+            event.addCapability(RESOURCE, new Provider());
         }
 
     }
 
-    public static class Storage implements IStorage<IWorldData> {
-        @Override
-        public INBTBase writeNBT(Capability<IWorldData> capability, IWorldData instance,
-                                 EnumFacing side) {
+    public static class Provider extends BaseProvider<IWorldData> {
 
-            return instance.getNBT();
+        @Override
+        public IWorldData defaultImpl() {
+            return new DefaultImpl();
         }
 
         @Override
-        public void readNBT(Capability<IWorldData> capability, IWorldData instance,
-                            EnumFacing side, INBTBase nbt) {
-
-            instance.setNBT((NBTTagCompound) nbt);
-
+        public Capability<IWorldData> dataInstance() {
+            return Data;
         }
     }
 
@@ -165,17 +138,16 @@ public class WorldData {
     static final String LEVEL = "level";
     static final String OWNER = "owner";
     static final String TIER = "tier";
-    static final String MAP_OBJECT = "mapObject";
     static final String IS_INIT = "isInit";
     static final String ORIGINAL_DIM = "original_dimension";
     static final String MAP_DIM = "map_dimension_string";
     static final String DIDNT_SET_BACK_PORTAL = "didntSetBackPortal";
     static final String SAVE_NAME = "save_name";
     static final String POS_OBJ = "POS_OBJ";
-    static final String MAP_WORLD_OBJ = "MAP_WORLD_OBJ";
     static final String MINUTES_PASSED = "minutes_passed";
     static final String ISRESERVED = "is_reserved";
     static final String ISPERMADEATH = "ISPERMADEATH";
+    static final String ISFREE = "ISFREE";
 
     public static class DefaultImpl implements IWorldData {
         private NBTTagCompound nbt = new NBTTagCompound();
@@ -184,7 +156,7 @@ public class WorldData {
         MapItemData mapdata = new MapItemData();
         MapWorldPlayerListData mapworlddata = new MapWorldPlayerListData();
         int tier = 0;
-        int level = 0;
+        int level = 1;
         boolean isMap = false;
         boolean setForDelete = false;
         String owner = "";
@@ -196,6 +168,7 @@ public class WorldData {
         int minutesPassed;
         boolean reserved = false;
         boolean isPermaDeath = false;
+        boolean isFree = true;
 
         @Override
         public NBTTagCompound getNBT() {
@@ -207,7 +180,7 @@ public class WorldData {
             nbt.putBoolean(IS_INIT, isInit);
             nbt.putBoolean(ISPERMADEATH, isPermaDeath);
             if (this.originalDimension != null) {
-                nbt.putString(ORIGINAL_DIM, originalDimension.getRegistryName()
+                nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
                         .toString());
             }
             nbt.putString(MAP_DIM, mapDimension);
@@ -215,6 +188,7 @@ public class WorldData {
             nbt.putString(SAVE_NAME, saveName);
             nbt.putInt(MINUTES_PASSED, minutesPassed);
             nbt.putBoolean(ISRESERVED, reserved);
+            nbt.putBoolean(ISFREE, isFree);
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
@@ -247,6 +221,7 @@ public class WorldData {
             this.saveName = nbt.getString(SAVE_NAME);
             this.minutesPassed = nbt.getInt(MINUTES_PASSED);
             this.reserved = nbt.getBoolean(ISRESERVED);
+            this.isFree = nbt.getBoolean(ISFREE);
 
             mapdata = Map.Load(nbt);
             mapworlddata = MapWorldPlayerList.Load(nbt);
@@ -312,7 +287,7 @@ public class WorldData {
             this.level = map.level;
             this.tier = map.tier;
             this.mapdata = map;
-            // this.originalDimension = world.provider.getDimension();
+            this.originalDimension = world.getDimension().getType();
             this.mapDimension = dimensionId;
             this.mapDevicePos = pos.toLong();
             this.isInit = true;
@@ -532,6 +507,16 @@ public class WorldData {
         }
 
         @Override
+        public boolean isFree() {
+            return this.isFree;
+        }
+
+        @Override
+        public void setIsFree(boolean bool) {
+            this.isFree = bool;
+        }
+
+        @Override
         public void setPermaDeath(boolean bool) {
             this.isPermaDeath = bool;
         }
@@ -562,4 +547,7 @@ public class WorldData {
 
     }
 
+    public static class Storage extends BaseStorage<IWorldData> {
+
+    }
 }

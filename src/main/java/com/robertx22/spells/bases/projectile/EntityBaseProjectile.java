@@ -484,7 +484,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
+     * (abstract) Protected helper method to write subclass entity dataInstance to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound compound) {
         compound.putInt("xTile", this.xTile);
@@ -505,7 +505,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
+     * (abstract) Protected helper method to read subclass entity dataInstance from NBT.
      */
     public void readEntityFromNBT(NBTTagCompound compound) {
         this.xTile = compound.getInt("xTile");

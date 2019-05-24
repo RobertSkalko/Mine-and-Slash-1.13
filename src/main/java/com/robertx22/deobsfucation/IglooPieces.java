@@ -79,7 +79,7 @@ public class IglooPieces {
         }
 
         /**
-         * (abstract) Helper method to write subclass data to NBT
+         * (abstract) Helper method to write subclass dataInstance to NBT
          */
         protected void writeAdditional(NBTTagCompound tagCompound) {
             super.writeAdditional(tagCompound);
@@ -88,7 +88,7 @@ public class IglooPieces {
         }
 
         /**
-         * (abstract) Helper method to read subclass data from NBT
+         * (abstract) Helper method to read subclass dataInstance from NBT
          */
         protected void readAdditional(NBTTagCompound tagCompound,
                                       TemplateManager templateManager) {
