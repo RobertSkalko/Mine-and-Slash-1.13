@@ -4,21 +4,33 @@ import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.EndDimension;
+import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.DebugGenSettings;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.ModDimension;
 
-public abstract class BaseWorldProvider extends EndDimension implements IWP {
+public abstract class BaseWorldProvider extends OverworldDimension implements IWP {
 
-    protected ModDimension moddim;
+    public ModDimension moddim;
+
+    public BaseWorldProvider() {
+        super();
+        this.setModDim();
+    }
 
     public BaseWorldProvider(DimensionType type) {
         super(type);
         this.setModDim();
     }
+
+    @Override
+    public ModDimension getModDim() {
+        return moddim;
+    }
+
+    protected abstract ModDimension newModDimension();
 
     public void setModDim() {
         this.moddim = this.newModDimension();

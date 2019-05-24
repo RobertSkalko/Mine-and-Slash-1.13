@@ -12,6 +12,10 @@ import java.util.function.Function;
 
 public class DesertHillsIWP extends BaseWorldProvider {
 
+    public DesertHillsIWP() {
+        super();
+    }
+
     public DesertHillsIWP(DimensionType type) {
         super(type);
     }
@@ -27,7 +31,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
-    public ModDimension newModDimension() {
+    protected ModDimension newModDimension() {
         return new ModDimension() {
             @Override
             public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> getFactory() {

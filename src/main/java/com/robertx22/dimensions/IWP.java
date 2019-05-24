@@ -10,11 +10,11 @@ import net.minecraftforge.common.ModDimension;
 public interface IWP extends IWeighted, ILocName {
     abstract String GUID();
 
-    abstract ModDimension newModDimension();
+    ModDimension getModDim();
 
     //public BaseWorldProvider newInstance(DimensionType type);
 
-    abstract Biome getBiome();
+    Biome getBiome();
 
     public default ITextComponent locName() {
         return CLOC.word(this.GUID().toLowerCase());

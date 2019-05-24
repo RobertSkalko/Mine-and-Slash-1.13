@@ -5,7 +5,6 @@ import com.robertx22.dimensions.IWP;
 import com.robertx22.dimensions.world_providers.DesertHillsIWP;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 
@@ -13,12 +12,12 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
 
     public static WorldProviders INSTANCE = new WorldProviders();
 
-    private static DimensionType type = DimensionType.OVERWORLD;
+    // private static DimensionType type = DimensionType.THE_END;
 
     public static HashMap<String, BaseWorldProvider> All = new HashMap<String, BaseWorldProvider>() {
         {
             {
-                put(new DesertHillsIWP(type).GUID(), new DesertHillsIWP(type));
+                put(new DesertHillsIWP().GUID(), new DesertHillsIWP());
 
             }
 

@@ -68,7 +68,7 @@ public class MapManager {
             return type;
         } else {
 
-            ModDimension moddim = IWPType.newModDimension();
+            ModDimension moddim = IWPType.getModDim();
 
             return DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
                     .wrappedBuffer(new byte[]{})));
@@ -102,7 +102,7 @@ public class MapManager {
         DimensionType type = DimensionType.byName(res);
 
         if (type != null) {
-            World world = DimensionManager.getWorld(ServerLifecycleHooks.getCurrentServer(), type, false, true);
+            World world = getWorld(type);
             if (world != null) {
                 Load.World(world).passAllTime(world);
             }
@@ -121,7 +121,7 @@ public class MapManager {
             return getServer().getWorld(type);
         } else {
 
-            World world = DimensionManager.getWorld(getServer(), type, false, true);
+            World world = DimensionManager.getWorld(getServer(), type, true, true);
 
             if (world != null) {
                 return world;
@@ -182,6 +182,8 @@ public class MapManager {
         DimensionData data = dims.getFreeDimension();
         DimensionType type = data.getDimensionType();
         ResourceLocation res = getResourceLocation(type);
+
+        DimensionManager.initWorld(getServer(), type);
 
         World world = getWorld(type);
 
