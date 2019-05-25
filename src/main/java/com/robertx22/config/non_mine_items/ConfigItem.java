@@ -53,6 +53,39 @@ public class ConfigItem implements IWeighted {
 
     public boolean statsAddedOnlyOnDrop = false;
 
+    public ConfigItem setGenerationWeights(int normalItemWeight, int runedItemWeight,
+                                           int uniqueItemWeight) {
+        this.normalItemWeight = normalItemWeight;
+        this.uniqueItemWeight = uniqueItemWeight;
+        this.runedItemWeight = runedItemWeight;
+        return this;
+    }
+
+    public ConfigItem setType(GearItemSlot type) {
+        this.itemType = type.GUID();
+        return this;
+    }
+
+    public ConfigItem setType(String type) {
+        this.itemType = type;
+        return this;
+    }
+
+    public ConfigItem setDropWeight(int weight) {
+        this.dropWeight = weight;
+        return this;
+    }
+
+    public ConfigItem setMinRarity(int rar) {
+        this.minRarity = rar;
+        return this;
+    }
+
+    public ConfigItem setMaxRarity(int rar) {
+        this.maxRarity = rar;
+        return this;
+    }
+
     public boolean isValid() throws Exception {
 
         if (uniqueIsRandom == false) {
