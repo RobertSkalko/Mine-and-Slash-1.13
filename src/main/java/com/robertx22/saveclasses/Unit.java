@@ -16,7 +16,6 @@ import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
@@ -159,20 +158,20 @@ public class Unit {
         return null;
     }
 
-    public static Unit Mob(EntityLivingBase entity, IWorldData data) {
+    public static Unit Mob(EntityLivingBase entity) {
 
         Unit mob = new Unit();
         mob.InitMobStats();
 
         UnitData endata = Load.Unit(entity);
 
-        endata.SetMobLevelAtSpawn(data, entity);
+        endata.SetMobLevelAtSpawn(entity);
         endata.setRarity(randomRarity(entity, endata.getLevel()));
 
-        CommonStatUtils.addMapAffixes(data, entity, mob, endata);
+        //CommonStatUtils.addMapAffixes(entity, mob, endata);
         MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-        mob.RecalculateStats(entity, endata, endata.getLevel(), data);
+        mob.RecalculateStats(entity, endata, endata.getLevel());
 
         return mob;
 
@@ -279,8 +278,7 @@ public class Unit {
         return hpadded;
     }
 
-    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level,
-                                 IWorldData world) {
+    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level) {
 
         data.setEquipsChanged(false);
 
@@ -318,8 +316,8 @@ public class Unit {
         Unit copy = this.Clone();
 
         int tier = 0;
-        if (world != null) {
-            tier = world.getTier(entity.world);
+        if (entity instanceof EntityPlayer) {
+            tier = Load.playerMapData((EntityPlayer) entity).getTier();
         }
 
         ClearStats();
@@ -332,10 +330,10 @@ public class Unit {
 
         if (entity instanceof EntityPlayer) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
+            PlayerStatUtils.weakenPlayerPerTiers(this, tier);
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
-            MobStatUtils.AddMobTierStats(this, tier);
             MobStatUtils.worldMultiplierStats(entity.world, data);
         }
 

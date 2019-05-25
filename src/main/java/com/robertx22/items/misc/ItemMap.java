@@ -3,8 +3,7 @@ package com.robertx22.items.misc;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.capability.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -24,9 +23,8 @@ public class ItemMap extends Item {
 
     public static void createMapPortal(DimensionType type, BlockPos pos, World world,
                                        MapItemData data) {
-        IWorldData currentdata = Load.World(world);
 
-        if (currentdata.isMapWorld()) {
+        if (WorldUtils.isMapWorld(world)) {
 
         } else {
 

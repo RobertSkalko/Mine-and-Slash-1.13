@@ -1,6 +1,7 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,12 +20,14 @@ public class OnDeathInMap {
 
         if (living instanceof EntityPlayer) {
 
-            IWorldData iworld = Load.World(living.world);
+            EntityPlayer player = (EntityPlayer) living;
 
-            if (iworld.isMapWorld()) {
-                iworld.onPlayerDeath((EntityPlayer) living, living.world);
+            if (WorldUtils.isMapWorld(living.world)) {
+                PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+
+                data.onPlayerDeath(player);
                 evt.setCanceled(true);
-                iworld.teleportPlayerBack((EntityPlayer) living);
+                data.teleportPlayerBack(player);
 
             }
 

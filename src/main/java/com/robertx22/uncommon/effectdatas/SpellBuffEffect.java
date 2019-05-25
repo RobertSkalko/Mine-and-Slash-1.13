@@ -3,7 +3,6 @@ package com.robertx22.uncommon.effectdatas;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.interfaces.IStatEffect;
@@ -33,13 +32,11 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
         this.sourceData = Load.Unit(source);
 
-        IWorldData world = Load.World(source.world);
-
         try {
             sourceUnit = sourceData.getUnit();
 
             if (sourceUnit != null) {
-                sourceData.recalculateStats(source, world);
+                sourceData.recalculateStats(source);
 
             } else {
                 this.canceled = true;

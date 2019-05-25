@@ -4,7 +4,6 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
@@ -59,7 +58,7 @@ public class LootUtils {
     }
 
     public static float applyLootMultipliers(float chance, UnitData player, UnitData mob,
-                                             EntityLivingBase entity, IWorldData world) {
+                                             EntityLivingBase entity) {
 
         float first = chance;
 
@@ -69,19 +68,11 @@ public class LootUtils {
 
         float after_world = after_mob_health;
 
-        if (world.isMapWorld()) {
-            after_world = after_mob_health * 1 + (float) world.getMap()
-                    .getBonusLootAmount() / 100;
-        }
         if (entity instanceof EntitySlime) {
             after_world /= 15;
         }
 
-        float perkillsbonus = player.getLootBonusPerAffixKills(world.getMap());
-
-        float after_peraffixkill = after_world * (1 + perkillsbonus / 100);
-
-        return after_peraffixkill;
+        return after_world;
     }
 
     public static int WhileRoll(float chance) {

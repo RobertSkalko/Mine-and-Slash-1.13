@@ -6,7 +6,6 @@ import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -36,6 +35,9 @@ public class OnMobDeathDrops {
                 if (event.getSource().getTrueSource() instanceof EntityPlayer) {
                     if (Load.hasUnit(entity)) {
 
+                        EntityPlayer player = (EntityPlayer) event.getSource()
+                                .getTrueSource();
+
                         UnitData victim = Load.Unit(entity);
                         UnitData killer = Load.Unit(event.getSource().getTrueSource());
 
@@ -47,11 +49,7 @@ public class OnMobDeathDrops {
 
                         if (loot_multi > 0) {
 
-                            IWorldData world = Load.World(entity.world);
-
-                            killer.onMobKill(world);
-
-                            MasterLootGen.genAndDrop(victim, killer, world, entity);
+                            MasterLootGen.genAndDrop(victim, killer, entity, player);
 
                         }
 

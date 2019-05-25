@@ -3,9 +3,9 @@ package com.robertx22.dimensions.blocks;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortal;
@@ -48,7 +48,8 @@ public class MapPortalBlock extends BlockEndPortal {
 
                         if (portal.readyToTeleport()) {
 
-                            ResourceLocation loc = DimensionType.getKey(entity.world.getDimension()
+                            ResourceLocation loc = MapManager.getResourceLocation(entity.world
+                                    .getDimension()
                                     .getType());
 
                             // prevents infinite teleport loop xD makes sure you dont teleport to the same
@@ -57,25 +58,20 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                 World mapworld = MapManager.getWorld(portal.id);
 
-                                IWorldData data = Load.World(mapworld);
+                                if (WorldUtils.isMapWorld(mapworld)) {
 
-                                if (data == null) {
-                                    entity.sendMessage(SLOC.chat("world_doesnt_exist"));
-                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-
-                                } else if (data.isMapWorld() == false) { // TODO
-
-                                    MapWorldPlayerListData worlddata = data.getWorldData();
+                                    EntityPlayer player = (EntityPlayer) entity;
 
                                     entity.sendMessage(SLOC.chat("traveling_to_mapworld")
                                             .appendText(portal.id + ""));
 
-                                    BlockPos pos1 = world.getSpawnPoint();
+                                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+
+                                    BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
+                                            .getLevel());
 
                                     DimensionType type = mapworld.getDimension()
                                             .getType();
-
-                                    EntityPlayer player = (EntityPlayer) entity;
 
                                     entity.changeDimension(type, new MyTeleporter(world, pos1, player));
 

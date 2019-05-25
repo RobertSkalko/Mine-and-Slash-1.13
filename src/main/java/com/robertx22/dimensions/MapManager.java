@@ -5,7 +5,7 @@ import com.robertx22.dimensions.world_providers.DesertHillsIWP;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -131,13 +131,11 @@ public class MapManager {
 
         DimensionManager.initWorld(getServer(), type);
 
-        World world = getWorld(type);
-
         unit.setCurrentMapId(res.toString());
 
-        WorldData.IWorldData iworld = Load.World(world);
+        PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
-        iworld.init(pos, currentworld, map, res.toString(), player);
+        data.init(pos, map, type, player);
 
         return type;
 

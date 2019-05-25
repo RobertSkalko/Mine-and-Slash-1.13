@@ -1,11 +1,9 @@
 package com.robertx22.uncommon.datasaving;
 
-import com.robertx22.uncommon.capability.DimsData;
-import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Load {
@@ -29,20 +27,10 @@ public class Load {
         return null;
     }
 
-    public static IWorldData World(ICapabilityProvider provider) {
+    public static PlayerMapData.IPlayerMapData playerMapData(EntityPlayer provider) {
 
         if (provider != null) {
-            return provider.getCapability(WorldData.Data).orElse(null);
-        }
-        return null;
-    }
-
-    public static IDimsData Dims(ICapabilityProvider provider) {
-
-        if (provider != null) {
-            return provider.getCapability(DimsData.Data)
-                    .orElse(new DimsData.DefaultImpl());
-
+            return provider.getCapability(PlayerMapData.Data).orElse(null);
         }
         return null;
     }

@@ -1,7 +1,6 @@
 package com.robertx22.onevent.world;
 
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.capability.WorldUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
@@ -27,9 +26,7 @@ public class AllowMobSpawnsInMap {
 
         if (en instanceof IMob) {
 
-            IWorldData data = Load.World(event.getWorld().getWorld());
-
-            if (data.isMapWorld()) {
+            if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
                 if (en instanceof EntitySlime) {
 

@@ -15,8 +15,6 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, ParticleGenPacket.class, ParticleGenPacket::encode, ParticleGenPacket::decode, ParticleGenPacket::handle);
 
-        MMORPG.Network.registerMessage(index++, IWorldPacket.class, IWorldPacket::encode, IWorldPacket::decode, IWorldPacket::handle);
-
         MMORPG.Network.registerMessage(index++, PlayerUnitPacket.class, PlayerUnitPacket::encode, PlayerUnitPacket::decode, PlayerUnitPacket::handle);
 
     }

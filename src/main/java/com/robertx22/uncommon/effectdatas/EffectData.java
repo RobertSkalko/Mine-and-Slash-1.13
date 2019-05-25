@@ -3,7 +3,6 @@ package com.robertx22.uncommon.effectdatas;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.interfaces.IStatEffect;
@@ -29,7 +28,6 @@ public abstract class EffectData {
 
         }
         if (source != null) {
-            IWorldData world = Load.World(source.world);
 
             try {
                 if (target != null) {
@@ -39,14 +37,14 @@ public abstract class EffectData {
                 sourceUnit = sourceData.getUnit();
 
                 if (sourceUnit != null) {
-                    sourceData.recalculateStats(source, world);
+                    sourceData.recalculateStats(source);
 
                 } else {
                     this.canceled = true;
                 }
                 if (targetUnit != null) {
 
-                    targetData.recalculateStats(target, world);
+                    targetData.recalculateStats(target);
 
                 }
 

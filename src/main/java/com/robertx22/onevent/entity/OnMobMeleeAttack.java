@@ -5,7 +5,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.EntityLivingBase;
@@ -71,14 +70,8 @@ public class OnMobMeleeAttack {
                 return;
             }
 
-            IWorldData world = Load.World(target.world);
-
-            if (world == null) {
-                return;
-            }
-
-            targetData.recalculateStats(target, world);
-            sourceData.recalculateStats(source, world);
+            targetData.recalculateStats(target);
+            sourceData.recalculateStats(source);
 
             if (source instanceof EntityPlayer) {
 

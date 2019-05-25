@@ -3,7 +3,8 @@ package com.robertx22.items.misc;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.SLOC;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.entity.Entity;
@@ -67,7 +68,7 @@ public class ItemMapBackPortal extends Item {
                                 nbt.putInt("ticks", 0);
                                 nbt.putBoolean("porting", false);
 
-                                IWorldData data = Load.World(worldIn);
+                                PlayerMapData.IPlayerMapData data = Load.playerMapData((EntityPlayer) entityIn);
                                 data.teleportPlayerBack((EntityPlayer) entityIn);
 
                                 stack.setCount(stack.getCount() - 1);
@@ -92,27 +93,23 @@ public class ItemMapBackPortal extends Item {
         if (!world.isRemote) {
             try {
 
-                IWorldData data = Load.World(world);
-                if (data != null) {
-                    if (data.isMapWorld()) {
+                if (WorldUtils.isMapWorld(world)) {
 
-                        if (!player.getHeldItem(hand).hasTag()) {
-                            player.getHeldItem(hand).setTag(new NBTTagCompound());
-                        }
-
-                        player.getHeldItem(hand).getTag().putBoolean("porting", true);
-                        player.getHeldItem(hand)
-                                .getTag()
-                                .putLong("pos", player.getPosition().toLong());
-
-                        player.sendMessage(SLOC.chat("teleport_begin"));
-
-                        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-
-                    } else {
-                        player.sendMessage(SLOC.chat("not_inside_map"));
-
+                    if (!player.getHeldItem(hand).hasTag()) {
+                        player.getHeldItem(hand).setTag(new NBTTagCompound());
                     }
+
+                    player.getHeldItem(hand).getTag().putBoolean("porting", true);
+                    player.getHeldItem(hand)
+                            .getTag()
+                            .putLong("pos", player.getPosition().toLong());
+
+                    player.sendMessage(SLOC.chat("teleport_begin"));
+
+                    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+
+                } else {
+                    player.sendMessage(SLOC.chat("not_inside_map"));
 
                 }
 

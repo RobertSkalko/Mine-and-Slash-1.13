@@ -4,10 +4,10 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItem;
 import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -20,15 +20,14 @@ public class CompatibleItemLootGen extends BaseLootGen {
     EntityData.UnitData mob;
 
     public CompatibleItemLootGen(EntityData.UnitData mob, EntityData.UnitData player,
-                                 IWorldData world, EntityLivingBase victim) {
-        super(mob, player, world, victim);
+                                 EntityLivingBase victim, EntityPlayer killer) {
+        super(mob, player, victim, killer);
 
         this.mob = mob;
     }
 
-    public CompatibleItemLootGen(World theworld, float multi, IWorldData world,
-                                 int level) {
-        super(theworld, multi, world);
+    public CompatibleItemLootGen(World theworld, float multi, int level) {
+        super(theworld, multi);
 
     }
 

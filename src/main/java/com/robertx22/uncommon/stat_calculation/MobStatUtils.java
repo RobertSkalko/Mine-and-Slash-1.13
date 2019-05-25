@@ -59,19 +59,6 @@ public class MobStatUtils {
 
     }
 
-    public static void AddMobTierStats(Unit unit, int tier) {
-        for (StatData data : unit.MyStats.values()) {
-            if (data.GetStat().IsPercent() == false) {
-                float newval = IncByPercent(data.Flat, tier);
-                unit.MyStats.get(data.Name).Flat = newval;
-            }
-        }
-    }
-
-    private static float IncByPercent(float val, int tier) {
-        return val + (val * tier * 10 / 100);
-    }
-
     // this apparently takes 60 ms
     public static void AddRandomMobStatusEffects(EntityLivingBase entity, Unit unit,
                                                  MobRarity rarity) {

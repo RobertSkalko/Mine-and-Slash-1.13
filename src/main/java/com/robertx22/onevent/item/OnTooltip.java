@@ -16,7 +16,6 @@ import com.robertx22.uncommon.datasaving.Spell;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -106,12 +105,6 @@ public class OnTooltip {
                 if (map != null) {
 
                     map.BuildTooltip(stack, event, unit, unitdata);
-
-                    event.getToolTip().add(new TextComponentString(""));
-                    event.getToolTip()
-                            .add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(CLOC
-                                    .tooltip("affix_rarity_lootbonus"))
-                                    .appendText(": " + unitdata.getLootBonusPerAffixKills(map) + "%"));
 
                 }
             }

@@ -4,8 +4,8 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -13,16 +13,16 @@ public class SpellLootGen extends BaseLootGen {
 
     SpellBlueprint spellPrint;
 
-    public SpellLootGen(UnitData mob, UnitData player, IWorldData world,
-                        EntityLivingBase victim) {
-        super(mob, player, world, victim);
+    public SpellLootGen(UnitData mob, UnitData player, EntityLivingBase victim,
+                        EntityPlayer killer) {
+        super(mob, player, victim, killer);
 
         spellPrint = new SpellBlueprint(mob.getLevel());
 
     }
 
-    public SpellLootGen(World theworld, float multi, IWorldData world, int level) {
-        super(theworld, multi, world);
+    public SpellLootGen(World theworld, float multi, int level) {
+        super(theworld, multi);
 
         spellPrint = new SpellBlueprint(level);
 

@@ -33,6 +33,13 @@ public class PlayerMapData {
     static final String ORIGINAL_DIM = "original_dimension";
 
     public interface IPlayerMapData extends ICommonCapability {
+
+        int getLevel();
+
+        int getTier();
+
+        MapItemData getMap();
+
         BlockPos getMapDevicePos();
 
         DimensionType getOriginalDimension();
@@ -44,6 +51,8 @@ public class PlayerMapData {
         boolean isPermaDeath();
 
         void onMinute(EntityPlayer player);
+
+        void init(BlockPos pos, MapItemData map, DimensionType type, EntityPlayer player);
 
     }
 
@@ -146,6 +155,53 @@ public class PlayerMapData {
         @Override
         public void onMinute(EntityPlayer player) {
             this.minutesPassed++;
+
+            if (this.getMinutesLeft() < 1) {
+
+                this.announceEnd(player);
+                this.teleportPlayerBack(player);
+
+            } else {
+                onMinutePassAnnounce(player);
+
+            }
+
+        }
+
+        @Override
+        public void init(BlockPos pos, MapItemData map, DimensionType type,
+                         EntityPlayer player) {
+
+            this.minutesPassed = 0;
+            this.mapDevicePos = pos.toLong();
+            this.originalDimension = player.world.getDimension().getType();
+            this.mapdata = map;
+
+        }
+
+        private void onMinutePassAnnounce(EntityPlayer player) {
+            int minutesLeft = getMinutesLeft();
+
+            if (minutesLeft > 0) {
+                if (minutesLeft < 5 || minutesLeft % 5 == 0) {
+                    announceTimeLeft(player);
+                }
+            }
+        }
+
+        @Override
+        public int getLevel() {
+            return this.mapdata.level;
+        }
+
+        @Override
+        public int getTier() {
+            return this.mapdata.tier;
+        }
+
+        @Override
+        public MapItemData getMap() {
+            return this.mapdata;
         }
 
         @Override

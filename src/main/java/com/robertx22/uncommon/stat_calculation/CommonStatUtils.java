@@ -7,9 +7,10 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashMap;
@@ -40,11 +41,13 @@ public class CommonStatUtils {
 
     }
 
-    public static Unit addMapAffixes(IWorldData worlddata, EntityLivingBase entity,
-                                     Unit unit, UnitData endata) {
+    public static Unit addMapAffixes(EntityPlayer entity, Unit unit, UnitData endata) {
+
+        PlayerMapData.IPlayerMapData data = Load.playerMapData(entity);
+
         unit.mapAffixes = new HashMap<String, MapAffixData>();
 
-        if (worlddata.isMapWorld()) {
+        if (WorldUtils.isMapWorld(entity.world)) {
 
             AffectedEntities affected = null;
 
@@ -54,12 +57,11 @@ public class CommonStatUtils {
                 affected = AffectedEntities.Mobs;
             }
 
-            for (MapAffixData affix : worlddata.getMap()
-                    .getAllAffixesThatAffect(affected)) {
+            for (MapAffixData affix : data.getMap().getAllAffixesThatAffect(affected)) {
                 unit.mapAffixes.put(affix.GUID, affix);
             }
 
-            for (MapAffixData affix : worlddata.getMap()
+            for (MapAffixData affix : data.getMap()
                     .getAllAffixesThatAffect(AffectedEntities.All)) {
                 unit.mapAffixes.put(affix.GUID, affix);
             }

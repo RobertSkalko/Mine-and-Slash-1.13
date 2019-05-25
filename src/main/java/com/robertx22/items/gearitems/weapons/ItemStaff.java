@@ -62,7 +62,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                     UnitData data = Load.Unit(player);
 
-                    data.recalculateStats(player, Load.World(player.world));
+                    data.recalculateStats(player);
 
                     GearItemData weapondata = data.getWeaponData(player);
 

@@ -14,11 +14,9 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.SLOC;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
@@ -118,7 +116,7 @@ public class EntityData {
 
         boolean CheckLevelCap();
 
-        void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity);
+        void SetMobLevelAtSpawn(EntityLivingBase entity);
 
         Unit getUnit();
 
@@ -136,9 +134,9 @@ public class EntityData {
 
         void HandleCloneEvent(UnitData old);
 
-        void recalculateStats(EntityLivingBase entity, IWorldData world);
+        void recalculateStats(EntityLivingBase entity);
 
-        void forceRecalculateStats(EntityLivingBase entity, IWorldData world);
+        void forceRecalculateStats(EntityLivingBase entity);
 
         void forceSetUnit(Unit unit);
 
@@ -146,10 +144,6 @@ public class EntityData {
 
         void attackWithWeapon(GearItemData gear, EntityLivingBase source,
                               EntityLivingBase target, UnitData targetdata);
-
-        void onMobKill(IWorldData world);
-
-        int getLootBonusPerAffixKills(MapItemData map);
 
         void onLogin(EntityPlayer player);
 
@@ -342,10 +336,10 @@ public class EntityData {
         }
 
         @Override
-        public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
+        public void SetMobLevelAtSpawn(EntityLivingBase entity) {
 
             this.setMobStats = true;
-            this.level = LevelUtils.determineLevel(data, entity.world, entity.getPosition());
+            this.level = LevelUtils.determineLevel(entity.world, entity.getPosition());
 
         }
 
@@ -545,24 +539,24 @@ public class EntityData {
         }
 
         @Override
-        public void recalculateStats(EntityLivingBase entity, IWorldData world) {
+        public void recalculateStats(EntityLivingBase entity) {
 
             if (unit == null) {
                 unit = new Unit();
             }
 
             if (needsToRecalcStats()) {
-                unit.RecalculateStats(entity, this, level, world);
+                unit.RecalculateStats(entity, this, level);
             }
         }
 
         @Override
-        public void forceRecalculateStats(EntityLivingBase entity, IWorldData world) {
+        public void forceRecalculateStats(EntityLivingBase entity) {
 
             if (unit == null) {
                 unit = new Unit();
             }
-            unit.RecalculateStats(entity, this, level, world);
+            unit.RecalculateStats(entity, this, level);
         }
 
         // This reduces stat calculation by about 4 TIMES!
@@ -621,33 +615,6 @@ public class EntityData {
                 WeaponMechanic iWep = iwep.mechanic();
                 iWep.Attack(source, target, this, targetdata);
 
-            }
-        }
-
-        @Override
-        public void onMobKill(IWorldData world) {
-
-            try {
-
-                if (kills == null) {
-                    kills = new PlayerMapKillsData();
-                }
-
-                kills.onKill(world.getMap());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        @Override
-        public int getLootBonusPerAffixKills(MapItemData map) {
-
-            if (kills == null) {
-                return 0;
-            } else {
-                return kills.getLootMulti(map);
             }
         }
 

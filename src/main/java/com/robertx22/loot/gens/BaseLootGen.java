@@ -3,9 +3,10 @@ package com.robertx22.loot.gens;
 import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -37,13 +38,9 @@ public abstract class BaseLootGen {
     }
 
     public int amount = 0;
-    public IWorldData world;
-    public int world_tier;
+    public int tier = 0;
 
-    public BaseLootGen(World theworld, float multi, IWorldData world) {
-
-        this.world = world;
-        this.world_tier = world.getTier(theworld);
+    public BaseLootGen(World theworld, float multi) {
 
         float chance = BaseChance();
 
@@ -53,11 +50,10 @@ public abstract class BaseLootGen {
 
     }
 
-    public BaseLootGen(UnitData mob, UnitData player, IWorldData world,
-                       EntityLivingBase victim) {
+    public BaseLootGen(UnitData mob, UnitData player, EntityLivingBase victim,
+                       EntityPlayer killer) {
 
-        this.world = world;
-        this.world_tier = world.getTier(victim.world);
+        this.tier = Load.playerMapData(killer).getTier();
 
         float chance = BaseChance();
 
@@ -71,7 +67,7 @@ public abstract class BaseLootGen {
             chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
         }
 
-        chance = LootUtils.applyLootMultipliers(chance, player, mob, victim, world);
+        chance = LootUtils.applyLootMultipliers(chance, player, mob, victim);
 
         amount = LootUtils.WhileRoll(chance);
 
