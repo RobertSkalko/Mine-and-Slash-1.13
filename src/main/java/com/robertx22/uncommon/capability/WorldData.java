@@ -1,8 +1,6 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.config.dimension_configs.DimensionsContainer;
-import com.robertx22.dimensions.MapManager;
-import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.MapWorldPlayerListData;
@@ -10,8 +8,8 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
-import com.robertx22.uncommon.datasaving.MapWorldPlayerList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -24,9 +22,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @EventBusSubscriber
 public class WorldData {
 
@@ -37,14 +32,6 @@ public class WorldData {
 
     public interface IWorldData extends ICommonCapability {
 
-        boolean isFree();
-
-        void setIsFree(boolean bool);
-
-        void setPermaDeath(boolean bool);
-
-        boolean isPermaDeath();
-
         boolean dropsUniques(World world);
 
         NBTTagCompound getNBT();
@@ -53,7 +40,7 @@ public class WorldData {
 
         boolean isMapWorld();
 
-        boolean isSetForDelete();
+        void setIsMapWorld(boolean bool);
 
         String getWorldID();
 
@@ -61,14 +48,8 @@ public class WorldData {
 
         int getLevel();
 
-        void setOwner(EntityPlayer player);
-
-        String getOwner();
-
         void init(BlockPos pos, World world, MapItemData map, String dimensionId,
                   EntityPlayer owner);
-
-        void delete(EntityPlayer player, World mapworld);
 
         MapItemData getMap();
 
@@ -89,10 +70,6 @@ public class WorldData {
         void teleportPlayerBack(EntityPlayer player);
 
         void transferPlayersBack(World world);
-
-        MapWorldPlayerListData getWorldData();
-
-        void setWorldData(MapWorldPlayerListData data);
 
         void passMinute(World world);
 
@@ -154,49 +131,29 @@ public class WorldData {
 
         long mapDevicePos;
         MapItemData mapdata = new MapItemData();
-        MapWorldPlayerListData mapworlddata = new MapWorldPlayerListData();
         int tier = 0;
         int level = 1;
         boolean isMap = false;
-        boolean setForDelete = false;
-        String owner = "";
         boolean isInit = false;
-        DimensionType originalDimension;
-        String mapDimension = "";
         boolean didntSetBackPortal = true;
         String saveName = "";
-        int minutesPassed;
-        boolean reserved = false;
-        boolean isPermaDeath = false;
-        boolean isFree = true;
 
         @Override
         public NBTTagCompound getNBT() {
             nbt.putInt(TIER, tier);
             nbt.putInt(LEVEL, level);
             nbt.putBoolean(IS_MAP_WORLD, isMap);
-            nbt.putBoolean(SET_FOR_DELETE, setForDelete);
-            nbt.putString(OWNER, owner);
             nbt.putBoolean(IS_INIT, isInit);
-            nbt.putBoolean(ISPERMADEATH, isPermaDeath);
-            if (this.originalDimension != null) {
-                nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
-                        .toString());
-            }
-            nbt.putString(MAP_DIM, mapDimension);
+
             nbt.putBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
             nbt.putString(SAVE_NAME, saveName);
-            nbt.putInt(MINUTES_PASSED, minutesPassed);
-            nbt.putBoolean(ISRESERVED, reserved);
-            nbt.putBoolean(ISFREE, isFree);
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
             }
-            if (mapworlddata != null) {
-                MapWorldPlayerList.Save(nbt, mapworlddata);
-            }
 
+            nbt.putInt(TIER, tier);
+            nbt.putInt(LEVEL, level);
             nbt.putLong(POS_OBJ, mapDevicePos);
 
             return nbt;
@@ -209,23 +166,13 @@ public class WorldData {
             tier = nbt.getInt(TIER);
             level = nbt.getInt(LEVEL);
             isMap = nbt.getBoolean(IS_MAP_WORLD);
-            setForDelete = nbt.getBoolean(SET_FOR_DELETE);
-            owner = nbt.getString(OWNER);
             isInit = nbt.getBoolean(IS_INIT);
-            isPermaDeath = nbt.getBoolean(ISPERMADEATH);
-            if (nbt.contains(ORIGINAL_DIM)) {
-                this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
-            }
-            this.mapDimension = nbt.getString(MAP_DIM);
+
             this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
             this.saveName = nbt.getString(SAVE_NAME);
-            this.minutesPassed = nbt.getInt(MINUTES_PASSED);
-            this.reserved = nbt.getBoolean(ISRESERVED);
-            this.isFree = nbt.getBoolean(ISFREE);
 
+            tier = nbt.getInt(TIER);
             mapdata = Map.Load(nbt);
-            mapworlddata = MapWorldPlayerList.Load(nbt);
-
             this.mapDevicePos = nbt.getLong(POS_OBJ);
 
         }
@@ -238,45 +185,8 @@ public class WorldData {
         }
 
         @Override
-        public boolean isSetForDelete() {
-            return setForDelete;
-        }
-
-        @Override
-        public String getWorldID() {
-            return this.mapDimension;
-        }
-
-        @Override
         public int getLevel() {
             return level;
-        }
-
-        @Override
-        public void setOwner(EntityPlayer player) {
-            this.owner = player.getUniqueID().toString();
-
-        }
-
-        @Override
-        public String getOwner() {
-            return owner;
-        }
-
-        @Override
-        public void delete(EntityPlayer player, World mapworld) {
-
-            if (this.isMap) {
-
-                if (isOwner(player)) {
-                    this.setForDelete = true;
-
-                    this.transferPlayersBack(mapworld);
-                } else {
-
-                    player.sendMessage(SLOC.chat("cant_delete_world"));
-                }
-            }
         }
 
         @Override
@@ -287,23 +197,21 @@ public class WorldData {
             this.level = map.level;
             this.tier = map.tier;
             this.mapdata = map;
-            this.originalDimension = world.getDimension().getType();
-            this.mapDimension = dimensionId;
             this.mapDevicePos = pos.toLong();
             this.isInit = true;
-            this.setOwner(owner);
-            this.reserved = false;
 
         }
 
         @Override
-        public int getTier(World world) {
+        public int getTier(World world, EntityPlayer player) {
 
             if (DimensionsContainer.INSTANCE.hasConfig(world)) {
                 return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER;
+            } else {
+
+                Load.Unit(player).getTier();
             }
 
-            return tier;
         }
 
         @Override
@@ -334,49 +242,6 @@ public class WorldData {
         @Override
         public void setSaveName(String name) {
             this.saveName = name;
-        }
-
-        @Override
-        public BlockPos getMapDevicePos() {
-            return BlockPos.fromLong(mapDevicePos).south(3);
-        }
-
-        @Override
-        public DimensionType getOriginalDimension() {
-            return this.originalDimension;
-        }
-
-        public void transferPlayersBack(World world) {
-
-            if (world.playerEntities != null) {
-                List<EntityPlayer> players = new ArrayList<EntityPlayer>(world.playerEntities);
-                for (EntityPlayer player : players) {
-                    if (player.isAlive()) {
-                        teleportPlayerBack(player);
-                    }
-                }
-            }
-
-        }
-
-        @Override
-        public void teleportPlayerBack(EntityPlayer player) {
-
-            BlockPos pos = player.getBedLocation();
-
-            if (getMapDevicePos() != null) {
-
-                pos = getMapDevicePos();
-                pos = pos.north(2);
-
-                if (pos != null) {
-                    player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                }
-
-            }
-
-            player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
-
         }
 
         @Override
