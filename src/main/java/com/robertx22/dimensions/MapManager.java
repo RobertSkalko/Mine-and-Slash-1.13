@@ -1,15 +1,12 @@
 package com.robertx22.dimensions;
 
 import com.robertx22.db_lists.WorldProviders;
+import com.robertx22.dimensions.world_providers.DesertHillsIWP;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.capability.DimsData;
-import com.robertx22.uncommon.capability.DimsData.IDimsData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.testing.Watch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -18,16 +15,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import org.apache.commons.io.FileUtils;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Random;
-import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class MapManager {
@@ -35,19 +27,19 @@ public class MapManager {
     @SubscribeEvent
     public static void registerAllModDims(RegisterDimensionsEvent event) {
 
-        //IDimsData dims = getDimsData();
+        for (IWP iwp : WorldProviders.All.values()) {
 
-        MapsGson.INSTANCE.load();
-
-        Watch total = new Watch();
-        for (int i = 0; i < 100; i++) {
-            MapManager.preRegisterDimension(MapsGson.INSTANCE);
-
+            MapManager.preRegisterDimension(iwp);
         }
 
-        MapsGson.INSTANCE.save(MapsGson.INSTANCE);
+    }
 
-        total.print("Pre-Registering Dimensions took: ");
+    @SubscribeEvent
+    public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
+
+        for (IWP iwp : WorldProviders.All.values()) {
+            event.getRegistry().register(iwp.getModDim());
+        }
     }
 
     public static DimensionType getDimension(ResourceLocation res) {
@@ -61,13 +53,9 @@ public class MapManager {
         return DimensionType.byName(res) != null;
     }
 
-    static Random rand = new Random();
-
     public static DimensionType getDimensionType(ResourceLocation res) {
         return DimensionType.byName(res);
     }
-
-    static int num = 10;
 
     public static DimensionType register(ResourceLocation res, IWP IWPType) {
 
@@ -80,43 +68,11 @@ public class MapManager {
             ModDimension moddim = IWPType.getModDim();
 
             return DimensionManager.registerDimension(res, moddim, null);
-            //return DimensionManager.registerDimensionInternal(num++, res, moddim, null); i tried this too
         }
-    }
-
-    public static void unRegister(World world) {
-
-        DimensionManager.unregisterDimension(world.getDimension().getType().getId());
-
-        DimsData.IDimsData dims = MapManager.getDimsData();
-
-        dims.remove(world);
-
-        try {
-            FileUtils.deleteDirectory(Objects.requireNonNull(WorldFileUtils.getWorldDirectory(world)));
-            System.out.println("Deleting a temporary map world to free up disk space!");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public static DimensionType fromResource(ResourceLocation res) {
         return DimensionType.byName(res);
-    }
-
-    public static void expire(ResourceLocation res) {
-
-        DimensionType type = DimensionType.byName(res);
-
-        if (type != null) {
-            World world = getWorld(type);
-            if (world != null) {
-                Load.World(world).passAllTime(world);
-            }
-        }
-
     }
 
     public static World getWorld(DimensionType type) {
@@ -156,51 +112,21 @@ public class MapManager {
         return loc;
     }
 
-    public static DimensionType preRegisterDimension(MapsGson maps) {
+    public static DimensionType preRegisterDimension(IWP iwp) {
 
-        ResourceLocation res = randomResourceLoc();
-
-        IWP iwp = WorldProviders.INSTANCE.random();
+        ResourceLocation res = iwp.getResourceLoc();
 
         DimensionType type = MapManager.register(res, iwp);
 
-        //        DimensionManager.initWorld(getServer(), type);
-
-        MapsGson.MapGson map = new MapsGson.MapGson();
-        map.reg = res.toString();
-        map.iwp = iwp.GUID();
-        maps.list.add(map);
-
-        // data.add(type, iwp);
-
         return type;
-
     }
 
-    private static ResourceLocation randomResourceLoc() {
-        ResourceLocation res = new ResourceLocation(Ref.MODID, UUID.randomUUID()
-                .toString() + "_mine_and_slash_dim");
+    public static DimensionType initDimension(World currentworld, EntityPlayer player,
+                                              UnitData unit, MapItemData map,
+                                              BlockPos pos) {
 
-        while (MapManager.isRegistered(res)) {
+        DimensionType type = getDimension(new DesertHillsIWP().getResourceLoc());
 
-            res = new ResourceLocation(Ref.MODID, UUID.randomUUID()
-                    .toString() + "_mine_and_slash_dim");
-        }
-
-        return res;
-
-    }
-
-    public static DimensionType initNewDimension(World currentworld, EntityPlayer player,
-                                                 UnitData unit, MapItemData map,
-                                                 BlockPos pos) {
-
-        freeCurrentDim(player, unit);
-
-        IDimsData dims = getDimsData();
-
-        DimensionData data = dims.getFreeDimension();
-        DimensionType type = data.getDimensionType();
         ResourceLocation res = getResourceLocation(type);
 
         DimensionManager.initWorld(getServer(), type);
@@ -217,20 +143,7 @@ public class MapManager {
 
     }
 
-    private static void freeCurrentDim(EntityPlayer player, UnitData unit) {
-
-        if (unit.hasCurrentMapId()) {
-
-            ResourceLocation res = new ResourceLocation(unit.getCurrentMapId());
-
-            MapManager.expire(res);
-
-        }
-
-    }
-
     public static void onStartServerRegisterDimensions() {
-        getDimsData().registerAll();
 
     }
 
@@ -239,31 +152,11 @@ public class MapManager {
      * you // also get dimensions from your last save, which isn't nice
      */
     public static void onStopServerUnRegisterDimensions() {
-        getDimsData().unregisterAll();
+
     }
 
     public static MinecraftServer getServer() {
         return ServerLifecycleHooks.getCurrentServer();
-    }
-
-    public static IDimsData getDimsData() {
-
-        // this shit is obsfucated so i opted for capability instead
-        /*
-        ServerLifecycleHooks.getCurrentServer()
-                .getWorld(DimensionType.OVERWORLD)
-                .getMapStorage().
-                */
-
-        IDimsData data = new DimsData.DefaultImpl();
-
-        for (MapsGson.MapGson map : MapsGson.INSTANCE.list) {
-            data.add(map.reg, map.iwp);
-        }
-
-        return data;
-
-        //return Load.Dims(getServer().getWorld(DimensionType.OVERWORLD));
     }
 
 }

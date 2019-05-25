@@ -35,8 +35,6 @@ public class DimsData {
 
         void add(String type, String iwp);
 
-        void unregisterAll();
-
         void registerAll();
 
         void remove(World world);
@@ -87,14 +85,6 @@ public class DimsData {
         @Override
         public void add(String type, String iwp) {
             this.mapdata.dimDatas.put(type, new DimensionData(type, iwp));
-
-        }
-
-        @Override
-        public void unregisterAll() {
-            for (DimensionData data : this.mapdata.dimDatas.values()) {
-                MapManager.expire(data.getResource());
-            }
 
         }
 

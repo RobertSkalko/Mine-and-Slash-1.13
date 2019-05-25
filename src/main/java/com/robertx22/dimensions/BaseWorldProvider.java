@@ -1,33 +1,91 @@
 package com.robertx22.dimensions;
 
+import com.robertx22.mmorpg.Ref;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGeneratorType;
-import net.minecraft.world.gen.DebugGenSettings;
-import net.minecraft.world.gen.IChunkGenSettings;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ModDimension;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     public ModDimension moddim;
     private DimensionType type;
-    public BlockPos spawn = new BlockPos(111, 111, 111);
 
-    public void onInit(BlockPos pos, DimensionType type) {
-        this.spawn = pos;
-        this.type = type;
+    @Override
+    protected void init() {
+        this.hasSkyLight = true;
+    }
+
+    @Nullable
+    public BlockPos findSpawn(ChunkPos p_206920_1_, boolean checkValid) {
+        for (int i = p_206920_1_.getXStart(); i <= p_206920_1_.getXEnd(); ++i) {
+            for (int j = p_206920_1_.getZStart(); j <= p_206920_1_.getZEnd(); ++j) {
+                BlockPos blockpos = this.findSpawn(i, j, checkValid);
+                if (blockpos != null) {
+                    return blockpos;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    @Nullable
+    public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean checkValid) {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(p_206921_1_, 0, p_206921_2_);
+        Biome biome = this.world.getBiome(blockpos$mutableblockpos);
+        IBlockState iblockstate = biome.getSurfaceBuilderConfig().getTopMaterial();
+        if (checkValid && !iblockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+            return null;
+        } else {
+            Chunk chunk = this.world.getChunk(p_206921_1_ >> 4, p_206921_2_ >> 4);
+            int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, p_206921_1_ & 15, p_206921_2_ & 15);
+            if (i < 0) {
+                return null;
+            } else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, p_206921_1_ & 15, p_206921_2_ & 15) > chunk
+                    .getTopBlockY(Heightmap.Type.OCEAN_FLOOR, p_206921_1_ & 15, p_206921_2_ & 15)) {
+                return null;
+            } else {
+                for (int j = i + 1; j >= 0; --j) {
+                    blockpos$mutableblockpos.setPos(p_206921_1_, j, p_206921_2_);
+                    IBlockState iblockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+                    if (!iblockstate1.getFluidState().isEmpty()) {
+                        break;
+                    }
+
+                    if (iblockstate1.equals(iblockstate)) {
+                        return blockpos$mutableblockpos.up().toImmutable();
+                    }
+                }
+
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public ResourceLocation getResourceLoc() {
+        return new ResourceLocation(Ref.MODID, this.GUID());
     }
 
     public BaseWorldProvider() {
@@ -51,16 +109,17 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         this.moddim = this.newModDimension();
     }
 
-    BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeprovidertype = BiomeProviderType.FIXED;
+    BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeType = BiomeProviderType.FIXED;
+    ChunkGeneratorType chunkType = ChunkGeneratorType.SURFACE;
 
+    @Nonnull
     @Override
-    public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
+    public IChunkGenerator<?> createChunkGenerator() {
 
-        SingleBiomeProviderSettings setting = biomeprovidertype.createSettings()
-                .setBiome(getBiome());
+        OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 
-        return ChunkGeneratorType.DEBUG.create(this.world, biomeprovidertype.create(setting), new DebugGenSettings());
-
+        return chunkType.create(this.world, biomeType.create(biomeType.createSettings()
+                .setBiome(this.getBiome())), settings);
     }
 
     @Override
@@ -89,23 +148,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     @Override
     public boolean canRespawnHere() {
         return false;
-    }
-
-    @Override
-    protected void init() {
-        hasSkyLight = true;
-    }
-
-    @Nullable
-    @Override
-    public BlockPos findSpawn(ChunkPos p_206920_1_, boolean checkValid) {
-        return spawn;
-    }
-
-    @Nullable
-    @Override
-    public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean checkValid) {
-        return spawn;
     }
 
     @Override

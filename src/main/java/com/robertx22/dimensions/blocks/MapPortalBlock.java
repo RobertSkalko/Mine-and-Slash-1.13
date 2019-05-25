@@ -1,7 +1,7 @@
 package com.robertx22.dimensions.blocks;
 
-import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
+import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapWorldPlayerListData;
 import com.robertx22.uncommon.SLOC;
@@ -63,45 +63,22 @@ public class MapPortalBlock extends BlockEndPortal {
                                     entity.sendMessage(SLOC.chat("world_doesnt_exist"));
                                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-                                } else if (data.isSetForDelete()) {
-                                    entity.sendMessage(SLOC.chat("world_is_closed"));
-                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-
-                                } else if (data.isMapWorld()) { // TODO
+                                } else if (data.isMapWorld() == false) { // TODO
 
                                     MapWorldPlayerListData worlddata = data.getWorldData();
 
-                                    if (worlddata.joinedPlayerIDs.size() < ModConfig.INSTANCE.Server.MAX_PLAYERS_PER_MAP
-                                            .get() || worlddata.joinedPlayerIDs.contains(entity
-                                            .getUniqueID()
-                                            .toString())) {
+                                    entity.sendMessage(SLOC.chat("traveling_to_mapworld")
+                                            .appendText(portal.id + ""));
 
-                                        if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID()
-                                                .toString()) == false) {
-                                            worlddata.joinedPlayerIDs.add(entity.getUniqueID()
-                                                    .toString());
-                                            data.setWorldData(worlddata);
-                                        }
+                                    BlockPos pos1 = world.getSpawnPoint();
 
-                                        entity.sendMessage(SLOC.chat("traveling_to_mapworld")
-                                                .appendText(portal.id + ""));
+                                    DimensionType type = mapworld.getDimension()
+                                            .getType();
 
-                                        BlockPos pos1 = world.getSpawnPoint();
+                                    EntityPlayer player = (EntityPlayer) entity;
 
-                                        DimensionType type = mapworld.getDimension()
-                                                .getType();
+                                    entity.changeDimension(type, new MyTeleporter(world, pos1, player));
 
-                                        entity.changeDimension(type);
-
-                                        // entity.changeDimension(mapworld.dimension.getType(), new MyTeleporter(world, pos1, (EntityPlayer) entity));
-
-                                    }
-
-                                    if (worlddata.joinedPlayerIDs.size() > ModConfig.INSTANCE.Server.MAX_PLAYERS_PER_MAP
-                                            .get()) {
-                                        entity.sendMessage(SLOC.chat("mapworld_max_capacity"));
-
-                                    }
                                 } else { // if not mapworld
                                     entity.sendMessage(SLOC.chat("not_mapworld"));
 
