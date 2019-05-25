@@ -373,6 +373,11 @@
     "mmorpg.word.entities": "Entities",
 
     "_comment": "UNIQUE ITEM NAMES",
+	
+    "item.mmorpg.unique.bow_fire0": "§eBow of Fire Affinity",
+    "item.mmorpg.unique.bow_nature0": "§eBow of Nature Affinity",
+    "item.mmorpg.unique.bow_thunder0": "§eBow of Thunder Affinity",
+    "item.mmorpg.unique.bow_water0": "§eBow of Water Affinity",   
     "item.mmorpg.unique.braceletnature0": "§eThorn Bracers",
     "item.mmorpg.unique.pantswater0": "§eLeggings of the Glacier",
     "item.mmorpg.unique.axefire0": "§eAxe of Blazing Cuts",
@@ -425,6 +430,10 @@
     "item.mmorpg.unique.chestmana0": "§eShirt of the Arcane",
 
     "_comment": "UNIQUE ITEM DESCRIPTIONS",
+	"mmorpg.unique.tooltip.bow_fire0": "Aim steady, imbue with flame!",
+    "mmorpg.unique.tooltip.bow_nature0": "Aim steady, imbue with poison!",
+    "mmorpg.unique.tooltip.bow_thunder0": "Aim steady, imbue with Lightning!",
+    "mmorpg.unique.tooltip.bow_water0": "Aim steady, imbue with frost!",   
     "mmorpg.unique.tooltip.braceletnature0": "Fools fight for treasure, but I keep on living.",
     "mmorpg.unique.tooltip.pantswater0": "Try to move me, I dare you.",
     "mmorpg.unique.tooltip.axefire0": "My efforts to merge elements shall not be in vain.",

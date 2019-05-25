@@ -5,7 +5,6 @@ import com.robertx22.dimensions.BaseWorldProvider;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -20,7 +19,7 @@ public class WorldUtils {
         while (destinationLvl != lvl) {
 
             if (destinationLvl < lvl) {
-                pos = pos.south(10);
+                pos = pos.south(20);
             } else {
                 pos = pos.north();
             }
@@ -35,9 +34,9 @@ public class WorldUtils {
 
     public static BlockPos getSurface(World world, BlockPos pos) {
 
-        pos = pos.add(0, world.getHeight(), 0);
+        pos = pos.add(0, world.getHeight() - 1, 0);
 
-        while (world.getBlockState(pos).equals(Blocks.AIR.getDefaultState())) {
+        while (world.isAirBlock(pos)) {
 
             pos = pos.down();
 
