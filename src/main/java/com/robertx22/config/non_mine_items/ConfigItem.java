@@ -53,11 +53,43 @@ public class ConfigItem implements IWeighted {
 
     public boolean statsAddedOnlyOnDrop = false;
 
+    public ConfigItem setUniqueId(IUnique uniq) {
+        this.uniqueId = uniq.GUID();
+        this.uniqueIsRandom = false;
+        return this;
+    }
+
+    public ConfigItem setMaxUniqueTier(int tier) {
+        this.randomUniqueUpToTier = tier;
+        return this;
+    }
+
     public ConfigItem setGenerationWeights(int normalItemWeight, int runedItemWeight,
                                            int uniqueItemWeight) {
         this.normalItemWeight = normalItemWeight;
         this.uniqueItemWeight = uniqueItemWeight;
         this.runedItemWeight = runedItemWeight;
+        return this;
+    }
+
+    public ConfigItem setAlwaysNormal() {
+        this.normalItemWeight = 1;
+        this.uniqueItemWeight = 0;
+        this.runedItemWeight = 0;
+        return this;
+    }
+
+    public ConfigItem setAlwaysRuned() {
+        this.normalItemWeight = 0;
+        this.uniqueItemWeight = 0;
+        this.runedItemWeight = 1;
+        return this;
+    }
+
+    public ConfigItem setAlwaysUnique() {
+        this.normalItemWeight = 0;
+        this.uniqueItemWeight = 1;
+        this.runedItemWeight = 0;
         return this;
     }
 
