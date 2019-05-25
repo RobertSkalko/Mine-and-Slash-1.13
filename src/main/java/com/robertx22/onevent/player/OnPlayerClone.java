@@ -13,14 +13,19 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class OnPlayerClone {
 
     public static final String ENTITY_DATA_BACKUP = "mmorpg:entity_data_backup";
+    public static final String PLAYER_MAP_DATA_BACKUP = "mmorpg:player_map_data_backup";
 
     @SubscribeEvent
     public static void onSave(PlayerEvent.SaveToFile event) {
         EntityPlayer player = event.getEntityPlayer();
 
-        NBTTagCompound nbt = Load.Unit(player).getNBT();
+        NBTTagCompound unitdatanbt = Load.Unit(player).getNBT();
+        NBTTagCompound playermapdatanbt = Load.playerMapData(player).getNBT();
+
         NBTTagCompound pesrsistentNBT = PlayerUtils.getPersistentNBT(player);
-        pesrsistentNBT.put(ENTITY_DATA_BACKUP, nbt);
+
+        pesrsistentNBT.put(ENTITY_DATA_BACKUP, unitdatanbt);
+        pesrsistentNBT.put(PLAYER_MAP_DATA_BACKUP, playermapdatanbt);
         PlayerUtils.setPestistentNBT(player, pesrsistentNBT);
 
     }
@@ -29,10 +34,15 @@ public class OnPlayerClone {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerClone(PlayerEvent.Clone event) {
 
-        NBTTagCompound nbt = PlayerUtils.getPersistentNBT(event.getOriginal())
-                .getCompound(ENTITY_DATA_BACKUP);
+        EntityPlayer original = event.getOriginal();
 
-        Load.Unit(event.getEntityPlayer()).setNBT(nbt);
+        NBTTagCompound backupNBT = PlayerUtils.getPersistentNBT(original);
+
+        NBTTagCompound unitdataNBT = backupNBT.getCompound(ENTITY_DATA_BACKUP);
+        NBTTagCompound playermapdataNBT = backupNBT.getCompound(PLAYER_MAP_DATA_BACKUP);
+
+        Load.Unit(event.getEntityPlayer()).setNBT(unitdataNBT);
+        Load.playerMapData(event.getEntityPlayer()).setNBT(playermapdataNBT);
 
     }
 
