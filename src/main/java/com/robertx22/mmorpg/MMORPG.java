@@ -4,7 +4,7 @@ import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
-import com.robertx22.config.non_mine_items.ConfigItemsSerialization;
+import com.robertx22.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;

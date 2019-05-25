@@ -10,6 +10,7 @@ import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.MapsNbt;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -31,6 +32,8 @@ public class DimsData {
     public interface IDimsData extends ICommonCapability {
 
         void add(DimensionType type, IWP iwp);
+
+        void add(String type, String iwp);
 
         void unregisterAll();
 
@@ -82,6 +85,12 @@ public class DimsData {
         }
 
         @Override
+        public void add(String type, String iwp) {
+            this.mapdata.dimDatas.put(type, new DimensionData(type, iwp));
+
+        }
+
+        @Override
         public void unregisterAll() {
             for (DimensionData data : this.mapdata.dimDatas.values()) {
                 MapManager.expire(data.getResource());
@@ -109,15 +118,27 @@ public class DimsData {
 
         }
 
+        private DimensionData randomData() {
+            if (mapdata.dimDatas.values().size() > 0) {
+                return mapdata.dimDatas.values()
+                        .toArray(new DimensionData[]{})[RandomUtils.RandomRange(0, mapdata.dimDatas
+                        .size())];
+            } else {
+                return null;
+            }
+        }
+
         @Override
         public DimensionData getFreeDimension() {
 
-            for (DimensionData data : this.mapdata.dimDatas.values()) {
+            int tries = 0;
+            while (true) {
+                tries++;
+
+                DimensionData data = randomData();
 
                 DimensionType type = data.getDimensionType();
-
                 World world = MapManager.getWorld(type);
-
                 WorldData.IWorldData worlddata = Load.World(world);
 
                 if (worlddata.isFree()) {
@@ -125,9 +146,12 @@ public class DimsData {
                     return data;
                 }
 
+                if (tries > 500) {
+                    return null;
+                }
+
             }
 
-            return null;
         }
     }
 

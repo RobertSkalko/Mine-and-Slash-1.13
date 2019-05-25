@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.stat_calculation;
 
-import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.defense.Armor;
 import com.robertx22.database.stats.stat_types.elementals.resist.FireResist;

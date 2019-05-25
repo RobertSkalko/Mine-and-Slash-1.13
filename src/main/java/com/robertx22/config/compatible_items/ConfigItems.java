@@ -1,4 +1,4 @@
-package com.robertx22.config.non_mine_items;
+package com.robertx22.config.compatible_items;
 
 import com.robertx22.mmorpg.Ref;
 

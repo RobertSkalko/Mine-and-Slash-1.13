@@ -10,9 +10,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.testing.Watch;
-import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -37,10 +35,19 @@ public class MapManager {
     @SubscribeEvent
     public static void registerAllModDims(RegisterDimensionsEvent event) {
 
-        for (IWP iwp : WorldProviders.All.values()) {
-            // iwp.setupModDim();
+        //IDimsData dims = getDimsData();
+
+        MapsGson.INSTANCE.load();
+
+        Watch total = new Watch();
+        for (int i = 0; i < 100; i++) {
+            MapManager.preRegisterDimension(MapsGson.INSTANCE);
+
         }
 
+        MapsGson.INSTANCE.save(MapsGson.INSTANCE);
+
+        total.print("Pre-Registering Dimensions took: ");
     }
 
     public static DimensionType getDimension(ResourceLocation res) {
@@ -60,6 +67,8 @@ public class MapManager {
         return DimensionType.byName(res);
     }
 
+    static int num = 10;
+
     public static DimensionType register(ResourceLocation res, IWP IWPType) {
 
         DimensionType type = getDimensionType(res);
@@ -70,8 +79,8 @@ public class MapManager {
 
             ModDimension moddim = IWPType.getModDim();
 
-            return DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
-                    .wrappedBuffer(new byte[]{})));
+            return DimensionManager.registerDimension(res, moddim, null);
+            //return DimensionManager.registerDimensionInternal(num++, res, moddim, null); i tried this too
         }
     }
 
@@ -117,11 +126,15 @@ public class MapManager {
     public static World getWorld(String res) {
         DimensionType type = getDimensionType(new ResourceLocation(res));
 
+        if (type == null) {
+            return null;
+        }
+
         if (type == DimensionType.OVERWORLD) {
             return getServer().getWorld(type);
         } else {
 
-            World world = DimensionManager.getWorld(getServer(), type, true, true);
+            World world = DimensionManager.getWorld(getServer(), type, false, true);
 
             if (world != null) {
                 return world;
@@ -143,7 +156,7 @@ public class MapManager {
         return loc;
     }
 
-    public static DimensionType preRegisterDimension(IDimsData data) {
+    public static DimensionType preRegisterDimension(MapsGson maps) {
 
         ResourceLocation res = randomResourceLoc();
 
@@ -151,7 +164,14 @@ public class MapManager {
 
         DimensionType type = MapManager.register(res, iwp);
 
-        data.add(type, iwp);
+        //        DimensionManager.initWorld(getServer(), type);
+
+        MapsGson.MapGson map = new MapsGson.MapGson();
+        map.reg = res.toString();
+        map.iwp = iwp.GUID();
+        maps.list.add(map);
+
+        // data.add(type, iwp);
 
         return type;
 
@@ -212,14 +232,6 @@ public class MapManager {
     public static void onStartServerRegisterDimensions() {
         getDimsData().registerAll();
 
-        IDimsData dims = getDimsData();
-
-        Watch total = new Watch();
-        for (int i = 0; i < 100; i++) {
-            MapManager.preRegisterDimension(dims);
-        }
-        total.print("Pre-Registering Dimensions took: ");
-
     }
 
     /**
@@ -243,7 +255,15 @@ public class MapManager {
                 .getMapStorage().
                 */
 
-        return Load.Dims(getServer().getWorld(DimensionType.OVERWORLD));
+        IDimsData data = new DimsData.DefaultImpl();
+
+        for (MapsGson.MapGson map : MapsGson.INSTANCE.list) {
+            data.add(map.reg, map.iwp);
+        }
+
+        return data;
+
+        //return Load.Dims(getServer().getWorld(DimensionType.OVERWORLD));
     }
 
 }

@@ -1,7 +1,7 @@
 package com.robertx22.api;
 
-import com.robertx22.config.non_mine_items.ConfigItem;
-import com.robertx22.config.non_mine_items.ConfigItems;
+import com.robertx22.config.compatible_items.ConfigItem;
+import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.Suffix;

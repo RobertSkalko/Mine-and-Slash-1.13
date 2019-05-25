@@ -24,6 +24,13 @@ public class DimensionData {
 
     }
 
+    public DimensionData(String type, String theclass) {
+
+        this.IWPGuid = theclass;
+        this.ResourceLocationString = type;
+
+    }
+
     public IWP getIWP() {
         return WorldProviders.All.get(this.IWPGuid);
     }

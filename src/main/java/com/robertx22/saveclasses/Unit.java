@@ -1,8 +1,8 @@
 package com.robertx22.saveclasses;
 
 import com.robertx22.config.ModConfig;
-import com.robertx22.config.dimensions.DimensionConfig;
-import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.config.dimension_configs.DimensionConfig;
+import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.Stat;

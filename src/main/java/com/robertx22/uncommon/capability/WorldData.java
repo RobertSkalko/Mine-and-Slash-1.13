@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.capability;
 
-import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;

@@ -1,7 +1,7 @@
 package com.robertx22.onevent.item;
 
 import com.robertx22.Styles;
-import com.robertx22.config.non_mine_items.ConfigItems;
+import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;

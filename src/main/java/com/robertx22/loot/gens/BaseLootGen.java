@@ -1,6 +1,6 @@
 package com.robertx22.loot.gens;
 
-import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

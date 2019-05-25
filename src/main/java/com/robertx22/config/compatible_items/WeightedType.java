@@ -1,6 +1,6 @@
-package com.robertx22.config.non_mine_items;
+package com.robertx22.config.compatible_items;
 
-import com.robertx22.config.non_mine_items.ConfigItem.creationTypes;
+import com.robertx22.config.compatible_items.ConfigItem.creationTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
 public class WeightedType implements IWeighted {

@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import com.robertx22.config.dimensions.DimensionConfig;
-import com.robertx22.config.dimensions.DimensionsContainer;
+import com.robertx22.config.dimension_configs.DimensionConfig;
+import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.EntityPlayer;
