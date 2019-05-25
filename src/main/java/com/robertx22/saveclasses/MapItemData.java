@@ -126,8 +126,7 @@ public class MapItemData implements ISalvagable, ITooltip {
         return list;
     }
 
-    public DimensionType createDimension(World ogworld, BlockPos pos,
-                                         EntityPlayer player) {
+    public DimensionType initDimension(World ogworld, BlockPos pos, EntityPlayer player) {
 
         UnitData unit = Load.Unit(player);
 

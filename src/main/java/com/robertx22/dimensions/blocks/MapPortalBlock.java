@@ -30,7 +30,7 @@ public class MapPortalBlock extends BlockEndPortal {
                 .doesNotBlockMovement()
                 .lightValue(15)
                 .hardnessAndResistance(-1.0F, 3600000.0F));
-        
+
         this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
 
     }

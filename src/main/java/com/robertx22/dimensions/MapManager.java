@@ -21,24 +21,39 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-@Mod.EventBusSubscriber
 public class MapManager {
 
-    @SubscribeEvent
-    public static void registerAllModDims(RegisterDimensionsEvent event) {
+    @Mod.EventBusSubscriber
+    public static class EventDim {
+        @SubscribeEvent
+        public static void registerAllModDims(RegisterDimensionsEvent event) {
 
-        for (IWP iwp : WorldProviders.All.values()) {
+            for (IWP iwp : WorldProviders.All.values()) {
+                ResourceLocation res = iwp.getResourceLoc();
+                ModDimension moddim = iwp.getModDim();
+                DimensionType type = DimensionManager.registerDimension(res, moddim, null);
+                DimensionManager.initWorld(getServer(), type);
+            }
 
-            MapManager.preRegisterDimension(iwp);
         }
-
     }
 
-    @SubscribeEvent
-    public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
+    @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class EventMod {
+        @SubscribeEvent
+        public static void registerModDimensions(
+                RegistryEvent.Register<ModDimension> event) {
 
-        for (IWP iwp : WorldProviders.All.values()) {
-            event.getRegistry().register(iwp.getModDim());
+            for (IWP iwp : WorldProviders.All.values()) {
+
+                ModDimension moddim = iwp.newModDimension()
+                        .setRegistryName(new ResourceLocation(Ref.MODID, "dim_" + iwp.GUID()));
+
+                iwp.setModDimension(moddim);
+
+                event.getRegistry().register(moddim);
+
+            }
         }
     }
 
@@ -112,24 +127,15 @@ public class MapManager {
         return loc;
     }
 
-    public static DimensionType preRegisterDimension(IWP iwp) {
-
-        ResourceLocation res = iwp.getResourceLoc();
-
-        DimensionType type = MapManager.register(res, iwp);
-
-        return type;
-    }
-
     public static DimensionType initDimension(World currentworld, EntityPlayer player,
                                               UnitData unit, MapItemData map,
                                               BlockPos pos) {
 
-        DimensionType type = getDimension(new DesertHillsIWP().getResourceLoc());
+        DimensionType type = getDimension(new DesertHillsIWP().getResourceLoc()); // TODO
 
         ResourceLocation res = getResourceLocation(type);
 
-        DimensionManager.initWorld(getServer(), type);
+        //DimensionManager.initWorld(getServer(), type); THIS SEEMS TO CRASH IT
 
         unit.setCurrentMapId(res.toString());
 
@@ -138,18 +144,6 @@ public class MapManager {
         data.init(pos, map, type, player);
 
         return type;
-
-    }
-
-    public static void onStartServerRegisterDimensions() {
-
-    }
-
-    /**
-     * // every save game has it's own dimensions, otherwise when you switch saves
-     * you // also get dimensions from your last save, which isn't nice
-     */
-    public static void onStopServerUnRegisterDimensions() {
 
     }
 

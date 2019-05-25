@@ -1,9 +1,7 @@
 package com.robertx22.dimensions.world_providers;
 
 import com.robertx22.dimensions.BaseWorldProvider;
-import com.robertx22.mmorpg.Ref;
 import net.minecraft.init.Biomes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ModDimension;
@@ -31,13 +29,13 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
-    protected ModDimension newModDimension() {
+    public ModDimension newModDimension() {
         return new ModDimension() {
             @Override
             public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> getFactory() {
                 return DesertHillsIWP::new;
             }
-        }.setRegistryName(new ResourceLocation(Ref.MODID, "dim_" + this.GUID()));
+        };
     }
 
 }

@@ -15,7 +15,9 @@ public interface IWP extends IWeighted, ILocName {
 
     ResourceLocation getResourceLoc();
 
-    //public BaseWorldProvider newInstance(DimensionType type);
+    ModDimension newModDimension();
+
+    void setModDimension(ModDimension mod);
 
     Biome getBiome();
 

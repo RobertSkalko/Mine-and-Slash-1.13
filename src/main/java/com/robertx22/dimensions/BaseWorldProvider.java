@@ -36,6 +36,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         this.hasSkyLight = true;
     }
 
+    @Override
+    public void setModDimension(ModDimension mod) {
+        this.moddim = mod;
+    }
+
     @Nullable
     public BlockPos findSpawn(ChunkPos p_206920_1_, boolean checkValid) {
         for (int i = p_206920_1_.getXStart(); i <= p_206920_1_.getXEnd(); ++i) {
@@ -102,8 +107,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public ModDimension getModDim() {
         return moddim;
     }
-
-    protected abstract ModDimension newModDimension();
 
     public void setModDim() {
         this.moddim = this.newModDimension();

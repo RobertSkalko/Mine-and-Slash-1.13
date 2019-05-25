@@ -5,7 +5,6 @@ import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
-import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -41,10 +40,6 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -127,14 +122,13 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
-        MapManager.onStartServerRegisterDimensions();
         CommandRegister.Register(event);
 
     }
 
     @SubscribeEvent
     public static void onServerStop(FMLServerStoppedEvent event) {
-        MapManager.onStopServerUnRegisterDimensions();
+
     }
 
     @SubscribeEvent
@@ -145,30 +139,12 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
-        // bandaid fix for config value nullpointer hopefully (DAMNIT NOW ENTITYDATA GIVES NULLPOINTER)
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-        Runnable noteThread = new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-
-                    if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
-                        ServerLifecycleHooks.getCurrentServer()
-                                .getGameRules()
-                                .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
-                                        .getCurrentServer());
-                    }
-
-                    scheduler.shutdown();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-        };
-        scheduler.schedule(noteThread, 5, TimeUnit.SECONDS);
+        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
+            ServerLifecycleHooks.getCurrentServer()
+                    .getGameRules()
+                    .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
+                            .getCurrentServer());
+        }
 
     }
 
