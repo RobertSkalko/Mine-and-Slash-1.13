@@ -10,6 +10,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +26,11 @@ public class MapPortalBlock extends BlockEndPortal {
 
     public MapPortalBlock() {
 
-        super(Block.Properties.create(Material.PORTAL)
-                .hardnessAndResistance(100F)
-                .doesNotBlockMovement());
+        super(Block.Properties.create(Material.PORTAL, MaterialColor.BLACK)
+                .doesNotBlockMovement()
+                .lightValue(15)
+                .hardnessAndResistance(-1.0F, 3600000.0F));
+        
         this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
 
     }

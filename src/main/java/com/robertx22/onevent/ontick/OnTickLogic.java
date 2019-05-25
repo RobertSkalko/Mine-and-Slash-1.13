@@ -85,7 +85,9 @@ public class OnTickLogic {
                 }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
-                    Load.playerMapData(player).onMinute(player);
+                    if (WorldUtils.isMapWorld(player.world)) {
+                        Load.playerMapData(player).onMinute(player);
+                    }
                 }
 
                 PlayerTickDatas.put(player.getUniqueID(), data);

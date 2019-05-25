@@ -27,7 +27,6 @@ public class OnDeathInMap {
 
                 data.onPlayerDeath(player);
                 evt.setCanceled(true);
-                data.teleportPlayerBack(player);
 
             }
 

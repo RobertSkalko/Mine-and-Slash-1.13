@@ -145,6 +145,9 @@ public class PlayerMapData {
 
                 announceTimeLeft(player);
             }
+
+            teleportPlayerBack(player);
+
         }
 
         @Override
