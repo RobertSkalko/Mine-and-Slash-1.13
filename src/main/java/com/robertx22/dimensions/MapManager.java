@@ -1,7 +1,7 @@
 package com.robertx22.dimensions;
 
+import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.WorldProviders;
-import com.robertx22.dimensions.world_providers.IWP;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -37,7 +37,7 @@ public class MapManager {
 
         }
     }
-    
+
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
         @SubscribeEvent

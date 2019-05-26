@@ -1,4 +1,4 @@
-package com.robertx22.dimensions.world_providers;
+package com.robertx22.database.world_providers;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
@@ -7,29 +7,29 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.function.Function;
 
-public class RockDesertIWP extends BaseWorldProvider {
+public class JungleIWP extends BaseWorldProvider {
 
-    public RockDesertIWP() {
+    public JungleIWP() {
         super();
     }
 
-    public RockDesertIWP(DimensionType type) {
+    public JungleIWP(DimensionType type) {
         super(type);
     }
 
     @Override
     public String GUID() {
-        return "rock_desert";
+        return "jungle";
     }
 
     @Override
     public Biome getBiome() {
-        return Biomes.MODIFIED_BADLANDS_PLATEAU;
+        return Biomes.JUNGLE_HILLS;
     }
 
     @Override
     public Function<DimensionType, ? extends Dimension> classFactory() {
-        return RockDesertIWP::new;
+        return JungleIWP::new;
     }
 
 }

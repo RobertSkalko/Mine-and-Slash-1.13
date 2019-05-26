@@ -1,4 +1,4 @@
-package com.robertx22.dimensions.world_providers;
+package com.robertx22.database.world_providers;
 
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.state.IBlockState;
@@ -101,9 +101,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         }
     }
 
+    public static final String RESETTABLE = "resettable";
+
     @Override
     public ResourceLocation getResourceLoc() {
-        return new ResourceLocation(Ref.MODID, this.GUID());
+        return new ResourceLocation(Ref.MODID, RESETTABLE + "_" + this.GUID());
     }
 
     public BaseWorldProvider() {

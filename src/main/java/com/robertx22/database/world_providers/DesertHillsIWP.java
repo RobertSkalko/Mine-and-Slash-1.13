@@ -1,4 +1,4 @@
-package com.robertx22.dimensions.world_providers;
+package com.robertx22.database.world_providers;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;

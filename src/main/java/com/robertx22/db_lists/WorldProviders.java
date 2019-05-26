@@ -1,6 +1,6 @@
 package com.robertx22.db_lists;
 
-import com.robertx22.dimensions.world_providers.*;
+import com.robertx22.database.world_providers.*;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

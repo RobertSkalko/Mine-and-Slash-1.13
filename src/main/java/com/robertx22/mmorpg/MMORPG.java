@@ -11,6 +11,7 @@ import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
+import com.robertx22.onevent.world.OnStartResetMaps;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
@@ -64,6 +65,8 @@ public class MMORPG {
     public MMORPG() {
 
         System.out.println("Starting Mine and Slash");
+
+        OnStartResetMaps.OnStartResetMaps();
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
