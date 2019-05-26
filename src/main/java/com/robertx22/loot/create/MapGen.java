@@ -4,6 +4,7 @@ import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.MapAffixes;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
@@ -36,6 +37,8 @@ public class MapGen {
         data.level = blueprint.GetLevel();
 
         data = genAffixes(data, rarity);
+
+        data.worldGeneratorName = WorldProviders.INSTANCE.random().GUID();
 
         Map.Save(stack, data);
 

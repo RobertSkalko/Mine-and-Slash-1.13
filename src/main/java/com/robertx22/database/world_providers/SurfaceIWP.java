@@ -1,6 +1,7 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.map_mods.bonus.ele_dmg.BonusWaterDamageMap;
+import com.robertx22.database.map_mods.bonus.ele_res.BonusFireResistMap;
+import com.robertx22.database.map_mods.bonus.ele_res.BonusWaterResistMap;
 import com.robertx22.database.stats.StatMod;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
@@ -11,34 +12,34 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-public class SnowyMountainsIWP extends BaseWorldProvider {
+public class SurfaceIWP extends BaseWorldProvider {
 
-    public SnowyMountainsIWP() {
+    public SurfaceIWP() {
         super();
     }
 
-    public SnowyMountainsIWP(DimensionType type) {
+    public SurfaceIWP(DimensionType type) {
         super(type);
     }
 
     @Override
     public String GUID() {
-        return "snowy_mountains";
+        return "surface";
     }
 
     @Override
     public List<StatMod> getBonusMobStats() {
-        return Arrays.asList(new BonusWaterDamageMap());
+        return Arrays.asList(new BonusFireResistMap(), new BonusWaterResistMap());
     }
 
     @Override
     public Biome getBiome() {
-        return Biomes.SNOWY_MOUNTAINS;
+        return Biomes.DEFAULT;
     }
 
     @Override
     public Function<DimensionType, ? extends Dimension> classFactory() {
-        return SnowyMountainsIWP::new;
+        return SurfaceIWP::new;
     }
 
 }

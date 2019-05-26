@@ -263,13 +263,11 @@ public class PlayerMapData {
                     pos = getMapDevicePos();
                     pos = pos.north(2);
 
-                    if (pos != null) {
-                        player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                    }
+                    player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
+
+                    player.setPosition(pos.getX(), pos.getY(), pos.getZ());
 
                 }
-
-                player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
 
             }
 

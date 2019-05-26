@@ -31,8 +31,7 @@ public class MapManager {
             for (IWP iwp : WorldProviders.All.values()) {
                 ResourceLocation res = iwp.getResourceLoc();
                 ModDimension moddim = iwp.getModDim();
-                DimensionType type = DimensionManager.registerDimension(res, moddim, null);
-                //DimensionManager.initWorld(getServer(), type);
+                DimensionManager.registerDimension(res, moddim, null);
             }
 
         }
@@ -133,8 +132,7 @@ public class MapManager {
     public static DimensionType initDimension(EntityPlayer player, UnitData unit,
                                               MapItemData map, BlockPos pos) {
 
-        DimensionType type = getDimension(WorldProviders.INSTANCE.random()
-                .getResourceLoc());
+        DimensionType type = getDimension(map.getIWP().getResourceLoc());
 
         ResourceLocation res = getResourceLocation(type);
 

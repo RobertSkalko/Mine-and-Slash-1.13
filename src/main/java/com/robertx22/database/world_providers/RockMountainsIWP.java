@@ -1,10 +1,15 @@
 package com.robertx22.database.world_providers;
 
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 public class RockMountainsIWP extends BaseWorldProvider {
@@ -20,6 +25,11 @@ public class RockMountainsIWP extends BaseWorldProvider {
     @Override
     public String GUID() {
         return "rock_mountains";
+    }
+
+    @Override
+    public List<StatMod> getBonusMobStats() {
+        return Arrays.asList(new MajorArmorFlat(), new ArmorFlat());
     }
 
     @Override

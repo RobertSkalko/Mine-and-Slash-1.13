@@ -1,6 +1,7 @@
 package com.robertx22.loot;
 
 import com.robertx22.config.dimension_configs.DimensionsContainer;
+import com.robertx22.database.world_providers.IWP;
 import com.robertx22.loot.gens.BaseLootGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldUtils;
@@ -97,6 +98,11 @@ public class LootInfo {
 
         if (world != null) {
             chance *= DimensionsContainer.INSTANCE.getConfig(world).DROP_MULTIPLIER;
+
+            if (world.getDimension() instanceof IWP) {
+                IWP iwp = (IWP) world.getDimension();
+                chance *= iwp.getBonusLootMulti();
+            }
         }
 
         if (mobData != null && playerData != null) {

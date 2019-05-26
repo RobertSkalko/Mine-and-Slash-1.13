@@ -45,6 +45,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public abstract Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> classFactory();
 
     @Override
+    public float getBonusLootMulti() {
+        return 1;
+    }
+
+    @Override
     public ModDimension newModDimension() {
         return new ModDimension() {
             @Override

@@ -4,7 +4,9 @@ import com.robertx22.Styles;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
+import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
@@ -31,6 +33,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,22 +58,34 @@ public class MapItemData implements ISalvagable, ITooltip {
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
-    //@Store
-    // public String worldGeneratorName;
+    @Store
+    public String worldGeneratorName;
+
+    @Nonnull
+    public IWP getIWP() {
+
+        IWP iwp = WorldProviders.All.get(this.worldGeneratorName);
+
+        if (iwp != null) {
+            return iwp;
+        }
+
+        return WorldProviders.INSTANCE.random();
+    }
 
     @Override
     public int getSalvagedRarity() {
         return this.rarity;
     }
 
-    public int getBonusLootAmount() {
+    public float getBonusLootAmount() {
 
-        return (int) (getTotalPercents() * .5F) + getPermaDeathBonusLoot();
+        return 1 + getTotalPercents() + getPermaDeathBonusLoot();
 
     }
 
-    public int getPermaDeathBonusLoot() {
-        return this.isPermaDeath ? 50 : 0;
+    public float getPermaDeathBonusLoot() {
+        return this.isPermaDeath ? 0.3F : 0;
     }
 
     public int getBonusLootRarity() {
@@ -105,11 +120,11 @@ public class MapItemData implements ISalvagable, ITooltip {
         return true;
     }
 
-    private int getTotalPercents() {
+    private float getTotalPercents() {
 
-        int total = 0;
+        float total = 0;
         for (MapAffixData affix : affixes) {
-            total += affix.percent;
+            total += affix.percent / 100;
         }
         return total;
     }
@@ -191,6 +206,15 @@ public class MapItemData implements ISalvagable, ITooltip {
             addAffixTypeToTooltip(this, tooltip, AffectedEntities.All);
 
             Tooltip.add("", tooltip);
+
+            try {
+                tooltip.add(Styles.BLUECOMP()
+                        .appendSibling(CLOC.word("world_type"))
+                        .appendText(": ")
+                        .appendSibling(this.getIWP().locName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GOLDCOMP()
