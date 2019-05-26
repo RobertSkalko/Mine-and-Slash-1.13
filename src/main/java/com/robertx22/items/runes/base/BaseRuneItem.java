@@ -1,5 +1,6 @@
 package com.robertx22.items.runes.base;
 
+import com.robertx22.Styles;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
@@ -115,7 +116,9 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             RuneRarity rar = rune.GetRarity();
 
             if (rune.armor != null) {
-                Tooltip.add(CLOC.tooltip("stats_on_armor").appendText(":"), tooltip);
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(CLOC.tooltip("stats_on_armor")
+                                .appendText(":")), tooltip);
                 for (ITextComponent str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -123,7 +126,9 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             }
             if (rune.weapon != null) {
 
-                Tooltip.add(CLOC.tooltip("stats_on_weapon").appendText(":"), tooltip);
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(CLOC.tooltip("stats_on_weapon")
+                                .appendText(":")), tooltip);
                 for (ITextComponent str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -131,7 +136,9 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             if (rune.jewerly != null) {
 
                 Tooltip.add("", tooltip);
-                Tooltip.add(CLOC.tooltip("stats_on_jewerly").appendText(":"), tooltip);
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(CLOC.tooltip("stats_on_jewerly")
+                                .appendText(":")), tooltip);
                 for (ITextComponent str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
                     Tooltip.add(str, tooltip);
                 }

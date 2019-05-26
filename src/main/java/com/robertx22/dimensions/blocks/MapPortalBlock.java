@@ -65,18 +65,22 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                     EntityPlayer player = (EntityPlayer) entity;
 
-                                    entity.sendMessage(SLOC.chat("traveling_to_mapworld")
-                                            .appendText(portal.id + ""));
-
                                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
-                                    BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
-                                            .getLevel());
+                                    if (data.hasTimeForMap()) {
+                                        entity.sendMessage(SLOC.chat("traveling_to_mapworld")
+                                                .appendText(portal.id + ""));
 
-                                    DimensionType type = mapworld.getDimension()
-                                            .getType();
+                                        BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
+                                                .getLevel());
 
-                                    entity.changeDimension(type, new MyTeleporter(world, pos1, player));
+                                        DimensionType type = mapworld.getDimension()
+                                                .getType();
+
+                                        entity.changeDimension(type, new MyTeleporter(world, pos1, player));
+                                    } else {
+                                        entity.sendMessage(SLOC.chat("no_time_for_map"));
+                                    }
 
                                 } else { // if not mapworld
                                     entity.sendMessage(SLOC.chat("not_mapworld"));

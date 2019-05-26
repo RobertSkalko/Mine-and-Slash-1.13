@@ -21,6 +21,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.UUID;
+
 @Mod.EventBusSubscriber
 public class PlayerMapData {
 
@@ -31,8 +33,11 @@ public class PlayerMapData {
 
     static final String POS_OBJ = "POS_OBJ";
     static final String ORIGINAL_DIM = "original_dimension";
+    static final String MAP_GUID = "MAP_GUID";
 
     public interface IPlayerMapData extends ICommonCapability {
+
+        boolean hasTimeForMap();
 
         int getLevel();
 
@@ -88,8 +93,9 @@ public class PlayerMapData {
 
         long mapDevicePos;
         MapItemData mapdata = new MapItemData();
-        DimensionType originalDimension;
+        DimensionType originalDimension = null;
         int minutesPassed = 0;
+        String mapGUID = ""; // used to check if same map for chests
 
         @Override
         public NBTTagCompound getNBT() {
@@ -98,6 +104,7 @@ public class PlayerMapData {
                 Map.Save(nbt, mapdata);
             }
 
+            nbt.putString(MAP_GUID, mapGUID);
             nbt.putLong(POS_OBJ, mapDevicePos);
 
             if (this.originalDimension != null) {
@@ -115,6 +122,7 @@ public class PlayerMapData {
 
             mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);
+            this.mapGUID = nbt.getString(MAP_GUID);
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
             }
@@ -145,6 +153,8 @@ public class PlayerMapData {
 
                 announceTimeLeft(player);
             }
+
+            player.setHealth(player.getMaxHealth() / 4); // needs to have more hp to actually teleport lol and not die
 
             teleportPlayerBack(player);
 
@@ -179,6 +189,7 @@ public class PlayerMapData {
             this.mapDevicePos = pos.toLong();
             this.originalDimension = player.world.getDimension().getType();
             this.mapdata = map;
+            this.mapGUID = UUID.randomUUID().toString();
 
         }
 
@@ -190,6 +201,11 @@ public class PlayerMapData {
                     announceTimeLeft(player);
                 }
             }
+        }
+
+        @Override
+        public boolean hasTimeForMap() {
+            return this.getMinutesLeft() > 0;
         }
 
         @Override

@@ -2,33 +2,34 @@ package com.robertx22.dimensions.world_providers;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.function.Function;
 
-public class DesertHillsIWP extends BaseWorldProvider {
+public class RockDesertIWP extends BaseWorldProvider {
 
-    public DesertHillsIWP() {
+    public RockDesertIWP() {
         super();
     }
 
-    public DesertHillsIWP(DimensionType type) {
+    public RockDesertIWP(DimensionType type) {
         super(type);
     }
 
     @Override
     public String GUID() {
-        return "desert_hills";
+        return "rock_desert";
     }
 
     @Override
     public Biome getBiome() {
-        return Biomes.DESERT_HILLS;
+        return Biomes.MODIFIED_BADLANDS_PLATEAU;
     }
 
     @Override
-    public Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> classFactory() {
-        return DesertHillsIWP::new;
+    public Function<DimensionType, ? extends Dimension> classFactory() {
+        return RockDesertIWP::new;
     }
 
 }

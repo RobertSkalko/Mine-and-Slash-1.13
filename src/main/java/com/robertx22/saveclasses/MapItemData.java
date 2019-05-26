@@ -130,7 +130,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
         UnitData unit = Load.Unit(player);
 
-        return MapManager.initDimension(ogworld, player, unit, this, pos);
+        return MapManager.initDimension(player, unit, this, pos);
 
     }
 

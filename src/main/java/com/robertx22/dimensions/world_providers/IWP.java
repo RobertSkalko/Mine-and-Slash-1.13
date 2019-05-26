@@ -1,4 +1,4 @@
-package com.robertx22.dimensions;
+package com.robertx22.dimensions.world_providers;
 
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.ILocName;

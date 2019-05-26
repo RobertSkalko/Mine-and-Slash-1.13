@@ -85,26 +85,31 @@ public class TileMap extends BaseTile {
                 if (player != null) {
 
                     world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
-
                     world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
-                    DimensionType type = map.initDimension(world, p, player);
+                    DimensionType type = null;
+                    try {
+                        type = map.initDimension(world, p, player);
 
-                    // start map
-                    this.MapSlot().shrink(1);
-                    this.StartSlot().shrink(1);
+                        // start map
+                        this.MapSlot().shrink(1);
+                        this.StartSlot().shrink(1);
 
-                    BlockPos pos = this.pos.north(4);
-                    ItemMap.createMapPortal(type, pos, world, map);
+                        BlockPos pos = this.pos.north(4);
+                        ItemMap.createMapPortal(type, pos, world, map);
 
-                    BlockPos pos1 = this.pos.south(4);
-                    ItemMap.createMapPortal(type, pos1, world, map);
+                        BlockPos pos1 = this.pos.south(4);
+                        ItemMap.createMapPortal(type, pos1, world, map);
 
-                    BlockPos pos2 = this.pos.east(4);
-                    ItemMap.createMapPortal(type, pos2, world, map);
+                        BlockPos pos2 = this.pos.east(4);
+                        ItemMap.createMapPortal(type, pos2, world, map);
 
-                    BlockPos pos3 = this.pos.west(4);
-                    ItemMap.createMapPortal(type, pos3, world, map);
+                        BlockPos pos3 = this.pos.west(4);
+                        ItemMap.createMapPortal(type, pos3, world, map);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 } else if (level != null) {
 

@@ -1,4 +1,4 @@
-package com.robertx22.dimensions;
+package com.robertx22.dimensions.world_providers;
 
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +25,7 @@ import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP {
 
@@ -39,6 +40,18 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     @Override
     public void setModDimension(ModDimension mod) {
         this.moddim = mod;
+    }
+
+    public abstract Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> classFactory();
+
+    @Override
+    public ModDimension newModDimension() {
+        return new ModDimension() {
+            @Override
+            public Function<DimensionType, ? extends Dimension> getFactory() {
+                return classFactory();
+            }
+        };
     }
 
     @Nullable

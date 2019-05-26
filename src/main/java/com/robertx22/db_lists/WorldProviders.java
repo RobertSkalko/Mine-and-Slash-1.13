@@ -1,8 +1,6 @@
 package com.robertx22.db_lists;
 
-import com.robertx22.dimensions.BaseWorldProvider;
-import com.robertx22.dimensions.IWP;
-import com.robertx22.dimensions.world_providers.DesertHillsIWP;
+import com.robertx22.dimensions.world_providers.*;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -12,13 +10,14 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
 
     public static WorldProviders INSTANCE = new WorldProviders();
 
-    // private static DimensionType type = DimensionType.THE_END;
-
     public static HashMap<String, BaseWorldProvider> All = new HashMap<String, BaseWorldProvider>() {
         {
             {
                 put(new DesertHillsIWP().GUID(), new DesertHillsIWP());
-
+                put(new SnowyMountainsIWP().GUID(), new SnowyMountainsIWP());
+                put(new JungleIWP().GUID(), new JungleIWP());
+                put(new RockDesertIWP().GUID(), new RockDesertIWP());
+                put(new RockMountainsIWP().GUID(), new RockMountainsIWP());
             }
 
         }

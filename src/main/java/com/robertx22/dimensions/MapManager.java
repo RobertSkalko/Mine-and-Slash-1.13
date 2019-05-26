@@ -1,7 +1,7 @@
 package com.robertx22.dimensions;
 
 import com.robertx22.db_lists.WorldProviders;
-import com.robertx22.dimensions.world_providers.DesertHillsIWP;
+import com.robertx22.dimensions.world_providers.IWP;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -32,12 +32,12 @@ public class MapManager {
                 ResourceLocation res = iwp.getResourceLoc();
                 ModDimension moddim = iwp.getModDim();
                 DimensionType type = DimensionManager.registerDimension(res, moddim, null);
-                DimensionManager.initWorld(getServer(), type);
+                //DimensionManager.initWorld(getServer(), type);
             }
 
         }
     }
-
+    
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
         @SubscribeEvent
@@ -47,7 +47,7 @@ public class MapManager {
             for (IWP iwp : WorldProviders.All.values()) {
 
                 ModDimension moddim = iwp.newModDimension()
-                        .setRegistryName(new ResourceLocation(Ref.MODID, "dim_" + iwp.GUID()));
+                        .setRegistryName(iwp.getResourceLoc());
 
                 iwp.setModDimension(moddim);
 
@@ -118,24 +118,25 @@ public class MapManager {
     public static ResourceLocation getResourceLocation(DimensionType type) {
 
         ResourceLocation loc = DimensionType.getKey(type);
-        String str = loc.toString();
 
-        if (str.contains(Ref.MODID) == false && str.contains("minecraft") == false) {
-            loc = new ResourceLocation(Ref.MODID, loc.toString());
+        if (loc != null) {
+            String str = loc.toString();
+
+            if (str.contains(Ref.MODID) == false && str.contains("minecraft") == false) {
+                loc = new ResourceLocation(Ref.MODID, loc.toString());
+            }
         }
 
         return loc;
     }
 
-    public static DimensionType initDimension(World currentworld, EntityPlayer player,
-                                              UnitData unit, MapItemData map,
-                                              BlockPos pos) {
+    public static DimensionType initDimension(EntityPlayer player, UnitData unit,
+                                              MapItemData map, BlockPos pos) {
 
-        DimensionType type = getDimension(new DesertHillsIWP().getResourceLoc()); // TODO
+        DimensionType type = getDimension(WorldProviders.INSTANCE.random()
+                .getResourceLoc());
 
         ResourceLocation res = getResourceLocation(type);
-
-        //DimensionManager.initWorld(getServer(), type); THIS SEEMS TO CRASH IT
 
         unit.setCurrentMapId(res.toString());
 
