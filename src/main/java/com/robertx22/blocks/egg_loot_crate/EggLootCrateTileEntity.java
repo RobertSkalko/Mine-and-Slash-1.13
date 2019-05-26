@@ -3,10 +3,12 @@ package com.robertx22.blocks.egg_loot_crate;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.PlayerOncePerMapData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -20,11 +22,12 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
     public static final String dataLoc = "PlayerOncePerMapData";
     public static final String isdroppingloc = "isdroppingloc";
     public static final String droplootticksloc = "droplootticksloc";
-    public static final String itemsamountloc = "itemsamountloc";
+    public static final String timestodroploc = "timesToDrop";
 
     PlayerOncePerMapData data = new PlayerOncePerMapData();
+    EntityPlayer player;
 
-    int itemsToDrop = getItemsToDrop();
+    int timesToDrop = getTimesToDrop();
     public boolean isDroppingLoot = false;
     int dropLootTicks = 0;
 
@@ -32,14 +35,16 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
         super(BlockRegister.EGG_LOOT_CRATE);
     }
 
-    public void dropLoot() {
+    public void dropLoot(EntityPlayer player) {
 
-        itemsToDrop--;
+        timesToDrop--;
+        if (player != null) {
+            List<ItemStack> loot = MasterLootGen.gen(player, Load.playerMapData(player)
+                    .getLevel(), 5F);
 
-        List<ItemStack> loot = MasterLootGen.genAmount(pos, 1, world);
-
-        for (ItemStack stack : loot) {
-            world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
+            for (ItemStack stack : loot) {
+                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
+            }
         }
 
     }
@@ -51,7 +56,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
         NBTTagCompound datanbt = new NBTTagCompound();
         PlayerOncePerMap.Save(datanbt, data);
         nbt.put(dataLoc, datanbt);
-        nbt.putInt(itemsamountloc, this.itemsToDrop);
+        nbt.putInt(timestodroploc, this.timesToDrop);
         nbt.putBoolean(isdroppingloc, isDroppingLoot);
         nbt.putInt(droplootticksloc, dropLootTicks);
 
@@ -63,29 +68,31 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
         super.read(nbt);
 
         this.data = PlayerOncePerMap.Load(nbt.getCompound(dataLoc));
-        this.itemsToDrop = nbt.getInt(itemsamountloc);
+        this.timesToDrop = nbt.getInt(timestodroploc);
         this.isDroppingLoot = nbt.getBoolean(isdroppingloc);
         this.dropLootTicks = nbt.getInt(droplootticksloc);
 
     }
 
-    public void activateDrops() {
+    public void activateDrops(EntityPlayer player) {
+        this.player = player;
         this.isDroppingLoot = true;
+
     }
 
-    public int getItemsToDrop() {
+    public int getTimesToDrop() {
         return 5;
     }
 
     public void reset() {
 
         isDroppingLoot = false;
-        this.itemsToDrop = getItemsToDrop();
+        this.timesToDrop = getTimesToDrop();
 
     }
 
     public boolean finished() {
-        return itemsToDrop < 1;
+        return timesToDrop < 1;
     }
 
     public BlockPos getCenter() {
@@ -108,10 +115,10 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
 
             dropLootTicks++;
 
-            if (itemsToDrop > 0) {
+            if (timesToDrop > 0) {
                 if (dropLootTicks > 20) {
                     dropLootTicks = 0;
-                    this.dropLoot();
+                    this.dropLoot(player);
                 }
             }
         }

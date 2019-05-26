@@ -63,7 +63,7 @@ public class EggLootCrateBlock extends NonFullBlock implements IConditionalLootC
                         player.sendMessage(new TextComponentString("This crate is currently being used."));
 
                     } else {
-                        crate.activateDrops();
+                        crate.activateDrops(player);
                     }
 
                 } else {

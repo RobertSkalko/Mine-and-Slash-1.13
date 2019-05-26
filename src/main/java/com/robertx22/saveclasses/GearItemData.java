@@ -295,6 +295,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         if (isUnique) {
             IUnique unique = this.uniqueStats.getUniqueItem();
+
             tip.add(Styles.GREENCOMP()
                     .appendSibling(new TextComponentString("'"))
                     .appendSibling(unique.locDesc())
@@ -302,6 +303,11 @@ public class GearItemData implements ITooltip, ISalvagable {
 
             tip.add(new TextComponentString(""));
 
+            tip.add(Styles.YELLOWCOMP()
+                    .appendSibling(CLOC.word("tier"))
+                    .appendText(": " + unique.Tier()));
+
+            tip.add(new TextComponentString(""));
         }
 
         ItemRarity rarity = GetRarity();

@@ -46,6 +46,7 @@ public class LootInfo {
         this.playerData = Load.Unit(player);
         this.level = Load.playerMapData(player).getLevel();
         this.tier = Load.playerMapData(player).getTier();
+
     }
 
     public void setup(BaseLootGen gen) {
@@ -56,6 +57,10 @@ public class LootInfo {
 
         if (victim != null) {
             chance *= EntityTypeUtils.getLootMulti(victim);
+        }
+
+        if (killer != null) {
+            chance *= Load.playerMapData(killer).getBonusLootAmount();
         }
 
         if (world != null) {

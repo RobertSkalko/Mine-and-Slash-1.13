@@ -37,6 +37,8 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
+        float getBonusLootAmount();
+
         String getLastMapGUID();
 
         boolean hasTimeForMap();
@@ -203,6 +205,11 @@ public class PlayerMapData {
                     announceTimeLeft(player);
                 }
             }
+        }
+
+        @Override
+        public float getBonusLootAmount() {
+            return this.mapdata.getBonusLootAmount();
         }
 
         @Override

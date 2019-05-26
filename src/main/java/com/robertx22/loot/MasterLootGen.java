@@ -53,6 +53,14 @@ public class MasterLootGen {
         return items;
     }
 
+    public static List<ItemStack> gen(EntityPlayer player, int level, float multi) {
+        LootInfo info = new LootInfo(player, 1);
+        info.multi = multi;
+        List<ItemStack> items = generateWithInfo(info);
+
+        return items;
+    }
+
     public static List<ItemStack> gen(UnitData mob, UnitData player,
                                       EntityLivingBase victim, EntityPlayer killer) {
 
