@@ -21,6 +21,22 @@ public class LootInfo {
     public EntityPlayer killer;
     public World world;
     public float multi = 1;
+    public int minItems = 0;
+
+    public LootInfo setMinimum(int min) {
+        this.minItems = min;
+        return this;
+    }
+
+    public LootInfo setLevel(int level) {
+        this.level = level;
+        return this;
+    }
+
+    public LootInfo setMulti(float multi) {
+        this.multi = multi;
+        return this;
+    }
 
     public LootInfo(UnitData mob, UnitData player, EntityLivingBase victim,
                     EntityPlayer killer) {

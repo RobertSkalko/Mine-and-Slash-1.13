@@ -63,7 +63,7 @@ public class ParticleUtils {
 
         ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, icolor);
 
-        MMORPG.sendToTracking(packet, world.getChunk(new BlockPos(x, y, z)));
+        MMORPG.sendToTracking(packet, new BlockPos(x, y, z), world);
 
     }
 

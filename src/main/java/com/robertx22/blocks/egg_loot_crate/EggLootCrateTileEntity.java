@@ -4,6 +4,7 @@ import com.robertx22.blocks.conditions.IConditionalLootCrate;
 import com.robertx22.blocks.conditions.LootCrateCondition;
 import com.robertx22.blocks.conditions.NoMobAroundCondition;
 import com.robertx22.database.rarities.items.MythicalItem;
+import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.PlayerOncePerMapData;
@@ -56,8 +57,9 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
 
         if (player != null) {
 
-            List<ItemStack> loot = MasterLootGen.gen(player, Load.playerMapData(player)
-                    .getLevel(), 5F);
+            List<ItemStack> loot = MasterLootGen.generateWithInfo(new LootInfo(player, Load
+                    .playerMapData(player)
+                    .getLevel()).setMinimum(1));
 
             for (ItemStack stack : loot) {
                 world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
@@ -123,8 +125,11 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     @Override
     public void tick() {
 
+        if (world == null || pos == null) {
+            return;
+        }
         if (world.isRemote) {
-            //return;
+            return;
         }
 
         if (isDroppingLoot) {

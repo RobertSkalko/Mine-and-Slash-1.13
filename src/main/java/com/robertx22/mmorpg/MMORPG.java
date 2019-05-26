@@ -19,7 +19,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -163,13 +164,16 @@ public class MMORPG {
 
     }
 
-    public static <MSG> void sendToTracking(MSG msg, Chunk chunk) {
+    public static <MSG> void sendToTracking(MSG msg, BlockPos pos, World world) {
 
-        if (msg == null || chunk == null) {
+        if (msg == null || world == null) {
             return;
         }
 
-        Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), msg);
+        PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(pos.getX(), pos
+                .getY(), pos.getZ(), 50, world.getDimension().getType());
+
+        Network.send(PacketDistributor.NEAR.with(() -> point), msg);
 
     }
 

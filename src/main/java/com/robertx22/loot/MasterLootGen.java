@@ -17,7 +17,32 @@ import java.util.stream.Collectors;
 
 public class MasterLootGen {
 
-    private static List<ItemStack> generateWithInfo(LootInfo info) {
+    public static List<ItemStack> generateWithInfo(LootInfo info) {
+        List<ItemStack> items = new ArrayList<ItemStack>();
+
+        if (info == null) {
+            return items;
+        }
+
+        items = generateWithInfoNoWhile(info);
+
+        while (items.size() < info.minItems) {
+
+            List<ItemStack> extra = generateWithInfoNoWhile(info);
+
+            int missing = info.minItems - items.size();
+
+            for (int i = 0; i < extra.size() && i < missing; i++) {
+                items.add(extra.get(i));
+            }
+
+        }
+
+        return items;
+    }
+
+    // TODO I THINK LOOTINFO NEEDS TO BE CREATED EACH TIME OR THE AMOUNT IS SAME ACROSS ALL GENERATORS
+    private static List<ItemStack> generateWithInfoNoWhile(LootInfo info) {
         List<ItemStack> items = new ArrayList<ItemStack>();
 
         if (info == null) {
@@ -48,6 +73,7 @@ public class MasterLootGen {
 
     public static List<ItemStack> gen(EntityPlayer player, int level) {
         LootInfo info = new LootInfo(player, 1);
+        info.level = level;
         List<ItemStack> items = generateWithInfo(info);
 
         return items;
@@ -56,8 +82,18 @@ public class MasterLootGen {
     public static List<ItemStack> gen(EntityPlayer player, int level, float multi) {
         LootInfo info = new LootInfo(player, 1);
         info.multi = multi;
+        info.level = level;
         List<ItemStack> items = generateWithInfo(info);
+        return items;
+    }
 
+    public static List<ItemStack> gen(EntityPlayer player, int level, float multi,
+                                      int minItems) {
+        LootInfo info = new LootInfo(player, 1);
+        info.multi = multi;
+        info.minItems = minItems;
+        info.level = level;
+        List<ItemStack> items = generateWithInfo(info);
         return items;
     }
 
