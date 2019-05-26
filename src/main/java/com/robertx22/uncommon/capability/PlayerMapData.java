@@ -37,6 +37,8 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
+        String getLastMapGUID();
+
         boolean hasTimeForMap();
 
         int getLevel();
@@ -201,6 +203,11 @@ public class PlayerMapData {
                     announceTimeLeft(player);
                 }
             }
+        }
+
+        @Override
+        public String getLastMapGUID() {
+            return this.mapGUID;
         }
 
         @Override

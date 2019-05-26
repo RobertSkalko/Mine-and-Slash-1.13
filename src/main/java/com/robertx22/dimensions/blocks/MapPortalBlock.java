@@ -2,7 +2,6 @@ package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.capability.WorldUtils;
@@ -31,7 +30,7 @@ public class MapPortalBlock extends BlockEndPortal {
                 .lightValue(15)
                 .hardnessAndResistance(-1.0F, 3600000.0F));
 
-        this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
+        ;
 
     }
 

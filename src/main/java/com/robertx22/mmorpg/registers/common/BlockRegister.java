@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.registers.common;
 
+import com.robertx22.blocks.egg_loot_crate.EggLootCrateBlock;
 import com.robertx22.blocks.gear_factory_station.BlockGearFactory;
 import com.robertx22.blocks.item_modify_station.BlockInventoryModify;
 import com.robertx22.blocks.map_device.BlockMap;
@@ -29,7 +30,15 @@ public class BlockRegister {
     public static final String GEAR_SALVAGE_ID = Ref.MODID + ":salvage_station";
     public static final String GEAR_REPAIR_ID = Ref.MODID + ":repair_station";
     public static final String ATTUNEMENT_ALTAR_ID = Ref.MODID + ":attunement_altar";
+    public static final String EGG_LOOT_CRATE_ID = Ref.MODID + ":egg_loot_crate";
+    public static final String MAP_PORTAL_BLOCK_ID = Ref.MODID + ":map_portal_block";
 
+    // NEW BLOCK
+    @ObjectHolder(EGG_LOOT_CRATE_ID)
+    public static TileEntityType<?> EGG_LOOT_CRATE;
+    @ObjectHolder(EGG_LOOT_CRATE_ID)
+    public static Block EGG_LOOT_CRATE_BLOCK;
+    //NEW BLOCK
     @ObjectHolder(Ref.MODID + ":map_portal_block")
     public static Block PORTAL_BLOCK;
     // NEW BLOCK
@@ -83,7 +92,8 @@ public class BlockRegister {
         reg.register(new BlockInventoryRepair().setRegistryName(GEAR_REPAIR_ID));
         reg.register(new BlockInventoryModify().setRegistryName(GEAR_MODIFY_ID));
         reg.register(new AttunementBlock().setRegistryName(ATTUNEMENT_ALTAR_ID));
-        reg.register(new MapPortalBlock());
+        reg.register(new MapPortalBlock().setRegistryName(MAP_PORTAL_BLOCK_ID));
+        reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));
 
         ItemOre.RegisterBlocks(event);
     }
@@ -99,6 +109,7 @@ public class BlockRegister {
         reg.register(new ItemBlock(BLOCK_MAP_DEVICE, stationProp).setRegistryName(MAP_DEVICE_ID));
         reg.register(new ItemBlock(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
         reg.register(new ItemBlock(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
+        reg.register(new ItemBlock(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
 
         ItemOre.RegisterItems(event);
     }

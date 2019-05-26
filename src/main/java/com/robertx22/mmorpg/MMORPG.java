@@ -19,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -150,8 +151,7 @@ public class MMORPG {
 
     public static <MSG> void sendToTracking(MSG msg, Entity entity) {
 
-        if (msg == null) {
-            System.out.println("msg is null wtf");
+        if (msg == null || entity == null) {
             return;
         }
 
@@ -160,6 +160,16 @@ public class MMORPG {
         if (entity instanceof EntityPlayer) {
             sendToClient(msg, (EntityPlayerMP) entity);
         }
+
+    }
+
+    public static <MSG> void sendToTracking(MSG msg, Chunk chunk) {
+
+        if (msg == null || chunk == null) {
+            return;
+        }
+
+        Network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), msg);
 
     }
 

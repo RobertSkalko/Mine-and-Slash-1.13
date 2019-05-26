@@ -7,6 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Particles;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class ParticleUtils {
 
@@ -51,6 +53,17 @@ public class ParticleUtils {
         ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, element);
 
         MMORPG.sendToTracking(packet, source);
+
+    }
+
+    public static void spawnParticleGenerator(World world, BlockPos pos, String name,
+                                              double x, double y, double z, double xVel,
+                                              double yVel, double zVel, double radius,
+                                              int amount, Elements element) {
+
+        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, element);
+
+        MMORPG.sendToTracking(packet, world.getChunk(pos));
 
     }
 
