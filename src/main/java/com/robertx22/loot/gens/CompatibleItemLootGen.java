@@ -3,32 +3,19 @@ package com.robertx22.loot.gens;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItem;
 import com.robertx22.config.compatible_items.ConfigItems;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.loot.LootInfo;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.stream.Collectors;
 
 public class CompatibleItemLootGen extends BaseLootGen {
 
-    EntityData.UnitData mob;
-
-    public CompatibleItemLootGen(EntityData.UnitData mob, EntityData.UnitData player,
-                                 EntityLivingBase victim, EntityPlayer killer) {
-        super(mob, player, victim, killer);
-
-        this.mob = mob;
-    }
-
-    public CompatibleItemLootGen(World theworld, float multi, int level) {
-        super(theworld, multi);
-
+    public CompatibleItemLootGen(LootInfo info) {
+        super(info);
     }
 
     @Override
@@ -39,9 +26,9 @@ public class CompatibleItemLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && mob != null) {
+        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && info.mobData != null) {
 
-            return gen(mob.getLevel());
+            return gen(info.mobData.getLevel());
         }
 
         return ItemStack.EMPTY;

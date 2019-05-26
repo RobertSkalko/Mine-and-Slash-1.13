@@ -1,30 +1,15 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.loot.create.MapGen;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class MapLootGen extends BaseLootGen {
-    MapBlueprint blueprint;
 
-    public MapLootGen(UnitData mob, UnitData player, EntityLivingBase victim,
-                      EntityPlayer killer) {
-        super(mob, player, victim, killer);
-
-        blueprint = new MapBlueprint(mob.getLevel(), this.tier);
-
-    }
-
-    public MapLootGen(World theworld, float multi, int level) {
-        super(theworld, multi);
-
-        blueprint = new MapBlueprint(level, tier);
-
+    public MapLootGen(LootInfo info) {
+        super(info);
     }
 
     @Override
@@ -39,6 +24,9 @@ public class MapLootGen extends BaseLootGen {
 
     @Override
     public ItemStack generateOne() {
+
+        MapBlueprint blueprint = new MapBlueprint(info.level, info.tier);
+
         if (blueprint.level >= ModConfig.INSTANCE.Server.MAPS_DROP_AFTER_LEVEL.get()) {
             return MapGen.Create(blueprint);
         } else {

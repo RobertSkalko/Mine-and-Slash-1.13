@@ -17,58 +17,54 @@ import java.util.stream.Collectors;
 
 public class MasterLootGen {
 
-    public static List<ItemStack> gen(UnitData mob, UnitData player,
-                                      EntityLivingBase victim, EntityPlayer killer) {
+    private static List<ItemStack> generateWithInfo(LootInfo info) {
         List<ItemStack> items = new ArrayList<ItemStack>();
 
-        if (mob == null || player == null || victim == null) {
+        if (info == null) {
             return items;
         }
 
-        if (mob.getLevel() >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
-            items.addAll(new CurrencyLootGen(mob, player, victim, killer).generate());
-            items.addAll(new AwakenRuneWordLootGen(mob, player, victim, killer).generate());
+        if (info.level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
+            items.addAll(new CurrencyLootGen(info).generate());
+            items.addAll(new AwakenRuneWordLootGen(info).generate());
         }
-        items.addAll(new GearLootGen(mob, player, victim, killer).generate());
-        items.addAll(new SpellLootGen(mob, player, victim, killer).generate());
-        items.addAll(new MapLootGen(mob, player, victim, killer).generate());
-        items.addAll(new RuneLootGen(mob, player, victim, killer).generate());
-        items.addAll(new RunedGearLootGen(mob, player, victim, killer).generate());
-        items.addAll(new LootBoxGen(mob, player, victim, killer).generate());
+        items.addAll(new GearLootGen(info).generate());
+        items.addAll(new SpellLootGen(info).generate());
+        items.addAll(new MapLootGen(info).generate());
+        items.addAll(new RuneLootGen(info).generate());
+        items.addAll(new RunedGearLootGen(info).generate());
+        items.addAll(new LootBoxGen(info).generate());
 
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
-            items.addAll(new CompatibleItemLootGen(mob, player, victim, killer).generate());
+            items.addAll(new CompatibleItemLootGen(info).generate());
         }
 
-        if (WorldUtils.dropsUniques(victim.world)) {
-            items.addAll(new UniqueGearLootGen(mob, player, victim, killer).generate());
+        if (WorldUtils.dropsUniques(info.world)) {
+            items.addAll(new UniqueGearLootGen(info).generate());
         }
 
         return items;
     }
 
-    public static List<ItemStack> gen(World theworld, float multi, int level) {
-        List<ItemStack> items = new ArrayList<ItemStack>();
+    public static List<ItemStack> gen(EntityPlayer player, int level) {
+        LootInfo info = new LootInfo(player, 1);
+        List<ItemStack> items = generateWithInfo(info);
 
-        if (level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
-            items.addAll(new CurrencyLootGen(theworld, multi).generate());
-            items.addAll(new AwakenRuneWordLootGen(theworld, multi).generate());
-        }
+        return items;
+    }
 
-        items.addAll(new GearLootGen(theworld, multi, level).generate());
-        items.addAll(new SpellLootGen(theworld, multi, level).generate());
-        items.addAll(new MapLootGen(theworld, multi, level).generate());
-        items.addAll(new RuneLootGen(theworld, multi, level).generate());
-        items.addAll(new RunedGearLootGen(theworld, multi, level).generate());
-        items.addAll(new LootBoxGen(theworld, multi).generate());
+    public static List<ItemStack> gen(UnitData mob, UnitData player,
+                                      EntityLivingBase victim, EntityPlayer killer) {
 
-        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
-            items.addAll(new CompatibleItemLootGen(theworld, multi, level).generate());
-        }
-        if (WorldUtils.dropsUniques(theworld)) {
-            items.addAll(new UniqueGearLootGen(theworld, multi, level).generate());
+        LootInfo info = new LootInfo(mob, player, victim, killer);
+        List<ItemStack> items = generateWithInfo(info);
 
-        }
+        return items;
+    }
+
+    public static List<ItemStack> gen(World theworld, int level, float multi) {
+        LootInfo info = new LootInfo(theworld, level, multi);
+        List<ItemStack> items = generateWithInfo(info);
 
         return items;
     }
@@ -91,7 +87,7 @@ public class MasterLootGen {
         List<ItemStack> loot = new ArrayList<>();
 
         while (loot.size() < amount) {
-            loot.addAll(MasterLootGen.gen(theworld, amount * 10F, level)
+            loot.addAll(MasterLootGen.gen(theworld, level, amount * 10F)
                     .stream()
                     .filter(x -> x.isEmpty() == false)
                     .collect(Collectors.toList()));

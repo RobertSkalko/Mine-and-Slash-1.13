@@ -1,24 +1,15 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.blueprints.AwakenRuneWordBlueprint;
 import com.robertx22.loot.create.AwakenRuneWordGen;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class AwakenRuneWordLootGen extends BaseLootGen {
 
-    public AwakenRuneWordLootGen(UnitData mob, UnitData player, EntityLivingBase victim,
-                                 EntityPlayer killer) {
-        super(mob, player, victim, killer);
-
-    }
-
-    public AwakenRuneWordLootGen(World theworld, float multi) {
-        super(theworld, multi);
+    public AwakenRuneWordLootGen(LootInfo info) {
+        super(info);
     }
 
     @Override

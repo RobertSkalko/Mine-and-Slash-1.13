@@ -1,31 +1,18 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
 import com.robertx22.loot.create.UniqueGearGen;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class UniqueGearLootGen extends BaseLootGen {
-    UniqueBlueprint gearPrint;
 
-    public UniqueGearLootGen(UnitData mob, UnitData player, EntityLivingBase victim,
-                             EntityPlayer killer) {
-        super(mob, player, victim, killer);
-        gearPrint = new UniqueBlueprint(mob.getLevel(), this.tier, true);
-
-    }
-
-    public UniqueGearLootGen(World theworld, float multi, int level) {
-        super(theworld, multi);
-        gearPrint = new UniqueBlueprint(level, this.tier, true);
-
+    public UniqueGearLootGen(LootInfo info) {
+        super(info);
     }
 
     @Override
@@ -35,6 +22,8 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     @Override
     public ItemStack generateOne() {
+
+        UniqueBlueprint gearPrint = new UniqueBlueprint(info.level, info.tier, true);
 
         ItemStack stack = UniqueGearGen.CreateStack(gearPrint);
 
