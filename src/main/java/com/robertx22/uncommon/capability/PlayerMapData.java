@@ -37,7 +37,7 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
-        float getBonusLootAmount();
+        float getBonusLootAmount(EntityPlayer player);
 
         String getLastMapGUID();
 
@@ -208,8 +208,12 @@ public class PlayerMapData {
         }
 
         @Override
-        public float getBonusLootAmount() {
-            return this.mapdata.getBonusLootAmount();
+        public float getBonusLootAmount(EntityPlayer player) {
+            if (WorldUtils.isMapWorld(player.world)) {
+                return this.mapdata.getBonusLootAmount();
+            } else {
+                return 0;
+            }
         }
 
         @Override

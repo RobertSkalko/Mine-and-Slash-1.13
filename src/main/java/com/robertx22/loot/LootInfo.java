@@ -3,6 +3,7 @@ package com.robertx22.loot;
 import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.loot.gens.BaseLootGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,30 +45,39 @@ public class LootInfo {
         return this;
     }
 
+    public LootInfo setTier() {
+
+        if (killer != null) {
+
+            if (WorldUtils.isMapWorld(killer.world)) {
+                this.tier = Load.playerMapData(killer).getTier();
+            }
+        }
+        return this;
+
+    }
+
     public LootInfo(UnitData mob, UnitData player, EntityLivingBase victim,
                     EntityPlayer killer) {
-        this.tier = Load.playerMapData(killer).getTier();
         this.world = victim.world;
         this.mobData = mob;
         this.playerData = player;
         this.victim = victim;
         this.killer = killer;
         this.level = mob.getLevel();
+        setTier();
 
     }
 
-    public LootInfo(World theworld, int level, float multi) {
-        this.multi = multi;
+    public LootInfo(World theworld) {
         this.world = theworld;
-        this.level = level;
     }
 
-    public LootInfo(EntityPlayer player, float multi) {
-        this.multi = multi;
+    public LootInfo(EntityPlayer player) {
         this.world = player.world;
         this.playerData = Load.Unit(player);
         this.level = Load.playerMapData(player).getLevel();
-        this.tier = Load.playerMapData(player).getTier();
+        setTier();
 
     }
 
@@ -82,7 +92,7 @@ public class LootInfo {
         }
 
         if (killer != null) {
-            chance *= Load.playerMapData(killer).getBonusLootAmount();
+            chance *= Load.playerMapData(killer).getBonusLootAmount(killer);
         }
 
         if (world != null) {
