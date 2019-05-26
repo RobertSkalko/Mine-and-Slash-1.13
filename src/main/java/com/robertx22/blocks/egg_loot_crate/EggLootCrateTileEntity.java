@@ -9,7 +9,6 @@ import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.PlayerOncePerMapData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import net.minecraft.entity.item.EntityFireworkRocket;
@@ -57,9 +56,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
 
         if (player != null) {
 
-            List<ItemStack> loot = MasterLootGen.generateWithInfo(new LootInfo(player, Load
-                    .playerMapData(player)
-                    .getLevel()).setMinimum(1));
+            List<ItemStack> loot = MasterLootGen.generateWithInfo(new LootInfo(player).setMinimum(1));
 
             for (ItemStack stack : loot) {
                 world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));

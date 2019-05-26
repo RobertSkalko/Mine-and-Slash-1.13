@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MasterLootGen {
 
@@ -67,9 +68,11 @@ public class MasterLootGen {
             items.addAll(new UniqueGearLootGen(info).generate());
         }
 
-        return items;
+        return items.stream()
+                .filter(x -> x.isEmpty() == false)
+                .collect(Collectors.toList());
     }
-
+    
     public static List<ItemStack> gen(UnitData mob, UnitData player,
                                       EntityLivingBase victim, EntityPlayer killer) {
 

@@ -1,6 +1,7 @@
 package com.robertx22.onevent.world;
 
 import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
@@ -32,13 +33,18 @@ public class AllowMobSpawnsInMap {
 
                     // no
                 } else {
-                    IBlockState iblockstate = en.world.getBlockState((new BlockPos(en)).down());
+                    if (EntityTypeUtils.isMob(en)) {
 
-                    if (!iblockstate.canEntitySpawn(en)) {
-                        return;
+                        IBlockState iblockstate = en.world.getBlockState((new BlockPos(en))
+                                .down());
+
+                        if (!iblockstate.canEntitySpawn(en)) {
+                            return;
+                        }
+
+                        event.setResult(Result.ALLOW);
+
                     }
-
-                    event.setResult(Result.ALLOW);
 
                 }
             }
