@@ -2,7 +2,7 @@ package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.ParticleGenPacket;
-import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.enumclasses.IColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Particles;
@@ -48,9 +48,9 @@ public class ParticleUtils {
     public static void spawnParticleGenerator(Entity source, String name, double x,
                                               double y, double z, double xVel,
                                               double yVel, double zVel, double radius,
-                                              int amount, Elements element) {
+                                              int amount, IColor icolor) {
 
-        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, element);
+        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, icolor);
 
         MMORPG.sendToTracking(packet, source);
 
@@ -59,9 +59,9 @@ public class ParticleUtils {
     public static void spawnParticleGenerator(World world, String name, double x,
                                               double y, double z, double xVel,
                                               double yVel, double zVel, double radius,
-                                              int amount, Elements element) {
+                                              int amount, IColor icolor) {
 
-        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, element);
+        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, icolor);
 
         MMORPG.sendToTracking(packet, world.getChunk(new BlockPos(x, y, z)));
 

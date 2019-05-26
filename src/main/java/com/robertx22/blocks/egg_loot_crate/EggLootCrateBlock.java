@@ -11,11 +11,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class EggLootCrateBlock extends NonFullBlock implements IConditionalLootCrate {
+public class EggLootCrateBlock extends NonFullBlock {
 
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
@@ -53,34 +52,13 @@ public class EggLootCrateBlock extends NonFullBlock implements IConditionalLootC
 
         if (tile instanceof EggLootCrateTileEntity) {
 
-            if (condition().canOpenCrate(player)) {
+            EggLootCrateTileEntity crate = (EggLootCrateTileEntity) tile;
 
-                EggLootCrateTileEntity crate = (EggLootCrateTileEntity) tile;
-
-                if (crate.data.canDo(player)) {
-                    crate.data.add(player);
-                    if (crate.isDroppingLoot) {
-                        player.sendMessage(new TextComponentString("This crate is currently being used."));
-
-                    } else {
-                        crate.activateDrops(player);
-                    }
-
-                } else {
-                    player.sendMessage(new TextComponentString("You have already used this block. Come again next map!"));
-                }
-
-            } else {
-                player.sendMessage(condition().tellCondition());
-            }
+            crate.tryActivate(player);
 
         }
 
         return true;
     }
 
-    @Override
-    public LootCrateCondition condition() {
-        return new NoMobAroundCondition(7);
-    }
 }

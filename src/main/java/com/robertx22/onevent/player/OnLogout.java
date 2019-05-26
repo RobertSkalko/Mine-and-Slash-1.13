@@ -1,5 +1,7 @@
 package com.robertx22.onevent.player;
 
+import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.datasaving.Load;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
@@ -7,20 +9,17 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 @EventBusSubscriber
 public class OnLogout {
 
+    // maps either are random or may get deleted either in registry or the folder to reset the zone, players can't stay in maps
     @SubscribeEvent
-    public static void onLogin(PlayerLoggedOutEvent event) {
+    public static void onLogout(PlayerLoggedOutEvent event) {
 
         if (event.getPlayer().world.isRemote) {
             return;
         }
-/*
-        IWorldData world = Load.World(event.getPlayer().world);
 
-        if (world.isMapWorld()) {
-            world.teleportPlayerBack(event.getPlayer());
+        if (WorldUtils.isMapWorldClass(event.getPlayer().world)) {
+            Load.playerMapData(event.getPlayer()).teleportPlayerBack(event.getPlayer());
         }
 
-
- */
     }
 }

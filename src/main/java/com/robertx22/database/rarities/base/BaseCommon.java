@@ -1,6 +1,7 @@
 package com.robertx22.database.rarities.base;
 
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.uncommon.enumclasses.Elements.RGB;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseCommon implements Rarity {
@@ -24,6 +25,11 @@ public abstract class BaseCommon implements Rarity {
     @Override
     public String Color() {
         return TextFormatting.GRAY.toString();
+    }
+
+    @Override
+    public RGB getRGBColor() {
+        return new RGB(128, 128, 128);
     }
 
 }

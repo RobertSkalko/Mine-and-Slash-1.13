@@ -6,7 +6,7 @@ public class AoeProjectileParticleGen extends ParticleGen {
 
     @Override
     public void Summon(double x, double y, double z, double radius, int amount,
-                       Elements element) {
+                       Elements.RGB color) {
         for (int i = 0; i < amount; i++) {
 
             double u = Math.random();
@@ -17,7 +17,7 @@ public class AoeProjectileParticleGen extends ParticleGen {
             double ypos = y + (radius * Math.sin(phi) * Math.sin(theta));
             double zpos = z + (radius * Math.cos(phi));
 
-            this.spawnRedstone(element, xpos, ypos, zpos);
+            this.spawnRedstone(color, xpos, ypos, zpos);
 
         }
     }

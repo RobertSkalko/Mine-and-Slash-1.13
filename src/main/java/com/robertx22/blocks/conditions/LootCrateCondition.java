@@ -1,4 +1,4 @@
-package com.robertx22.blocks.egg_loot_crate;
+package com.robertx22.blocks.conditions;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ITextComponent;

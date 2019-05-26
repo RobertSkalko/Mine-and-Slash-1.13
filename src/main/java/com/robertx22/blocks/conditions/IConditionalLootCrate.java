@@ -1,4 +1,4 @@
-package com.robertx22.blocks.egg_loot_crate;
+package com.robertx22.blocks.conditions;
 
 public interface IConditionalLootCrate {
 

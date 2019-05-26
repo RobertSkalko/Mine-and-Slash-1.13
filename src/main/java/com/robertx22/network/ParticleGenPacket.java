@@ -3,6 +3,7 @@ package com.robertx22.network;
 import com.robertx22.database.particle_gens.ParticleGen;
 import com.robertx22.db_lists.ParticleGens;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.enumclasses.IColor;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -19,14 +20,14 @@ public class ParticleGenPacket {
     private double zVel;
     private double radius;
     private int amount;
-    private String element;
+    private Elements.RGB color;
 
     public ParticleGenPacket() {
     }
 
     public ParticleGenPacket(String name, double x, double y, double z, double xVel,
                              double yVel, double zVel, double radius, int amount,
-                             Elements element) {
+                             IColor icolor) {
 
         this.name = name;
         this.x = x;
@@ -37,7 +38,7 @@ public class ParticleGenPacket {
         this.zVel = zVel;
         this.radius = radius;
         this.amount = amount;
-        this.element = element.toString();
+        this.color = icolor.getRGBColor();
 
     }
 
@@ -54,7 +55,12 @@ public class ParticleGenPacket {
         newpkt.zVel = tag.readDouble();
         newpkt.radius = tag.readDouble();
         newpkt.amount = tag.readInt();
-        newpkt.element = tag.readString(30);
+
+        int r = tag.readInt();
+        int g = tag.readInt();
+        int b = tag.readInt();
+
+        newpkt.color = new Elements.RGB(r, g, b);
 
         return newpkt;
 
@@ -71,7 +77,10 @@ public class ParticleGenPacket {
         tag.writeDouble(packet.zVel);
         tag.writeDouble(packet.radius);
         tag.writeInt(packet.amount);
-        tag.writeString(packet.element, 20);
+        tag.writeInt(packet.color.getIntR());
+        tag.writeInt(packet.color.getIntG());
+        tag.writeInt(packet.color.getIntB());
+
     }
 
     public static void handle(final ParticleGenPacket message,
@@ -82,8 +91,7 @@ public class ParticleGenPacket {
 
                 ParticleGen gen = ParticleGens.All.get(message.name);
 
-                gen.Summon(message.x, message.y, message.z, message.radius, message.amount, Elements
-                        .valueOf(message.element));
+                gen.Summon(message.x, message.y, message.z, message.radius, message.amount, message.color);
             } catch (Exception e) {
                 e.printStackTrace();
             }

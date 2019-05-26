@@ -1,4 +1,4 @@
-package com.robertx22.blocks.egg_loot_crate;
+package com.robertx22.blocks.conditions;
 
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityLivingBase;

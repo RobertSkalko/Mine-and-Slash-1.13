@@ -13,7 +13,7 @@ public abstract class ParticleGen {
     public Random rand = new Random();
 
     public abstract void Summon(double x, double y, double z, double radius, int amount,
-                                Elements element);
+                                Elements.RGB color);
 
     public Vec3d getCenter(BlockPos pos) {
 
@@ -22,9 +22,8 @@ public abstract class ParticleGen {
 
     public abstract String Name();
 
-    public void spawnRedstone(Elements element, double xpos, double ypos, double zpos) {
+    public void spawnRedstone(Elements.RGB color, double xpos, double ypos, double zpos) {
 
-        Elements.RGB color = element.color;
         RedstoneParticleData data = new RedstoneParticleData(color.getR(), color.getG(), color
                 .getB(), 1F);
         Minecraft.getInstance().world.addParticle(data, true, xpos, ypos, zpos, 1, 1, 1);

@@ -56,6 +56,11 @@ public class WorldUtils {
 
     }
 
+    public static boolean isMapWorldClass(World world) {
+
+        return world.getDimension() instanceof BaseWorldProvider;
+    }
+
     public int getTier(World world, EntityPlayer player) {
 
         if (DimensionsContainer.INSTANCE.hasConfig(world)) {

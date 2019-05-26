@@ -6,7 +6,7 @@ public class NovaParticleGen extends ParticleGen {
 
     @Override
     public void Summon(double x, double y, double z, double radius, int amount,
-                       Elements element) {
+                       Elements.RGB color) {
 
         for (int i = 0; i < amount; i++) {
 
@@ -18,7 +18,7 @@ public class NovaParticleGen extends ParticleGen {
             double ypos = y;
             double zpos = z + (radius * Math.cos(phi));
 
-            this.spawnRedstone(element, xpos, ypos, zpos);
+            this.spawnRedstone(color, xpos, ypos, zpos);
 
         }
     }

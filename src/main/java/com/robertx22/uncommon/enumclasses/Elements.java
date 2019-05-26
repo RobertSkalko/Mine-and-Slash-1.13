@@ -1,9 +1,9 @@
 package com.robertx22.uncommon.enumclasses;
 
-public enum Elements {
+public enum Elements implements IColor {
     None(0, new RGB(0, 0, 0)), Fire(1, new RGB(255, 0, 0)), Water(2, new RGB(0, 128, 255)), Thunder(3, new RGB(255, 255, 0)), Nature(4, new RGB(0, 204, 0));
 
-    public RGB color;
+    private RGB color;
 
     Elements(int i, RGB color) {
         this.i = i;
@@ -26,8 +26,13 @@ public enum Elements {
         return None;
     }
 
+    @Override
+    public RGB getRGBColor() {
+        return color;
+    }
+
     public static class RGB {
-        RGB(int R, int G, int B) {
+        public RGB(int R, int G, int B) {
             this.R = R;
             this.G = G;
             this.B = B;
@@ -47,6 +52,18 @@ public enum Elements {
 
         public float getB() {
             return B / 255.0F;
+        }
+
+        public int getIntR() {
+            return R;
+        }
+
+        public int getIntG() {
+            return G;
+        }
+
+        public int getIntB() {
+            return B;
         }
     }
 
