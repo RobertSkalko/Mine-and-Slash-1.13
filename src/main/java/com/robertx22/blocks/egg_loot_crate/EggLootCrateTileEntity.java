@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
 
@@ -95,11 +94,6 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
         return timesToDrop < 1;
     }
 
-    public BlockPos getCenter() {
-
-        return new BlockPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-    }
-
     @Override
     public void tick() {
 
@@ -109,10 +103,11 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable {
                 reset();
             }
 
-            BlockPos center = getCenter();
+            //BlockPos center = getCenter();
 
-            ElementalParticleUtils.SpawnAoeParticle(Elements.Thunder, world, center, 1.3F, 10);
-
+            ElementalParticleUtils.SpawnAoeParticle(Elements.Thunder, world, pos.getX() + 0.5, pos
+                    .getY() + 0.5, pos.getZ() + 0.5, 1.3F, 10);
+            
             dropLootTicks++;
 
             if (timesToDrop > 0) {

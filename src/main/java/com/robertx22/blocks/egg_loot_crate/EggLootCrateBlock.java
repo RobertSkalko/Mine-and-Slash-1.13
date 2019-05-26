@@ -81,6 +81,6 @@ public class EggLootCrateBlock extends NonFullBlock implements IConditionalLootC
 
     @Override
     public LootCrateCondition condition() {
-        return new NoOneAroundCondition();
+        return new NoMobAroundCondition(7);
     }
 }

@@ -18,6 +18,7 @@ public class AoeProjectileParticleGen extends ParticleGen {
             double zpos = z + (radius * Math.cos(phi));
 
             this.spawnRedstone(element, xpos, ypos, zpos);
+
         }
     }
 

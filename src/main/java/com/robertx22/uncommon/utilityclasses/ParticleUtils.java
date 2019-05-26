@@ -56,14 +56,14 @@ public class ParticleUtils {
 
     }
 
-    public static void spawnParticleGenerator(World world, BlockPos pos, String name,
-                                              double x, double y, double z, double xVel,
+    public static void spawnParticleGenerator(World world, String name, double x,
+                                              double y, double z, double xVel,
                                               double yVel, double zVel, double radius,
                                               int amount, Elements element) {
 
         ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, element);
 
-        MMORPG.sendToTracking(packet, world.getChunk(pos));
+        MMORPG.sendToTracking(packet, world.getChunk(new BlockPos(x, y, z)));
 
     }
 

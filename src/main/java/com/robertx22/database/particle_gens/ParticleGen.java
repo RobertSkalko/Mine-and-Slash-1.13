@@ -3,6 +3,8 @@ package com.robertx22.database.particle_gens;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.RedstoneParticleData;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 
@@ -12,6 +14,11 @@ public abstract class ParticleGen {
 
     public abstract void Summon(double x, double y, double z, double radius, int amount,
                                 Elements element);
+
+    public Vec3d getCenter(BlockPos pos) {
+
+        return new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+    }
 
     public abstract String Name();
 

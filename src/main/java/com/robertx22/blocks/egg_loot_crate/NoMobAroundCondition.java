@@ -6,13 +6,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-public class NoOneAroundCondition extends LootCrateCondition {
+public class NoMobAroundCondition extends LootCrateCondition {
+
+    int radius = 1;
+
+    public NoMobAroundCondition(int radius) {
+        this.radius = radius;
+    }
 
     @Override
     public boolean canOpenCrate(EntityPlayer player) {
 
         long entities = player.world.getEntitiesWithinAABBExcludingEntity(player, player.getBoundingBox()
-                .grow(5))
+                .grow(radius))
                 .stream()
                 .filter(x -> x instanceof EntityLivingBase && x instanceof EntityPlayer == false && EntityTypeUtils
                         .isMob(x))
