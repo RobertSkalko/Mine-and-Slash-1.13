@@ -22,6 +22,12 @@ public class LootInfo {
     public World world;
     public float multi = 1;
     public int minItems = 0;
+    public int maxItems = 50;
+
+    public LootInfo setMaximum(int max) {
+        this.maxItems = max;
+        return this;
+    }
 
     public LootInfo setMinimum(int min) {
         this.minItems = min;
