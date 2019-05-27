@@ -29,9 +29,13 @@ public class MapManager {
         public static void registerAllModDims(RegisterDimensionsEvent event) {
 
             for (IWP iwp : WorldProviders.All.values()) {
+
                 ResourceLocation res = iwp.getResourceLoc();
-                ModDimension moddim = iwp.getModDim();
-                DimensionManager.registerDimension(res, moddim, null);
+
+                if (DimensionManager.getRegistry().containsKey(res) == false) {
+                    ModDimension moddim = iwp.getModDim();
+                    DimensionManager.registerDimension(res, moddim, null);
+                }
             }
 
         }
