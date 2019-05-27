@@ -27,6 +27,11 @@ public class RockDesertIWP extends BaseWorldProvider {
     }
 
     @Override
+    public List<String> smallSurfaceDecorations() {
+        return Arrays.asList();
+    }
+
+    @Override
     public List<MapAffixData> getMapAffixes() {
         return Arrays.asList(new MapAffixData(new BonusFireResistAffix(), 100));
     }

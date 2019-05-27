@@ -31,6 +31,11 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
+    public List<String> smallSurfaceDecorations() {
+        return Arrays.asList();
+    }
+
+    @Override
     public Biome getBiome() {
         return Biomes.DESERT_HILLS;
     }

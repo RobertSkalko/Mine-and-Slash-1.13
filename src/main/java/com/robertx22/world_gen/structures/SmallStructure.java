@@ -1,7 +1,6 @@
 package com.robertx22.world_gen.structures;
 
-import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.util.ResourceLocation;
+import com.robertx22.database.world_providers.IWP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -14,7 +13,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
 
-public abstract class SmallDecoration extends Feature<NoFeatureConfig> {
+public class SmallStructure extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean place(IWorld iworld,
@@ -24,12 +23,14 @@ public abstract class SmallDecoration extends Feature<NoFeatureConfig> {
         if (iworld.isAirBlock(pos)) {
             World theworld = iworld.getWorld();
 
-            if (WorldUtils.isMapWorld(theworld)) {
+            if (theworld instanceof IWP) {
+
+                IWP iwp = (IWP) theworld;
 
                 TemplateManager templatemanager = iworld.getSaveHandler()
                         .getStructureTemplateManager();
 
-                templatemanager.getTemplate(this.resource)
+                templatemanager.getTemplate(iwp.randomSmallSurfaceDecoration())
                         .addBlocksToWorld(iworld, pos, new PlacementSettings());
 
                 return true;
@@ -40,12 +41,10 @@ public abstract class SmallDecoration extends Feature<NoFeatureConfig> {
 
     }
 
-    String name = "";
-    ResourceLocation resource;
+    String name = "random_decoration";
 
-    public SmallDecoration(String name, ResourceLocation structure) {
-        this.name = name;
-        this.resource = structure;
+    public SmallStructure() {
+
     }
 
     public int getSize() {

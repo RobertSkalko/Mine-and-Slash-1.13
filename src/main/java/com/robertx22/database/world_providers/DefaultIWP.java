@@ -11,6 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.robertx22.db_lists.Templates.bigWoodPillar;
+import static com.robertx22.db_lists.Templates.smallWoodPillar;
+
 public class DefaultIWP extends BaseWorldProvider {
 
     public DefaultIWP() {
@@ -34,6 +37,11 @@ public class DefaultIWP extends BaseWorldProvider {
     @Override
     public Biome getBiome() {
         return Biomes.TALL_BIRCH_FOREST;
+    }
+
+    @Override
+    public List<String> smallSurfaceDecorations() {
+        return Arrays.asList(bigWoodPillar, smallWoodPillar);
     }
 
     @Override

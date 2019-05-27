@@ -32,6 +32,10 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public ModDimension moddim;
     private DimensionType type;
 
+    public ResourceLocation res(String str) {
+        return new ResourceLocation(Ref.MODID, str);
+    }
+
     @Override
     protected void init() {
         this.hasSkyLight = true;

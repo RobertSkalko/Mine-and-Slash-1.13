@@ -33,6 +33,11 @@ public class NetherIWP extends BaseWorldProvider {
     }
 
     @Override
+    public List<String> smallSurfaceDecorations() {
+        return Arrays.asList();
+    }
+
+    @Override
     public float getBonusLootMulti() {
         return 1.2F;
     }
