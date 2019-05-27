@@ -1,6 +1,7 @@
 package com.robertx22.loot.blueprints;
 
-import com.robertx22.items.unique_items.IUnique;
+import com.robertx22.database.unique_items.IUnique;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.List;
@@ -63,20 +64,20 @@ public class UniqueBlueprint extends GearBlueprint {
             tier = this.GetTier();
 
             if (this.randomTier == false) {
-                return RandomUtils.weightedRandom(IUnique.getAllUniquesOfTier(map_tier, IUnique.ITEMS
+                return RandomUtils.weightedRandom(UniqueItems.getAllUniquesOfTier(map_tier, UniqueItems.ITEMS
                         .values()));
             } else {
                 return randomUnique();
             }
         } else {
-            return (IUnique) IUnique.ITEMS.get(this.guid);
+            return (IUnique) UniqueItems.ITEMS.get(this.guid);
         }
 
     }
 
     private IUnique randomUnique() {
 
-        List<IUnique> possible = IUnique.filterUniquesByType(gearType, IUnique.getAllPossibleUniqueDrops(map_tier, IUnique.ITEMS
+        List<IUnique> possible = UniqueItems.filterUniquesByType(gearType, UniqueItems.getAllPossibleUniqueDrops(map_tier, UniqueItems.ITEMS
                 .values()));
 
         IUnique unique = RandomUtils.weightedRandom(possible);

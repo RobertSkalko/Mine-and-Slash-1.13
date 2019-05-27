@@ -14,7 +14,7 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
             {
                 put(new DesertHillsIWP().GUID(), new DesertHillsIWP());
                 put(new SnowyMountainsIWP().GUID(), new SnowyMountainsIWP());
-                put(new JungleIWP().GUID(), new JungleIWP());
+                put(new SavannaIWP().GUID(), new SavannaIWP());
                 put(new RockDesertIWP().GUID(), new RockDesertIWP());
                 put(new RockMountainsIWP().GUID(), new RockMountainsIWP());
                 put(new DefaultIWP().GUID(), new DefaultIWP());

@@ -1,7 +1,10 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.database.unique_items.IUnique;
+import com.robertx22.database.unique_items.UniqueItemRegister;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.items.bags.AutoSalvageBag;
 import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ItemLootBag;
@@ -53,6 +56,8 @@ public class ItemRegister {
 
     private static void putInLists() {
 
+        UniqueItemRegister.register();
+
         for (ItemRarity x : Rarities.Items.rarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
             Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
@@ -80,6 +85,13 @@ public class ItemRegister {
         Hearthstone.Items.values().forEach((x) -> r.register(x));
         ItemCapacitor.Items.values().forEach((x) -> r.register(x));
         ItemLootbox.Items.values().forEach((x) -> r.register(x));
+
+        for (Item item : UniqueItems.ITEMS.values()) {
+            IUnique uniq = (IUnique) item;
+            item.setRegistryName("uniques/" + uniq.slot()
+                    .toLowerCase() + "/" + uniq.GUID());
+            event.getRegistry().register(item);
+        }
 
     }
 

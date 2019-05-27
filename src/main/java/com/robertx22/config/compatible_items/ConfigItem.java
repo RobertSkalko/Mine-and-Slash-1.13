@@ -1,8 +1,9 @@
 package com.robertx22.config.compatible_items;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.GearTypes;
-import com.robertx22.items.unique_items.IUnique;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
@@ -122,7 +123,7 @@ public class ConfigItem implements IWeighted {
 
         if (uniqueIsRandom == false) {
             boolean matches = false;
-            for (IUnique uniq : IUnique.getAll()) {
+            for (IUnique uniq : UniqueItems.getAll()) {
                 if (uniq.GUID().equals(this.uniqueId)) {
                     matches = true;
                 }
@@ -213,7 +214,7 @@ public class ConfigItem implements IWeighted {
         GearItemData gear = UniqueGearLootGen.CreateData(blueprint);
         gear.isNotFromMyMod = true;
 
-        if (gear.uniqueGUID != null || !IUnique.ITEMS.containsKey(gear.uniqueGUID)) {
+        if (gear.uniqueGUID != null || !UniqueItems.ITEMS.containsKey(gear.uniqueGUID)) {
             return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);

@@ -13,7 +13,7 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThun
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalHit;
-import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.StatData;

@@ -7,12 +7,13 @@ import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.ores.ItemOre;
-import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
@@ -47,7 +48,7 @@ public class GearItemData implements ITooltip, ISalvagable {
     public boolean isUnique = false;
 
     @Store
-    public String uniqueGUID;
+    public String uniqueGUID = "";
 
     @Store
     public int Rarity;
@@ -72,8 +73,8 @@ public class GearItemData implements ITooltip, ISalvagable {
     public ITextComponent name(ItemStack stack) {
 
         if (isUnique) {
-            if (IUnique.ITEMS.containsKey(this.uniqueGUID)) {
-                return ((IUnique) IUnique.ITEMS.get(this.uniqueGUID)).locName();
+            if (UniqueItems.ITEMS.containsKey(this.uniqueGUID)) {
+                return ((IUnique) UniqueItems.ITEMS.get(this.uniqueGUID)).locName();
             }
         } else {
             if (gearTypeName.isEmpty()) {
@@ -129,7 +130,7 @@ public class GearItemData implements ITooltip, ISalvagable {
     public Item getItem() {
 
         if (isUnique) {
-            return IUnique.ITEMS.getOrDefault(this.uniqueGUID, null);
+            return UniqueItems.ITEMS.getOrDefault(this.uniqueGUID, null);
         } else {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;

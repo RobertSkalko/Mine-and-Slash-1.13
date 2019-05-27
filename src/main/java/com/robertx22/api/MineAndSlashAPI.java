@@ -9,10 +9,10 @@ import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.sets.Set;
-import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.database.status_effects.bases.BaseStatusEffect;
+import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
-import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.spells.bases.BaseSpell;
 import net.minecraft.item.Item;
 
@@ -93,7 +93,7 @@ public class MineAndSlashAPI {
     }
 
     public static <T extends Item & IUnique> void addUnique(T unique) {
-        IUnique.ITEMS.put(unique.GUID(), unique);
+        UniqueItems.ITEMS.put(unique.GUID(), unique);
     }
 
 }

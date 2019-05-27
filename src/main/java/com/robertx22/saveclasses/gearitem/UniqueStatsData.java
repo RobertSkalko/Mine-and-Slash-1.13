@@ -2,7 +2,8 @@ package com.robertx22.saveclasses.gearitem;
 
 import com.robertx22.Styles;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.items.unique_items.IUnique;
+import com.robertx22.database.unique_items.IUnique;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.loot.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
@@ -71,7 +72,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
     }
 
     public IUnique getUniqueItem() {
-        return (IUnique) IUnique.ITEMS.get(this.uniqueGUID);
+        return (IUnique) UniqueItems.ITEMS.get(this.uniqueGUID);
     }
 
     @Override

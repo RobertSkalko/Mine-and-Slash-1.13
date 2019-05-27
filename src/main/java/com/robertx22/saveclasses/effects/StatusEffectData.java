@@ -1,6 +1,6 @@
 package com.robertx22.saveclasses.effects;
 
-import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import info.loenwind.autosave.annotations.Storable;

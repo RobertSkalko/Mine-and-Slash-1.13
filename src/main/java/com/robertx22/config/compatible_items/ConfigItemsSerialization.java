@@ -5,8 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.config.base.ISerializedConfig;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.GearTypes;
-import com.robertx22.items.unique_items.IUnique;
+import com.robertx22.db_lists.UniqueItems;
 import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.item.Item;
 
@@ -71,7 +72,7 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
         List<String> list = new ArrayList();
 
-        for (Item item : IUnique.ITEMS.values()) {
+        for (Item item : UniqueItems.ITEMS.values()) {
             IUnique uniq = (IUnique) item;
             list.add(uniq.GUID());
         }
