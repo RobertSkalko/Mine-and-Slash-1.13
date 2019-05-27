@@ -35,6 +35,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -142,8 +143,9 @@ public class EntityData {
 
         boolean tryUseWeapon(GearItemData gear, EntityLivingBase entity);
 
-        void attackWithWeapon(GearItemData gear, EntityLivingBase source,
-                              EntityLivingBase target, UnitData targetdata);
+        void attackWithWeapon(ItemStack weapon, GearItemData gear,
+                              EntityLivingBase source, EntityLivingBase target,
+                              UnitData targetdata);
 
         void onLogin(EntityPlayer player);
 
@@ -606,10 +608,16 @@ public class EntityData {
             return false;
         }
 
-        public void attackWithWeapon(GearItemData weaponData, EntityLivingBase source,
-                                     EntityLivingBase target, UnitData targetdata) {
+        @Override
+        public void attackWithWeapon(ItemStack weapon, GearItemData weaponData,
+                                     EntityLivingBase source, EntityLivingBase target,
+                                     UnitData targetdata) {
 
             if (weaponData.GetBaseGearType() instanceof IWeapon) {
+
+                if (weapon != null) {
+                    weapon.damageItem(1, source);
+                }
 
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();

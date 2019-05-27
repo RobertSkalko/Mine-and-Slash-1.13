@@ -1,9 +1,9 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
+import com.robertx22.mmorpg.registers.common.BlockRegister;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,12 +14,12 @@ public class TileMapPortal extends TileEntity {
     public String id;
 
     public TileMapPortal(DimensionType type) {
-        super(TileEntityType.END_PORTAL);
+        super(BlockRegister.TILE_PORTAL_BLOCK);
         this.id = MapManager.getResourceLocation(type).toString();
     }
 
     public TileMapPortal() {
-        super(TileEntityType.END_PORTAL);
+        super(BlockRegister.TILE_PORTAL_BLOCK);
     }
 
     int ticks = 0;
@@ -37,7 +37,7 @@ public class TileMapPortal extends TileEntity {
         return false;
 
     }
-    
+
     @OnlyIn(Dist.CLIENT)
     public boolean shouldRenderFace(EnumFacing face) {
         return face == EnumFacing.UP;

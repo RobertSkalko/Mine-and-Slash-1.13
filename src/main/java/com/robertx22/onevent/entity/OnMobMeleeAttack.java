@@ -79,7 +79,7 @@ public class OnMobMeleeAttack {
 
                 if (sourceData.isWeapon(weapondata)) {
                     if (sourceData.tryUseWeapon(weapondata, source)) {
-                        sourceData.attackWithWeapon(weapondata, source, target, targetData);
+                        sourceData.attackWithWeapon(source.getHeldItemMainhand(), weapondata, source, target, targetData);
                     }
 
                 } else {

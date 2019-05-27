@@ -110,7 +110,7 @@ public class MyEntityArrow extends EntityArrow {
 
                             GearItemData weapondata = sourceData.getWeaponData((EntityLivingBase) this.shootingEntity);
 
-                            sourceData.attackWithWeapon(weapondata, (EntityLivingBase) this.shootingEntity, entitylivingbase, Load
+                            sourceData.attackWithWeapon(null, weapondata, (EntityLivingBase) this.shootingEntity, entitylivingbase, Load
                                     .Unit(entitylivingbase));
 
                             entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);

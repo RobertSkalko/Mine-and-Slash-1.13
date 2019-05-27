@@ -39,8 +39,10 @@ public class BlockRegister {
     @ObjectHolder(EGG_LOOT_CRATE_ID)
     public static Block EGG_LOOT_CRATE_BLOCK;
     //NEW BLOCK
-    @ObjectHolder(Ref.MODID + ":map_portal_block")
+    @ObjectHolder(MAP_PORTAL_BLOCK_ID)
     public static Block PORTAL_BLOCK;
+    @ObjectHolder(MAP_PORTAL_BLOCK_ID)
+    public static TileEntityType<?> TILE_PORTAL_BLOCK;
     // NEW BLOCK
     @ObjectHolder(ATTUNEMENT_ALTAR_ID)
     public static Block ATTUNEMENT_ALTAR_BLOCK;

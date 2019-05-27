@@ -5,15 +5,14 @@ import com.robertx22.commands.GiveExp;
 import com.robertx22.commands.SetLevel;
 import com.robertx22.commands.giveitems.*;
 import net.minecraft.command.CommandSource;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraft.server.MinecraftServer;
 
 public class CommandRegister {
 
-    public static void Register(FMLServerStartingEvent event) {
+    public static void Register(MinecraftServer server) {
         System.out.println("Registering Mine and Slash Commands.");
 
-        CommandDispatcher<CommandSource> dispatcher = event.getServer()
-                .getCommandManager()
+        CommandDispatcher<CommandSource> dispatcher = server.getCommandManager()
                 .getDispatcher();
 
         SetLevel.register(dispatcher);

@@ -9,6 +9,7 @@ import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.onevent.world.OnStartResetMaps;
@@ -116,6 +117,7 @@ public class MMORPG {
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
+        SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
@@ -127,7 +129,7 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
-        CommandRegister.Register(event);
+        CommandRegister.Register(event.getServer());
 
     }
 
@@ -143,6 +145,8 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
+
+        CommandRegister.Register(event.getServer());
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
             ServerLifecycleHooks.getCurrentServer()

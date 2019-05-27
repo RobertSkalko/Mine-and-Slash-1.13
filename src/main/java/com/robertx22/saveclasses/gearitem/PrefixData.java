@@ -5,7 +5,7 @@ import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Prefixes;
-import com.robertx22.loot.create.StatGen;
+import com.robertx22.loot.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;

@@ -23,7 +23,7 @@ public class TileEntityRegister {
 
         IForgeRegistry<TileEntityType<?>> r = e.getRegistry();
 
-        r.register(TileEntityType.register(Ref.MODID + ":map_portal_tile", TileEntityType.Builder
+        r.register(TileEntityType.register(BlockRegister.MAP_PORTAL_BLOCK_ID, TileEntityType.Builder
                 .create(TileMapPortal::new)));
 
         r.register(TileEntityType.register(BlockRegister.GEAR_REPAIR_ID, TileEntityType.Builder

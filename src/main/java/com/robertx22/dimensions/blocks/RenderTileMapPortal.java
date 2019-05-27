@@ -1,5 +1,6 @@
 package com.robertx22.dimensions.blocks;
 
+import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
@@ -7,7 +8,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.tileentity.TileEntityEndPortal;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
@@ -16,14 +16,15 @@ import java.nio.FloatBuffer;
 import java.util.Random;
 
 public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
-    private static final ResourceLocation END_SKY_TEXTURE = new ResourceLocation("textures/environment/end_sky.png");
-    private static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
+    private static final ResourceLocation END_SKY_TEXTURE = new ResourceLocation(Ref.MODID, "textures/blocks/portal.png");
+    private static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation(Ref.MODID, "textures/blocks/portal.png");
     private static final Random RANDOM = new Random(31100L);
     private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
     private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
     private final FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
-    public void render(TileEntityEndPortal tileEntityIn, double x, double y, double z,
+    @Override
+    public void render(TileMapPortal tileEntityIn, double x, double y, double z,
                        float partialTicks, int destroyStage) {
         GlStateManager.disableLighting();
         RANDOM.setSeed(31100L);

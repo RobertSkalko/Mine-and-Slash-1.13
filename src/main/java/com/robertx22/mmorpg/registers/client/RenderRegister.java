@@ -1,7 +1,5 @@
 package com.robertx22.mmorpg.registers.client;
 
-import com.robertx22.dimensions.blocks.RenderTileMapPortal;
-import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.items.gearitems.RenderMyArrow;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
@@ -25,7 +23,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -40,8 +37,6 @@ public class RenderRegister {
 
     @SubscribeEvent
     public static void regRenders(ModelRegistryEvent evt) {
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
 
         RenderingRegistry.registerEntityRenderingHandler(MyEntityArrow.class, RenderMyArrow::new);
 
