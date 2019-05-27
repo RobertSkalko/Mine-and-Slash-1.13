@@ -12,7 +12,9 @@ import com.robertx22.database.sets.Set;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.db_lists.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.spells.bases.BaseSpell;
+import net.minecraft.item.Item;
 
 public class MineAndSlashAPI {
 
@@ -88,6 +90,10 @@ public class MineAndSlashAPI {
 
     public static void addRune(BaseRuneItem rune) {
         Runes.All.put(rune.name(), rune);
+    }
+
+    public static <T extends Item & IUnique> void addUnique(T unique) {
+        IUnique.ITEMS.put(unique.GUID(), unique);
     }
 
 }

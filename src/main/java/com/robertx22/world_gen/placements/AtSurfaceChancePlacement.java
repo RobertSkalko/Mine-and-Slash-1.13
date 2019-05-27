@@ -27,7 +27,7 @@ public class AtSurfaceChancePlacement extends BasePlacement<MyChanceConfig> {
 
                 int x = random.nextInt(16);
                 int z = random.nextInt(16);
-                BlockPos blockpos = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING, pos.add(x, 0, z));
+                BlockPos blockpos = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE, pos.add(x, 0, z));
                 featureIn.place(worldIn, chunkGenerator, random, blockpos, featureConfig);
 
                 return true;

@@ -21,7 +21,6 @@ public class GiveExpSub {
                 if (event.experience > 0) {
 
                     EntityPlayerMP player = (EntityPlayerMP) event.getEntityLiving();
-
                     if (event.playerCapability == null) {
                         Load.Unit(event.getEntityLiving())
                                 .GiveExp(player, event.experience);
