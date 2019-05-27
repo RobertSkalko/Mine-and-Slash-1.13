@@ -1,10 +1,10 @@
 package com.robertx22.database.stats;
 
-import com.robertx22.Styles;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IAffectsOtherStats;

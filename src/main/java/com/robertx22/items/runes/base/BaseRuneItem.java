@@ -1,6 +1,5 @@
 package com.robertx22.items.runes.base;
 
-import com.robertx22.Styles;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
@@ -32,6 +31,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.interfaces.IWeighted;

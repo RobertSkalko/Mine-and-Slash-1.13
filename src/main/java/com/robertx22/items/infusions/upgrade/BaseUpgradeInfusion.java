@@ -1,11 +1,11 @@
 package com.robertx22.items.infusions.upgrade;
 
-import com.robertx22.Styles;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;

@@ -1,6 +1,5 @@
 package com.robertx22.onevent.item;
 
-import com.robertx22.Styles;
 import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.saveclasses.GearItemData;
@@ -8,6 +7,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;

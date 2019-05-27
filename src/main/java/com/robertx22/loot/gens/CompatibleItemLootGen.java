@@ -23,6 +23,12 @@ public class CompatibleItemLootGen extends BaseLootGen {
     }
 
     @Override
+    public boolean condition() {
+
+        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get();
+    }
+
+    @Override
     public ItemStack generateOne() {
 
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && info.mobData != null) {

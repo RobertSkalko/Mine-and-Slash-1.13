@@ -16,15 +16,21 @@ public abstract class BaseLootGen {
 
     protected abstract ItemStack generateOne();
 
-    public List<ItemStack> generate() {
+    public boolean condition() {
+        return true;
+    }
+
+    public List<ItemStack> tryGenerate() {
 
         List<ItemStack> list = new ArrayList<ItemStack>();
 
-        for (int i = 0; i < info.amount; i++) {
-            try {
-                list.add(generateOne());
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (condition()) {
+            for (int i = 0; i < info.amount; i++) {
+                try {
+                    list.add(generateOne());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         return list;

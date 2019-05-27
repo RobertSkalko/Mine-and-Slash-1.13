@@ -1,6 +1,5 @@
 package com.robertx22.uncommon.capability;
 
-import com.robertx22.Styles;
 import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.MobRarity;
@@ -17,6 +16,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;

@@ -20,6 +20,11 @@ public class AwakenRuneWordLootGen extends BaseLootGen {
     }
 
     @Override
+    public boolean condition() {
+        return info.level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get();
+    }
+
+    @Override
     public ItemStack generateOne() {
 
         return Create(new AwakenRuneWordBlueprint());

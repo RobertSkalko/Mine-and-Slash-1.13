@@ -1,9 +1,9 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.Styles;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;

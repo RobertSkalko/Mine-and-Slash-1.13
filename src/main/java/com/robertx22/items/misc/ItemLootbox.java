@@ -1,6 +1,5 @@
 package com.robertx22.items.misc;
 
-import com.robertx22.Styles;
 import com.robertx22.config.ModConfig;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
@@ -15,6 +14,7 @@ import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.RunedGearLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IWeighted;

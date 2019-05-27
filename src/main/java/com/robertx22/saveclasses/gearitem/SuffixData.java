@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.Styles;
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.stats.StatMod;
@@ -10,6 +9,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;

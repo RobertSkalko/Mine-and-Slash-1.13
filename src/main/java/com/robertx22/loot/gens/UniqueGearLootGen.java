@@ -15,6 +15,7 @@ import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.item.ItemStack;
 
 public class UniqueGearLootGen extends BaseLootGen {
@@ -26,6 +27,11 @@ public class UniqueGearLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public boolean condition() {
+        return WorldUtils.dropsUniques(info.world);
     }
 
     @Override

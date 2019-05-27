@@ -1,10 +1,10 @@
 package com.robertx22.items.level_incentives;
 
-import com.robertx22.Styles;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;

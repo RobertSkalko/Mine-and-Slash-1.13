@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.uncommon;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;

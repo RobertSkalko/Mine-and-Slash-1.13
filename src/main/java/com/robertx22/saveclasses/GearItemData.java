@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.Styles;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
@@ -22,6 +21,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

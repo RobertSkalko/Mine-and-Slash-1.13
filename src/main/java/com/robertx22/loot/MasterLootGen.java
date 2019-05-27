@@ -1,9 +1,7 @@
 package com.robertx22.loot;
 
-import com.robertx22.config.ModConfig;
 import com.robertx22.loot.gens.*;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -49,24 +47,16 @@ public class MasterLootGen {
             return items;
         }
 
-        if (info.level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get()) {
-            items.addAll(new CurrencyLootGen(info).generate());
-            items.addAll(new AwakenRuneWordLootGen(info).generate());
-        }
-        items.addAll(new GearLootGen(info).generate());
-        items.addAll(new SpellLootGen(info).generate());
-        items.addAll(new MapLootGen(info).generate());
-        items.addAll(new RuneLootGen(info).generate());
-        items.addAll(new RunedGearLootGen(info).generate());
-        items.addAll(new LootBoxGen(info).generate());
-
-        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
-            items.addAll(new CompatibleItemLootGen(info).generate());
-        }
-
-        if (WorldUtils.dropsUniques(info.world)) {
-            items.addAll(new UniqueGearLootGen(info).generate());
-        }
+        items.addAll(new CurrencyLootGen(info).tryGenerate());
+        items.addAll(new AwakenRuneWordLootGen(info).tryGenerate());
+        items.addAll(new GearLootGen(info).tryGenerate());
+        items.addAll(new SpellLootGen(info).tryGenerate());
+        items.addAll(new MapLootGen(info).tryGenerate());
+        items.addAll(new RuneLootGen(info).tryGenerate());
+        items.addAll(new RunedGearLootGen(info).tryGenerate());
+        items.addAll(new LootBoxGen(info).tryGenerate());
+        items.addAll(new CompatibleItemLootGen(info).tryGenerate());
+        items.addAll(new UniqueGearLootGen(info).tryGenerate());
 
         return items.stream()
                 .filter(x -> x.isEmpty() == false)

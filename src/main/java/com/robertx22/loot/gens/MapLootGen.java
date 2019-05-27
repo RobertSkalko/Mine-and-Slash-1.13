@@ -30,6 +30,11 @@ public class MapLootGen extends BaseLootGen {
     }
 
     @Override
+    public boolean condition() {
+        return info.level >= ModConfig.INSTANCE.Server.MAPS_DROP_AFTER_LEVEL.get();
+    }
+
+    @Override
     public boolean hasLevelDistancePunishment() {
         return false;
     }
