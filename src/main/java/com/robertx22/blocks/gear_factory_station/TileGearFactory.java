@@ -4,8 +4,8 @@ import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
-import com.robertx22.loot.create.GearGen;
-import com.robertx22.loot.create.SpellItemGen;
+import com.robertx22.loot.gens.GearLootGen;
+import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
@@ -79,7 +79,7 @@ public class TileGearFactory extends BaseTile {
                 if (RandomUtils.roll(spellChance)) {
                     SpellBlueprint spellprint = new SpellBlueprint(gear.level);
                     spellprint.LevelRange = false;
-                    return SpellItemGen.Create(spellprint);
+                    return SpellLootGen.Create(spellprint);
                 } else {
                     GearBlueprint print = new GearBlueprint(gear.level);
                     print.LevelRange = false;
@@ -87,7 +87,7 @@ public class TileGearFactory extends BaseTile {
                         print.SetSpecificType(gear.gearTypeName);
                     }
 
-                    return GearGen.CreateStack(print);
+                    return GearLootGen.CreateStack(print);
                 }
 
             }

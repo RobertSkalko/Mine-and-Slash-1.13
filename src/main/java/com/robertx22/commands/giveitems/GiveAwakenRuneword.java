@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.commands.bases.GearTypeSuggestions;
 import com.robertx22.loot.blueprints.AwakenRuneWordBlueprint;
-import com.robertx22.loot.create.AwakenRuneWordGen;
+import com.robertx22.loot.gens.AwakenRuneWordLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -50,7 +50,7 @@ public class GiveAwakenRuneword {
             }
 
             try {
-                player.addItemStackToInventory(AwakenRuneWordGen.Create(blueprint));
+                player.addItemStackToInventory(AwakenRuneWordLootGen.Create(blueprint));
             } catch (Exception e) {
                 e.printStackTrace();
             }

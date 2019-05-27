@@ -5,9 +5,9 @@ import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
-import com.robertx22.loot.create.GearGen;
-import com.robertx22.loot.create.MapGen;
-import com.robertx22.loot.create.SpellItemGen;
+import com.robertx22.loot.gens.GearLootGen;
+import com.robertx22.loot.gens.MapLootGen;
+import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.spells.self.SpellInstantHeal;
@@ -31,24 +31,24 @@ public class OnLogin {
         print.LevelRange = false;
         print.SetSpecificRarity(0);
 
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Boots().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Chest().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Helmet().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Pants().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
 
         print.SetSpecificType(new Ring().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Ring().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Necklace().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Bracelet().GUID());
-        player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
 
         SpellBlueprint spell = new SpellBlueprint(1);
         spell.SetSpecificType(new SpellInstantHeal().GUID());
@@ -57,16 +57,16 @@ public class OnLogin {
 
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
-        player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
+        player.inventory.addItemStackToInventory(SpellLootGen.Create(spell));
 
         // TESTING MAPS
         MapBlueprint map = new MapBlueprint(1, 1);
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
-        player.inventory.addItemStackToInventory(MapGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
 
         ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
         seeds.setCount(64);

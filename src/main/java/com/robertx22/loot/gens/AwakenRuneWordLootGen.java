@@ -1,9 +1,10 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.database.runewords.RuneWord;
+import com.robertx22.items.misc.ItemAwakenRuneWord;
 import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.blueprints.AwakenRuneWordBlueprint;
-import com.robertx22.loot.create.AwakenRuneWordGen;
 import net.minecraft.item.ItemStack;
 
 public class AwakenRuneWordLootGen extends BaseLootGen {
@@ -21,7 +22,21 @@ public class AwakenRuneWordLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-        return AwakenRuneWordGen.Create(new AwakenRuneWordBlueprint());
+        return Create(new AwakenRuneWordBlueprint());
+
+    }
+
+    public static ItemStack Create(AwakenRuneWordBlueprint blueprint) {
+
+        ItemStack stack = new ItemStack(ItemAwakenRuneWord.ITEM);
+
+        ItemAwakenRuneWord item = (ItemAwakenRuneWord) stack.getItem();
+
+        RuneWord word = blueprint.getWord();
+
+        item.setWord(stack, word);
+
+        return stack;
 
     }
 

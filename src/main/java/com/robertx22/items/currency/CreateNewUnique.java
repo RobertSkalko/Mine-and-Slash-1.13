@@ -2,7 +2,7 @@ package com.robertx22.items.currency;
 
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
-import com.robertx22.loot.create.UniqueGearGen;
+import com.robertx22.loot.gens.UniqueGearLootGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -38,17 +38,17 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
         gearPrint.SetSpecificRarity(new UniqueItem().Rank());
         gearPrint.LevelRange = false;
 
-        GearItemData newgear = UniqueGearGen.CreateData(gearPrint);
+        GearItemData newgear = UniqueGearLootGen.CreateData(gearPrint);
 
         int tries = 0; // in case there's only 1 unique in a tier
         while (newgear.gearTypeName.equals(gear.gearTypeName) && tries < 10) {
-            newgear = UniqueGearGen.CreateData(gearPrint);
+            newgear = UniqueGearLootGen.CreateData(gearPrint);
             tries++;
         }
 
         gear.WriteOverDataThatShouldStay(newgear);
 
-        return UniqueGearGen.CreateStack(newgear);
+        return UniqueGearLootGen.CreateStack(newgear);
     }
 
     @Override

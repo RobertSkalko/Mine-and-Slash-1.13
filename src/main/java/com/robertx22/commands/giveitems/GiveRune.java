@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.loot.blueprints.RuneBlueprint;
-import com.robertx22.loot.create.RuneGen;
+import com.robertx22.loot.gens.RuneLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -53,7 +53,7 @@ public class GiveRune {
 
             blueprint.LevelRange = false;
 
-            player.addItemStackToInventory(RuneGen.Create(blueprint));
+            player.addItemStackToInventory(RuneLootGen.Create(blueprint));
         }
 
         return 0;

@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.loot.blueprints.MapBlueprint;
-import com.robertx22.loot.create.MapGen;
+import com.robertx22.loot.gens.MapLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -54,7 +54,7 @@ public class GiveMap {
         }
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(MapGen.Create(blueprint));
+            player.addItemStackToInventory(MapLootGen.Create(blueprint));
         }
 
         return 0;

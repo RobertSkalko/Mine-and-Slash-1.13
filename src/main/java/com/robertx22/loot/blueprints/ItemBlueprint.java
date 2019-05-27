@@ -27,6 +27,16 @@ public abstract class ItemBlueprint {
 
     public int minLevel = 1;
 
+    public String GUID;
+    public boolean randomGUID = true;
+
+    public void SetSpecificType(String type) {
+
+        GUID = type;
+        randomGUID = false;
+
+    }
+
     public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
 
     public void SetSpecificRarity(int i) {

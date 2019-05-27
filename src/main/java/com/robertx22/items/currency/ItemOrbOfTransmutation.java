@@ -1,7 +1,7 @@
 package com.robertx22.items.currency;
 
 import com.robertx22.loot.blueprints.GearBlueprint;
-import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -36,13 +36,13 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
         gearPrint.minRarity = 1;
         gearPrint.LevelRange = false;
 
-        GearItemData newgear = GearGen.CreateData(gearPrint);
+        GearItemData newgear = GearLootGen.CreateData(gearPrint);
         gear.WriteOverDataThatShouldStay(newgear);
 
         ItemStack result = ItemStack.EMPTY;
 
         if (gear.changesItemStack()) {
-            result = GearGen.CreateStack(newgear);
+            result = GearLootGen.CreateStack(newgear);
         } else {
             result = stack;
             Gear.Save(result, newgear);

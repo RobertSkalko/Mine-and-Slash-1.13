@@ -6,9 +6,9 @@ import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
-import com.robertx22.loot.create.GearGen;
-import com.robertx22.loot.create.RunedGearGen;
-import com.robertx22.loot.create.UniqueGearGen;
+import com.robertx22.loot.gens.GearLootGen;
+import com.robertx22.loot.gens.RunedGearLootGen;
+import com.robertx22.loot.gens.UniqueGearLootGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.interfaces.IWeighted;
@@ -190,7 +190,7 @@ public class ConfigItem implements IWeighted {
         blueprint.minRarity = this.minRarity;
         blueprint.maxRarity = this.maxRarity;
 
-        GearItemData gear = GearGen.CreateData(blueprint);
+        GearItemData gear = GearLootGen.CreateData(blueprint);
         gear.isNotFromMyMod = true;
 
         Gear.Save(stack, gear);
@@ -210,7 +210,7 @@ public class ConfigItem implements IWeighted {
         blueprint.LevelRange = this.levelVariance > 0;
         blueprint.LevelVariance = this.levelVariance;
 
-        GearItemData gear = UniqueGearGen.CreateData(blueprint);
+        GearItemData gear = UniqueGearLootGen.CreateData(blueprint);
         gear.isNotFromMyMod = true;
 
         if (gear.uniqueGUID != null || !IUnique.ITEMS.containsKey(gear.uniqueGUID)) {
@@ -232,7 +232,7 @@ public class ConfigItem implements IWeighted {
         blueprint.minRarity = this.minRarity;
         blueprint.maxRarity = this.maxRarity;
 
-        GearItemData gear = RunedGearGen.CreateData(blueprint);
+        GearItemData gear = RunedGearLootGen.CreateData(blueprint);
         gear.isNotFromMyMod = true;
 
         Gear.Save(stack, gear);

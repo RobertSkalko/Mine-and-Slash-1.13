@@ -10,10 +10,10 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
-import com.robertx22.loot.create.GearGen;
-import com.robertx22.loot.create.RunedGearGen;
-import com.robertx22.loot.create.SpellItemGen;
 import com.robertx22.loot.gens.CompatibleItemLootGen;
+import com.robertx22.loot.gens.GearLootGen;
+import com.robertx22.loot.gens.RunedGearLootGen;
+import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -173,14 +173,14 @@ public class ItemLootbox extends BaseItem implements IWeighted {
                     print.minRarity = this.rarity;
                     print.LevelRange = false;
 
-                    stacks.add(RunedGearGen.CreateStack(print));
+                    stacks.add(RunedGearLootGen.CreateStack(print));
 
                 } else {
                     GearBlueprint print = new GearBlueprint(lvl);
                     print.minRarity = this.rarity;
                     print.LevelRange = false;
 
-                    stacks.add(GearGen.CreateStack(print));
+                    stacks.add(GearLootGen.CreateStack(print));
                 }
             }
 
@@ -191,7 +191,7 @@ public class ItemLootbox extends BaseItem implements IWeighted {
             print.LevelRange = false;
 
             for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
-                stacks.add(SpellItemGen.Create(print));
+                stacks.add(SpellLootGen.Create(print));
             }
 
         } else if (lootType.equals(LootTypes.Currency)) {

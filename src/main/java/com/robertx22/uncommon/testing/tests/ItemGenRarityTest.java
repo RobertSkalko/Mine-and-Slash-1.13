@@ -2,7 +2,7 @@ package com.robertx22.uncommon.testing.tests;
 
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.blueprints.GearBlueprint;
-import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import org.apache.commons.lang3.time.StopWatch;
@@ -25,7 +25,7 @@ public class ItemGenRarityTest {
 
         for (int i = 0; i < amount; i++) {
 
-            GearItemData data = Gear.Load(GearGen.CreateStack(schema));
+            GearItemData data = Gear.Load(GearLootGen.CreateStack(schema));
 
             if (RarityandNumber.containsKey(data.Rarity)) {
                 RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);

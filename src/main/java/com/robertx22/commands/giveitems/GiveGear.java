@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.commands.bases.GearTypeSuggestions;
 import com.robertx22.loot.blueprints.GearBlueprint;
-import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.gens.GearLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -59,7 +59,7 @@ public class GiveGear {
         blueprint.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(GearGen.CreateStack(blueprint));
+            player.addItemStackToInventory(GearLootGen.CreateStack(blueprint));
         }
 
         return 0;

@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.commands.bases.GearTypeSuggestions;
 import com.robertx22.loot.blueprints.RunedGearBlueprint;
-import com.robertx22.loot.create.RunedGearGen;
+import com.robertx22.loot.gens.RunedGearLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -59,7 +59,7 @@ public class GiveRunedGear {
         blueprint.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(RunedGearGen.CreateStack(blueprint));
+            player.addItemStackToInventory(RunedGearLootGen.CreateStack(blueprint));
         }
 
         return 0;

@@ -7,7 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.commands.bases.GearTypeSuggestions;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
-import com.robertx22.loot.create.UniqueGearGen;
+import com.robertx22.loot.gens.UniqueGearLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -56,7 +56,7 @@ public class GiveUnique {
         blueprint.SetSpecificType(type);
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(UniqueGearGen.CreateStack(blueprint));
+            player.addItemStackToInventory(UniqueGearLootGen.CreateStack(blueprint));
         }
 
         return 0;

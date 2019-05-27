@@ -4,7 +4,7 @@ import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.BaseItem;
 import com.robertx22.loot.blueprints.GearBlueprint;
-import com.robertx22.loot.create.GearGen;
+import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
@@ -53,17 +53,17 @@ public class ItemNewbieGearBag extends BaseItem {
                 GearBlueprint print = new GearBlueprint(1);
                 print.LevelRange = false;
 
-                GearItemData wepData = GearGen.CreateData(weaponPrint);
+                GearItemData wepData = GearLootGen.CreateData(weaponPrint);
                 wepData.isSalvagable = false;
 
-                ItemStack weaponStack = GearGen.CreateStack(wepData);
+                ItemStack weaponStack = GearLootGen.CreateStack(wepData);
                 playerIn.dropItem(weaponStack, false, true);
 
                 for (int i = 0; i < ITEMS_AMOUNT; i++) {
 
-                    GearItemData data = GearGen.CreateData(print);
+                    GearItemData data = GearLootGen.CreateData(print);
                     data.isSalvagable = false;
-                    ItemStack stack = GearGen.CreateStack(data);
+                    ItemStack stack = GearLootGen.CreateStack(data);
 
                     playerIn.dropItem(stack, false, true);
                 }
