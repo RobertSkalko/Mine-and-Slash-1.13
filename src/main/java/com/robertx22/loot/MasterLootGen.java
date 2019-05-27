@@ -3,7 +3,7 @@ package com.robertx22.loot;
 import com.robertx22.config.ModConfig;
 import com.robertx22.loot.gens.*;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -72,7 +72,7 @@ public class MasterLootGen {
                 .filter(x -> x.isEmpty() == false)
                 .collect(Collectors.toList());
     }
-    
+
     public static List<ItemStack> gen(UnitData mob, UnitData player,
                                       EntityLivingBase victim, EntityPlayer killer) {
 

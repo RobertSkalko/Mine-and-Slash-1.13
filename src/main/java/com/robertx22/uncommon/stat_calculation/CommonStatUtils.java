@@ -7,7 +7,7 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
-import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
 
 import java.util.List;

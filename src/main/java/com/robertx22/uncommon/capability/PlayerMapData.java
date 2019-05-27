@@ -9,6 +9,7 @@ import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

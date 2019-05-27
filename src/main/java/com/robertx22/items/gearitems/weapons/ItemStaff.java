@@ -6,7 +6,7 @@ import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
+import com.robertx22.spells.entities.EntityStaffProjectile;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;

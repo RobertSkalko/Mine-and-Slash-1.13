@@ -12,7 +12,7 @@ import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
 import com.robertx22.spells.aoe_projectile.SpellFlameExplosion;
 import com.robertx22.spells.aoe_projectile.SpellFrostExplosion;
 import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
-import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
+import com.robertx22.spells.entities.EntityStaffProjectile;
 import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;

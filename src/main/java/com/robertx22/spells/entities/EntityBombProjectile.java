@@ -1,9 +1,7 @@
-package com.robertx22.spells.aoe_bomb_proj.bases;
+package com.robertx22.spells.entities;
 
 import com.robertx22.potion_effects.all.EnergyRegenPotion;
 import com.robertx22.potion_effects.all.ManaRegenPotion;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.bases.projectile.Targeting;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
@@ -98,11 +96,6 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
                         .addPotionEffect(new PotionEffect(ManaRegenPotion.INSTANCE, 400, 2));
             }
         }
-    }
-
-    @Override
-    protected Targeting.TargetType getTargetType() {
-        return Targeting.TargetType.ENEMY;
     }
 
     @Override

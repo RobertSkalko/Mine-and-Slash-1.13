@@ -4,54 +4,53 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThun
 import com.robertx22.items.spells.projectile.ItemThunderBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellThunderBolt extends BaseSpellProjectile {
     static public class EntityThunderBolt extends EntityElementalBolt {
 
-	public EntityThunderBolt(World worldIn) {
+        public EntityThunderBolt(World worldIn) {
 
-	    super(EntityRegister.THUNDERBOLT, worldIn);
+            super(EntityRegister.THUNDERBOLT, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Thunder;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Thunder;
+        }
     }
 
     public SpellThunderBolt() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellThunderDamage().GUID(), 0.5F);
+        return new EffectCalculation(new SpellThunderDamage().GUID(), 0.5F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemThunderBolt.ITEM;
+        return ItemThunderBolt.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "ThunderBolt";
+        return "ThunderBolt";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityThunderBolt(world);
+        return new EntityThunderBolt(world);
     }
 
 }

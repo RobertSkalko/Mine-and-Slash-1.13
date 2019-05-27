@@ -4,54 +4,53 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWate
 import com.robertx22.items.spells.projectile.ItemFrostBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFrostBolt extends BaseSpellProjectile {
     static public class EntityFrostBolt extends EntityElementalBolt {
 
-	public EntityFrostBolt(World worldIn) {
+        public EntityFrostBolt(World worldIn) {
 
-	    super(EntityRegister.FROSTBOLT, worldIn);
+            super(EntityRegister.FROSTBOLT, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Water;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Water;
+        }
     }
 
     public SpellFrostBolt() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellWaterDamage().GUID(), 0.5F);
+        return new EffectCalculation(new SpellWaterDamage().GUID(), 0.5F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemFrostBolt.ITEM;
+        return ItemFrostBolt.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "FrostBolt";
+        return "FrostBolt";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityFrostBolt(world);
+        return new EntityFrostBolt(world);
     }
 
 }

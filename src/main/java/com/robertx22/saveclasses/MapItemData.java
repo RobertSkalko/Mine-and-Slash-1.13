@@ -18,6 +18,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
+import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.*;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

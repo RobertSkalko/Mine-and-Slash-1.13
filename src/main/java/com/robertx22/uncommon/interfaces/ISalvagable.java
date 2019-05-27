@@ -1,4 +1,4 @@
-package com.robertx22.saveclasses;
+package com.robertx22.uncommon.interfaces;
 
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;

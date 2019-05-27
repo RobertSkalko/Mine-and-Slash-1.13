@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;

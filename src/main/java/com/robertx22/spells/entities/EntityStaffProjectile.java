@@ -1,4 +1,4 @@
-package com.robertx22.spells.bases.projectile;
+package com.robertx22.spells.entities;
 
 import com.robertx22.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mmorpg.registers.common.EntityRegister;

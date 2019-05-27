@@ -1,7 +1,7 @@
 package com.robertx22.world_gen.features;
 
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;

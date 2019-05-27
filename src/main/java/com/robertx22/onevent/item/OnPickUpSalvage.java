@@ -3,7 +3,7 @@ package com.robertx22.onevent.item;
 import com.mmorpg_libraries.curios.CurioSlots;
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.items.bags.AutoSalvageBag;
-import com.robertx22.saveclasses.ISalvagable;
+import com.robertx22.uncommon.interfaces.ISalvagable;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

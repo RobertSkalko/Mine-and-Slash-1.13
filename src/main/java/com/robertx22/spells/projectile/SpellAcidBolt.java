@@ -4,55 +4,54 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatu
 import com.robertx22.items.spells.projectile.ItemAcidBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellAcidBolt extends BaseSpellProjectile {
     static public class EntityAcidBolt extends EntityElementalBolt {
 
-	public EntityAcidBolt(World worldIn) {
+        public EntityAcidBolt(World worldIn) {
 
-	    super(EntityRegister.ACIDBOLT, worldIn);
+            super(EntityRegister.ACIDBOLT, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Nature;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Nature;
+        }
 
     }
 
     public SpellAcidBolt() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellNatureDamage().GUID(), 0.5F);
+        return new EffectCalculation(new SpellNatureDamage().GUID(), 0.5F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
+        return Elements.Nature;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemAcidBolt.ITEM;
+        return ItemAcidBolt.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "AcidBolt";
+        return "AcidBolt";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityAcidBolt(world);
+        return new EntityAcidBolt(world);
     }
 
 }

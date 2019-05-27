@@ -4,57 +4,56 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatu
 import com.robertx22.items.spells.aoe_bomb_proj.ItemAcidBomb;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
-import com.robertx22.spells.aoe_bomb_proj.bases.EntityBombProjectile;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityBombProjectile;
+import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellAcidBomb extends BaseBombSpell {
 
     public SpellAcidBomb() {
-	super();
+        super();
     }
 
     static public class EntityAcidBomb extends EntityBombProjectile {
 
-	public EntityAcidBomb(World worldIn) {
-	    super(EntityRegister.ACIDBOMB, worldIn);
+        public EntityAcidBomb(World worldIn) {
+            super(EntityRegister.ACIDBOMB, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Nature;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Nature;
+        }
 
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellNatureDamage().GUID(), this.damageScaling);
+        return new EffectCalculation(new SpellNatureDamage().GUID(), this.damageScaling);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Nature;
+        return Elements.Nature;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemAcidBomb.ITEM;
+        return ItemAcidBomb.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "AcidBomb";
+        return "AcidBomb";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityAcidBomb(world);
+        return new EntityAcidBomb(world);
     }
 
 }

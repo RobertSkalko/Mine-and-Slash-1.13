@@ -3,7 +3,7 @@ package com.robertx22.spells.aoe_projectile;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.SpellEffectDamage;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

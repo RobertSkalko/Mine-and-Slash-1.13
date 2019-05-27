@@ -4,56 +4,55 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWate
 import com.robertx22.items.spells.aoe_projectile.ItemFrostExplosion;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
+import com.robertx22.spells.entities.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBoltAOE;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFrostExplosion extends BaseAoeSpellProjectile {
     static public class EntityFrostExplosion extends EntityElementalBoltAOE {
 
-	public EntityFrostExplosion(World worldIn) {
+        public EntityFrostExplosion(World worldIn) {
 
-	    super(EntityRegister.FROSTEXPLOSION, worldIn);
+            super(EntityRegister.FROSTEXPLOSION, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Water;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Water;
+        }
 
     }
 
     public SpellFrostExplosion() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellWaterDamage().GUID(), 0.25F);
+        return new EffectCalculation(new SpellWaterDamage().GUID(), 0.25F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemFrostExplosion.ITEM;
+        return ItemFrostExplosion.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "FrostExplosion";
+        return "FrostExplosion";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityFrostExplosion(world);
+        return new EntityFrostExplosion(world);
     }
 
 }

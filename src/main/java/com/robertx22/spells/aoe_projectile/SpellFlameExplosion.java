@@ -4,56 +4,55 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellFire
 import com.robertx22.items.spells.aoe_projectile.ItemFlameExplosion;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
+import com.robertx22.spells.entities.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBoltAOE;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFlameExplosion extends BaseAoeSpellProjectile {
     static public class EntityFlameExplosion extends EntityElementalBoltAOE {
 
-	public EntityFlameExplosion(World worldIn) {
+        public EntityFlameExplosion(World worldIn) {
 
-	    super(EntityRegister.FIREEXPLOSION, worldIn);
+            super(EntityRegister.FIREEXPLOSION, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Fire;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Fire;
+        }
 
     }
 
     public SpellFlameExplosion() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellFireDamage().GUID(), 0.25F);
+        return new EffectCalculation(new SpellFireDamage().GUID(), 0.25F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Fire;
+        return Elements.Fire;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemFlameExplosion.ITEM;
+        return ItemFlameExplosion.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "FlameExplosion";
+        return "FlameExplosion";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityFlameExplosion(world);
+        return new EntityFlameExplosion(world);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.robertx22.onevent.world;
 
-import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;

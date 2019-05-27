@@ -1,8 +1,8 @@
 package com.robertx22.onevent.player;
 
 import com.robertx22.uncommon.capability.PlayerMapData;
-import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

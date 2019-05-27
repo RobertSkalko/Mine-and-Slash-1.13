@@ -4,56 +4,55 @@ import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThun
 import com.robertx22.items.spells.aoe_projectile.ItemLightningExplosion;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;
+import com.robertx22.spells.entities.EntityElementalBolt;
+import com.robertx22.spells.entities.EntityElementalBoltAOE;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellLightningExplosion extends BaseAoeSpellProjectile {
     static public class EntityLightningExplosion extends EntityElementalBoltAOE {
 
-	public EntityLightningExplosion(World worldIn) {
+        public EntityLightningExplosion(World worldIn) {
 
-	    super(EntityRegister.THUNDEREXPLOSION, worldIn);
+            super(EntityRegister.THUNDEREXPLOSION, worldIn);
 
-	}
+        }
 
-	@Override
-	public Elements element() {
-	    return Elements.Thunder;
-	}
+        @Override
+        public Elements element() {
+            return Elements.Thunder;
+        }
 
     }
 
     public SpellLightningExplosion() {
-	super();
+        super();
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellThunderDamage().GUID(), 0.25F);
+        return new EffectCalculation(new SpellThunderDamage().GUID(), 0.25F);
     }
 
     @Override
     public Elements Element() {
-	return Elements.Thunder;
+        return Elements.Thunder;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemLightningExplosion.ITEM;
+        return ItemLightningExplosion.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "LightningExplosion";
+        return "LightningExplosion";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityLightningExplosion(world);
+        return new EntityLightningExplosion(world);
     }
 
 }

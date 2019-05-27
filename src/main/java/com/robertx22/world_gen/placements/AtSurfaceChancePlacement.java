@@ -1,6 +1,6 @@
 package com.robertx22.world_gen.placements;
 
-import com.robertx22.uncommon.capability.WorldUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_gen.configs.MyChanceConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;

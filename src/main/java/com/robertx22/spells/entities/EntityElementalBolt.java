@@ -1,8 +1,7 @@
-package com.robertx22.spells.bases.projectile;
+package com.robertx22.spells.entities;
 
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
-import com.robertx22.spells.bases.projectile.Targeting.TargetType;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
@@ -27,10 +26,6 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     public EntityElementalBolt(EntityType<?> type, World worldIn) {
         super(type, worldIn);
 
-    }
-
-    protected TargetType getTargetType() {
-        return TargetType.ENEMY;
     }
 
     @Override

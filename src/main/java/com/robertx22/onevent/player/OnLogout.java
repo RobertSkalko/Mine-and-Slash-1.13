@@ -1,7 +1,7 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.uncommon.capability.WorldUtils;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
