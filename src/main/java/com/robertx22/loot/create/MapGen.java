@@ -57,7 +57,7 @@ public class MapGen {
             BaseMapAffix affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
                     .values()));
 
-            while (affixes.contains(affix.GUID())) {
+            while (affixes.contains(affix.GUID()) || affix.isBeneficial()) { // can't have moba affixes arndom anymore. only on dimension types
                 affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
                         .values()));
             }

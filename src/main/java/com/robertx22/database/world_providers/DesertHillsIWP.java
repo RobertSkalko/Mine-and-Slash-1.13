@@ -1,7 +1,7 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.map_mods.bonus.ele_dmg.BonusFireDamageMap;
-import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
@@ -26,8 +26,8 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
-    public List<StatMod> getBonusMobStats() {
-        return Arrays.asList(new BonusFireDamageMap());
+    public List<MapAffixData> getMapAffixes() {
+        return Arrays.asList(new MapAffixData(new BonusFireDamageAffix(), 100));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.map_mods.bonus.ele_res.BonusFireResistMap;
-import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
@@ -27,8 +27,8 @@ public class RockDesertIWP extends BaseWorldProvider {
     }
 
     @Override
-    public List<StatMod> getBonusMobStats() {
-        return Arrays.asList(new BonusFireResistMap());
+    public List<MapAffixData> getMapAffixes() {
+        return Arrays.asList(new MapAffixData(new BonusFireResistAffix(), 100));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.world_providers.IWP;
+import com.robertx22.database.world_providers.SurfaceIWP;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.MapManager;
@@ -17,12 +18,10 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.uncommon.utilityclasses.Tooltip;
-import com.robertx22.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.uncommon.utilityclasses.*;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -70,7 +69,7 @@ public class MapItemData implements ISalvagable, ITooltip {
             return iwp;
         }
 
-        return WorldProviders.INSTANCE.random();
+        return WorldProviders.All.get(new SurfaceIWP().GUID());
     }
 
     @Override
@@ -127,6 +126,34 @@ public class MapItemData implements ISalvagable, ITooltip {
             total += affix.percent / 100;
         }
         return total;
+    }
+
+    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes,
+                                                             EntityLivingBase entity) {
+
+        AffectedEntities affected = AffectedEntities.All;
+
+        if (entity instanceof EntityPlayer) {
+            affected = AffectedEntities.Players;
+        } else if (EntityTypeUtils.isMob(entity)) {
+            affected = AffectedEntities.Mobs;
+        }
+
+        return getAllAffixesThatAffect(affixes, affected);
+
+    }
+
+    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes,
+                                                             AffectedEntities affected) {
+
+        List<MapAffixData> list = new ArrayList<>();
+
+        for (MapAffixData data : affixes) {
+            if (data.affectedEntities.equals(affected)) {
+                list.add(data);
+            }
+        }
+        return list;
     }
 
     public List<MapAffixData> getAllAffixesThatAffect(AffectedEntities affected) {
@@ -252,7 +279,10 @@ public class MapItemData implements ISalvagable, ITooltip {
                                               List<ITextComponent> tooltip,
                                               AffectedEntities affected) {
 
-        List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
+        List<MapAffixData> affixes = new ArrayList<>(data.getAllAffixesThatAffect(affected));
+
+        affixes.addAll(MapItemData.getAllAffixesThatAffect(data.getIWP()
+                .getMapAffixes(), affected));
 
         if (affixes.size() == 0) {
             return;

@@ -14,8 +14,8 @@ import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.saveclasses.effects.StatusEffectData;
-import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
@@ -50,8 +50,8 @@ public class Unit {
     @Store
     public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
 
-    @Store
-    public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>(); // possibly not needed as i can just get affixes from world?
+    //@Store
+    //public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>(); // possibly not needed as i can just get affixes from world?
 
     @Store
     public String GUID = UUID.randomUUID().toString();
@@ -315,9 +315,12 @@ public class Unit {
 
         Unit copy = this.Clone();
 
+        PlayerMapData.IPlayerMapData mapdata = null;
+
         int tier = 0;
         if (entity instanceof EntityPlayer) {
-            tier = Load.playerMapData((EntityPlayer) entity).getTier();
+            mapdata = Load.playerMapData((EntityPlayer) entity);
+            tier = mapdata.getTier();
         }
 
         ClearStats();
@@ -345,7 +348,7 @@ public class Unit {
         }
 
         CommonStatUtils.AddStatusEffectStats(this, level);
-        CommonStatUtils.AddMapAffixStats(this, level);
+        CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
         PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
         PlayerStatUtils.CalcTraitsAndCoreStats(data);
 

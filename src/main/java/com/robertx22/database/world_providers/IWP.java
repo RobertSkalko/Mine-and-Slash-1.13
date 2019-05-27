@@ -1,6 +1,6 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.stats.StatMod;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.ILocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
@@ -20,7 +20,7 @@ public interface IWP extends IWeighted, ILocName {
 
     ModDimension newModDimension();
 
-    List<StatMod> getBonusMobStats(); // missing thunder damage maps.. hmm
+    List<MapAffixData> getMapAffixes(); // missing thunder damage maps.. hmm
 
     float getBonusLootMulti();
 

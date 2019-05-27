@@ -1,6 +1,16 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.map_affixes.BaseMapAffix;
+import com.robertx22.database.map_affixes.beneficial.BonusHealthAffix;
+import com.robertx22.database.map_affixes.beneficial.BonusLifestealAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusNatureDamageAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusThunderDamageAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusWaterDamageAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_res.BonusNatureResistAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_res.BonusThunderResistAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_res.BonusWaterResistAffix;
 import com.robertx22.database.map_affixes.detrimental.*;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
@@ -15,21 +25,18 @@ public class MapAffixes {
         {
             {
 
-	    	/*
-		put(new BonusHealthAffix().GUID(), new BonusHealthAffix());
-		put(new BonusLifestealAffix().GUID(), new BonusLifestealAffix());
+                put(new BonusHealthAffix().GUID(), new BonusHealthAffix());
+                put(new BonusLifestealAffix().GUID(), new BonusLifestealAffix());
 
-		put(new BonusFireDamageAffix().GUID(), new BonusFireDamageAffix());
-		put(new BonusNatureDamageAffix().GUID(), new BonusNatureDamageAffix());
-		put(new BonusThunderDamageAffix().GUID(), new BonusThunderDamageAffix());
-		put(new BonusWaterDamageAffix().GUID(), new BonusWaterDamageAffix());
+                put(new BonusFireDamageAffix().GUID(), new BonusFireDamageAffix());
+                put(new BonusNatureDamageAffix().GUID(), new BonusNatureDamageAffix());
+                put(new BonusThunderDamageAffix().GUID(), new BonusThunderDamageAffix());
+                put(new BonusWaterDamageAffix().GUID(), new BonusWaterDamageAffix());
 
-		put(new BonusFireResistAffix().GUID(), new BonusFireResistAffix());
-		put(new BonusNatureResistAffix().GUID(), new BonusNatureResistAffix());
-		put(new BonusThunderResistAffix().GUID(), new BonusThunderResistAffix());
-		put(new BonusWaterResistAffix().GUID(), new BonusWaterResistAffix());
-
-	    	 */
+                put(new BonusFireResistAffix().GUID(), new BonusFireResistAffix());
+                put(new BonusNatureResistAffix().GUID(), new BonusNatureResistAffix());
+                put(new BonusThunderResistAffix().GUID(), new BonusThunderResistAffix());
+                put(new BonusWaterResistAffix().GUID(), new BonusWaterResistAffix());
 
                 put(new LessAllFireDmgAffix().GUID(), new LessAllFireDmgAffix());
                 put(new LessAllNatureDmgAffix().GUID(), new LessAllNatureDmgAffix());

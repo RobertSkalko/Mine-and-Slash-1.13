@@ -1,8 +1,7 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
+import com.robertx22.database.map_affixes.beneficial.BonusHealthAffix;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
@@ -28,8 +27,8 @@ public class RockMountainsIWP extends BaseWorldProvider {
     }
 
     @Override
-    public List<StatMod> getBonusMobStats() {
-        return Arrays.asList(new MajorArmorFlat(), new ArmorFlat());
+    public List<MapAffixData> getMapAffixes() {
+        return Arrays.asList(new MapAffixData(new BonusHealthAffix(), 100));
     }
 
     @Override
