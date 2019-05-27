@@ -11,19 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-public class SurfaceIWP extends BaseWorldProvider {
+public class DefaultIWP extends BaseWorldProvider {
 
-    public SurfaceIWP() {
+    public DefaultIWP() {
         super();
     }
 
-    public SurfaceIWP(DimensionType type) {
+    public DefaultIWP(DimensionType type) {
         super(type);
     }
 
     @Override
     public String GUID() {
-        return "surface";
+        return "default";
     }
 
     @Override
@@ -33,12 +33,12 @@ public class SurfaceIWP extends BaseWorldProvider {
 
     @Override
     public Biome getBiome() {
-        return Biomes.DEFAULT;
+        return Biomes.TALL_BIRCH_FOREST;
     }
 
     @Override
     public Function<DimensionType, ? extends Dimension> classFactory() {
-        return SurfaceIWP::new;
+        return DefaultIWP::new;
     }
 
 }

@@ -1,7 +1,6 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.world_providers.*;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.HashMap;
@@ -18,7 +17,9 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
                 put(new JungleIWP().GUID(), new JungleIWP());
                 put(new RockDesertIWP().GUID(), new RockDesertIWP());
                 put(new RockMountainsIWP().GUID(), new RockMountainsIWP());
-                put(new SurfaceIWP().GUID(), new SurfaceIWP());
+                put(new DefaultIWP().GUID(), new DefaultIWP());
+                put(new NetherIWP().GUID(), new NetherIWP());
+
             }
 
         }
@@ -27,8 +28,7 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
 
     @Override
     public IWP random(IWPRandomConfig config) {
-        return ((IWP) RandomUtils.WeightedRandom(ListUtils.CollectionToList(WorldProviders.All
-                .values())));
+        return (RandomUtils.weightedRandom(WorldProviders.All.values()));
     }
 
     @Override

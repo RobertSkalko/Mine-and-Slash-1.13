@@ -20,7 +20,6 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
@@ -78,8 +77,7 @@ public class MobStatUtils {
                 BaseStatusEffect effect = null;
 
                 while (effect == null || unit.statusEffects.containsKey(effect.GUID())) {
-                    effect = (BaseStatusEffect) RandomUtils.WeightedRandom(ListUtils.CollectionToList(StatusEffects.All
-                            .values()));
+                    effect = RandomUtils.weightedRandom(StatusEffects.All.values());
                 }
                 amount--;
                 unit.statusEffects.put(effect.GUID(), new StatusEffectData(effect));

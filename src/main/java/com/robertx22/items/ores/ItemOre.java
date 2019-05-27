@@ -66,8 +66,8 @@ public class ItemOre extends Item implements IWeighted {
 
     public static void RegisterItems(RegistryEvent.Register<Item> event) {
 
-        Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x
-                .Rank())));
+        Rarities.Items.rarities()
+                .forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x.Rank())));
 
         ItemOres.values().forEach((x) -> event.getRegistry().register(x));
         ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
@@ -76,7 +76,7 @@ public class ItemOre extends Item implements IWeighted {
 
     public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
 
-        for (ItemRarity rarity : Rarities.Items) {
+        for (ItemRarity rarity : Rarities.Items.rarities()) {
 
             int i = rarity.Rank();
 

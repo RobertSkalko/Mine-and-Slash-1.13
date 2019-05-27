@@ -166,8 +166,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
         if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
-            Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
-                    .CollectionToList(CurrencyItem.ITEMS), 0));
+            Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, 0));
 
             stack = new ItemStack(item);
         } else {

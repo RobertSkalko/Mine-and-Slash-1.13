@@ -1,9 +1,8 @@
 package com.robertx22.loot.blueprints;
 
-import com.robertx22.database.rarities.MapRarity;
+import com.robertx22.database.rarities.RaritiesContainer;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.loot.create.RarityGen;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
@@ -46,27 +45,10 @@ public class MapBlueprint extends ItemBlueprint {
     }
 
     @Override
-    public int GetRarity() {
+    public RaritiesContainer<? extends Rarity> getRarityContainer() {
 
-        if (RandomRarity) {
-
-            if (minRarity > -1) {
-                MapRarity rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
-                        .Rank());
-
-                while (rar.Rank() < minRarity) {
-                    rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
-                            .Rank());
-                }
-                return rar.Rank();
-
-            } else {
-                return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps))
-                        .Rank();
-            }
-        } else {
-            return rarity;
-        }
+        return Rarities.Maps;
 
     }
+
 }

@@ -28,7 +28,7 @@ public class GenJsonFiles {
 
         for (String name : names) {
 
-            for (ItemRarity rarity : Rarities.Items) {
+            for (ItemRarity rarity : Rarities.Items.rarities()) {
 
                 String finalname = name + rarity.Rank();
 

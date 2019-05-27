@@ -84,8 +84,7 @@ public class RuneItemData implements ISalvagable {
 
         if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-            Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
-                    .CollectionToList(CurrencyItem.ITEMS), 10));
+            Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, 10));
 
             stack = new ItemStack(item);
         } else {

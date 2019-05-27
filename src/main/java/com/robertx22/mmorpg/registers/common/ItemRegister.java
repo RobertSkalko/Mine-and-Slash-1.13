@@ -53,17 +53,17 @@ public class ItemRegister {
 
     private static void putInLists() {
 
-        for (ItemRarity x : Rarities.Items) {
+        for (ItemRarity x : Rarities.Items.rarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
             Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
 
-            for (ItemRarity rarity : Rarities.Items) {
+            for (ItemRarity rarity : Rarities.Items.rarities()) {
                 for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
                     for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
                         String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
-                        ItemLootbox.Items.put(reg, new ItemLootbox(size, type, rarity.Rank())
-                                .setRegistryName(reg));
+                        ItemLootbox.Items.put(reg, (ItemLootbox) new ItemLootbox(size, type, rarity
+                                .Rank()).setRegistryName(reg));
                     }
                 }
             }

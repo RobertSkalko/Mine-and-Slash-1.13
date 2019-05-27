@@ -18,7 +18,6 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityFireworkRocket;
@@ -39,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ItemLootbox extends BaseItem implements IWeighted {
-    public static HashMap<String, Item> Items = new HashMap<String, Item>();
+    public static HashMap<String, ItemLootbox> Items = new HashMap<String, ItemLootbox>();
 
     public enum LootTypes {
         Gear, Spell, Currency
@@ -148,7 +147,7 @@ public class ItemLootbox extends BaseItem implements IWeighted {
                 .get()
                 .floatValue()) * 100));
 
-        GenWeight winner = (GenWeight) RandomUtils.WeightedRandom(ListUtils.CollectionToList(types));
+        GenWeight winner = (GenWeight) RandomUtils.weightedRandom(types);
 
         return winner.gen;
 
@@ -199,7 +198,7 @@ public class ItemLootbox extends BaseItem implements IWeighted {
 
             for (int i = 0; i < this.ItemAmount.get(this.size) + rarity; i++) {
 
-                CurrencyItem item = (CurrencyItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
+                CurrencyItem item = (CurrencyItem) RandomUtils.weightedRandom(CurrencyItem.ITEMS);
                 stacks.add(new ItemStack(item));
             }
 

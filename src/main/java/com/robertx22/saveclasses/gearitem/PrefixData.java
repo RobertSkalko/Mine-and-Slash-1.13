@@ -10,8 +10,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
@@ -39,9 +37,8 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
     @Override
     public void RerollFully(GearItemData gear) {
 
-        List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType()
+        Prefix prefix = (Prefix) RandomUtils.weightedRandom(gear.GetBaseGearType()
                 .PossiblePrefixes());
-        Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
 
         baseAffix = prefix.GUID();
 

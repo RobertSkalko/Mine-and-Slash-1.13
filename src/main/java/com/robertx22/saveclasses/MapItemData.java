@@ -4,8 +4,8 @@ import com.robertx22.Styles;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
+import com.robertx22.database.world_providers.DefaultIWP;
 import com.robertx22.database.world_providers.IWP;
-import com.robertx22.database.world_providers.SurfaceIWP;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.MapManager;
@@ -69,7 +69,7 @@ public class MapItemData implements ISalvagable, ITooltip {
             return iwp;
         }
 
-        return WorldProviders.All.get(new SurfaceIWP().GUID());
+        return WorldProviders.All.get(new DefaultIWP().GUID());
     }
 
     @Override
@@ -192,8 +192,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
         if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-            Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
-                    .CollectionToList(CurrencyItem.ITEMS), tier));
+            Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, tier));
 
             stack = new ItemStack(item);
         } else {

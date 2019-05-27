@@ -1,20 +1,15 @@
 package com.robertx22.loot.blueprints;
 
 import com.robertx22.config.ModConfig;
-import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.db_lists.Rarities;
-import com.robertx22.loot.create.RarityGen;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.database.rarities.RaritiesContainer;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
-public class ItemBlueprint {
+public abstract class ItemBlueprint {
 
     public ItemBlueprint(int level) {
 
-        if (level > ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
-            level = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-        }
         this.level = level;
 
     }
@@ -32,6 +27,8 @@ public class ItemBlueprint {
 
     public int minLevel = 1;
 
+    public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
+
     public void SetSpecificRarity(int i) {
 
         rarity = i;
@@ -41,21 +38,20 @@ public class ItemBlueprint {
 
     public int GetRarity() {
 
+        RaritiesContainer<? extends Rarity> rarities = getRarityContainer();
+
         if (RandomRarity) {
 
             if (minRarity > -1 || maxRarity < 5) {
-                ItemRarity rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
-                        .Rank());
+                Rarity rar = rarities.random();
 
                 while (rar.Rank() < minRarity || rar.Rank() > maxRarity) {
-                    rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
-                            .Rank());
+                    rar = rarities.random();
                 }
                 return rar.Rank();
 
             } else {
-                return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items))
-                        .Rank();
+                return rarities.random().Rank();
             }
         } else {
             return rarity;

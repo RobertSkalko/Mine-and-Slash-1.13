@@ -1,11 +1,11 @@
 package com.robertx22.uncommon.utilityclasses;
 
+import com.robertx22.uncommon.interfaces.IWeighted;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-
-import com.robertx22.db_lists.Spells;
-import com.robertx22.uncommon.interfaces.IWeighted;
 
 public class RandomUtils {
 
@@ -13,68 +13,79 @@ public class RandomUtils {
 
     public static int RandomRange(int min, int max) {
 
-	int result = ran.nextInt(max - min);
+        int result = ran.nextInt(max - min);
 
-	return result + min;
+        return result + min;
+
+    }
+
+    private static <OLD, NEW> List<NEW> CollectionToList(Collection<OLD> coll) {
+
+        List<NEW> list = new ArrayList<NEW>();
+
+        for (OLD old : coll) {
+            list.add((NEW) old);
+        }
+
+        return list;
 
     }
 
     public static boolean roll(int chance) {
 
-	Random ran = new Random();
+        Random ran = new Random();
 
-	double ranNum = ran.nextDouble() * 100;
+        double ranNum = ran.nextDouble() * 100;
 
-	if (chance > ranNum) {
-	    return true;
-	}
+        if (chance > ranNum) {
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     public static boolean roll(float chance) {
 
-	Random ran = new Random();
+        Random ran = new Random();
 
-	double ranNum = ran.nextDouble() * 100;
+        double ranNum = ran.nextDouble() * 100;
 
-	if (chance > ranNum) {
-	    return true;
-	}
+        if (chance > ranNum) {
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
-    public static IWeighted WeightedRandom(List<IWeighted> lootTable) {
+    public static <T extends IWeighted> T weightedRandom(Collection<T> coll) {
 
-	double value = Total(lootTable) * Math.random();
-	double weight = 0;
+        return (T) WeightedRandom(CollectionToList(coll));
 
-	for (IWeighted item : lootTable) {
-	    weight += item.Weight();
-	    if (value < weight)
-		return item;
-	}
+    }
 
-	return null;
+    private static IWeighted WeightedRandom(List<IWeighted> lootTable) {
+
+        double value = Total(lootTable) * Math.random();
+        double weight = 0;
+
+        for (IWeighted item : lootTable) {
+            weight += item.Weight();
+            if (value < weight)
+                return item;
+        }
+
+        return null;
 
     }
 
     private static int Total(List<IWeighted> list) {
 
-	int total = 0;
+        int total = 0;
 
-	for (IWeighted w : list) {
-	    total += w.Weight();
-	}
-	return total;
-
-    }
-
-    public static IWeighted WeightedRandom(Collection<IWeighted> lootTable) {
-	List<IWeighted> slots = ListUtils.CollectionToList(Spells.All.values());
-
-	return WeightedRandom(slots);
+        for (IWeighted w : list) {
+            total += w.Weight();
+        }
+        return total;
 
     }
 

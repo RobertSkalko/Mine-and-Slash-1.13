@@ -170,19 +170,23 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         Tooltip.add(Styles.YELLOWCOMP()
                 .appendSibling(CLOC.word("gears").appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items), this.getGear(nbt)), tooltip);
+        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this
+                .getGear(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
                 .appendSibling(CLOC.word("spells").appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells), this.getSpell(nbt)), tooltip);
+        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells.getRarities()), this
+                .getSpell(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
                 .appendSibling(CLOC.word("maps").appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps), this.getMap(nbt)), tooltip);
+        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this
+                .getMap(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
                 .appendSibling(CLOC.word("runes").appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes), this.getRune(nbt)), tooltip);
+        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this
+                .getRune(nbt)), tooltip);
 
         Tooltip.add("", tooltip);
 
@@ -213,7 +217,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         ITextComponent text = new TextComponentString("");
 
-        for (ItemRarity rar : Rarities.Items) {
+        for (ItemRarity rar : Rarities.Items.rarities()) {
             if (rar.Rank() <= rarity) {
 
                 if (text.getSiblings().size() > 0) {

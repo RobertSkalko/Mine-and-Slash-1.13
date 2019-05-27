@@ -4,7 +4,6 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItem;
 import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.loot.LootInfo;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -37,11 +36,10 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
     public static ItemStack gen(int level) {
 
-        ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
-                .getAll()
+        ConfigItem config = RandomUtils.weightedRandom(ConfigItems.INSTANCE.getAll()
                 .stream()
                 .filter(x -> x.statsAddedOnlyOnDrop == false)
-                .collect(Collectors.toList())));
+                .collect(Collectors.toList()));
 
         if (config != null) {
             ResourceLocation res = new ResourceLocation(config.registryName);

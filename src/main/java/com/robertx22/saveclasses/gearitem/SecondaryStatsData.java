@@ -7,8 +7,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -37,11 +35,9 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         int Stats = RandomUtils.RandomRange(1, 3);
 
-        List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType()
-                .PossibleSecondaryStats());
-
         while (Stats > 0) {
-            StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
+            StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                    .PossibleSecondaryStats());
             this.Mods.add(StatModData.NewRandom(gear, mod));
             Stats--;
 
@@ -50,9 +46,8 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
     }
 
     public void AddStat(GearItemData gear) {
-        StatMod mod = (StatMod) RandomUtils.WeightedRandom(ListUtils.CollectionToList(gear
-                .GetBaseGearType()
-                .PossibleSecondaryStats()));
+        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                .PossibleSecondaryStats());
 
         gear.secondaryStats.Mods.add(StatModData.NewRandom(gear, mod));
 

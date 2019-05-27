@@ -35,7 +35,7 @@ public class GearItemRegisters {
 
     private static void register() {
 
-        for (ItemRarity rarity : Rarities.Items) {
+        for (ItemRarity rarity : Rarities.Items.rarities()) {
 
             // 1] class 2] rarity hashmap 3] registry name 4] rarity rank
 

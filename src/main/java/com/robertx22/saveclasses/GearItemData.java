@@ -434,8 +434,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
             if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-                Item item = (Item) RandomUtils.WeightedRandom(ListUtils.SameTierOrLess(ListUtils
-                        .CollectionToList(CurrencyItem.ITEMS), tier));
+                Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, tier));
 
                 if (isUnique) {
                     int amount = RandomUtils.RandomRange(min, max + (tier / 5));

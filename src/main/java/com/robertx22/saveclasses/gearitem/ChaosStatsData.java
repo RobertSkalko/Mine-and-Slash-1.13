@@ -6,7 +6,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
@@ -48,9 +47,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
         this.Mods = new ArrayList<StatModData>();
 
-        StatMod mod = (StatMod) RandomUtils.WeightedRandom(ListUtils.CollectionToList(gear
-                .GetBaseGearType()
-                .ChaosStats()));
+        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().ChaosStats());
 
         StatModData moddata = StatModData.NewRandom(gear, mod);
 

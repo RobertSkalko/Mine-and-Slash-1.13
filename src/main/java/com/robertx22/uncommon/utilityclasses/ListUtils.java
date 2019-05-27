@@ -1,51 +1,23 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.robertx22.uncommon.interfaces.ITiered;
 
-import net.minecraft.item.Item;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListUtils {
 
-	public static <OLD, NEW> List<NEW> CollectionToList(Collection<OLD> coll) {
+    public static <T extends ITiered> List<T> SameTierOrLess(Iterable<T> coll, int tier) {
 
-		List<NEW> list = new ArrayList<NEW>();
+        List<T> list = new ArrayList<T>();
+        for (ITiered tiered : coll) {
+            if (tiered.Tier() <= tier) {
+                list.add((T) tiered);
+            }
+        }
 
-		for (OLD old : coll) {
-			list.add((NEW) old);
-		}
+        return list;
 
-		return list;
+    }
 
-	}
-
-	public static <T> List<T> SameTierOrLess(Collection<ITiered> coll, int tier) {
-
-		List<T> list = new ArrayList<T>();
-		for (ITiered tiered : coll) {
-			if (tiered.Tier() <= tier) {
-				list.add((T) tiered);
-			}
-		}
-
-		return list;
-
-	}
-
-	public static <T> List<T> SameTierOrLessItem(Collection<Item> coll, int tier) {
-
-		List<T> list = new ArrayList<T>();
-		for (Item item : coll) {
-			ITiered tiered = (ITiered) item;
-			if (tiered.Tier() <= tier) {
-				list.add((T) tiered);
-			}
-		}
-
-		return list;
-
-	}
 }

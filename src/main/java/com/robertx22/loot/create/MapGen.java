@@ -10,7 +10,6 @@ import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.datasaving.Map;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -54,12 +53,10 @@ public class MapGen {
 
         for (int i = 0; i < amount; i++) {
 
-            BaseMapAffix affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
-                    .values()));
+            BaseMapAffix affix = RandomUtils.weightedRandom(MapAffixes.All.values());
 
             while (affixes.contains(affix.GUID()) || affix.isBeneficial()) { // can't have moba affixes arndom anymore. only on dimension types
-                affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All
-                        .values()));
+                affix = RandomUtils.weightedRandom(MapAffixes.All.values());
             }
 
             int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);

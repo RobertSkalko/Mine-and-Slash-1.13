@@ -7,8 +7,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
@@ -28,10 +26,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         this.Mods = new ArrayList<StatModData>();
 
-        List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType()
-                .PrimaryStats());
-
-        StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
+        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
 
         StatModData moddata = StatModData.NewRandom(gear, mod);
 

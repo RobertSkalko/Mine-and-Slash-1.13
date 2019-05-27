@@ -172,7 +172,7 @@ public class ConfigItem implements IWeighted {
 
     private creationTypes getCreationType() {
 
-        WeightedType result = (WeightedType) RandomUtils.WeightedRandom(Arrays.asList(new WeightedType(normalItemWeight, creationTypes.NORMAL), new WeightedType(uniqueItemWeight, creationTypes.UNIQUE), new WeightedType(runedItemWeight, creationTypes.RUNED)));
+        WeightedType result = RandomUtils.weightedRandom(Arrays.asList(new WeightedType(normalItemWeight, creationTypes.NORMAL), new WeightedType(uniqueItemWeight, creationTypes.UNIQUE), new WeightedType(runedItemWeight, creationTypes.RUNED)));
 
         return result.type;
     }

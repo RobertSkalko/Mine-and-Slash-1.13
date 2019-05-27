@@ -1,13 +1,14 @@
 package com.robertx22.loot.blueprints;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.rarities.RaritiesContainer;
+import com.robertx22.database.rarities.containers.ItemRarities;
 import com.robertx22.database.sets.Set;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.gearitem.SetData;
-import com.robertx22.uncommon.interfaces.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -22,6 +23,13 @@ public class GearBlueprint extends ItemBlueprint {
     public String gearType = "";
     public boolean RandomGearType = true;
     public float chaosStatChance = 1;
+
+    @Override
+    public RaritiesContainer<? extends Rarity> getRarityContainer() {
+
+        return new ItemRarities();
+
+    }
 
     public boolean getsChaosStats() {
         return RandomUtils.roll(chaosStatChance);
@@ -43,9 +51,8 @@ public class GearBlueprint extends ItemBlueprint {
     public GearItemSlot GetGearType() {
 
         if (RandomGearType) {
-            List<IWeighted> slots = ListUtils.CollectionToList(GearTypes.All.values());
 
-            return (GearItemSlot) RandomUtils.WeightedRandom(slots);
+            return RandomUtils.weightedRandom(GearTypes.All.values());
 
         } else {
 
@@ -76,7 +83,7 @@ public class GearBlueprint extends ItemBlueprint {
             }
 
         } else {
-            if (RandomUtils.roll(Rarities.Items.get(rarity).SetChance())) {
+            if (RandomUtils.roll(Rarities.Items.rarities().get(rarity).SetChance())) {
                 has = true;
             }
         }
@@ -92,7 +99,7 @@ public class GearBlueprint extends ItemBlueprint {
             }
 
             if (possibleSets.size() > 0) {
-                Set set = (Set) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possibleSets));
+                Set set = RandomUtils.weightedRandom(possibleSets);
 
                 setdata = new SetData();
                 setdata.baseSet = set.GUID();

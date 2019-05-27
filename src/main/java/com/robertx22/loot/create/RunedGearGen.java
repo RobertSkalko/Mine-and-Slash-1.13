@@ -15,7 +15,7 @@ public class RunedGearGen {
     public static GearItemData CreateData(RunedGearBlueprint blueprint) {
         GearItemSlot gearslot = blueprint.GetGearType();
 
-        ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
+        ItemRarity rarity = Rarities.RunedItems.get(blueprint.GetRarity());
 
         GearItemData data = new GearItemData();
 

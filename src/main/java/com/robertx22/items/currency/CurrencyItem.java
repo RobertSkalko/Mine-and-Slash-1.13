@@ -16,12 +16,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
 
-    public static HashSet<CurrencyItem> ITEMS = new HashSet<CurrencyItem>();
+    public static List<CurrencyItem> ITEMS = new ArrayList<>();
 
     public abstract String GUID();
 

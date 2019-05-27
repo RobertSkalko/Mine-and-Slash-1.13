@@ -1,38 +1,18 @@
 package com.robertx22.loot.blueprints;
 
-import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.database.rarities.RaritiesContainer;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.loot.create.RarityGen;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 
 public class RunedGearBlueprint extends GearBlueprint {
 
     public RunedGearBlueprint(int level) {
-	super(level);
+        super(level);
 
     }
 
     @Override
-    public int GetRarity() {
-
-	if (RandomRarity) {
-
-	    if (minRarity > -1) {
-		ItemRarity rar = Rarities.RunedItems
-			.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.RunedItems)).Rank());
-
-		while (rar.Rank() < minRarity) {
-		    rar = Rarities.RunedItems
-			    .get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.RunedItems)).Rank());
-		}
-		return rar.Rank();
-
-	    } else {
-		return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.RunedItems)).Rank();
-	    }
-	} else {
-	    return rarity;
-	}
-
+    public RaritiesContainer<? extends Rarity> getRarityContainer() {
+        return Rarities.RunedItems;
     }
 }

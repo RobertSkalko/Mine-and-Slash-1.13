@@ -21,7 +21,6 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.uncommon.stat_calculation.PlayerStatUtils;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -193,7 +192,7 @@ public class Unit {
             }
         }
 
-        List<MobRarity> rarities = Rarities.Mobs;
+        List<MobRarity> rarities = Rarities.Mobs.rarities();
         List<MobRarity> after = new ArrayList<MobRarity>();
 
         DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
@@ -210,7 +209,7 @@ public class Unit {
             }
         }
 
-        MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
+        MobRarity finalRarity = RandomUtils.weightedRandom(after);
 
         return finalRarity.Rank();
 
