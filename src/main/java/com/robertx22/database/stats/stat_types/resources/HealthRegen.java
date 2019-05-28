@@ -1,9 +1,8 @@
 package com.robertx22.database.stats.stat_types.resources;
 
-import com.robertx22.database.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class HealthRegen extends Stat {
+public class HealthRegen extends BaseRegenClass {
     public static String GUID = "Health Regen";
 
     public HealthRegen() {

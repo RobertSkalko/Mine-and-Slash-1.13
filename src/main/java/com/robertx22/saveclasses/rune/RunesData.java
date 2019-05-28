@@ -6,6 +6,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -175,7 +176,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         list.add(new TextComponentString(""));
 
-        list.add(new TextComponentString("Runes: "));
+        list.add(Styles.GRAYCOMP().appendSibling(new TextComponentString("Runes: ")));
 
         for (InsertedRuneData rune : runes) {
 
@@ -186,7 +187,8 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         for (int i = 0; i < empty; i++) {
 
-            list.add(new TextComponentString("Rune: [Empty ]"));
+            list.add(Styles.GRAYCOMP()
+                    .appendSibling(new TextComponentString("Rune: [Empty ]")));
 
         }
 

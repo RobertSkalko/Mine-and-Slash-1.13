@@ -13,6 +13,11 @@ public class CriticalDamage extends Stat implements IStatEffects {
     public static String GUID = "Critical Damage";
 
     @Override
+    public String statDescription() {
+        return "If Critical, multiply by x";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new CriticalDamageEffect());
     }

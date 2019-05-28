@@ -10,6 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class WeaponDamageStat extends Stat implements IStatEffects {
+    @Override
+    public String statDescription() {
+        return "Increases damage done if it was caused by that weapon";
+    }
 
     public abstract WeaponTypes weaponType();
 

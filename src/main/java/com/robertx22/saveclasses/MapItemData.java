@@ -316,7 +316,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
                 for (ITextComponent statstring : statmod.GetTooltipString(info)) {
 
-                    Tooltip.add(new TextComponentString(" * ").appendSibling(statstring), tooltip);
+                    Tooltip.add(statstring, tooltip);
 
                 }
 

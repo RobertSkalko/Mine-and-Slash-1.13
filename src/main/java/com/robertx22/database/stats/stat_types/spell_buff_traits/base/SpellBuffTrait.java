@@ -20,6 +20,11 @@ import java.util.List;
 
 public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrait {
 
+    @Override
+    public String statDescription() {
+        return "";
+    }
+
     // override if it has a condition
     public boolean condition(UnitData unit) {
         return true;

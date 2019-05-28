@@ -8,6 +8,11 @@ import net.minecraft.entity.EntityLivingBase;
 public class Health extends Stat {
     public static String GUID = "Health";
 
+    @Override
+    public String statDescription() {
+        return "Allows you to take more damage from mobs";
+    }
+
     public Health() {
     }
 

@@ -6,6 +6,11 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class PhysicalDamage extends Stat {
     public static String GUID = "Physical Damage";
 
+    @Override
+    public String statDescription() {
+        return "How much DMG your basic attacks do";
+    }
+
     public PhysicalDamage() {
         this.StatMinimum = 1;
     }

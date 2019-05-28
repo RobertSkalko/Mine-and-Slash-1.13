@@ -8,37 +8,41 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
 
 public abstract class BaseTransferMod extends Stat implements IStatTransfer {
+    @Override
+    public String statDescription() {
+        return "Transfer takes a % from 1 and gives to the other";
+    }
 
     public BaseTransferMod() {
-	this.MaximumPercent = 100;
+        this.MaximumPercent = 100;
     }
 
     @Override
     public boolean IsPercent() {
-	return true;
+        return true;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return false;
+        return false;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public void transferStats(Unit copy, Unit unit, StatData data) {
 
-	for (TransferMethod stat : this.Transfer()) {
+        for (TransferMethod stat : this.Transfer()) {
 
-	    float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
+            float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
 
-	    unit.MyStats.get(stat.converted.GUID()).Flat -= val;
-	    unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
+            unit.MyStats.get(stat.converted.GUID()).Flat -= val;
+            unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
 
-	}
+        }
 
     }
 

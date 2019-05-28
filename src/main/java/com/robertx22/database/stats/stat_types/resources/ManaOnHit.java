@@ -13,6 +13,11 @@ public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "Mana On Hit";
 
     @Override
+    public String statDescription() {
+        return "Gives mana on basic attack";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new ManaOnHitEffect());
     }

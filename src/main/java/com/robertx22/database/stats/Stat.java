@@ -28,6 +28,12 @@ public abstract class Stat implements IGUID, ILocName {
         return CLOC.stat(this.GUID().toLowerCase().replaceAll(" ", "_"));
     }
 
+    public abstract String statDescription();
+
+    public ITextComponent getStatDescription() {
+        return new TextComponentString(statDescription());
+    }
+
     public int MaximumPercent = 0;
 
     public int MinimumAmount = 0;
@@ -119,20 +125,19 @@ public abstract class Stat implements IGUID, ILocName {
             StatModData min = StatModData.Load(data.GetBaseMod(), info.minmax.Min);
             StatModData max = StatModData.Load(data.GetBaseMod(), info.minmax.Max);
 
-            ITextComponent extraInfo = new TextComponentString(" (" + min.printValue(info.level) + " - " + max
-                    .printValue(info.level) + ")");
+            ITextComponent extraInfo = Styles.GREENCOMP()
+                    .appendSibling(new TextComponentString(" (" + min.printValue(info.level) + " - " + max
+                            .printValue(info.level) + ")"));
 
             text.appendSibling(extraInfo);
         }
 
         list.add(text);
-
         if (GuiScreen.isAltKeyDown()) {
-
-            list.add(new TextComponentString("test description"));
-
+            list.add(Styles.BLUECOMP()
+                    .appendText(" [")
+                    .appendSibling(this.getStatDescription().appendText("]")));
         }
-
         return list;
 
     }

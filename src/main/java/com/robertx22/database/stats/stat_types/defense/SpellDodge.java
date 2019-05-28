@@ -13,6 +13,11 @@ public class SpellDodge extends Stat implements IStatEffects {
     public static String GUID = "Spell Dodge";
 
     @Override
+    public String statDescription() {
+        return "Chance to Ignore spell damage";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new SpellDodgeEffect());
     }

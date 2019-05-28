@@ -6,6 +6,11 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class Energy extends FillableStat {
     public static String GUID = "Energy";
 
+    @Override
+    public String statDescription() {
+        return "Energy is used to do basic attacks";
+    }
+
     public Energy() {
 
     }

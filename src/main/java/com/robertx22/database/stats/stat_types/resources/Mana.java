@@ -6,6 +6,11 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class Mana extends FillableStat {
     public static String GUID = "Mana";
 
+    @Override
+    public String statDescription() {
+        return "Mana is used to cast spells";
+    }
+
     public Mana() {
 
     }

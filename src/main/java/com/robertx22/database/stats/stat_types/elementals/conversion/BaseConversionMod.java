@@ -9,35 +9,40 @@ import com.robertx22.uncommon.interfaces.IStatConversion;
 
 public abstract class BaseConversionMod extends Stat implements IStatConversion {
 
+    @Override
+    public String statDescription() {
+        return "Conversion adds a % of one to the other";
+    }
+
     public BaseConversionMod() {
-	this.MaximumPercent = 100;
+        this.MaximumPercent = 100;
     }
 
     @Override
     public boolean IsPercent() {
-	return true;
+        return true;
     }
 
     @Override
     public boolean ScalesToLevel() {
-	return false;
+        return false;
     }
 
     @Override
     public Elements Element() {
-	return null;
+        return null;
     }
 
     @Override
     public void convertStats(Unit copy, Unit unit, StatData data) {
 
-	for (ConversionMethod stat : this.conversion()) {
+        for (ConversionMethod stat : this.conversion()) {
 
-	    float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
+            float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
 
-	    unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
+            unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
 
-	}
+        }
 
     }
 

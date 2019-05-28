@@ -1,9 +1,6 @@
 package com.robertx22.database.stats.stat_types.resources;
 
-import com.robertx22.database.stats.Stat;
-import com.robertx22.uncommon.enumclasses.Elements;
-
-public class ManaRegen extends Stat {
+public class ManaRegen extends BaseRegenClass {
     public static String GUID = "Mana Regen";
 
     public ManaRegen() {
@@ -17,16 +14,6 @@ public class ManaRegen extends Stat {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
-    }
-
-    @Override
-    public Elements Element() {
-        return null;
-    }
-
-    @Override
-    public boolean IsPercent() {
         return false;
     }
 

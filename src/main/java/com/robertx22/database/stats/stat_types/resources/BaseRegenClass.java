@@ -1,22 +1,17 @@
-package com.robertx22.database.stats.stat_types.misc;
+package com.robertx22.database.stats.stat_types.resources;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class BonusExp extends Stat {
+public abstract class BaseRegenClass extends Stat {
+
     @Override
     public String statDescription() {
-        return "Increases exp gained";
+        return "Regen happens every few seconds but is also used for other stats or spells";
     }
 
-    @Override
-    public boolean IsPercent() {
-        return true;
-    }
+    public BaseRegenClass() {
 
-    @Override
-    public String GUID() {
-        return "bonusexpflat";
     }
 
     @Override
@@ -28,4 +23,10 @@ public class BonusExp extends Stat {
     public Elements Element() {
         return null;
     }
+
+    @Override
+    public boolean IsPercent() {
+        return false;
+    }
+
 }

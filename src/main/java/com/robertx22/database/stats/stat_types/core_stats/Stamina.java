@@ -11,6 +11,11 @@ import java.util.List;
 public class Stamina extends BaseCoreStat {
 
     @Override
+    public String statDescription() {
+        return "Increases Energy, Armor and Armor Percent";
+    }
+
+    @Override
     public String GUID() {
         return "Stamina";
     }

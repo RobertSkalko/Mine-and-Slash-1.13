@@ -11,6 +11,11 @@ import java.util.List;
 public class Dexterity extends BaseCoreStat {
 
     @Override
+    public String statDescription() {
+        return "Increases Crit Hit, Dodge and Armor";
+    }
+
+    @Override
     public String GUID() {
         return "Dexterity";
     }

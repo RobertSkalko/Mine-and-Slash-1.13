@@ -13,6 +13,11 @@ public class Dodge extends Stat implements IStatEffects {
     public static String GUID = "Dodge";
 
     @Override
+    public String statDescription() {
+        return "Chance to ignore all damage";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new DodgeEffect());
     }

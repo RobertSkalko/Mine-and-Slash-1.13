@@ -14,6 +14,11 @@ import java.util.List;
 public class Intelligence extends BaseCoreStat {
 
     @Override
+    public String statDescription() {
+        return "Increase Mana Regen and Mana, All Elemental damage";
+    }
+
+    @Override
     public String GUID() {
         return "Intelligence";
     }

@@ -11,6 +11,11 @@ import java.util.List;
 
 public class Armor extends UsableStat implements IStatEffects {
 
+    @Override
+    public String statDescription() {
+        return "Decreases damage taken by a percent";
+    }
+
     public static String GUID = "Armor";
 
     public Armor() {

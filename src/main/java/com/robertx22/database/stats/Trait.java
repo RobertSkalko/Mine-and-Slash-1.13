@@ -31,6 +31,11 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
     }
 
     @Override
+    public String statDescription() {
+        return "";
+    }
+
+    @Override
     public ITextComponent Description() {
         return new TextComponentString("");
     }

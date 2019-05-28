@@ -13,6 +13,11 @@ public class Lifesteal extends Stat implements IStatEffects {
     public static String GUID = "Lifesteal";
 
     @Override
+    public String statDescription() {
+        return "% of basic attack DMG added to health";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new LifestealEffect());
     }

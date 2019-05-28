@@ -11,6 +11,11 @@ import java.util.List;
 public class Vitality extends BaseCoreStat {
 
     @Override
+    public String statDescription() {
+        return "Increases Health, Health percent and Health Regen";
+    }
+
+    @Override
     public String GUID() {
         return "Vitality";
     }

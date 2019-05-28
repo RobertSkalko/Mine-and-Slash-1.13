@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseSpellToBasicDamage extends Stat implements IStatEffects {
+    @Override
+    public String statDescription() {
+        return "Adds a % of your spell DMG as DMG to your every weapon hit";
+    }
 
     @Override
     public List<IStatEffect> GetEffects() {

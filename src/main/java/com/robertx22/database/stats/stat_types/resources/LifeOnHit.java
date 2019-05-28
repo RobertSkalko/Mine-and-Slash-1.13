@@ -13,6 +13,11 @@ public class LifeOnHit extends Stat implements IStatEffects {
     public static String GUID = "Life On Hit";
 
     @Override
+    public String statDescription() {
+        return "Gives health on basic attack hit";
+    }
+
+    @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new LifeOnHitEffect());
     }

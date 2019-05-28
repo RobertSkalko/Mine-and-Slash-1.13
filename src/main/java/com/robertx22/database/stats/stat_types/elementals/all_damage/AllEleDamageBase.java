@@ -10,6 +10,11 @@ import java.util.List;
 
 public abstract class AllEleDamageBase extends Stat implements IStatEffects {
 
+    @Override
+    public String statDescription() {
+        return "Increases All DMG of that element, both spells and attacks";
+    }
+
     public AllEleDamageBase() {
         this.hasMinimumAmount = false;
     }

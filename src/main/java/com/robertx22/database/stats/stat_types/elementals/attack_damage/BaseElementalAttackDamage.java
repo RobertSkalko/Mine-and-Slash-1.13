@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseElementalAttackDamage extends Stat implements IStatEffects {
+    @Override
+    public String statDescription() {
+        return "Adds damage on weapon hit";
+    }
 
     public BaseElementalAttackDamage() {
     }

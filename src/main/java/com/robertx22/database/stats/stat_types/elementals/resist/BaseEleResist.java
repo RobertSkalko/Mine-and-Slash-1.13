@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
+    @Override
+    public String statDescription() {
+        return "Stops a % damage of that element";
+    }
 
     @Override
     public List<IStatEffect> GetEffects() {

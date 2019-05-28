@@ -92,8 +92,12 @@ public class OnTooltip {
             } else {
                 event.getToolTip()
                         .add(Styles.GOLDCOMP()
-                                .appendSibling(new TextComponentString("Power LeveL: " + gear
+                                .appendSibling(new TextComponentString("Power Level: " + gear
                                         .getPowerLevel())));
+                event.getToolTip()
+                        .add(Styles.BLUECOMP()
+                                .appendSibling(new TextComponentString("[Alt]: Show Detailed Stat Descriptions")));
+
             }
         } else {
             SpellItemData data = Spell.Load(stack);

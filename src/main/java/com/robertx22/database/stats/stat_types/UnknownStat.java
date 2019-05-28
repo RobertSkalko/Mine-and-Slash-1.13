@@ -11,6 +11,11 @@ public class UnknownStat extends Stat {
     }
 
     @Override
+    public String statDescription() {
+        return "";
+    }
+
+    @Override
     public String GUID() {
         return GUID;
     }

@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Strength extends BaseCoreStat {
+    @Override
+    public String statDescription() {
+        return "Increases Physical DMG, Critical DMG, Physical DMG multi";
+    }
 
     @Override
     public String GUID() {

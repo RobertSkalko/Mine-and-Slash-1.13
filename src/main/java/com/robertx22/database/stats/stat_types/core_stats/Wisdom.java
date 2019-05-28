@@ -11,6 +11,11 @@ import java.util.List;
 public class Wisdom extends BaseCoreStat {
 
     @Override
+    public String statDescription() {
+        return "Increases Mana Regen, Energy Regen and Health Regen";
+    }
+
+    @Override
     public String GUID() {
         return "Wisdom";
     }
