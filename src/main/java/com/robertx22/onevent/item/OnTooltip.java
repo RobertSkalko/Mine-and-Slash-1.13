@@ -28,25 +28,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(Dist.CLIENT)
 public class OnTooltip {
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public static void showCompatibleItem(ItemTooltipEvent event) {
-
-        ItemStack stack = event.getItemStack();
-
-        if (stack.getItem().getRegistryName() != null) {
-            if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
-                    .getRegistryName()
-                    .toString())) {
-
-                event.getToolTip()
-                        .add(new TextComponentString(Styles.RED + "Compatible Mine and Slash Item"));
-
-            }
-        }
-
-    }
-
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemTooltip(ItemTooltipEvent event) {
 
         if (GuiScreen.isCtrlKeyDown()) {
@@ -119,6 +101,17 @@ public class OnTooltip {
             IEffectItem effect = (IEffectItem) stack.getItem();
             event.getToolTip()
                     .addAll(effect.getEffectTooltip(GuiScreen.isShiftKeyDown()));
+        }
+
+        if (stack.getItem().getRegistryName() != null) {
+            if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
+                    .getRegistryName()
+                    .toString())) {
+
+                event.getToolTip()
+                        .add(new TextComponentString(Styles.RED + "Compatible Mine and Slash Item"));
+
+            }
         }
 
     }

@@ -10,6 +10,7 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -22,7 +23,7 @@ public class OnMobMeleeAttack {
      *
      * @param event
      */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onMobMeleeAttack(LivingAttackEvent event) {
 
         if (event.getEntityLiving().world.isRemote) {
