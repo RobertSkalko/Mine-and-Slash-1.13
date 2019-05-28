@@ -1,22 +1,27 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":add_secondary_stat");
+    }
+
     @Override
     public String GUID() {
         return name;
     }
 
-    private static final String name = "add_secondary_stat";
-
-    @ObjectHolder(Ref.MODID + ":add_secondary_stat")
-    public static final Item ITEM = null;
+    private static final String name = Ref.MODID + ":currency/add_secondary_stat";
 
     public ItemAddSecondaryStat() {
 

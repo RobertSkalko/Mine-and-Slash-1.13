@@ -1,23 +1,27 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
         return "chaos_orb";
     }
 
-    private static final String name = "chaos_orb";
+    private static final String name = Ref.MODID + ":currency/chaos_orb";
 
-    @ObjectHolder(Ref.MODID + ":" + name)
-    public static final Item ITEM = null;
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":chaos_orb");
+    }
 
     public ItemChaosOrb() {
 

@@ -38,7 +38,7 @@ public class MissingMappings {
         map.clear();
 
     }
-    
+
     private static void generateHashMap() {
 
         for (Item item : ForgeRegistries.ITEMS) {

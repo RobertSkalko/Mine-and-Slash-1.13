@@ -1,23 +1,27 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
         return "number_reroll";
     }
 
-    private static final String name = "number_reroll";
+    private static final String name = Ref.MODID + ":currency/number_reroll";
 
-    @ObjectHolder(Ref.MODID + ":number_reroll")
-    public static final Item ITEM = null;
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":number_reroll");
+    }
 
     public ItemNumberReroll() {
 

@@ -7,9 +7,7 @@ import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,16 +18,13 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":curretttncy/create_new_unique");
+        return Arrays.asList(Ref.MODID + ":create_new_unique");
     }
 
     @Override
     public String GUID() {
         return "create_new_unique";
     }
-
-    @ObjectHolder(GUID)
-    public static final Item ITEM = null;
 
     public CreateNewUnique() {
 

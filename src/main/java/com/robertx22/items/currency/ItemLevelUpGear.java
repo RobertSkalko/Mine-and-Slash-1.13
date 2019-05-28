@@ -1,23 +1,27 @@
 package com.robertx22.items.currency;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
         return "item_levelup";
     }
 
-    private static final String name = "item_levelup";
+    private static final String name = Ref.MODID + ":currency/item_levelup";
 
-    @ObjectHolder(Ref.MODID + ":item_levelup")
-    public static final Item ITEM = null;
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":item_levelup");
+    }
 
     public ItemLevelUpGear() {
 

@@ -1,22 +1,26 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
         return "randomize_prefix";
     }
 
-    private static final String name = "randomize_prefix";
+    private static final String name = Ref.MODID + ":currency/randomize_prefix";
 
-    @ObjectHolder(Ref.MODID + ":randomize_prefix")
-    public static final Item ITEM = null;
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":randomize_prefix");
+    }
 
     public ItemRandomizePrefix() {
 

@@ -1,24 +1,28 @@
 package com.robertx22.items.currency;
 
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.uncommon.datasaving.Gear;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":add_prefix");
+    }
 
     @Override
     public String GUID() {
         return "add_prefix";
     }
 
-    private static final String name = "add_prefix";
-
-    @ObjectHolder(Ref.MODID + ":add_prefix")
-    public static final Item ITEM = null;
+    private static final String name = Ref.MODID + ":currency/add_prefix";
 
     public ItemAddPrefix() {
 
