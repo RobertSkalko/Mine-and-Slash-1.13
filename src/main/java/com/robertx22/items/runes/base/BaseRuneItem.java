@@ -28,6 +28,7 @@ import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunder
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.CLOC;
@@ -115,11 +116,13 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
             RuneRarity rar = rune.GetRarity();
 
+            TooltipInfo info = new TooltipInfo(rar.StatPercents(), rune.level);
+
             if (rune.armor != null) {
                 Tooltip.add(Styles.GRAYCOMP()
                         .appendSibling(CLOC.tooltip("stats_on_armor")
                                 .appendText(":")), tooltip);
-                for (ITextComponent str : rune.armor.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.armor.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }
                 Tooltip.add("", tooltip);
@@ -129,7 +132,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
                 Tooltip.add(Styles.GRAYCOMP()
                         .appendSibling(CLOC.tooltip("stats_on_weapon")
                                 .appendText(":")), tooltip);
-                for (ITextComponent str : rune.weapon.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }
             }
@@ -139,7 +142,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
                 Tooltip.add(Styles.GRAYCOMP()
                         .appendSibling(CLOC.tooltip("stats_on_jewerly")
                                 .appendText(":")), tooltip);
-                for (ITextComponent str : rune.jewerly.GetTooltipString(rar.StatPercents(), rune.level, true)) {
+                for (ITextComponent str : rune.jewerly.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }
                 Tooltip.add("", tooltip);

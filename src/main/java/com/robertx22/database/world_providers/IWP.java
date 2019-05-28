@@ -52,6 +52,9 @@ public interface IWP extends IWeighted, ILocName {
     }
 
     default ResourceLocation randomSmallSurfaceDecoration() {
+        if (getSmallSurfaceDecorations().isEmpty()) {
+            return null;
+        }
         return getSmallSurfaceDecorations().get(RandomUtils.RandomRange(0, getSmallSurfaceDecorations()
                 .size()));
 

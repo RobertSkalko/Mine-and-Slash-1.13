@@ -1,6 +1,8 @@
 package com.robertx22.world_gen.structures;
 
 import com.robertx22.database.world_providers.IWP;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -13,7 +15,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
 
-public class SmallStructure extends Feature<NoFeatureConfig> {
+public class SmallRandomSurfaceDecoration extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean place(IWorld iworld,
@@ -23,17 +25,22 @@ public class SmallStructure extends Feature<NoFeatureConfig> {
         if (iworld.isAirBlock(pos)) {
             World theworld = iworld.getWorld();
 
-            if (theworld instanceof IWP) {
+            IWP iwp = WorldUtils.getIWP(theworld);
 
-                IWP iwp = (IWP) theworld;
+            if (iwp != null) {
 
-                TemplateManager templatemanager = iworld.getSaveHandler()
-                        .getStructureTemplateManager();
+                ResourceLocation res = iwp.randomSmallSurfaceDecoration();
 
-                templatemanager.getTemplate(iwp.randomSmallSurfaceDecoration())
-                        .addBlocksToWorld(iworld, pos, new PlacementSettings());
+                if (res != null) {
 
-                return true;
+                    TemplateManager templatemanager = iworld.getSaveHandler()
+                            .getStructureTemplateManager();
+
+                    templatemanager.getTemplate(res)
+                            .addBlocksToWorld(iworld, pos, new PlacementSettings());
+
+                    return true;
+                }
             }
 
         }
@@ -43,16 +50,12 @@ public class SmallStructure extends Feature<NoFeatureConfig> {
 
     String name = "random_decoration";
 
-    public SmallStructure() {
+    public SmallRandomSurfaceDecoration() {
 
     }
 
     public int getSize() {
         return 1;
-    }
-
-    protected int getSeedModifier() {
-        return 14357618;
     }
 
 }

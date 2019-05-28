@@ -96,6 +96,16 @@ public class WorldUtils {
         return world.getDimension() instanceof BaseWorldProvider;
     }
 
+    public static IWP getIWP(World theworld) {
+
+        if (theworld.getDimension() instanceof IWP) {
+
+            return (IWP) theworld.getDimension();
+
+        }
+        return null;
+    }
+
     public int getTier(World world, EntityPlayer player) {
 
         if (DimensionsContainer.INSTANCE.hasConfig(world)) {

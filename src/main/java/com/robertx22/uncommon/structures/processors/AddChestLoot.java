@@ -35,7 +35,7 @@ public class AddChestLoot implements ITemplateProcessor {
 
             /*
             while (items.size() < 2) {
-                for (ItemStack stack : MasterLootGen.gen((World) world, 1F, lvl)) {
+                for (ItemStack stack : MasterLootGen.generateLoot((World) world, 1F, lvl)) {
                     items.add(stack);
                 }
             }

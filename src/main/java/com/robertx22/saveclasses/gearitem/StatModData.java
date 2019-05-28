@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
@@ -8,6 +7,7 @@ import com.robertx22.db_lists.StatMods;
 import com.robertx22.loot.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
@@ -125,10 +125,9 @@ public class StatModData implements ITooltipString {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(MinMax minmax, int level,
-                                                 boolean IsNotSet) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        return GetBaseMod().GetBaseStat().getTooltipList(minmax, this, level, IsNotSet);
+        return GetBaseMod().GetBaseStat().getTooltipList(info, this);
 
     }
 

@@ -4,6 +4,7 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -24,17 +25,16 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.REDCOMP()
                 .appendSibling(CLOC.word("chaos_stats").appendText(":")));
 
-        for (LevelAndStats part : this.GetAllStats(gear.level)) {
+        for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {
-                list.addAll(data.GetTooltipString(gear.GetRarity()
-                        .StatPercents(), part.level, true));
+                list.addAll(data.GetTooltipString(info));
             }
         }
 

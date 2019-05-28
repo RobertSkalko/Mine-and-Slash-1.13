@@ -5,6 +5,7 @@ import com.robertx22.db_lists.RuneWords;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -168,7 +169,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList();
 
@@ -178,7 +179,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         for (InsertedRuneData rune : runes) {
 
-            list.addAll(rune.GetTooltipString(gear));
+            list.addAll(rune.GetTooltipString(info));
         }
 
         int empty = capacity - runes.size();
@@ -193,7 +194,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         if (this.runewords != null && runewords.size() > 0) {
             for (RuneWordData word : runewords) {
-                list.addAll(word.GetTooltipString(gear));
+                list.addAll(word.GetTooltipString(info));
             }
         }
 

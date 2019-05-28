@@ -146,7 +146,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
-        CommandRegister.Register(event.getServer());
+        //CommandRegister.Register(event.getServer());
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
             ServerLifecycleHooks.getCurrentServer()

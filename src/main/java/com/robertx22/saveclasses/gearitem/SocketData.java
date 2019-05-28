@@ -2,8 +2,8 @@ package com.robertx22.saveclasses.gearitem;
 
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -41,7 +41,7 @@ public class SocketData extends StatGroupData implements ITooltipList {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -51,10 +51,10 @@ public class SocketData extends StatGroupData implements ITooltipList {
                     .appendSibling(CLOC.word("socket"))));
         } else {
 
-            for (LevelAndStats part : this.GetAllStats(gear.level)) {
+            for (LevelAndStats part : this.GetAllStats(info.level)) {
                 for (StatModData data : part.mods) {
-                    list.addAll(data.GetTooltipString(gear.GetRarity()
-                            .StatPercents(), part.level, true));
+
+                    list.addAll(data.GetTooltipString(info));
                 }
             }
 

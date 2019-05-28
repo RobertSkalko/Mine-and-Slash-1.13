@@ -14,11 +14,8 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.*;
-import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
-import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
@@ -254,6 +251,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         List<ITextComponent> tip = event.getToolTip();
 
+        TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), this.level);
+
         tip.clear();
 
         tip.add(GetDisplayName(stack));
@@ -265,13 +264,13 @@ public class GearItemData implements ITooltip, ISalvagable {
         List<ITooltipList> list = new ArrayList<ITooltipList>();
 
         if (uniqueStats != null) {
-            tip.addAll(uniqueStats.GetTooltipString(this));
+            tip.addAll(uniqueStats.GetTooltipString(info));
         }
         if (primaryStats != null) {
-            tip.addAll(primaryStats.GetTooltipString(this));
+            tip.addAll(primaryStats.GetTooltipString(info));
         }
         if (runes != null) {
-            tip.addAll(runes.GetTooltipString(this));
+            tip.addAll(runes.GetTooltipString(info));
         }
 
         tip.add(new TextComponentString(""));
@@ -287,7 +286,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         for (ITooltipList part : list) {
 
             if (part != null) {
-                tip.addAll(part.GetTooltipString(this));
+                tip.addAll(part.GetTooltipString(info));
                 tip.add(new TextComponentString(""));
             }
 
@@ -379,9 +378,11 @@ public class GearItemData implements ITooltip, ISalvagable {
                     color = TextFormatting.DARK_GREEN;
                 }
 
+                TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), data.getLevel())
+                        .setIsSet();
+
                 for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-                        .GetTooltipString(this.GetRarity()
-                                .StatPercents(), data.getLevel(), false)) {
+                        .GetTooltipString(info)) {
 
                     ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
                             .getKey() + " ").appendSibling(CLOC.word("set")

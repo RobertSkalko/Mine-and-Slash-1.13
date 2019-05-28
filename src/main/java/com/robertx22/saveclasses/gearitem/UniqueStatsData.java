@@ -8,6 +8,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
@@ -53,17 +54,17 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(CLOC.word("unique_stats")
                 .appendText(":")));
 
-        for (LevelAndStats part : this.GetAllStats(gear.level)) {
+        for (LevelAndStats part : this.GetAllStats(info.level)) {
+
             for (StatModData data : part.mods) {
-                list.addAll(data.GetTooltipString(gear.GetRarity()
-                        .StatPercents(), part.level, true));
+                list.addAll(data.GetTooltipString(info));
             }
         }
 

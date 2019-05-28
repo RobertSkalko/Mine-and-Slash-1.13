@@ -3,7 +3,8 @@ package com.robertx22.mmorpg.registers.common;
 import com.robertx22.world_gen.configs.MyChanceConfig;
 import com.robertx22.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.world_gen.placements.AtSurfaceChancePlacement;
-import com.robertx22.world_gen.structures.SmallStructure;
+import com.robertx22.world_gen.structures.SmallRandomSurfaceDecoration;
+import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.CompositeFeature;
@@ -14,33 +15,36 @@ import net.minecraft.world.gen.placement.IPlacementConfig;
 
 public class WorldGenRegisters {
 
-    static final float SMALL_DECO_CHANCE = 2F;
-    static final CompositeFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(), new AtSurfaceChancePlacement(), new MyChanceConfig(1F));
-    static final CompositeFeature smallSurfaceStructure = createSmallSurfaceDeco(new SmallStructure());
+    public static final float SMALL_DECO_CHANCE = 100F;
+    public static final CompositeFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(), new AtSurfaceChancePlacement(), new MyChanceConfig(1F));
+    public static final CompositeFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new SmallRandomSurfaceDecoration());
 
     public static void register() {
 
-        for (Biome biome : Biome.BIOMES) {
+        System.out.println("Registering Mine and Slash Map World Gen");
+
+        for (Object obj : IRegistry.BIOME) { // this works!
+
+            Biome biome = (Biome) obj;
 
             add(biome, randomSurfaceChest);
-            add(biome, smallSurfaceStructure);
-
-            // biome.addStructure(new BigWoodPillar(), IFeatureConfig.NO_FEATURE_CONFIG);
-
+            add(biome, smallRandomSurfaceDecoration);
         }
+
+        // biome.addStructure(new BigWoodPillar(), IFeatureConfig.NO_FEATURE_CONFIG);
 
     }
 
-    static void add(Biome biome, CompositeFeature comp) {
+    public static void add(Biome biome, CompositeFeature comp) {
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, comp);
     }
 
-    static CompositeFeature createSmallSurfaceDeco(Feature feature) {
+    public static CompositeFeature createSmallSurfaceDeco(Feature feature) {
 
         return Biome.createCompositeFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, new AtSurfaceChancePlacement(), new MyChanceConfig(SMALL_DECO_CHANCE));
     }
 
-    static <F extends IFeatureConfig, D extends IPlacementConfig> CompositeFeature<F, D> create(
+    public static <F extends IFeatureConfig, D extends IPlacementConfig> CompositeFeature<F, D> create(
             Feature feature, BasePlacement<D> basePlacementIn, D placementConfig) {
 
         return Biome.createCompositeFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, basePlacementIn, placementConfig);

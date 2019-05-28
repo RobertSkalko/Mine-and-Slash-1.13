@@ -105,14 +105,14 @@ public class LootInfo {
             }
         }
 
+        if (mobData != null && playerData != null && victim != null) {
+            chance = LootUtils.applyLootMultipliers(chance, mobData, playerData, victim);
+        }
+
         if (mobData != null && playerData != null) {
             if (gen.hasLevelDistancePunishment()) {
                 chance = LootUtils.ApplyLevelDistancePunishment(mobData, playerData, chance);
             }
-        }
-
-        if (mobData != null && playerData != null && victim != null) {
-            chance = LootUtils.applyLootMultipliers(chance, mobData, playerData, victim);
         }
 
         amount = LootUtils.WhileRoll(chance);

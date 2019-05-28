@@ -95,7 +95,9 @@ public class OnLogin {
 
                 data.onLogin(player);
 
-                Load.Unit(player).syncToClient(player);
+                data.syncToClient(player);
+
+                Load.playerMapData(player).teleportPlayerBack(player);
 
             } else {
                 player.sendMessage(new TextComponentString("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));

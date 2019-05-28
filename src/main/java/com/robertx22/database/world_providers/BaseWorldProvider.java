@@ -34,6 +34,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     public ResourceLocation res(String str) {
         return new ResourceLocation(Ref.MODID, str);
+
     }
 
     @Override
@@ -125,6 +126,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public BaseWorldProvider(DimensionType type) {
         this.type = type;
         this.setModDim();
+
     }
 
     @Override

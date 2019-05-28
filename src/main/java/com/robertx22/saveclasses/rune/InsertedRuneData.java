@@ -2,10 +2,10 @@ package com.robertx22.saveclasses.rune;
 
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatGroupData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -70,12 +70,11 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList();
 
         for (StatModData mod : this.Mods) {
-            list.addAll(mod.GetTooltipString(this.getRarity()
-                    .StatPercents(), level, true));
+            list.addAll(mod.GetTooltipString(info));
         }
 
         List<ITextComponent> list2 = new ArrayList();

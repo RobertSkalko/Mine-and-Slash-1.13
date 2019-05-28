@@ -1,9 +1,9 @@
 package com.robertx22.database.stats;
 
 import com.robertx22.database.IGUID;
-import com.robertx22.database.MinMax;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -77,12 +77,12 @@ public abstract class Stat implements IGUID, ILocName {
             str.appendText(" ").appendSibling(CLOC.word("percent"));
         }
 
-        if (IsSet) {
+        if (IsSet == false) {
             return Styles.REDCOMP()
                     .appendSibling(new TextComponentString(" * ").appendSibling(str)
                             .appendText(": "));
         } else {
-            return Styles.REDCOMP().appendSibling(str.appendText(": "));
+            return Styles.GREENCOMP().appendSibling(str.appendText(": "));
         }
     }
 
@@ -95,13 +95,12 @@ public abstract class Stat implements IGUID, ILocName {
         return NameText(IsSet, data).appendText(minusplus + printValue(data, level));
     }
 
-    public List<ITextComponent> getTooltipList(MinMax minmax, StatModData data, int level,
-                                               boolean IsNotSet) {
+    public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        ITextComponent text = NameAndValueText(data, level, IsNotSet);
+        ITextComponent text = NameAndValueText(data, info.level, info.isSet);
 
         if (mod.Type() == StatTypes.Flat) {
 
@@ -115,18 +114,24 @@ public abstract class Stat implements IGUID, ILocName {
             text.appendText("% ").appendSibling(CLOC.word("multi"));
         }
 
-        if (GuiScreen.isShiftKeyDown() && IsNotSet) {
+        if (GuiScreen.isShiftKeyDown() && info.isSet == false) {
 
-            StatModData min = StatModData.Load(data.GetBaseMod(), minmax.Min);
-            StatModData max = StatModData.Load(data.GetBaseMod(), minmax.Max);
+            StatModData min = StatModData.Load(data.GetBaseMod(), info.minmax.Min);
+            StatModData max = StatModData.Load(data.GetBaseMod(), info.minmax.Max);
 
-            ITextComponent extraInfo = new TextComponentString(" (" + min.printValue(level) + " - " + max
-                    .printValue(level) + ")");
+            ITextComponent extraInfo = new TextComponentString(" (" + min.printValue(info.level) + " - " + max
+                    .printValue(info.level) + ")");
 
             text.appendSibling(extraInfo);
         }
 
         list.add(text);
+
+        if (GuiScreen.isAltKeyDown()) {
+
+            list.add(new TextComponentString("test description"));
+
+        }
 
         return list;
 

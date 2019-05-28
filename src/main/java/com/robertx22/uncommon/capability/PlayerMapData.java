@@ -40,6 +40,8 @@ public class PlayerMapData {
 
         float getBonusLootAmount(EntityPlayer player);
 
+        int getBonusLootAmountInPercent(EntityPlayer player);
+
         String getLastMapGUID();
 
         boolean hasTimeForMap();
@@ -218,6 +220,11 @@ public class PlayerMapData {
         }
 
         @Override
+        public int getBonusLootAmountInPercent(EntityPlayer player) {
+            return (int) (this.getBonusLootAmount(player) * 100);
+        }
+
+        @Override
         public String getLastMapGUID() {
             return this.mapGUID;
         }
@@ -255,23 +262,22 @@ public class PlayerMapData {
         @Override
         public void teleportPlayerBack(EntityPlayer player) {
 
-            if (player.isAlive()) {
+            if (WorldUtils.isMapWorld(player.world)) {
+                if (this.originalDimension != null) {
+                    if (player.isAlive()) {
+                        BlockPos pos = player.getBedLocation();
+                        if (getMapDevicePos() != null) {
+                            pos = getMapDevicePos();
+                            pos = pos.north(2);
+                            player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
+                            player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+                        }
 
-                BlockPos pos = player.getBedLocation();
-
-                if (getMapDevicePos() != null) {
-
-                    pos = getMapDevicePos();
-                    pos = pos.north(2);
-
-                    player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
-
-                    player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+                    }
+                } else {
 
                 }
-
             }
-
         }
 
         private void announceEnd(EntityPlayer player) {

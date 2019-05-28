@@ -1,10 +1,10 @@
 package com.robertx22.database.stats.stat_types.spell_buff_traits.base;
 
-import com.robertx22.database.MinMax;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -68,8 +68,7 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
     }
 
     @Override
-    public List<ITextComponent> getTooltipList(MinMax minmax, StatModData data, int level,
-                                               boolean IsNotSet) {
+    public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();

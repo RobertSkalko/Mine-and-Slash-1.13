@@ -1,8 +1,8 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -18,7 +18,7 @@ public class SocketsListData implements IStatsContainer, ITooltipList {
     public List<SocketData> sockets = new ArrayList();
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         if (sockets.size() > 0) {
@@ -26,7 +26,7 @@ public class SocketsListData implements IStatsContainer, ITooltipList {
             list.add(CLOC.word("socket").appendText(":"));
 
             for (SocketData socket : sockets) {
-                list.addAll(socket.GetTooltipString(gear));
+                list.addAll(socket.GetTooltipString(info));
             }
         }
 

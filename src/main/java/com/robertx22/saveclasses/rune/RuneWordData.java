@@ -5,10 +5,10 @@ import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.RuneWords;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -69,7 +69,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList();
 
         RuneRarity rar = this.getRarity();
@@ -81,7 +81,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
         // list.add("");
 
         for (StatModData mod : this.Mods) {
-            list.addAll(mod.GetTooltipString(rar.StatPercents(), level, true));
+            list.addAll(mod.GetTooltipString(info));
         }
 
         return list;

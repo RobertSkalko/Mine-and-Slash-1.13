@@ -12,6 +12,7 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
+import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
@@ -124,7 +125,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
         float total = 0;
         for (MapAffixData affix : affixes) {
-            total += affix.percent / 100;
+            total += affix.getBonusLootChance();
         }
         return total;
     }
@@ -256,7 +257,7 @@ public class MapItemData implements ISalvagable, ITooltip {
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.YELLOWCOMP()
                     .appendSibling(CLOC.word("bonus_loot_amount")
-                            .appendText(": " + this.getBonusLootAmount() + "%")), tooltip);
+                            .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
 
             Tooltip.add("", tooltip);
             Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
@@ -272,6 +273,12 @@ public class MapItemData implements ISalvagable, ITooltip {
                     .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
 
         }
+
+    }
+
+    private int getBonusLootAmountInPercent() {
+
+        return (int) ((this.getBonusLootAmount() - 1) * 100);
 
     }
 
@@ -304,8 +311,10 @@ public class MapItemData implements ISalvagable, ITooltip {
 
             for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-                for (ITextComponent statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity)
-                        .StatPercents(), data.level, false)) {
+                TooltipInfo info = new TooltipInfo(data.GetRarity()
+                        .StatPercents(), data.level);
+
+                for (ITextComponent statstring : statmod.GetTooltipString(info)) {
 
                     Tooltip.add(new TextComponentString(" * ").appendSibling(statstring), tooltip);
 

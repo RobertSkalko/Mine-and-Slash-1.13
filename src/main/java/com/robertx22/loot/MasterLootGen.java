@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
 
 public class MasterLootGen {
 
-    public static List<ItemStack> generateWithInfo(LootInfo info) {
+    public static List<ItemStack> generateLoot(LootInfo info) {
         List<ItemStack> items = new ArrayList<ItemStack>();
 
         if (info == null) {
             return items;
         }
 
-        items = generateWithInfoNoWhile(info);
+        items = populateOnce(info);
 
         while (items.size() < info.minItems) {
 
-            List<ItemStack> extra = generateWithInfoNoWhile(info);
+            List<ItemStack> extra = populateOnce(info);
 
             int missing = info.minItems - items.size();
 
@@ -40,7 +40,7 @@ public class MasterLootGen {
         return items;
     }
 
-    private static List<ItemStack> generateWithInfoNoWhile(LootInfo info) {
+    private static List<ItemStack> populateOnce(LootInfo info) {
         List<ItemStack> items = new ArrayList<ItemStack>();
 
         if (info == null) {
@@ -63,11 +63,12 @@ public class MasterLootGen {
                 .collect(Collectors.toList());
     }
 
-    public static List<ItemStack> gen(UnitData mob, UnitData player,
-                                      EntityLivingBase victim, EntityPlayer killer) {
+    public static List<ItemStack> generateLoot(UnitData mob, UnitData player,
+                                               EntityLivingBase victim,
+                                               EntityPlayer killer) {
 
         LootInfo info = new LootInfo(mob, player, victim, killer);
-        List<ItemStack> items = generateWithInfo(info);
+        List<ItemStack> items = generateLoot(info);
 
         return items;
     }
@@ -75,7 +76,7 @@ public class MasterLootGen {
     public static void genAndDrop(UnitData mob, UnitData player, EntityLivingBase victim,
                                   EntityPlayer killer) {
 
-        List<ItemStack> items = gen(mob, player, victim, killer);
+        List<ItemStack> items = generateLoot(mob, player, victim, killer);
 
         for (ItemStack stack : items) {
             victim.entityDropItem(stack, 1F);
