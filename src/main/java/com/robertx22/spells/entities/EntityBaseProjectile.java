@@ -320,7 +320,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                 .grow(1.2D));
 
         boolean flag = false;
-        
+
         for (int i = 0; i < list.size(); ++i) {
             Entity entity1 = list.get(i);
 

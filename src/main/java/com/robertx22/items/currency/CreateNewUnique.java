@@ -3,6 +3,7 @@ package com.robertx22.items.currency;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
 import com.robertx22.loot.gens.UniqueGearLootGen;
+import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -10,21 +11,29 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect {
+import java.util.Arrays;
+import java.util.List;
 
-    private static final String name = "create_new_unique";
+public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+
+    private static final String GUID = Ref.MODID + ":currency/create_new_unique";
+
+    @Override
+    public List<String> oldNames() {
+        return Arrays.asList(Ref.MODID + ":curretttncy/create_new_unique");
+    }
 
     @Override
     public String GUID() {
         return "create_new_unique";
     }
 
-    @ObjectHolder(Ref.MODID + ":create_new_unique")
+    @ObjectHolder(GUID)
     public static final Item ITEM = null;
 
     public CreateNewUnique() {
 
-        super(name);
+        super(GUID);
 
     }
 
@@ -72,4 +81,5 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     public int Rank() {
         return 4;
     }
+
 }

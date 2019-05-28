@@ -13,7 +13,6 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.Styles;
@@ -21,7 +20,6 @@ import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.datasaving.Kills;
 import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
@@ -231,7 +229,6 @@ public class EntityData {
 
         boolean setMobStats = false;
         Unit unit = null;
-        PlayerMapKillsData kills = null;
         int level = 1;
         int exp = 0;
         int rarity = 0;
@@ -264,10 +261,6 @@ public class EntityData {
                 UnitNbt.Save(this.nbt, unit);
             }
 
-            if (kills != null) {
-                Kills.Save(this.nbt, kills);
-            }
-
             return nbt;
 
         }
@@ -290,11 +283,6 @@ public class EntityData {
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
                 this.unit = newunit;
-            }
-
-            PlayerMapKillsData killsdata = Kills.Load(this.nbt);
-            if (killsdata != null) {
-                this.kills = killsdata;
             }
 
         }
@@ -641,12 +629,6 @@ public class EntityData {
                     setNewbieStatus(false);
                     OnLogin.GiveStarterItems(player);
                 }
-
-                if (kills == null) {
-                    kills = new PlayerMapKillsData();
-                }
-
-                kills.init();
 
             } catch (Exception e) {
                 e.printStackTrace();

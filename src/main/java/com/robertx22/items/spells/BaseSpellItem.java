@@ -33,14 +33,7 @@ public abstract class BaseSpellItem extends Item {
 
     @Override
     final public int getUseDuration(ItemStack stack) {
-
-        SpellItemData data = Spell.Load(stack);
-
-        if (data != null) {
-            return data.GetSpell().useTimeTicks();
-        }
-
-        return 20;
+        return Spell().useTimeTicks();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.robertx22.items.currency;
 import com.robertx22.config.ModConfig;
 import com.robertx22.items.ItemDefault;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.interfaces.ITiered;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -39,8 +40,10 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip(GUID()), tooltip);
+        Tooltip.add(Styles.GREENCOMP().appendSibling(CLOC.tooltip(GUID())), tooltip);
         Tooltip.add(CLOC.lore(GUID()), tooltip);
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);
 
     }
 
