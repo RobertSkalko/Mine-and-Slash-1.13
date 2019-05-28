@@ -6,6 +6,8 @@ import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityType;
 import net.minecraft.init.SoundEvents;
@@ -50,20 +52,41 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public List<EntityLivingBase> entitiesHit = new ArrayList();
 
+    private EntityLivingBase getEntityHit(RayTraceResult result, Entity projectile) {
+
+        if (result.entity instanceof EntityLivingBase) {
+            return (EntityLivingBase) result.entity;
+        }
+
+        List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, EntityLivingBase.class);
+
+        if (entities.size() > 0) {
+            return entities.get(0);
+        }
+
+        return null;
+
+    }
+
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        if (result.entity != null && result.entity instanceof EntityLivingBase && effect != null && data != null) {
+        EntityLivingBase entityHit = getEntityHit(result, this);
+
+        if (entityHit == this.getThrower()) {
+            return;
+        }
+
+        if (entityHit instanceof EntityLivingBase && effect != null && data != null) {
             if (world.isRemote) {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
-            EntityLivingBase living = (EntityLivingBase) result.entity;
 
-            if (!entitiesHit.contains(living)) {
-                effect.Activate(data, living);
+            if (!entitiesHit.contains(entityHit)) {
+                effect.Activate(data, entityHit);
 
-                ifDamageKilledEnemy(living);
-                entitiesHit.add(living);
+                ifDamageKilledEnemy(entityHit);
+                entitiesHit.add(entityHit);
             }
 
         } else {

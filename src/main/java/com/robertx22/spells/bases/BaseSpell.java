@@ -41,6 +41,12 @@ public abstract class BaseSpell implements IWeighted {
 
     public abstract int ManaCost();
 
+    public abstract int useTimeTicks();
+
+    public float getUseDurationInSeconds() {
+        return (float) useTimeTicks() / 20;
+    }
+
     // public abstract int Cooldown();
 
     public abstract int BaseValue();

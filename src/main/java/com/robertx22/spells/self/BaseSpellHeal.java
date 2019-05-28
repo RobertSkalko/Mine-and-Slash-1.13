@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public abstract class BaseSpellHeal extends BaseSpell {
 
     @Override
+    public int useTimeTicks() {
+        return 10;
+    }
+
+    @Override
     public SpellType Type() {
         return SpellType.Self_Heal;
     }

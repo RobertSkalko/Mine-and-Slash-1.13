@@ -24,6 +24,11 @@ public abstract class BaseNovaSpell extends BaseSpell {
     public double radius = 4;
 
     @Override
+    public int useTimeTicks() {
+        return 10;
+    }
+
+    @Override
     public SpellType Type() {
         return SpellType.Aoe_Damage_Nova;
     }

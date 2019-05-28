@@ -23,6 +23,11 @@ import net.minecraft.world.World;
 public class SpellSelfRegen extends BaseSpellHeal {
 
     @Override
+    public int useTimeTicks() {
+        return 20;
+    }
+
+    @Override
     public String GUID() {
         return "spell_self_regen";
     }

@@ -218,6 +218,11 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
             Tooltip.add("", tooltip);
 
+            Tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(new TextComponentString("Use Time: " + GetSpell().getUseDurationInSeconds() + " sec.")), tooltip);
+
+            Tooltip.add("", tooltip);
+
             Tooltip.add(Styles.AQUACOMP()
                     .appendSibling(CLOC.word("type")
                             .appendText(": ")

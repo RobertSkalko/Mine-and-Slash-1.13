@@ -8,6 +8,11 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
+    public int useTimeTicks() {
+        return 20;
+    }
+
+    @Override
     public ITextComponent GetDescription(SpellItemData data) {
         return CLOC.tooltip("aoe_bomb_spell");
 

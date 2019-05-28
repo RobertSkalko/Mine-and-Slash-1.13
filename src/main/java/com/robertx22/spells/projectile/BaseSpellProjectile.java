@@ -12,6 +12,11 @@ import net.minecraft.world.World;
 
 public abstract class BaseSpellProjectile extends BaseBolt {
 
+    @Override
+    public int useTimeTicks() {
+        return 15;
+    }
+
     public BaseSpellProjectile() {
         super();
     }

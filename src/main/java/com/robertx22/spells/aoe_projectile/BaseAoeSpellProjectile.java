@@ -11,6 +11,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
+    
+    @Override
+    public int useTimeTicks() {
+        return 20;
+    }
 
     public BaseAoeSpellProjectile() {
         super();

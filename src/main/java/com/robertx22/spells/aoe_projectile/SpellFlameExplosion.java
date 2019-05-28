@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFlameExplosion extends BaseAoeSpellProjectile {
+
     static public class EntityFlameExplosion extends EntityElementalBoltAOE {
 
         public EntityFlameExplosion(World worldIn) {

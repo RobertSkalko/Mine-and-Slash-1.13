@@ -14,7 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Particles;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -314,10 +317,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         Entity entity = null;
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
                 .expand(this.motionX, this.motionY, this.motionZ)
-                .grow(1.5D));
-        double d0 = 0.0D;
-        boolean flag = false;
+                .grow(1.2D));
 
+        boolean flag = false;
+        
         for (int i = 0; i < list.size(); ++i) {
             Entity entity1 = list.get(i);
 
@@ -329,18 +332,9 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                     flag = true;
                 } else {
                     flag = false;
-                    AxisAlignedBB axisalignedbb = entity1.getBoundingBox()
-                            .grow(0.30000001192092896D);
-                    RayTraceResult raytraceresult1 = axisalignedbb.calculateIntercept(vec3d, vec3d1);
 
-                    if (raytraceresult1 != null) {
-                        double d1 = vec3d.squareDistanceTo(raytraceresult1.hitVec);
+                    entity = entity1;
 
-                        if (d1 < d0 || d0 == 0.0D) {
-                            entity = entity1;
-                            d0 = d1;
-                        }
-                    }
                 }
             }
         }
@@ -358,18 +352,21 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         }
 
         if (raytraceresult != null) {
+
             if (raytraceresult.hitInfo == RayTraceResult.Type.BLOCK) {
                 Block block = this.world.getBlockState(raytraceresult.getBlockPos())
                         .getBlock();
 
                 if (block.equals(Blocks.GRASS) || block.equals(Blocks.TALL_GRASS) || block
                         .equals(Blocks.TALL_SEAGRASS)) {
+                    // ignore grass
                 } else {
                     this.onImpact(raytraceresult);
                 }
-            } else if (!net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+            } else {
                 this.onImpact(raytraceresult);
             }
+
         }
 
         float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
