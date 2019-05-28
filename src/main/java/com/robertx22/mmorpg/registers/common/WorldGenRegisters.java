@@ -4,7 +4,6 @@ import com.robertx22.world_gen.configs.MyChanceConfig;
 import com.robertx22.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.world_gen.placements.AtSurfaceChancePlacement;
 import com.robertx22.world_gen.structures.SmallRandomSurfaceDecoration;
-import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.CompositeFeature;
@@ -12,6 +11,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.placement.BasePlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class WorldGenRegisters {
 
@@ -23,9 +23,7 @@ public class WorldGenRegisters {
 
         System.out.println("Registering Mine and Slash Map World Gen");
 
-        for (Object obj : IRegistry.BIOME) { // this works!
-
-            Biome biome = (Biome) obj;
+        for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
             add(biome, randomSurfaceChest);
             add(biome, smallRandomSurfaceDecoration);

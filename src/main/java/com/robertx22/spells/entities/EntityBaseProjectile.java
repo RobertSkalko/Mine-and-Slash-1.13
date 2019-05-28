@@ -317,7 +317,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         Entity entity = null;
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
                 .expand(this.motionX, this.motionY, this.motionZ)
-                .grow(1.2D));
+                .grow(0.7F));
 
         boolean flag = false;
 

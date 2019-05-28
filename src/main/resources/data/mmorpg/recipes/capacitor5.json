@@ -10,7 +10,7 @@
       "item": "mmorpg:capacitor4"
     },
 	"A": {
-      "item": "mmorpg:create_new_unique"
+      "item": "mmorpg:currency/create_new_unique"
     },
     "S": 
       {

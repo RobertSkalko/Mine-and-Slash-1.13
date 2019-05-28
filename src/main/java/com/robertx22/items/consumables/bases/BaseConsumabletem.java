@@ -1,4 +1,4 @@
-package com.robertx22.items.consumables;
+package com.robertx22.items.consumables.bases;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabs;
@@ -33,7 +33,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
     public abstract ITextComponent tooltip();
 
     public int useDurationInTicks() {
-        return 20;
+        return 30;
     }
 
     public abstract void onFinish(ItemStack stack, World world, EntityLivingBase player,

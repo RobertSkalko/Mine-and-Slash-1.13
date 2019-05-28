@@ -10,13 +10,13 @@
       "item": "mmorpg:ore5"
     }, 
 	"A": {
-      "item": "mmorpg:orb_of_transmutation"
+      "item": "mmorpg:currency/orb_of_transmutation"
     }, 
 	"B": {
-      "item": "mmorpg:chaos_orb"
+      "item": "mmorpg:currency/chaos_orb"
     }
   },
   "result": {
-    "item": "mmorpg:stone_of_hope"
+    "item": "mmorpg:currency/stone_of_hope"
   }
 }

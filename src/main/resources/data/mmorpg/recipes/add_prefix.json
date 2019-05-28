@@ -10,13 +10,13 @@
       "item": "mmorpg:ore4"
     }, 
 	"A": {
-      "item": "mmorpg:randomize_prefix"
+      "item": "mmorpg:currency/randomize_prefix"
     }, 
 	"B": {
       "item": "minecraft:diamond_block"
     }
   },
   "result": {
-    "item": "mmorpg:add_prefix"
+    "item": "mmorpg:currency/add_prefix"
   }
 }

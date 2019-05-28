@@ -7,7 +7,7 @@
   ],
   "key": {  
 	"C": {
-      "item": "mmorpg:orb_of_transmutation"
+      "item": "mmorpg:currency/orb_of_transmutation"
     },
 	"A": {
       "item": "minecraft:obsidian"

@@ -13,7 +13,7 @@
       "item": "minecraft:gold_block"
     }, 
 	"A": {
-      "item": "mmorpg:stone_of_hope"
+      "item": "mmorpg:currency/stone_of_hope"
     }
   },
   "result": {

@@ -1,5 +1,7 @@
 package com.robertx22.items.consumables;
 
+import com.robertx22.items.consumables.bases.BaseConsumabletem;
+import com.robertx22.items.consumables.bases.IAmount;
 import com.robertx22.mmorpg.registers.common.ConsumableRegister;
 import com.robertx22.uncommon.capability.EntityData;
 import net.minecraft.entity.EntityLivingBase;

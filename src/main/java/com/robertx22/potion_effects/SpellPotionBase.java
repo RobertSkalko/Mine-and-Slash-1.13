@@ -1,6 +1,8 @@
 package com.robertx22.potion_effects;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.interfaces.ILocName;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
@@ -9,19 +11,25 @@ import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class SpellPotionBase extends Potion {
+public abstract class SpellPotionBase extends Potion implements ILocName {
 
     public abstract void performEffectEverySetTime(EntityLivingBase entityLivingBaseIn,
 
                                                    int amplifier);
 
     public abstract String GUID();
+
+    @Override
+    public ITextComponent locName() {
+        return CLOC.blank("effect." + Ref.MODID + GUID());
+    }
 
     public abstract int performEachXTicks();
 

@@ -980,6 +980,9 @@
     "item.mmorpg.lootbox.small_gear_lootbox_2": "§eRare Small Gear Loot Box",
     "item.mmorpg.lootbox.small_gear_lootbox_3": "§9Epic Small Gear Loot Box",
     "item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Loot Box",
-    "item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Loot Box"
+    "item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Loot Box",
+	
+	"item.mmorpg.consumable.restore_energy_item": "Energy potion",
+	"item.mmorpg.consumable.restore_mana_item": "Mana potion"
 	
 }
