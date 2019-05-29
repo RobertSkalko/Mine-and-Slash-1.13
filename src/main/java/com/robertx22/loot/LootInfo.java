@@ -96,7 +96,7 @@ public class LootInfo {
         }
 
         if (killer != null) {
-            chance *= Load.playerMapData(killer).getBonusLootAmount(killer);
+            chance *= Load.playerMapData(killer).getLootMultiplier(killer);
         }
 
         if (world != null) {
@@ -108,8 +108,8 @@ public class LootInfo {
             }
         }
 
-        if (mobData != null && playerData != null && victim != null) {
-            chance = LootUtils.applyLootMultipliers(chance, mobData, playerData, victim);
+        if (mobData != null && victim != null) {
+            chance = LootUtils.applyLootMultipliers(chance, mobData, victim);
         }
 
         if (mobData != null && playerData != null) {

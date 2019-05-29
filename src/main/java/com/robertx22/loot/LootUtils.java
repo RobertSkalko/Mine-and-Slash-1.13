@@ -57,7 +57,7 @@ public class LootUtils {
         return stack;
     }
 
-    public static float applyLootMultipliers(float chance, UnitData player, UnitData mob,
+    public static float applyLootMultipliers(float chance, UnitData mob,
                                              EntityLivingBase entity) {
 
         float first = chance;
@@ -66,13 +66,11 @@ public class LootUtils {
 
         float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
 
-        float after_world = after_mob_health;
-
         if (entity instanceof EntitySlime) {
-            after_world /= 15;
+            after_mob_health /= 15;
         }
 
-        return after_world;
+        return after_mob_health;
     }
 
     public static int WhileRoll(float chance) {

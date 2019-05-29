@@ -79,14 +79,14 @@ public class MapItemData implements ISalvagable, ITooltip {
         return this.rarity;
     }
 
-    public float getBonusLootAmount() {
+    public float getLootMultiplier() {
 
-        return 1 + getTotalPercents() + getPermaDeathBonusLoot();
+        return 1 + getTotalPercents() * getPermaDeathMultiplier();
 
     }
 
-    public float getPermaDeathBonusLoot() {
-        return this.isPermaDeath ? 0.3F : 0;
+    public float getPermaDeathMultiplier() {
+        return this.isPermaDeath ? 1.3F : 1;
     }
 
     public int getBonusLootRarity() {
@@ -125,7 +125,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
         float total = 0;
         for (MapAffixData affix : affixes) {
-            total += affix.getBonusLootChance();
+            total += affix.getBonusLootMultiplier();
         }
         return total;
     }
@@ -278,7 +278,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
     private int getBonusLootAmountInPercent() {
 
-        return (int) ((this.getBonusLootAmount() - 1) * 100);
+        return (int) ((this.getLootMultiplier() - 1) * 100);
 
     }
 

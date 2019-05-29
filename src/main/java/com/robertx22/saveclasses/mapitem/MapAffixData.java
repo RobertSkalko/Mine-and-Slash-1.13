@@ -28,7 +28,7 @@ public class MapAffixData {
 
     }
 
-    public float getBonusLootChance() {
+    public float getBonusLootMultiplier() {
         return (float) percent / 1000;
     }
 

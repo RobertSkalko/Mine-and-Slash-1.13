@@ -165,13 +165,14 @@ public class Unit {
 
         UnitData endata = Load.Unit(entity);
 
-        PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+        if (WorldUtils.isMapWorld(entity.world)) {
+            PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+            endata.setTier(mapdata.getTier());
+        }
 
-        endata.setTier(mapdata.getTier());
         endata.SetMobLevelAtSpawn(entity);
         endata.setRarity(randomRarity(entity, endata.getLevel()));
 
-        //CommonStatUtils.addMapAffixes(entity, mob, endata);
         MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
         mob.RecalculateStats(entity, endata, endata.getLevel());

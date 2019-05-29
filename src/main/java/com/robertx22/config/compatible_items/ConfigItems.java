@@ -1,5 +1,6 @@
 package com.robertx22.config.compatible_items;
 
+import com.robertx22.config.IConfig;
 import com.robertx22.mmorpg.Ref;
 
 import java.util.ArrayList;
@@ -7,13 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConfigItems {
+public class ConfigItems implements IConfig {
 
     public ConfigItems() {
 
         this.map.put("modid:itemid1", new ConfigItem());
         this.map.put("modid:itemid2", new ConfigItem());
     }
+
+    public String ConfigType = "compatible_items";
 
     public static ConfigItems INSTANCE = new ConfigItems();
 
@@ -71,4 +74,8 @@ public class ConfigItems {
         }
     }
 
+    @Override
+    public String GUID() {
+        return ConfigType;
+    }
 }

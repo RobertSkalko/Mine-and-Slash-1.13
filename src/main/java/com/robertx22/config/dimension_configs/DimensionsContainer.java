@@ -1,10 +1,11 @@
 package com.robertx22.config.dimension_configs;
 
+import com.robertx22.config.IConfig;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class DimensionsContainer {
+public class DimensionsContainer implements IConfig {
 
     public static DimensionsContainer INSTANCE = new DimensionsContainer();
 
@@ -18,6 +19,13 @@ public class DimensionsContainer {
     }
 
     String version = "1.0";
+
+    public String ConfigType = "dimensions_config";
+
+    @Override
+    public String GUID() {
+        return ConfigType;
+    }
 
     DimensionConfig defaultconfig = DimensionConfig.DefaultExtra();
 

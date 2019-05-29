@@ -52,6 +52,7 @@ public class OnMobMeleeAttack {
             }
 
             if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
+
                 if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
                     return;
                 }

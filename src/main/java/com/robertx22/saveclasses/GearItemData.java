@@ -63,6 +63,10 @@ public class GearItemData implements ITooltip, ISalvagable {
         return runes != null;
     }
 
+    public boolean isUnique() {
+        return isUnique;
+    }
+
     public boolean changesItemStack() {
         return this.isNotFromMyMod == false;
     }

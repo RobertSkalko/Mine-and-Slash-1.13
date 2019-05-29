@@ -38,7 +38,7 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
-        float getBonusLootAmount(EntityPlayer player);
+        float getLootMultiplier(EntityPlayer player);
 
         String getLastMapGUID();
 
@@ -209,11 +209,11 @@ public class PlayerMapData {
         }
 
         @Override
-        public float getBonusLootAmount(EntityPlayer player) {
+        public float getLootMultiplier(EntityPlayer player) {
             if (WorldUtils.isMapWorld(player.world)) {
-                return this.mapdata.getBonusLootAmount();
+                return this.mapdata.getLootMultiplier();
             } else {
-                return 0;
+                return 1;
             }
         }
 
