@@ -29,9 +29,17 @@ public class MobStatUtils {
     static int spelldmg = 8;
     static int spellresist = 4;
 
-    public static void worldMultiplierStats(World world, UnitData data) {
+    public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
-        for (StatData stat : data.getUnit().MyStats.values()) {
+        for (StatData data : unit.MyStats.values()) {
+            data.Flat = data.Flat * mobdata.getStatMultiplierIncreaseByTier();
+        }
+
+    }
+
+    public static void worldMultiplierStats(World world, Unit unit) {
+
+        for (StatData stat : unit.MyStats.values()) {
             stat.Flat *= DimensionsContainer.INSTANCE.getConfig(world).MOB_STRENGTH_MULTIPLIER;
         }
 

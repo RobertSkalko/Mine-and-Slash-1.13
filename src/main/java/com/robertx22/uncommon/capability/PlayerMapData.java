@@ -40,8 +40,6 @@ public class PlayerMapData {
 
         float getBonusLootAmount(EntityPlayer player);
 
-        int getBonusLootAmountInPercent(EntityPlayer player);
-
         String getLastMapGUID();
 
         boolean hasTimeForMap();
@@ -217,11 +215,6 @@ public class PlayerMapData {
             } else {
                 return 0;
             }
-        }
-
-        @Override
-        public int getBonusLootAmountInPercent(EntityPlayer player) {
-            return (int) (this.getBonusLootAmount(player) * 100);
         }
 
         @Override

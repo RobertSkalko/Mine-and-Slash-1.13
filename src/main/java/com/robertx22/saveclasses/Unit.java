@@ -22,6 +22,7 @@ import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
@@ -157,13 +158,16 @@ public class Unit {
         return null;
     }
 
-    public static Unit Mob(EntityLivingBase entity) {
+    public static Unit Mob(EntityLivingBase entity, EntityPlayer nearestPlayer) {
 
         Unit mob = new Unit();
         mob.InitMobStats();
 
         UnitData endata = Load.Unit(entity);
 
+        PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+
+        endata.setTier(mapdata.getTier());
         endata.SetMobLevelAtSpawn(entity);
         endata.setRarity(randomRarity(entity, endata.getLevel()));
 
@@ -316,12 +320,6 @@ public class Unit {
 
         PlayerMapData.IPlayerMapData mapdata = null;
 
-        int tier = 0;
-        if (entity instanceof EntityPlayer) {
-            mapdata = Load.playerMapData((EntityPlayer) entity);
-            tier = mapdata.getTier();
-        }
-
         ClearStats();
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
@@ -332,11 +330,15 @@ public class Unit {
 
         if (entity instanceof EntityPlayer) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
-            PlayerStatUtils.weakenPlayerPerTiers(this, tier);
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
-            MobStatUtils.worldMultiplierStats(entity.world, data);
+            MobStatUtils.worldMultiplierStats(entity.world, this);
+
+            if (WorldUtils.isMapWorld(entity.world)) {
+                MobStatUtils.increaseMobStatsPerTier(data, this);
+            }
+
         }
 
         if (gearIsValid) {
@@ -347,7 +349,11 @@ public class Unit {
         }
 
         CommonStatUtils.AddStatusEffectStats(this, level);
-        CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
+
+        if (WorldUtils.isMapWorld(entity.world)) {
+            CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
+        }
+
         PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
         PlayerStatUtils.CalcTraitsAndCoreStats(data);
 

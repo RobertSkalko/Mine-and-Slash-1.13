@@ -30,19 +30,6 @@ import java.util.Map.Entry;
 
 public class PlayerStatUtils {
 
-    public static void weakenPlayerPerTiers(Unit unit, int tier) {
-        for (StatData data : unit.MyStats.values()) {
-            if (data.GetStat().IsPercent() == false) {
-                float newval = decreaseByPercent(data.Flat, tier);
-                unit.MyStats.get(data.Name).Flat = newval;
-            }
-        }
-    }
-
-    private static float decreaseByPercent(float val, int tier) {
-        return val - (val * tier / 50); // TODO ROUGH SYSTEM
-    }
-
     public static void AddPlayerBaseStats(UnitData data, Unit unit) {
 
         int lvl = data.getLevel();

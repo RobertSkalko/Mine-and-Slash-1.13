@@ -48,10 +48,13 @@ public class LootInfo {
 
     public LootInfo setTier() {
 
-        if (killer != null) {
-
-            if (WorldUtils.isMapWorld(killer.world)) {
-                this.tier = Load.playerMapData(killer).getTier();
+        if (this.mobData != null) {
+            this.tier = mobData.getTier();
+        } else {
+            if (killer != null) {
+                if (WorldUtils.isMapWorld(killer.world)) {
+                    this.tier = Load.playerMapData(killer).getTier();
+                }
             }
         }
         return this;

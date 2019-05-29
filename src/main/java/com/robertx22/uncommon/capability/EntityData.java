@@ -69,6 +69,7 @@ public class EntityData {
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
+    private static final String TIER = "TIER";
 
     public interface UnitData extends ICommonCapability {
 
@@ -183,6 +184,12 @@ public class EntityData {
         boolean decreaseRarity(EntityLivingBase entity);
 
         boolean isWeapon(GearItemData gear);
+
+        void setTier(int tier);
+
+        int getTier();
+
+        float getStatMultiplierIncreaseByTier();
     }
 
     @EventBusSubscriber
@@ -236,6 +243,7 @@ public class EntityData {
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
+        int tier = 0;
 
         float dmgByNonPlayers = 0;
 
@@ -250,6 +258,7 @@ public class EntityData {
             nbt.putInt(LEVEL, level);
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
+            nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
@@ -271,6 +280,7 @@ public class EntityData {
             this.level = value.getInt(LEVEL);
             this.exp = value.getInt(EXP);
             this.rarity = value.getInt(RARITY);
+            this.tier = value.getInt(TIER);
             this.uuid = value.getString(UUID);
             this.energy = value.getFloat(ENERGY);
             this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
@@ -294,11 +304,9 @@ public class EntityData {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
-            float mystat = sourcedata.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+            float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getStatMultiplierIncreaseByTier();
 
-            float vanilla = event_damage * sourcedata.getLevel();
-
-            float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
+            float num = vanilla * rar.DamageMultiplier();
 
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
@@ -790,6 +798,21 @@ public class EntityData {
                 e.printStackTrace();
             }
             return false;
+        }
+
+        @Override
+        public void setTier(int tier) {
+            this.tier = tier;
+        }
+
+        @Override
+        public int getTier() {
+            return tier;
+        }
+
+        @Override
+        public float getStatMultiplierIncreaseByTier() {
+            return 1 + tier * 0.1F;
         }
 
         @Override
