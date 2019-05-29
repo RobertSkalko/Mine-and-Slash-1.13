@@ -40,15 +40,15 @@ public class CLOC {
 
     }
 
-    public static ITextComponent uniqueName(String str) {
+    public static ITextComponent uniqueName(String str, String slot) {
 
-        return base("item." + Ref.MODID + ".unique." + str);
+        return base("item." + Ref.MODID + ".uniques." + slot.toLowerCase() + "." + str);
 
     }
 
     public static ITextComponent uniqueDesc(String str) {
 
-        return base(Ref.MODID + ".unique.tooltip." + str);
+        return base(Ref.MODID + ".uniques.tooltip." + str);
 
     }
 

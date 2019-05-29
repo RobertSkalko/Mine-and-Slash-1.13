@@ -17,7 +17,7 @@ public interface IUnique extends IWeighted, ITiered, IGUID {
     }
 
     public default ITextComponent locName() {
-        return CLOC.uniqueName(this.GUID());
+        return CLOC.uniqueName(this.GUID(), slot().toLowerCase());
     }
 
     public default ITextComponent locDesc() {
