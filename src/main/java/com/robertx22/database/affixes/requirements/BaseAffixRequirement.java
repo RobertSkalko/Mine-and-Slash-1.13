@@ -1,4 +1,4 @@
-package com.robertx22.database.affixes;
+package com.robertx22.database.affixes.requirements;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
@@ -6,31 +6,9 @@ import com.robertx22.db_lists.GearTypes;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AffixRequirement {
+public abstract class BaseAffixRequirement {
 
-    public abstract List<GearItemSlot> slots();
-
-    public boolean onlyOnUniqueItem() {
-        return false;
-    }
-
-    public int minimumTierIfOnUnique() {
-        return 0;
-    }
-
-    public boolean meetsRequierment(AffixRequested requested) {
-
-        if (slots().contains(requested.forSlot) == false) {
-            return false;
-        }
-
-        if (requested.gearData.isUnique() == false && onlyOnUniqueItem()) {
-            return false;
-        }
-
-        return true;
-
-    }
+    public abstract boolean meetsRequierment(AffixRequested requested);
 
     static List<GearItemSlot> weaponSlots() {
 
