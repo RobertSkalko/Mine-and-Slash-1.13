@@ -4,9 +4,9 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.percent.CriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
 
 import java.util.Arrays;

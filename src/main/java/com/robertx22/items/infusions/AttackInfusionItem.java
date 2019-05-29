@@ -11,7 +11,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFla
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.percent.PhysicalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;

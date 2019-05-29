@@ -12,8 +12,7 @@ import com.robertx22.database.affixes.prefixes.misc.ThirstOfAcid;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfFlame;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfFrost;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfLightning;
-import com.robertx22.database.affixes.prefixes.offense.HardHitting;
-import com.robertx22.database.affixes.prefixes.offense.HeavenlyStrikes;
+import com.robertx22.database.affixes.prefixes.offense.*;
 import com.robertx22.database.affixes.prefixes.offense.damage_percents.*;
 import com.robertx22.database.affixes.prefixes.offense.imbued.FlameImbued;
 import com.robertx22.database.affixes.prefixes.offense.imbued.FrostImbued;
@@ -39,6 +38,9 @@ public class Prefixes implements IRandom<Prefix, AffixRequested> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+                add(new TouchOfMagic());
+                add(new Arcanists());
+                add(new Magical());
 
                 add(new ThirstOfAcid());
                 add(new ThirstOfFrost());

@@ -3,8 +3,8 @@ package com.robertx22.database.unique_items.swords;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.database.stats.stat_mods.percent.MajorCriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.MajorCriticalHitPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
 
 import java.util.Arrays;

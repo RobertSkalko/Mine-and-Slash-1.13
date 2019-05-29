@@ -3,7 +3,7 @@ package com.robertx22.database.sets.elemental_jewerly;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 
 import java.util.HashMap;

@@ -252,6 +252,10 @@
 	"mmorpg.suffix.ofthedepths": "Of The Depths",	
 
     "_comment": "PREFIXES",
+	
+    "mmorpg.prefix.arcanists": "Arcanist's",
+    "mmorpg.prefix.magical": "Magical",
+    "mmorpg.prefix.touch_of_magic": "Touch of Magic",   
     "mmorpg.prefix.flame_imbued": "Flame Imbued",
     "mmorpg.prefix.lightning_imbued": "Lightning Imbued",
     "mmorpg.prefix.evasive": "Evasive",
@@ -488,7 +492,8 @@
 
 
     "_comment": "STAT NAMES",
-		"mmorpg.stat.thunder_resist": "Thunder Resist",
+	"mmorpg.stat.spell_damage": "Spell Damage",
+	"mmorpg.stat.thunder_resist": "Thunder Resist",
 	"mmorpg.stat.water_to_thunder_conversion": "Water to Thunder Conversion",
 	"mmorpg.stat.fire_to_nature_conversion": "Fire to Nature Conversion",
 	"mmorpg.stat.fire_to_thunder_transfer": "Fire to Thunder Transfer",

@@ -3,9 +3,9 @@ package com.robertx22.database.unique_items.axes;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.percent.CriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
 
 import java.util.Arrays;

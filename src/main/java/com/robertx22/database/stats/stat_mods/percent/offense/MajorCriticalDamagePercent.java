@@ -1,46 +1,45 @@
-package com.robertx22.database.stats.stat_mods.percent;
+package com.robertx22.database.stats.stat_mods.percent.offense;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.offense.CriticalHit;
+import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
-public class CriticalHitPercent extends StatMod {
+public class MajorCriticalDamagePercent extends StatMod {
 
-    public CriticalHitPercent() {
+    public MajorCriticalDamagePercent() {
     }
 
     @Override
     public String GUID() {
-	return "CriticalHitPercent";
-
+        return "MajorCriticalDamagePercent";
     }
 
     @Override
     public float Min() {
-	return 3;
+        return 15;
 
     }
 
     @Override
     public float Max() {
-	return 10;
+        return 30;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new CriticalHit();
+        return new CriticalDamage();
     }
 
     @Override
     public int Weight() {
-	return IWeighted.UncommonWeight;
+        return IWeighted.UncommonWeight;
     }
 
 }

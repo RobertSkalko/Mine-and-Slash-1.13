@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.stat_mods.percent;
+package com.robertx22.database.stats.stat_mods.percent.offense;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
@@ -12,28 +12,28 @@ public class ArmorPenePercent extends StatMod {
 
     @Override
     public String GUID() {
-	return "ArmorPenePercent";
+        return "ArmorPenePercent";
     }
 
     @Override
     public float Min() {
-	return 5;
+        return 5;
 
     }
 
     @Override
     public float Max() {
-	return 20;
+        return 20;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new ArmorPenetration();
+        return new ArmorPenetration();
     }
 
 }

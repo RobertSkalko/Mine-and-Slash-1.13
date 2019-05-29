@@ -3,10 +3,10 @@ package com.robertx22.database.unique_items.hammers;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.database.stats.stat_mods.percent.CriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHammer;
 
 import java.util.Arrays;

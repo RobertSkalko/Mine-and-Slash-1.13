@@ -4,33 +4,32 @@ import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.requirements.AffixRequirements;
 import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.database.stats.stat_mods.percent.offense.SpellDamagePercent;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class HeavenlyStrikes extends Prefix {
+public class TouchOfMagic extends Prefix {
 
     @Override
     public String GUID() {
-        return "Heavenly Strikes";
+        return "touch_of_magic";
     }
 
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new CriticalHitFlat(), new MajorCriticalHitPercent());
+        return Arrays.asList(new SpellDamagePercent());
 
     }
 
     @Override
     public int Weight() {
-        return this.EpicWeight;
+        return UncommonWeight;
     }
 
     @Override
     public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.weaponsOnly());
+        return new AffixRequirements(SlotRequirement.jewerlyOnly());
     }
 }

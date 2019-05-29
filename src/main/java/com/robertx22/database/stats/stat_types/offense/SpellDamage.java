@@ -42,8 +42,10 @@ public class SpellDamage extends Stat implements IStatEffects {
         return false;
     }
 
+    static final AllSpellDamageEffect effect = new AllSpellDamageEffect();
+
     @Override
     public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new AllSpellDamageEffect());
+        return Arrays.asList(effect);
     }
 }

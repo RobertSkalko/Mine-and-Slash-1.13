@@ -68,6 +68,7 @@ import com.robertx22.database.stats.stat_mods.multi.resources.ManaMulti;
 import com.robertx22.database.stats.stat_mods.percent.*;
 import com.robertx22.database.stats.stat_mods.percent.less.*;
 import com.robertx22.database.stats.stat_mods.percent.much_less.*;
+import com.robertx22.database.stats.stat_mods.percent.offense.*;
 import com.robertx22.database.stats.stat_mods.percent.pene.FirePenePercent;
 import com.robertx22.database.stats.stat_mods.percent.pene.NaturePenePercent;
 import com.robertx22.database.stats.stat_mods.percent.pene.ThunderPenePercent;
@@ -103,7 +104,9 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+
                 put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
+                put(new SpellDamagePercent().GUID(), new SpellDamagePercent());
 
                 // major arcana tarot
                 put(new JudgementFlat().GUID(), new JudgementFlat());
