@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_types.traits.high_dodge;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_types.traits.bases.BaseTraitHighCritHit;
 
 import java.util.Arrays;

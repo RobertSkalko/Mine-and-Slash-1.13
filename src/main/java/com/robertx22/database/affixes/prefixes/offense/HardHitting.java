@@ -4,7 +4,7 @@ import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.requirements.AffixRequirements;
 import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 
 import java.util.Arrays;
 import java.util.List;

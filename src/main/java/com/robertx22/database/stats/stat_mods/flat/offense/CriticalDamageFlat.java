@@ -1,45 +1,45 @@
-package com.robertx22.database.stats.stat_mods.flat;
+package com.robertx22.database.stats.stat_mods.flat.offense;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
-public class PhysicalDamageFlat extends StatMod {
+public class CriticalDamageFlat extends StatMod {
 
-    public PhysicalDamageFlat() {
+    public CriticalDamageFlat() {
+
     }
 
     @Override
     public String GUID() {
-	return "DamageFlat";
+        return "CriticalDamageFlat";
     }
 
     @Override
     public float Min() {
-	return 4;
+        return 5;
 
     }
 
     @Override
     public float Max() {
-	return 12;
+        return 15;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new PhysicalDamage();
+        return new CriticalDamage();
     }
 
     @Override
     public int Weight() {
-	return IWeighted.UncommonWeight;
+        return IWeighted.UncommonWeight;
     }
-
 }

@@ -1,9 +1,7 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.effectdatas.DamageEffect;
-import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
-import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityLivingBase;
 
@@ -27,8 +25,8 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
         int num = dmgdata.spellItem.GetDamage(dmgdata.casterUnit.getUnit());
 
-        DamageEffect dmg = new DamageEffect(dmgdata.caster, target, num, dmgdata.casterUnit, Load
-                .Unit(target), EffectTypes.SPELL, WeaponTypes.None);
+        SpellDamageEffect dmg = new SpellDamageEffect(dmgdata.caster, target, num, dmgdata.casterUnit, Load
+                .Unit(target), dmgdata.spellItem.GetSpell());
         dmg.Element = this.element;
         dmg.Activate();
 

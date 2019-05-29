@@ -1,9 +1,9 @@
 package com.robertx22.database.gearitemslots.bases;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.flat.PhysicalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.items.gearitems.bases.IWeapon;

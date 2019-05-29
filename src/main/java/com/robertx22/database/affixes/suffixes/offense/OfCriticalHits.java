@@ -4,7 +4,7 @@ import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.affixes.requirements.AffixRequirements;
 import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 
 import java.util.Arrays;
 import java.util.List;

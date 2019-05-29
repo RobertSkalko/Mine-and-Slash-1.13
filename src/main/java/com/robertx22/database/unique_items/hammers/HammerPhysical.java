@@ -1,16 +1,16 @@
 package com.robertx22.database.unique_items.hammers;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.PhysicalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHammer;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class HammerPhysical extends BaseUniqueHammer {
     public HammerPhysical() {
@@ -19,18 +19,17 @@ public class HammerPhysical extends BaseUniqueHammer {
 
     @Override
     public int Tier() {
-	return 8;
+        return 8;
     }
 
     @Override
     public String GUID() {
-	return "hammerphysical0";
+        return "hammerphysical0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new PhysicalDamageFlat(), new ArmorPeneFlat(), new CriticalHitPercent(),
-		new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
+        return Arrays.asList(new PhysicalDamageFlat(), new ArmorPeneFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
     }
 
 }

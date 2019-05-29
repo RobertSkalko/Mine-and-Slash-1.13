@@ -5,7 +5,7 @@ import com.robertx22.database.affixes.requirements.AffixRequirements;
 import com.robertx22.database.affixes.requirements.LevelRequirement;
 import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.PhysicalDamagePercent;
 import com.robertx22.uncommon.interfaces.IWeighted;
 

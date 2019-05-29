@@ -1,9 +1,9 @@
 package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.multi.defense.CriticalHitMulti;
 
 import java.util.Arrays;

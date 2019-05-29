@@ -43,6 +43,10 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWate
 import com.robertx22.database.stats.stat_mods.flat.elemental.transfers.*;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
@@ -99,6 +103,8 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+                put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
+
                 // major arcana tarot
                 put(new JudgementFlat().GUID(), new JudgementFlat());
                 put(new StrengthArcanaFlat().GUID(), new StrengthArcanaFlat());

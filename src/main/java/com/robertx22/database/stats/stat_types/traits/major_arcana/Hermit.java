@@ -1,9 +1,9 @@
 package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
 
 import java.util.Arrays;

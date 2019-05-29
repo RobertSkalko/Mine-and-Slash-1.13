@@ -2,8 +2,8 @@ package com.robertx22.database.runewords.slots_3;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.items.runes.GohItem;
 import com.robertx22.items.runes.MosItem;
 import com.robertx22.items.runes.RahItem;

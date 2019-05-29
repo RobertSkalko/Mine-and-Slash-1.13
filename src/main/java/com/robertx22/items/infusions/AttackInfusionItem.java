@@ -1,8 +1,6 @@
 package com.robertx22.items.infusions;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.NatureSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
@@ -11,6 +9,8 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.percent.PhysicalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;

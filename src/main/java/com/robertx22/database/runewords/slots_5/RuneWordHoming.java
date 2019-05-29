@@ -2,8 +2,8 @@ package com.robertx22.database.runewords.slots_5;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.spell_buffs.HomingFlat;
 import com.robertx22.items.runes.*;

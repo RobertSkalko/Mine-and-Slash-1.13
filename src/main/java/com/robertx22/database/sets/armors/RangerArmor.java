@@ -3,7 +3,7 @@ package com.robertx22.database.sets.armors;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.weapon_damages.BowDamageFlat;
 
 import java.util.HashMap;

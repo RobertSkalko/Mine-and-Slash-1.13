@@ -39,6 +39,7 @@ public class Prefixes implements IRandom<Prefix, AffixRequested> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+
                 add(new ThirstOfAcid());
                 add(new ThirstOfFrost());
                 add(new ThirstOfFlame());

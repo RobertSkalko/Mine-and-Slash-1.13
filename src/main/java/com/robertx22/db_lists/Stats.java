@@ -56,10 +56,7 @@ import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.Wat
 import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToNatureTransfer;
 import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToThunderTransfer;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
-import com.robertx22.database.stats.stat_types.offense.ArmorPenetration;
-import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
-import com.robertx22.database.stats.stat_types.offense.CriticalHit;
-import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stats.stat_types.offense.*;
 import com.robertx22.database.stats.stat_types.offense.weapon_types.*;
 import com.robertx22.database.stats.stat_types.resources.*;
 import com.robertx22.database.stats.stat_types.resources.conversions.EnergyToManaConversion;
@@ -95,6 +92,7 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+                put(new SpellDamage().GUID(), new SpellDamage());
 
                 // major arcana tarot
                 put(new Judgement().GUID(), new Judgement());

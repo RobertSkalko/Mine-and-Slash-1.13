@@ -1,14 +1,14 @@
 package com.robertx22.database.unique_items.swords;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.MajorCriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.MajorCriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SwordPhysical extends BaseUniqueSword {
     public SwordPhysical() {
@@ -17,18 +17,17 @@ public class SwordPhysical extends BaseUniqueSword {
 
     @Override
     public int Tier() {
-	return 9;
+        return 9;
     }
 
     @Override
     public String GUID() {
-	return "swordphysical0";
+        return "swordphysical0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new PhysicalDamageFlat(), new MajorCriticalHitPercent(), new MajorCriticalDamagePercent(),
-		new LessHealthRegenFlat());
+        return Arrays.asList(new PhysicalDamageFlat(), new MajorCriticalHitPercent(), new MajorCriticalDamagePercent(), new LessHealthRegenFlat());
     }
 
 }

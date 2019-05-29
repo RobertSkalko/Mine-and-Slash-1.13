@@ -26,13 +26,6 @@ import java.util.Map.Entry;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-    private DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
-        super(source, target);
-
-        this.Number = dmg;
-
-    }
-
     public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg,
                         UnitData sourceData, UnitData targetData, EffectTypes effectType,
                         WeaponTypes weptype) {
@@ -48,7 +41,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public Elements Element = Elements.None;
     public int ArmorPene;
     public int ElementalPene;
-
+    
     public float healthHealed;
     public float manaRestored;
 

@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFire
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
@@ -25,7 +26,7 @@ public class Ring extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(), new SpellNatureDamageFlat());
+        return Arrays.asList(new SpellDamageFlat(), new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(), new SpellNatureDamageFlat());
     }
 
     @Override

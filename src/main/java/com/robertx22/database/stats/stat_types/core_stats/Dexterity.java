@@ -2,8 +2,8 @@ package com.robertx22.database.stats.stat_types.core_stats;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 
 import java.util.Arrays;
 import java.util.List;

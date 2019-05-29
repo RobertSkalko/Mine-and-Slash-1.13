@@ -1,10 +1,10 @@
 package com.robertx22.database.unique_items.bows;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueBow;
 
 import java.util.Arrays;
