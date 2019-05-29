@@ -1,6 +1,5 @@
 package com.robertx22.database.affixes.prefixes.misc;
 
-import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
@@ -8,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDa
 import java.util.Arrays;
 import java.util.List;
 
-public class ThirstOfFrost extends Prefix {
+public class ThirstOfFrost extends BaseThirstPrefix {
 
     @Override
     public String GUID() {
@@ -20,8 +19,4 @@ public class ThirstOfFrost extends Prefix {
         return Arrays.asList(new LifestealFlat(), new SpellWaterDamagePercent());
     }
 
-    @Override
-    public int Weight() {
-        return this.RareWeight;
-    }
 }

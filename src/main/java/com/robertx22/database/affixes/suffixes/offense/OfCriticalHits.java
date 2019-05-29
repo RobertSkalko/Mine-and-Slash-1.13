@@ -1,6 +1,8 @@
 package com.robertx22.database.affixes.suffixes.offense;
 
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.affixes.requirements.AffixRequirements;
+import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 
@@ -24,4 +26,8 @@ public class OfCriticalHits extends Suffix {
 
     }
 
+    @Override
+    public AffixRequirements requirements() {
+        return new AffixRequirements(SlotRequirement.weaponsOnly());
+    }
 }

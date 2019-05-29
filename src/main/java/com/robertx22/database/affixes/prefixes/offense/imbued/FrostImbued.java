@@ -1,13 +1,12 @@
-package com.robertx22.database.affixes.prefixes.offense;
+package com.robertx22.database.affixes.prefixes.offense.imbued;
 
-import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class FrostImbued extends Prefix {
+public class FrostImbued extends BaseImbuedPrefix {
 
     public FrostImbued() {
     }

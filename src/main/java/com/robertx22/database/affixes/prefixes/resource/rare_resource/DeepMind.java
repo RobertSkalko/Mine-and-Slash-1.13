@@ -1,6 +1,5 @@
-package com.robertx22.database.affixes.prefixes.resource;
+package com.robertx22.database.affixes.prefixes.resource.rare_resource;
 
-import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
@@ -8,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import java.util.Arrays;
 import java.util.List;
 
-public class DeepMind extends Prefix {
+public class DeepMind extends BaseRareResourcePrefix {
 
     @Override
     public String GUID() {
@@ -18,11 +17,6 @@ public class DeepMind extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new ManaRegenFlat(), new ManaRegenPercent());
-    }
-
-    @Override
-    public int Weight() {
-        return this.LegendaryWeight;
     }
 
 }

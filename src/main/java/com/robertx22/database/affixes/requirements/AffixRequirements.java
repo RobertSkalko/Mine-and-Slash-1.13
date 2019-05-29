@@ -9,7 +9,18 @@ public class AffixRequirements {
 
     public AffixRequirements(BaseAffixRequirement req) {
         this.requirements.add(req);
+    }
 
+    public AffixRequirements(BaseAffixRequirement req1, BaseAffixRequirement req2) {
+        this.requirements.add(req1);
+        this.requirements.add(req2);
+    }
+
+    public AffixRequirements(BaseAffixRequirement req1, BaseAffixRequirement req2,
+                             BaseAffixRequirement req3) {
+        this.requirements.add(req1);
+        this.requirements.add(req2);
+        this.requirements.add(req3);
     }
 
     public AffixRequirements(List<BaseAffixRequirement> reqs) {

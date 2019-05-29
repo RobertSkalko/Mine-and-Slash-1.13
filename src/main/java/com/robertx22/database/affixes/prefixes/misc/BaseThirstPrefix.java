@@ -1,19 +1,18 @@
-package com.robertx22.database.affixes.prefixes.defense.element;
+package com.robertx22.database.affixes.prefixes.misc;
 
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.requirements.AffixRequirements;
 import com.robertx22.database.affixes.requirements.SlotRequirement;
 
-public abstract class BaseEleResPrefix extends Prefix {
+public abstract class BaseThirstPrefix extends Prefix {
 
     @Override
     public int Weight() {
-        return this.EpicWeight;
+        return this.RareWeight;
     }
 
     @Override
     public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.armorsOnly());
+        return new AffixRequirements(SlotRequirement.jewerlyOnly());
     }
-
 }

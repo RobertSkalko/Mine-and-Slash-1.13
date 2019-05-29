@@ -1,6 +1,7 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.affixes.requirements.AffixRequested;
 import com.robertx22.database.affixes.suffixes.defense.*;
 import com.robertx22.database.affixes.suffixes.offense.*;
 import com.robertx22.database.affixes.suffixes.offense.pene.OfFirePene;
@@ -15,10 +16,13 @@ import com.robertx22.database.affixes.suffixes.resource.OfVampirism;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Suffixes {
+public class Suffixes implements IRandom<Suffix, AffixRequested> {
 
-    public static List<Suffix> Weapon = new ArrayList<Suffix>() {
+    public static final Suffixes INSTANCE = new Suffixes();
+
+    public static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
             {
                 add(new OfCriticalHits());
@@ -28,13 +32,6 @@ public class Suffixes {
                 add(new OfForce());
                 add(new OfRockPiercing());
 
-            }
-        }
-    };
-
-    public static List<Suffix> Armor = new ArrayList<Suffix>() {
-        {
-            {
                 add(new OfVitality());
                 add(new OfRockSkin());
                 add(new OfElementResist());
@@ -42,13 +39,6 @@ public class Suffixes {
                 add(new OfHiddenSense());
                 add(new OfTheDepths());
 
-            }
-        }
-    };
-
-    public static List<Suffix> Jewerly = new ArrayList<Suffix>() {
-        {
-            {
                 add(new OfVitality());
                 add(new OfManaRegen());
                 add(new OfTheSage());
@@ -57,6 +47,7 @@ public class Suffixes {
                 add(new OfNaturePene());
                 add(new OfThunderPene());
                 add(new OfWaterPene());
+
             }
         }
     };
@@ -64,19 +55,37 @@ public class Suffixes {
     public static HashMap<String, Suffix> all = new HashMap<>();
 
     static {
+
         List<Suffix> list = new ArrayList<Suffix>();
-        list.addAll(Weapon);
-        list.addAll(Armor);
-        list.addAll(Jewerly);
+        list.addAll(allSuffixes);
 
         for (Suffix s : list) {
             all.put(s.GUID(), s);
         }
+
     }
 
-    public static HashMap<String, Suffix> All() {
+    @Override
+    public Suffix random(AffixRequested affixRequested) {
 
-        return all;
+        List<Suffix> suffixes = all.values()
+                .stream()
+                .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))
+                .collect(Collectors.toList());
+
+        return null;
     }
 
+    @Override
+    public Suffix random() {
+        return null;
+    }
+
+    @Override
+    public List<Suffix> allThatMeetRequirement() {
+        return all.values()
+                .stream()
+                .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))
+                .collect(Collectors.toList());
+    }
 }

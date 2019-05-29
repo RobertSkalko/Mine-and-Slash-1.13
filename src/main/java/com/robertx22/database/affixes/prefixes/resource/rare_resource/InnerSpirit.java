@@ -1,6 +1,5 @@
-package com.robertx22.database.affixes.prefixes.resource;
+package com.robertx22.database.affixes.prefixes.resource.rare_resource;
 
-import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
@@ -8,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 import java.util.Arrays;
 import java.util.List;
 
-public class InnerSpirit extends Prefix {
+public class InnerSpirit extends BaseRareResourcePrefix {
 
     @Override
     public String GUID() {
@@ -18,11 +17,6 @@ public class InnerSpirit extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent());
-    }
-
-    @Override
-    public int Weight() {
-        return this.LegendaryWeight;
     }
 
 }

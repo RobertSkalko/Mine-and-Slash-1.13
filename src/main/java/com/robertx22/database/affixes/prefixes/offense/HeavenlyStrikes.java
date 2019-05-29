@@ -1,6 +1,8 @@
 package com.robertx22.database.affixes.prefixes.offense;
 
 import com.robertx22.database.affixes.Prefix;
+import com.robertx22.database.affixes.requirements.AffixRequirements;
+import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.percent.MajorCriticalHitPercent;
@@ -27,4 +29,8 @@ public class HeavenlyStrikes extends Prefix {
         return this.EpicWeight;
     }
 
+    @Override
+    public AffixRequirements requirements() {
+        return new AffixRequirements(SlotRequirement.weaponsOnly());
+    }
 }

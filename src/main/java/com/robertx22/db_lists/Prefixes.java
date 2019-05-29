@@ -12,8 +12,18 @@ import com.robertx22.database.affixes.prefixes.misc.ThirstOfAcid;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfFlame;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfFrost;
 import com.robertx22.database.affixes.prefixes.misc.ThirstOfLightning;
-import com.robertx22.database.affixes.prefixes.offense.*;
-import com.robertx22.database.affixes.prefixes.resource.*;
+import com.robertx22.database.affixes.prefixes.offense.HardHitting;
+import com.robertx22.database.affixes.prefixes.offense.HeavenlyStrikes;
+import com.robertx22.database.affixes.prefixes.offense.damage_percents.*;
+import com.robertx22.database.affixes.prefixes.offense.imbued.FlameImbued;
+import com.robertx22.database.affixes.prefixes.offense.imbued.FrostImbued;
+import com.robertx22.database.affixes.prefixes.offense.imbued.LightningImbued;
+import com.robertx22.database.affixes.prefixes.offense.imbued.PoisonImbued;
+import com.robertx22.database.affixes.prefixes.resource.Energetic;
+import com.robertx22.database.affixes.prefixes.resource.LifeStealing;
+import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart;
+import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
+import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +31,9 @@ import java.util.List;
 
 public class Prefixes {
 
-    public static List<Prefix> Weapon = new ArrayList<Prefix>() {
+    public static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
-
                 add(new ThirstOfAcid());
                 add(new ThirstOfFrost());
                 add(new ThirstOfFlame());
@@ -33,14 +42,6 @@ public class Prefixes {
                 add(new HardHitting());
                 add(new LifeStealing());
                 add(new HeavenlyStrikes());
-
-            }
-        }
-    };
-
-    public static List<Prefix> Armor = new ArrayList<Prefix>() {
-        {
-            {
 
                 add(new Flaming());
                 add(new Frosty());
@@ -55,14 +56,6 @@ public class Prefixes {
                 add(new PrefixWaterRes());
                 add(new PrefixThunderRes());
                 add(new PrefixNatureRes());
-
-            }
-        }
-    };
-
-    public static List<Prefix> Jewerly = new ArrayList<Prefix>() {
-        {
-            {
 
                 add(new BraveHeart());
                 add(new DeepMind());
@@ -85,19 +78,12 @@ public class Prefixes {
     static {
 
         List<Prefix> list = new ArrayList<Prefix>();
-        list.addAll(Weapon);
-        list.addAll(Armor);
-        list.addAll(Jewerly);
+        list.addAll(allPrefixes);
 
         for (Prefix s : list) {
             all.put(s.GUID(), s);
         }
 
-    }
-
-    public static HashMap<String, Prefix> All() {
-
-        return all;
     }
 
 }

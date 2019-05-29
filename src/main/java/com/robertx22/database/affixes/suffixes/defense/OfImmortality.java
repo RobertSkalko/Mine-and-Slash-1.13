@@ -1,6 +1,8 @@
 package com.robertx22.database.affixes.suffixes.defense;
 
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.affixes.requirements.AffixRequirements;
+import com.robertx22.database.affixes.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
@@ -28,5 +30,10 @@ public class OfImmortality extends Suffix {
     @Override
     public int Weight() {
         return this.EpicWeight;
+    }
+
+    @Override
+    public AffixRequirements requirements() {
+        return new AffixRequirements(SlotRequirement.armorsOnly());
     }
 }
