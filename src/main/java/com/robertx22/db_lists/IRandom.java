@@ -8,6 +8,6 @@ public interface IRandom<T, Config> {
 
     T random();
 
-    List<T> allThatMeetRequirement();
+    List<T> allThatMeetRequirement(Config config);
 
 }

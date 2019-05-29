@@ -2,6 +2,7 @@ package com.robertx22.saveclasses.gearitem;
 
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.affixes.requirements.AffixRequested;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.loot.StatGen;
@@ -11,7 +12,6 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
-import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
 
@@ -37,8 +37,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Suffix suffix = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                .PossibleSuffixes());
+        Suffix suffix = Suffixes.INSTANCE.random(new AffixRequested(gear));
 
         baseAffix = suffix.GUID();
 
@@ -59,7 +58,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
     @Override
     public BaseAffix BaseAffix() {
-        return Suffixes.All().get(baseAffix);
+        return Suffixes.all.get(baseAffix);
     }
 
     @Override

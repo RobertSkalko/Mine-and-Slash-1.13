@@ -12,6 +12,7 @@ import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
 import com.robertx22.database.affixes.suffixes.resource.OfVampirism;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class Suffixes implements IRandom<Suffix, AffixRequested> {
 
     public static final Suffixes INSTANCE = new Suffixes();
 
-    public static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
+    private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
             {
                 add(new OfCriticalHits());
@@ -68,21 +69,18 @@ public class Suffixes implements IRandom<Suffix, AffixRequested> {
     @Override
     public Suffix random(AffixRequested affixRequested) {
 
-        List<Suffix> suffixes = all.values()
-                .stream()
-                .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))
-                .collect(Collectors.toList());
+        List<Suffix> suffixes = allThatMeetRequirement(affixRequested);
 
-        return null;
+        return RandomUtils.weightedRandom(suffixes);
     }
 
     @Override
     public Suffix random() {
-        return null;
+        return RandomUtils.weightedRandom(all.values());
     }
 
     @Override
-    public List<Suffix> allThatMeetRequirement() {
+    public List<Suffix> allThatMeetRequirement(AffixRequested affixRequested) {
         return all.values()
                 .stream()
                 .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))

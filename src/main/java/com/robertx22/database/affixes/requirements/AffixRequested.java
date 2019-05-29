@@ -13,4 +13,14 @@ public class AffixRequested {
         this.gearData = data;
     }
 
+    public AffixRequested(GearItemData data) {
+        this.forSlot = data.GetBaseGearType();
+        this.gearData = data;
+    }
+
+    public AffixRequested(GearItemSlot slot) {
+        this.forSlot = slot;
+        this.gearData = new GearItemData();
+    }
+
 }

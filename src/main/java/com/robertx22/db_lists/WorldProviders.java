@@ -4,6 +4,7 @@ import com.robertx22.database.world_providers.*;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConfig> {
 
@@ -34,6 +35,11 @@ public class WorldProviders implements IRandom<IWP, WorldProviders.IWPRandomConf
     @Override
     public IWP random() {
         return random(new IWPRandomConfig());
+    }
+
+    @Override
+    public List<IWP> allThatMeetRequirement(IWPRandomConfig iwpRandomConfig) {
+        return null;
     }
 
     public static class IWPRandomConfig {

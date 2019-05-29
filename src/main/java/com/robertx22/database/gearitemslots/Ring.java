@@ -1,7 +1,5 @@
 package com.robertx22.database.gearitemslots;
 
-import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
@@ -11,12 +9,9 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWate
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.db_lists.Prefixes;
-import com.robertx22.db_lists.Suffixes;
 import com.robertx22.items.gearitems.baubles.ItemRing;
 import net.minecraft.item.Item;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -26,16 +21,6 @@ public class Ring extends GearItemSlot {
     @Override
     public String GUID() {
         return "Ring";
-    }
-
-    @Override
-    public List<Suffix> PossibleSuffixes() {
-        return new ArrayList<Suffix>(Suffixes.Jewerly);
-    }
-
-    @Override
-    public List<Prefix> PossiblePrefixes() {
-        return new ArrayList<Prefix>(Prefixes.Jewerly);
     }
 
     @Override

@@ -24,14 +24,19 @@ import com.robertx22.database.affixes.prefixes.resource.LifeStealing;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
+import com.robertx22.database.affixes.requirements.AffixRequested;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Prefixes {
+public class Prefixes implements IRandom<Prefix, AffixRequested> {
 
-    public static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
+    public static final Prefixes INSTANCE = new Prefixes();
+
+    private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
                 add(new ThirstOfAcid());
@@ -72,18 +77,39 @@ public class Prefixes {
             }
         }
     };
-
     public static HashMap<String, Prefix> all = new HashMap<>();
 
     static {
-
         List<Prefix> list = new ArrayList<Prefix>();
         list.addAll(allPrefixes);
 
         for (Prefix s : list) {
             all.put(s.GUID(), s);
         }
-
     }
 
+    @Override
+    public Prefix random(AffixRequested affixRequested) {
+
+        List<Prefix> suffixes = allThatMeetRequirement(affixRequested);
+
+        if (suffixes.size() == 0) {
+            return null;
+        }
+
+        return RandomUtils.weightedRandom(suffixes);
+    }
+
+    @Override
+    public Prefix random() {
+        return RandomUtils.weightedRandom(all.values());
+    }
+
+    @Override
+    public List<Prefix> allThatMeetRequirement(AffixRequested affixRequested) {
+        return all.values()
+                .stream()
+                .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))
+                .collect(Collectors.toList());
+    }
 }

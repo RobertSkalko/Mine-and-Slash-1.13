@@ -1,7 +1,5 @@
 package com.robertx22.database.gearitemslots.bases;
 
-import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.BaseTraitMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
@@ -36,10 +34,6 @@ public abstract class GearItemSlot implements IWeighted, ILocName {
     public ITextComponent locName() {
         return CLOC.geartype(GUID().toLowerCase());
     }
-
-    public abstract List<Suffix> PossibleSuffixes();
-
-    public abstract List<Prefix> PossiblePrefixes();
 
     public abstract List<StatMod> PrimaryStats();
 

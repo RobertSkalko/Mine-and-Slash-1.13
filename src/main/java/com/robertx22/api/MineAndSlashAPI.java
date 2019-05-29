@@ -18,49 +18,17 @@ import net.minecraft.item.Item;
 
 public class MineAndSlashAPI {
 
-    public enum GearFamilly {
-        Armor, Weapon, Jewerly, All
-    }
-
     public static void addCompatibleItem(String itemID, ConfigItem item) {
         ConfigItems.INSTANCE.map.put(itemID, item);
         ConfigItems.INSTANCE.refreshList();
     }
 
-    public static void addAffix(BaseAffix affix, GearFamilly family) {
+    public static void addAffix(BaseAffix affix) {
         if (affix instanceof Prefix) {
-
-            if (family == GearFamilly.All) {
-                Prefixes.Armor.add((Prefix) affix);
-                Prefixes.Jewerly.add((Prefix) affix);
-                Prefixes.Weapon.add((Prefix) affix);
-
-            } else if (family == GearFamilly.Armor) {
-                Prefixes.Armor.add((Prefix) affix);
-            } else if (family == GearFamilly.Jewerly) {
-                Prefixes.Jewerly.add((Prefix) affix);
-            } else {
-                Prefixes.Weapon.add((Prefix) affix);
-            }
             Prefixes.all.put(affix.GUID(), (Prefix) affix);
-
         } else {
-
-            if (family == GearFamilly.All) {
-                Suffixes.Armor.add((Suffix) affix);
-                Suffixes.Jewerly.add((Suffix) affix);
-                Suffixes.Weapon.add((Suffix) affix);
-
-            } else if (family == GearFamilly.Armor) {
-                Suffixes.Armor.add((Suffix) affix);
-            } else if (family == GearFamilly.Jewerly) {
-                Suffixes.Jewerly.add((Suffix) affix);
-            } else {
-                Suffixes.Weapon.add((Suffix) affix);
-            }
             Suffixes.all.put(affix.GUID(), (Suffix) affix);
         }
-
     }
 
     public static void addMapAffix(BaseMapAffix affix) {

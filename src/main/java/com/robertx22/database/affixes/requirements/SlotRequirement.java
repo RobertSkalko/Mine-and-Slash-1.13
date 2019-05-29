@@ -55,7 +55,9 @@ public class SlotRequirement extends BaseAffixRequirement {
 
         return GearTypes.All.values()
                 .stream()
-                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
+                .filter(x -> x.slotType()
+                        .equals(GearItemSlot.GearSlotType.Armor) || x.slotType()
+                        .equals(GearItemSlot.GearSlotType.OffHand)) // tenp i dont have enough affixes for off hands
                 .collect(Collectors.toList());
 
     }

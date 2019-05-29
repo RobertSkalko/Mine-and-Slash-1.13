@@ -10,7 +10,7 @@
       "item": "mmorpg:ore4"
     }, 
 	"A": {
-      "item": "mmorpg:randomize_suffix"
+      "item": "mmorpg:currency/randomize_suffix"
     }, 
 	"B": {
       "item": "minecraft:diamond_block"
