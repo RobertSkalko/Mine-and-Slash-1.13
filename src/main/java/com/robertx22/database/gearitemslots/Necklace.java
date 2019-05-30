@@ -47,4 +47,8 @@ public class Necklace extends GearItemSlot {
         return GearSlotType.Jewerly;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Necklace";
+    }
 }

@@ -34,12 +34,12 @@ public class StaffWater extends BaseUniqueStaff {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Staff of Permafrost";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "What is frozen is as good as dead.";
     }
 }

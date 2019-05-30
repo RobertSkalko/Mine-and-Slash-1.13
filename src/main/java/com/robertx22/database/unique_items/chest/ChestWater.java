@@ -36,12 +36,12 @@ public class ChestWater extends BaseUniqueChest {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Armor of the Glacier";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I am a Fortress of pure Ice.";
     }
 }

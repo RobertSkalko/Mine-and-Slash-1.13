@@ -33,12 +33,12 @@ public class StaffFire extends BaseUniqueStaff {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "eStaff of Volcanoes";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Leave only ashes behind.";
     }
 }

@@ -35,12 +35,12 @@ public class NecklaceWater extends BaseUniqueNecklace {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Amulet of the Glacier";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Crystal clear and yet so incredibly tough.";
     }
 }

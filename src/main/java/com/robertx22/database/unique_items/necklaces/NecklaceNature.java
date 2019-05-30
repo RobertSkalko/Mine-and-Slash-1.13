@@ -37,12 +37,12 @@ public class NecklaceNature extends BaseUniqueNecklace {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Amulet of the Oak";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I seek strength only in nature.";
     }
 }

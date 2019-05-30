@@ -36,12 +36,12 @@ public class PantsThunder extends BaseUniquePants {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Lightning Coil Leggings";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Swallow flames, harness Lightning.";
     }
 }

@@ -35,12 +35,12 @@ public class CharmWater extends BaseUniqueCharm {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Charm of the River Dragon";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "My path cannot be stopped.";
     }
 }

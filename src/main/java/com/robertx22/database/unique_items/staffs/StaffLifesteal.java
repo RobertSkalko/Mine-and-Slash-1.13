@@ -35,12 +35,12 @@ public class StaffLifesteal extends BaseUniqueStaff {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Vampire Staff";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "All blood will be mine, eventually.";
     }
 }

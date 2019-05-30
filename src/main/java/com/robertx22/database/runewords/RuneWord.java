@@ -19,7 +19,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
 
     @Override
     public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     @Override

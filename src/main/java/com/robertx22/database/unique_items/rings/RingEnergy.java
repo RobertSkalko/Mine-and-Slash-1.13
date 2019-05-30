@@ -34,12 +34,12 @@ public class RingEnergy extends BaseUniqueRing {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Ring of Unlimited Endurance";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I will pay any price to continue!";
     }
 }

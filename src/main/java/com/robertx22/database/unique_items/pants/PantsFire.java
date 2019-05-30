@@ -36,12 +36,12 @@ public class PantsFire extends BaseUniquePants {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Flaming Leggings";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Embrace my flames.";
     }
 }

@@ -1,17 +1,12 @@
 package com.robertx22.database.gearitemslots;
 
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.items.gearitems.weapons.ItemSword;
 import net.minecraft.item.Item;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class Sword extends BaseWeapon {
 
@@ -26,8 +21,8 @@ public class Sword extends BaseWeapon {
     }
 
     @Override
-    public List<StatMod> slotTypeStats() {
-        return Arrays.asList(new CriticalHitPercent(), new CriticalDamagePercent());
+    public String locNameForLangFile() {
+        return "Sword";
     }
 
     @Override

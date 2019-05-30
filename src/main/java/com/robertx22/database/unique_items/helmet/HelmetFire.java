@@ -35,12 +35,12 @@ public class HelmetFire extends BaseUniqueHelmet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Flame Atronach Helmet";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I see flames all around me.";
     }
 }

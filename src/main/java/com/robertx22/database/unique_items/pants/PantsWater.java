@@ -38,12 +38,12 @@ public class PantsWater extends BaseUniquePants {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Leggings of the Glacier";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Try to move me, I dare you.";
     }
 }

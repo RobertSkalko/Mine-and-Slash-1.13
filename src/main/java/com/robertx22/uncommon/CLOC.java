@@ -23,11 +23,6 @@ public class CLOC {
 
     }
 
-    public static ITextComponent geartype(String str) {
-
-        return base(Ref.MODID + ".gear_type." + str);
-    }
-
     public static ITextComponent word(String str) {
 
         return base(Ref.MODID + ".word." + str);

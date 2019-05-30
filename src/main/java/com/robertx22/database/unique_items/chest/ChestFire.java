@@ -37,12 +37,12 @@ public class ChestFire extends BaseUniqueChest {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Burning Man Chestplate";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "What can't kill me only makes me glow brighter.";
     }
 }

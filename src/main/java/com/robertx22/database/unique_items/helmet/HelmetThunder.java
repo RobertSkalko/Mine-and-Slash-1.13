@@ -35,12 +35,12 @@ public class HelmetThunder extends BaseUniqueHelmet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Thunder Atronach Helmet";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I see sparks all around me.";
     }
 }

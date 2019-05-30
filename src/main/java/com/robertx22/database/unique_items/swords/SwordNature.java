@@ -33,12 +33,12 @@ public class SwordNature extends BaseUniqueSword {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Sword of the Nature Spirit";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Forever lasting.";
     }
 }

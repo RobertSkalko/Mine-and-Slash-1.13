@@ -34,12 +34,12 @@ public class StaffThunder extends BaseUniqueStaff {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Thunderstorm Staff";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Controlled power can bring both energy and destruction.";
     }
 }

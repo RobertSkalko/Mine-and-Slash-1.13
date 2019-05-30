@@ -35,12 +35,12 @@ public class HelmetNature extends BaseUniqueHelmet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Leaf Covering";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Nature comes to my aid.";
     }
 }

@@ -27,16 +27,16 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     @Override
     public ITextComponent locDesc() {
-        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     public ITextComponent getStatDescription() {
-        return CLOC.blank(locDescLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locDescLangFileGUID(formattedGUID()));
     }
 
     @Override

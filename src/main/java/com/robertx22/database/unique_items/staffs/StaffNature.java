@@ -33,12 +33,12 @@ public class StaffNature extends BaseUniqueStaff {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Worldbreaker Staff";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Won't break? Smash harder!";
     }
 }

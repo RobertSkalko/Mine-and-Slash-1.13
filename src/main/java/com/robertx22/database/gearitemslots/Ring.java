@@ -53,4 +53,9 @@ public class Ring extends GearItemSlot {
     public GearSlotType slotType() {
         return GearSlotType.Jewerly;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Ring";
+    }
 }

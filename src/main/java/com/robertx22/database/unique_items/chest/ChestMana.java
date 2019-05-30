@@ -36,12 +36,12 @@ public class ChestMana extends BaseUniqueChest {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Shirt of the Arcane";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "The process of multiplying energy has just begun!";
     }
 }

@@ -34,12 +34,12 @@ public class BraceletNature extends BaseUniqueBracelet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Thorn Bracers";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Fools fight for treasure, but I keep on living.";
     }
 }

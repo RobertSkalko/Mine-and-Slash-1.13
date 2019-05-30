@@ -1,38 +1,42 @@
 package com.robertx22.database.gearitemslots;
 
-import java.util.HashMap;
-
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.weapon_mechanics.HammerWeaponMechanic;
 import com.robertx22.items.gearitems.weapons.ItemHammer;
-
 import net.minecraft.item.Item;
+
+import java.util.HashMap;
 
 public class Hammer extends BaseWeapon {
 
     @Override
     public String GUID() {
-	return "Hammer";
+        return "Hammer";
     }
 
     @Override
     public Item DefaultItem() {
-	return ItemHammer.Items.get(0);
+        return ItemHammer.Items.get(0);
     }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-	return ItemHammer.Items;
+        return ItemHammer.Items;
     }
 
     @Override
     public int Weight() {
-	return 1000;
+        return 1000;
     }
 
     @Override
     public WeaponMechanic mechanic() {
-	return new HammerWeaponMechanic();
+        return new HammerWeaponMechanic();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Hammer";
     }
 }

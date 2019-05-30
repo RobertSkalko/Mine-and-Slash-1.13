@@ -36,12 +36,12 @@ public class HelmetMana extends BaseUniqueHelmet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Helmet of Mana";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Flow to me.";
     }
 

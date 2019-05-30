@@ -35,12 +35,12 @@ public class BraceletThunder extends BaseUniqueBracelet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Thunder Bracers";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Dedication brings unparalleled might.";
     }
 }

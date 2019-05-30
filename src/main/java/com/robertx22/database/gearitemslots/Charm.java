@@ -51,4 +51,9 @@ public class Charm extends GearItemSlot {
     public GearSlotType slotType() {
         return GearSlotType.Jewerly;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Charm";
+    }
 }

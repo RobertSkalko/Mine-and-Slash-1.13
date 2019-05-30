@@ -34,12 +34,12 @@ public class HammerPhysical extends BaseUniqueHammer {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Mountain Breaker";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Not even mountains can bar my path!";
     }
 }

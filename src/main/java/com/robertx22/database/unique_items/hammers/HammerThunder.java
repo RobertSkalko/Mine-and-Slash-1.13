@@ -35,12 +35,12 @@ public class HammerThunder extends BaseUniqueHammer {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Hammer of Thor";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I will be safe when my enemies are dead.";
     }
 }

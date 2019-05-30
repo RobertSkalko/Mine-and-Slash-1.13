@@ -33,12 +33,12 @@ public class RingCrit extends BaseUniqueRing {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Ring of Precision";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Strike with Accuracy, strike once.";
     }
 }

@@ -26,6 +26,6 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 }

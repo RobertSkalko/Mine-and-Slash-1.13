@@ -36,12 +36,12 @@ public class BraceletWater extends BaseUniqueBracelet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Frostburn Bracers";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Burn them all! With Ice of course.";
     }
 }

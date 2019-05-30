@@ -23,7 +23,7 @@ public class CreateLangFile {
             json += comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
                 if (iauto.locNameForLangFile().isEmpty() == false) {
-                    json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.GUIDFormatted()) + "\": \"" + iauto
+                    json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
                             .locNameForLangFile() + "\",\n";
                 }
             }
@@ -35,7 +35,7 @@ public class CreateLangFile {
             json += comment(entry.getKey());
             for (IAutoLocDesc iauto : entry.getValue()) {
                 if (iauto.locDescForLangFile().isEmpty() == false) {
-                    json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.GUIDFormatted()) + "\": \"" + iauto
+                    json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
                             .locDescForLangFile() + "\",\n";
                 }
             }
@@ -87,6 +87,7 @@ public class CreateLangFile {
         list.put("PREFIXES", new ArrayList<>(Prefixes.all.values()));
         list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
         list.put("STATS", new ArrayList<>(Stats.All.values()));
+        list.put("GEAR SLOT TYPES", new ArrayList<>(GearTypes.All.values()));
         list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
 
         return list;

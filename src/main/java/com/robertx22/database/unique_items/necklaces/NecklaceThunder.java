@@ -37,12 +37,12 @@ public class NecklaceThunder extends BaseUniqueNecklace {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Amulet of the Thunderstorm";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Command Thunder, command Energy.";
     }
 }

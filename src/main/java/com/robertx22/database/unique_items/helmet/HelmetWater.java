@@ -35,12 +35,12 @@ public class HelmetWater extends BaseUniqueHelmet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Ice Seer Eyes";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "What mortals can't see belongs to me.";
     }
 }

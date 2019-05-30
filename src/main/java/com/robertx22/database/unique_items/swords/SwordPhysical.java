@@ -32,12 +32,12 @@ public class SwordPhysical extends BaseUniqueSword {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Blade of Doom";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Toughest Opponents fear no pain.";
     }
 }

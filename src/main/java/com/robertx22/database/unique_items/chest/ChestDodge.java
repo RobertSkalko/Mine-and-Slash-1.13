@@ -36,12 +36,12 @@ public class ChestDodge extends BaseUniqueChest {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Thief's Chestplate";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Come on, hit me!";
     }
 }

@@ -23,7 +23,7 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
 
     @Override
     public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     @Override

@@ -35,12 +35,12 @@ public class PantsNature extends BaseUniquePants {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Rooted Leggings";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Embrace my roots.";
     }
 }

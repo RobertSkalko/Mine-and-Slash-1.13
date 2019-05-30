@@ -35,12 +35,12 @@ public class CharmFire extends BaseUniqueCharm {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Heavenly Fire Charm\"";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Bath in flames, thrive!";
     }
 }

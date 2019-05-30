@@ -49,4 +49,9 @@ public class Bracelet extends GearItemSlot {
     public GearSlotType slotType() {
         return GearSlotType.Jewerly;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Bracelet";
+    }
 }

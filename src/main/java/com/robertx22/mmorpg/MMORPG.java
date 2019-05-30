@@ -52,6 +52,9 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class MMORPG {
 
+    // DISABLE WHEN PUBLIC BUILD
+    private static boolean RUN_DEV_TOOLS = true;
+
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
@@ -113,7 +116,7 @@ public class MMORPG {
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
 
-        if (true) { // CHANGE ON PUBLIC BUILDS TO FALSE
+        if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();
             CreateLangFile.create();
         }

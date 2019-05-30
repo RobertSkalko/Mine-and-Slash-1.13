@@ -35,12 +35,12 @@ public class CharmNature extends BaseUniqueCharm {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Spirit Spring Charm";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "My life may be limited, but I shine throughout it.";
     }
 }

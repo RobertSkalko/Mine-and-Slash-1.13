@@ -35,12 +35,12 @@ public class SwordWater extends BaseUniqueSword {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Ice Elemental Sword";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Energy is everywhere, it just begs to be grasped";
     }
 }

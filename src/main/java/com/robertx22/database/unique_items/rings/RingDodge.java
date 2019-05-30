@@ -34,12 +34,12 @@ public class RingDodge extends BaseUniqueRing {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Ring of Swiftness";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Swift as the Wind.";
     }
 }

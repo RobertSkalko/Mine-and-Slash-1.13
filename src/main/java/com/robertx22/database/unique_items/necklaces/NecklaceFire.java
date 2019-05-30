@@ -36,12 +36,12 @@ public class NecklaceFire extends BaseUniqueNecklace {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Burning Man Amulet";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "I will take down my enemies with me, in flames.";
     }
 }

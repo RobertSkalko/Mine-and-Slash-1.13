@@ -35,12 +35,12 @@ public class CharmThunder extends BaseUniqueCharm {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Charm of Heavenly Tribulations";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Jade is only worth after it is polished.";
     }
 }

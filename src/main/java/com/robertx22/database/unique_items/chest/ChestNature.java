@@ -38,12 +38,12 @@ public class ChestNature extends BaseUniqueChest {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Wooden Plate";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Do not try move me.";
     }
 }

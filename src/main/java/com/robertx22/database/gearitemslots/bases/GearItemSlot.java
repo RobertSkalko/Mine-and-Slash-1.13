@@ -4,8 +4,9 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.BaseTraitMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.db_lists.StatMods;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.ILocName;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,13 +17,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class GearItemSlot implements IWeighted, ILocName {
+public abstract class GearItemSlot implements IWeighted, IAutoLocName {
 
     public enum GearSlotType {
         Weapon, Armor, Jewerly, OffHand
     }
-
-    public abstract String GUID();
 
     public abstract GearSlotType slotType();
 
@@ -32,14 +31,15 @@ public abstract class GearItemSlot implements IWeighted, ILocName {
 
     @Override
     public ITextComponent locName() {
-        return CLOC.geartype(GUID().toLowerCase());
+        return CLOC.blank(formattedGUID());
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".gear_type." + guid;
     }
 
     public abstract List<StatMod> PrimaryStats();
-
-    public List<StatMod> slotTypeStats() {
-        return new ArrayList<StatMod>();
-    }
 
     public abstract List<StatMod> PossibleSecondaryStats();
 

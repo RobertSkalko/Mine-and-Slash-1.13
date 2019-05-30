@@ -34,12 +34,12 @@ public class BraceletFire extends BaseUniqueBracelet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Flaming Fists";
     }
-
+    
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Harness Fire, wield it as your weapon. Incinerate them.";
     }
 }

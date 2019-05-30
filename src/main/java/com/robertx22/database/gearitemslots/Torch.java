@@ -40,4 +40,9 @@ public class Torch extends BaseOffHand {
         return Arrays.asList(new ManaFlat(), new EnergyFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Torch";
+    }
+
 }

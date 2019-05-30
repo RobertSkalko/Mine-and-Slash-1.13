@@ -36,12 +36,12 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Rooted Thunder Bracers";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Heavenly Lightning? I call it mana.";
     }
 }
