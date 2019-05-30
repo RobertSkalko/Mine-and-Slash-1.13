@@ -91,12 +91,6 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         return this.isPermaDeath ? 1.3F : 1;
     }
 
-    public int getBonusLootRarity() {
-
-        return (int) (getTotalPercents() * 0.5F);
-
-    }
-
     public boolean increaseLevel(int i) {
 
         int lvl = level + i;

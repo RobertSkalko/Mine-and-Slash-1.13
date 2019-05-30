@@ -2,6 +2,7 @@ package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.prefixes.defense.Evasive;
+import com.robertx22.database.affixes.prefixes.defense.Gatekeepers;
 import com.robertx22.database.affixes.prefixes.defense.Hardened;
 import com.robertx22.database.affixes.prefixes.defense.HeavenlySkin;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixFireRes;
@@ -36,6 +37,8 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+                add(new Gatekeepers());
+
                 add(new TouchOfMagic());
                 add(new Arcanists());
                 add(new Magical());

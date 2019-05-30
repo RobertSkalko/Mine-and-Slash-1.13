@@ -9,7 +9,7 @@ public class EpicMap extends BaseEpic implements MapRarity {
 
     @Override
     public MinMax AffixAmount() {
-        return new MinMax(4, 5);
+        return new MinMax(3, 4);
     }
 
     @Override

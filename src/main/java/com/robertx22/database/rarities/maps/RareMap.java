@@ -9,7 +9,7 @@ public class RareMap extends BaseRare implements MapRarity {
 
     @Override
     public MinMax AffixAmount() {
-        return new MinMax(3, 4);
+        return new MinMax(3, 3);
     }
 
     @Override

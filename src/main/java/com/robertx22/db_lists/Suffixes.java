@@ -24,6 +24,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
     private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
             {
+                add(new OfGodhood());
                 add(new OfCriticalHits());
                 add(new OfCriticalDamage());
                 add(new OfCriticalUnity());

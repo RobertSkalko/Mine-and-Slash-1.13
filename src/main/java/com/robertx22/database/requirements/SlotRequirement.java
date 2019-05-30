@@ -9,20 +9,24 @@ import java.util.stream.Collectors;
 
 public class SlotRequirement extends BaseRequirement {
 
-    public List<GearItemSlot> slots = new ArrayList<>();
+    public List<String> slotsGUIDS = new ArrayList<>();
 
     public SlotRequirement(GearItemSlot slot) {
-        this.slots.add(slot);
+        this.slotsGUIDS.add(slot.GUID());
     }
 
     public SlotRequirement(List<GearItemSlot> slots) {
-        this.slots.addAll(slots);
+
+        for (GearItemSlot slot : slots) {
+            this.slotsGUIDS.add(slot.GUID());
+        }
+
     }
 
     @Override
     public boolean meetsRequierment(GearRequestedFor requested) {
 
-        if (slots.contains(requested.forSlot) == false) {
+        if (slotsGUIDS.contains(requested.forSlot.GUID()) == false) {
             return false;
         }
 

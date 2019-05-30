@@ -7,14 +7,16 @@ import java.util.List;
 
 public class ExactUniquesRequierement extends UniqueItemRequirement {
 
-    List<IUnique> uniques = new ArrayList<>();
+    List<String> uniquesGUIDS = new ArrayList<>();
 
     public ExactUniquesRequierement(IUnique unique) {
-        uniques.add(unique);
+        uniquesGUIDS.add(unique.GUID());
     }
 
     public ExactUniquesRequierement(List<IUnique> uniques) {
-        uniques.addAll(uniques);
+        for (IUnique uniq : uniques) {
+            uniquesGUIDS.add(uniq.GUID());
+        }
     }
 
     @Override
@@ -26,7 +28,8 @@ public class ExactUniquesRequierement extends UniqueItemRequirement {
             return false;
         }
 
-        if (uniques.contains(requested.gearData.uniqueStats.getUniqueItem()) == false) {
+        if (uniquesGUIDS.contains(requested.gearData.uniqueStats.getUniqueItem()
+                .GUID()) == false) {
             return false;
         }
 
