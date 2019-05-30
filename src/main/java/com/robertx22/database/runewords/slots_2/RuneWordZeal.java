@@ -28,4 +28,8 @@ public class RuneWordZeal extends RuneWord {
         return Arrays.asList(new GohItem(0), new MosItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Zeal";
+    }
 }

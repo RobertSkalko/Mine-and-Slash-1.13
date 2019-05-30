@@ -22,4 +22,8 @@ public class PrefixFireRes extends BaseEleResPrefix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Fire Shield";
+    }
 }

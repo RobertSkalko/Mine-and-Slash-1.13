@@ -32,4 +32,8 @@ public class RuneWordZephyr extends RuneWord {
         return Arrays.asList(new MosItem(0), new XahItem(0), new CenItem(0), new BerItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Zephyr";
+    }
 }

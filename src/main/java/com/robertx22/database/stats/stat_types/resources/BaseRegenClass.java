@@ -6,7 +6,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public abstract class BaseRegenClass extends Stat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Regen happens every few seconds but is also used for other stats or spells";
     }
 

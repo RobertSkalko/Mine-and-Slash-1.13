@@ -28,4 +28,8 @@ public class RuneWordInfinity extends RuneWord {
         return Arrays.asList(new CenItem(0), new DosItem(0), new AnoItem(0), new BerItem(0), new XahItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Infinity";
+    }
 }

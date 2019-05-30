@@ -28,4 +28,9 @@ public class Energetic extends Prefix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Energetic";
+    }
 }

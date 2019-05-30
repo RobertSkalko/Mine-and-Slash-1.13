@@ -31,4 +31,8 @@ public class RuneWordRadiance extends RuneWord {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Radiance";
+    }
 }

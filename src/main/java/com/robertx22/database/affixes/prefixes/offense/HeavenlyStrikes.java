@@ -33,4 +33,9 @@ public class HeavenlyStrikes extends Prefix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.weaponsOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Heavenly Strikes";
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class WeaponDamageStat extends Stat implements IStatEffects {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases damage done if it was caused by that weapon";
     }
 

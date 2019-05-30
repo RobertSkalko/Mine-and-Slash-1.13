@@ -13,7 +13,7 @@ public class CriticalHit extends Stat implements IStatEffects {
     public static String GUID = "Critical Hit";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Chance to multiply damage by critical damage";
     }
 

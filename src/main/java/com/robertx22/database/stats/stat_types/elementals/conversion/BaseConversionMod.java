@@ -9,8 +9,11 @@ import com.robertx22.uncommon.interfaces.IStatConversion;
 
 public abstract class BaseConversionMod extends Stat implements IStatConversion {
 
+    public Elements fromElement;
+    public Elements toElement;
+
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Conversion adds a % of one to the other";
     }
 
@@ -31,6 +34,11 @@ public abstract class BaseConversionMod extends Stat implements IStatConversion 
     @Override
     public Elements Element() {
         return null;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return fromElement.name() + " to " + toElement.name() + " Convert";
     }
 
     @Override

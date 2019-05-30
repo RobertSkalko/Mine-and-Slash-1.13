@@ -19,4 +19,8 @@ public class ThirstOfAcid extends BaseThirstPrefix {
         return Arrays.asList(new LifestealFlat(), new SpellNatureDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thirst of Acid";
+    }
 }

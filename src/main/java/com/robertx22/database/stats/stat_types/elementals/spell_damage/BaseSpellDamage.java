@@ -4,7 +4,7 @@ import com.robertx22.database.stats.Stat;
 
 public abstract class BaseSpellDamage extends Stat {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Spell damage is used by spells and some other stats";
     }
 

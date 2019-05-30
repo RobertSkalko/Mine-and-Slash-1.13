@@ -22,4 +22,8 @@ public class PrefixWaterRes extends BaseEleResPrefix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Water Shield";
+    }
 }

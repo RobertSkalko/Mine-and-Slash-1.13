@@ -19,4 +19,8 @@ public class ThirstOfLightning extends BaseThirstPrefix {
         return Arrays.asList(new LifestealFlat(), new SpellThunderDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thirst of Lightning";
+    }
 }

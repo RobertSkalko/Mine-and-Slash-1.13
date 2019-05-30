@@ -22,4 +22,8 @@ public class Frosty extends BaseDamagePercentPrefix {
         return Arrays.asList(new SpellWaterDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Frosty";
+    }
 }

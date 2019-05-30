@@ -31,4 +31,8 @@ public class RuneWordLimitless extends RuneWord {
         return Arrays.asList(new VohItem(0), new ItaItem(0), new BerItem(0), new XahItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Limitless";
+    }
 }

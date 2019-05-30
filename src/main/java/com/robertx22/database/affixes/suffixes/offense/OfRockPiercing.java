@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.suffixes.offense;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.LevelRequirement;
+import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorPeneFlat;
@@ -36,5 +36,10 @@ public class OfRockPiercing extends Suffix {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.weaponsOnly(), new LevelRequirement(30));
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Rock Piercing";
     }
 }

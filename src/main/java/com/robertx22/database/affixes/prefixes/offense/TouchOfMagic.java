@@ -32,4 +32,9 @@ public class TouchOfMagic extends Prefix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Touch of Magic";
+    }
 }

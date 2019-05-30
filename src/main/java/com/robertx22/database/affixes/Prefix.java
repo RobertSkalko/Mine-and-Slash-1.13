@@ -12,6 +12,6 @@ public abstract class Prefix extends BaseAffix {
     @Override
     public ITextComponent locName() {
 
-        return CLOC.prefix(GUID().toLowerCase().replaceAll(" ", "_"));
+        return CLOC.prefix(this.GUIDFormatted());
     }
 }

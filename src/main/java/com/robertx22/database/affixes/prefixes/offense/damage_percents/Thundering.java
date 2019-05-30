@@ -21,4 +21,8 @@ public class Thundering extends BaseDamagePercentPrefix {
         return Arrays.asList(new SpellThunderDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thundering";
+    }
 }

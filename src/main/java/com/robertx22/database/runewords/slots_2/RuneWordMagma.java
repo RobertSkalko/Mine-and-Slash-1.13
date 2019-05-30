@@ -28,4 +28,8 @@ public class RuneWordMagma extends RuneWord {
         return Arrays.asList(new DosItem(0), new VohItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Magma";
+    }
 }

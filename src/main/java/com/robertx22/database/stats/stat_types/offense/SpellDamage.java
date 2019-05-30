@@ -14,7 +14,7 @@ public class SpellDamage extends Stat implements IStatEffects {
     public static String GUID = "spell_damage";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases DMG of all spells no matter the element";
     }
 

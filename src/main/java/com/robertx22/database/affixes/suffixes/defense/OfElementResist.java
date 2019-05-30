@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.suffixes.defense;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.LevelRequirement;
+import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
@@ -38,6 +38,11 @@ public class OfElementResist extends Suffix {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.armorsOnly(), new LevelRequirement(20));
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Element Resist";
     }
 
 }

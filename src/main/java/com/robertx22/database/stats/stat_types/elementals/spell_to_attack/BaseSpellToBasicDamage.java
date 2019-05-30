@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BaseSpellToBasicDamage extends Stat implements IStatEffects {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Adds a % of your spell DMG as DMG to your every weapon hit";
     }
 

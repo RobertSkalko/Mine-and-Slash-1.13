@@ -5,7 +5,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public class BonusExp extends Stat {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases exp gained";
     }
 

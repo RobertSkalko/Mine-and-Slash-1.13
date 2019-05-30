@@ -30,4 +30,9 @@ public class OfRockSkin extends Suffix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.armorsOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Rock Skin";
+    }
 }

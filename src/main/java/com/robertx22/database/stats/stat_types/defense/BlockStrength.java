@@ -6,7 +6,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class BlockStrength extends Stat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Blocks part of DMG when blocking, if all damage is blocked, attack is canceled";
     }
 
@@ -35,4 +35,8 @@ public class BlockStrength extends Stat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Block Strength";
+    }
 }

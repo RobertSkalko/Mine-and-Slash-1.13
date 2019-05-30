@@ -7,7 +7,7 @@ public class Energy extends FillableStat {
     public static String GUID = "Energy";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Energy is used to do basic attacks";
     }
 

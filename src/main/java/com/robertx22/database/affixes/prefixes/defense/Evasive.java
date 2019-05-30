@@ -29,4 +29,8 @@ public class Evasive extends Prefix {
         return new Requirements(SlotRequirement.armorsOnly());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Evasive";
+    }
 }

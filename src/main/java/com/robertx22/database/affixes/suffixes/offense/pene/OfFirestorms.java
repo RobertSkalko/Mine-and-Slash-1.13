@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import java.util.Arrays;
 import java.util.List;
 
-public class OfFirePene extends BaseLegendaryPeneSuffix {
+public class OfFirestorms extends BaseLegendaryPeneSuffix {
 
     @Override
     public String GUID() {
@@ -21,4 +21,8 @@ public class OfFirePene extends BaseLegendaryPeneSuffix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Of Firestorms";
+    }
 }

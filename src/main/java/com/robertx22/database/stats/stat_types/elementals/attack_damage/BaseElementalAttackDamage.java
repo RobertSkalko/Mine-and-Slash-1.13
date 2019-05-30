@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BaseElementalAttackDamage extends Stat implements IStatEffects {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Adds damage on weapon hit";
     }
 
@@ -31,4 +31,10 @@ public abstract class BaseElementalAttackDamage extends Stat implements IStatEff
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new ElementalAttackDamageEffect());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Attack" + this.Element().name() + " Damage";
+    }
+
 }

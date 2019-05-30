@@ -19,4 +19,8 @@ public class BraveHeart extends BaseRareResourcePrefix {
         return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Brave Heart";
+    }
 }

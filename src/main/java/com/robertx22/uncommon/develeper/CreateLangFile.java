@@ -1,7 +1,10 @@
 package com.robertx22.uncommon.develeper;
 
-import com.robertx22.IAutoLocName;
+import com.robertx22.db_lists.Prefixes;
+import com.robertx22.db_lists.RuneWords;
 import com.robertx22.db_lists.Sets;
+import com.robertx22.db_lists.Suffixes;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.File;
@@ -73,6 +76,9 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         HashMap<String, List<IAutoLocName>> list = new HashMap<>();
         list.put("ITEM SETS", new ArrayList<>(Sets.All.values()));
+        list.put("RUNEWORDS", new ArrayList<>(RuneWords.All.values()));
+        list.put("PREFIXES", new ArrayList<>(Prefixes.all.values()));
+        list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
 
         return list;
 

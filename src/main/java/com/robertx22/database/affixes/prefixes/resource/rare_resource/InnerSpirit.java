@@ -19,4 +19,8 @@ public class InnerSpirit extends BaseRareResourcePrefix {
         return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Inner Spirit";
+    }
 }

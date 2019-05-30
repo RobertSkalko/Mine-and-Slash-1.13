@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import java.util.Arrays;
 import java.util.List;
 
-public class OfWaterPene extends BaseLegendaryPeneSuffix {
+public class OfIceStorms extends BaseLegendaryPeneSuffix {
 
     @Override
     public String GUID() {
@@ -21,4 +21,8 @@ public class OfWaterPene extends BaseLegendaryPeneSuffix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Of IceStorms";
+    }
 }

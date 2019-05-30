@@ -21,4 +21,8 @@ public class Tough extends BaseDamagePercentPrefix {
         return Arrays.asList(new PhysicalDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Tough";
+    }
 }

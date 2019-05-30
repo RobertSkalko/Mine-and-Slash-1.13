@@ -30,4 +30,9 @@ public class OfCriticalHits extends Suffix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.weaponsOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Critical Hits";
+    }
 }

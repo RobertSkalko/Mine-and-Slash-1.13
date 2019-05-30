@@ -22,4 +22,8 @@ public class FlameImbued extends BaseImbuedPrefix {
         return Arrays.asList(new FireSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Flame Imbued";
+    }
 }

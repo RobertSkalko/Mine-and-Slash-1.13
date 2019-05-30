@@ -3,10 +3,10 @@ package com.robertx22.db_lists;
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.affixes.suffixes.defense.*;
 import com.robertx22.database.affixes.suffixes.offense.*;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfFirePene;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfNaturePene;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfThunderPene;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfWaterPene;
+import com.robertx22.database.affixes.suffixes.offense.pene.OfEarthquakes;
+import com.robertx22.database.affixes.suffixes.offense.pene.OfFirestorms;
+import com.robertx22.database.affixes.suffixes.offense.pene.OfIceStorms;
+import com.robertx22.database.affixes.suffixes.offense.pene.OfThunderstorms;
 import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
@@ -43,10 +43,10 @@ public class Suffixes implements IRandomDefault<Suffix> {
                 add(new OfManaRegen());
                 add(new OfTheSage());
 
-                add(new OfFirePene());
-                add(new OfNaturePene());
-                add(new OfThunderPene());
-                add(new OfWaterPene());
+                add(new OfFirestorms());
+                add(new OfEarthquakes());
+                add(new OfThunderstorms());
+                add(new OfIceStorms());
 
             }
         }

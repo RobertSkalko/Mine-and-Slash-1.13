@@ -9,7 +9,7 @@ public class Health extends Stat {
     public static String GUID = "Health";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Allows you to take more damage from mobs";
     }
 

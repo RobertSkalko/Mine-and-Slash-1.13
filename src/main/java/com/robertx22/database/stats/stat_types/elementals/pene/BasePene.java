@@ -5,7 +5,7 @@ import com.robertx22.uncommon.interfaces.IStatEffects;
 
 public abstract class BasePene extends Stat implements IStatEffects {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Penetration ignores that much armor";
     }
 

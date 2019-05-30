@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class AllEleDamageBase extends Stat implements IStatEffects {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases All DMG of that element, both spells and attacks";
     }
 
@@ -32,6 +32,11 @@ public abstract class AllEleDamageBase extends Stat implements IStatEffects {
     @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new AllElementalDamageEffect());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "All" + this.Element().name() + " Damage";
     }
 
 }

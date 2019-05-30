@@ -32,4 +32,8 @@ public class RuneWordGhost extends RuneWord {
         return Arrays.asList(new VohItem(0), new XahItem(0), new BerItem(0), new XahItem(0), new CenItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Ghost";
+    }
 }

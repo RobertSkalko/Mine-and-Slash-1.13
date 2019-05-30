@@ -1,12 +1,12 @@
 package com.robertx22.database.sets;
 
-import com.robertx22.IAutoLocName;
 import com.robertx22.database.IGUID;
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.util.text.ITextComponent;
 

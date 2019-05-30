@@ -28,4 +28,8 @@ public class RuneWordScales extends RuneWord {
         return Arrays.asList(new BerItem(0), new CenItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Scales";
+    }
 }

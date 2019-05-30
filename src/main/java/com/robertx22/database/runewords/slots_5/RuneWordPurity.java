@@ -29,4 +29,8 @@ public class RuneWordPurity extends RuneWord {
         return Arrays.asList(new GohItem(0), new AnoItem(0), new DosItem(0), new CenItem(0), new MosItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Purity";
+    }
 }

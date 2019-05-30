@@ -32,4 +32,8 @@ public class RuneWordMagician extends RuneWord {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Magician";
+    }
 }

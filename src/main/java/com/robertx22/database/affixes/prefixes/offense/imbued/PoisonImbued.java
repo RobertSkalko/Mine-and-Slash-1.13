@@ -22,4 +22,9 @@ public class PoisonImbued extends BaseImbuedPrefix {
         return Arrays.asList(new NatureSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Poison Imbued";
+    }
+
 }

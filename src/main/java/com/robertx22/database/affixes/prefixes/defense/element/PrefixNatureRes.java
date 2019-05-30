@@ -22,4 +22,8 @@ public class PrefixNatureRes extends BaseEleResPrefix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Nature Shield";
+    }
 }

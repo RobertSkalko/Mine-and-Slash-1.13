@@ -21,7 +21,7 @@ import java.util.List;
 public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrait {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "";
     }
 

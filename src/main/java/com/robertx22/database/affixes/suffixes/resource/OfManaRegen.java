@@ -28,4 +28,9 @@ public class OfManaRegen extends Suffix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Mana Regen";
+    }
 }

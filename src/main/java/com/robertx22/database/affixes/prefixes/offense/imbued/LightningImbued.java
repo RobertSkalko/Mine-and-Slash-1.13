@@ -22,4 +22,8 @@ public class LightningImbued extends BaseImbuedPrefix {
         return Arrays.asList(new ThunderSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lightning Imbued";
+    }
 }

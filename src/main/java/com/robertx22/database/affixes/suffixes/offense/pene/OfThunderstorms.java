@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFla
 import java.util.Arrays;
 import java.util.List;
 
-public class OfThunderPene extends BaseLegendaryPeneSuffix {
+public class OfThunderstorms extends BaseLegendaryPeneSuffix {
 
     @Override
     public String GUID() {
@@ -19,6 +19,11 @@ public class OfThunderPene extends BaseLegendaryPeneSuffix {
 
         return Arrays.asList(new ThunderPeneFlat(), new ThunderSpellToAttackFlat());
 
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Thunderstorms";
     }
 
 }

@@ -22,4 +22,8 @@ public class FrostImbued extends BaseImbuedPrefix {
         return Arrays.asList(new WaterSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Frost Imbued";
+    }
 }

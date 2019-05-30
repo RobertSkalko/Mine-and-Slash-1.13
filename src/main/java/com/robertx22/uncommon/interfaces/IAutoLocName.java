@@ -1,6 +1,4 @@
-package com.robertx22;
-
-import com.robertx22.uncommon.interfaces.ILocName;
+package com.robertx22.uncommon.interfaces;
 
 public interface IAutoLocName extends ILocName {
 

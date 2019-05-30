@@ -31,7 +31,7 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
     }
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "";
     }
 

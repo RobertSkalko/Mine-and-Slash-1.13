@@ -11,7 +11,7 @@ import java.util.List;
 public class Dexterity extends BaseCoreStat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases Crit Hit, Dodge and Armor";
     }
 
@@ -23,5 +23,10 @@ public class Dexterity extends BaseCoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(new CriticalHitFlat(), new DodgeFlat(), new ArmorFlat());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Dexterity";
     }
 }

@@ -1,9 +1,9 @@
 package com.robertx22.database.affixes.suffixes.resource;
 
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
-import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
@@ -36,5 +36,10 @@ public class OfTheDepths extends Suffix {
     @Override
     public Requirements requirements() {
         return new Requirements(new SlotRequirement(new Necklace()));
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of The Depths";
     }
 }

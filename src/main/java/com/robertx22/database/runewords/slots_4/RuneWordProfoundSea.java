@@ -32,4 +32,8 @@ public class RuneWordProfoundSea extends RuneWord {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Profound Sea";
+    }
 }

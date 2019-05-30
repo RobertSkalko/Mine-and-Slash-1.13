@@ -14,7 +14,7 @@ import java.util.List;
 public class Intelligence extends BaseCoreStat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increase Mana Regen and Mana, All Elemental damage";
     }
 
@@ -28,6 +28,10 @@ public class Intelligence extends BaseCoreStat {
         return Arrays.asList(new ManaRegenFlat(), new ManaFlat(), new AllFireDamageMulti(), new AllWaterDamageMulti(), new AllNatureDamageMulti(), new AllThunderDamageMulti());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Intelligence";
+    }
 }
 
 

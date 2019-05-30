@@ -21,4 +21,8 @@ public class Thorny extends BaseDamagePercentPrefix {
         return Arrays.asList(new SpellNatureDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thorny";
+    }
 }

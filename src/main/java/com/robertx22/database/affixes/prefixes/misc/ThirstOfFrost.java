@@ -19,4 +19,8 @@ public class ThirstOfFrost extends BaseThirstPrefix {
         return Arrays.asList(new LifestealFlat(), new SpellWaterDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thirst of Frost";
+    }
 }

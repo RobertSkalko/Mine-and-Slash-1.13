@@ -32,4 +32,9 @@ public class RuneWordMountain extends RuneWord {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mountain";
+    }
+
 }

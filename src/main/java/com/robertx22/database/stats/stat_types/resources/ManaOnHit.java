@@ -13,7 +13,7 @@ public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "Mana On Hit";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Gives mana on basic attack";
     }
 

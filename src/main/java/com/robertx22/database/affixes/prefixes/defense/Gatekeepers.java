@@ -34,4 +34,8 @@ public class Gatekeepers extends Prefix {
         return new Requirements(new SlotRequirement(new Shield()));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Gatekeeper's";
+    }
 }

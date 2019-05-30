@@ -36,4 +36,9 @@ public class OfHiddenSense extends Suffix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.armorsOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Hidden Sense";
+    }
 }

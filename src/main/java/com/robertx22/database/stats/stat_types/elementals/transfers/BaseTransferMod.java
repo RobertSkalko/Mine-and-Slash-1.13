@@ -9,7 +9,7 @@ import com.robertx22.uncommon.interfaces.IStatTransfer;
 
 public abstract class BaseTransferMod extends Stat implements IStatTransfer {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Transfer takes a % from 1 and gives to the other";
     }
 

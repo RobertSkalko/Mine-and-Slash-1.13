@@ -29,4 +29,9 @@ public class LifeStealing extends Prefix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.weaponsOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Life Stealing";
+    }
 }

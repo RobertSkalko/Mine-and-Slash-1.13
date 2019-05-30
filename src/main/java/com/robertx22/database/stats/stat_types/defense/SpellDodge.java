@@ -13,7 +13,7 @@ public class SpellDodge extends Stat implements IStatEffects {
     public static String GUID = "Spell Dodge";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Chance to Ignore spell damage";
     }
 
@@ -45,4 +45,8 @@ public class SpellDodge extends Stat implements IStatEffects {
         return true;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Spell Dodge";
+    }
 }

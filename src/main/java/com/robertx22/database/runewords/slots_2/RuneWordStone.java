@@ -27,4 +27,8 @@ public class RuneWordStone extends RuneWord {
         return Arrays.asList(new ItaItem(0), new AnoItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Stone";
+    }
 }

@@ -19,4 +19,8 @@ public class DeepMind extends BaseRareResourcePrefix {
         return Arrays.asList(new ManaRegenFlat(), new ManaRegenPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Deep Mind";
+    }
 }

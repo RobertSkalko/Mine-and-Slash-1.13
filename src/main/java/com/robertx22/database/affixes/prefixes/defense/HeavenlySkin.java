@@ -37,4 +37,8 @@ public class HeavenlySkin extends Prefix {
         return new Requirements(SlotRequirement.armorsOnly());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Heavenly Skin";
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Stamina extends BaseCoreStat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases Energy, Armor and Armor Percent";
     }
 
@@ -23,5 +23,10 @@ public class Stamina extends BaseCoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(new EnergyFlat(), new ArmorFlat(), new ArmorPercent());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Stamina";
     }
 }

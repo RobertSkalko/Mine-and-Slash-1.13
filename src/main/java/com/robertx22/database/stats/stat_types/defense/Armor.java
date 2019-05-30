@@ -12,7 +12,7 @@ import java.util.List;
 public class Armor extends UsableStat implements IStatEffects {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Decreases damage taken by a percent";
     }
 
@@ -56,4 +56,8 @@ public class Armor extends UsableStat implements IStatEffects {
         return Arrays.asList(new ArmorEffect());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Armor";
+    }
 }

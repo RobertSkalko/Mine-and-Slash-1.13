@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Stops a % damage of that element";
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class Vitality extends BaseCoreStat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases Health, Health percent and Health Regen";
     }
 
@@ -23,5 +23,10 @@ public class Vitality extends BaseCoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Vitality";
     }
 }

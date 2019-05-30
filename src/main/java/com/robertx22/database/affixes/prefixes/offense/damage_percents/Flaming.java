@@ -22,4 +22,9 @@ public class Flaming extends BaseDamagePercentPrefix {
         return Arrays.asList(new SpellFireDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Flaming";
+    }
+
 }

@@ -7,7 +7,7 @@ public class Mana extends FillableStat {
     public static String GUID = "Mana";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Mana is used to cast spells";
     }
 

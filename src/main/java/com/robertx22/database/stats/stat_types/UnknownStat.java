@@ -11,7 +11,7 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "";
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class Wisdom extends BaseCoreStat {
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases Mana Regen, Energy Regen and Health Regen";
     }
 
@@ -23,5 +23,10 @@ public class Wisdom extends BaseCoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(new ManaRegenFlat(), new EnergyRegenFlat(), new HealthRegenFlat());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Wisdom";
     }
 }

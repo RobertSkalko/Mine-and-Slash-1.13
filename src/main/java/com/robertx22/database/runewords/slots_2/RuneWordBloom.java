@@ -27,4 +27,8 @@ public class RuneWordBloom extends RuneWord {
         return Arrays.asList(new AnoItem(0), new GohItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Bloom";
+    }
 }

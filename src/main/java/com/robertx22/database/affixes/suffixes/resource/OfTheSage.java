@@ -34,4 +34,9 @@ public class OfTheSage extends Suffix {
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of The Sage";
+    }
 }

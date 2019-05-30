@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat
 import java.util.Arrays;
 import java.util.List;
 
-public class OfNaturePene extends BaseLegendaryPeneSuffix {
+public class OfEarthquakes extends BaseLegendaryPeneSuffix {
 
     @Override
     public String GUID() {
@@ -19,6 +19,11 @@ public class OfNaturePene extends BaseLegendaryPeneSuffix {
 
         return Arrays.asList(new NaturePeneFlat(), new NatureSpellToAttackFlat());
 
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of Earthquakes";
     }
 
 }

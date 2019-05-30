@@ -13,7 +13,7 @@ public class Dodge extends Stat implements IStatEffects {
     public static String GUID = "Dodge";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Chance to ignore all damage";
     }
 
@@ -44,5 +44,10 @@ public class Dodge extends Stat implements IStatEffects {
     @Override
     public boolean IsPercent() {
         return true;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Dodge";
     }
 }

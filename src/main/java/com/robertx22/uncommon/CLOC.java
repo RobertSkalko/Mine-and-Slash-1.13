@@ -85,4 +85,8 @@ public class CLOC {
     public static ITextComponent set(String guid) {
         return base(Ref.MODID + ".set." + guid);
     }
+
+    public static ITextComponent statDesc(String guidFormatted) {
+        return base(Ref.MODID + ".stat_desc." + guidFormatted);
+    }
 }

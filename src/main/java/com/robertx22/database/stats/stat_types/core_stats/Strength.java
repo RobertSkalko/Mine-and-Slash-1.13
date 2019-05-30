@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Strength extends BaseCoreStat {
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "Increases Physical DMG, Critical DMG, Physical DMG multi";
     }
 
@@ -22,5 +22,10 @@ public class Strength extends BaseCoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(new PhysicalDamagePercent(), new CriticalDamageFlat(), new PhysicalDamageMulti());
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Strength";
     }
 }

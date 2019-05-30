@@ -7,7 +7,7 @@ public class PhysicalDamage extends Stat {
     public static String GUID = "Physical Damage";
 
     @Override
-    public String statDescription() {
+    public String locDescForLangFile() {
         return "How much DMG your basic attacks do";
     }
 

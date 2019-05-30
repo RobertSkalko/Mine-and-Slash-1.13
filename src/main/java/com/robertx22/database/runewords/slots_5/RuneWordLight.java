@@ -29,4 +29,8 @@ public class RuneWordLight extends RuneWord {
         return Arrays.asList(new ItaItem(0), new AnoItem(0), new DosItem(0), new XahItem(0), new GohItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Light";
+    }
 }

@@ -38,4 +38,8 @@ public class OfGodhood extends Suffix {
         return new Requirements(new SlotRequirement(new Helmet()), new LevelRequirement(50), new UniqueTierRequirement(10));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Of Godhood";
+    }
 }

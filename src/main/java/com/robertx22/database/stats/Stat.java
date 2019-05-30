@@ -9,7 +9,8 @@ import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.interfaces.ILocName;
+import com.robertx22.uncommon.interfaces.IAutoLocDesc;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.ITextComponent;
@@ -19,7 +20,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, ILocName {
+public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     public Stat() {
     }
@@ -28,10 +29,15 @@ public abstract class Stat implements IGUID, ILocName {
         return CLOC.stat(this.GUID().toLowerCase().replaceAll(" ", "_"));
     }
 
-    public abstract String statDescription();
+    @Override
+    public ITextComponent locDesc() {
+        return CLOC.statDesc(GUIDFormatted());
+    }
+
+    public abstract String locDescForLangFile();
 
     public ITextComponent getStatDescription() {
-        return new TextComponentString(statDescription());
+        return new TextComponentString(locDescForLangFile());
     }
 
     public int MaximumPercent = 0;

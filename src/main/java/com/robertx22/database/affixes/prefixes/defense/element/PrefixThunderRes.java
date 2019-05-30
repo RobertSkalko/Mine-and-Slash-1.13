@@ -22,4 +22,8 @@ public class PrefixThunderRes extends BaseEleResPrefix {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thunder Shield";
+    }
 }

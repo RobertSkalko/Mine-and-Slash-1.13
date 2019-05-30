@@ -31,4 +31,8 @@ public class RuneWordThief extends RuneWord {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thief";
+    }
 }

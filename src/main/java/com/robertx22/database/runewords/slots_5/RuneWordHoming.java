@@ -29,4 +29,8 @@ public class RuneWordHoming extends RuneWord {
         return Arrays.asList(new ItaItem(0), new DosItem(0), new VohItem(0), new BerItem(0), new RahItem(0));
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Follower";
+    }
 }
