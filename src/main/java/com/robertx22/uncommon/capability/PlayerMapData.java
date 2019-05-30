@@ -211,7 +211,7 @@ public class PlayerMapData {
         @Override
         public float getLootMultiplier(EntityPlayer player) {
             if (WorldUtils.isMapWorld(player.world)) {
-                return this.mapdata.getLootMultiplier();
+                return this.mapdata.getBonusLootMulti();
             } else {
                 return 1;
             }

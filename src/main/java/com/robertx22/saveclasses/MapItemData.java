@@ -7,6 +7,7 @@ import com.robertx22.database.world_providers.DefaultIWP;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
+import com.robertx22.db_lists.bases.IBonusLootMulti;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
@@ -39,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class MapItemData implements ISalvagable, ITooltip {
+public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
     @Store
     public int minutes = 30; // default
@@ -79,9 +80,10 @@ public class MapItemData implements ISalvagable, ITooltip {
         return this.rarity;
     }
 
-    public float getLootMultiplier() {
+    @Override
+    public float getBonusLootMulti() {
 
-        return 1 + getTotalPercents() * getPermaDeathMultiplier();
+        return 1 * getTotalPercents() * getPermaDeathMultiplier();
 
     }
 
@@ -123,7 +125,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
     private float getTotalPercents() {
 
-        float total = 0;
+        float total = 1;
         for (MapAffixData affix : affixes) {
             total += affix.getBonusLootMultiplier();
         }
@@ -278,7 +280,7 @@ public class MapItemData implements ISalvagable, ITooltip {
 
     private int getBonusLootAmountInPercent() {
 
-        return (int) ((this.getLootMultiplier() - 1) * 100);
+        return (int) ((this.getBonusLootMulti() - 1) * 100);
 
     }
 

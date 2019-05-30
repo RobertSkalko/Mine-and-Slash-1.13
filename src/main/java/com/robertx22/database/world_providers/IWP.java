@@ -1,5 +1,6 @@
 package com.robertx22.database.world_providers;
 
+import com.robertx22.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.CLOC;
@@ -14,7 +15,7 @@ import net.minecraftforge.common.ModDimension;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IWP extends IWeighted, ILocName {
+public interface IWP extends IWeighted, ILocName, IBonusLootMulti {
     abstract String GUID();
 
     ModDimension getModDim();
@@ -24,8 +25,6 @@ public interface IWP extends IWeighted, ILocName {
     ModDimension newModDimension();
 
     List<MapAffixData> getMapAffixes(); // missing thunder damage maps.. hmm
-
-    float getBonusLootMulti();
 
     void setModDimension(ModDimension mod);
 

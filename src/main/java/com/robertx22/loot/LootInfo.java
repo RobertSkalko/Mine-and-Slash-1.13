@@ -104,7 +104,7 @@ public class LootInfo {
 
             if (world.getDimension() instanceof IWP) {
                 IWP iwp = (IWP) world.getDimension();
-                chance *= iwp.getBonusLootMulti();
+                chance *= 1 + iwp.getBonusLootMulti();
             }
         }
 
