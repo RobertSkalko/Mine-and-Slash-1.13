@@ -1,8 +1,5 @@
 package com.robertx22.database.unique_items.rings;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
@@ -10,6 +7,10 @@ import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
+import com.robertx22.uncommon.Styles;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RingEnergy extends BaseUniqueRing {
 
@@ -19,18 +20,26 @@ public class RingEnergy extends BaseUniqueRing {
 
     @Override
     public int Tier() {
-	return 15;
+        return 15;
     }
 
     @Override
     public String GUID() {
-	return "ringenergy0";
+        return "ringenergy0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent(), new ManaRegenFlat(), new HealthFlat(),
-		new CrippleCriticalDamagePercent());
+        return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent(), new ManaRegenFlat(), new HealthFlat(), new CrippleCriticalDamagePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Ring of Unlimited Endurance";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "I will pay any price to continue!";
+    }
 }

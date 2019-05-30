@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,4 +31,13 @@ public class AxeFire extends BaseUniqueAxe {
         return Arrays.asList(new AttackFireDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new FirePeneFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return Styles.YELLOW + "Axe of Blazing Cuts";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Behold my dance of fire!";
+    }
 }

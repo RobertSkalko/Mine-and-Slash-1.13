@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -33,4 +34,13 @@ public class SwordWater extends BaseUniqueSword {
         return Arrays.asList(new AttackWaterDamageFlat(), new BaseTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat(), new EnergyRegenFlat(), new CrippleLifestealPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Ice Elemental Sword";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Energy is everywhere, it just begs to be grasped";
+    }
 }

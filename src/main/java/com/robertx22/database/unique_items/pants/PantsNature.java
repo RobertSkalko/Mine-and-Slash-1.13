@@ -7,6 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -33,4 +34,13 @@ public class PantsNature extends BaseUniquePants {
         return Arrays.asList(new LowDodgeAddArmorFlat(), new HealthFlat(), new NatureResistFlat(), new BaseTransferFlat(Elements.Fire, Elements.Nature), new CrippleLifeOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Rooted Leggings";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Embrace my roots.";
+    }
 }

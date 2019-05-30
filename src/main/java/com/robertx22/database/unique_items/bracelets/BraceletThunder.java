@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifesteal
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class BraceletThunder extends BaseUniqueBracelet {
         return Arrays.asList(new SpellThunderDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CriticalDamageFlat(), new CrippleLifestealPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Thunder Bracers";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Dedication brings unparalleled might.";
+    }
 }

@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.weapon_damages.SwordDamageFla
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBoots;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,4 +35,13 @@ public class BootsWater extends BaseUniqueBoots {
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "§eIce Steps";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Ice forms wherever I walk.";
+    }
 }

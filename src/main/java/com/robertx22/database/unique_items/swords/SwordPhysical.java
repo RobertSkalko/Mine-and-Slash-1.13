@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,4 +31,13 @@ public class SwordPhysical extends BaseUniqueSword {
         return Arrays.asList(new PhysicalDamageFlat(), new MajorCriticalHitPercent(), new MajorCriticalDamagePercent(), new LessHealthRegenFlat());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Blade of Doom";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Toughest Opponents fear no pain.";
+    }
 }

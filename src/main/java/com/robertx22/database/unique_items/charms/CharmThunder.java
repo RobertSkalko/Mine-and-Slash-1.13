@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent
 import com.robertx22.database.stats.stat_mods.percent.pene.ThunderPenePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class CharmThunder extends BaseUniqueCharm {
         return Arrays.asList(new SpellThunderDamagePercent(), new ManaRegenPercent(), new ThunderPenePercent(), new CriticalHitPercent(), new ThunderResistFlat(), new CrippleLifeOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Charm of Heavenly Tribulations";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Jade is only worth after it is polished.";
+    }
 }

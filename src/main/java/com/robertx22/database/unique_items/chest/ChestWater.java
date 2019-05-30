@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -34,4 +35,13 @@ public class ChestWater extends BaseUniqueChest {
         return Arrays.asList(new HealthFlat(), new WaterPeneFlat(), new MajorArmorFlat(), new ArmorPercent(), new BaseTransferFlat(Elements.Nature, Elements.Water), new LessDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Armor of the Glacier";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "I am a Fortress of pure Ice.";
+    }
 }

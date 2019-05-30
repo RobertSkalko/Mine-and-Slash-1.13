@@ -9,6 +9,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -36,4 +37,13 @@ public class ChestNature extends BaseUniqueChest {
         return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(), new ArmorFlat(), new WaterResistFlat(), new BaseTransferFlat(Elements.Water, Elements.Nature), new CrippleDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Wooden Plate";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Do not try move me.";
+    }
 }

@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,4 +32,13 @@ public class StaffFire extends BaseUniqueStaff {
         return Arrays.asList(new AttackFireDamageFlat(), new CriticalDamageFlat(), new FirePeneFlat(), new LifeOnHitFlat());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "eStaff of Volcanoes";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Leave only ashes behind.";
+    }
 }

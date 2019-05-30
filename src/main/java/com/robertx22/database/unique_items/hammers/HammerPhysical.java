@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHit
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHammer;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,4 +33,13 @@ public class HammerPhysical extends BaseUniqueHammer {
         return Arrays.asList(new PhysicalDamageFlat(), new ArmorPeneFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Mountain Breaker";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Not even mountains can bar my path!";
+    }
 }

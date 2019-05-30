@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFi
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueBow;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,5 +25,15 @@ public class BowFire extends BaseUniqueBow {
     @Override
     public int Tier() {
         return 10;
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Bow of Fire Affinity";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Aim steady, imbue with flame!";
     }
 }

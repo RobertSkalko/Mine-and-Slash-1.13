@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class NecklaceEnergy extends BaseUniqueNecklace {
         return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat(), new HealthRegenFlat(), new CriticalDamagePercent(), new HealthPercent(), new CrippleDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "eInner Spirit Amulet";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "One becomes two, two becomes four!";
+    }
 }

@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThun
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -35,4 +36,13 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Amulet of the Thunderstorm";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Command Thunder, command Energy.";
+    }
 }

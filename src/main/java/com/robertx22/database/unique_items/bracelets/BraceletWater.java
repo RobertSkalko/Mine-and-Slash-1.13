@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWate
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -34,4 +35,13 @@ public class BraceletWater extends BaseUniqueBracelet {
         return Arrays.asList(new SpellWaterDamageFlat(), new BaseTransferFlat(Elements.Fire, Elements.Water), new EnergyRegenFlat(), new WaterResistFlat(), new FireResistFlat(), new CrippleDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Frostburn Bracers";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Burn them all! With Ice of course.";
+    }
 }

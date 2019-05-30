@@ -7,6 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistF
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -34,4 +35,13 @@ public class NecklaceFire extends BaseUniqueNecklace {
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Burning Man Amulet";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "I will take down my enemies with me, in flames.";
+    }
 }

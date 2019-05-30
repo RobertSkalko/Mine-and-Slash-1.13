@@ -9,6 +9,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHit
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHammer;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class HammerThunder extends BaseUniqueHammer {
         return Arrays.asList(new AttackThunderDamageFlat(), new ThunderSpellToAttackFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Hammer of Thor";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "I will be safe when my enemies are dead.";
+    }
 }

@@ -5,6 +5,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.BaseConversionFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -31,4 +32,13 @@ public class RingWaterFire extends BaseUniqueRing {
         return Arrays.asList(new SpellFireDamageFlat(), new SpellWaterDamageFlat(), new BaseConversionFlat(Elements.Fire, Elements.Water), new BaseConversionFlat(Elements.Water, Elements.Fire));
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "FrostFire Ring";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "I will attain perfect control.";
+    }
 }

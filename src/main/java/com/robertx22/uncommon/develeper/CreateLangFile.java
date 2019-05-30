@@ -87,6 +87,7 @@ public class CreateLangFile {
         list.put("PREFIXES", new ArrayList<>(Prefixes.all.values()));
         list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
         list.put("STATS", new ArrayList<>(Stats.All.values()));
+        list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
 
         return list;
 
@@ -95,6 +96,7 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         HashMap<String, List<IAutoLocDesc>> list = new HashMap<>();
         list.put("STAT DESCRIPTIONS", new ArrayList<>(Stats.All.values()));
+        list.put("UNIQUE ITEM DESCRIPTIONS", new ArrayList<>(UniqueItems.getAll()));
 
         return list;
 

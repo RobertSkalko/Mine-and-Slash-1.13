@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class CharmFire extends BaseUniqueCharm {
         return Arrays.asList(new SpellFireDamageFlat(), new ManaRegenPercent(), new FirePeneFlat(), new CriticalHitFlat(), new FireResistFlat(), new CrippleDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Heavenly Fire Charm\"";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Bath in flames, thrive!";
+    }
 }

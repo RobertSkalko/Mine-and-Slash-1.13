@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFire
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -34,4 +35,13 @@ public class PantsThunder extends BaseUniquePants {
         return Arrays.asList(new HealthFlat(), new SpellFireDamageFlat(), new DodgeFlat(), new FireResistFlat(), new BaseTransferFlat(Elements.Fire, Elements.Thunder), new CrippleLifeOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Lightning Coil Leggings";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Swallow flames, harness Lightning.";
+    }
 }

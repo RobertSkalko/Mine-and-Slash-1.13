@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stats.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class StaffLifesteal extends BaseUniqueStaff {
         return Arrays.asList(new PhysicalDamageFlat(), new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(), new HealthRegenFlat(), new CrippleManaOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Vampire Staff";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "All blood will be mine, eventually.";
+    }
 }

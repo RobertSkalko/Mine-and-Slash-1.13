@@ -7,6 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.percent.pene.WaterPenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,4 +33,13 @@ public class StaffWater extends BaseUniqueStaff {
         return Arrays.asList(new AttackWaterDamageFlat(), new CriticalDamageFlat(), new CriticalHitFlat(), new WaterPeneFlat(), new WaterPenePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Staff of Permafrost";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "What is frozen is as good as dead.";
+    }
 }

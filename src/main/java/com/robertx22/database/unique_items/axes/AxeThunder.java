@@ -7,6 +7,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHit
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,4 +32,13 @@ public class AxeThunder extends BaseUniqueAxe {
         return Arrays.asList(new AttackThunderDamageFlat(), new CriticalHitFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return Styles.YELLOW + "Thunderstorm Axe";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Sparks fly, heads roll.";
+    }
 }

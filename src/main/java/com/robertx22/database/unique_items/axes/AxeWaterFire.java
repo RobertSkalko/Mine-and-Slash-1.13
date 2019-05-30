@@ -7,6 +7,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHit
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,4 +32,13 @@ public class AxeWaterFire extends BaseUniqueAxe {
         return Arrays.asList(new AttackFireDamageFlat(), new AttackWaterDamageFlat(), new CriticalHitPercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return Styles.YELLOW + "Axe of Frostfire";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "My efforts to merge elements shall not be in vain.";
+    }
 }

@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBoots;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -35,4 +36,13 @@ public class BootsNature extends BaseUniqueBoots {
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Tree Trunks";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Nothing shall break my roots!";
+    }
 }

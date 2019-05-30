@@ -9,6 +9,7 @@ import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -36,4 +37,13 @@ public class PantsWater extends BaseUniquePants {
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Leggings of the Glacier";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Try to move me, I dare you.";
+    }
 }

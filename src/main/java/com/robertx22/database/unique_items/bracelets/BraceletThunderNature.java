@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -34,4 +35,13 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
         return Arrays.asList(new BaseTransferFlat(Elements.Thunder, Elements.Nature), new NatureResistFlat(), new ThunderResistFlat(), new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Rooted Thunder Bracers";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Heavenly Lightning? I call it mana.";
+    }
 }

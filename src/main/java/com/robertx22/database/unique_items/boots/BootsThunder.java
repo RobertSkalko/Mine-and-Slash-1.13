@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.weapon_damages.HammerDamageFl
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBoots;
+import com.robertx22.uncommon.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,4 +34,13 @@ public class BootsThunder extends BaseUniqueBoots {
         return Arrays.asList(new HealthFlat(), new HammerDamageFlat(), new ThunderSpellToAttackFlat(), new CriticalDamagePercent(), new ThunderResistFlat(), new CrippleLifeOnHitPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Lightning Tendril Boots";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Sparks fly wherever I stand.";
+    }
 }

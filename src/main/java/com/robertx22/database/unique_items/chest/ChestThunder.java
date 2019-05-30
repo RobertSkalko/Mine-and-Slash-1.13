@@ -1,8 +1,5 @@
 package com.robertx22.database.unique_items.chest;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
@@ -11,6 +8,10 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
+import com.robertx22.uncommon.Styles;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ChestThunder extends BaseUniqueChest {
 
@@ -20,18 +21,26 @@ public class ChestThunder extends BaseUniqueChest {
 
     @Override
     public int Tier() {
-	return 6;
+        return 6;
     }
 
     @Override
     public String GUID() {
-	return "chestthunder0";
+        return "chestthunder0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new HealthFlat(), new ThunderResistFlat(), new MajorArmorFlat(),
-		new SpellThunderDamagePercent(), new ThunderSpellToAttackFlat(), new CrippleLifestealPercent());
+        return Arrays.asList(new HealthFlat(), new ThunderResistFlat(), new MajorArmorFlat(), new SpellThunderDamagePercent(), new ThunderSpellToAttackFlat(), new CrippleLifestealPercent());
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return Styles.YELLOW + "Armor of the Thunderstorm";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Those who dared to follow had long since died.";
+    }
 }

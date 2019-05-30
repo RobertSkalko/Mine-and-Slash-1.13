@@ -34,18 +34,6 @@ public class CLOC {
 
     }
 
-    public static ITextComponent uniqueName(String str, String slot) {
-
-        return base("item." + Ref.MODID + ".uniques." + slot.toLowerCase() + "." + str);
-
-    }
-
-    public static ITextComponent uniqueDesc(String str) {
-
-        return base(Ref.MODID + ".uniques.tooltip." + str);
-
-    }
-
     public static ITextComponent rarity(String str) {
 
         return base(Ref.MODID + ".rarity." + str);
