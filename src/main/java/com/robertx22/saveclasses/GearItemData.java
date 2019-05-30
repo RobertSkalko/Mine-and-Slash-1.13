@@ -6,6 +6,7 @@ import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_types.resources.Energy;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
@@ -326,7 +327,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             IWeapon iwep = (IWeapon) this.GetBaseGearType();
             tip.add(new TextComponentString(""));
             tip.add(Styles.GREENCOMP()
-                    .appendSibling(CLOC.stat("energy")
+                    .appendSibling(new Energy().locName()
                             .appendText(": " + iwep.mechanic().GetEnergyCost())));
             tip.add(new TextComponentString(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
                     .tooltipDesc()));

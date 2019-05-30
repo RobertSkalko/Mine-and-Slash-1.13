@@ -21,4 +21,8 @@ public class PurityTrait extends SpellBuffTrait {
         return Arrays.asList(new PurityBuff());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Purity";
+    }
 }

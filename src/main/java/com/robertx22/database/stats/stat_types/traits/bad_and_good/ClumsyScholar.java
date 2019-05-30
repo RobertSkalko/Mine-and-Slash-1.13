@@ -24,4 +24,8 @@ public class ClumsyScholar extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Clumsy Scholar";
+    }
 }

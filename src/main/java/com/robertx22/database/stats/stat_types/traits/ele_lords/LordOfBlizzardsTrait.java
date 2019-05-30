@@ -22,4 +22,8 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
         return "Lord Of Blizzards";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lord of Blizzards";
+    }
 }

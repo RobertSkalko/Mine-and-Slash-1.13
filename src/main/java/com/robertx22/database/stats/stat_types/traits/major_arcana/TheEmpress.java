@@ -23,4 +23,8 @@ public class TheEmpress extends BaseMajorArcana {
         return Arrays.asList(new MajorArmorFlat(), new CriticalDamagePercent(), new BonusExpFlat(), new SpellNatureDamageFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Empress";
+    }
 }

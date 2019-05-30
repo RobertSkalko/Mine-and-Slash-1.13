@@ -45,4 +45,8 @@ public class Lifesteal extends Stat implements IStatEffects {
         return true;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lifesteal";
+    }
 }

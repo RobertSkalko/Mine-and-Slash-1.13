@@ -22,4 +22,8 @@ public class LordOfThunderstormsTrait extends Trait implements IAffectsOtherStat
         return "Lord Of Thunderstorms";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lord of Thunderstorms";
+    }
 }

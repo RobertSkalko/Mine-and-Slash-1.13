@@ -7,6 +7,8 @@ import com.robertx22.database.stats.stat_types.defense.Armor;
 import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
+import com.robertx22.database.stats.stat_types.elementals.BaseConversionMod;
+import com.robertx22.database.stats.stat_types.elementals.BaseTransferMod;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllFireDamage;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllNatureDamage;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllThunderDamage;
@@ -15,18 +17,6 @@ import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackFi
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackNatureDamage;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackThunderDamage;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackWaterDamage;
-import com.robertx22.database.stats.stat_types.elementals.conversion.fire_to.FireToNatureConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.fire_to.FireToThunderConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.fire_to.FireToWaterConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.nature_to.NatureToFireConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.nature_to.NatureToThunderConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.nature_to.NatureToWaterConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.thunder_to.ThunderToFireConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.thunder_to.ThunderToNatureConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.thunder_to.ThunderToWaterConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.water_to.WaterToFireConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.water_to.WaterToNatureConversion;
-import com.robertx22.database.stats.stat_types.elementals.conversion.water_to.WaterToThunderConversion;
 import com.robertx22.database.stats.stat_types.elementals.pene.FirePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.NaturePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.ThunderPene;
@@ -43,18 +33,6 @@ import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.FireSp
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.NatureSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.ThunderSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.WaterSpellToAttackDMG;
-import com.robertx22.database.stats.stat_types.elementals.transfers.fire_to.FireToNatureTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.fire_to.FireToThunderTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.fire_to.FireToWaterTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.nature_to.NatureToFireTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.nature_to.NatureToThunderTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.nature_to.NatureToWaterTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.thunder_to.ThunderToFireTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.thunder_to.ThunderToNatureTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.thunder_to.ThunderToWaterTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToFireTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToNatureTransfer;
-import com.robertx22.database.stats.stat_types.elementals.transfers.water_to.WaterToThunderTransfer;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.*;
 import com.robertx22.database.stats.stat_types.offense.weapon_types.*;
@@ -84,8 +62,11 @@ import com.robertx22.database.stats.stat_types.traits.low_crit_hit.LowCritHitAdd
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Stats {
 
@@ -241,43 +222,20 @@ public class Stats {
 
                 // traits
 
-                // elemental conversions
-                put(new WaterToThunderConversion().GUID(), new WaterToThunderConversion());
-                put(new WaterToNatureConversion().GUID(), new WaterToNatureConversion());
-                put(new WaterToFireConversion().GUID(), new WaterToFireConversion());
-
-                put(new FireToThunderConversion().GUID(), new FireToThunderConversion());
-                put(new FireToNatureConversion().GUID(), new FireToNatureConversion());
-                put(new FireToWaterConversion().GUID(), new FireToWaterConversion());
-
-                put(new ThunderToWaterConversion().GUID(), new ThunderToWaterConversion());
-                put(new ThunderToNatureConversion().GUID(), new ThunderToNatureConversion());
-                put(new ThunderToFireConversion().GUID(), new ThunderToFireConversion());
-
-                put(new NatureToThunderConversion().GUID(), new NatureToThunderConversion());
-                put(new NatureToWaterConversion().GUID(), new NatureToWaterConversion());
-                put(new NatureToFireConversion().GUID(), new NatureToFireConversion());
-                // elemental conversions
-
-                // elemental Transfers
-                put(new WaterToThunderTransfer().GUID(), new WaterToThunderTransfer());
-                put(new WaterToNatureTransfer().GUID(), new WaterToNatureTransfer());
-                put(new WaterToFireTransfer().GUID(), new WaterToFireTransfer());
-
-                put(new FireToThunderTransfer().GUID(), new FireToThunderTransfer());
-                put(new FireToNatureTransfer().GUID(), new FireToNatureTransfer());
-                put(new FireToWaterTransfer().GUID(), new FireToWaterTransfer());
-
-                put(new ThunderToWaterTransfer().GUID(), new ThunderToWaterTransfer());
-                put(new ThunderToNatureTransfer().GUID(), new ThunderToNatureTransfer());
-                put(new ThunderToFireTransfer().GUID(), new ThunderToFireTransfer());
-
-                put(new NatureToThunderTransfer().GUID(), new NatureToThunderTransfer());
-                put(new NatureToWaterTransfer().GUID(), new NatureToWaterTransfer());
-                put(new NatureToFireTransfer().GUID(), new NatureToFireTransfer());
-                // elemental Transfers
-
             }
         }
     };
+
+    static List<IGenerated> generated = Arrays.asList(new BaseConversionMod(), new BaseTransferMod());
+
+    static {
+        for (IGenerated gen : generated) {
+            for (Object obj : gen.generateAllPossibleStatVariations()) {
+                Stat stat = (Stat) obj;
+                All.put(stat.GUID(), stat);
+            }
+
+        }
+    }
+
 }

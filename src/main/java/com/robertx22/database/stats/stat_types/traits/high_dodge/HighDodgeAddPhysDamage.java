@@ -20,4 +20,8 @@ public class HighDodgeAddPhysDamage extends BaseTraitHighCritHit {
         return "HighDodgeAddPhysDamage";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Phys Damage on High Dodge";
+    }
 }

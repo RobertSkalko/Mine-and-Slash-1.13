@@ -20,4 +20,8 @@ public class HighCritAddLifesteal extends BaseTraitHighCritHit {
         return "HighCritAddLifesteal";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lifesteal on High Crit";
+    }
 }

@@ -45,4 +45,8 @@ public class ManaOnHit extends Stat implements IStatEffects {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mana on Hit";
+    }
 }

@@ -23,4 +23,8 @@ public class Hermit extends BaseMajorArcana {
         return Arrays.asList(new WisdomFlat(), new DodgePercent(), new CriticalHitFlat(), new SpellNatureDamageFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Hermit";
+    }
 }

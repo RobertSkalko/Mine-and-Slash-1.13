@@ -23,4 +23,8 @@ public class Tower extends BaseMajorArcana {
         return Arrays.asList(new VitalityFlat(), new MajorArmorFlat(), new FireResistFlat(), new HealthPercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Tower";
+    }
 }

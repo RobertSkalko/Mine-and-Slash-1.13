@@ -23,4 +23,9 @@ public class ThunderAtronach extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Thunder Atronach";
+    }
+
 }

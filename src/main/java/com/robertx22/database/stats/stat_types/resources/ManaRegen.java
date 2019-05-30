@@ -17,4 +17,8 @@ public class ManaRegen extends BaseRegenClass {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mana Regen";
+    }
 }

@@ -22,4 +22,8 @@ public class Judgement extends BaseMajorArcana {
         return Arrays.asList(new WaterPeneFlat(), new FirePeneFlat(), new LifestealFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Judgement";
+    }
 }

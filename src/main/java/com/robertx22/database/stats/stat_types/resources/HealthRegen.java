@@ -29,4 +29,8 @@ public class HealthRegen extends BaseRegenClass {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Health Regen";
+    }
 }

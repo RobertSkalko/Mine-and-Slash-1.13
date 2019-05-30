@@ -45,4 +45,8 @@ public class ArmorPenetration extends Stat implements IStatEffects {
         return Arrays.asList(new PenetrationEffect());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Armor Penetration";
+    }
 }

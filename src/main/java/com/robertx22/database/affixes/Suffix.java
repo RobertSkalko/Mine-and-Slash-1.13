@@ -1,13 +1,11 @@
 package com.robertx22.database.affixes;
 
-import com.robertx22.uncommon.CLOC;
-import net.minecraft.util.text.ITextComponent;
+import com.robertx22.mmorpg.Ref;
 
 public abstract class Suffix extends BaseAffix {
 
     @Override
-    public ITextComponent locName() {
-        return CLOC.suffix(GUID().toLowerCase().replaceAll(" ", "_"));
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".suffix." + guid;
     }
-
 }

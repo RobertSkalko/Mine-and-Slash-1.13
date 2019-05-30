@@ -23,4 +23,8 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Frost Atronach";
+    }
 }

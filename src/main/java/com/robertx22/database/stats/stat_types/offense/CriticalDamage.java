@@ -46,4 +46,8 @@ public class CriticalDamage extends Stat implements IStatEffects {
         return true;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Critical Damage";
+    }
 }

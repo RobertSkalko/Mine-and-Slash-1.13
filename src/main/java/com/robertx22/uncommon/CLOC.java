@@ -28,12 +28,6 @@ public class CLOC {
         return base(Ref.MODID + ".gear_type." + str);
     }
 
-    public static ITextComponent stat(String str) {
-
-        return base(Ref.MODID + ".stat." + str);
-
-    }
-
     public static ITextComponent word(String str) {
 
         return base(Ref.MODID + ".word." + str);
@@ -49,18 +43,6 @@ public class CLOC {
     public static ITextComponent uniqueDesc(String str) {
 
         return base(Ref.MODID + ".uniques.tooltip." + str);
-
-    }
-
-    public static ITextComponent suffix(String str) {
-
-        return base(Ref.MODID + ".suffix." + str);
-
-    }
-
-    public static ITextComponent prefix(String str) {
-
-        return base(Ref.MODID + ".prefix." + str);
 
     }
 

@@ -22,4 +22,8 @@ public class TheSun extends BaseMajorArcana {
         return Arrays.asList(new HealthFlat(), new EnergyFlat(), new SpellFireDamageFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Sun";
+    }
 }

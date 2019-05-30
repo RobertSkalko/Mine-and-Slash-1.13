@@ -23,4 +23,8 @@ public class TheWorld extends BaseMajorArcana {
         return Arrays.asList(new NatureResistFlat(), new VitalityFlat(), new ArmorPercent(), new WisdomFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The World";
+    }
 }

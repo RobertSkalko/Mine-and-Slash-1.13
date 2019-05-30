@@ -39,4 +39,8 @@ public abstract class BaseEleResist extends UsableStat implements IStatEffects {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return this.Element().name() + " Resist";
+    }
 }

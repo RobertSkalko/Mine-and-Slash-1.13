@@ -23,4 +23,8 @@ public class Chariot extends BaseMajorArcana {
         return Arrays.asList(new IntelligenceFlat(), new StrengthFlat(), new VitalityFlat(), new WaterSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Chariot";
+    }
 }

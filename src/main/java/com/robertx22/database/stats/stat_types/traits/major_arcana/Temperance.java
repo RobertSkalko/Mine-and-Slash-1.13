@@ -23,4 +23,8 @@ public class Temperance extends BaseMajorArcana {
         return Arrays.asList(new HealthRegenFlat(), new EnergyRegenFlat(), new ManaRegenFlat(), new FirePeneFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Temperance";
+    }
 }

@@ -23,4 +23,8 @@ public class Armored extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Armored";
+    }
 }

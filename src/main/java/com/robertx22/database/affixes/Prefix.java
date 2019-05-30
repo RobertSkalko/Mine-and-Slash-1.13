@@ -1,7 +1,6 @@
 package com.robertx22.database.affixes;
 
-import com.robertx22.uncommon.CLOC;
-import net.minecraft.util.text.ITextComponent;
+import com.robertx22.mmorpg.Ref;
 
 public abstract class Prefix extends BaseAffix {
 
@@ -10,8 +9,7 @@ public abstract class Prefix extends BaseAffix {
     }
 
     @Override
-    public ITextComponent locName() {
-
-        return CLOC.prefix(this.GUIDFormatted());
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".prefix." + guid;
     }
 }

@@ -1,9 +1,7 @@
 package com.robertx22.uncommon.develeper;
 
-import com.robertx22.db_lists.Prefixes;
-import com.robertx22.db_lists.RuneWords;
-import com.robertx22.db_lists.Sets;
-import com.robertx22.db_lists.Suffixes;
+import com.robertx22.db_lists.*;
+import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -18,25 +16,34 @@ public class CreateLangFile {
 
     public static void create() {
 
-        String json = "{\n";
+        String json = "";
 
         for (Map.Entry<String, List<IAutoLocName>> entry : getMap().entrySet()) {
 
-            json += "\n";
             json += comment(entry.getKey());
-            json += "\n";
-
             for (IAutoLocName iauto : entry.getValue()) {
-                json += "\t" + "\"" + iauto.locName()
-                        .getString() + "\": \"" + iauto.locNameForLangFile() + "\",\n";
+                if (iauto.locNameForLangFile().isEmpty() == false) {
+                    json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.GUIDFormatted()) + "\": \"" + iauto
+                            .locNameForLangFile() + "\",\n";
+                }
             }
-            json += "\n";
             json += comment(entry.getKey());
-            json += "\n";
+
+        }
+        for (Map.Entry<String, List<IAutoLocDesc>> entry : getDescMap().entrySet()) {
+
+            json += comment(entry.getKey());
+            for (IAutoLocDesc iauto : entry.getValue()) {
+                if (iauto.locDescForLangFile().isEmpty() == false) {
+                    json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.GUIDFormatted()) + "\": \"" + iauto
+                            .locDescForLangFile() + "\",\n";
+                }
+            }
+            json += comment(entry.getKey());
 
         }
 
-        json += "\n}";
+        json += "";
 
         json = replaceLast(json, ",", ""); // removes last , or else json wont work
 
@@ -70,7 +77,7 @@ public class CreateLangFile {
     }
 
     private static String comment(String str) {
-        return "\"_comment\": \"" + " [CATEGORY]: " + str + "\",\n";
+        return "\n" + "\"_comment\": \"" + " [CATEGORY]: " + str + "\",\n" + "\n";
     }
 
     public static HashMap<String, List<IAutoLocName>> getMap() {
@@ -79,9 +86,17 @@ public class CreateLangFile {
         list.put("RUNEWORDS", new ArrayList<>(RuneWords.All.values()));
         list.put("PREFIXES", new ArrayList<>(Prefixes.all.values()));
         list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
+        list.put("STATS", new ArrayList<>(Stats.All.values()));
 
         return list;
 
     }
 
+    public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
+        HashMap<String, List<IAutoLocDesc>> list = new HashMap<>();
+        list.put("STAT DESCRIPTIONS", new ArrayList<>(Stats.All.values()));
+
+        return list;
+
+    }
 }

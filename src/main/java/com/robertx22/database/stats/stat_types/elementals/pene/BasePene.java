@@ -19,4 +19,8 @@ public abstract class BasePene extends Stat implements IStatEffects {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return this.Element().name() + " Penetration";
+    }
 }

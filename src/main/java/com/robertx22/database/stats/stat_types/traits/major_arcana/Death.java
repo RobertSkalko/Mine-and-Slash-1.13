@@ -23,4 +23,8 @@ public class Death extends BaseMajorArcana {
         return Arrays.asList(new LessHealthMap(), new AllWaterDamageMulti(), new PhysicalDamagePercent(), new LifeOnHitFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Death";
+    }
 }

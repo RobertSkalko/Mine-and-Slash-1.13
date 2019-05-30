@@ -3,6 +3,7 @@ package com.robertx22.database.runewords;
 import com.robertx22.database.IGUID;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.runes.base.BaseRuneItem;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
@@ -18,7 +19,12 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
 
     @Override
     public ITextComponent locName() {
-        return CLOC.word(this.GUIDFormatted());
+        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".word." + guid;
     }
 
     public abstract List<BaseRuneItem> runes();

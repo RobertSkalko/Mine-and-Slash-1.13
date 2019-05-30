@@ -23,4 +23,8 @@ public class HangedMan extends BaseMajorArcana {
         return Arrays.asList(new CrippleHealthRegenPercent(), new DodgeMulti(), new HealthMulti(), new WaterPeneFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Hanged Man";
+    }
 }

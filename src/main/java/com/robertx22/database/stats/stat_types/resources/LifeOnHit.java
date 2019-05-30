@@ -45,4 +45,8 @@ public class LifeOnHit extends Stat implements IStatEffects {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Life on Hit";
+    }
 }

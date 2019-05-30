@@ -21,4 +21,8 @@ public class LightTrait extends SpellBuffTrait {
         return Arrays.asList(new LightBuff());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Shining Light";
+    }
 }

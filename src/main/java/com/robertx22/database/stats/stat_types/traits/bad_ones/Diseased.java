@@ -24,4 +24,8 @@ public class Diseased extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Diseased";
+    }
 }

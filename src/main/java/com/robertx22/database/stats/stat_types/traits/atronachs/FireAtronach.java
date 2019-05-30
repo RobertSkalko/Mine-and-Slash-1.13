@@ -23,4 +23,8 @@ public class FireAtronach extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Fire Atronach";
+    }
 }

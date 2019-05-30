@@ -23,4 +23,8 @@ public class HighPriestess extends BaseMajorArcana {
         return Arrays.asList(new WisdomFlat(), new HealthRegenPercent(), new IntelligenceFlat(), new WaterSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "High Priestess";
+    }
 }

@@ -48,4 +48,9 @@ public class SpellDamage extends Stat implements IStatEffects {
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(effect);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Spell Damage";
+    }
 }

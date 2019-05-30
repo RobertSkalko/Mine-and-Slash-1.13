@@ -34,7 +34,7 @@ public abstract class BaseElementalAttackDamage extends Stat implements IStatEff
 
     @Override
     public String locNameForLangFile() {
-        return "Attack" + this.Element().name() + " Damage";
+        return "Attack " + this.Element().name() + " Damage";
     }
 
 }

@@ -23,4 +23,8 @@ public class TheFool extends BaseMajorArcana {
         return Arrays.asList(new DexterityFlat(), new CriticalHitFlat(), new HealthFlat(), new SpellThunderDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Fool";
+    }
 }

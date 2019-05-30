@@ -23,4 +23,9 @@ public class StrengthArcana extends BaseMajorArcana {
         return Arrays.asList(new StaminaFlat(), new StrengthFlat(), new EnergyRegenFlat(), new SpellFireDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Strength";
+    }
+
 }

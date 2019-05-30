@@ -21,4 +21,8 @@ public class HomingTrait extends SpellBuffTrait {
         return Arrays.asList(new HomingBuff());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Homing Projectile";
+    }
 }

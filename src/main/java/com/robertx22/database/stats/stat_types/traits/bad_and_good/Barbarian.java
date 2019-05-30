@@ -24,4 +24,8 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Barbarian";
+    }
 }

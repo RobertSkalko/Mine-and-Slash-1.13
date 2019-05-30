@@ -23,4 +23,8 @@ public class TheEmperor extends BaseMajorArcana {
         return Arrays.asList(new WisdomFlat(), new HealthFlat(), new StaffDamageFlat(), new FireSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Emperor";
+    }
 }

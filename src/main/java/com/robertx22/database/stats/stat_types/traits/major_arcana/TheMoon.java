@@ -22,4 +22,8 @@ public class TheMoon extends BaseMajorArcana {
         return Arrays.asList(new StaminaFlat(), new WaterResistFlat(), new HealthFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Moon";
+    }
 }

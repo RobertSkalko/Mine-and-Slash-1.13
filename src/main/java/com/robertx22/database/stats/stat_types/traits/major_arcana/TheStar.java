@@ -23,4 +23,8 @@ public class TheStar extends BaseMajorArcana {
         return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent(), new ThunderResistFlat(), new BonusExpFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Star";
+    }
 }

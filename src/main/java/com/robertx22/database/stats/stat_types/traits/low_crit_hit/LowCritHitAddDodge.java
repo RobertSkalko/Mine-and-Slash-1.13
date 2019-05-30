@@ -20,4 +20,8 @@ public class LowCritHitAddDodge extends BaseTraitLowCritHit {
         return "LowCritHitAddDodgeFlat";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Dodge on Low Crit";
+    }
 }

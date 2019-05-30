@@ -1,16 +1,17 @@
 package com.robertx22.database.unique_items.bracelets;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.transfers.FireToWaterTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
+import com.robertx22.uncommon.enumclasses.Elements;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class BraceletWater extends BaseUniqueBracelet {
 
@@ -20,18 +21,17 @@ public class BraceletWater extends BaseUniqueBracelet {
 
     @Override
     public int Tier() {
-	return 8;
+        return 8;
     }
 
     @Override
     public String GUID() {
-	return "braceletwater0";
+        return "braceletwater0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new SpellWaterDamageFlat(), new FireToWaterTransferFlat(), new EnergyRegenFlat(),
-		new WaterResistFlat(), new FireResistFlat(), new CrippleDodgePercent());
+        return Arrays.asList(new SpellWaterDamageFlat(), new BaseTransferFlat(Elements.Fire, Elements.Water), new EnergyRegenFlat(), new WaterResistFlat(), new FireResistFlat(), new CrippleDodgePercent());
     }
 
 }

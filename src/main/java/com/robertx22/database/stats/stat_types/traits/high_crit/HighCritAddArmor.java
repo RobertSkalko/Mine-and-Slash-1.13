@@ -21,4 +21,8 @@ public class HighCritAddArmor extends BaseTraitHighCritHit {
         return "HighCritAddArmor";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Armor on High Crit";
+    }
 }

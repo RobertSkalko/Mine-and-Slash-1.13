@@ -31,4 +31,8 @@ public abstract class BaseSpellToBasicDamage extends Stat implements IStatEffect
 
     public abstract Stat StatThatGiveDamage();
 
+    @Override
+    public String locNameForLangFile() {
+        return this.Element().name() + " Spell to Attack Damage";
+    }
 }

@@ -22,4 +22,8 @@ public class LordOfEarthquakesTrait extends Trait implements IAffectsOtherStats 
         return "Lord Of Earthquakes";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lord of Earthquakes";
+    }
 }

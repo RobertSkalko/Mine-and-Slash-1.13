@@ -44,4 +44,8 @@ public class Health extends Stat {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Health";
+    }
 }

@@ -22,4 +22,8 @@ public class LordOfVolcanoesTrait extends Trait implements IAffectsOtherStats {
         return "Lord Of Volcanoes";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Lord of Volcanoes";
+    }
 }

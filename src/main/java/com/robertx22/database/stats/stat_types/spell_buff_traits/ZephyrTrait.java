@@ -21,4 +21,8 @@ public class ZephyrTrait extends SpellBuffTrait {
         return Arrays.asList(new ZephyrBuff());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Zephyr";
+    }
 }

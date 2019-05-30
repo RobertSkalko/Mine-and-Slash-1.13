@@ -23,4 +23,8 @@ public class Golem extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Golem";
+    }
 }

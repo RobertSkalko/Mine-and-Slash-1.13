@@ -20,4 +20,8 @@ public class LowDodgeAddArmor extends BaseTraitLowDodge {
         return "LowDodgeAddArmor";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Armor on Low Dodge";
+    }
 }

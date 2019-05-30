@@ -23,4 +23,9 @@ public class TheDevil extends BaseMajorArcana {
         return Arrays.asList(new HealthRegenFlat(), new EnergyRegenFlat(), new ManaRegenFlat(), new SpellNatureDamageFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Devil";
+    }
+
 }

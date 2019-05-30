@@ -25,4 +25,8 @@ public class Crippled extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Crippled";
+    }
 }

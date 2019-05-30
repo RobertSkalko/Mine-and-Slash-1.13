@@ -23,4 +23,8 @@ public class Justice extends BaseMajorArcana {
         return Arrays.asList(new StrengthFlat(), new SwordDamageFlat(), new ArmorPeneFlat(), new ThunderSpellToAttackFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Justice";
+    }
 }

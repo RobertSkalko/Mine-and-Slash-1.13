@@ -35,4 +35,8 @@ public class UnknownStat extends Stat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Unknown";
+    }
 }

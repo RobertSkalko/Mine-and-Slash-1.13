@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_types.resources.conversions;
 
 import com.robertx22.database.stats.ConversionMethod;
-import com.robertx22.database.stats.stat_types.elementals.conversion.BaseConversionMod;
+import com.robertx22.database.stats.stat_types.elementals.BaseConversionMod;
 import com.robertx22.database.stats.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 
@@ -21,4 +21,8 @@ public class ManaToEnergyConversion extends BaseConversionMod {
         return "ManaToEnergyConversion";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Convert Mana Reg to Energy";
+    }
 }

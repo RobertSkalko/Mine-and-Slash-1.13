@@ -35,4 +35,8 @@ public class Mana extends FillableStat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mana";
+    }
 }

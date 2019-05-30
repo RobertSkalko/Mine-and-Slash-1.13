@@ -35,4 +35,8 @@ public class Energy extends FillableStat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Energy";
+    }
 }

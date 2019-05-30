@@ -19,6 +19,8 @@ import com.robertx22.database.map_mods.minus.weapon.*;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
+import com.robertx22.database.stats.stat_mods.flat.elemental.BaseConversionFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
@@ -27,7 +29,6 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.FireSpellToAt
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.NatureSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.conversions.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
@@ -40,7 +41,6 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFire
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.transfers.*;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
@@ -96,8 +96,11 @@ import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfEarthquakes
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
 import com.robertx22.database.stats.stat_mods.traits.major_arcana.*;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class StatMods {
 
@@ -362,46 +365,20 @@ public class StatMods {
                 put(new LessManaOnHitMap().GUID(), new LessManaOnHitMap());
                 // Map mods
 
-                // elemental conversions
-
-                put(new WaterToThunderConvFlat().GUID(), new WaterToThunderConvFlat());
-                put(new WaterToNatureConvFlat().GUID(), new WaterToNatureConvFlat());
-                put(new WaterToFireConvFlat().GUID(), new WaterToFireConvFlat());
-
-                put(new FireToThunderConvFlat().GUID(), new FireToThunderConvFlat());
-                put(new FireToNatureConvFlat().GUID(), new FireToNatureConvFlat());
-                put(new FireToWaterConvFlat().GUID(), new FireToWaterConvFlat());
-
-                put(new ThunderToWaterConvFlat().GUID(), new ThunderToWaterConvFlat());
-                put(new ThunderToNatureConvFlat().GUID(), new ThunderToNatureConvFlat());
-                put(new ThunderToFireConvFlat().GUID(), new ThunderToFireConvFlat());
-
-                put(new NatureToThunderConvFlat().GUID(), new NatureToThunderConvFlat());
-                put(new NatureToWaterConvFlat().GUID(), new NatureToWaterConvFlat());
-                put(new NatureToFireConvFlat().GUID(), new NatureToFireConvFlat());
-
-                // elemental Transfers
-
-                put(new WaterToThunderTransferFlat().GUID(), new WaterToThunderTransferFlat());
-                put(new WaterToNatureTransferFlat().GUID(), new WaterToNatureTransferFlat());
-                put(new WaterToFireTransferFlat().GUID(), new WaterToFireTransferFlat());
-
-                put(new FireToThunderTransferFlat().GUID(), new FireToThunderTransferFlat());
-                put(new FireToNatureTransferFlat().GUID(), new FireToNatureTransferFlat());
-                put(new FireToWaterTransferFlat().GUID(), new FireToWaterTransferFlat());
-
-                put(new ThunderToWaterTransferFlat().GUID(), new ThunderToWaterTransferFlat());
-                put(new ThunderToNatureTransferFlat().GUID(), new ThunderToNatureTransferFlat());
-                put(new ThunderToFireTransferFlat().GUID(), new ThunderToFireTransferFlat());
-
-                put(new NatureToThunderTransferFlat().GUID(), new NatureToThunderTransferFlat());
-                put(new NatureToWaterTransferFlat().GUID(), new NatureToWaterTransferFlat());
-                put(new NatureToFireTransferFlat().GUID(), new NatureToFireTransferFlat());
-
-                //
-
             }
         }
     };
+
+    static List<IGenerated> generated = Arrays.asList(new BaseConversionFlat(), new BaseTransferFlat());
+
+    static {
+        for (IGenerated gen : generated) {
+            for (Object obj : gen.generateAllPossibleStatVariations()) {
+                StatMod stat = (StatMod) obj;
+                All.put(stat.GUID(), stat);
+            }
+
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.robertx22.database.stats;
 
 import com.robertx22.database.IGUID;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -26,18 +27,28 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     public ITextComponent locName() {
-        return CLOC.stat(this.GUID().toLowerCase().replaceAll(" ", "_"));
+        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
     }
 
     @Override
     public ITextComponent locDesc() {
-        return CLOC.statDesc(GUIDFormatted());
+        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
     }
 
     public abstract String locDescForLangFile();
 
     public ITextComponent getStatDescription() {
-        return new TextComponentString(locDescForLangFile());
+        return CLOC.blank(locDescLangFileGUID(GUIDFormatted()));
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".stat." + guid;
+    }
+
+    @Override
+    public String locDescLangFileGUID(String guid) {
+        return Ref.MODID + ".stat_desc." + guid;
     }
 
     public int MaximumPercent = 0;

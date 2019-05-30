@@ -20,4 +20,8 @@ public class HighDodgeAddCritDamage extends BaseTraitHighCritHit {
         return "HighDodgeAddCritDamage";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Crit Damage on High Dodge";
+    }
 }

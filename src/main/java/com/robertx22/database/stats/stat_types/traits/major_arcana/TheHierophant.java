@@ -23,4 +23,9 @@ public class TheHierophant extends BaseMajorArcana {
         return Arrays.asList(new IntelligenceFlat(), new WisdomFlat(), new ManaMulti(), new NaturePeneFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Hierophant";
+    }
+
 }

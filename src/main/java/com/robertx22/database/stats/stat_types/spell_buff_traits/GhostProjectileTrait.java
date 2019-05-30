@@ -21,4 +21,8 @@ public class GhostProjectileTrait extends SpellBuffTrait {
         return Arrays.asList(new GhostProjectileBuff());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Ghost Projectile";
+    }
 }

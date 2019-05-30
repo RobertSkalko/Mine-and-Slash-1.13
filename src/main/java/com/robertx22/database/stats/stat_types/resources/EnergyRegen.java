@@ -17,4 +17,8 @@ public class EnergyRegen extends BaseRegenClass {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Energy Regen";
+    }
 }

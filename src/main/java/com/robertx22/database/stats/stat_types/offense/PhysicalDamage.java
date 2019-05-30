@@ -35,4 +35,8 @@ public class PhysicalDamage extends Stat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Physical Damage";
+    }
 }

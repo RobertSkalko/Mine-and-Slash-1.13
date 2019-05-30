@@ -21,4 +21,8 @@ public abstract class BaseSpellDamage extends Stat {
         return false;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Spell " + this.Element().name() + " Damage";
+    }
 }

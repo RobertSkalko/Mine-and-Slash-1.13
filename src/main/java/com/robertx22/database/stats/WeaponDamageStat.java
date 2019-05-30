@@ -41,4 +41,8 @@ public abstract class WeaponDamageStat extends Stat implements IStatEffects {
         return Arrays.asList(new WeaponDamageEffect());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return this.weaponType().name() + " Damage";
+    }
 }

@@ -21,4 +21,9 @@ public class BuffManaRegenTrait extends SpellBuffTrait {
         return Arrays.asList(new ManaRegenBuffEffect());
 
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Buff Mana Regen";
+    }
 }

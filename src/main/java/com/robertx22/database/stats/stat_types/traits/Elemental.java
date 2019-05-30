@@ -31,4 +31,8 @@ public class Elemental extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Elemental";
+    }
 }

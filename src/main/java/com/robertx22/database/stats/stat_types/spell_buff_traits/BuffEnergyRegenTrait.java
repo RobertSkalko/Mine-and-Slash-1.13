@@ -21,4 +21,8 @@ public class BuffEnergyRegenTrait extends SpellBuffTrait {
         return Arrays.asList(new EnergyRegenBuffEffect());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Buff Energy Regen";
+    }
 }

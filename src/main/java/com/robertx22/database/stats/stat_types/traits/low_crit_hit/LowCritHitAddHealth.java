@@ -20,4 +20,8 @@ public class LowCritHitAddHealth extends BaseTraitLowCritHit {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Health on Low Crit";
+    }
 }

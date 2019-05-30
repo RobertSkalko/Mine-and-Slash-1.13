@@ -23,4 +23,8 @@ public class TheMagician extends BaseMajorArcana {
         return Arrays.asList(new IntelligenceFlat(), new ManaRegenPercent(), new ManaMulti(), new SpellThunderDamagePercent());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "The Magician";
+    }
 }

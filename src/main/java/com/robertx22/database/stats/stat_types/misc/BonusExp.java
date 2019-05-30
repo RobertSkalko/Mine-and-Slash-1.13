@@ -28,4 +28,9 @@ public class BonusExp extends Stat {
     public Elements Element() {
         return null;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Bonus Exp";
+    }
 }

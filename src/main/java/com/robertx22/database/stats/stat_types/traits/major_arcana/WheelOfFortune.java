@@ -23,4 +23,8 @@ public class WheelOfFortune extends BaseMajorArcana {
         return Arrays.asList(new CriticalHitFlat(), new CriticalDamageFlat(), new CriticalHitMulti(), new FirePeneFlat());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Wheel of Fortune";
+    }
 }

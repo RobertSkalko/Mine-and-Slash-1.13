@@ -4,6 +4,7 @@ import com.robertx22.database.IGUID;
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
@@ -22,7 +23,12 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
 
     @Override
     public ITextComponent locName() {
-        return CLOC.set(GUIDFormatted());
+        return CLOC.blank(locNameLangFileGUID(GUIDFormatted()));
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".set." + guid;
     }
 
     public int StatPercent = 100;
