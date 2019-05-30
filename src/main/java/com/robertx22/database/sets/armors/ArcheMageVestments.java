@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class ArcheMageVestments extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Archmage's Vestments";
     }
 
@@ -34,4 +34,8 @@ public class ArcheMageVestments extends Set {
         return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
     }
 
+    @Override
+    public String GUID() {
+        return "archemage_vestments";
+    }
 }

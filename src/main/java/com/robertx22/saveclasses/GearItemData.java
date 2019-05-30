@@ -366,8 +366,9 @@ public class GearItemData implements ITooltip, ISalvagable {
         if (this.set != null) {
             event.getToolTip()
                     .add(Styles.GREENCOMP()
-                            .appendSibling(new TextComponentString("[Set]: " + set.GetSet()
-                                    .Name())));
+                            .appendSibling(new TextComponentString("[Set]: ").appendSibling(set
+                                    .GetSet()
+                                    .locName())));
 
             for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
 

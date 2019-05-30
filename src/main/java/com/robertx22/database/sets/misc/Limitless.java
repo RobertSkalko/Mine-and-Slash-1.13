@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Limitless extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Limitless";
     }
 
@@ -34,6 +34,11 @@ public class Limitless extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())));
+    }
+
+    @Override
+    public String GUID() {
+        return "limitless";
     }
 
 }

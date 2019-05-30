@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class RangerArmor extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Ranger's Armor";
     }
 
@@ -33,6 +33,11 @@ public class RangerArmor extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
+    }
+
+    @Override
+    public String GUID() {
+        return "ranger_armor";
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class BarbarianArmor extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Barbarian's Armor";
     }
 
@@ -33,4 +33,8 @@ public class BarbarianArmor extends Set {
         return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
     }
 
+    @Override
+    public String GUID() {
+        return "barbarian_armor";
+    }
 }

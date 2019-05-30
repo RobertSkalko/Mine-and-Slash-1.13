@@ -82,4 +82,7 @@ public class CLOC {
         return base(string);
     }
 
+    public static ITextComponent set(String guid) {
+        return base(Ref.MODID + ".set." + guid);
+    }
 }

@@ -2,5 +2,9 @@ package com.robertx22.database;
 
 public interface IGUID {
 
-	public String GUID();
+    public String GUID();
+
+    public default String GUIDFormatted() {
+        return GUID().toLowerCase().replaceAll(" ", "_");
+    }
 }

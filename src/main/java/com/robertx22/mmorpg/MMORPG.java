@@ -13,6 +13,7 @@ import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.onevent.world.OnStartResetMaps;
+import com.robertx22.uncommon.develeper.CreateLangFile;
 import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
@@ -78,6 +79,8 @@ public class MMORPG {
         bus.addListener(this::interModProcessEvent);
         bus.addListener(this::interModEnqueue);
         bus.addListener(this::loadComplete);
+
+        CreateLangFile.create();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

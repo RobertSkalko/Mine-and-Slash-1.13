@@ -79,6 +79,8 @@ configurations {
     embed
 	compile.extendsFrom(embed)
 	
+	mycode.extendsFrom(main)
+	
 }
 
 dependencies {
@@ -91,12 +93,14 @@ dependencies {
 	embed "info.loenwind.autosave:AutoSave:${version_autosave}" // Need for nbt saving		
 }
 
+
+
 jar {
    from configurations.embed.collect {
     it.isDirectory() ? it : zipTree(it).matching {
         exclude 'META-INF', 'META-INF/**'
 		}
-	}
+	}	
 }
 
 jar {
@@ -126,3 +130,4 @@ curseforge {
     }
 }
 */
+

@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class RockmanChains extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Rockman's Chains";
     }
 
@@ -31,5 +31,10 @@ public class RockmanChains extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
+    }
+
+    @Override
+    public String GUID() {
+        return "rockman_chains";
     }
 }

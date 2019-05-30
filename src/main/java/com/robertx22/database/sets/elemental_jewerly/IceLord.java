@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class IceLord extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Ice Lord";
     }
 
@@ -33,5 +33,10 @@ public class IceLord extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
+    }
+
+    @Override
+    public String GUID() {
+        return "ice_lord";
     }
 }

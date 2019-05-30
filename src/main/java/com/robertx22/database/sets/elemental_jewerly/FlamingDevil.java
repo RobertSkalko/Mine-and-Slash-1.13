@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class FlamingDevil extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Flaming Devil";
     }
 
@@ -33,5 +33,10 @@ public class FlamingDevil extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
+    }
+
+    @Override
+    public String GUID() {
+        return "flaming_devil";
     }
 }

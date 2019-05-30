@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class TreeOfLife extends Set {
 
     @Override
-    public String Name() {
+    public String locNameForLangFile() {
         return "Tree of Life";
     }
 
@@ -35,6 +35,11 @@ public class TreeOfLife extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())));
+    }
+
+    @Override
+    public String GUID() {
+        return "tree_of_life";
     }
 
 }

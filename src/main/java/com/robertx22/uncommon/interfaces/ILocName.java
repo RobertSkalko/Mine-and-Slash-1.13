@@ -5,4 +5,6 @@ import net.minecraft.util.text.ITextComponent;
 public interface ILocName {
 
     ITextComponent locName();
+
+    //String nameForLangFile();
 }

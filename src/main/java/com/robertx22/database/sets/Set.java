@@ -1,27 +1,28 @@
 package com.robertx22.database.sets;
 
+import com.robertx22.IAutoLocName;
 import com.robertx22.database.IGUID;
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public abstract class Set implements IWeighted, IGUID, IhasRequirements {
+public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLocName {
 
     public Set() {
     }
 
-    public abstract String Name();
-
     @Override
-    public String GUID() {
-        return Name();
+    public ITextComponent locName() {
+        return CLOC.set(GUIDFormatted());
     }
 
     public int StatPercent = 100;
