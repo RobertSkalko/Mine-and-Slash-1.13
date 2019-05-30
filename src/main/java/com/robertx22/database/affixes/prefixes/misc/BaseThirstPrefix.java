@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.prefixes.misc;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 
 public abstract class BaseThirstPrefix extends Prefix {
 
@@ -12,7 +12,7 @@ public abstract class BaseThirstPrefix extends Prefix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.jewerlyOnly());
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 }

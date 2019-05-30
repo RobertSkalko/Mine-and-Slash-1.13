@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.suffixes.defense;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 
@@ -27,7 +27,7 @@ public class OfVitality extends Suffix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.armorsOnly());
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.armorsOnly());
     }
 }

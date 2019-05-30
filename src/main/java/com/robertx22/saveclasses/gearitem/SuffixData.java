@@ -2,7 +2,7 @@ package com.robertx22.saveclasses.gearitem;
 
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.requirements.AffixRequested;
+import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.loot.StatGen;
@@ -37,7 +37,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Suffix suffix = Suffixes.INSTANCE.random(new AffixRequested(gear));
+        Suffix suffix = Suffixes.INSTANCE.random(new GearRequestedFor(gear));
 
         baseAffix = suffix.GUID();
 

@@ -1,9 +1,9 @@
 package com.robertx22.database.affixes.prefixes.offense;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.LevelRequirement;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.LevelRequirement;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
@@ -30,7 +30,7 @@ public class Arcanists extends Prefix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.jewerlyOnly(), new LevelRequirement(20));
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.jewerlyOnly(), new LevelRequirement(20));
     }
 }

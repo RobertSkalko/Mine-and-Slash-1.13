@@ -1,19 +1,18 @@
 package com.robertx22.database.sets;
 
 import com.robertx22.database.IGUID;
-import com.robertx22.database.gearitemslots.*;
-import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.db_lists.IhasRequirements;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public abstract class Set implements IWeighted, IGUID {
+public abstract class Set implements IWeighted, IGUID, IhasRequirements {
 
     public Set() {
     }
@@ -32,27 +31,12 @@ public abstract class Set implements IWeighted, IGUID {
         return IWeighted.UncommonWeight;
     }
 
-    public abstract List<GearItemSlot> GearTypes();
-
     public abstract HashMap<Integer, StatMod> AllMods();
 
-    public boolean CanBePlacedOnItemSlot(String name) {
+    public boolean meetsRequirements(GearRequestedFor requested) {
 
-        for (GearItemSlot slot : GearTypes()) {
-            if (slot.GUID().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+        return requirements().satisfiesAllRequirements(requested);
 
-    }
-
-    public List<GearItemSlot> jewerly() {
-        return Arrays.asList(new Ring(), new Necklace(), new Bracelet(), new Charm());
-    }
-
-    public List<GearItemSlot> armor() {
-        return Arrays.asList(new Boots(), new Chest(), new Pants(), new Helmet());
     }
 
     public List<StatMod> GetObtainedMods(Unit unit) {

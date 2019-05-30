@@ -72,7 +72,7 @@ public class GearLootGen extends BaseLootGen {
 
         }
 
-        data.set = blueprint.GenerateSet();
+        data.set = blueprint.GenerateSet(data);
 
         return data;
     }

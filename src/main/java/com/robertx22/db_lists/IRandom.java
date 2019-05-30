@@ -1,13 +1,18 @@
 package com.robertx22.db_lists;
 
+import com.robertx22.uncommon.interfaces.IWeighted;
+
+import java.util.HashMap;
 import java.util.List;
 
-public interface IRandom<T, Config> {
+public interface IRandom<T extends IhasRequirements & IWeighted, Config> {
 
-    T random(Config config);
+    HashMap<String, T> All();
 
-    T random();
+    public T random(Config gearRequestedFor);
 
-    List<T> allThatMeetRequirement(Config config);
+    public T random();
+
+    public List<T> allThatMeetRequirement(Config gearRequestedFor);
 
 }

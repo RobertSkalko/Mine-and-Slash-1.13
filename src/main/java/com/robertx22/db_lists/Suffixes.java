@@ -1,7 +1,6 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.requirements.AffixRequested;
 import com.robertx22.database.affixes.suffixes.defense.*;
 import com.robertx22.database.affixes.suffixes.offense.*;
 import com.robertx22.database.affixes.suffixes.offense.pene.OfFirePene;
@@ -12,14 +11,12 @@ import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
 import com.robertx22.database.affixes.suffixes.resource.OfVampirism;
-import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Suffixes implements IRandom<Suffix, AffixRequested> {
+public class Suffixes implements IRandomDefault<Suffix> {
 
     public static final Suffixes INSTANCE = new Suffixes();
 
@@ -67,23 +64,8 @@ public class Suffixes implements IRandom<Suffix, AffixRequested> {
     }
 
     @Override
-    public Suffix random(AffixRequested affixRequested) {
-
-        List<Suffix> suffixes = allThatMeetRequirement(affixRequested);
-
-        return RandomUtils.weightedRandom(suffixes);
+    public HashMap<String, Suffix> All() {
+        return all;
     }
 
-    @Override
-    public Suffix random() {
-        return RandomUtils.weightedRandom(all.values());
-    }
-
-    @Override
-    public List<Suffix> allThatMeetRequirement(AffixRequested affixRequested) {
-        return all.values()
-                .stream()
-                .filter(x -> x.requirements().satisfiesAllRequirements(affixRequested))
-                .collect(Collectors.toList());
-    }
 }

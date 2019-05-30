@@ -1,4 +1,4 @@
-package com.robertx22.database.affixes.requirements;
+package com.robertx22.database.requirements;
 
 public class UniqueTierRequirement extends UniqueItemRequirement {
 
@@ -10,7 +10,7 @@ public class UniqueTierRequirement extends UniqueItemRequirement {
     }
 
     @Override
-    public boolean meetsRequierment(AffixRequested requested) {
+    public boolean meetsRequierment(GearRequestedFor requested) {
 
         Boolean superreq = super.meetsRequierment(requested);
 

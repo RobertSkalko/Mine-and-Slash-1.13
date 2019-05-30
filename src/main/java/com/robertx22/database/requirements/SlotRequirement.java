@@ -1,4 +1,4 @@
-package com.robertx22.database.affixes.requirements;
+package com.robertx22.database.requirements;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SlotRequirement extends BaseAffixRequirement {
+public class SlotRequirement extends BaseRequirement {
 
     public List<GearItemSlot> slots = new ArrayList<>();
 
@@ -20,7 +20,7 @@ public class SlotRequirement extends BaseAffixRequirement {
     }
 
     @Override
-    public boolean meetsRequierment(AffixRequested requested) {
+    public boolean meetsRequierment(GearRequestedFor requested) {
 
         if (slots.contains(requested.forSlot) == false) {
             return false;
@@ -36,6 +36,10 @@ public class SlotRequirement extends BaseAffixRequirement {
 
     public static SlotRequirement armorsOnly() {
         return new SlotRequirement(armorSlots());
+    }
+
+    public static SlotRequirement armorsOnlyNoOffHand() {
+        return new SlotRequirement(armorSlotsNoOffHand());
     }
 
     public static SlotRequirement jewerlyOnly() {
@@ -58,6 +62,15 @@ public class SlotRequirement extends BaseAffixRequirement {
                 .filter(x -> x.slotType()
                         .equals(GearItemSlot.GearSlotType.Armor) || x.slotType()
                         .equals(GearItemSlot.GearSlotType.OffHand)) // tenp i dont have enough affixes for off hands
+                .collect(Collectors.toList());
+
+    }
+
+    static List<GearItemSlot> armorSlotsNoOffHand() {
+
+        return GearTypes.All.values()
+                .stream()
+                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
                 .collect(Collectors.toList());
 
     }

@@ -1,9 +1,9 @@
 package com.robertx22.database.affixes.suffixes.offense;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.LevelRequirement;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.LevelRequirement;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 
@@ -28,8 +28,8 @@ public class OfCriticalDamage extends Suffix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.weaponsOnly(), new LevelRequirement(10));
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.weaponsOnly(), new LevelRequirement(10));
     }
 
 }

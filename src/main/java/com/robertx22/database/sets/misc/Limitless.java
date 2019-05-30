@@ -2,14 +2,14 @@ package com.robertx22.database.sets.misc;
 
 import com.robertx22.database.gearitemslots.Charm;
 import com.robertx22.database.gearitemslots.Ring;
-import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class Limitless extends Set {
 
@@ -32,8 +32,8 @@ public class Limitless extends Set {
     }
 
     @Override
-    public List<GearItemSlot> GearTypes() {
-        return Arrays.asList(new Ring(), new Charm());
+    public Requirements requirements() {
+        return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())));
     }
 
 }

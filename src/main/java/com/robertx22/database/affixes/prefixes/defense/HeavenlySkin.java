@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.prefixes.defense;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
@@ -33,8 +33,8 @@ public class HeavenlySkin extends Prefix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.armorsOnly());
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.armorsOnly());
     }
 
 }

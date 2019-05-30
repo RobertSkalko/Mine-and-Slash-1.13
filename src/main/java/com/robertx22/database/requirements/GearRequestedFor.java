@@ -1,24 +1,24 @@
-package com.robertx22.database.affixes.requirements;
+package com.robertx22.database.requirements;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.saveclasses.GearItemData;
 
-public class AffixRequested {
+public class GearRequestedFor {
 
     public GearItemSlot forSlot;
     public GearItemData gearData;
 
-    public AffixRequested(GearItemSlot slot, GearItemData data) {
+    public GearRequestedFor(GearItemSlot slot, GearItemData data) {
         this.forSlot = slot;
         this.gearData = data;
     }
 
-    public AffixRequested(GearItemData data) {
+    public GearRequestedFor(GearItemData data) {
         this.forSlot = data.GetBaseGearType();
         this.gearData = data;
     }
 
-    public AffixRequested(GearItemSlot slot) {
+    public GearRequestedFor(GearItemSlot slot) {
         this.forSlot = slot;
         this.gearData = new GearItemData();
     }

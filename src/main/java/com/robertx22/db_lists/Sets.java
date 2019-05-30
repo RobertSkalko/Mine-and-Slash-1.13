@@ -14,7 +14,10 @@ import com.robertx22.database.sets.misc.TreeOfLife;
 
 import java.util.HashMap;
 
-public class Sets {
+public class Sets implements IRandomDefault<Set> {
+
+    public static final Sets INTANCE = new Sets();
+
     public static HashMap<String, Set> All = new HashMap<String, Set>() {
         {
             {
@@ -34,4 +37,10 @@ public class Sets {
             }
         }
     };
+
+    @Override
+    public HashMap<String, Set> All() {
+        return All;
+    }
+
 }

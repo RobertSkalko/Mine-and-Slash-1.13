@@ -2,8 +2,8 @@ package com.robertx22.uncommon.testing.tests;
 
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.requirements.AffixRequested;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
@@ -14,8 +14,8 @@ public class CheckAllGearsHaveAffix {
 
         for (GearItemSlot slot : GearTypes.All.values()) {
 
-            Prefix prefix = Prefixes.INSTANCE.random(new AffixRequested(slot));
-            Suffix suffix = Suffixes.INSTANCE.random(new AffixRequested(slot));
+            Prefix prefix = Prefixes.INSTANCE.random(new GearRequestedFor(slot));
+            Suffix suffix = Suffixes.INSTANCE.random(new GearRequestedFor(slot));
 
             if (prefix == null) {
                 try {

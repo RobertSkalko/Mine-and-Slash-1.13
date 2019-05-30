@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.prefixes.offense;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.offense.SpellDamagePercent;
 
@@ -29,7 +29,7 @@ public class TouchOfMagic extends Prefix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.jewerlyOnly());
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 }

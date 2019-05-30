@@ -3,16 +3,15 @@ package com.robertx22.loot.blueprints;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.RaritiesContainer;
 import com.robertx22.database.rarities.containers.ItemRarities;
+import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.sets.Set;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Sets;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GearBlueprint extends ItemBlueprint {
 
@@ -69,7 +68,7 @@ public class GearBlueprint extends ItemBlueprint {
         customSetChance = chance;
     }
 
-    public SetData GenerateSet() {
+    public SetData GenerateSet(GearItemData data) {
 
         SetData setdata = null;
 
@@ -90,16 +89,9 @@ public class GearBlueprint extends ItemBlueprint {
 
         if (has) {
 
-            List<Set> possibleSets = new ArrayList();
+            Set set = Sets.INTANCE.random(new GearRequestedFor(data));
 
-            for (Set set : Sets.All.values()) {
-                if (set.CanBePlacedOnItemSlot(this.gearType)) {
-                    possibleSets.add(set);
-                }
-            }
-
-            if (possibleSets.size() > 0) {
-                Set set = RandomUtils.weightedRandom(possibleSets);
+            if (set != null) {
 
                 setdata = new SetData();
                 setdata.baseSet = set.GUID();

@@ -1,8 +1,8 @@
 package com.robertx22.database.affixes.prefixes.resource;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.requirements.AffixRequirements;
-import com.robertx22.database.affixes.requirements.SlotRequirement;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.percent.LifestealPercent;
 
@@ -26,7 +26,7 @@ public class LifeStealing extends Prefix {
     }
 
     @Override
-    public AffixRequirements requirements() {
-        return new AffixRequirements(SlotRequirement.weaponsOnly());
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.weaponsOnly());
     }
 }

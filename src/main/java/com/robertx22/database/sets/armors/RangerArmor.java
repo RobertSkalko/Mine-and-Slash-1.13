@@ -1,13 +1,13 @@
 package com.robertx22.database.sets.armors;
 
-import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.requirements.Requirements;
+import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.weapon_damages.BowDamageFlat;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class RangerArmor extends Set {
 
@@ -31,8 +31,8 @@ public class RangerArmor extends Set {
     }
 
     @Override
-    public List<GearItemSlot> GearTypes() {
-        return this.armor();
+    public Requirements requirements() {
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
     }
 
 }
