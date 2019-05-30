@@ -1,4 +1,4 @@
-package com.robertx22.db_lists;
+package com.robertx22.db_lists.bases;
 
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.requirements.Requirements;

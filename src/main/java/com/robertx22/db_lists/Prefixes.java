@@ -23,6 +23,7 @@ import com.robertx22.database.affixes.prefixes.resource.LifeStealing;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
+import com.robertx22.db_lists.bases.IRandomDefault;
 
 import java.util.ArrayList;
 import java.util.HashMap;

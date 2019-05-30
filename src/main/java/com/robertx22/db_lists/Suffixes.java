@@ -11,6 +11,7 @@ import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
 import com.robertx22.database.affixes.suffixes.resource.OfVampirism;
+import com.robertx22.db_lists.bases.IRandomDefault;
 
 import java.util.ArrayList;
 import java.util.HashMap;
