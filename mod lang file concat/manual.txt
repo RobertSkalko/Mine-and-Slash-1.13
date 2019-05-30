@@ -1,4 +1,4 @@
-{
+
     "_comment": "# ORES",
     "item.mmorpg.ore0": "Common Ore",
     "item.mmorpg.ore1": "Uncommon Ore",
@@ -649,7 +649,6 @@
     "mmorpg.lore.reroll_prefix_numbers": "I command you to change!",
     "mmorpg.lore.reroll_suffix_numbers": "I command you to change!",
     "mmorpg.lore.reroll_unique_numbers": "Anything can change.",
-
     "mmorpg.lore.attack_infusion": "Luck is Etheral and yet affects everything.",
     "mmorpg.lore.defense_infusion": "Luck is Etheral and yet affects everything.",
     "mmorpg.lore.resource_infusion": "Luck is Etheral and yet affects everything.",
@@ -672,7 +671,6 @@
     "mmorpg.tooltip.reroll_prefix_numbers": "Re-rolls numbers of a prefix",
     "mmorpg.tooltip.reroll_suffix_numbers": "Re-rolls numbers of a suffix",
     "mmorpg.tooltip.reroll_unique_numbers": "Re-rolls unique stat numbers",
-
     "mmorpg.tooltip.attack_infusion": "Infuses an item with Attack Modifiers",
     "mmorpg.tooltip.defense_infusion": "Infuses an item with Defense Modifiers",
     "mmorpg.tooltip.resource_infusion": "Infuses an item with Resource Modifiers",
@@ -745,7 +743,6 @@
     "mmorpg.rarity.mythical": "Mythical",
     "mmorpg.rarity.unique": "Unique",
 
-
     "_comment": "MAPS",
     "mmorpg.name.map": "Adventure Map",
     "mmorpg.tooltip.put_in_mapdevice": "Put in Map Device to Use",
@@ -761,8 +758,6 @@
     "mmorpg.config.maps_start_drop": "Maps Start To Drop at Lvl",
     "mmorpg.config.unarmed_energy_cost": "Unarmed Energy Cost",
     "mmorpg.config.currency_start_drop": "Currency Start To Drop at Lvl",
-
-
     "mmorpg.config.rarity_weights": "Rarity Weights",
     "mmorpg.config.map_id_start": "Map ID Start",
     "mmorpg.config.map_id_reserved": "Map IDs Reserved",
@@ -990,6 +985,5 @@
     "item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Loot Box",
 	
 	"item.mmorpg.consumable.restore_energy_item": "Energy potion",
-	"item.mmorpg.consumable.restore_mana_item": "Mana potion"
+	"item.mmorpg.consumable.restore_mana_item": "Mana potion",
 	
-}

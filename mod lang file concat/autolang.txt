@@ -1,0 +1,14 @@
+"_comment": " [CATEGORY]: ITEM SETS",
+
+	"mmorpg.set.ice_lord": "Ice Lord",
+	"mmorpg.set.will_of_lightning": "Will of Lightning",
+	"mmorpg.set.archemage_vestments": "Archmage's Vestments",
+	"mmorpg.set.rockman_chains": "Rockman's Chains",
+	"mmorpg.set.ranger_armor": "Ranger's Armor",
+	"mmorpg.set.limitless": "Limitless",
+	"mmorpg.set.flaming_devil": "Flaming Devil",
+	"mmorpg.set.tree_of_life": "Tree of Life",
+	"mmorpg.set.barbarian_armor": "Barbarian's Armor",
+	"mmorpg.set.forest_guardian": "Forest Guardian",
+
+"_comment": " [CATEGORY]: ITEM SETS"

@@ -80,8 +80,6 @@ public class MMORPG {
         bus.addListener(this::interModEnqueue);
         bus.addListener(this::loadComplete);
 
-        CreateLangFile.create();
-
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
             bus.addListener(this::clientSetup);
@@ -114,7 +112,11 @@ public class MMORPG {
     }
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
-        TestManager.RunAllTests();
+
+        if (true) { // CHANGE ON PUBLIC BUILDS TO FALSE
+            TestManager.RunAllTests();
+            CreateLangFile.create();
+        }
 
     }
 
@@ -148,8 +150,6 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
-
-        //CommandRegister.Register(event.getServer());
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
             ServerLifecycleHooks.getCurrentServer()

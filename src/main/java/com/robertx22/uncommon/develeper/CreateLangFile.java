@@ -63,7 +63,7 @@ public class CreateLangFile {
     }
 
     private static String filepath() {
-        return FMLPaths.GAMEDIR.get().toString() + "/autolang.json";
+        return FMLPaths.GAMEDIR.get().toString() + "/autolang.txt";
     }
 
     private static String comment(String str) {
