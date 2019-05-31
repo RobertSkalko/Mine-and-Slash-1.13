@@ -2,19 +2,20 @@ package com.robertx22.items.gearitems.offhands;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.model.ModelShield;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.concurrent.Callable;
 
-public class ShieldRenderer extends TileEntityItemStackRenderer implements Callable<TileEntityItemStackRenderer> {
+public class MagicOrbRenderer extends TileEntityItemStackRenderer implements Callable<TileEntityItemStackRenderer> {
     public final TileEntityItemStackRenderer instance;
 
-    private final ModelShield modelShield = new ModelShield();
+    private final ModelOrb orbModel = new ModelOrb();
 
-    public ShieldRenderer() {
+    static int rotation = 0;
+
+    public MagicOrbRenderer() {
         instance = this;
     }
 
@@ -22,14 +23,16 @@ public class ShieldRenderer extends TileEntityItemStackRenderer implements Calla
     public void renderByItem(ItemStack stack) {
         Item item = stack.getItem();
 
-        if (item instanceof NormalShield) {
+        if (item instanceof MagicOrb) {
+            rotation++;
+            MagicOrb orb = (MagicOrb) item;
 
-            NormalShield shield = (NormalShield) item;
-
-            Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
+            Minecraft.getInstance().getTextureManager().bindTexture(orb.resource);
             GlStateManager.pushMatrix();
             GlStateManager.scaled(1.0, -1.0, -1.0);
-            modelShield.render();
+            //GlStateManager.rotatef(RandomUtils.RandomRange(0, 356), rotation, 0, rotation);
+
+            new ModelOrb().render();
             GlStateManager.popMatrix();
 
         }
@@ -41,4 +44,5 @@ public class ShieldRenderer extends TileEntityItemStackRenderer implements Calla
         return instance;
     }
 }
+
 

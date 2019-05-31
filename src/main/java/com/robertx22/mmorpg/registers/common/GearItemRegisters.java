@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.gearitems.armor.ItemBoots;
 import com.robertx22.items.gearitems.armor.ItemChest;
@@ -10,9 +11,7 @@ import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.items.gearitems.baubles.ItemRing;
-import com.robertx22.items.gearitems.offhands.MyTorch;
-import com.robertx22.items.gearitems.offhands.NormalShield;
-import com.robertx22.items.gearitems.offhands.ShieldRenderer;
+import com.robertx22.items.gearitems.offhands.*;
 import com.robertx22.items.gearitems.weapons.*;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.items.runes.*;
@@ -36,6 +35,15 @@ public class GearItemRegisters {
     private static void register() {
 
         for (ItemRarity rarity : Rarities.Items.rarities()) {
+
+            Item.Properties shieldprop = new Item.Properties().defaultMaxDamage(750);
+            Item.Properties orbprop = new Item.Properties().defaultMaxDamage(750)
+                    .group(CreativeTabs.MyModTab);
+
+            DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                shieldprop.setTEISR(ShieldRenderer::new);
+                orbprop.setTEISR(MagicOrbRenderer::new);
+            });
 
             // 1] class 2] rarity hashmap 3] registry name 4] rarity rank
 
@@ -63,13 +71,14 @@ public class GearItemRegisters {
             regRarities(new ItaItem(rank), ItaItem.Items, "runes/" + new ItaItem(rank).name()
                     .toLowerCase(), rank);
 
-            Item.Properties properties = new Item.Properties().defaultMaxDamage(750);
-            DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> properties.setTEISR(ShieldRenderer::new));
-
             // offhands
-            regRarities(new NormalShield(properties, "normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
+            regRarities(new NormalShield(shieldprop, "normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
                     .Rank());
+
             regRarities(new MyTorch(), MyTorch.Items, "torch/torch", rarity.Rank());
+
+            regRarities(new MagicOrb(orbprop, "orb" + rarity.Rank()), MagicOrb.Items, "magic_orb/orb", rarity
+                    .Rank());
 
             // weapons
             regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
