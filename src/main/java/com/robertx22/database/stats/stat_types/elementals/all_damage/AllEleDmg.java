@@ -1,21 +1,24 @@
 package com.robertx22.database.stats.stat_types.elementals.all_damage;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.stat_effects.offense.AllEleDmgEffectIfElement;
+import com.robertx22.database.stats.stat_effects.offense.AllEleDmgEffect;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AllEleDamageBase extends Stat implements IStatEffects {
+public class AllEleDmg extends Stat implements IStatEffects {
+
+    public static String GUID = "AllEleDmg";
 
     @Override
     public String locDescForLangFile() {
-        return "Increases All DMG of that element, both spells and attacks";
+        return "Increases All Elemental DMG, both spells and attacks";
     }
 
-    public AllEleDamageBase() {
+    public AllEleDmg() {
         this.hasMinimumAmount = false;
     }
 
@@ -31,12 +34,21 @@ public abstract class AllEleDamageBase extends Stat implements IStatEffects {
 
     @Override
     public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new AllEleDmgEffectIfElement());
+        return Arrays.asList(new AllEleDmgEffect());
     }
 
     @Override
     public String locNameForLangFile() {
-        return "All" + this.Element().name() + " Damage";
+        return "All Elemental Damage";
     }
 
+    @Override
+    public String GUID() {
+        return GUID;
+    }
+
+    @Override
+    public Elements Element() {
+        return Elements.None;
+    }
 }

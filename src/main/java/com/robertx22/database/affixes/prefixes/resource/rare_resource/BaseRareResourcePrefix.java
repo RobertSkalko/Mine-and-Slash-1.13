@@ -9,7 +9,7 @@ public abstract class BaseRareResourcePrefix extends Prefix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), new LevelRequirement(10));
+        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

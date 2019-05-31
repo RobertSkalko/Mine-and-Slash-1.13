@@ -9,10 +9,7 @@ import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.database.stats.stat_types.elementals.BaseConversionMod;
 import com.robertx22.database.stats.stat_types.elementals.BaseTransferMod;
-import com.robertx22.database.stats.stat_types.elementals.all_damage.AllFireDamage;
-import com.robertx22.database.stats.stat_types.elementals.all_damage.AllNatureDamage;
-import com.robertx22.database.stats.stat_types.elementals.all_damage.AllThunderDamage;
-import com.robertx22.database.stats.stat_types.elementals.all_damage.AllWaterDamage;
+import com.robertx22.database.stats.stat_types.elementals.all_damage.*;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackFireDamage;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackNatureDamage;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackThunderDamage;
@@ -73,6 +70,9 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+                put(new AllEleDmg().GUID(), new AllEleDmg());
+                put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());
+
                 put(new SpellDamage().GUID(), new SpellDamage());
 
                 // major arcana tarot

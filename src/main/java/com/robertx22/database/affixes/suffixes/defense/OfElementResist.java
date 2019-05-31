@@ -37,7 +37,7 @@ public class OfElementResist extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly(), new LevelRequirement(20));
+        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

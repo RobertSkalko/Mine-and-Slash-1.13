@@ -33,7 +33,7 @@ public class OfCriticalUnity extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly(), new LevelRequirement(10));
+        return new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

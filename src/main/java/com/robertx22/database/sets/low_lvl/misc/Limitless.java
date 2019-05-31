@@ -1,21 +1,22 @@
-package com.robertx22.database.sets.misc;
+package com.robertx22.database.sets.low_lvl.misc;
 
 import com.robertx22.database.gearitemslots.Charm;
 import com.robertx22.database.gearitemslots.Ring;
+import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class TreeOfLife extends Set {
+public class Limitless extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Tree of Life";
+        return "Limitless";
     }
 
     @Override
@@ -24,22 +25,22 @@ public class TreeOfLife extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new HealthPercent());
+                    put(2, new EnergyRegenPercent());
 
                 }
             }
-
         };
     }
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())));
+        return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())), LevelRequirement
+                .lowLVLOnly());
     }
 
     @Override
     public String GUID() {
-        return "tree_of_life";
+        return "limitless";
     }
 
 }

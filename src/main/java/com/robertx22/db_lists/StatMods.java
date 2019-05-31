@@ -19,6 +19,8 @@ import com.robertx22.database.map_mods.minus.weapon.*;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
+import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.BaseConversionFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
@@ -107,7 +109,10 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+                put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
+                put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
 
+                put(new BlockStrengthPercent().GUID(), new BlockStrengthPercent());
                 put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
                 put(new SpellDamagePercent().GUID(), new SpellDamagePercent());
 

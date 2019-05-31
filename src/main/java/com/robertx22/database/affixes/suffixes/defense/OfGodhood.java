@@ -35,7 +35,7 @@ public class OfGodhood extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Helmet()), new LevelRequirement(50), new UniqueTierRequirement(10));
+        return new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10));
     }
 
     @Override

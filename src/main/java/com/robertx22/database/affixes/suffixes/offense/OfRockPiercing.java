@@ -35,7 +35,7 @@ public class OfRockPiercing extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly(), new LevelRequirement(30));
+        return new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL50());
     }
 
     @Override

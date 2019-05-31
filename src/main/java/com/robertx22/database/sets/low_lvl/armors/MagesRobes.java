@@ -1,5 +1,6 @@
-package com.robertx22.database.sets.armors;
+package com.robertx22.database.sets.low_lvl.armors;
 
+import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
@@ -8,11 +9,11 @@ import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 
 import java.util.HashMap;
 
-public class ArcheMageVestments extends Set {
+public class MagesRobes extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Archmage's Vestments";
+        return "Mage's Robes";
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ArcheMageVestments extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.lowLVLOnly());
     }
 
     @Override

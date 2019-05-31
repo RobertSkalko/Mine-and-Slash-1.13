@@ -5,9 +5,10 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
-public class AllElementalDamageEffect implements IStatEffect {
+public class AllEleDmgEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
@@ -28,7 +29,7 @@ public class AllElementalDamageEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element.equals(stat.Element())) {
+                if (dmgeffect.Element.equals(Elements.None) == false) {
 
                     dmgeffect.Number *= 1 + data.Value / 100;
 

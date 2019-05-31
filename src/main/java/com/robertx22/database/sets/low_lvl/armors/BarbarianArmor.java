@@ -1,19 +1,19 @@
-package com.robertx22.database.sets.elemental_jewerly;
+package com.robertx22.database.sets.low_lvl.armors;
 
+import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 
 import java.util.HashMap;
 
-public class IceLord extends Set {
+public class BarbarianArmor extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Ice Lord";
+        return "Barbarian's Armor";
     }
 
     @Override
@@ -22,8 +22,7 @@ public class IceLord extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new ManaRegenPercent());
-                    put(3, new SpellWaterDamagePercent());
+                    put(2, new LifestealFlat());
 
                 }
             }
@@ -32,11 +31,11 @@ public class IceLord extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.lowLVLOnly());
     }
 
     @Override
     public String GUID() {
-        return "ice_lord";
+        return "barbarian_armor";
     }
 }

@@ -1,18 +1,20 @@
-package com.robertx22.database.sets.armors;
+package com.robertx22.database.sets.low_lvl.armors;
 
+import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.weapon_damages.BowDamageFlat;
 
 import java.util.HashMap;
 
-public class RockmanChains extends Set {
+public class RangerArmor extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Rockman's Chains";
+        return "Ranger's Armor";
     }
 
     @Override
@@ -21,7 +23,8 @@ public class RockmanChains extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new HealthPercent());
+                    put(2, new CriticalDamageFlat());
+                    put(3, new BowDamageFlat());
 
                 }
             }
@@ -30,11 +33,12 @@ public class RockmanChains extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.lowLVLOnly());
     }
 
     @Override
     public String GUID() {
-        return "rockman_chains";
+        return "ranger_armor";
     }
+
 }

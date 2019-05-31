@@ -1,19 +1,21 @@
-package com.robertx22.database.sets.elemental_jewerly;
+package com.robertx22.database.sets.mid_lvl;
 
+import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
+import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 
 import java.util.HashMap;
 
-public class ForestGuardian extends Set {
+public class ArtifactArmor extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Forest Guardian";
+        return "Artifact Armor";
     }
 
     @Override
@@ -22,8 +24,9 @@ public class ForestGuardian extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new HealthPercent());
-                    put(3, new SpellNatureDamagePercent());
+                    put(2, new BonusExpFlat());
+                    put(3, new HealthPercent());
+                    put(4, new MajorArmorFlat());
 
                 }
             }
@@ -32,11 +35,11 @@ public class ForestGuardian extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.midLVLOnly());
     }
 
     @Override
     public String GUID() {
-        return "forest_guardian";
+        return "artifact_armor";
     }
 }

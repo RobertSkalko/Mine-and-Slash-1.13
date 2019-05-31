@@ -14,6 +14,6 @@ public abstract class BaseLegendaryPeneSuffix extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), new LevelRequirement(25));
+        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20());
     }
 }

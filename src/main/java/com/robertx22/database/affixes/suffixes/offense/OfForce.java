@@ -34,7 +34,7 @@ public class OfForce extends Suffix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly(), new LevelRequirement(15));
+        return new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

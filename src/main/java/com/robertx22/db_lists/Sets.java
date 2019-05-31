@@ -1,16 +1,20 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.sets.Set;
-import com.robertx22.database.sets.armors.ArcheMageVestments;
-import com.robertx22.database.sets.armors.BarbarianArmor;
-import com.robertx22.database.sets.armors.RangerArmor;
-import com.robertx22.database.sets.armors.RockmanChains;
-import com.robertx22.database.sets.elemental_jewerly.FlamingDevil;
-import com.robertx22.database.sets.elemental_jewerly.ForestGuardian;
-import com.robertx22.database.sets.elemental_jewerly.IceLord;
-import com.robertx22.database.sets.elemental_jewerly.WillOfLightning;
-import com.robertx22.database.sets.misc.Limitless;
-import com.robertx22.database.sets.misc.TreeOfLife;
+import com.robertx22.database.sets.low_lvl.armors.BarbarianArmor;
+import com.robertx22.database.sets.low_lvl.armors.MagesRobes;
+import com.robertx22.database.sets.low_lvl.armors.RangerArmor;
+import com.robertx22.database.sets.low_lvl.armors.RockmanChains;
+import com.robertx22.database.sets.low_lvl.elemental_jewerly.FlamingDevil;
+import com.robertx22.database.sets.low_lvl.elemental_jewerly.ForestGuardian;
+import com.robertx22.database.sets.low_lvl.elemental_jewerly.IceLord;
+import com.robertx22.database.sets.low_lvl.elemental_jewerly.WillOfLightning;
+import com.robertx22.database.sets.low_lvl.misc.Limitless;
+import com.robertx22.database.sets.low_lvl.misc.TreeOfLife;
+import com.robertx22.database.sets.mid_lvl.ArmorOfTheElements;
+import com.robertx22.database.sets.mid_lvl.ArtifactArmor;
+import com.robertx22.database.sets.mid_lvl.SpiritOfTheArcane;
+import com.robertx22.database.sets.mid_lvl.TheProtector;
 import com.robertx22.db_lists.bases.IRandomDefault;
 
 import java.util.HashMap;
@@ -22,8 +26,14 @@ public class Sets implements IRandomDefault<Set> {
     public static HashMap<String, Set> All = new HashMap<String, Set>() {
         {
             {
+                put(new ArmorOfTheElements().GUID(), new ArmorOfTheElements());
+                put(new TheProtector().GUID(), new TheProtector());
+                put(new SpiritOfTheArcane().GUID(), new SpiritOfTheArcane());
+                put(new ArtifactArmor().GUID(), new ArtifactArmor());
+
+                // low lvl
                 put(new BarbarianArmor().GUID(), new BarbarianArmor());
-                put(new ArcheMageVestments().GUID(), new ArcheMageVestments());
+                put(new MagesRobes().GUID(), new MagesRobes());
                 put(new RockmanChains().GUID(), new RockmanChains());
                 put(new RangerArmor().GUID(), new RangerArmor());
 

@@ -31,7 +31,7 @@ public class Arcanists extends Prefix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), new LevelRequirement(20));
+        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

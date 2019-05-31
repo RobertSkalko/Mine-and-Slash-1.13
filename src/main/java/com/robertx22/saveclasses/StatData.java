@@ -51,6 +51,10 @@ public class StatData {
 
     }
 
+    public float getMultiplier() {
+        return 1 + Value / 100;
+    }
+
     public void Add(StatModData mod, int level) {
 
         if (mod.type == StatTypes.Flat) {
