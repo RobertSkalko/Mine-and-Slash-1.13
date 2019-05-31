@@ -34,6 +34,8 @@ public class ConfigItem implements IWeighted {
 
     public String itemType = "Sword";
 
+    public boolean isSalvagable = true;
+
     public int dropWeight = 1000;
     public int uniqueItemWeight = 0;
     public int normalItemWeight = 80;
@@ -192,6 +194,7 @@ public class ConfigItem implements IWeighted {
         blueprint.maxRarity = this.maxRarity;
 
         GearItemData gear = GearLootGen.CreateData(blueprint);
+        gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
         Gear.Save(stack, gear);
@@ -212,6 +215,7 @@ public class ConfigItem implements IWeighted {
         blueprint.LevelVariance = this.levelVariance;
 
         GearItemData gear = UniqueGearLootGen.CreateData(blueprint);
+        gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
         if (gear.uniqueGUID != null || !UniqueItems.ITEMS.containsKey(gear.uniqueGUID)) {
@@ -234,6 +238,7 @@ public class ConfigItem implements IWeighted {
         blueprint.maxRarity = this.maxRarity;
 
         GearItemData gear = RunedGearLootGen.CreateData(blueprint);
+        gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
         Gear.Save(stack, gear);

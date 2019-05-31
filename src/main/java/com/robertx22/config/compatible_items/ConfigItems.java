@@ -20,7 +20,7 @@ public class ConfigItems implements IConfig {
 
     public static ConfigItems INSTANCE = new ConfigItems();
 
-    String version = "1.2";
+    String version = "1.3";
 
     public HashMap<String, ConfigItem> map = new HashMap();
 

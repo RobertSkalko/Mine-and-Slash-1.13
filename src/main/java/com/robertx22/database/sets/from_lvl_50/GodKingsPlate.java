@@ -1,22 +1,21 @@
-package com.robertx22.database.sets.mid_lvl;
+package com.robertx22.database.sets.from_lvl_50;
 
 import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
-import com.robertx22.database.requirements.UniqueItemRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
-import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
 
 import java.util.HashMap;
 
-public class ArtifactArmor extends Set {
+public class GodKingsPlate extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "Artifact Armor";
+        return "Godking's Plate";
     }
 
     @Override
@@ -25,9 +24,9 @@ public class ArtifactArmor extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new BonusExpFlat());
-                    put(3, new HealthPercent());
-                    put(4, new MajorArmorFlat());
+                    put(2, new PhysicalDamagePercent());
+                    put(3, new MajorArmorFlat());
+                    put(4, new HealthFlat());
 
                 }
             }
@@ -36,11 +35,11 @@ public class ArtifactArmor extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.midLVLOnly(), new UniqueItemRequirement());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.fromLVL50());
     }
 
     @Override
     public String GUID() {
-        return "artifact_armor";
+        return "godkings_plate";
     }
 }

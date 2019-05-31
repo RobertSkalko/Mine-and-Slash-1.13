@@ -7,7 +7,7 @@ import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 
 import java.util.HashMap;
 
@@ -24,7 +24,7 @@ public class ArmorOfTheElements extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new SpellFireDamagePercent());
+                    put(2, new ManaFlat());
                     put(3, new AllEleSpellDmgFlat());
                     put(4, new AllEleDmgFlat());
 
