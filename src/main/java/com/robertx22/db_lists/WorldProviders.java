@@ -17,7 +17,7 @@ public class WorldProviders {
                 put(new SavannaIWP().GUID(), new SavannaIWP());
                 put(new RockDesertIWP().GUID(), new RockDesertIWP());
                 put(new RockMountainsIWP().GUID(), new RockMountainsIWP());
-                put(new DefaultIWP().GUID(), new DefaultIWP());
+                put(new BirchForestIWP().GUID(), new BirchForestIWP());
                 put(new NetherIWP().GUID(), new NetherIWP());
 
             }

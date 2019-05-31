@@ -23,6 +23,15 @@ public class CreateLangFile {
             json += comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
                 if (iauto.locNameForLangFile().isEmpty() == false) {
+
+                    if (iauto.locNameForLangFile().contains("\"")) {
+                        try {
+                            throw new Exception(iauto.locNameForLangFile() + " contains double \"");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
                             .locNameForLangFile() + "\",\n";
                 }
@@ -35,6 +44,15 @@ public class CreateLangFile {
             json += comment(entry.getKey());
             for (IAutoLocDesc iauto : entry.getValue()) {
                 if (iauto.locDescForLangFile().isEmpty() == false) {
+
+                    if (iauto.locDescForLangFile().contains("\"")) {
+                        try {
+                            throw new Exception(iauto.locDescForLangFile() + " contains double \"");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
                             .locDescForLangFile() + "\",\n";
                 }
@@ -89,6 +107,7 @@ public class CreateLangFile {
         list.put("STATS", new ArrayList<>(Stats.All.values()));
         list.put("GEAR SLOT TYPES", new ArrayList<>(GearTypes.All.values()));
         list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
+        list.put("WORLD TYPES", new ArrayList<>(WorldProviders.All.values()));
 
         return list;
 

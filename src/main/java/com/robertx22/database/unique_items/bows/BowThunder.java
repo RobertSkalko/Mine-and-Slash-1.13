@@ -28,12 +28,12 @@ public class BowThunder extends BaseUniqueBow {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Bow of Thunder Affinity";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Aim steady, imbue with Lightning!";
     }
 }

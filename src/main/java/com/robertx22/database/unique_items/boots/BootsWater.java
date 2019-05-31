@@ -36,12 +36,12 @@ public class BootsWater extends BaseUniqueBoots {
     }
 
     @Override
-    public String locDescForLangFile() {
-        return Styles.YELLOW + "§eIce Steps";
+    public String locNameForLangFile() {
+        return Styles.YELLOW + "Ice Steps";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Ice forms wherever I walk.";
     }
 }

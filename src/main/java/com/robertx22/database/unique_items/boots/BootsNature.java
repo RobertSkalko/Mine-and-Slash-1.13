@@ -37,12 +37,12 @@ public class BootsNature extends BaseUniqueBoots {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Tree Trunks";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Nothing shall break my roots!";
     }
 }

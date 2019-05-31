@@ -35,12 +35,12 @@ public class BootsThunder extends BaseUniqueBoots {
     }
 
     @Override
-    public String locDescForLangFile() {
+    public String locNameForLangFile() {
         return Styles.YELLOW + "Lightning Tendril Boots";
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locDescForLangFile() {
         return "Sparks fly wherever I stand.";
     }
 }

@@ -4,7 +4,7 @@ import com.robertx22.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.ILocName;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ import net.minecraftforge.common.ModDimension;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IWP extends IWeighted, ILocName, IBonusLootMulti {
+public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
     abstract String GUID();
 
     ModDimension getModDim();

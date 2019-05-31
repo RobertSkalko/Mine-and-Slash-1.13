@@ -14,19 +14,19 @@ import java.util.function.Function;
 import static com.robertx22.db_lists.Templates.bigWoodPillar;
 import static com.robertx22.db_lists.Templates.smallWoodPillar;
 
-public class DefaultIWP extends BaseWorldProvider {
+public class BirchForestIWP extends BaseWorldProvider {
 
-    public DefaultIWP() {
+    public BirchForestIWP() {
         super();
     }
 
-    public DefaultIWP(DimensionType type) {
+    public BirchForestIWP(DimensionType type) {
         super(type);
     }
 
     @Override
     public String GUID() {
-        return "default";
+        return "birch_forest";
     }
 
     @Override
@@ -46,7 +46,11 @@ public class DefaultIWP extends BaseWorldProvider {
 
     @Override
     public Function<DimensionType, ? extends Dimension> classFactory() {
-        return DefaultIWP::new;
+        return BirchForestIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Birch Forest";
+    }
 }

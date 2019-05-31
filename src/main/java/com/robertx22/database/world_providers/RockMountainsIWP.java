@@ -46,4 +46,8 @@ public class RockMountainsIWP extends BaseWorldProvider {
         return RockMountainsIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Rocky Mountains";
+    }
 }

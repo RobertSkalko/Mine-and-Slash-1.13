@@ -46,4 +46,8 @@ public class SavannaIWP extends BaseWorldProvider {
         return SavannaIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Savannah";
+    }
 }

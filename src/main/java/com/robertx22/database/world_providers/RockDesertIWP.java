@@ -46,4 +46,8 @@ public class RockDesertIWP extends BaseWorldProvider {
         return RockDesertIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Rock Desert";
+    }
 }

@@ -45,4 +45,8 @@ public class DesertHillsIWP extends BaseWorldProvider {
         return DesertHillsIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Desert Hills";
+    }
 }

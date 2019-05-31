@@ -36,7 +36,7 @@ public class CharmFire extends BaseUniqueCharm {
 
     @Override
     public String locNameForLangFile() {
-        return Styles.YELLOW + "Heavenly Fire Charm\"";
+        return Styles.YELLOW + "Heavenly Fire Charm";
     }
 
     @Override

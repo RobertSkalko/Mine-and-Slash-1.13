@@ -52,4 +52,8 @@ public class NetherIWP extends BaseWorldProvider {
         return NetherIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Hellscape";
+    }
 }

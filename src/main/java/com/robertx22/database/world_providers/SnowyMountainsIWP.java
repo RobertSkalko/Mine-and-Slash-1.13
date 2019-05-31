@@ -46,4 +46,8 @@ public class SnowyMountainsIWP extends BaseWorldProvider {
         return SnowyMountainsIWP::new;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Snowy Mountains";
+    }
 }

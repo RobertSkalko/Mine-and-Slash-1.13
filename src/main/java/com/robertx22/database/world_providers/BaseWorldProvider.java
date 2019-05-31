@@ -38,6 +38,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     }
 
     @Override
+    public String locNameLangFileGUID(String guid) {
+        return Ref.MODID + ".world_type." + formattedGUID();
+    }
+
+    @Override
     protected void init() {
         this.hasSkyLight = true;
     }
