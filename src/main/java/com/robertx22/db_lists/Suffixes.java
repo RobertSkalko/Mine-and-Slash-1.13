@@ -1,6 +1,9 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Suffix;
+import com.robertx22.database.affixes.suffixes.OfBalance;
+import com.robertx22.database.affixes.suffixes.OfGuidance;
+import com.robertx22.database.affixes.suffixes.OfSwiftness;
 import com.robertx22.database.affixes.suffixes.defense.*;
 import com.robertx22.database.affixes.suffixes.offense.*;
 import com.robertx22.database.affixes.suffixes.offense.pene.OfEarthquakes;
@@ -24,6 +27,11 @@ public class Suffixes implements IRandomDefault<Suffix> {
     private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
             {
+
+                add(new OfBalance());
+                add(new OfGuidance());
+                add(new OfSwiftness());
+
                 add(new OfGodhood());
                 add(new OfCriticalHits());
                 add(new OfCriticalDamage());

@@ -21,6 +21,8 @@ import com.robertx22.database.affixes.prefixes.offense.imbued.LightningImbued;
 import com.robertx22.database.affixes.prefixes.offense.imbued.PoisonImbued;
 import com.robertx22.database.affixes.prefixes.resource.Energetic;
 import com.robertx22.database.affixes.prefixes.resource.LifeStealing;
+import com.robertx22.database.affixes.prefixes.resource.Tenacious;
+import com.robertx22.database.affixes.prefixes.resource.Wise;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
@@ -37,6 +39,9 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+                add(new Wise());
+                add(new Tenacious());
+
                 add(new Gatekeepers());
 
                 add(new TouchOfMagic());
