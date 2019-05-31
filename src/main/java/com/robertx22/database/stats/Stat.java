@@ -12,8 +12,8 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
-import com.robertx22.uncommon.interfaces.IStatEffect;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
@@ -49,18 +49,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         return Ref.MODID + ".stat_desc." + guid;
     }
 
-    public int MaximumPercent = 0;
+    public int maximumValue = Integer.MAX_VALUE;
 
-    public int MinimumAmount = 0;
-
-    public boolean hasMinimumAmount = true;
-
-    public int StatMinimum = 0;
+    public int minimumValue = Integer.MIN_VALUE;
 
     public abstract boolean IsPercent();
-
-    @Override
-    public abstract String GUID();
 
     public abstract boolean ScalesToLevel();
 
@@ -88,7 +81,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     }
 
-    public ITextComponent NameText(boolean IsSet, StatModData data) {
+    public ITextComponent NameText(TooltipInfo info, StatModData data) {
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
 
@@ -98,7 +91,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
             str.appendText(" ").appendSibling(CLOC.word("percent"));
         }
 
-        if (IsSet == false) {
+        if (info.isSet == false) {
             return Styles.REDCOMP()
                     .appendSibling(new TextComponentString(" * ").appendSibling(str)
                             .appendText(": "));
@@ -107,13 +100,13 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         }
     }
 
-    public ITextComponent NameAndValueText(StatModData data, int level, boolean IsSet) {
+    public ITextComponent NameAndValueText(TooltipInfo info, StatModData data) {
 
-        float val = data.GetActualVal(level);
+        float val = data.GetActualVal(info.level);
 
         String minusplus = val > 0 ? "+" : "";
 
-        return NameText(IsSet, data).appendText(minusplus + printValue(data, level));
+        return NameText(info, data).appendText(minusplus + printValue(data, info.level));
     }
 
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
@@ -121,7 +114,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = data.GetBaseMod();
         Stat basestat = mod.GetBaseStat();
-        ITextComponent text = NameAndValueText(data, info.level, info.isSet);
+        ITextComponent text = NameAndValueText(info, data);
 
         if (mod.Type() == StatTypes.Flat) {
 
@@ -157,11 +150,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     }
 
-    public int CalcVal(StatData data, UnitData Source) {
+    public void CalcVal(StatData data, UnitData Source) {
 
         float finalValue = BaseFlat;
-
-        finalValue += StatMinimum;
 
         if (ScalesToLevel()) {
             finalValue *= Source.getLevel();
@@ -173,21 +164,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
         finalValue *= 1 + data.Multi / 100;
 
-        if (hasMinimumAmount && finalValue < this.MinimumAmount) {
-            finalValue = this.MinimumAmount;
-        }
-
-        if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
-            finalValue = MaximumPercent;
-        }
-
-        data.Value = finalValue;
-
-        return (int) finalValue;
+        data.Value = MathHelper.clamp(finalValue, minimumValue, maximumValue);
 
     }
-
-    public ArrayList<IStatEffect> Effects;
 
     public boolean IsShownOnTooltip() {
         return true;

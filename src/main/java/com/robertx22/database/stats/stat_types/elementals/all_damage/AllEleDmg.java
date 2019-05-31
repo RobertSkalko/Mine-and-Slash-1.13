@@ -19,7 +19,7 @@ public class AllEleDmg extends Stat implements IStatEffects {
     }
 
     public AllEleDmg() {
-        this.hasMinimumAmount = false;
+
     }
 
     @Override

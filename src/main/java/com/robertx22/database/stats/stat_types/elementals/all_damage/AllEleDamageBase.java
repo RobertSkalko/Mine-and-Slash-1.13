@@ -16,7 +16,6 @@ public abstract class AllEleDamageBase extends Stat implements IStatEffects {
     }
 
     public AllEleDamageBase() {
-        this.hasMinimumAmount = false;
     }
 
     @Override

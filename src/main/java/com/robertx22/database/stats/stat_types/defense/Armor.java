@@ -19,6 +19,7 @@ public class Armor extends UsableStat implements IStatEffects {
     public static String GUID = "Armor";
 
     public Armor() {
+        this.minimumValue = 0;
     }
 
     @Override

@@ -56,7 +56,7 @@ public class BaseTransferMod extends Stat implements IStatTransfer, IGenerated<S
     public BaseTransferMod(Elements from, Elements to) {
         this.fromElement = from;
         this.toElement = to;
-        this.MaximumPercent = 100;
+        this.maximumValue = 100;
         this.GUID = from.name() + "_to_" + to.name() + "_transfer";
         this.GUID = GUID.toLowerCase();
 

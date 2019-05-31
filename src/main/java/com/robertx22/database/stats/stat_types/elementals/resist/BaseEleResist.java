@@ -9,6 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
+
+    public BaseEleResist() {
+        this.minimumValue = 0;
+    }
+
     @Override
     public String locDescForLangFile() {
         return "Stops a % damage of that element";

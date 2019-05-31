@@ -4,6 +4,11 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.uncommon.interfaces.IStatEffects;
 
 public abstract class BasePene extends Stat implements IStatEffects {
+
+    public BasePene() {
+        this.minimumValue = 0;
+    }
+
     @Override
     public String locDescForLangFile() {
         return "Penetration ignores that much armor";

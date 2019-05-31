@@ -13,6 +13,7 @@ public class BlockStrength extends Stat {
     public static String GUID = "BlockStrength";
 
     public BlockStrength() {
+        this.minimumValue = 0;
     }
 
     @Override

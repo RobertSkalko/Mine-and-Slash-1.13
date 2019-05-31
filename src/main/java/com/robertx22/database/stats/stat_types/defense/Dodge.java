@@ -23,7 +23,7 @@ public class Dodge extends Stat implements IStatEffects {
     }
 
     public Dodge() {
-        MaximumPercent = 75;
+        maximumValue = 75;
     }
 
     @Override

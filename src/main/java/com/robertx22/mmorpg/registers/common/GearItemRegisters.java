@@ -11,7 +11,9 @@ import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.items.gearitems.baubles.ItemRing;
-import com.robertx22.items.gearitems.offhands.*;
+import com.robertx22.items.gearitems.offhands.MyTorch;
+import com.robertx22.items.gearitems.offhands.NormalShield;
+import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.items.gearitems.weapons.*;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.items.runes.*;
@@ -42,7 +44,6 @@ public class GearItemRegisters {
 
             DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
                 shieldprop.setTEISR(ShieldRenderer::new);
-                orbprop.setTEISR(MagicOrbRenderer::new);
             });
 
             // 1] class 2] rarity hashmap 3] registry name 4] rarity rank
@@ -77,8 +78,8 @@ public class GearItemRegisters {
 
             regRarities(new MyTorch(), MyTorch.Items, "torch/torch", rarity.Rank());
 
-            regRarities(new MagicOrb(orbprop, "orb" + rarity.Rank()), MagicOrb.Items, "magic_orb/orb", rarity
-                    .Rank());
+            //regRarities(new MagicOrb(orbprop, "orb" + rarity.Rank()), MagicOrb.Items, "magic_orb/orb", rarity
+            //       .Rank());
 
             // weapons
             regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());

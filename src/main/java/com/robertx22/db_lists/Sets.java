@@ -1,6 +1,8 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.sets.Set;
+import com.robertx22.database.sets.from_lvl_50.GodKingsPlate;
+import com.robertx22.database.sets.from_lvl_50.TheAscended;
 import com.robertx22.database.sets.low_lvl.armors.BarbarianArmor;
 import com.robertx22.database.sets.low_lvl.armors.MagesRobes;
 import com.robertx22.database.sets.low_lvl.armors.RangerArmor;
@@ -26,6 +28,11 @@ public class Sets implements IRandomDefault<Set> {
     public static HashMap<String, Set> All = new HashMap<String, Set>() {
         {
             {
+                //high lvl
+                put(new GodKingsPlate().GUID(), new GodKingsPlate());
+                put(new TheAscended().GUID(), new TheAscended());
+
+                // mid lvl
                 put(new ArmorOfTheElements().GUID(), new ArmorOfTheElements());
                 put(new TheProtector().GUID(), new TheProtector());
                 put(new SpiritOfTheArcane().GUID(), new SpiritOfTheArcane());

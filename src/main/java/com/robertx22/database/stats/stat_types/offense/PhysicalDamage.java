@@ -12,7 +12,7 @@ public class PhysicalDamage extends Stat {
     }
 
     public PhysicalDamage() {
-        this.StatMinimum = 1;
+        this.BaseFlat = 1;
     }
 
     @Override

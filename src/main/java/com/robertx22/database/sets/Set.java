@@ -40,6 +40,10 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
 
     public abstract HashMap<Integer, StatMod> AllMods();
 
+    public HashMap<Integer, List<StatMod>> AllModsLists() {
+        return new HashMap<>();
+    }
+
     public boolean meetsRequirements(GearRequestedFor requested) {
 
         return requirements().satisfiesAllRequirements(requested);
@@ -51,11 +55,14 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
         List<StatMod> mods = new ArrayList();
 
         for (Entry<Integer, StatMod> mod : this.AllMods().entrySet()) {
-
             if (unit.WornSets.get(this.GUID()) >= mod.getKey()) {
                 mods.add(mod.getValue());
             }
-
+        }
+        for (Entry<Integer, List<StatMod>> mod : this.AllModsLists().entrySet()) {
+            if (unit.WornSets.get(this.GUID()) >= mod.getKey()) {
+                mods.addAll(mod.getValue());
+            }
         }
 
         return mods;

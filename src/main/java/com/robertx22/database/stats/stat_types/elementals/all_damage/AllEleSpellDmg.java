@@ -19,7 +19,7 @@ public class AllEleSpellDmg extends Stat implements IStatEffects {
     }
 
     public AllEleSpellDmg() {
-        this.hasMinimumAmount = false;
+
     }
 
     @Override
