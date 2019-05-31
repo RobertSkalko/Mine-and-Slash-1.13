@@ -1,6 +1,7 @@
 package com.robertx22.database.sets;
 
 import com.robertx22.database.IGUID;
+import com.robertx22.database.MinMax;
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
@@ -33,16 +34,14 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
 
     public int StatPercent = 100;
 
+    public MinMax statPercents = new MinMax(100, 100);
+
     @Override
     public int Weight() {
         return IWeighted.UncommonWeight;
     }
 
     public abstract HashMap<Integer, StatMod> AllMods();
-
-    public HashMap<Integer, List<StatMod>> AllModsLists() {
-        return new HashMap<>();
-    }
 
     public boolean meetsRequirements(GearRequestedFor requested) {
 
@@ -59,12 +58,7 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
                 mods.add(mod.getValue());
             }
         }
-        for (Entry<Integer, List<StatMod>> mod : this.AllModsLists().entrySet()) {
-            if (unit.WornSets.get(this.GUID()) >= mod.getKey()) {
-                mods.addAll(mod.getValue());
-            }
-        }
-
+      
         return mods;
     }
 

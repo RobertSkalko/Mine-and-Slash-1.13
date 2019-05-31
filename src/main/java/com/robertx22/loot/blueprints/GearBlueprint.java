@@ -6,7 +6,6 @@ import com.robertx22.database.rarities.containers.ItemRarities;
 import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.sets.Set;
 import com.robertx22.db_lists.GearTypes;
-import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.SetData;
@@ -82,7 +81,7 @@ public class GearBlueprint extends ItemBlueprint {
             }
 
         } else {
-            if (RandomUtils.roll(Rarities.Items.rarities().get(rarity).SetChance())) {
+            if (RandomUtils.roll(data.GetRarity().SetChance())) {
                 has = true;
             }
         }

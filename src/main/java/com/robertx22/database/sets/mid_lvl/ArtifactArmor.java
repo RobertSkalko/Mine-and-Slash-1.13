@@ -3,7 +3,6 @@ package com.robertx22.database.sets.mid_lvl;
 import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
-import com.robertx22.database.requirements.UniqueItemRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
@@ -36,7 +35,7 @@ public class ArtifactArmor extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.midLVLOnly(), new UniqueItemRequirement());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.midLVLOnly());
     }
 
     @Override

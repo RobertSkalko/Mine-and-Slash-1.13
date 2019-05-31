@@ -5,18 +5,16 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.stat_mods.multi.defense.HealthMulti;
-import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.uncommon.interfaces.IWeighted;
+import com.robertx22.database.stats.stat_mods.flat.MajorDodgeFlat;
+import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
 
 import java.util.HashMap;
 
-public class TheAscended extends Set {
+public class RoyalThiefAdornments extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return "The Ascended";
+        return "Royal Thief's Adornments";
     }
 
     @Override
@@ -25,26 +23,21 @@ public class TheAscended extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new HealthFlat());
-                    put(3, new HealthPercent());
-                    put(4, new HealthMulti());
+                    put(2, new DodgePercent());
+                    put(3, new MajorDodgeFlat());
+
                 }
             }
         };
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
-    }
-
-    @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL50());
     }
 
     @Override
     public String GUID() {
-        return "the_ascended";
+        return "royal_thief_adornments";
     }
 }

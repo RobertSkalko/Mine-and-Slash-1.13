@@ -392,7 +392,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
                     ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
                             .getKey() + " ").appendSibling(CLOC.word("set")
-                            .appendText(": " + TextFormatting.RESET + TextFormatting.LIGHT_PURPLE)
+                            .appendText(": ")
                             .appendSibling(str)));
 
                     event.getToolTip().add(comp);

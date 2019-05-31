@@ -8,42 +8,42 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
 
     @Override
     public int Weight() {
-	return 0;
+        return 0;
     }
 
     @Override
     public int AffixChance() {
-	return 25;
+        return 25;
     }
 
     @Override
     public MinMax SecondaryStatsAmount() {
-	return new MinMax(0, 0);
+        return new MinMax(0, 0);
     }
 
     @Override
     public MinMax StatPercents() {
-	return new MinMax(25, 100);
+        return new MinMax(25, 100);
     }
 
     @Override
     public int SetChance() {
-	return 0;
+        return 100;
     }
 
     @Override
     public float specialItemChance() {
-	return 100;
+        return 100;
     }
 
     @Override
     public int runeSlots() {
-	return 0;
+        return 0;
     }
 
     @Override
     public MinMax SpawnDurabilityHit() {
-	return new MinMax(70, 90);
+        return new MinMax(70, 90);
     }
 
 }

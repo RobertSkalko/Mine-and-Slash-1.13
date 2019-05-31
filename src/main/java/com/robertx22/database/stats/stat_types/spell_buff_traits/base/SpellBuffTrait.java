@@ -51,16 +51,14 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
     }
 
     @Override
-    public int CalcVal(StatData data, UnitData Source) {
+    public void CalcVal(StatData data, UnitData Source) {
 
         if (data.Flat > 0) {
             data.Value = 1;
 
-            return 1;
-
         } else {
             data.Value = 0;
-            return 0;
+
         }
 
     }
