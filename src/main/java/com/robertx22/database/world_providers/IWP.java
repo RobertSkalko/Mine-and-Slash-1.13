@@ -31,7 +31,7 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
     Biome getBiome();
 
     public default ITextComponent locName() {
-        return CLOC.word(this.GUID().toLowerCase());
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     List<String> smallSurfaceDecorations();

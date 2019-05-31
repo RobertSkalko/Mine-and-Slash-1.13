@@ -30,10 +30,6 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IAutoLocName, IAutoL
 
     @Override
     public default ITextComponent locDesc() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
-    }
-
-    public default ITextComponent getStatDescription() {
         return CLOC.blank(locDescLangFileGUID(formattedGUID()));
     }
 
