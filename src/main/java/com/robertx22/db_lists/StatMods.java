@@ -35,10 +35,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.resist.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
@@ -109,6 +106,8 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+                put(new AllEleResistFlat().GUID(), new AllEleResistFlat());
+
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
                 put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
 

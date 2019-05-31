@@ -18,10 +18,7 @@ import com.robertx22.database.stats.stat_types.elementals.pene.FirePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.NaturePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.ThunderPene;
 import com.robertx22.database.stats.stat_types.elementals.pene.WaterPene;
-import com.robertx22.database.stats.stat_types.elementals.resist.FireResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.NatureResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.ThunderResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.stat_types.elementals.resist.*;
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
@@ -70,6 +67,8 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+                put(new AllEleResist().GUID(), new AllEleResist());
+
                 put(new AllEleDmg().GUID(), new AllEleDmg());
                 put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());
 
