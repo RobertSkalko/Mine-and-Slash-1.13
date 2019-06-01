@@ -33,6 +33,8 @@ import com.robertx22.database.unique_items.staffs.*;
 import com.robertx22.database.unique_items.swords.SwordNature;
 import com.robertx22.database.unique_items.swords.SwordPhysical;
 import com.robertx22.database.unique_items.swords.SwordWater;
+import com.robertx22.db_lists.UniqueItems;
+import net.minecraft.item.Item;
 
 public class UniqueItemRegister {
 
@@ -42,89 +44,95 @@ public class UniqueItemRegister {
     public static void register() {
 
         // bows
-        new BowNature();
-        new BowWater();
-        new BowThunder();
-        new BowFire();
+        add(new BowNature());
+        add(new BowWater());
+        add(new BowThunder());
+        add(new BowFire());
 
         // charms
-        new CharmThunder();
-        new CharmWater();
-        new CharmFire();
-        new CharmNature();
+        add(new CharmThunder());
+        add(new CharmWater());
+        add(new CharmFire());
+        add(new CharmNature());
 
         // pants
-        new PantsThunder();
-        new PantsWater();
-        new PantsNature();
-        new PantsFire();
+        add(new PantsThunder());
+        add(new PantsWater());
+        add(new PantsNature());
+        add(new PantsFire());
 
         // helmet
-        new HelmetWater();
-        new HelmetMana();
-        new HelmetFire();
-        new HelmetThunder();
-        new HelmetNature();
+        add(new HelmetWater());
+        add(new HelmetMana());
+        add(new HelmetFire());
+        add(new HelmetThunder());
+        add(new HelmetNature());
 
         // chest
-        new ChestFire();
-        new ChestWater();
-        new ChestDodge();
-        new ChestNature();
-        new ChestThunder();
-        new ChestMana();
+        add(new ChestFire());
+        add(new ChestWater());
+        add(new ChestDodge());
+        add(new ChestNature());
+        add(new ChestThunder());
+        add(new ChestMana());
 
         // boots
-        new BootsNature();
-        new BootsWater();
-        new BootsFire();
-        new BootsThunder();
+        add(new BootsNature());
+        add(new BootsWater());
+        add(new BootsFire());
+        add(new BootsThunder());
 
         // hammers
-        new HammerThunder();
-        new HammerPhysical();
+        add(new HammerThunder());
+        add(new HammerPhysical());
 
         // swords
-        new SwordNature();
-        new SwordWater();
-        new SwordPhysical();
+        add(new SwordNature());
+        add(new SwordWater());
+        add(new SwordPhysical());
 
         // axes
-        new AxeWaterFire();
-        new AxeFire();
-        new AxeThunder();
+        add(new AxeWaterFire());
+        add(new AxeFire());
+        add(new AxeThunder());
 
         // rings
-        new RingDodge();
-        new RingWaterFire();
-        new RingEnergy();
-        new RingCrit();
+        add(new RingDodge());
+        add(new RingWaterFire());
+        add(new RingEnergy());
+        add(new RingCrit());
 
         // bracelets
-        new BraceletThunder();
-        new BraceletWater();
-        new BraceletThunderNature();
-        new BraceletFire();
-        new BraceletNature();
-        new BraceletSetDrop();
+        add(new BraceletThunder());
+        add(new BraceletWater());
+        add(new BraceletThunderNature());
+        add(new BraceletFire());
+        add(new BraceletNature());
+        add(new BraceletSetDrop());
 
         // necklaces
-        new NecklaceNature();
-        new NecklaceWater();
-        new NecklaceFire();
-        new NecklaceThunder();
-        new NecklaceEnergy();
-        new NecklaceSetDrop();
+        add(new NecklaceNature());
+        add(new NecklaceWater());
+        add(new NecklaceFire());
+        add(new NecklaceThunder());
+        add(new NecklaceEnergy());
+        add(new NecklaceSetDrop());
 
         // staffs
-        new StaffFire();
-        new StaffWater();
-        new StaffThunder();
-        new StaffNature();
-        new StaffLifesteal();
+        add(new StaffFire());
+        add(new StaffWater());
+        add(new StaffThunder());
+        add(new StaffNature());
+        add(new StaffLifesteal());
 
         // localization helper
 
+    }
+
+    private static void add(Item item) {
+
+        IUnique uniq = (IUnique) item;
+        UniqueItems.ITEMS.put(uniq.GUID(), item);
     }
 
 }

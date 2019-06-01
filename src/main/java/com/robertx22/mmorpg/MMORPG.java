@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg;
 
 import com.mmorpg_libraries.curios.CurioClientSetup;
+import com.mmorpg_libraries.curios.GenerateCurioDataJsons;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
@@ -119,6 +120,8 @@ public class MMORPG {
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();
             CreateLangFile.create();
+            GenerateCurioDataJsons.generate();
+
         }
 
     }
