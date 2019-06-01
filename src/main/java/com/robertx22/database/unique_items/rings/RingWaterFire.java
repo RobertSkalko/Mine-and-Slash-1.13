@@ -1,7 +1,7 @@
 package com.robertx22.database.unique_items.rings;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseConversionFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseConversionFlat;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;

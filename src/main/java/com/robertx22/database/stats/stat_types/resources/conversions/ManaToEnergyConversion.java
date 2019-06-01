@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_types.resources.conversions;
 
 import com.robertx22.database.stats.ConversionMethod;
-import com.robertx22.database.stats.stat_types.elementals.BaseConversionMod;
+import com.robertx22.database.stats.stat_types.generated.BaseConversionMod;
 import com.robertx22.database.stats.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 

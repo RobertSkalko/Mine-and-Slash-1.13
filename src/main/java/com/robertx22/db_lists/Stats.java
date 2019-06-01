@@ -7,8 +7,6 @@ import com.robertx22.database.stats.stat_types.defense.Armor;
 import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
-import com.robertx22.database.stats.stat_types.elementals.BaseConversionMod;
-import com.robertx22.database.stats.stat_types.elementals.BaseTransferMod;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.*;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackFireDamage;
 import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackNatureDamage;
@@ -27,6 +25,10 @@ import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.FireSp
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.NatureSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.ThunderSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.WaterSpellToAttackDMG;
+import com.robertx22.database.stats.stat_types.generated.BaseConversionMod;
+import com.robertx22.database.stats.stat_types.generated.BaseTransferMod;
+import com.robertx22.database.stats.stat_types.generated.XBonusLootDrop;
+import com.robertx22.database.stats.stat_types.generated.XElementAffinity;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.*;
 import com.robertx22.database.stats.stat_types.offense.weapon_types.*;
@@ -225,12 +227,11 @@ public class Stats {
         }
     };
 
-    static List<IGenerated> generated = Arrays.asList(new BaseConversionMod(), new BaseTransferMod());
+    static List<IGenerated<Stat>> generated = Arrays.asList(new BaseConversionMod(), new BaseTransferMod(), new XElementAffinity(), new XBonusLootDrop());
 
     static {
-        for (IGenerated gen : generated) {
-            for (Object obj : gen.generateAllPossibleStatVariations()) {
-                Stat stat = (Stat) obj;
+        for (IGenerated<Stat> gen : generated) {
+            for (Stat stat : gen.generateAllPossibleStatVariations()) {
                 All.put(stat.GUID(), stat);
             }
 

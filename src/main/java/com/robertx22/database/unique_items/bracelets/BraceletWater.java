@@ -1,11 +1,11 @@
 package com.robertx22.database.unique_items.bracelets;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.uncommon.Styles;

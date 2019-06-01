@@ -1,12 +1,12 @@
 package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;

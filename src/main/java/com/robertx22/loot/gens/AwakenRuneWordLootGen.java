@@ -5,6 +5,7 @@ import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.items.misc.ItemAwakenRuneWord;
 import com.robertx22.loot.LootInfo;
 import com.robertx22.loot.blueprints.AwakenRuneWordBlueprint;
+import com.robertx22.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
 public class AwakenRuneWordLootGen extends BaseLootGen {
@@ -17,6 +18,11 @@ public class AwakenRuneWordLootGen extends BaseLootGen {
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.AWAKEN_RUNEWORD_DROPRATE.get().floatValue();
 
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.AwakenRuneWord;
     }
 
     @Override

@@ -2,9 +2,9 @@ package com.robertx22.database.unique_items.chest;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;

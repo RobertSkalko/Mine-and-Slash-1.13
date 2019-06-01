@@ -1,11 +1,11 @@
 package com.robertx22.database.unique_items.swords;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
 import com.robertx22.uncommon.Styles;

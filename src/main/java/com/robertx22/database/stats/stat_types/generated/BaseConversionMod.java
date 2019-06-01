@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.stat_types.elementals;
+package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.ConversionMethod;
 import com.robertx22.database.stats.Stat;

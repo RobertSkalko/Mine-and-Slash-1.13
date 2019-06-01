@@ -7,6 +7,7 @@ import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -19,6 +20,11 @@ public class SpellLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.SPELL_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.Spell;
     }
 
     @Override

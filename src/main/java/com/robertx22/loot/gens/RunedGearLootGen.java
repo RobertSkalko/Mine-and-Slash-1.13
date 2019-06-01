@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
 public class RunedGearLootGen extends BaseLootGen {
@@ -22,6 +23,11 @@ public class RunedGearLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.RunedItem;
     }
 
     @Override

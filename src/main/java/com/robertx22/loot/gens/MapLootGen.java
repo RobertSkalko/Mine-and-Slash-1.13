@@ -12,6 +12,7 @@ import com.robertx22.loot.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -27,6 +28,11 @@ public class MapLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.MAP_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.Map;
     }
 
     @Override

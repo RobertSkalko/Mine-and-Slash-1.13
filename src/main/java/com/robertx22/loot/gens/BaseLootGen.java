@@ -1,6 +1,7 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.loot.LootInfo;
+import com.robertx22.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 public abstract class BaseLootGen {
 
     public abstract float BaseChance();
+
+    public abstract LootType lootType();
 
     public boolean hasLevelDistancePunishment() {
         return true;

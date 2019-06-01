@@ -10,6 +10,7 @@ import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -22,6 +23,11 @@ public class GearLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.NormalItem;
     }
 
     @Override

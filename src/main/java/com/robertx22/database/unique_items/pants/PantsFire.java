@@ -2,9 +2,9 @@ package com.robertx22.database.unique_items.pants;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;

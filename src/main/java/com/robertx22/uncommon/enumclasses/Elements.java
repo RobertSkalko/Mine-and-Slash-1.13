@@ -1,5 +1,9 @@
 package com.robertx22.uncommon.enumclasses;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Elements implements IColor {
     None(0, new RGB(0, 0, 0)), Fire(1, new RGB(255, 0, 0)), Water(2, new RGB(0, 128, 255)), Thunder(3, new RGB(255, 255, 0)), Nature(4, new RGB(0, 204, 0));
 
@@ -11,6 +15,14 @@ public enum Elements implements IColor {
     }
 
     public int i = 0;
+
+    public static List<Elements> getAll() {
+
+        return Arrays.stream(Elements.values())
+                .filter(x -> x != Elements.None)
+                .collect(Collectors.toList());
+
+    }
 
     public static Elements byNumber(int i) {
 

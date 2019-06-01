@@ -21,8 +21,6 @@ import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseConversionFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.BaseTransferFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
@@ -50,6 +48,10 @@ import com.robertx22.database.stats.stat_mods.flat.resources.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.database.stats.stat_mods.flat.weapon_damages.*;
+import com.robertx22.database.stats.stat_mods.generated.BaseConversionFlat;
+import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.XElementAffinityFlat;
 import com.robertx22.database.stats.stat_mods.multi.defense.*;
 import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllFireDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllNatureDamageMulti;
@@ -373,13 +375,12 @@ public class StatMods {
         }
     };
 
-    static List<IGenerated> generated = Arrays.asList(new BaseConversionFlat(), new BaseTransferFlat());
+    static List<IGenerated<StatMod>> generated = Arrays.asList(new BaseConversionFlat(), new BaseTransferFlat(), new XElementAffinityFlat(), new XBonusLootDropFlat());
 
     static {
-        for (IGenerated gen : generated) {
-            for (Object obj : gen.generateAllPossibleStatVariations()) {
-                StatMod stat = (StatMod) obj;
-                All.put(stat.GUID(), stat);
+        for (IGenerated<StatMod> gen : generated) {
+            for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
+                All.put(statmod.GUID(), statmod);
             }
 
         }

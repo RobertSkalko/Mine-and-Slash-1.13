@@ -7,6 +7,7 @@ import com.robertx22.loot.blueprints.RuneBlueprint;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.datasaving.Rune;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -19,6 +20,11 @@ public class RuneLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.RUNE_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.Rune;
     }
 
     @Override

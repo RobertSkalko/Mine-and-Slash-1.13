@@ -1,8 +1,8 @@
-package com.robertx22.database.stats.stat_mods.flat.elemental;
+package com.robertx22.database.stats.stat_mods.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.elementals.BaseTransferMod;
+import com.robertx22.database.stats.stat_types.generated.BaseTransferMod;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
