@@ -329,6 +329,8 @@ public class Unit {
 
         MyStats.get(Health.GUID).Flat += hpadded;
 
+        Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
+
         if (entity instanceof EntityPlayer) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
 
@@ -336,7 +338,7 @@ public class Unit {
             MobStatUtils.AddMobcStats(data, data.getLevel());
             MobStatUtils.worldMultiplierStats(entity.world, this);
 
-            if (WorldUtils.isMapWorld(entity.world)) {
+            if (isMapWorld) {
                 MobStatUtils.increaseMobStatsPerTier(data, this);
             }
 
@@ -351,7 +353,7 @@ public class Unit {
 
         CommonStatUtils.AddStatusEffectStats(this, level);
 
-        if (WorldUtils.isMapWorld(entity.world)) {
+        if (isMapWorld) {
             CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
         }
 
