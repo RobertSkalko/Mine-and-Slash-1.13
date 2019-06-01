@@ -1,12 +1,18 @@
 package com.robertx22.uncommon.stat_calculation;
 
+import com.robertx22.database.stats.Trait;
+import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
+import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.interfaces.IStatConversion;
+import com.robertx22.uncommon.interfaces.IStatTransfer;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
 
@@ -30,6 +36,49 @@ public class CommonStatUtils {
                         stat.Add(data, level);
                     }
                 }
+            }
+        }
+
+    }
+
+    public static void CalcTraitsAndCoreStats(EntityData.UnitData unit) {
+
+        Unit theunit = unit.getUnit();
+
+        for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
+            StatData statdata = theunit.MyStats.get(core.GUID());
+            if (statdata.Value > 0) {
+                core.addToOtherStats(unit, statdata);
+            }
+
+        }
+        for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
+            StatData statdata = theunit.MyStats.get(trait.GUID());
+            if (statdata.Value > 0) {
+                trait.TryAffectOtherStats(unit);
+            }
+
+        }
+
+    }
+
+    /**
+     * A unit copy is needed so there's no randomness to stat transfers and
+     * conversions. All changes are based on old copy but applied to the unit that's
+     * used
+     */
+    public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
+
+        for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
+            StatData statdata = copy.MyStats.get(core.GUID());
+            if (statdata.Value > 0) {
+                core.convertStats(copy, unit, copy.MyStats.get(core.GUID()));
+            }
+        }
+        for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
+            StatData statdata = copy.MyStats.get(core.GUID());
+            if (statdata.Value > 0) {
+                core.transferStats(copy, unit, copy.MyStats.get(core.GUID()));
             }
         }
 

@@ -355,8 +355,8 @@ public class Unit {
             CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
         }
 
-        PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
-        PlayerStatUtils.CalcTraitsAndCoreStats(data);
+        CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
+        CommonStatUtils.CalcTraitsAndCoreStats(data);
 
         CalcStats(data);
 

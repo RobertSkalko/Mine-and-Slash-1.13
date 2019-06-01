@@ -58,6 +58,7 @@ import com.robertx22.database.stats.stat_types.traits.low_crit_hit.LowCritHitAdd
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
+import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.Arrays;
@@ -228,6 +229,8 @@ public class Stats {
     };
 
     static List<IGenerated<Stat>> generated = Arrays.asList(new BaseConversionMod(), new BaseTransferMod(), new XElementAffinity(), new XBonusLootDrop());
+
+    public static AllPreGenMapStats allPreGenMapStatLists = new AllPreGenMapStats();
 
     static {
         for (IGenerated<Stat> gen : generated) {

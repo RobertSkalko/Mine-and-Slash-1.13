@@ -3,10 +3,7 @@ package com.robertx22.uncommon.stat_calculation;
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.sets.Set;
-import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.Trait;
-import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
@@ -16,8 +13,6 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndSta
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.interfaces.IStatConversion;
-import com.robertx22.uncommon.interfaces.IStatTransfer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,48 +60,6 @@ public class PlayerStatUtils {
         unit.MyStats.get("Critical Damage").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level
                 .get());
-
-    }
-
-    public static void CalcTraitsAndCoreStats(UnitData unit) {
-
-        for (StatData statdata : unit.getUnit().MyStats.values()) {
-            Stat stat = statdata.GetStat();
-            if (statdata.Value > 0) {
-                if (stat instanceof Trait) {
-                    Trait affects = (Trait) stat;
-                    affects.TryAffectOtherStats(unit);
-                } else if (stat instanceof ICoreStat) {
-                    ICoreStat core = (ICoreStat) stat;
-                    core.addToOtherStats(unit, statdata);
-                }
-            }
-        }
-
-    }
-
-    /**
-     * A unit copy is needed so there's no randomness to stat transfers and
-     * conversions. All changes are based on old copy but applied to the unit that's
-     * used
-     */
-    public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
-
-        for (StatData statdata : copy.MyStats.values()) {
-
-            Stat stat = statdata.GetStat();
-            if (statdata.Value > 0) {
-                if (stat instanceof IStatConversion) {
-                    IStatConversion affects = (IStatConversion) stat;
-                    affects.convertStats(copy, unit, statdata);
-                }
-                if (stat instanceof IStatTransfer) {
-                    IStatTransfer affects = (IStatTransfer) stat;
-                    affects.transferStats(copy, unit, statdata);
-                }
-            }
-
-        }
 
     }
 

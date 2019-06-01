@@ -21,7 +21,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
+public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, IStatInterface {
 
     public Stat() {
     }
