@@ -6,6 +6,7 @@ import com.robertx22.database.world_providers.IWP;
 import com.robertx22.loot.gens.BaseLootGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityLivingBase;
@@ -98,8 +99,12 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit().MyStats.get(new XBonusLootDrop(gen.lootType()))
-                    .getMultiplier();
+            chance *= this.playerData.getUnit().MyStats.get(new XBonusLootDrop(gen.lootType())
+                    .GUID()).getMultiplier();
+
+            chance *= this.playerData.getUnit().MyStats.get(new XBonusLootDrop(LootType.All)
+                    .GUID()).getMultiplier();
+
         }
 
         if (killer != null) {

@@ -9,10 +9,7 @@ import com.robertx22.database.affixes.prefixes.defense.element.PrefixFireRes;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixNatureRes;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixThunderRes;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixWaterRes;
-import com.robertx22.database.affixes.prefixes.misc.ThirstOfAcid;
-import com.robertx22.database.affixes.prefixes.misc.ThirstOfFlame;
-import com.robertx22.database.affixes.prefixes.misc.ThirstOfFrost;
-import com.robertx22.database.affixes.prefixes.misc.ThirstOfLightning;
+import com.robertx22.database.affixes.prefixes.misc.*;
 import com.robertx22.database.affixes.prefixes.offense.*;
 import com.robertx22.database.affixes.prefixes.offense.damage_percents.*;
 import com.robertx22.database.affixes.prefixes.offense.imbued.FlameImbued;
@@ -39,6 +36,10 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+                add(new Looters());
+                add(new Archaeologists());
+                add(new TreasureSeeker());
+
                 add(new Wise());
                 add(new Tenacious());
 
