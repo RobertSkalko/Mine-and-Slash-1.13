@@ -450,6 +450,8 @@ public class EntityData {
             level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
                     .get());
 
+            this.equipsChanged = true;
+
         }
 
         @Override
@@ -487,6 +489,7 @@ public class EntityData {
         @Override
         public void setRarity(int rarity) {
             this.rarity = rarity;
+            this.equipsChanged = true;
 
         }
 

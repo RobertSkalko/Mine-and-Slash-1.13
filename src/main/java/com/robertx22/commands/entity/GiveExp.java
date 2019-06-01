@@ -1,4 +1,4 @@
-package com.robertx22.commands;
+package com.robertx22.commands.entity;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;

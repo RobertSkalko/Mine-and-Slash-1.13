@@ -1,8 +1,10 @@
 package com.robertx22.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.commands.GiveExp;
-import com.robertx22.commands.SetLevel;
+import com.robertx22.commands.entity.GiveExp;
+import com.robertx22.commands.entity.SetEntityLevel;
+import com.robertx22.commands.entity.SetEntityRarity;
+import com.robertx22.commands.entity.SetLevel;
 import com.robertx22.commands.giveitems.*;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.MinecraftServer;
@@ -25,6 +27,7 @@ public class CommandRegister {
         GiveRunedGear.register(dispatcher);
         GiveSpell.register(dispatcher);
         GiveUnique.register(dispatcher);
-
+        SetEntityLevel.register(dispatcher);
+        SetEntityRarity.register(dispatcher);
     }
 }
