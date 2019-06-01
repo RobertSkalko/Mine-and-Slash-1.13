@@ -59,8 +59,8 @@ public class GearBlueprint extends ItemBlueprint {
 
     }
 
-    private boolean isCustomSetChance = false;
-    private float customSetChance = 0;
+    public boolean isCustomSetChance = false;
+    public float customSetChance = 0;
 
     public void SetCustomSetChance(float chance) {
         isCustomSetChance = true;

@@ -16,6 +16,7 @@ import com.robertx22.database.sets.mid_lvl.ArmorOfTheElements;
 import com.robertx22.database.sets.mid_lvl.ArtifactArmor;
 import com.robertx22.database.sets.mid_lvl.SpiritOfTheArcane;
 import com.robertx22.database.sets.mid_lvl.TheProtector;
+import com.robertx22.database.sets.uniques.TreasureFinder;
 import com.robertx22.db_lists.bases.IRandomDefault;
 
 import java.util.HashMap;

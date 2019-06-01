@@ -1,4 +1,4 @@
-package com.robertx22.database.sets.from_lvl_50;
+package com.robertx22.database.sets.uniques;
 
 import com.robertx22.database.requirements.ExactUniquesRequierement;
 import com.robertx22.database.requirements.Requirements;
@@ -21,6 +21,11 @@ public class TreasureFinder extends Set {
     }
 
     @Override
+    public int Weight() {
+        return IWeighted.UniqueSetSuperCommonWeight;
+    }
+
+    @Override
     public HashMap<Integer, StatMod> AllMods() {
 
         return new HashMap<Integer, StatMod>() {
@@ -30,11 +35,6 @@ public class TreasureFinder extends Set {
                 }
             }
         };
-    }
-
-    @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
     }
 
     @Override
