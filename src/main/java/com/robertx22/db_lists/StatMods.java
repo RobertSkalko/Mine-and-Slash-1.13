@@ -108,6 +108,7 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+                put(new AllAttributesFlat().GUID(), new AllAttributesFlat());
                 put(new AllEleResistFlat().GUID(), new AllEleResistFlat());
 
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());

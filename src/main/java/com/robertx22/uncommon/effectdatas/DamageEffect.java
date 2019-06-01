@@ -41,6 +41,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public int ArmorPene;
     public int ElementalPene;
 
+    public float damageMultiplier = 1;
+
     public float healthHealed;
     public float manaRestored;
 
@@ -66,6 +68,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     @Override
     protected void activate() {
+
+        this.Number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
 
         boolean fullyblocked = false;
 
@@ -133,11 +137,17 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
+    public DamageEffect setMultiplier(float multi) {
+        this.damageMultiplier = multi;
+        return this;
+    }
+
     private void addBonusElementDamage() {
         for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.Element = entry.getKey();
+                bonus.damageMultiplier = this.damageMultiplier;
                 bonus.Activate();
             }
         }

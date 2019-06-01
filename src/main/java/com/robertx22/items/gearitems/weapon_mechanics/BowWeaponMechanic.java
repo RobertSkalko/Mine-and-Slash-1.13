@@ -30,7 +30,7 @@ public class BowWeaponMechanic extends WeaponMechanic {
                           EntityData.UnitData unitsource,
                           EntityData.UnitData targetUnit) {
 
-        super.AttackXTimes(source, target, unitsource, targetUnit, 2);
+        super.multiplyDamage(source, target, unitsource, targetUnit, 2);
 
         return true;
     }

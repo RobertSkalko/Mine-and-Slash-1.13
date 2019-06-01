@@ -27,15 +27,16 @@ public abstract class WeaponMechanic {
         return true;
     }
 
-    public boolean AttackXTimes(EntityLivingBase source, EntityLivingBase target,
-                                UnitData unitsource, UnitData targetUnit, int times) {
+    public boolean multiplyDamage(EntityLivingBase source, EntityLivingBase target,
+                                  UnitData unitsource, UnitData targetUnit,
+                                  float multiplier) {
 
         int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
         DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
 
-        for (int i = 0; i < times; i++) {
-            dmg.Activate();
-        }
+        dmg.setMultiplier(multiplier);
+
+        dmg.Activate();
 
         return true;
     }

@@ -70,13 +70,11 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+                put(new AllAttributes().GUID(), new AllAttributes());
                 put(new AllEleResist().GUID(), new AllEleResist());
-
                 put(new AllEleDmg().GUID(), new AllEleDmg());
                 put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());
-
                 put(new SpellDamage().GUID(), new SpellDamage());
-
                 // major arcana tarot
                 put(new Judgement().GUID(), new Judgement());
                 put(new StrengthArcana().GUID(), new StrengthArcana());

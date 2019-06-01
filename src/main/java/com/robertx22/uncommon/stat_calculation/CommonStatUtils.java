@@ -2,6 +2,7 @@ package com.robertx22.uncommon.stat_calculation;
 
 import com.robertx22.database.stats.Trait;
 import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
+import com.robertx22.database.stats.stat_types.core_stats.IPreCoreStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
@@ -45,19 +46,23 @@ public class CommonStatUtils {
 
         Unit theunit = unit.getUnit();
 
+        for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
+            StatData statdata = theunit.MyStats.get(core.GUID());
+            if (statdata.Value > 0) {
+                core.addToCoreStats(unit, statdata);
+            }
+        }
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
             StatData statdata = theunit.MyStats.get(core.GUID());
             if (statdata.Value > 0) {
                 core.addToOtherStats(unit, statdata);
             }
-
         }
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
             StatData statdata = theunit.MyStats.get(trait.GUID());
             if (statdata.Value > 0) {
                 trait.TryAffectOtherStats(unit);
             }
-
         }
 
     }

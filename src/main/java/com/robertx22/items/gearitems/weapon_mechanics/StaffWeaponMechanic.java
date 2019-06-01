@@ -29,7 +29,7 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     public boolean Attack(EntityLivingBase source, EntityLivingBase target,
                           UnitData unitsource, UnitData targetUnit) {
 
-        super.AttackXTimes(source, target, unitsource, targetUnit, 2);
+        super.multiplyDamage(source, target, unitsource, targetUnit, 2);
 
         return true;
     }
