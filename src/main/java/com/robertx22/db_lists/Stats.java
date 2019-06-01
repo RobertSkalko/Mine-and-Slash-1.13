@@ -25,13 +25,9 @@ import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.FireSp
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.NatureSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.ThunderSpellToAttackDMG;
 import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.WaterSpellToAttackDMG;
-import com.robertx22.database.stats.stat_types.generated.BaseConversionMod;
-import com.robertx22.database.stats.stat_types.generated.BaseTransferMod;
-import com.robertx22.database.stats.stat_types.generated.XBonusLootDrop;
-import com.robertx22.database.stats.stat_types.generated.XElementAffinity;
+import com.robertx22.database.stats.stat_types.generated.*;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.*;
-import com.robertx22.database.stats.stat_types.offense.weapon_types.*;
 import com.robertx22.database.stats.stat_types.resources.*;
 import com.robertx22.database.stats.stat_types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.database.stats.stat_types.resources.conversions.ManaToEnergyConversion;
@@ -140,12 +136,6 @@ public class Stats {
 
                 // weapon damages
 
-                put(new HammerDamage().GUID(), new HammerDamage());
-                put(new SwordDamage().GUID(), new SwordDamage());
-                put(new BowDamage().GUID(), new BowDamage());
-                put(new AxeDamage().GUID(), new AxeDamage());
-                put(new StaffDamage().GUID(), new StaffDamage());
-
                 put(UnknownStat.GUID, new UnknownStat());
                 // Resources
                 put(Health.GUID, new Health());
@@ -233,6 +223,7 @@ public class Stats {
                 add(new BaseTransferMod());
                 add(new XElementAffinity());
                 add(new XBonusLootDrop());
+                add(new WeaponDamage());
 
             }
         }

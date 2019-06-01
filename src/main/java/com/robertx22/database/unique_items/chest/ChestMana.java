@@ -5,10 +5,11 @@ import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
-import com.robertx22.database.stats.stat_mods.flat.weapon_damages.StaffDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ChestMana extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new EnergyToManaConvFlat(), new HealthFlat(), new ManaFlat(), new EnergyRegenFlat(), new StaffDamageFlat(), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new EnergyToManaConvFlat(), new HealthFlat(), new ManaFlat(), new EnergyRegenFlat(), new WeaponDamageFlat(WeaponTypes.Staff), new CrippleLifeOnHitPercent());
     }
 
     @Override

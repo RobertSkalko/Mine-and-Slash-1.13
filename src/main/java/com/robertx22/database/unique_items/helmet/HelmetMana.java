@@ -6,10 +6,11 @@ import com.robertx22.database.stats.stat_mods.flat.MajorDodgeFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.MajorManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.database.stats.stat_mods.flat.weapon_damages.StaffDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,7 @@ public class HelmetMana extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(), new MajorDodgeFlat(), new ArmorFlat(), new StaffDamageFlat());
+        return Arrays.asList(new HealthFlat(), new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(), new MajorDodgeFlat(), new ArmorFlat(), new WeaponDamageFlat(WeaponTypes.Staff));
     }
 
     @Override

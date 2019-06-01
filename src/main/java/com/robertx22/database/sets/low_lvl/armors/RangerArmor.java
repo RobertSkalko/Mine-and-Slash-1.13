@@ -6,7 +6,8 @@ import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.weapon_damages.BowDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.HashMap;
 
@@ -24,7 +25,7 @@ public class RangerArmor extends Set {
             {
                 {
                     put(2, new CriticalDamageFlat());
-                    put(3, new BowDamageFlat());
+                    put(3, new WeaponDamageFlat(WeaponTypes.Bow));
 
                 }
             }

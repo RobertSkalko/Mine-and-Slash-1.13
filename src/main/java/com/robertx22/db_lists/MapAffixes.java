@@ -16,9 +16,11 @@ import com.robertx22.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
-import com.robertx22.database.map_affixes.detrimental.weapon.*;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MapAffixes {
     public static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>() {
@@ -55,14 +57,26 @@ public class MapAffixes {
                 put(new LessHealthAffix().GUID(), new LessHealthAffix());
                 put(new LessManaOnHitAffix().GUID(), new LessManaOnHitAffix());
 
-                // weapon damages
-                put(new LessHammerDamageAffix().GUID(), new LessHammerDamageAffix());
-                put(new LessSwordDamageAffix().GUID(), new LessSwordDamageAffix());
-                put(new LessBowDamageAffix().GUID(), new LessBowDamageAffix());
-                put(new LessAxeDamageAffix().GUID(), new LessAxeDamageAffix());
-                put(new LessStaffDamageAffix().GUID(), new LessStaffDamageAffix());
+            }
+        }
+    };
+
+    private static List<IGenerated<BaseMapAffix>> generated = new ArrayList<IGenerated<BaseMapAffix>>() {
+        {
+            {
+                add(new LessWeaponDamageMapAffix());
 
             }
         }
     };
+
+    static {
+        for (IGenerated<BaseMapAffix> gen : generated) {
+            for (BaseMapAffix statmod : gen.generateAllPossibleStatVariations()) {
+                All.put(statmod.GUID(), statmod);
+            }
+
+        }
+    }
+
 }

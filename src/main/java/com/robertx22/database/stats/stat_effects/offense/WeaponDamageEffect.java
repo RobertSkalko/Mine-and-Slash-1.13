@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_effects.offense;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.WeaponDamageStat;
+import com.robertx22.database.stats.stat_types.generated.WeaponDamage;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
@@ -25,9 +25,9 @@ public class WeaponDamageEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && stat instanceof WeaponDamageStat) {
+            if (Effect instanceof DamageEffect && stat instanceof WeaponDamage) {
 
-                WeaponDamageStat weapon = (WeaponDamageStat) stat;
+                WeaponDamage weapon = (WeaponDamage) stat;
 
                 if (weapon.weaponType().equals(Effect.weaponType)) {
                     DamageEffect dmgeffect = (DamageEffect) Effect;

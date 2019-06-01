@@ -1,5 +1,6 @@
 package com.robertx22.db_lists;
 
+import com.robertx22.database.map_mods.bases.LessWeaponDamageFlat;
 import com.robertx22.database.map_mods.bonus.BonusHealthMap;
 import com.robertx22.database.map_mods.bonus.BonusLifestealMap;
 import com.robertx22.database.map_mods.bonus.ele_dmg.BonusFireDamageMap;
@@ -15,7 +16,6 @@ import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllFireDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllNatureDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllThunderDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
-import com.robertx22.database.map_mods.minus.weapon.*;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
@@ -47,11 +47,7 @@ import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
-import com.robertx22.database.stats.stat_mods.flat.weapon_damages.*;
-import com.robertx22.database.stats.stat_mods.generated.BaseConversionFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
-import com.robertx22.database.stats.stat_mods.generated.XElementAffinityFlat;
+import com.robertx22.database.stats.stat_mods.generated.*;
 import com.robertx22.database.stats.stat_mods.multi.defense.*;
 import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllFireDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllNatureDamageMulti;
@@ -197,18 +193,6 @@ public class StatMods {
                 put(new LordOfEarthquakesFlat().GUID(), new LordOfEarthquakesFlat());
 
                 // weapon damages
-
-                put(new HammerDamageFlat().GUID(), new HammerDamageFlat());
-                put(new SwordDamageFlat().GUID(), new SwordDamageFlat());
-                put(new BowDamageFlat().GUID(), new BowDamageFlat());
-                put(new AxeDamageFlat().GUID(), new AxeDamageFlat());
-                put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
-
-                put(new LessHammerDamageMap().GUID(), new LessHammerDamageMap());
-                put(new LessSwordDamageMap().GUID(), new LessSwordDamageMap());
-                put(new LessBowDamageMap().GUID(), new LessBowDamageMap());
-                put(new LessAxeDamageMap().GUID(), new LessAxeDamageMap());
-                put(new LessStaffDamageMap().GUID(), new LessStaffDamageMap());
 
                 // less stats
 
@@ -383,6 +367,8 @@ public class StatMods {
                 add(new BaseTransferFlat());
                 add(new XElementAffinityFlat());
                 add(new XBonusLootDropFlat());
+                add(new WeaponDamageFlat());
+                add(new LessWeaponDamageFlat());
 
             }
         }

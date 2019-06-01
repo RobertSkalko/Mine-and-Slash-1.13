@@ -7,6 +7,7 @@ import com.robertx22.uncommon.interfaces.IWeighted;
 import java.util.Random;
 
 public abstract class StatMod implements IWeighted, IGUID {
+    public String GUID;
 
     @Override
     public int Weight() {
