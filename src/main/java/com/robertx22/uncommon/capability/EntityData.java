@@ -718,9 +718,12 @@ public class EntityData {
 
         @Override
         public void heal(EntityLivingBase entity, int healthrestored) {
-            entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
-                    .get()
-                    .floatValue(), entity));
+
+            if (entity.isAlive()) {
+                entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
+                        .get()
+                        .floatValue(), entity));
+            }
         }
 
         @Override

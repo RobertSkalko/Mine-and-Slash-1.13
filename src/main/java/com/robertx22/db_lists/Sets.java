@@ -27,6 +27,8 @@ public class Sets implements IRandomDefault<Set> {
     public static HashMap<String, Set> All = new HashMap<String, Set>() {
         {
             {
+                put(new TreasureFinder().GUID(), new TreasureFinder());
+
                 //high lvl
                 put(new MysticalOrnaments().GUID(), new MysticalOrnaments());
                 put(new ElementalEssence().GUID(), new ElementalEssence());

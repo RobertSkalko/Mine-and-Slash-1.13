@@ -53,7 +53,7 @@ public class BarsGUI extends Gui {
 
             ticks++;
 
-            if (ticks > 12) {
+            if (ticks > 10) {
                 UnitData newData = Load.Unit(mc.player);
 
                 ticks = 0;

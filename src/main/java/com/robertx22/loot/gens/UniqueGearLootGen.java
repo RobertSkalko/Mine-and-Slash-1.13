@@ -72,17 +72,17 @@ public class UniqueGearLootGen extends BaseLootGen {
             data.gearTypeName = gearslot.GUID();
             data.Rarity = rarity.Rank();
 
-            if (RandomUtils.roll(rarity.AffixChance())) {
+            if (unique.canGetSet()) {
+                data.set = blueprint.GenerateSet(data);
+            }
 
+            if (RandomUtils.roll(rarity.AffixChance())) {
                 data.suffix = new SuffixData();
                 data.suffix.RerollFully(data);
-
             }
             if (RandomUtils.roll(rarity.AffixChance())) {
-
                 data.prefix = new PrefixData();
                 data.prefix.RerollFully(data);
-
             }
 
         }

@@ -106,6 +106,7 @@ public class UniqueItemRegister {
         new BraceletThunderNature();
         new BraceletFire();
         new BraceletNature();
+        new BraceletSetDrop();
 
         // necklaces
         new NecklaceNature();
@@ -113,6 +114,7 @@ public class UniqueItemRegister {
         new NecklaceFire();
         new NecklaceThunder();
         new NecklaceEnergy();
+        new NecklaceSetDrop();
 
         // staffs
         new StaffFire();

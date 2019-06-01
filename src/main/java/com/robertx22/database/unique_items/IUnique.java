@@ -23,6 +23,10 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IAutoLocName, IAutoL
 
     String slot();
 
+    public default boolean canGetSet() {
+        return false;
+    }
+
     @Override
     public default ITextComponent locName() {
         return CLOC.blank(locNameLangFileGUID(formattedGUID()));

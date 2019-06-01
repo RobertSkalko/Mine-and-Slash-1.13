@@ -3,6 +3,7 @@ package com.robertx22.onevent.entity;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +20,12 @@ public class OnEquipChange {
             EntityData.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
             data.recalculateStats(entity);
+
+            if (entity instanceof EntityPlayer) {
+                data.syncToClient((EntityPlayer) entity);
+            }
         }
+
     }
 
 }
