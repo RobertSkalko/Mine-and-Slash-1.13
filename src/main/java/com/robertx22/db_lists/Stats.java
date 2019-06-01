@@ -61,7 +61,7 @@ import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -228,7 +228,17 @@ public class Stats {
         }
     };
 
-    static List<IGenerated<Stat>> generated = Arrays.asList(new BaseConversionMod(), new BaseTransferMod(), new XElementAffinity(), new XBonusLootDrop());
+    private static List<IGenerated<Stat>> generated = new ArrayList<IGenerated<Stat>>() {
+        {
+            {
+                add(new BaseConversionMod());
+                add(new BaseTransferMod());
+                add(new XElementAffinity());
+                add(new XBonusLootDrop());
+
+            }
+        }
+    };
 
     public static AllPreGenMapStats allPreGenMapStatLists = new AllPreGenMapStats();
 

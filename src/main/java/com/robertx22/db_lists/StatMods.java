@@ -99,7 +99,7 @@ import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfVolcanoesFl
 import com.robertx22.database.stats.stat_mods.traits.major_arcana.*;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -375,7 +375,17 @@ public class StatMods {
         }
     };
 
-    static List<IGenerated<StatMod>> generated = Arrays.asList(new BaseConversionFlat(), new BaseTransferFlat(), new XElementAffinityFlat(), new XBonusLootDropFlat());
+    private static List<IGenerated<StatMod>> generated = new ArrayList<IGenerated<StatMod>>() {
+        {
+            {
+                add(new BaseConversionFlat());
+                add(new BaseTransferFlat());
+                add(new XElementAffinityFlat());
+                add(new XBonusLootDropFlat());
+
+            }
+        }
+    };
 
     static {
         for (IGenerated<StatMod> gen : generated) {

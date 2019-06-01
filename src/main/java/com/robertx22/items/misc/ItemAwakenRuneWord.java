@@ -6,6 +6,7 @@ import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
@@ -14,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -45,14 +45,15 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
         if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
             Tooltip.add("", tooltip);
-            Tooltip.add(CLOC.word("runeword") + ":", tooltip);
+            Tooltip.add(Styles.GOLDCOMP()
+                    .appendSibling(CLOC.word("runeword").appendText(": ")), tooltip);
 
             String word = this.getWord(stack);
 
             RuneWord runeword = RuneWords.All.get(word);
 
-            Tooltip.add(runeword.locName()
-                    .setStyle(new Style().setColor(TextFormatting.GOLD)), tooltip);
+            Tooltip.add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(runeword
+                    .locName()), tooltip);
 
             Tooltip.add(new TextComponentString(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
 
@@ -61,8 +62,10 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             Tooltip.add("", tooltip);
 
         }
-        Tooltip.add(CLOC.tooltip("place_in_modify"), tooltip);
-        Tooltip.add(CLOC.tooltip("unlocks_runeword_combo"), tooltip);
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.tooltip("place_in_modify")), tooltip);
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.tooltip("unlocks_runeword_combo")), tooltip);
     }
 
     @Override

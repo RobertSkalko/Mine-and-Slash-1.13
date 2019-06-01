@@ -38,7 +38,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -522,9 +521,8 @@ public class EntityData {
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                         .appendSibling(new TextComponentString("[Lv:" + this.getLevel() + "] "));
 
-                ITextComponent suffix = rarityprefix.appendText(" ")
-                        .appendSibling(name)
-                        .setStyle(new Style().setColor(rarity.textFormatColor()));
+                ITextComponent suffix = new TextComponentString(rarity.textFormatColor() + "")
+                        .appendSibling(rarityprefix.appendText(" ").appendSibling(name));
 
                 return lvlcomp.appendSibling(suffix);
 

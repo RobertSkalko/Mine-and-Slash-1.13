@@ -47,7 +47,7 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
 
     @Override
     public ITextComponent Description() {
-        return CLOC.tooltip(this.GUID().toLowerCase().replaceAll(" ", "_"));
+        return CLOC.tooltip(formattedGUID());
     }
 
     @Override

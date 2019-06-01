@@ -125,6 +125,7 @@ public abstract class EffectData {
             activate();
 
         }
+
     }
 
     protected abstract void activate();
@@ -135,8 +136,6 @@ public abstract class EffectData {
             return this;
         }
 
-        EffectData Data = this;
-
         List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
         Effects = AddEffects(Effects, unit);
@@ -145,14 +144,14 @@ public abstract class EffectData {
 
         for (EffectUnitStat item : Effects) {
             if (item.stat.Value != 0) {
-                if (AffectsThisUnit(item.effect, Data, item.source)) {
-                    item.effect.TryModifyEffect(Data, item.source, item.stat, item.stat.GetStat());
+                if (AffectsThisUnit(item.effect, this, item.source)) {
+                    item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
                 }
 
             }
         }
 
-        return Data;
+        return this;
     }
 
     public boolean AffectsThisUnit(IStatEffect effect, EffectData data, Unit source) {

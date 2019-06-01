@@ -19,7 +19,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.network.NetworkDirection;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -41,7 +40,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public Elements Element = Elements.None;
     public int ArmorPene;
     public int ElementalPene;
-    
+
     public float healthHealed;
     public float manaRestored;
 
@@ -112,9 +111,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                 EntityPlayerMP player = (EntityPlayerMP) Source;
                 DmgNumPacket packet = new DmgNumPacket(Target, this.Element, FormatDamageNumber(this));
-                MMORPG.Network.sendTo(packet, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+                MMORPG.sendToClient(packet, player);
 
             }
+
         }
 
     }
@@ -138,7 +138,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.Element = entry.getKey();
-                //bonus.needsToRecalcStats = false; not needed anymore as i use actual equipsChanged boolean
                 bonus.Activate();
             }
         }

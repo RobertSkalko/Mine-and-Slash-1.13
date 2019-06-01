@@ -28,6 +28,11 @@ public class OnMobSpawn {
 
         UnitData endata = Load.Unit(entity);
 
+        if (endata.needsToBeGivenStats() == false) {
+            endata.getUnit().InitMobStats(); // give new stats to mob on spawn
+            endata.forceRecalculateStats(entity);
+        }
+
         if (endata != null) {
 
             if (entity instanceof EntityPlayer) {

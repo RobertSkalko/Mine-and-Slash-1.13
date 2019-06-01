@@ -62,13 +62,10 @@ public class Unit {
 
     public void InitMobStats() {
 
-        if (MyStats == null) {
-            MyStats = new HashMap<String, StatData>();
-            // adds all stats
-            for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-                MyStats.put(stat.GUID(), new StatData(stat));
-            }
-
+        MyStats = new HashMap<String, StatData>();
+        // adds all stats
+        for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
+            MyStats.put(stat.GUID(), new StatData(stat));
         }
 
     }

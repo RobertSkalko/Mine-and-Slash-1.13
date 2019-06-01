@@ -87,6 +87,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
             }
         }
     };
+
     public static HashMap<String, Prefix> all = new HashMap<>();
 
     static {
