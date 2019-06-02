@@ -40,6 +40,6 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return "Attack" + element.name() + "DamageFlat";
+        return "Spell" + element.name() + "DamageFlat";
     }
 }

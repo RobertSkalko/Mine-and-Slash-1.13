@@ -40,7 +40,7 @@ public class ElementalSpellDamagePercent extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.name() + "DamagePercent";
+        return "Spell" + element.name() + "DamagePercent";
     }
 }
 

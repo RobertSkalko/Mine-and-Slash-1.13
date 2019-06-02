@@ -3,6 +3,7 @@ package com.robertx22.uncommon.stat_calculation;
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.sets.Set;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
@@ -145,11 +146,20 @@ public class PlayerStatUtils {
                 List<LevelAndStats> levelstats = gear.GetAllStats(gear.level);
                 for (LevelAndStats datas : levelstats) {
                     for (StatModData data : datas.mods) {
-                        StatData stat = unit.MyStats.get(data.GetBaseMod()
-                                .GetBaseStat()
-                                .GUID());
-                        if (stat != null) {
-                            stat.Add(data, datas.level);
+
+                        StatMod mod = data.GetBaseMod();
+
+                        if (mod == null) {
+                            System.out.println(data.baseModName + " is null");
+                        } else {
+                            Stat stat = data.GetBaseMod().GetBaseStat();
+
+                            if (stat != null) {
+                                StatData statdata = unit.MyStats.get(stat.GUID());
+                                if (statdata != null) {
+                                    statdata.Add(data, datas.level);
+                                }
+                            }
                         }
                     }
                 }

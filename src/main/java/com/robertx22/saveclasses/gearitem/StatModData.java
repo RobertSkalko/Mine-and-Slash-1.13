@@ -13,8 +13,10 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.List;
 
 @Storable
@@ -127,8 +129,13 @@ public class StatModData implements ITooltipString {
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        return GetBaseMod().GetBaseStat().getTooltipList(info, this);
+        try {
+            return GetBaseMod().GetBaseStat().getTooltipList(info, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        return Arrays.asList(new TextComponentString(""));
     }
 
 }

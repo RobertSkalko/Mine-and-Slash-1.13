@@ -80,6 +80,7 @@ public class Stats {
                 put(new TheWorld().GUID(), new TheWorld());
                 put(new Tower().GUID(), new Tower());
                 put(new WheelOfFortune().GUID(), new WheelOfFortune());
+                put(new TheStar().GUID(), new TheStar());
                 // major arcana tarot
 
                 put(new Strength().GUID(), new Strength());

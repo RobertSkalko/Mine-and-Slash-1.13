@@ -106,6 +106,7 @@ public class StatMods {
                 put(new TheWorldFlat().GUID(), new TheWorldFlat());
                 put(new TowerFlat().GUID(), new TowerFlat());
                 put(new WheelOfFortuneFlat().GUID(), new WheelOfFortuneFlat());
+                put(new TheStarFlat().GUID(), new TheStarFlat());
                 // major arcana tarot
 
                 put(new StrengthFlat().GUID(), new StrengthFlat());
