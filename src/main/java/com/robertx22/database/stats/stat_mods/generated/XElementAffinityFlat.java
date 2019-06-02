@@ -13,14 +13,12 @@ import java.util.List;
 public class XElementAffinityFlat extends StatMod implements IGenerated<StatMod> {
 
     public Elements element;
-    public String GUID;
 
     public XElementAffinityFlat() {
     }
 
     public XElementAffinityFlat(Elements element) {
         this.element = element;
-        this.GUID = element.toString() + "_affinity_flat";
 
     }
 
@@ -46,7 +44,7 @@ public class XElementAffinityFlat extends StatMod implements IGenerated<StatMod>
 
     @Override
     public String GUID() {
-        return GUID;
+        return element.toString() + "_affinity_flat";
     }
 
     @Override

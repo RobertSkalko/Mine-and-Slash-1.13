@@ -14,7 +14,6 @@ import java.util.List;
 public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
 
     public LootType type;
-    public String GUID;
 
     public XBonusLootDropFlat() {
 
@@ -22,7 +21,6 @@ public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
 
     public XBonusLootDropFlat(LootType type) {
         this.type = type;
-        this.GUID = "bonus_" + type + "_drops_flat";
 
     }
 
@@ -48,7 +46,7 @@ public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
 
     @Override
     public String GUID() {
-        return GUID;
+        return "bonus_" + type + "_drops_flat";
     }
 
     @Override

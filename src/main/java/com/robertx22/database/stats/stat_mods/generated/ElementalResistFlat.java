@@ -3,34 +3,33 @@ package com.robertx22.database.stats.stat_mods.generated;
 import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.generated.ElementalAttackDamage;
+import com.robertx22.database.stats.stat_types.generated.ElementalResist;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class ElementalAttackDamageFlat extends ElementalStatMod {
+public class ElementalResistFlat extends ElementalStatMod {
 
-    public ElementalAttackDamageFlat() {
+    public ElementalResistFlat() {
         super(Elements.None);
     }
 
-    public ElementalAttackDamageFlat(Elements element) {
+    public ElementalResistFlat(Elements element) {
         super(element);
-
     }
 
     @Override
     public StatMod getStatMod(Elements element) {
-        return new ElementalAttackDamageFlat(element);
+        return new ElementalResistFlat(element);
     }
 
     @Override
     public Stat GetBaseStat() {
-        return new ElementalAttackDamage(this.element);
+        return new ElementalResist(this.element);
     }
 
     @Override
     public float Min() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -45,6 +44,6 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return "Attack" + element.name() + "DamageFlat";
+        return element.name() + "ResistFlat";
     }
 }

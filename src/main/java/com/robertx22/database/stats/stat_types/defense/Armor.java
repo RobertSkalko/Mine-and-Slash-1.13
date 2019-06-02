@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.stat_types.defense;
 
-import com.robertx22.database.stats.UsableStat;
+import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.stat_effects.defense.ArmorEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
@@ -9,7 +9,7 @@ import com.robertx22.uncommon.interfaces.IStatEffects;
 import java.util.Arrays;
 import java.util.List;
 
-public class Armor extends UsableStat implements IStatEffects {
+public class Armor extends IUsableStat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {

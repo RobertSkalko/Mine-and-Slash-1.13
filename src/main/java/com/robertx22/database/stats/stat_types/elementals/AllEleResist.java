@@ -1,6 +1,7 @@
-package com.robertx22.database.stats.stat_types.elementals.resist;
+package com.robertx22.database.stats.stat_types.elementals;
 
-import com.robertx22.database.stats.UsableStat;
+import com.robertx22.database.stats.IUsableStat;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.defense.AllEleResistEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
@@ -9,7 +10,7 @@ import com.robertx22.uncommon.interfaces.IStatEffects;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllEleResist extends UsableStat implements IStatEffects {
+public class AllEleResist extends Stat implements IUsableStat, IStatEffects {
 
     public AllEleResist() {
         this.minimumValue = 0;

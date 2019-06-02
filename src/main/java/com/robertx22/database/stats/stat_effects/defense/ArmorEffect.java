@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_effects.defense;
 
+import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.UsableStat;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.EffectData;
@@ -35,7 +35,7 @@ public class ArmorEffect implements IStatEffect {
                     pene = ipen.GetArmorPenetration();
                 }
 
-                UsableStat armor = (UsableStat) stat;
+                IUsableStat armor = (IUsableStat) stat;
 
                 float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));
 

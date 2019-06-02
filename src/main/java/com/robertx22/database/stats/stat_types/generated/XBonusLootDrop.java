@@ -12,7 +12,6 @@ import java.util.List;
 public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
 
     public LootType type;
-    public String GUID;
 
     public XBonusLootDrop() {
 
@@ -20,7 +19,6 @@ public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
 
     public XBonusLootDrop(LootType type) {
         this.type = type;
-        this.GUID = "bonus_" + type + "_drops";
 
     }
 
@@ -46,7 +44,7 @@ public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
 
     @Override
     public String GUID() {
-        return this.GUID;
+        return "bonus_" + type + "_drops";
     }
 
     @Override

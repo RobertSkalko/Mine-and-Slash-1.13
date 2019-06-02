@@ -5,7 +5,7 @@ import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.AllEleResistFlat;
+import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
 
 import java.util.Arrays;
 import java.util.List;

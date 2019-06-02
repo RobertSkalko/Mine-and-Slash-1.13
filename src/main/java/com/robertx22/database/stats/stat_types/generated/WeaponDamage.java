@@ -15,14 +15,13 @@ import java.util.List;
 public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat> {
 
     private WeaponTypes weaponType;
-    public String GUID;
 
     public WeaponDamage() {
     }
 
     public WeaponDamage(WeaponTypes type) {
         this.weaponType = type;
-        this.GUID = this.weaponType.name() + " Damage";
+
     }
 
     @Override
@@ -36,7 +35,7 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat>
 
     @Override
     public String GUID() {
-        return GUID;
+        return this.weaponType.name() + " Damage";
     }
 
     @Override

@@ -3,48 +3,48 @@ package com.robertx22.database.stats.stat_mods.generated;
 import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.generated.ElementalAttackDamage;
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class ElementalAttackDamageFlat extends ElementalStatMod {
+public class ElementalSpellDamagePercent extends ElementalStatMod {
 
-    public ElementalAttackDamageFlat() {
+    public ElementalSpellDamagePercent() {
         super(Elements.None);
     }
 
-    public ElementalAttackDamageFlat(Elements element) {
+    public ElementalSpellDamagePercent(Elements element) {
         super(element);
-
     }
 
     @Override
     public StatMod getStatMod(Elements element) {
-        return new ElementalAttackDamageFlat(element);
+        return new ElementalSpellDamagePercent(element);
     }
 
     @Override
     public Stat GetBaseStat() {
-        return new ElementalAttackDamage(this.element);
+        return new ElementalSpellDamage(this.element);
     }
 
     @Override
     public float Min() {
-        return 3;
+        return 2;
     }
 
     @Override
     public float Max() {
-        return 12;
+        return 10;
     }
 
     @Override
     public StatTypes Type() {
-        return StatTypes.Flat;
+        return StatTypes.Percent;
     }
 
     @Override
     public String GUID() {
-        return "Attack" + element.name() + "DamageFlat";
+        return element.name() + "DamagePercent";
     }
 }
+

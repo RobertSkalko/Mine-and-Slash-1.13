@@ -2,14 +2,8 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
@@ -19,7 +13,6 @@ import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class XElementAffinity extends Stat implements ICoreStat, IGenerated<Stat> {
@@ -30,25 +23,8 @@ public class XElementAffinity extends Stat implements ICoreStat, IGenerated<Stat
 
     }
 
-    public static HashMap<Elements, List<StatMod>> statsThatBenefit = new HashMap<Elements, List<StatMod>>() {
-        {
-            {
-                put(Elements.Fire, Arrays.asList(new FireResistFlat(), new SpellFireDamageFlat()));
-                put(Elements.Water, Arrays.asList(new WaterResistFlat(), new SpellWaterDamageFlat()));
-                put(Elements.Thunder, Arrays.asList(new ThunderResistFlat(), new SpellThunderDamageFlat()));
-                put(Elements.Nature, Arrays.asList(new NatureResistFlat(), new SpellNatureDamageFlat()));
-                put(Elements.None, Arrays.asList());
-
-            }
-
-        }
-    };
-
-    public String GUID;
-
     public XElementAffinity(Elements element) {
         this.element = element;
-        this.GUID = element.toString() + "_affinity";
 
     }
 
@@ -88,12 +64,13 @@ public class XElementAffinity extends Stat implements ICoreStat, IGenerated<Stat
 
     @Override
     public String GUID() {
-        return this.GUID;
+        return element.toString() + "_affinity";
     }
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return statsThatBenefit.get(this.Element());
+        return Arrays.asList(new ElementalResistFlat(this.Element()), new ElementalSpellDamageFlat(this
+                .Element()));
     }
 
     @Override

@@ -16,11 +16,6 @@ public abstract class ElementalStatMod extends StatMod implements IGenerated<Sta
 
     }
 
-    @Override
-    public String GUID() {
-        return GUID;
-    }
-
     public abstract StatMod getStatMod(Elements element);
 
     @Override

@@ -1,8 +1,8 @@
-package com.robertx22.database.stats.stat_mods.flat.elemental.resist;
+package com.robertx22.database.stats.stat_mods.flat.elemental;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.elementals.resist.AllEleResist;
+import com.robertx22.database.stats.stat_types.elementals.AllEleResist;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class AllEleResistFlat extends StatMod {

@@ -5,8 +5,8 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.AllEleResistFlat;
 
 import java.util.HashMap;
 

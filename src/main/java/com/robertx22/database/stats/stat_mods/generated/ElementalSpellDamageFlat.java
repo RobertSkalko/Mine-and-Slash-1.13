@@ -3,6 +3,7 @@ package com.robertx22.database.stats.stat_mods.generated;
 import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
@@ -14,8 +15,6 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
 
     public ElementalSpellDamageFlat(Elements element) {
         super(element);
-        this.GUID = "Attack" + element.name() + "DamageFlat";
-
     }
 
     @Override
@@ -41,5 +40,10 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
     @Override
     public StatTypes Type() {
         return StatTypes.Flat;
+    }
+
+    @Override
+    public String GUID() {
+        return "Attack" + element.name() + "DamageFlat";
     }
 }

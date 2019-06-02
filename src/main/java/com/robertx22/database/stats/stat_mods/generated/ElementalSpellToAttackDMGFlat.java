@@ -3,29 +3,33 @@ package com.robertx22.database.stats.stat_mods.generated;
 import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.generated.ElementalAttackDamage;
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellToAttackDMG;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class ElementalAttackDamageFlat extends ElementalStatMod {
+public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
 
-    public ElementalAttackDamageFlat() {
+    public ElementalSpellToAttackDMGFlat() {
         super(Elements.None);
     }
 
-    public ElementalAttackDamageFlat(Elements element) {
+    public ElementalSpellToAttackDMGFlat(Elements element) {
         super(element);
+    }
 
+    @Override
+    public String GUID() {
+        return "Bonus" + element.name() + "DamageFlat";
     }
 
     @Override
     public StatMod getStatMod(Elements element) {
-        return new ElementalAttackDamageFlat(element);
+        return new ElementalSpellToAttackDMGFlat(element);
     }
 
     @Override
     public Stat GetBaseStat() {
-        return new ElementalAttackDamage(this.element);
+        return new ElementalSpellToAttackDMG(this.element);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
 
     @Override
     public float Max() {
-        return 12;
+        return 15;
     }
 
     @Override
@@ -43,8 +47,4 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
         return StatTypes.Flat;
     }
 
-    @Override
-    public String GUID() {
-        return "Attack" + element.name() + "DamageFlat";
-    }
 }

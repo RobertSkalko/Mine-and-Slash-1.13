@@ -1,17 +1,35 @@
-package com.robertx22.database.stats.stat_types.elementals.resist;
+package com.robertx22.database.stats.stat_types.generated;
 
-import com.robertx22.database.stats.UsableStat;
+import com.robertx22.database.stats.IUsableStat;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.defense.ElementalResistEffect;
+import com.robertx22.database.stats.stat_types.ElementalStat;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BaseEleResist extends UsableStat implements IStatEffects {
+public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
 
-    public BaseEleResist() {
+    public ElementalResist() {
+        super(Elements.None);
         this.minimumValue = 0;
+    }
+
+    public ElementalResist(Elements element) {
+        super(element);
+    }
+
+    @Override
+    public Stat newStatInstance(Elements element) {
+        return new ElementalResist(element);
+    }
+
+    @Override
+    public String GUID() {
+        return this.Element().name() + " Resist";
     }
 
     @Override
@@ -48,4 +66,6 @@ public abstract class BaseEleResist extends UsableStat implements IStatEffects {
     public String locNameForLangFile() {
         return this.Element().name() + " Resist";
     }
+
 }
+

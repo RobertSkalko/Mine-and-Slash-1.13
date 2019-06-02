@@ -10,10 +10,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFl
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellFireDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
@@ -35,6 +32,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -163,7 +161,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     public abstract List<StatMod> jewerlyStat();
 
     public List<StatMod> spellDamageFlats() {
-        return Arrays.asList(new SpellFireDamageFlat(), new SpellWaterDamageFlat(), new SpellThunderDamageFlat(), new SpellNatureDamageFlat());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Water), new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     public List<StatMod> spellDamageMultis() {
