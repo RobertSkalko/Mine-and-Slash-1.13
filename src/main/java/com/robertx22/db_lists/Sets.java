@@ -1,6 +1,7 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.sets.Set;
+import com.robertx22.database.sets.endgame_lvl.AscensionOfElement;
 import com.robertx22.database.sets.from_lvl_50.*;
 import com.robertx22.database.sets.low_lvl.armors.BarbarianArmor;
 import com.robertx22.database.sets.low_lvl.armors.MagesRobes;
@@ -18,8 +19,12 @@ import com.robertx22.database.sets.mid_lvl.SpiritOfTheArcane;
 import com.robertx22.database.sets.mid_lvl.TheProtector;
 import com.robertx22.database.sets.uniques.TreasureFinder;
 import com.robertx22.db_lists.bases.IRandomDefault;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Sets implements IRandomDefault<Set> {
 
@@ -60,10 +65,27 @@ public class Sets implements IRandomDefault<Set> {
             }
         }
     };
+    private static List<IGenerated<Set>> generated = new ArrayList<IGenerated<Set>>() {
+        {
+            {
+                add(new AscensionOfElement(Elements.None));
+
+            }
+        }
+    };
 
     @Override
     public HashMap<String, Set> All() {
         return All;
+    }
+
+    static {
+        for (IGenerated<Set> gen : generated) {
+            for (Set statmod : gen.generateAllPossibleStatVariations()) {
+                All.put(statmod.GUID(), statmod);
+            }
+
+        }
     }
 
 }

@@ -62,7 +62,7 @@ public class ServerContainer {
 
         MAXIMUM_WORN_UNIQUE_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAXIMUM_WORN_UNIQUE_ITEMS", 3, 0, 100000);
+                .defineInRange("MAXIMUM_WORN_UNIQUE_ITEMS", 4, 0, 100000);
 
         MAX_PLAYERS_PER_MAP = builder.comment(".")
                 .translation("mmorpg.word.")
