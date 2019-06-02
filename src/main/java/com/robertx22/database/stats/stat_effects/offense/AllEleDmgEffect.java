@@ -31,7 +31,7 @@ public class AllEleDmgEffect implements IStatEffect {
 
                 if (dmgeffect.Element.equals(Elements.None) == false) {
 
-                    dmgeffect.Number *= 1 + data.Value / 100;
+                    dmgeffect.Number *= data.getMultiplier();
 
                 }
             }

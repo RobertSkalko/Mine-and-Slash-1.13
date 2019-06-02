@@ -29,9 +29,7 @@ public class CriticalDamageEffect implements IStatEffect {
                 ICrittable icrit = (ICrittable) Effect;
 
                 if (icrit.GetCrit()) {
-                    float multi = 1 + data.Value / 100;
-                    Effect.Number *= multi;
-
+                    Effect.Number *= data.getMultiplier();
                 }
 
             }

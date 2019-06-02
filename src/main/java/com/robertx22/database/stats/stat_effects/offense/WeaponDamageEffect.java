@@ -31,7 +31,7 @@ public class WeaponDamageEffect implements IStatEffect {
 
                 if (weapon.weaponType().equals(Effect.weaponType)) {
                     DamageEffect dmgeffect = (DamageEffect) Effect;
-                    dmgeffect.Number *= 1 + data.Value / 100;
+                    dmgeffect.Number *= data.getMultiplier();
 
                 }
             }

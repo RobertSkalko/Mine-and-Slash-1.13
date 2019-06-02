@@ -24,6 +24,7 @@ import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.db_lists.bases.IRandomDefault;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +91,14 @@ public class Prefixes implements IRandomDefault<Prefix> {
 
     public static HashMap<String, Prefix> all = new HashMap<>();
 
+    private static List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
+        {
+            {
+
+            }
+        }
+    };
+
     static {
         List<Prefix> list = new ArrayList<Prefix>();
         list.addAll(allPrefixes);
@@ -97,6 +106,13 @@ public class Prefixes implements IRandomDefault<Prefix> {
         for (Prefix s : list) {
             all.put(s.GUID(), s);
         }
+
+        for (IGenerated<Prefix> gen : allGenerated) {
+            for (Prefix statmod : gen.generateAllPossibleStatVariations()) {
+                all.put(statmod.GUID(), statmod);
+            }
+        }
+
     }
 
     @Override
