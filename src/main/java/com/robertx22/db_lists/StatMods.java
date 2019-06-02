@@ -33,6 +33,10 @@ import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyT
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.database.stats.stat_mods.generated.*;
 import com.robertx22.database.stats.stat_mods.multi.defense.*;
+import com.robertx22.database.stats.stat_mods.multi.ele_minus.MajorMinusFireResistMulti;
+import com.robertx22.database.stats.stat_mods.multi.ele_minus.MajorMinusNatureResistMulti;
+import com.robertx22.database.stats.stat_mods.multi.ele_minus.MajorMinusThunderResistMulti;
+import com.robertx22.database.stats.stat_mods.multi.ele_minus.MajorMinusWaterResistMulti;
 import com.robertx22.database.stats.stat_mods.multi.offence.LessPhysicalDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.resources.LessHealthRegenMulti;
@@ -281,6 +285,10 @@ public class StatMods {
                 put(new LessHealthMap().GUID(), new LessHealthMap());
                 put(new LessManaOnHitMap().GUID(), new LessManaOnHitMap());
                 // Map mods
+                put(new MajorMinusFireResistMulti().GUID(), new MajorMinusFireResistMulti());
+                put(new MajorMinusWaterResistMulti().GUID(), new MajorMinusWaterResistMulti());
+                put(new MajorMinusThunderResistMulti().GUID(), new MajorMinusThunderResistMulti());
+                put(new MajorMinusNatureResistMulti().GUID(), new MajorMinusNatureResistMulti());
 
             }
         }
