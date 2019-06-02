@@ -4,23 +4,20 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_types.ElementalStat;
 import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.interfaces.IGenerated;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ElementalAffinity extends Stat implements ICoreStat, IGenerated<Stat> {
-
-    public Elements element;
+public class ElementalAffinity extends ElementalStat implements ICoreStat {
 
     public ElementalAffinity(Elements element) {
-        this.element = element;
+        super(element);
 
     }
 
@@ -35,8 +32,8 @@ public class ElementalAffinity extends Stat implements ICoreStat, IGenerated<Sta
     }
 
     @Override
-    public Elements Element() {
-        return this.element;
+    public Stat newStatInstance(Elements element) {
+        return new ElementalAffinity(element);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class ElementalAffinity extends Stat implements ICoreStat, IGenerated<Sta
 
     @Override
     public String GUID() {
-        return element.toString() + "_affinity";
+        return Element().toString() + "_affinity";
     }
 
     @Override
@@ -74,11 +71,4 @@ public class ElementalAffinity extends Stat implements ICoreStat, IGenerated<Sta
         return Element().name() + " Affinity";
     }
 
-    @Override
-    public List<Stat> generateAllPossibleStatVariations() {
-        List<Stat> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(new ElementalAffinity(x)));
-        return list;
-
-    }
 }

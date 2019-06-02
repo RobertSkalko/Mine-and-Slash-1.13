@@ -8,6 +8,7 @@ import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.uncommon.effectdatas.interfaces.IElementalResistable;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class ElementalResistEffect implements IStatEffect {
@@ -31,7 +32,9 @@ public class ElementalResistEffect implements IStatEffect {
 
                 IElementalEffect ele = (IElementalEffect) Effect;
 
-                if (ele.GetElement().equals(stat.Element())) {
+                if (ele.GetElement().equals(stat.Element()) || stat.Element()
+                        .equals(Elements.All)) {
+
                     int pene = 0;
 
                     if (Effect instanceof IElementalPenetrable) {

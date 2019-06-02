@@ -2,14 +2,15 @@ package com.robertx22.database.stats.stat_mods.flat.elemental;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.elementals.AllEleResist;
+import com.robertx22.database.stats.stat_types.generated.ElementalResist;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class AllEleResistFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new AllEleResist();
+        return new ElementalResist(Elements.All);
     }
 
     @Override

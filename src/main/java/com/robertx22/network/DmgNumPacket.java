@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class DmgNumPacket {
 
-    public int element;
+    public String element;
     public String string;
     public double x;
     public double y;
@@ -24,7 +24,7 @@ public class DmgNumPacket {
     }
 
     public DmgNumPacket(EntityLivingBase entity, Elements ele, String str) {
-        this.element = ele.i;
+        this.element = ele.toString();
         this.string = str;
         this.x = entity.posX;
         this.y = entity.posY;
@@ -37,7 +37,7 @@ public class DmgNumPacket {
 
         DmgNumPacket newpkt = new DmgNumPacket();
 
-        newpkt.element = buf.readInt();
+        newpkt.element = buf.readString(10);
         newpkt.x = buf.readDouble();
         newpkt.y = buf.readDouble();
         newpkt.z = buf.readDouble();
@@ -52,7 +52,7 @@ public class DmgNumPacket {
 
     public static void encode(DmgNumPacket packet, PacketBuffer tag) {
 
-        tag.writeInt(packet.element);
+        tag.writeString(packet.element);
         tag.writeDouble(packet.x);
         tag.writeDouble(packet.y);
         tag.writeDouble(packet.z);

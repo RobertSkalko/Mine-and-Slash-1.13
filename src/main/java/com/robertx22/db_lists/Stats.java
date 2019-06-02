@@ -7,7 +7,6 @@ import com.robertx22.database.stats.stat_types.defense.Armor;
 import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
-import com.robertx22.database.stats.stat_types.elementals.AllEleResist;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.database.stats.stat_types.generated.*;
@@ -55,7 +54,6 @@ public class Stats {
         {
             {
                 put(new AllAttributes().GUID(), new AllAttributes());
-                put(new AllEleResist().GUID(), new AllEleResist());
                 put(new AllEleDmg().GUID(), new AllEleDmg());
                 put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());
                 put(new SpellDamage().GUID(), new SpellDamage());

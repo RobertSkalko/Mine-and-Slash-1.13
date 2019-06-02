@@ -5,6 +5,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class AllEleDmgEffectIfElement implements IStatEffect {
@@ -28,7 +29,8 @@ public class AllEleDmgEffectIfElement implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element.equals(stat.Element())) {
+                if (dmgeffect.Element.equals(stat.Element()) || stat.Element()
+                        .equals(Elements.All)) {
 
                     dmgeffect.Number *= 1 + data.Value / 100;
 

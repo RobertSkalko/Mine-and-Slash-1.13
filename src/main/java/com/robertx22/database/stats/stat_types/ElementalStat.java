@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class ElementalStat extends Stat implements IGenerated<Stat> {
 
-    Elements element;
+    public Elements element;
 
     public ElementalStat(Elements element) {
         this.element = element;
@@ -26,7 +26,7 @@ public abstract class ElementalStat extends Stat implements IGenerated<Stat> {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(newStatInstance(x)));
+        Elements.getAllExceptNone().forEach(x -> list.add(newStatInstance(x)));
         return list;
 
     }

@@ -22,7 +22,7 @@ public abstract class ElementalStatMod extends StatMod implements IGenerated<Sta
     @Override
     public List<StatMod> generateAllPossibleStatVariations() {
         List<StatMod> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(getStatMod(x)));
+        Elements.getAllExceptNone().forEach(x -> list.add(getStatMod(x)));
         return list;
 
     }

@@ -6,6 +6,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.uncommon.effectdatas.interfaces.IElementalPenetrable;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class ElementalPeneEffect implements IStatEffect {
@@ -28,9 +29,10 @@ public class ElementalPeneEffect implements IStatEffect {
             if (Effect instanceof IElementalPenetrable) {
                 IElementalEffect ele = (IElementalEffect) Effect;
 
-                if (ele.GetElement().equals(stat.Element())) {
+                if (ele.GetElement().equals(stat.Element()) || stat.Element()
+                        .equals(Elements.All)) {
                     IElementalPenetrable ipene = (IElementalPenetrable) Effect;
-                    ipene.SetElementalPenetration((int) data.Value);
+                    ipene.addElementalPenetration((int) data.Value);
                 }
             }
 

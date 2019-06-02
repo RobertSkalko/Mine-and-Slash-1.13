@@ -31,7 +31,7 @@ public class OnDisplayDamage {
         double motionX = world.rand.nextGaussian() * 0.02;
         double motionY = 0.5f;
         double motionZ = world.rand.nextGaussian() * 0.02;
-        Particle damageIndicator = new DamageParticle(Elements.byNumber(data.element), data.string, world, data.x, data.y + data.height, data.z, motionX, motionY, motionZ);
+        Particle damageIndicator = new DamageParticle(Elements.valueOf(data.element), data.string, world, data.x, data.y + data.height, data.z, motionX, motionY, motionZ);
 
         Minecraft.getInstance().particles.addEffect(damageIndicator);
 

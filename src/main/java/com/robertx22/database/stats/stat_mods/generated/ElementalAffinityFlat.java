@@ -1,22 +1,22 @@
 package com.robertx22.database.stats.stat_mods.generated;
 
+import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_types.generated.ElementalAffinity;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.interfaces.IGenerated;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ElementalAffinityFlat extends StatMod implements IGenerated<StatMod> {
-
-    public Elements element;
+public class ElementalAffinityFlat extends ElementalStatMod {
 
     public ElementalAffinityFlat(Elements element) {
-        this.element = element;
+        super(element);
 
+    }
+
+    @Override
+    public StatMod getStatMod(Elements element) {
+        return new ElementalAffinityFlat(element);
     }
 
     @Override
@@ -44,11 +44,4 @@ public class ElementalAffinityFlat extends StatMod implements IGenerated<StatMod
         return element.toString() + "_affinity_flat";
     }
 
-    @Override
-    public List<StatMod> generateAllPossibleStatVariations() {
-        List<StatMod> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(new ElementalAffinityFlat(x)));
-        return list;
-
-    }
 }

@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Elements implements IColor {
-    None(0, new RGB(0, 0, 0), false), Fire(1, new RGB(255, 0, 0), true), Water(2, new RGB(0, 128, 255), true), Thunder(3, new RGB(255, 255, 0), true), Nature(4, new RGB(0, 204, 0), true), All(5, new RGB(0, 0, 0), false);
+    None(0, new RGB(0, 0, 0), false),
+    Fire(1, new RGB(255, 0, 0), true),
+    Water(2, new RGB(0, 128, 255), true),
+    Thunder(3, new RGB(255, 255, 0), true),
+    Nature(4, new RGB(0, 204, 0), true),
+    All(5, new RGB(0, 0, 0), false);
 
     public boolean isSingleElement = true;
     private RGB color;
@@ -26,18 +31,12 @@ public enum Elements implements IColor {
 
     }
 
-    public static Elements byNumber(int i) {
+    public static List<Elements> getAllExceptNone() {
 
-        if (i == 1) {
-            return Fire;
-        } else if (i == 2) {
-            return Water;
-        } else if (i == 3) {
-            return Thunder;
-        } else if (i == 4) {
-            return Nature;
-        }
-        return None;
+        return Arrays.stream(Elements.values())
+                .filter(x -> x.isSingleElement || x == Elements.All)
+                .collect(Collectors.toList());
+
     }
 
     @Override
