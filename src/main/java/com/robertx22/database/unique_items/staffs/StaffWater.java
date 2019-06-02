@@ -4,7 +4,8 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.database.stats.stat_mods.percent.pene.WaterPenePercent;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -30,7 +31,7 @@ public class StaffWater extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water), new WaterPenePercent());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water), new ElementalPenePercent(Elements.Water));
     }
 
     @Override

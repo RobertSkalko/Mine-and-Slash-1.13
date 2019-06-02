@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
+import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class Necklace extends GearItemSlot {
     @Override
     public List<StatMod> PossibleSecondaryStats() {
 
-        return new ElementalResistFlat().allSingleElements();
+        return new ElementalResistFlat(Elements.None).allSingleElements();
 
     }
 

@@ -4,6 +4,8 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StaminaFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StrengthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;

@@ -30,7 +30,6 @@ public class LessWeaponDamageFlat extends StatMod implements IGenerated<StatMod>
 
     public LessWeaponDamageFlat(WeaponTypes type) {
         this.weaponType = type;
-        this.GUID = "Less" + weaponType.name() + "DamageMap";
     }
 
     @Override
@@ -45,7 +44,7 @@ public class LessWeaponDamageFlat extends StatMod implements IGenerated<StatMod>
 
     @Override
     public String GUID() {
-        return GUID;
+        return "Less" + weaponType.name() + "DamageMap";
     }
 
     @Override

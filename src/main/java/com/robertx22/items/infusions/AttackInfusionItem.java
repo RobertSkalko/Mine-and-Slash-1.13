@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePerc
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
@@ -28,17 +29,17 @@ public class AttackInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> weaponInfusions() {
-        return ListUtils.newList(new ElementalSpellToAttackDMGFlat().allSingleElements(), new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent());
+        return ListUtils.newList(new ElementalSpellToAttackDMGFlat(Elements.None).allSingleElements(), new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent());
     }
 
     @Override
     public List<StatMod> armorInfusions() {
-        return ListUtils.newList(new ElementalSpellDamagePercent().allSingleElements(), new PhysicalDamagePercent());
+        return ListUtils.newList(new ElementalSpellDamagePercent(Elements.None).allSingleElements(), new PhysicalDamagePercent());
     }
 
     @Override
     public List<StatMod> jewerlyInfusions() {
-        return new ElementalResistFlat().allSingleElements();
+        return new ElementalResistFlat(Elements.None).allSingleElements();
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
@@ -33,7 +34,7 @@ public class DefenseInfusionItem extends BaseInfusionItem {
     @Override
     public List<StatMod> armorInfusions() {
 
-        return ListUtils.newList(new ElementalResistFlat().allSingleElements(), new ArmorFlat(), new DodgeFlat());
+        return ListUtils.newList(new ElementalResistFlat(Elements.None).allSingleElements(), new ArmorFlat(), new DodgeFlat());
     }
 
     @Override

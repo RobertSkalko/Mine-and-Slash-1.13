@@ -3,11 +3,13 @@ package com.robertx22.database.unique_items.rings;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;

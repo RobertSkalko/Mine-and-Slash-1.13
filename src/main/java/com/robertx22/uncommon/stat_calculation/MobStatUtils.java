@@ -3,14 +3,8 @@ package com.robertx22.uncommon.stat_calculation;
 import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.defense.Armor;
-import com.robertx22.database.stats.stat_types.elementals.resist.FireResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.NatureResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.ThunderResist;
-import com.robertx22.database.stats.stat_types.elementals.resist.WaterResist;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellFireDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatureDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.database.stats.stat_types.generated.ElementalResist;
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.database.status_effects.bases.BaseStatusEffect;
@@ -20,6 +14,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
@@ -54,15 +49,14 @@ public class MobStatUtils {
         unit.MyStats.get(CriticalHit.GUID).Flat += 5 * rar.StatMultiplier();
         unit.MyStats.get(CriticalDamage.GUID).Flat += 5 * rar.StatMultiplier();
 
-        unit.MyStats.get(WaterResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
-        unit.MyStats.get(FireResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
-        unit.MyStats.get(ThunderResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
-        unit.MyStats.get(NatureResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
+        for (Elements element : Elements.getAll()) {
 
-        unit.MyStats.get(SpellWaterDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
-        unit.MyStats.get(SpellFireDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
-        unit.MyStats.get(SpellThunderDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
-        unit.MyStats.get(SpellNatureDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
+            unit.MyStats.get(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
+                    .StatMultiplier();
+            unit.MyStats.get(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
+                    .StatMultiplier();
+
+        }
 
     }
 

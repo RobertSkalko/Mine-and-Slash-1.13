@@ -5,7 +5,7 @@ import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.database.stats.stat_mods.percent.pene.ThunderPenePercent;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -31,7 +31,7 @@ public class StaffThunder extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder), new CriticalDamageFlat(), new ThunderPenePercent(), new DodgeFlat(), new ManaOnHitFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder), new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new DodgeFlat(), new ManaOnHitFlat());
     }
 
     @Override

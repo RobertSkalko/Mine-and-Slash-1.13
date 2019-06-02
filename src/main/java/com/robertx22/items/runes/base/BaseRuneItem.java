@@ -13,6 +13,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -149,27 +150,27 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     public List<StatMod> spellDamageFlats() {
-        return allElements(new ElementalSpellDamageFlat());
+        return allElements(new ElementalSpellDamageFlat(Elements.None));
     }
 
     public List<StatMod> spellDamageMultis() {
-        return allElements(new ElementalSpellDamageMulti());
+        return allElements(new ElementalSpellDamageMulti(Elements.None));
     }
 
     public List<StatMod> resistFlats() {
-        return allElements(new ElementalResistFlat());
+        return allElements(new ElementalResistFlat(Elements.None));
     }
 
     public List<StatMod> peneFlats() {
-        return allElements(new ElementalPeneFlat());
+        return allElements(new ElementalPeneFlat(Elements.None));
     }
 
     public List<StatMod> penePercents() {
-        return allElements(new ElementalPenePercent());
+        return allElements(new ElementalPenePercent(Elements.None));
     }
 
     public List<StatMod> spellDamagePercents() {
-        return allElements(new ElementalSpellDamagePercent());
+        return allElements(new ElementalSpellDamagePercent(Elements.None));
     }
 
 }
