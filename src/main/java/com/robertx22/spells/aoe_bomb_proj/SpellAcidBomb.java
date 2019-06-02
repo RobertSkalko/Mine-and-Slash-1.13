@@ -1,10 +1,8 @@
 package com.robertx22.spells.aoe_bomb_proj;
 
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemAcidBomb;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
-import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.entities.EntityBombProjectile;
 import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -29,11 +27,6 @@ public class SpellAcidBomb extends BaseBombSpell {
             return Elements.Nature;
         }
 
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new SpellNatureDamage().GUID(), this.damageScaling);
     }
 
     @Override

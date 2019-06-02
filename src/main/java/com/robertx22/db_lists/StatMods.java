@@ -61,6 +61,9 @@ import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfEarthquakes
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
 import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
 import com.robertx22.database.stats.stat_mods.traits.major_arcana.*;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -285,21 +288,21 @@ public class StatMods {
     private static List<IGenerated<StatMod>> generated = new ArrayList<IGenerated<StatMod>>() {
         {
             {
-                add(new BaseConversionFlat());
-                add(new BaseTransferFlat());
-                add(new XElementAffinityFlat());
-                add(new XBonusLootDropFlat());
-                add(new WeaponDamageFlat());
-                add(new LessWeaponDamageFlat());
-                add(new ElementalAttackDamageFlat());
-                add(new AllElementalDamageMulti());
-                add(new ElementalSpellToAttackDMGFlat());
-                add(new ElementalSpellDamagePercent());
-                add(new ElementalSpellDamageFlat());
-                add(new ElementalResistFlat());
-                add(new ElementalSpellDamageMulti());
-                add(new ElementalPeneFlat());
-                add(new ElementalPenePercent());
+                add(new ElementalConversionFlat(Elements.None, Elements.None));
+                add(new ElementalTransferFlat(Elements.None, Elements.None));
+                add(new ElementalAffinityFlat(Elements.None));
+                add(new XBonusLootDropFlat(LootType.NormalItem));
+                add(new WeaponDamageFlat(WeaponTypes.None));
+                add(new LessWeaponDamageFlat(WeaponTypes.None));
+                add(new ElementalAttackDamageFlat(Elements.None));
+                add(new AllElementalDamageMulti(Elements.None));
+                add(new ElementalSpellToAttackDMGFlat(Elements.None));
+                add(new ElementalSpellDamagePercent(Elements.None));
+                add(new ElementalSpellDamageFlat(Elements.None));
+                add(new ElementalResistFlat(Elements.None));
+                add(new ElementalSpellDamageMulti(Elements.None));
+                add(new ElementalPeneFlat(Elements.None));
+                add(new ElementalPenePercent(Elements.None));
 
             }
         }

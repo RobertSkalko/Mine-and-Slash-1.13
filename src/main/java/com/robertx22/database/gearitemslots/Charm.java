@@ -4,11 +4,10 @@ import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -24,7 +23,9 @@ public class Charm extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new NaturePeneFlat(), new ThunderPeneFlat(), new ArmorPeneFlat());
+
+        return ListUtils.newList(new ElementalPeneFlat(Elements.None).allSingleElements(), new ArmorPeneFlat());
+
     }
 
     @Override

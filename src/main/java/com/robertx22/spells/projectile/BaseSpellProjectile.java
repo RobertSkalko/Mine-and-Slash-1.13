@@ -1,7 +1,9 @@
 package com.robertx22.spells.projectile;
 
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
+import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
@@ -11,6 +13,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public abstract class BaseSpellProjectile extends BaseBolt {
+    @Override
+    public EffectCalculation ScalingValue() {
+        return new EffectCalculation(new ElementalSpellDamageFlat(this.Element()).GUID(), 0.5F);
+    }
 
     @Override
     public int useTimeTicks() {

@@ -9,8 +9,18 @@ import java.util.List;
 
 public interface IStatConversion extends IGUID {
 
-    public abstract void convertStats(Unit unitcopy, Unit unit, StatData data);
-
     public abstract List<ConversionMethod> conversion();
+
+    public default void convertStats(Unit copy, Unit unit, StatData data) {
+
+        for (ConversionMethod stat : this.conversion()) {
+
+            float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
+
+            unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
+
+        }
+
+    }
 
 }

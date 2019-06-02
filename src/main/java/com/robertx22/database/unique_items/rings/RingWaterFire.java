@@ -1,8 +1,7 @@
 package com.robertx22.database.unique_items.rings;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.BaseConversionFlat;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
+import com.robertx22.database.stats.stat_mods.generated.ElementalConversionFlat;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.uncommon.Styles;
@@ -29,7 +28,7 @@ public class RingWaterFire extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellFireDamagePercent(), new SpellWaterDamagePercent(), new BaseConversionFlat(Elements.Fire, Elements.Water), new BaseConversionFlat(Elements.Water, Elements.Fire));
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Fire), new SpellWaterDamagePercent(), new ElementalConversionFlat(Elements.Fire, Elements.Water), new ElementalConversionFlat(Elements.Water, Elements.Fire));
     }
 
     @Override

@@ -1,14 +1,15 @@
 package com.robertx22.database.unique_items.bracelets;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class BraceletThunder extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellThunderDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CriticalDamageFlat(), new CrippleLifestealPercent());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Thunder), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CriticalDamageFlat(), new CrippleLifestealPercent());
     }
 
     @Override

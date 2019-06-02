@@ -2,11 +2,10 @@ package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +31,7 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellThunderDamageFlat(), new ThunderSpellToAttackFlat(), new BaseTransferFlat(Elements.Nature, Elements.Thunder), new NatureResistFlat(), new EnergyRegenFlat(), new LessHealthRegenFlat());
+        return Arrays.asList(new SpellThunderDamageFlat(), new ThunderSpellToAttackFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new ElementalResistFlat(Elements.Nature), new EnergyRegenFlat(), new LessHealthRegenFlat());
 
     }
 

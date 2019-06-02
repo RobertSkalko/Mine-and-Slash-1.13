@@ -1,9 +1,7 @@
 package com.robertx22.spells.projectile;
 
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.items.spells.projectile.ItemAcidBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
-import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -27,11 +25,6 @@ public class SpellAcidBolt extends BaseSpellProjectile {
 
     public SpellAcidBolt() {
         super();
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new SpellNatureDamage().GUID(), 0.5F);
     }
 
     @Override

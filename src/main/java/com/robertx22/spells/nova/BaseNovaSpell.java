@@ -1,8 +1,10 @@
 package com.robertx22.spells.nova;
 
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
+import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
@@ -47,6 +49,11 @@ public abstract class BaseNovaSpell extends BaseSpell {
     public ITextComponent GetDescription(SpellItemData data) {
         return CLOC.tooltip("aoe_spell_nova");
 
+    }
+
+    @Override
+    public EffectCalculation ScalingValue() {
+        return new EffectCalculation(new ElementalResistFlat(this.Element()).GUID(), scaling);
     }
 
     @Override

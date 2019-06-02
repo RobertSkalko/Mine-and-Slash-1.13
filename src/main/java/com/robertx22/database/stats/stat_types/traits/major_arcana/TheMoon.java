@@ -2,8 +2,9 @@ package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StaminaFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ public class TheMoon extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new StaminaFlat(), new WaterResistFlat(), new HealthFlat());
+        return Arrays.asList(new StaminaFlat(), new ElementalResistFlat(Elements.Water), new HealthFlat());
     }
 
     @Override

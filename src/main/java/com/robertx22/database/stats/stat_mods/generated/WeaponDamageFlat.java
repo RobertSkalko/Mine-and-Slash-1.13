@@ -14,10 +14,6 @@ public class WeaponDamageFlat extends StatMod implements IGenerated<StatMod> {
 
     public WeaponTypes weaponType;
 
-    public WeaponDamageFlat() {
-
-    }
-
     public WeaponDamageFlat(WeaponTypes type) {
         this.weaponType = type;
     }

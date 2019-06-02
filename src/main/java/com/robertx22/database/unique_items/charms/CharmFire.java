@@ -1,14 +1,15 @@
 package com.robertx22.database.unique_items.charms;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CharmFire extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellFireDamageFlat(), new ManaRegenPercent(), new FirePeneFlat(), new CriticalHitFlat(), new FireResistFlat(), new CrippleDodgePercent());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire), new CriticalHitFlat(), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
     }
 
     @Override

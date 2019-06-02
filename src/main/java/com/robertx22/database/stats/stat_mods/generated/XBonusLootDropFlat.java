@@ -15,10 +15,6 @@ public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
 
     public LootType type;
 
-    public XBonusLootDropFlat() {
-
-    }
-
     public XBonusLootDropFlat(LootType type) {
         this.type = type;
 

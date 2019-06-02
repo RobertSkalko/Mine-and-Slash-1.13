@@ -1,14 +1,15 @@
 package com.robertx22.database.unique_items.charms;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPenePercent;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.NaturePenePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CharmNature extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellNatureDamagePercent(), new HealthRegenPercent(), new NaturePenePercent(), new HealthFlat(), new NatureResistFlat(), new LessCriticalDamagePercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
     }
 
     @Override

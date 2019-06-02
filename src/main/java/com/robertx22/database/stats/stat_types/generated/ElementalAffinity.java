@@ -15,15 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class XElementAffinity extends Stat implements ICoreStat, IGenerated<Stat> {
+public class ElementalAffinity extends Stat implements ICoreStat, IGenerated<Stat> {
 
     public Elements element;
 
-    public XElementAffinity() {
-
-    }
-
-    public XElementAffinity(Elements element) {
+    public ElementalAffinity(Elements element) {
         this.element = element;
 
     }
@@ -81,7 +77,7 @@ public class XElementAffinity extends Stat implements ICoreStat, IGenerated<Stat
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(new XElementAffinity(x)));
+        Elements.getAll().forEach(x -> list.add(new ElementalAffinity(x)));
         return list;
 
     }

@@ -4,7 +4,6 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StaminaFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StrengthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +19,7 @@ public class StrengthArcana extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new StaminaFlat(), new StrengthFlat(), new EnergyRegenFlat(), new SpellFireDamagePercent());
+        return Arrays.asList(new StaminaFlat(), new StrengthFlat(), new EnergyRegenFlat(), new ElementalSpellDamagePercent(Elements.Fire));
     }
 
     @Override

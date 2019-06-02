@@ -1,8 +1,6 @@
 package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
@@ -31,7 +29,7 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellNatureDamageFlat(), new HealthRegenFlat(), new HealthFlat(), new NatureResistFlat(), new LessManaOnHitPercent());
+        return Arrays.asList(new LowDodgeAddArmorFlat(), new ElementalSpellDamage(Elements.Nature), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
     }
 
     @Override

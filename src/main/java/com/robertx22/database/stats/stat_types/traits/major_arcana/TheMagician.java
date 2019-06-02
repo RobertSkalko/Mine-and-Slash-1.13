@@ -4,7 +4,6 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.database.stats.stat_mods.multi.resources.ManaMulti;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +19,7 @@ public class TheMagician extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new IntelligenceFlat(), new ManaRegenPercent(), new ManaMulti(), new SpellThunderDamagePercent());
+        return Arrays.asList(new IntelligenceFlat(), new ManaRegenPercent(), new ManaMulti(), new ElementalSpellDamage(Elements.Thunder));
     }
 
     @Override

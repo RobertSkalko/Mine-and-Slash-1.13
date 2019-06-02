@@ -1,10 +1,9 @@
 package com.robertx22.database.unique_items.bracelets;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
@@ -32,7 +31,7 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new BaseTransferFlat(Elements.Thunder, Elements.Nature), new NatureResistFlat(), new ThunderResistFlat(), new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
+        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature), new ElementalResistFlat(Elements.Thunder), new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
     }
 
     @Override

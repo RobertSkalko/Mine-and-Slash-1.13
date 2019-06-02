@@ -1,7 +1,6 @@
 package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
@@ -31,7 +30,7 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellWaterDamageFlat(), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(), new WaterResistFlat(), new LessCriticalHitPercent());
+        return Arrays.asList(new SpellWaterDamageFlat(), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(), new ElementalResistFlat(Elements.Water), new LessCriticalHitPercent());
     }
 
     @Override

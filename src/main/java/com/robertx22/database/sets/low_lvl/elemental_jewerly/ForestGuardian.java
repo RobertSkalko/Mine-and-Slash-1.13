@@ -5,8 +5,9 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
 
@@ -24,7 +25,7 @@ public class ForestGuardian extends Set {
             {
                 {
                     put(2, new HealthPercent());
-                    put(3, new SpellNatureDamagePercent());
+                    put(3, new ElementalSpellDamagePercent(Elements.Nature));
 
                 }
             }

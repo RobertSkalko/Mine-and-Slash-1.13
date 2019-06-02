@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
 
-    public ElementalSpellToAttackDMGFlat() {
-        super(Elements.None);
-    }
-
     public ElementalSpellToAttackDMGFlat(Elements element) {
         super(element);
     }

@@ -2,12 +2,13 @@ package com.robertx22.database.runewords.slots_5;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.spell_buffs.LightFlat;
 import com.robertx22.items.runes.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ public class RuneWordLight extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new LightFlat(), new HealthRegenFlat(), new HealthFlat(), new FireResistFlat());
+        return Arrays.asList(new LightFlat(), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

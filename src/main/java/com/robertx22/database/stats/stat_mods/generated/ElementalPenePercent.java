@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalPenePercent extends ElementalStatMod {
 
-    public ElementalPenePercent() {
-        super(Elements.None);
-    }
-
     public ElementalPenePercent(Elements element) {
         super(element);
     }

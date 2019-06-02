@@ -16,9 +16,6 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat>
 
     private WeaponTypes weaponType;
 
-    public WeaponDamage() {
-    }
-
     public WeaponDamage(WeaponTypes type) {
         this.weaponType = type;
 

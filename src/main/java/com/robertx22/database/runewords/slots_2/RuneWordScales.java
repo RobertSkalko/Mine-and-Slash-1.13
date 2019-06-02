@@ -3,10 +3,11 @@ package com.robertx22.database.runewords.slots_2;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.items.runes.BerItem;
 import com.robertx22.items.runes.CenItem;
 import com.robertx22.items.runes.base.BaseRuneItem;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,7 @@ public class RuneWordScales extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new NatureResistFlat(), new ArmorFlat());
+        return Arrays.asList(new ElementalResistFlat(Elements.Nature), new ArmorFlat());
     }
 
     @Override

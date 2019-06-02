@@ -5,7 +5,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWa
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
 import com.robertx22.uncommon.Styles;
@@ -31,7 +31,7 @@ public class SwordWater extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackWaterDamageFlat(), new BaseTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat(), new EnergyRegenFlat(), new CrippleLifestealPercent());
+        return Arrays.asList(new AttackWaterDamageFlat(), new ElementalTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat(), new EnergyRegenFlat(), new CrippleLifestealPercent());
     }
 
     @Override

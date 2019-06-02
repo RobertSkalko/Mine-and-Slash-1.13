@@ -1,11 +1,11 @@
 package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
@@ -33,7 +33,7 @@ public class NecklaceNature extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellNatureDamageFlat(), new HealthFlat(), new HealthRegenFlat(), new BaseTransferFlat(Elements.Fire, Elements.Nature), new FireResistFlat(), new HealthPercent(), new CrippleDodgePercent());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature), new HealthFlat(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new ElementalResistFlat(Elements.Fire), new HealthPercent(), new CrippleDodgePercent());
     }
 
     @Override

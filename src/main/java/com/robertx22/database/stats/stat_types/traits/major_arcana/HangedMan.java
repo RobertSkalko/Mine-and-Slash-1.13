@@ -1,10 +1,11 @@
 package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.database.stats.stat_mods.multi.defense.DodgeMulti;
 import com.robertx22.database.stats.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleHealthRegenPercent;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ public class HangedMan extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CrippleHealthRegenPercent(), new DodgeMulti(), new HealthMulti(), new WaterPeneFlat());
+        return Arrays.asList(new CrippleHealthRegenPercent(), new DodgeMulti(), new HealthMulti(), new ElementalPeneFlat(Elements.Water));
     }
 
     @Override

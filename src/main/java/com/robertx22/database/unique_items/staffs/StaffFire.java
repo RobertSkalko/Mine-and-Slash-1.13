@@ -1,10 +1,10 @@
 package com.robertx22.database.unique_items.staffs;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -30,7 +30,7 @@ public class StaffFire extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new CriticalDamageFlat(), new FirePeneFlat(), new LifeOnHitFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire), new LifeOnHitFlat());
     }
 
     @Override

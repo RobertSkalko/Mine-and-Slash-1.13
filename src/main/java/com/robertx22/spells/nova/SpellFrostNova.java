@@ -1,32 +1,24 @@
 package com.robertx22.spells.nova;
 
-import com.robertx22.database.stats.stat_types.elementals.resist.WaterResist;
 import com.robertx22.items.spells.nova.ItemFrostNova;
-import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.uncommon.enumclasses.Elements;
-
 import net.minecraft.item.Item;
 
 public class SpellFrostNova extends BaseNovaSpell {
 
     @Override
     public String GUID() {
-	return "spell_frost_nova";
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new WaterResist().GUID(), scaling);
+        return "spell_frost_nova";
     }
 
     @Override
     public Elements Element() {
-	return Elements.Water;
+        return Elements.Water;
     }
 
     @Override
     public Item SpellItem() {
-	return ItemFrostNova.ITEM;
+        return ItemFrostNova.ITEM;
     }
 
 }

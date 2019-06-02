@@ -6,10 +6,6 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ElementalSpellDamage extends ElementalStat {
 
-    public ElementalSpellDamage() {
-        super(Elements.None);
-    }
-
     public ElementalSpellDamage(Elements element) {
         super(element);
     }

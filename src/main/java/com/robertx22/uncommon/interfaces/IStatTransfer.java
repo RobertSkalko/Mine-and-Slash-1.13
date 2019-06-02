@@ -9,8 +9,19 @@ import java.util.List;
 
 public interface IStatTransfer extends IGUID {
 
-    public abstract void transferStats(Unit unitcopy, Unit unit, StatData data);
-
     public abstract List<TransferMethod> Transfer();
+
+    public default void transferStats(Unit copy, Unit unit, StatData data) {
+
+        for (TransferMethod stat : this.Transfer()) {
+
+            float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
+
+            unit.MyStats.get(stat.converted.GUID()).Flat -= val;
+            unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
+
+        }
+
+    }
 
 }

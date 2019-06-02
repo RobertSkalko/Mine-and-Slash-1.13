@@ -2,7 +2,6 @@ package com.robertx22.database.unique_items.rings;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
@@ -31,7 +30,7 @@ public class RingDodge extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new DodgeFlat(), new DodgePercent(), new NatureResistFlat(), new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Bow));
+        return Arrays.asList(new DodgeFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature), new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Bow));
     }
 
     @Override

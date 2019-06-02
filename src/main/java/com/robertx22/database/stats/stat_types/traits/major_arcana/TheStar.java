@@ -1,7 +1,6 @@
 package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.HealthRegenPercent;
@@ -20,7 +19,7 @@ public class TheStar extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent(), new ThunderResistFlat(), new BonusExpFlat());
+        return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent(), new ElementalResistFlat(Elements.Thunder), new BonusExpFlat());
     }
 
     @Override

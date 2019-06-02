@@ -1,15 +1,16 @@
 package com.robertx22.database.unique_items.hammers;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class HammerThunder extends BaseUniqueHammer {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackThunderDamageFlat(), new ThunderSpellToAttackFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalHitPercent(), new CriticalDamagePercent(), new CriticalHitFlat(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
     @Override

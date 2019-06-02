@@ -2,7 +2,7 @@ package com.robertx22.database.stats.stat_mods.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.generated.BaseConversionMod;
+import com.robertx22.database.stats.stat_types.generated.ElementalTransfer;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
@@ -11,22 +11,19 @@ import com.robertx22.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseConversionFlat extends StatMod implements IGenerated<StatMod> {
-
-    public BaseConversionFlat() {
-    }
+public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod> {
 
     public String GUID;
     public String BaseStatGUID;
     public Elements fromElement;
     public Elements toElement;
 
-    public BaseConversionFlat(Elements from, Elements to) {
+    public ElementalTransferFlat(Elements from, Elements to) {
         this.fromElement = from;
         this.toElement = to;
-        this.GUID = from.name() + "To" + to.name() + "ConvFlat";
+        this.GUID = from.name() + "To" + to.name() + "TransferFlat";
 
-        BaseConversionMod stat = new BaseConversionMod(from, to);
+        ElementalTransfer stat = new ElementalTransfer(from, to);
         this.BaseStatGUID = stat.GUID();
 
     }
@@ -64,7 +61,7 @@ public class BaseConversionFlat extends StatMod implements IGenerated<StatMod> {
             if (from != Elements.None) {
                 for (Elements to : Elements.values()) {
                     if (to != Elements.None && to != from) {
-                        BaseConversionFlat stat = new BaseConversionFlat(from, to);
+                        ElementalTransferFlat stat = new ElementalTransferFlat(from, to);
                         stats.add(stat);
                     }
                 }

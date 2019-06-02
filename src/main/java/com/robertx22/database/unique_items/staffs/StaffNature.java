@@ -2,7 +2,6 @@ package com.robertx22.database.unique_items.staffs;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.pene.NaturePenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
@@ -29,7 +28,7 @@ public class StaffNature extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackNatureDamageFlat(), new NaturePeneFlat(), new NaturePenePercent(), new HealthRegenFlat());
+        return Arrays.asList(new AttackNatureDamageFlat(), new ElementalPeneFlat(Elements.Nature), new NaturePenePercent(), new HealthRegenFlat());
     }
 
     @Override

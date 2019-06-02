@@ -4,11 +4,9 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -34,7 +32,8 @@ public class DefenseInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> armorInfusions() {
-        return Arrays.asList(new ArmorFlat(), new FireResistFlat(), new WaterResistFlat(), new ThunderResistFlat(), new NatureResistFlat(), new DodgeFlat());
+
+        return ListUtils.newList(new ElementalResistFlat().allSingleElements(), new ArmorFlat(), new DodgeFlat());
     }
 
     @Override

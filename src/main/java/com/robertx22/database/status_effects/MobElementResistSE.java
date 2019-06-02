@@ -1,9 +1,5 @@
 package com.robertx22.database.status_effects;
 
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import net.minecraft.init.Items;
@@ -28,9 +24,10 @@ public class MobElementResistSE extends BaseStatusEffect {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new FireResistFlat()), StatModData
-                .NewStatusEffect(percent, new WaterResistFlat()), StatModData.NewStatusEffect(percent, new ThunderResistFlat()), StatModData
-                .NewStatusEffect(percent, new NatureResistFlat()));
+        return Arrays.asList(StatModData.NewStatusEffect(percent, new ElementalResistFlat(Elements.Fire)), StatModData
+                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Water)), StatModData
+                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Thunder)), StatModData
+                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Nature)));
     }
 
 }

@@ -12,10 +12,6 @@ import java.util.List;
 
 public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEffects {
 
-    public ElementalSpellToAttackDMG() {
-        super(Elements.None);
-    }
-
     public ElementalSpellToAttackDMG(Elements element) {
         super(element);
     }

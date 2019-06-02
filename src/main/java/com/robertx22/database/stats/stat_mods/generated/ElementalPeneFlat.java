@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalPeneFlat extends ElementalStatMod {
 
-    public ElementalPeneFlat() {
-        super(Elements.None);
-    }
-
     public ElementalPeneFlat(Elements element) {
         super(element);
     }

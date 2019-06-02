@@ -1,11 +1,11 @@
 package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -31,7 +31,7 @@ public class NecklaceFire extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ElementalSpellToAttackDMGFlat(Elements.Fire), new BaseTransferFlat(Elements.Water, Elements.Fire), new WaterResistFlat(), new LessHealthRegenFlat());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalTransferFlat(Elements.Water, Elements.Fire), new ElementalResistFlat(Elements.Water), new LessHealthRegenFlat());
 
     }
 

@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalSpellDamageMulti extends ElementalStatMod {
 
-    public ElementalSpellDamageMulti() {
-        super(Elements.None);
-    }
-
     public ElementalSpellDamageMulti(Elements element) {
         super(element);
     }

@@ -12,13 +12,9 @@ import java.util.List;
 
 public class ElementalPene extends ElementalStat implements IStatEffects {
 
-    public ElementalPene() {
-        super(Elements.None);
-        this.minimumValue = 0;
-    }
-
     public ElementalPene(Elements element) {
         super(element);
+        this.minimumValue = 0;
     }
 
     @Override

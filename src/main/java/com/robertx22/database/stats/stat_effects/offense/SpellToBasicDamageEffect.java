@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_effects.offense;
 
 import com.robertx22.database.stats.Stat;
-import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.BaseSpellToBasicDamage;
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellToAttackDMG;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
@@ -27,9 +27,9 @@ public class SpellToBasicDamageEffect implements IStatEffect {
 
         try {
             if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK) && stat instanceof BaseSpellToBasicDamage) {
+                    .equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalSpellToAttackDMG) {
 
-                BaseSpellToBasicDamage basebonus = (BaseSpellToBasicDamage) stat;
+                ElementalSpellToAttackDMG basebonus = (ElementalSpellToAttackDMG) stat;
 
                 float percent = data.Value;
                 float derivedvalue = (float) source.MyStats.get(basebonus.StatThatGiveDamage()

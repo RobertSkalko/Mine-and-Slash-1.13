@@ -26,7 +26,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public float amountToReach100Percent() {
-        return 15;
+        return 10;
     }
 
     @Override

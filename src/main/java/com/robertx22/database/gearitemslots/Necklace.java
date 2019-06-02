@@ -2,12 +2,9 @@ package com.robertx22.database.gearitemslots;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
 import net.minecraft.item.Item;
 
@@ -29,7 +26,9 @@ public class Necklace extends GearItemSlot {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(), new NatureResistFlat());
+
+        return new ElementalResistFlat().allSingleElements();
+
     }
 
     @Override

@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalAttackDamageFlat extends ElementalStatMod {
 
-    public ElementalAttackDamageFlat() {
-        super(Elements.None);
-    }
-
     public ElementalAttackDamageFlat(Elements element) {
         super(element);
 

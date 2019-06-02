@@ -40,6 +40,9 @@ import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.db_lists.bases.AllPreGenMapStats;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -172,17 +175,17 @@ public class Stats {
     private static List<IGenerated<Stat>> generated = new ArrayList<IGenerated<Stat>>() {
         {
             {
-                add(new BaseConversionMod());
-                add(new BaseTransferMod());
-                add(new XElementAffinity());
-                add(new XBonusLootDrop());
-                add(new WeaponDamage());
-                add(new ElementalAttackDamage());
-                add(new ElementalSpellToAttackDMG());
-                add(new AllElementalDamage());
-                add(new ElementalSpellDamage());
-                add(new ElementalResist());
-                add(new ElementalPene());
+                add(new ElementalConversion(Elements.None, Elements.None));
+                add(new ElementalTransfer(Elements.None, Elements.None));
+                add(new ElementalAffinity(Elements.None));
+                add(new XBonusLootDrop(LootType.NormalItem));
+                add(new WeaponDamage(WeaponTypes.None));
+                add(new ElementalAttackDamage(Elements.None));
+                add(new ElementalSpellToAttackDMG(Elements.None));
+                add(new AllElementalDamage(Elements.None));
+                add(new ElementalSpellDamage(Elements.None));
+                add(new ElementalResist(Elements.None));
+                add(new ElementalPene(Elements.None));
 
             }
         }

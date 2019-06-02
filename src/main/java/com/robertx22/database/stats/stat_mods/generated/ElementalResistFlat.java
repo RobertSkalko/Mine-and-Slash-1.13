@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalResistFlat extends ElementalStatMod {
 
-    public ElementalResistFlat() {
-        super(Elements.None);
-    }
-
     public ElementalResistFlat(Elements element) {
         super(element);
     }

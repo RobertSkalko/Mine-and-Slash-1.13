@@ -2,8 +2,6 @@ package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
 import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
@@ -31,7 +29,7 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellFireDamageFlat(), new EnergyRegenFlat(), new MajorArmorFlat(), new FireResistFlat(), new LessCriticalHitPercent());
+        return Arrays.asList(new LowDodgeAddArmorFlat(), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
     }
 
     @Override

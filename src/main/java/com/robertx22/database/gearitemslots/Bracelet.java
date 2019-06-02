@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.items.gearitems.baubles.ItemBracelet;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 
@@ -19,17 +20,15 @@ public class Bracelet extends GearItemSlot {
         return "Bracelet";
     }
 
-    ListUtils
     @Override
-
     public List<StatMod> PrimaryStats() {
-        return ListUtils.newList(new ElementalSpellDamageFlat().allSingleElements(), new SpellDamageFlat());
+        return ListUtils.newList(new ElementalSpellDamageFlat(Elements.None).allSingleElements(), new SpellDamageFlat());
 
     }
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return new ElementalResistFlat().allSingleElements();
+        return new ElementalResistFlat(Elements.None).allSingleElements();
     }
 
     @Override

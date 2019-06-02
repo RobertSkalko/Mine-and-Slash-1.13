@@ -1,10 +1,10 @@
 package com.robertx22.database.unique_items.chest;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
@@ -33,7 +33,7 @@ public class ChestFire extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new FireResistFlat(), new SpellFireDamageFlat(), new BaseTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent(), new CrippleLifestealPercent());
+        return Arrays.asList(new HealthFlat(), new ElementalResistFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Fire), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent(), new CrippleLifestealPercent());
     }
 
     @Override

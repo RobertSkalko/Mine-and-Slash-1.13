@@ -2,8 +2,6 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.TransferMethod;
-import com.robertx22.saveclasses.StatData;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
@@ -11,7 +9,7 @@ import com.robertx22.uncommon.interfaces.IStatTransfer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseTransferMod extends Stat implements IStatTransfer, IGenerated<Stat> {
+public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated<Stat> {
 
     @Override
     public String locDescForLangFile() {
@@ -33,26 +31,9 @@ public class BaseTransferMod extends Stat implements IStatTransfer, IGenerated<S
         return null;
     }
 
-    @Override
-    public void transferStats(Unit copy, Unit unit, StatData data) {
-
-        for (TransferMethod stat : this.Transfer()) {
-
-            float val = copy.MyStats.get(stat.converted.GUID()).Flat * data.Value /* percent */ / 100;
-
-            unit.MyStats.get(stat.converted.GUID()).Flat -= val;
-            unit.MyStats.get(stat.statThatBenefits.GUID()).Flat += val;
-
-        }
-
-    }
-
     List<TransferMethod> transfers = new ArrayList<>();
 
-    public BaseTransferMod() {
-    }
-
-    public BaseTransferMod(Elements from, Elements to) {
+    public ElementalTransfer(Elements from, Elements to) {
         this.fromElement = from;
         this.toElement = to;
         this.maximumValue = 100;
@@ -82,7 +63,7 @@ public class BaseTransferMod extends Stat implements IStatTransfer, IGenerated<S
             if (from != Elements.None) {
                 for (Elements to : Elements.values()) {
                     if (to != Elements.None && to != from) {
-                        BaseTransferMod stat = new BaseTransferMod(from, to);
+                        ElementalTransfer stat = new ElementalTransfer(from, to);
                         stats.add(stat);
                     }
                 }

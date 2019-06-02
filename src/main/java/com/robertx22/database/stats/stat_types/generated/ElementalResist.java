@@ -13,13 +13,9 @@ import java.util.List;
 
 public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
 
-    public ElementalResist() {
-        super(Elements.None);
-        this.minimumValue = 0;
-    }
-
     public ElementalResist(Elements element) {
         super(element);
+        this.minimumValue = 0;
     }
 
     @Override

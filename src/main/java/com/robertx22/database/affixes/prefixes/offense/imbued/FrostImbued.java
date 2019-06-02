@@ -1,7 +1,8 @@
 package com.robertx22.database.affixes.prefixes.offense.imbued;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ public class FrostImbued extends BaseImbuedPrefix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new WaterSpellToAttackFlat());
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

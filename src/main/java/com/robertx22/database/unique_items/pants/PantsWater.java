@@ -2,9 +2,8 @@ package com.robertx22.database.unique_items.pants;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.stat_mods.generated.BaseTransferFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
@@ -33,7 +32,7 @@ public class PantsWater extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ArmorPercent(), new WaterResistFlat(), new BaseTransferFlat(Elements.Fire, Elements.Water), new SpellWaterDamagePercent(), new LessDodgePercent());
+        return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new ElementalTransferFlat(Elements.Fire, Elements.Water), new SpellWaterDamagePercent(), new LessDodgePercent());
 
     }
 

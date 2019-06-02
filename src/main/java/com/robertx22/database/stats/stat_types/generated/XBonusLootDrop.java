@@ -13,10 +13,6 @@ public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
 
     public LootType type;
 
-    public XBonusLootDrop() {
-
-    }
-
     public XBonusLootDrop(LootType type) {
         this.type = type;
 

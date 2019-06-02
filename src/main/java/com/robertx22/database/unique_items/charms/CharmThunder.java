@@ -32,7 +32,7 @@ public class CharmThunder extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(), new ElementalPenePercent(Elements.tuh), new CriticalHitPercent(), new ElementalResistFlat(Elements.Thunder), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(), new ElementalPenePercent(Elements.Thunder), new CriticalHitPercent(), new ElementalResistFlat(Elements.Thunder), new CrippleLifeOnHitPercent());
     }
 
     @Override

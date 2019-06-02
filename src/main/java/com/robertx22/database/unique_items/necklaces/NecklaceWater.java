@@ -2,7 +2,6 @@ package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
@@ -31,7 +30,7 @@ public class NecklaceWater extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellWaterDamageFlat(), new SpellWaterDamagePercent(), new ArmorFlat(), new ArmorPercent(), new WaterResistFlat(), new CrippleDodgePercent());
+        return Arrays.asList(new SpellWaterDamageFlat(), new SpellWaterDamagePercent(), new ArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
     }
 
     @Override

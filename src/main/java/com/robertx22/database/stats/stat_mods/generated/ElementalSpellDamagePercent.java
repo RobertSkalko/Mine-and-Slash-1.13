@@ -9,10 +9,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ElementalSpellDamagePercent extends ElementalStatMod {
 
-    public ElementalSpellDamagePercent() {
-        super(Elements.None);
-    }
-
     public ElementalSpellDamagePercent(Elements element) {
         super(element);
     }

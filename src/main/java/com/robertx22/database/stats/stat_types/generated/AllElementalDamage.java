@@ -12,11 +12,6 @@ import java.util.List;
 
 public class AllElementalDamage extends ElementalStat implements IStatEffects {
 
-    public AllElementalDamage() {
-        super(Elements.None);
-
-    }
-
     public AllElementalDamage(Elements element) {
         super(element);
     }

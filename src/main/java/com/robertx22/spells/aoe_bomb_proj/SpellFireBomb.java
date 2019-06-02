@@ -1,10 +1,8 @@
 package com.robertx22.spells.aoe_bomb_proj;
 
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemFireBomb;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
-import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.entities.EntityBombProjectile;
 import com.robertx22.spells.entities.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -28,11 +26,6 @@ public class SpellFireBomb extends BaseBombSpell {
         public Elements element() {
             return Elements.Fire;
         }
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new SpellFireDamage().GUID(), this.damageScaling);
     }
 
     @Override
