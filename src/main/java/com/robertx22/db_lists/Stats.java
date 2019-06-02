@@ -8,19 +8,8 @@ import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.database.stats.stat_types.elementals.AllEleResist;
-import com.robertx22.database.stats.stat_types.elementals.all_damage.*;
-import com.robertx22.database.stats.stat_types.elementals.pene.FirePene;
-import com.robertx22.database.stats.stat_types.elementals.pene.NaturePene;
-import com.robertx22.database.stats.stat_types.elementals.pene.ThunderPene;
-import com.robertx22.database.stats.stat_types.elementals.pene.WaterPene;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellFireDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellNatureDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_damage.SpellWaterDamage;
-import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.FireSpellToAttackDMG;
-import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.NatureSpellToAttackDMG;
-import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.ThunderSpellToAttackDMG;
-import com.robertx22.database.stats.stat_types.elementals.spell_to_attack.WaterSpellToAttackDMG;
+import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleDmg;
+import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.database.stats.stat_types.generated.*;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.*;
@@ -155,28 +144,6 @@ public class Stats {
                 put(CriticalHit.GUID, new CriticalHit());
                 put(PhysicalDamage.GUID, new PhysicalDamage());
 
-                // Elemental
-                put(SpellFireDamage.GUID, new SpellFireDamage());
-                put(SpellWaterDamage.GUID, new SpellWaterDamage());
-                put(SpellThunderDamage.GUID, new SpellThunderDamage());
-                put(SpellNatureDamage.GUID, new SpellNatureDamage());
-
-                put(AllFireDamage.GUID, new AllFireDamage());
-                put(AllWaterDamage.GUID, new AllWaterDamage());
-                put(AllThunderDamage.GUID, new AllThunderDamage());
-                put(AllNatureDamage.GUID, new AllNatureDamage());
-
-                put(FireResist.GUID, new FireResist());
-                put(NatureResist.GUID, new NatureResist());
-                put(WaterResist.GUID, new WaterResist());
-                put(ThunderResist.GUID, new ThunderResist());
-
-                put(FirePene.GUID, new FirePene());
-                put(NaturePene.GUID, new NaturePene());
-                put(WaterPene.GUID, new WaterPene());
-                put(ThunderPene.GUID, new ThunderPene());
-                // Elemental
-
                 put(Dodge.GUID, new Dodge());
                 put(SpellDodge.GUID, new SpellDodge());
 
@@ -196,11 +163,6 @@ public class Stats {
                 put(FireAtronach.GUID, new FireAtronach());
                 put(ThunderAtronach.GUID, new ThunderAtronach());
 
-                put(FireSpellToAttackDMG.GUID, new FireSpellToAttackDMG());
-                put(WaterSpellToAttackDMG.GUID, new WaterSpellToAttackDMG());
-                put(ThunderSpellToAttackDMG.GUID, new ThunderSpellToAttackDMG());
-                put(NatureSpellToAttackDMG.GUID, new NatureSpellToAttackDMG());
-
                 // traits
 
             }
@@ -216,6 +178,11 @@ public class Stats {
                 add(new XBonusLootDrop());
                 add(new WeaponDamage());
                 add(new ElementalAttackDamage());
+                add(new ElementalSpellToAttackDMG());
+                add(new AllElementalDamage());
+                add(new ElementalSpellDamage());
+                add(new ElementalResist());
+                add(new ElementalPene());
 
             }
         }

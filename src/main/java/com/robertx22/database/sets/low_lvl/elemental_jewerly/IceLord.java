@@ -5,8 +5,9 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
 
@@ -24,7 +25,7 @@ public class IceLord extends Set {
             {
                 {
                     put(2, new ManaRegenPercent());
-                    put(3, new SpellWaterDamagePercent());
+                    put(3, new ElementalSpellDamagePercent(Elements.Water));
 
                 }
             }

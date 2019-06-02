@@ -6,6 +6,7 @@ import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ElementalStatMod extends StatMod implements IGenerated<StatMod> {
 
@@ -24,6 +25,13 @@ public abstract class ElementalStatMod extends StatMod implements IGenerated<Sta
         Elements.getAll().forEach(x -> list.add(getStatMod(x)));
         return list;
 
+    }
+
+    public List<StatMod> allSingleElements() {
+
+        return generateAllPossibleStatVariations().stream()
+                .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
+                .collect(Collectors.toList());
     }
 
 }

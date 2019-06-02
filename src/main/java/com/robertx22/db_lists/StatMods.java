@@ -22,18 +22,6 @@ import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.NatureSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
@@ -45,14 +33,6 @@ import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyT
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.database.stats.stat_mods.generated.*;
 import com.robertx22.database.stats.stat_mods.multi.defense.*;
-import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllFireDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllNatureDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllThunderDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.all_damage.AllWaterDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellFireDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.offence.LessPhysicalDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.database.stats.stat_mods.multi.resources.LessHealthRegenMulti;
@@ -62,14 +42,6 @@ import com.robertx22.database.stats.stat_mods.percent.*;
 import com.robertx22.database.stats.stat_mods.percent.less.*;
 import com.robertx22.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.database.stats.stat_mods.percent.offense.*;
-import com.robertx22.database.stats.stat_mods.percent.pene.FirePenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.NaturePenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.ThunderPenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.WaterPenePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.database.stats.stat_mods.spell_buffs.*;
 import com.robertx22.database.stats.stat_mods.traits.*;
 import com.robertx22.database.stats.stat_mods.traits.atronachs.EarthAtronachFlat;
@@ -161,16 +133,6 @@ public class StatMods {
                 put(new PhysicalDamageMulti().GUID(), new PhysicalDamageMulti());
                 put(new LessPhysicalDamageMulti().GUID(), new LessPhysicalDamageMulti());
 
-                put(new SpellWaterDamageMulti().GUID(), new SpellWaterDamageMulti());
-                put(new SpellFireDamageMulti().GUID(), new SpellFireDamageMulti());
-                put(new SpellThunderDamageMulti().GUID(), new SpellThunderDamageMulti());
-                put(new SpellNatureDamageMulti().GUID(), new SpellNatureDamageMulti());
-
-                put(new AllWaterDamageMulti().GUID(), new AllWaterDamageMulti());
-                put(new AllFireDamageMulti().GUID(), new AllFireDamageMulti());
-                put(new AllThunderDamageMulti().GUID(), new AllThunderDamageMulti());
-                put(new AllNatureDamageMulti().GUID(), new AllNatureDamageMulti());
-
                 put(new LessArmorMulti().GUID(), new LessArmorMulti());
                 put(new HealthMulti().GUID(), new HealthMulti());
                 put(new DodgeMulti().GUID(), new DodgeMulti());
@@ -251,40 +213,9 @@ public class StatMods {
                 put(new ManaOnHitFlat().GUID(), new ManaOnHitFlat());
                 // Resources
 
-                // Elements
-                put(new SpellFireDamageFlat().GUID(), new SpellFireDamageFlat());
-                put(new SpellWaterDamageFlat().GUID(), new SpellWaterDamageFlat());
-                put(new SpellThunderDamageFlat().GUID(), new SpellThunderDamageFlat());
-                put(new SpellNatureDamageFlat().GUID(), new SpellNatureDamageFlat());
-
-                put(new FireResistFlat().GUID(), new FireResistFlat());
-                put(new WaterResistFlat().GUID(), new WaterResistFlat());
-                put(new ThunderResistFlat().GUID(), new ThunderResistFlat());
-                put(new NatureResistFlat().GUID(), new NatureResistFlat());
-
-                put(new FirePeneFlat().GUID(), new FirePeneFlat());
-                put(new WaterPeneFlat().GUID(), new WaterPeneFlat());
-                put(new ThunderPeneFlat().GUID(), new ThunderPeneFlat());
-                put(new NaturePeneFlat().GUID(), new NaturePeneFlat());
-
-                put(new FirePenePercent().GUID(), new FirePenePercent());
-                put(new WaterPenePercent().GUID(), new WaterPenePercent());
-                put(new ThunderPenePercent().GUID(), new ThunderPenePercent());
-                put(new NaturePenePercent().GUID(), new NaturePenePercent());
-
-                put(new SpellFireDamagePercent().GUID(), new SpellFireDamagePercent());
-                put(new SpellWaterDamagePercent().GUID(), new SpellWaterDamagePercent());
-                put(new SpellThunderDamagePercent().GUID(), new SpellThunderDamagePercent());
-                put(new SpellNatureDamagePercent().GUID(), new SpellNatureDamagePercent()); // Elements
-
                 put(new ArmorPercent().GUID(), new ArmorPercent());
                 put(new DodgeFlat().GUID(), new DodgeFlat());
 
-                // bonus dmg
-                put(new WaterSpellToAttackFlat().GUID(), new WaterSpellToAttackFlat());
-                put(new FireSpellToAttackFlat().GUID(), new FireSpellToAttackFlat());
-                put(new ThunderSpellToAttackFlat().GUID(), new ThunderSpellToAttackFlat());
-                put(new NatureSpellToAttackFlat().GUID(), new NatureSpellToAttackFlat());
                 // bonus dmg
 
                 // Traits
@@ -361,6 +292,14 @@ public class StatMods {
                 add(new WeaponDamageFlat());
                 add(new LessWeaponDamageFlat());
                 add(new ElementalAttackDamageFlat());
+                add(new AllElementalDamageMulti());
+                add(new ElementalSpellToAttackDMGFlat());
+                add(new ElementalSpellDamagePercent());
+                add(new ElementalSpellDamageFlat());
+                add(new ElementalResistFlat());
+                add(new ElementalSpellDamageMulti());
+                add(new ElementalPeneFlat());
+                add(new ElementalPenePercent());
 
             }
         }

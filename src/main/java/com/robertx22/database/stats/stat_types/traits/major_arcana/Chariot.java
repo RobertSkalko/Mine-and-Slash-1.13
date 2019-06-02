@@ -4,7 +4,8 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StrengthFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.VitalityFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Chariot extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new IntelligenceFlat(), new StrengthFlat(), new VitalityFlat(), new WaterSpellToAttackFlat());
+        return Arrays.asList(new IntelligenceFlat(), new StrengthFlat(), new VitalityFlat(), new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

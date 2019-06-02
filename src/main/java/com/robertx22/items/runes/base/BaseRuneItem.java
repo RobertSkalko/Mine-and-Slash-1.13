@@ -1,28 +1,9 @@
 package com.robertx22.items.runes.base;
 
+import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.NaturePeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.ThunderPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.NatureResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.ThunderResistFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.resist.WaterResistFlat;
-import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellFireDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
-import com.robertx22.database.stats.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
-import com.robertx22.database.stats.stat_mods.percent.pene.FirePenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.NaturePenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.ThunderPenePercent;
-import com.robertx22.database.stats.stat_mods.percent.pene.WaterPenePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellFireDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
-import com.robertx22.database.stats.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.database.stats.stat_mods.generated.*;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -32,7 +13,6 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
-import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -45,8 +25,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect {
 
@@ -160,29 +140,36 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     public abstract List<StatMod> jewerlyStat();
 
+    private List<StatMod> allElements(ElementalStatMod mod) {
+
+        return mod.generateAllPossibleStatVariations()
+                .stream()
+                .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
+                .collect(Collectors.toList());
+    }
+
     public List<StatMod> spellDamageFlats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Water), new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellDamageFlat(Elements.Nature));
+        return allElements(new ElementalSpellDamageFlat());
     }
 
     public List<StatMod> spellDamageMultis() {
-        return Arrays.asList(new SpellFireDamageMulti(), new SpellWaterDamageMulti(), new SpellThunderDamageMulti(), new SpellNatureDamageMulti());
+        return allElements(new ElementalSpellDamageMulti());
     }
 
     public List<StatMod> resistFlats() {
-        return Arrays.asList(new FireResistFlat(), new WaterResistFlat(), new ThunderResistFlat(), new NatureResistFlat());
+        return allElements(new ElementalResistFlat());
     }
 
     public List<StatMod> peneFlats() {
-        return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new ThunderPeneFlat(), new NaturePeneFlat());
-
+        return allElements(new ElementalPeneFlat());
     }
 
     public List<StatMod> penePercents() {
-        return Arrays.asList(new FirePenePercent(), new WaterPenePercent(), new ThunderPenePercent(), new NaturePenePercent());
+        return allElements(new ElementalPenePercent());
     }
 
     public List<StatMod> spellDamagePercents() {
-        return Arrays.asList(new SpellFireDamagePercent(), new SpellWaterDamagePercent(), new SpellThunderDamagePercent(), new SpellNatureDamagePercent());
+        return allElements(new ElementalSpellDamagePercent());
     }
 
 }
