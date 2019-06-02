@@ -15,11 +15,6 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
     }
 
     @Override
-    public StatMod getStatMod(Elements element) {
-        return new ElementalAttackDamageFlat(element);
-    }
-
-    @Override
     public Stat GetBaseStat() {
         return new ElementalAttackDamage(this.element);
     }
@@ -42,5 +37,10 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
     @Override
     public String GUID() {
         return "Attack" + element.name() + "DamageFlat";
+    }
+
+    @Override
+    public StatMod newGeneratedInstance(Elements element) {
+        return new ElementalAttackDamageFlat(element);
     }
 }

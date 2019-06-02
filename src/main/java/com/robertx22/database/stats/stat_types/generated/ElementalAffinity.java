@@ -32,7 +32,7 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     }
 
     @Override
-    public Stat newStatInstance(Elements element) {
+    public Stat newGeneratedInstance(Elements element) {
         return new ElementalAffinity(element);
     }
 

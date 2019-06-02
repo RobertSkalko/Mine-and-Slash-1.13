@@ -19,11 +19,6 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
     }
 
     @Override
-    public StatMod getStatMod(Elements element) {
-        return new ElementalSpellToAttackDMGFlat(element);
-    }
-
-    @Override
     public Stat GetBaseStat() {
         return new ElementalSpellToAttackDMG(this.element);
     }
@@ -43,4 +38,8 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
         return StatTypes.Flat;
     }
 
+    @Override
+    public StatMod newGeneratedInstance(Elements element) {
+        return new ElementalSpellToAttackDMGFlat(element);
+    }
 }

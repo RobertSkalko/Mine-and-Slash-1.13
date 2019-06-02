@@ -12,7 +12,7 @@ public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new TextComponentString(Styles.GREEN + "Double Attack");
+        return new TextComponentString(Styles.GREEN + "Double Damage");
     }
 
     @Override

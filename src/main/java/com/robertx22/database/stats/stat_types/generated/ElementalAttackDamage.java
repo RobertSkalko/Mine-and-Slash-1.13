@@ -17,7 +17,7 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
     }
 
     @Override
-    public Stat newStatInstance(Elements element) {
+    public Stat newGeneratedInstance(Elements element) {
         return new ElementalSpellToAttackDMG(element);
     }
 

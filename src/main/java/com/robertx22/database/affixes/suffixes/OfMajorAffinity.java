@@ -27,7 +27,7 @@ public class OfMajorAffinity extends ElementalSuffix {
     }
 
     @Override
-    public Suffix newStatInstance(Elements element) {
+    public Suffix newGeneratedInstance(Elements element) {
         return new OfMajorAffinity(element);
     }
 

@@ -11,7 +11,7 @@ public class ElementalSpellDamage extends ElementalStat {
     }
 
     @Override
-    public Stat newStatInstance(Elements element) {
+    public Stat newGeneratedInstance(Elements element) {
         return new ElementalSpellDamage(element);
     }
 

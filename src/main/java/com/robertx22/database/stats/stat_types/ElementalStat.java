@@ -2,12 +2,12 @@ package com.robertx22.database.stats.stat_types;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.interfaces.IGenerated;
+import com.robertx22.uncommon.interfaces.IElementalGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ElementalStat extends Stat implements IGenerated<Stat> {
+public abstract class ElementalStat extends Stat implements IElementalGenerated<Stat> {
 
     public Elements element;
 
@@ -21,12 +21,12 @@ public abstract class ElementalStat extends Stat implements IGenerated<Stat> {
         return this.element;
     }
 
-    public abstract Stat newStatInstance(Elements element);
+    public abstract Stat newGeneratedInstance(Elements element);
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAllExceptNone().forEach(x -> list.add(newStatInstance(x)));
+        Elements.getAllExceptNone().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IGenerated<T extends IGUID> {
 
-    List<T> generateAllPossibleStatVariations();
+    public List<T> generateAllPossibleStatVariations();
 }

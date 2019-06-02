@@ -14,7 +14,7 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
     }
 
     @Override
-    public StatMod getStatMod(Elements element) {
+    public StatMod newGeneratedInstance(Elements element) {
         return new ElementalSpellDamageFlat(element);
     }
 

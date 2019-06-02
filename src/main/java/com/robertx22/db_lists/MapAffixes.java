@@ -16,6 +16,7 @@ import com.robertx22.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
 import com.robertx22.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class MapAffixes {
     private static List<IGenerated<BaseMapAffix>> generated = new ArrayList<IGenerated<BaseMapAffix>>() {
         {
             {
-                add(new LessWeaponDamageMapAffix());
+                add(new LessWeaponDamageMapAffix(WeaponTypes.None));
 
             }
         }

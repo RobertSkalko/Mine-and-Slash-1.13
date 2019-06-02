@@ -14,7 +14,7 @@ public class ElementalSpellDamagePercent extends ElementalStatMod {
     }
 
     @Override
-    public StatMod getStatMod(Elements element) {
+    public StatMod newGeneratedInstance(Elements element) {
         return new ElementalSpellDamagePercent(element);
     }
 

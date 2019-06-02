@@ -2,13 +2,13 @@ package com.robertx22.database;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.interfaces.IGenerated;
+import com.robertx22.uncommon.interfaces.IElementalGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class ElementalStatMod extends StatMod implements IGenerated<StatMod> {
+public abstract class ElementalStatMod extends StatMod implements IElementalGenerated<StatMod> {
 
     public Elements element;
 
@@ -17,12 +17,10 @@ public abstract class ElementalStatMod extends StatMod implements IGenerated<Sta
 
     }
 
-    public abstract StatMod getStatMod(Elements element);
-
     @Override
     public List<StatMod> generateAllPossibleStatVariations() {
         List<StatMod> list = new ArrayList<>();
-        Elements.getAllExceptNone().forEach(x -> list.add(getStatMod(x)));
+        Elements.getAllExceptNone().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }

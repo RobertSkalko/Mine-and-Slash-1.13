@@ -19,7 +19,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     }
 
     @Override
-    public Stat newStatInstance(Elements element) {
+    public Stat newGeneratedInstance(Elements element) {
         return new ElementalResist(element);
     }
 

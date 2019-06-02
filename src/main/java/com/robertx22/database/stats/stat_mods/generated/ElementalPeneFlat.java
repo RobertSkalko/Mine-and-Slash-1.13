@@ -14,11 +14,6 @@ public class ElementalPeneFlat extends ElementalStatMod {
     }
 
     @Override
-    public StatMod getStatMod(Elements element) {
-        return new ElementalPeneFlat(element);
-    }
-
-    @Override
     public Stat GetBaseStat() {
         return new ElementalPene(this.element);
     }
@@ -41,5 +36,10 @@ public class ElementalPeneFlat extends ElementalStatMod {
     @Override
     public String GUID() {
         return element.name() + "PeneFlat";
+    }
+
+    @Override
+    public StatMod newGeneratedInstance(Elements element) {
+        return new ElementalPeneFlat(element);
     }
 }

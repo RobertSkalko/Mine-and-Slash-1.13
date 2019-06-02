@@ -6,6 +6,8 @@ import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
+import com.robertx22.db_lists.Stats;
+import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
@@ -163,6 +165,8 @@ public class MMORPG {
                     .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
                             .getCurrentServer());
         }
+
+        Stats.allPreGenMapStatLists = new AllPreGenMapStats(); // in case stat lists are made before all stats are added up by other mods?
 
     }
 

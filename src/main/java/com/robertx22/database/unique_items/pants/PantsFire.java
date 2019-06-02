@@ -3,7 +3,7 @@ package com.robertx22.database.unique_items.pants;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
@@ -32,7 +32,7 @@ public class PantsFire extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddCritHitFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new LowDodgeAddCritHitFlat(), new HealthFlat(), new ElementalAffinityFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
     }
 
     @Override

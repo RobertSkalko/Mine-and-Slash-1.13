@@ -50,6 +50,7 @@ public class GiveExactUnique {
         UniqueBlueprint blueprint = new UniqueBlueprint(lvl, 0, true);
         blueprint.SetSpecificRarity(new UniqueItem().Rank());
         blueprint.setSpecificID(id);
+        blueprint.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
             player.addItemStackToInventory(UniqueGearLootGen.CreateStack(blueprint));
