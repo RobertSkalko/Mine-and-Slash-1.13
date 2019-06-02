@@ -1,13 +1,14 @@
 package com.robertx22.database.unique_items.swords;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueSword;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,7 @@ public class SwordNature extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackNatureDamageFlat(), new LifestealFlat(), new LifestealPercent(), new HealthRegenFlat(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Nature), new LifestealFlat(), new LifestealPercent(), new HealthRegenFlat(), new CrippleCriticalDamagePercent());
     }
 
     @Override

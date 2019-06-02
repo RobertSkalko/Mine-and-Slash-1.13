@@ -1,12 +1,13 @@
 package com.robertx22.database.unique_items.axes;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.FirePeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ public class AxeFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackFireDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(), new FirePeneFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new CriticalHitPercent(), new CriticalDamagePercent(), new FirePeneFlat());
     }
 
     @Override

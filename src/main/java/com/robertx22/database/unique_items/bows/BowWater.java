@@ -2,11 +2,12 @@ package com.robertx22.database.unique_items.bows;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueBow;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class BowWater extends BaseUniqueBow {
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackWaterDamageFlat(), new WisdomFlat(), new WaterSpellToAttackFlat(), new WaterPeneFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new WisdomFlat(), new WaterSpellToAttackFlat(), new WaterPeneFlat());
     }
 
     @Override

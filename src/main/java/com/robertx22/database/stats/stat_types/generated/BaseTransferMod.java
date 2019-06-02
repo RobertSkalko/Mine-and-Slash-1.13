@@ -7,7 +7,6 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
-import com.robertx22.uncommon.utilityclasses.StatUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,10 +59,8 @@ public class BaseTransferMod extends Stat implements IStatTransfer, IGenerated<S
         this.GUID = from.name() + "_to_" + to.name() + "_transfer";
         this.GUID = GUID.toLowerCase();
 
-        transfers.add(new TransferMethod(StatUtils.AttackDamage.get(from), StatUtils.AttackDamage
-                .get(to)));
-        transfers.add(new TransferMethod(StatUtils.SpellDamage.get(from), StatUtils.SpellDamage
-                .get(to)));
+        transfers.add(new TransferMethod(new ElementalAttackDamage(from), new ElementalAttackDamage(to)));
+        transfers.add(new TransferMethod(new ElementalSpellDamage(from), new ElementalSpellDamage(to)));
 
     }
 

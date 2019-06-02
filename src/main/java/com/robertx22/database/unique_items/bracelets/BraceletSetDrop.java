@@ -43,6 +43,6 @@ public class BraceletSetDrop extends BaseUniqueBracelet {
 
     @Override
     public String locDescForLangFile() {
-        return "";
+        return "No matter the depths, it will be mine!";
     }
 }

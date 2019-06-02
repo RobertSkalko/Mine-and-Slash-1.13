@@ -8,10 +8,6 @@ import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
 import com.robertx22.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.*;
-import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackFireDamage;
-import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackNatureDamage;
-import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackThunderDamage;
-import com.robertx22.database.stats.stat_types.elementals.attack_damage.AttackWaterDamage;
 import com.robertx22.database.stats.stat_types.elementals.pene.FirePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.NaturePene;
 import com.robertx22.database.stats.stat_types.elementals.pene.ThunderPene;
@@ -165,11 +161,6 @@ public class Stats {
                 put(SpellThunderDamage.GUID, new SpellThunderDamage());
                 put(SpellNatureDamage.GUID, new SpellNatureDamage());
 
-                put(AttackFireDamage.GUID, new AttackFireDamage());
-                put(AttackWaterDamage.GUID, new AttackWaterDamage());
-                put(AttackThunderDamage.GUID, new AttackThunderDamage());
-                put(AttackNatureDamage.GUID, new AttackNatureDamage());
-
                 put(AllFireDamage.GUID, new AllFireDamage());
                 put(AllWaterDamage.GUID, new AllWaterDamage());
                 put(AllThunderDamage.GUID, new AllThunderDamage());
@@ -224,6 +215,7 @@ public class Stats {
                 add(new XElementAffinity());
                 add(new XBonusLootDrop());
                 add(new WeaponDamage());
+                add(new ElementalAttackDamage());
 
             }
         }

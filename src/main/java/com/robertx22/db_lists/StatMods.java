@@ -21,10 +21,6 @@ import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.NatureSpellToAttackFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
@@ -261,11 +257,6 @@ public class StatMods {
                 put(new SpellThunderDamageFlat().GUID(), new SpellThunderDamageFlat());
                 put(new SpellNatureDamageFlat().GUID(), new SpellNatureDamageFlat());
 
-                put(new AttackFireDamageFlat().GUID(), new AttackFireDamageFlat());
-                put(new AttackWaterDamageFlat().GUID(), new AttackWaterDamageFlat());
-                put(new AttackThunderDamageFlat().GUID(), new AttackThunderDamageFlat());
-                put(new AttackNatureDamageFlat().GUID(), new AttackNatureDamageFlat());
-
                 put(new FireResistFlat().GUID(), new FireResistFlat());
                 put(new WaterResistFlat().GUID(), new WaterResistFlat());
                 put(new ThunderResistFlat().GUID(), new ThunderResistFlat());
@@ -369,6 +360,7 @@ public class StatMods {
                 add(new XBonusLootDropFlat());
                 add(new WeaponDamageFlat());
                 add(new LessWeaponDamageFlat());
+                add(new ElementalAttackDamageFlat());
 
             }
         }

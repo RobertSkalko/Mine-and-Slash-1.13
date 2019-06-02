@@ -1,13 +1,13 @@
 package com.robertx22.database.unique_items.axes;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ public class AxeWaterFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackFireDamageFlat(), new AttackWaterDamageFlat(), new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new ElementalAttackDamageFlat(Elements.Water), new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
     @Override

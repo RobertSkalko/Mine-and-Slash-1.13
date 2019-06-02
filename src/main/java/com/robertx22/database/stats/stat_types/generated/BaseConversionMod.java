@@ -7,7 +7,6 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import com.robertx22.uncommon.interfaces.IStatConversion;
-import com.robertx22.uncommon.utilityclasses.StatUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +25,8 @@ public class BaseConversionMod extends Stat implements IStatConversion, IGenerat
         this.GUID = from.name() + "_to_" + to.name() + "_conversion";
         this.GUID = GUID.toLowerCase();
 
-        conversion.add(new ConversionMethod(StatUtils.AttackDamage.get(from), StatUtils.AttackDamage
-                .get(to)));
-        conversion.add(new ConversionMethod(StatUtils.SpellDamage.get(from), StatUtils.SpellDamage
-                .get(to)));
+        conversion.add(new ConversionMethod(new ElementalAttackDamage(from), new ElementalAttackDamage(to)));
+        conversion.add(new ConversionMethod(new ElementalSpellDamage(from), new ElementalSpellDamage(to)));
 
     }
 

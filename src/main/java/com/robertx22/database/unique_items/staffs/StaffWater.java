@@ -1,13 +1,14 @@
 package com.robertx22.database.unique_items.staffs;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.pene.WaterPenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ public class StaffWater extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AttackWaterDamageFlat(), new CriticalDamageFlat(), new CriticalHitFlat(), new WaterPeneFlat(), new WaterPenePercent());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new CriticalDamageFlat(), new CriticalHitFlat(), new WaterPeneFlat(), new WaterPenePercent());
     }
 
     @Override
