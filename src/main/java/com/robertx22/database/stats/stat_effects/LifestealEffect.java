@@ -12,7 +12,7 @@ public class LifestealEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 15;
+        return Priority.Last.priority;
     }
 
     @Override

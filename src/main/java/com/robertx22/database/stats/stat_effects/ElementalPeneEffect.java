@@ -13,7 +13,7 @@ public class ElementalPeneEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 0;
+        return Priority.First.priority;
     }
 
     @Override

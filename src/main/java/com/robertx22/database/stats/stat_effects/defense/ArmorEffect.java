@@ -13,7 +13,7 @@ public class ArmorEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 10;
+        return Priority.Third.priority;
     }
 
     @Override

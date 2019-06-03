@@ -11,7 +11,7 @@ public class AllSpellDamageEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 16;
+        return Priority.Second.priority;
     }
 
     @Override

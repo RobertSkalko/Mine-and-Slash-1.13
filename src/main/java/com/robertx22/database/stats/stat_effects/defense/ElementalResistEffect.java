@@ -15,7 +15,7 @@ public class ElementalResistEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 20;
+        return Priority.Fifth.priority;
     }
 
     @Override

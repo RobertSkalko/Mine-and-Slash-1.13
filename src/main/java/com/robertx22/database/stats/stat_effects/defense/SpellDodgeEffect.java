@@ -13,7 +13,7 @@ public class SpellDodgeEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 30;
+        return Priority.AlmostLast.priority;
     }
 
     @Override
@@ -31,6 +31,7 @@ public class SpellDodgeEffect implements IStatEffect {
 
                 if (RandomUtils.roll(data.Value)) {
                     Effect.Number = 0;
+                    Effect.isDodged = true;
                     Effect.canceled = true;
                 }
 

@@ -29,7 +29,7 @@ public class OnCauseDoEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 100;
+        return Priority.Last.priority;
     }
 
     @Override

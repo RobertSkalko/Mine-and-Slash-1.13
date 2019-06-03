@@ -13,7 +13,7 @@ public class DodgeEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 30;
+        return Priority.AlmostLast.priority;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class DodgeEffect implements IStatEffect {
 
         try {
             if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK)) {
+                    .equals(EffectTypes.SPELL) == false) {
 
                 if (RandomUtils.roll(data.Value)) {
                     Effect.Number = 0;

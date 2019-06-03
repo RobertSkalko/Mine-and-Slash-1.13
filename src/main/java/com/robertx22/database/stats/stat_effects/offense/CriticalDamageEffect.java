@@ -11,7 +11,7 @@ public class CriticalDamageEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 1;
+        return Priority.afterThis(new CriticalHitEffect().GetPriority());
     }
 
     @Override

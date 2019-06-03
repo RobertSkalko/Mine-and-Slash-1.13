@@ -12,7 +12,7 @@ public class AllEleDmgEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 15;
+        return Priority.Second.priority;
     }
 
     @Override

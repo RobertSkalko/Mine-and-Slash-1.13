@@ -12,7 +12,7 @@ public class WeaponDamageEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 0;
+        return Priority.First.priority;
     }
 
     @Override

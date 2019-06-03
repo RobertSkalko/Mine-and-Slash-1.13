@@ -11,9 +11,10 @@ import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public abstract class BaseSpellBuff implements IStatEffect {
 
+    // spell buffs need different priorities or else they will be random cus only 1 is allowed
     @Override
     public int GetPriority() {
-        return 0;
+        return Priority.First.priority;
     }
 
     @Override

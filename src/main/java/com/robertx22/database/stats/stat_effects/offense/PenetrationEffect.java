@@ -1,6 +1,7 @@
 package com.robertx22.database.stats.stat_effects.offense;
 
 import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_effects.defense.ArmorEffect;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.EffectData;
@@ -11,7 +12,7 @@ public class PenetrationEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return 0;
+        return Priority.beforeThis(new ArmorEffect().GetPriority());
     }
 
     @Override
