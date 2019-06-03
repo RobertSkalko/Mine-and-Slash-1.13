@@ -1,6 +1,8 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
+import com.robertx22.database.stats.stat_types.BaseTrait;
 import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.database.stats.stat_types.core_stats.*;
 import com.robertx22.database.stats.stat_types.defense.Armor;
@@ -25,6 +27,7 @@ import com.robertx22.database.stats.stat_types.traits.bad_and_good.Barbarian;
 import com.robertx22.database.stats.stat_types.traits.bad_and_good.ClumsyScholar;
 import com.robertx22.database.stats.stat_types.traits.bad_ones.Crippled;
 import com.robertx22.database.stats.stat_types.traits.bad_ones.Diseased;
+import com.robertx22.database.stats.stat_types.traits.cause_stats.OnDodgeBuffSpeed;
 import com.robertx22.database.stats.stat_types.traits.ele_lords.LordOfBlizzardsTrait;
 import com.robertx22.database.stats.stat_types.traits.ele_lords.LordOfEarthquakesTrait;
 import com.robertx22.database.stats.stat_types.traits.ele_lords.LordOfThunderstormsTrait;
@@ -165,6 +168,7 @@ public class Stats {
                 put(FireAtronach.GUID, new FireAtronach());
                 put(ThunderAtronach.GUID, new ThunderAtronach());
 
+                put(new OnDodgeBuffSpeed().GUID(), new OnDodgeBuffSpeed());
                 // traits
 
             }
@@ -197,8 +201,18 @@ public class Stats {
             for (Stat stat : gen.generateAllPossibleStatVariations()) {
                 All.put(stat.GUID(), stat);
             }
-
         }
+
+        // this makes all StatMod classes for traits cus they are all the same!
+        for (Stat stat : All.values()) {
+            if (stat instanceof BaseTrait) {
+                BaseTrait trait = (BaseTrait) stat;
+                AllTraitMods traitMod = new AllTraitMods(trait);
+                StatMods.All.put(traitMod.GUID(), traitMod);
+            }
+        }
+        // how didnt i think of this before.
+
     }
 
 }

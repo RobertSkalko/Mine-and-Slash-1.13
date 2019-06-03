@@ -22,6 +22,11 @@ public class LightTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Your Self Heal Spells now grant you Aoe Regen.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Shining Light";
     }

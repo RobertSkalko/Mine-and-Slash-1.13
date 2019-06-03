@@ -1,19 +1,27 @@
 package com.robertx22.database.stats.stat_types.traits.bases;
 
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.offense.CriticalHit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 public abstract class BaseTraitHighCritHit extends ConditionalTrait {
 
     @Override
-    public boolean condition(UnitData unit) {
-	return unit.getUnit().MyStats.get(CriticalHit.GUID).Flat > 30;
-
+    public Stat stat() {
+        return new CriticalHit();
     }
 
     @Override
-    public String descPrefix() {
-	return "If Crit Hit > 30%";
+    public int amount() {
+        return 30;
     }
 
+    @Override
+    public boolean isPercent() {
+        return true;
+    }
+
+    @Override
+    public MoreOrLess moreOrLess() {
+        return MoreOrLess.More;
+    }
 }

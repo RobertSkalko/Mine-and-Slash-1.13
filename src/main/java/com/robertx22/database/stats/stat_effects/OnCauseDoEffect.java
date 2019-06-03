@@ -12,18 +12,20 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 public class OnCauseDoEffect implements IStatEffect {
 
     public OnCauseDoEffect(BaseCause cause, int chance, EffectSides whoGetsEffect,
-                           BaseCauseEffect causeEffect) {
+                           BaseCauseEffect causeEffect, EffectSides side) {
         this.cause = cause;
         this.chance = chance;
         this.whoGetsEffect = whoGetsEffect;
         this.causeEffect = causeEffect;
+        this.side = side;
 
     }
 
     private BaseCauseEffect causeEffect;
     private BaseCause cause;
     private int chance;
-    private EffectSides whoGetsEffect;
+    public EffectSides whoGetsEffect;
+    public EffectSides side;
 
     @Override
     public int GetPriority() {
@@ -32,7 +34,7 @@ public class OnCauseDoEffect implements IStatEffect {
 
     @Override
     public EffectSides Side() {
-        return EffectSides.Source;
+        return EffectSides.Target;
     }
 
     @Override

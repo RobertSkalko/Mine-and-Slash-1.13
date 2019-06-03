@@ -35,7 +35,7 @@ public class ElementalConversionFlat extends StatMod implements IGenerated<StatM
 
     @Override
     public float Max() {
-        return 35;
+        return 25;
     }
 
     @Override

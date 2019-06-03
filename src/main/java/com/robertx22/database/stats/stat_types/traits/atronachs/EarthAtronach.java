@@ -28,4 +28,5 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
     public String locNameForLangFile() {
         return "Earth Atronach";
     }
+
 }

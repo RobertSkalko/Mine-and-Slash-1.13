@@ -1,12 +1,13 @@
 package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
+import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +33,7 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddArmorFlat(), new ElementalSpellDamageFlat(Elements.Nature), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalSpellDamageFlat(Elements.Nature), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
     }
 
     @Override

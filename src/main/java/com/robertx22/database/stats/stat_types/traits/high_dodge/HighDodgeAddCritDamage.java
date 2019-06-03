@@ -2,12 +2,12 @@ package com.robertx22.database.stats.stat_types.traits.high_dodge;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_types.traits.bases.BaseTraitHighCritHit;
+import com.robertx22.database.stats.stat_types.traits.bases.BaseTraitHighDodge;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class HighDodgeAddCritDamage extends BaseTraitHighCritHit {
+public class HighDodgeAddCritDamage extends BaseTraitHighDodge {
 
     @Override
     public List<StatMod> getStats() {

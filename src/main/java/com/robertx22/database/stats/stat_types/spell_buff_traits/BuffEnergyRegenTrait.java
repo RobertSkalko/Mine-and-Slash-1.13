@@ -22,6 +22,11 @@ public class BuffEnergyRegenTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Killing Blows with Bomb Spells grant you Energy Regen.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Buff Energy Regen";
     }

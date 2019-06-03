@@ -1,19 +1,27 @@
 package com.robertx22.database.stats.stat_types.traits.bases;
 
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.defense.Dodge;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 public abstract class BaseTraitHighDodge extends ConditionalTrait {
 
     @Override
-    public boolean condition(UnitData unit) {
-	return unit.getUnit().MyStats.get(Dodge.GUID).Flat > 25;
-
+    public Stat stat() {
+        return new Dodge();
     }
 
     @Override
-    public String descPrefix() {
-	return "If Dodge > 25%";
+    public int amount() {
+        return 25;
     }
 
+    @Override
+    public boolean isPercent() {
+        return true;
+    }
+
+    @Override
+    public MoreOrLess moreOrLess() {
+        return MoreOrLess.More;
+    }
 }

@@ -46,25 +46,6 @@ import com.robertx22.database.stats.stat_mods.percent.*;
 import com.robertx22.database.stats.stat_mods.percent.less.*;
 import com.robertx22.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.database.stats.stat_mods.percent.offense.*;
-import com.robertx22.database.stats.stat_mods.spell_buffs.*;
-import com.robertx22.database.stats.stat_mods.traits.*;
-import com.robertx22.database.stats.stat_mods.traits.atronachs.EarthAtronachFlat;
-import com.robertx22.database.stats.stat_mods.traits.atronachs.FireAtronachFlat;
-import com.robertx22.database.stats.stat_mods.traits.atronachs.FrostAtronachFlat;
-import com.robertx22.database.stats.stat_mods.traits.atronachs.ThunderAtronachFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.high_crit.HighCritAddArmorFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.high_crit.HighCritAddLifestealFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.high_dodge.HighDodgeAddCritDamageFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.high_dodge.HighDodgeAddPhysDamageFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_crit_hit.LowCritAddDodgeFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_crit_hit.LowCritAddHealthFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
-import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfBlizzardsFlat;
-import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfEarthquakesFlat;
-import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
-import com.robertx22.database.stats.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
-import com.robertx22.database.stats.stat_mods.traits.major_arcana.*;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -89,30 +70,6 @@ public class StatMods {
                 put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
                 put(new SpellDamagePercent().GUID(), new SpellDamagePercent());
 
-                // major arcana tarot
-                put(new JudgementFlat().GUID(), new JudgementFlat());
-                put(new StrengthArcanaFlat().GUID(), new StrengthArcanaFlat());
-                put(new HermitFlat().GUID(), new HermitFlat());
-                put(new ChariotFlat().GUID(), new ChariotFlat());
-                put(new DeathFlat().GUID(), new DeathFlat());
-                put(new HangedManFlat().GUID(), new HangedManFlat());
-                put(new JusticeFlat().GUID(), new JusticeFlat());
-                put(new HighPriestessFlat().GUID(), new HighPriestessFlat());
-                put(new TemperanceFlat().GUID(), new TemperanceFlat());
-                put(new TheEmperorFlat().GUID(), new TheEmperorFlat());
-                put(new TheDevilFlat().GUID(), new TheDevilFlat());
-                put(new TheEmpressFlat().GUID(), new TheEmpressFlat());
-                put(new TheFoolFlat().GUID(), new TheFoolFlat());
-                put(new TheHierophantFlat().GUID(), new TheHierophantFlat());
-                put(new TheMagicianFlat().GUID(), new TheMagicianFlat());
-                put(new TheMoonFlat().GUID(), new TheMoonFlat());
-                put(new TheSunFlat().GUID(), new TheSunFlat());
-                put(new TheWorldFlat().GUID(), new TheWorldFlat());
-                put(new TowerFlat().GUID(), new TowerFlat());
-                put(new WheelOfFortuneFlat().GUID(), new WheelOfFortuneFlat());
-                put(new TheStarFlat().GUID(), new TheStarFlat());
-                // major arcana tarot
-
                 put(new StrengthFlat().GUID(), new StrengthFlat());
                 put(new DexterityFlat().GUID(), new DexterityFlat());
                 put(new WisdomFlat().GUID(), new WisdomFlat());
@@ -121,16 +78,6 @@ public class StatMods {
                 put(new VitalityFlat().GUID(), new VitalityFlat());
 
                 put(new BonusExpFlat().GUID(), new BonusExpFlat());
-
-                // spell buffs
-
-                put(new HomingFlat().GUID(), new HomingFlat());
-                put(new GhostProjectileFlat().GUID(), new GhostProjectileFlat());
-                put(new ZephyrFlat().GUID(), new ZephyrFlat());
-                put(new LightFlat().GUID(), new LightFlat());
-                put(new PurityFlat().GUID(), new PurityFlat());
-                put(new EnergyRegenBuffFlat().GUID(), new EnergyRegenBuffFlat());
-                put(new ManaRegenBuffFlat().GUID(), new ManaRegenBuffFlat());
 
                 // spell buffs
 
@@ -151,12 +98,6 @@ public class StatMods {
 
                 put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
                 put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
-
-                // lord Flats
-                put(new LordOfVolcanoesFlat().GUID(), new LordOfVolcanoesFlat());
-                put(new LordOfBlizzardsFlat().GUID(), new LordOfBlizzardsFlat());
-                put(new LordOfThunderstormsFlat().GUID(), new LordOfThunderstormsFlat());
-                put(new LordOfEarthquakesFlat().GUID(), new LordOfEarthquakesFlat());
 
                 // weapon damages
 
@@ -226,34 +167,6 @@ public class StatMods {
 
                 // bonus dmg
 
-                // Traits
-                put(new GolemFlat().GUID(), new GolemFlat());
-                put(new ElementalFlat().GUID(), new ElementalFlat());
-                put(new ClumsyScholarFlat().GUID(), new ClumsyScholarFlat());
-                put(new DiseasedFlat().GUID(), new DiseasedFlat());
-                put(new CrippledFlat().GUID(), new CrippledFlat());
-                put(new BarbarianFlat().GUID(), new BarbarianFlat());
-                put(new EarthAtronachFlat().GUID(), new EarthAtronachFlat());
-                put(new FireAtronachFlat().GUID(), new FireAtronachFlat());
-                put(new FrostAtronachFlat().GUID(), new FrostAtronachFlat());
-                put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
-                put(new LuckyFlat().GUID(), new LuckyFlat());
-                put(new ArmoredFlat().GUID(), new ArmoredFlat());
-
-                // conditional traits
-
-                put(new LowDodgeAddArmorFlat().GUID(), new LowDodgeAddArmorFlat());
-                put(new LowDodgeAddCritHitFlat().GUID(), new LowDodgeAddCritHitFlat());
-                put(new LowCritAddDodgeFlat().GUID(), new LowCritAddDodgeFlat());
-                put(new LowCritAddHealthFlat().GUID(), new LowCritAddHealthFlat());
-
-                put(new HighCritAddArmorFlat().GUID(), new HighCritAddArmorFlat());
-                put(new HighCritAddLifestealFlat().GUID(), new HighCritAddLifestealFlat());
-                put(new HighDodgeAddCritDamageFlat().GUID(), new HighDodgeAddCritDamageFlat());
-                put(new HighDodgeAddPhysDamageFlat().GUID(), new HighDodgeAddPhysDamageFlat());
-
-                // Traits
-
                 // Map mods
 
                 put(new BonusHealthMap().GUID(), new BonusHealthMap());
@@ -322,8 +235,8 @@ public class StatMods {
             for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
                 All.put(statmod.GUID(), statmod);
             }
-
         }
+
     }
 
 }

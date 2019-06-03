@@ -23,6 +23,11 @@ public class BuffManaRegenTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Killing Blows with Bomb Spells grant you Mana Regen.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Buff Mana Regen";
     }

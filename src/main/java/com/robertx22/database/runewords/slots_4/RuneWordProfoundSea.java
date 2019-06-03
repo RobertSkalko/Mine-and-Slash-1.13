@@ -2,9 +2,10 @@ package com.robertx22.database.runewords.slots_4;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.database.stats.stat_mods.spell_buffs.ManaRegenBuffFlat;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.BuffManaRegenTrait;
 import com.robertx22.items.runes.AnoItem;
 import com.robertx22.items.runes.CenItem;
 import com.robertx22.items.runes.DosItem;
@@ -18,7 +19,7 @@ public class RuneWordProfoundSea extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new ManaRegenBuffFlat(), new ManaRegenFlat(), new ManaFlat());
+        return Arrays.asList(new AllTraitMods(new BuffManaRegenTrait()), new ManaRegenFlat(), new ManaFlat());
     }
 
     @Override

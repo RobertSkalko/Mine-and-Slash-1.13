@@ -25,4 +25,9 @@ public class HomingTrait extends SpellBuffTrait {
     public String locNameForLangFile() {
         return "Homing Projectile";
     }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Your Single Target Spell Projectiles now Home in on the target.";
+    }
 }

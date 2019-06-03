@@ -30,12 +30,12 @@ public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod
 
     @Override
     public float Min() {
-        return 10;
+        return 25;
     }
 
     @Override
     public float Max() {
-        return 35;
+        return 55;
     }
 
     @Override

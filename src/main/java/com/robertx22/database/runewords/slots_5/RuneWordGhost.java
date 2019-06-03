@@ -2,10 +2,11 @@ package com.robertx22.database.runewords.slots_5;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
-import com.robertx22.database.stats.stat_mods.spell_buffs.GhostProjectileFlat;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.GhostProjectileTrait;
 import com.robertx22.items.runes.BerItem;
 import com.robertx22.items.runes.CenItem;
 import com.robertx22.items.runes.VohItem;
@@ -20,7 +21,7 @@ public class RuneWordGhost extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new GhostProjectileFlat(), new DodgeFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(new AllTraitMods(new GhostProjectileTrait()), new DodgeFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

@@ -7,14 +7,25 @@ import com.robertx22.uncommon.effectdatas.EffectData;
 
 public interface IStatEffect {
 
-	public enum EffectSides {
-		Source, Target
-	}
+    public enum Priority {
+        First,
+        Second,
+        Third,
+        Fourth,
+        Fifth,
+        Last
+    }
 
-	public abstract EffectSides Side();
+    public enum EffectSides {
+        Source,
+        Target
+    }
 
-	public abstract int GetPriority();
+    public abstract EffectSides Side();
 
-	public abstract EffectData TryModifyEffect(EffectData Effect, Unit Source, StatData statData, Stat stat);
+    public abstract int GetPriority();
+
+    public abstract EffectData TryModifyEffect(EffectData Effect, Unit Source,
+                                               StatData statData, Stat stat);
 
 }

@@ -22,6 +22,11 @@ public class GhostProjectileTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Your Single Target Spell Projectiles now go through enemies.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Ghost Projectile";
     }

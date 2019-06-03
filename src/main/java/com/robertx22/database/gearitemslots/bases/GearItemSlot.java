@@ -1,7 +1,7 @@
 package com.robertx22.database.gearitemslots.bases;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.BaseTraitMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.mmorpg.Ref;
@@ -20,7 +20,10 @@ import java.util.List;
 public abstract class GearItemSlot implements IWeighted, IAutoLocName {
 
     public enum GearSlotType {
-        Weapon, Armor, Jewerly, OffHand
+        Weapon,
+        Armor,
+        Jewerly,
+        OffHand
     }
 
     public abstract GearSlotType slotType();
@@ -76,7 +79,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName {
         List<StatMod> list = new ArrayList<StatMod>();
 
         for (StatMod mod : StatMods.All.values()) {
-            if (mod instanceof BaseTraitMod) {
+            if (mod instanceof AllTraitMods) {
                 list.add(mod);
             }
         }

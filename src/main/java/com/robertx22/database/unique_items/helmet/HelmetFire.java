@@ -1,12 +1,13 @@
 package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
+import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +33,7 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddArmorFlat(), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
     }
 
     @Override

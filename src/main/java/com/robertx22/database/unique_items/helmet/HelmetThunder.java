@@ -1,12 +1,13 @@
 package com.robertx22.database.unique_items.helmet;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.database.stats.stat_mods.percent.less.LessLifeOnHitPercent;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
+import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +33,7 @@ public class HelmetThunder extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddCritHitFlat(), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new EnergyRegenFlat(), new HealthFlat(), new ArmorFlat(), new LessLifeOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new EnergyRegenFlat(), new ElementalAffinityFlat(Elements.Thunder), new ArmorFlat(), new LessLifeOnHitPercent());
     }
 
     @Override

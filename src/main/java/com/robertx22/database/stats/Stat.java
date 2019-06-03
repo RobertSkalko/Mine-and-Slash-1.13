@@ -32,10 +32,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     @Override
     public ITextComponent locDesc() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
-    }
-
-    public ITextComponent getStatDescription() {
         return CLOC.blank(locDescLangFileGUID(formattedGUID()));
     }
 
@@ -144,7 +140,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         if (GuiScreen.isAltKeyDown()) {
             list.add(Styles.BLUECOMP()
                     .appendText(" [")
-                    .appendSibling(this.getStatDescription().appendText("]")));
+                    .appendSibling(this.locDesc().appendText("]")));
         }
         return list;
 

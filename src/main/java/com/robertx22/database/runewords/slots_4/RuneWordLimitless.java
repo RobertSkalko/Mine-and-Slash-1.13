@@ -2,9 +2,10 @@ package com.robertx22.database.runewords.slots_4;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
-import com.robertx22.database.stats.stat_mods.spell_buffs.EnergyRegenBuffFlat;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.BuffEnergyRegenTrait;
 import com.robertx22.items.runes.BerItem;
 import com.robertx22.items.runes.ItaItem;
 import com.robertx22.items.runes.VohItem;
@@ -18,7 +19,7 @@ public class RuneWordLimitless extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new EnergyRegenBuffFlat(), new EnergyRegenFlat(), new DodgePercent());
+        return Arrays.asList(new AllTraitMods(new BuffEnergyRegenTrait()), new EnergyRegenFlat(), new DodgePercent());
     }
 
     @Override

@@ -1,12 +1,13 @@
 package com.robertx22.database.unique_items.pants;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
-import com.robertx22.database.stats.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
+import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +33,7 @@ public class PantsFire extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LowDodgeAddCritHitFlat(), new HealthFlat(), new ElementalAffinityFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new HealthFlat(), new ElementalAffinityFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
     }
 
     @Override

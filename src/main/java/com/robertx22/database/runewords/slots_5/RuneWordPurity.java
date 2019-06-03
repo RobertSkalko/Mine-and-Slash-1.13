@@ -2,10 +2,11 @@ package com.robertx22.database.runewords.slots_5;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.database.stats.stat_mods.spell_buffs.PurityFlat;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.PurityTrait;
 import com.robertx22.items.runes.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
 
@@ -16,7 +17,7 @@ public class RuneWordPurity extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new PurityFlat(), new HealthRegenFlat(), new HealthFlat(), new ManaRegenFlat());
+        return Arrays.asList(new AllTraitMods(new PurityTrait()), new HealthRegenFlat(), new HealthFlat(), new ManaRegenFlat());
     }
 
     @Override

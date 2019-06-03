@@ -1,8 +1,9 @@
 package com.robertx22.uncommon.interfaces;
 
-import net.minecraft.util.text.ITextComponent;
+import com.robertx22.database.IGUID;
 
-public interface ITrait {
-    public ITextComponent Description();
+public interface ITrait extends IWeighted, IGUID {
+
+    //public ITextComponent Description();
 
 }

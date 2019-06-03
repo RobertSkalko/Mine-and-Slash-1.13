@@ -22,6 +22,11 @@ public class PurityTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Your Self Heal Spells now cure you of a negative effect.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Purity";
     }

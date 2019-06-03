@@ -540,19 +540,7 @@
     "item.mmorpg.runes.xah3": "§9XAH - Epic Rune",
     "item.mmorpg.runes.xah4": "§6XAH - Legendary Rune",
     "item.mmorpg.runes.xah5": "§dXAH - Mythical Rune",
-
-
-    "_comment": "TRAIT Tooltips",
-
-    "mmorpg.tooltip.homing": "Your Single Target Spell Projectiles now Home in on the target.",
-    "mmorpg.tooltip.shining_light": "Your Self Heal Spells now grant you Aoe Regen.",
-    "mmorpg.tooltip.zephyr_speed": "Your Self Heal Spells now boost your speed temporarily.",
-    "mmorpg.tooltip.ghost_projectile": "Your Single Target Spell Projectiles now go through enemies.",
-    "mmorpg.tooltip.purity": "Your Self Heal Spells now cure you of a negative effect.",
-    "mmorpg.tooltip.buff_energy_regen": "Killing Blows with Bomb Spells grant you Energy Regen.",
-    "mmorpg.tooltip.buff_mana_regen": "Killing Blows with Bomb Spells grant you Mana Regen.",
-
-
+   
     "_comment": "rune tooltip",
 
     "mmorpg.tooltip.stats_on_weapon": "Stats on Weapon",

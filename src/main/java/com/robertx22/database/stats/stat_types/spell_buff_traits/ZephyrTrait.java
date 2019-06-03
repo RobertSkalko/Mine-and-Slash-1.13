@@ -22,6 +22,11 @@ public class ZephyrTrait extends SpellBuffTrait {
     }
 
     @Override
+    public String locDescForLangFile() {
+        return "Your Self Heal Spells now boost your speed temporarily.";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Zephyr";
     }

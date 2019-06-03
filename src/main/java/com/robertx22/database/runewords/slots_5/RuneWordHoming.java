@@ -2,10 +2,11 @@ package com.robertx22.database.runewords.slots_5;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.stat_mods.spell_buffs.HomingFlat;
+import com.robertx22.database.stats.stat_types.spell_buff_traits.HomingTrait;
 import com.robertx22.items.runes.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
 
@@ -16,7 +17,7 @@ public class RuneWordHoming extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new HomingFlat(), new CriticalHitFlat(), new CriticalDamageFlat(), new HealthFlat());
+        return Arrays.asList(new AllTraitMods(new HomingTrait()), new CriticalHitFlat(), new CriticalDamageFlat(), new HealthFlat());
     }
 
     @Override

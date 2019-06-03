@@ -316,7 +316,7 @@ public class EntityData {
 
             float num = vanilla * rar.DamageMultiplier();
 
-            DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+            DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
             dmg.Activate();
 
