@@ -480,7 +480,7 @@ public class EntityData {
 
         }
 
-        static int ATTACK_COOLDOWN = 10;
+        static int ATTACK_COOLDOWN = 15;
 
         @Override
         public boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
@@ -489,16 +489,16 @@ public class EntityData {
             if ((float) victim.hurtResistantTime > (float) victim.maxHurtResistantTime / 2.0F) {
                 return false;
             }
-
             if (this.lastAttackTick < ATTACK_COOLDOWN) {
                 return true;
             }
-
             if (this.lastAttackTick > attacker.ticksExisted) {
                 return true;
             }
 
-            if (this.lastAttackTick - attacker.ticksExisted < ATTACK_COOLDOWN) {
+            int timeSinceLastAttack = attacker.ticksExisted - this.lastAttackTick;
+
+            if (timeSinceLastAttack < ATTACK_COOLDOWN) {
                 return false;
             }
 
@@ -660,7 +660,6 @@ public class EntityData {
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();
                 iWep.Attack(source, target, this, targetdata);
-                this.onAttackEntity(source, target);
 
             }
         }

@@ -96,6 +96,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (fullyblocked == false) {
 
+            this.sourceData.onAttackEntity(Source, Target);
+
             // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
             int hurttime = Target.hurtResistantTime;
             Target.hurtResistantTime = 0;

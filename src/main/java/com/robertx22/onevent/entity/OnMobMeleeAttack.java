@@ -51,17 +51,14 @@ public class OnMobMeleeAttack {
                 return; // stops attacking dead mobs
             }
 
-            UnitData targetData = Load.Unit(target);
+            UnitData sourceData = Load.Unit(source);
 
             if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                if (targetData.attackCooldownAllowsAttack(source, target)) {
-                    // allow attack
-                } else {
+                if (sourceData.attackCooldownAllowsAttack(source, target) == false) {
                     return;
                 }
             }
-
-            UnitData sourceData = Load.Unit(source);
+            UnitData targetData = Load.Unit(target);
 
             if (targetData == null || sourceData == null) {
                 return;
