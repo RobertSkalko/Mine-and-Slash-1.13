@@ -28,7 +28,7 @@ public class ShieldRenderer extends TileEntityItemStackRenderer implements Calla
 
             Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
             GlStateManager.pushMatrix();
-            GlStateManager.scaled(1.0, -1.0, -1.0);
+            GlStateManager.scaled(1F, -0.6F, -1.0);
             modelShield.render();
             GlStateManager.popMatrix();
 

@@ -1,7 +1,6 @@
 package com.robertx22.uncommon.effectdatas;
 
 import com.robertx22.config.ClientContainer;
-import com.robertx22.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
@@ -15,8 +14,6 @@ import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
@@ -45,56 +42,22 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public float healthHealed;
     public float manaRestored;
-
-    private boolean canBlockDamageSource(EntityLivingBase target,
-                                         DamageSource damageSourceIn) {
-        if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
-            Vec3d vec3d = damageSourceIn.getDamageLocation();
-
-            if (vec3d != null) {
-                Vec3d vec3d1 = target.getLook(1.0F);
-                Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ))
-                        .normalize();
-                vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
-
-                if (vec3d2.dotProduct(vec3d1) < 0.0D) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
+    public boolean isFullyBlocked = false;
+    public boolean isPartiallyBlocked = false;
 
     @Override
     protected void activate() {
 
         this.Number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
 
-        boolean fullyblocked = false;
-
         MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
         float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
-        if (canBlockDamageSource(Target, dmgsource)) {
-
-            float blockval = targetUnit.MyStats.get(BlockStrength.GUID).Value;
-
-            float afterblock = Number - blockval;
-
-            if (afterblock < 0) {
-                fullyblocked = true;
-            } else {
-                dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) afterblock);
-            }
-
+        if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();
-
         }
 
-        // MAYBE DO ALL BONUS ELE DMG HERE TOGETHER WITH THE BASE ATK?
-
-        if (fullyblocked == false) {
+        if (this.isFullyBlocked == false) {
 
             this.sourceData.onAttackEntity(Source, Target);
 

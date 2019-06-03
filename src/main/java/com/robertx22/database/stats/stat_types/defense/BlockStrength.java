@@ -1,9 +1,15 @@
 package com.robertx22.database.stats.stat_types.defense;
 
 import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_effects.defense.BlockEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.interfaces.IStatEffect;
+import com.robertx22.uncommon.interfaces.IStatEffects;
 
-public class BlockStrength extends Stat {
+import java.util.Arrays;
+import java.util.List;
+
+public class BlockStrength extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
@@ -39,5 +45,10 @@ public class BlockStrength extends Stat {
     @Override
     public String locNameForLangFile() {
         return "Block Strength";
+    }
+
+    @Override
+    public List<IStatEffect> GetEffects() {
+        return Arrays.asList(new BlockEffect());
     }
 }

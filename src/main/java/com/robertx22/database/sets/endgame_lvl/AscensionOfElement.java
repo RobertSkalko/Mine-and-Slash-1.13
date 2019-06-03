@@ -7,8 +7,8 @@ import com.robertx22.database.sets.ElementalSet;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalFocusFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
-import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
@@ -36,8 +36,8 @@ public class AscensionOfElement extends ElementalSet {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new ElementalSpellDamagePercent(element));
-                    put(3, new ElementalPeneFlat(element));
+                    put(2, new ElementalPeneFlat(element));
+                    put(3, new ElementalFocusFlat(element));
                     put(4, new ElementalAffinityFlat(element));
 
                 }
