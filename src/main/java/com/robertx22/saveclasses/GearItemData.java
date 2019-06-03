@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.Words;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
@@ -17,7 +18,6 @@ import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.rune.RunesData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
@@ -108,8 +108,6 @@ public class GearItemData implements ITooltip, ISalvagable {
     @Store
     public ChaosStatsData chaosStats;
     @Store
-    public SocketsListData sockets;
-    @Store
     public InfusionData infusion;
     // Stats
 
@@ -182,7 +180,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             text.appendSibling(uniq.locName());
 
         } else if (this.isRuned()) {
-            text.appendSibling(CLOC.word("runed")
+            text.appendSibling(Words.Runed.locName()
                     .appendText(" ")
                     .appendSibling(name(stack)));
         } else {
@@ -214,7 +212,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         IfNotNullAdd(suffix, list);
         IfNotNullAdd(chaosStats, list);
         IfNotNullAdd(uniqueStats, list);
-        IfNotNullAdd(sockets, list);
         IfNotNullAdd(infusion, list);
         IfNotNullAdd(runes, list);
 
@@ -268,7 +265,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         list.add(suffix);
 
         list.add(chaosStats);
-        list.add(sockets);
         list.add(infusion);
 
         for (ITooltipList part : list) {
@@ -293,7 +289,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             tip.add(new TextComponentString(""));
 
             tip.add(Styles.YELLOWCOMP()
-                    .appendSibling(CLOC.word("tier"))
+                    .appendSibling(Words.Tier.locName())
                     .appendText(": " + unique.Tier()));
 
             tip.add(new TextComponentString(""));
@@ -303,7 +299,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         tip.add(TooltipUtils.rarity(rarity));
 
         if (!this.isSalvagable) {
-            tip.add(Styles.REDCOMP().appendSibling(CLOC.word("unsalvagable")));
+            tip.add(Styles.REDCOMP().appendSibling(Words.Unsalvagable.locName()));
         }
 
         if (this.GetBaseGearType() instanceof IWeapon) {
@@ -374,7 +370,7 @@ public class GearItemData implements ITooltip, ISalvagable {
                         .GetTooltipString(info)) {
 
                     ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
-                            .getKey() + " ").appendSibling(CLOC.word("set")
+                            .getKey() + " ").appendSibling(Words.Set.locName()
                             .appendText(": ")
                             .appendSibling(str)));
 

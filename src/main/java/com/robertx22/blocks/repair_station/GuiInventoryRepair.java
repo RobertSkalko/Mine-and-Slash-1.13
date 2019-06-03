@@ -1,5 +1,6 @@
 package com.robertx22.blocks.repair_station;
 
+import com.robertx22.Words;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
@@ -86,7 +87,7 @@ public class GuiInventoryRepair extends TileGui {
 
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(CLOC.translate(CLOC.word("progress")) + ": ");
+            hoveringText.add(Words.Progress.translate() + ": ");
             int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
@@ -96,7 +97,7 @@ public class GuiInventoryRepair extends TileGui {
         for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
-                hoveringText.add(CLOC.translate(CLOC.word("fuel")) + ": " + tileEntity.secondsOfFuelRemaining(i));
+                hoveringText.add(Words.Fuel.translate() + ": " + tileEntity.secondsOfFuelRemaining(i));
             }
         }
         // If hoveringText is not empty draw the hovering text

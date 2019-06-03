@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.develeper;
 
+import com.robertx22.Words;
 import com.robertx22.db_lists.*;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
@@ -7,10 +8,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CreateLangFile {
 
@@ -108,6 +106,7 @@ public class CreateLangFile {
         list.put("GEAR SLOT TYPES", new ArrayList<>(GearTypes.All.values()));
         list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
         list.put("WORLD TYPES", new ArrayList<>(WorldProviders.All.values()));
+        list.put("WORDS", Arrays.asList(Words.values()));
 
         return list;
 

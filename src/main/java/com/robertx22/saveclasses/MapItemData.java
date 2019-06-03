@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.Words;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
@@ -233,7 +234,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             try {
                 tooltip.add(Styles.BLUECOMP()
-                        .appendSibling(CLOC.word("world_type"))
+                        .appendSibling(Words.WorldType.locName())
                         .appendText(": ")
                         .appendSibling(this.getIWP().locName()));
             } catch (Exception e) {
@@ -242,17 +243,17 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(CLOC.word("tier")
+                    .appendSibling(Words.Tier.locName()
                             .appendText(": " + this.tier)), tooltip);
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(CLOC.word("minutes")
+                    .appendSibling(Words.Minutes.locName()
                             .appendText(": " + this.minutes)), tooltip);
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.YELLOWCOMP()
-                    .appendSibling(CLOC.word("bonus_loot_amount")
+                    .appendSibling(Words.BonusLootAmount.locName()
                             .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
 
             Tooltip.add("", tooltip);
@@ -261,7 +262,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             if (this.isPermaDeath) {
                 Tooltip.add("", tooltip);
                 Tooltip.add(Styles.REDCOMP()
-                        .appendSibling(CLOC.word("permadeath")), tooltip);
+                        .appendSibling(Words.Permadeath.locName()), tooltip);
             }
 
             Tooltip.add("", tooltip);
@@ -294,11 +295,11 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         ITextComponent str = new TextComponentString("");
 
         if (affected.equals(AffectedEntities.Players)) {
-            str.appendSibling(CLOC.word("player_affixes"));
+            str.appendSibling(Words.PlayerAffixes.locName());
         } else if (affected.equals(AffectedEntities.Mobs)) {
-            str.appendSibling(CLOC.word("mob_affixes"));
+            str.appendSibling(Words.MobAffixes.locName());
         } else {
-            str.appendSibling(CLOC.word("all_affixes"));
+            str.appendSibling(Words.AffixesAffectingAll.locName());
         }
 
         Tooltip.add(Styles.GREENCOMP().appendSibling(str), tooltip);

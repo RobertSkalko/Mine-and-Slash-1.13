@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Words;
 import com.robertx22.database.affixes.BaseAffix;
 import com.robertx22.database.affixes.Prefix;
 import com.robertx22.database.requirements.GearRequestedFor;
@@ -10,7 +11,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
@@ -71,7 +71,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                .appendSibling(CLOC.word("prefix")
+                .appendSibling(Words.Prefix.locName()
                         .appendText(": ")
                         .appendSibling(affix.locName())));
 

@@ -1,10 +1,10 @@
 package com.robertx22.items.infusions.upgrade;
 
+import com.robertx22.Words;
 import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -34,15 +34,15 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
         Tooltip.add("", tooltip);
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(CLOC.word("bonus_success_rate")
+                .appendSibling(Words.MajorSuccessChance.locName()
                         .appendText(": " + this.bonusSuccessChance() + "%")), tooltip);
 
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(CLOC.word("major_success_bonus")
+                .appendSibling(Words.MajorSuccessBonus.locName()
                         .appendText(": " + this.critOnSuccessChance() + "%")), tooltip);
 
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(CLOC.word("major_failure_chance")
+                .appendSibling(Words.MajorFailureChance.locName()
                         .appendText(": " + this.majorFailureChance() + "%")), tooltip);
 
     }

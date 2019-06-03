@@ -1,6 +1,7 @@
 package com.robertx22.items.bags;
 
 import com.mmorpg_libraries.curios.interfaces.ISalvageBag;
+import com.robertx22.Words;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
@@ -169,22 +170,22 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(CLOC.word("gears").appendText(":")), tooltip);
+                .appendSibling(Words.Gears.locName().appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this
                 .getGear(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(CLOC.word("spells").appendText(":")), tooltip);
+                .appendSibling(Words.Spells.locName().appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells.getRarities()), this
                 .getSpell(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(CLOC.word("maps").appendText(":")), tooltip);
+                .appendSibling(Words.Maps.locName().appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this
                 .getMap(nbt)), tooltip);
 
         Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(CLOC.word("runes").appendText(":")), tooltip);
+                .appendSibling(Words.Runes.locName().appendText(":")), tooltip);
         Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this
                 .getRune(nbt)), tooltip);
 
@@ -228,7 +229,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         }
 
         if (text.getSiblings().size() < 1) {
-            text.appendSibling(CLOC.word("none"));
+            text.appendSibling(Words.None.locName());
         }
 
         return text;

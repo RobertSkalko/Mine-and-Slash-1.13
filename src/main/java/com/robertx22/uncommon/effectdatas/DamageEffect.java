@@ -1,12 +1,12 @@
 package com.robertx22.uncommon.effectdatas;
 
+import com.robertx22.Words;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.*;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -127,7 +127,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.Source instanceof EntityPlayer) {
 
-            String s = CLOC.word("dealt") + LogDamage() + CLOC.word("to") + " " + this.Target
+            String s = Words.Dealt.locNameForLangFile() + LogDamage() + Words.To.locNameForLangFile() + " " + this.Target
                     .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
             this.Source.sendMessage(new TextComponentString(s));
 
@@ -135,7 +135,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.Target instanceof EntityPlayer) {
 
-            String s = CLOC.word("took") + LogDamage() + CLOC.word("from") + " " + this.Source
+            String s = Words.Took.locNameForLangFile() + LogDamage() + Words.From.locNameForLangFile() + " " + this.Source
                     .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
             this.Target.sendMessage(new TextComponentString(s));
 
@@ -183,7 +183,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         String num = FormatDamageNumber(this);
 
-        String str = " " + num + " " + CLOC.word("damage") + " ";
+        String str = " " + num + " " + Words.Damage.locNameForLangFile() + " ";
 
         if (Element == null || Element.equals(Elements.None)) {
             str = TextFormatting.GRAY + str;

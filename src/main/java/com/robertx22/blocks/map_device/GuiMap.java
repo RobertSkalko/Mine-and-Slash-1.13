@@ -1,5 +1,6 @@
 package com.robertx22.blocks.map_device;
 
+import com.robertx22.Words;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
@@ -53,25 +54,25 @@ public class GuiMap extends TileGui {
 
         final int TIER_XPOS = 35;
         final int TIER_YPOS = 105;
-        String tier = CLOC.translate(CLOC.word("tier")) + "+";
+        String tier = Words.Tier.translate() + "+";
         fontRenderer.drawString(tier, TIER_XPOS - fontRenderer.getStringWidth(tier) / 2, TIER_YPOS, Color.darkGray
                 .getRGB());
 
         final int LEVEL_XPOS = 143;
         final int LEVEL_YPOS = 105;
-        String level = CLOC.translate(CLOC.word("level")) + "+";
+        String level = Words.Level.translate() + "+";
         fontRenderer.drawString(level, LEVEL_XPOS - fontRenderer.getStringWidth(level) / 2, LEVEL_YPOS, Color.darkGray
                 .getRGB());
 
         final int MAP_XPOS = 90;
         final int MAP_YPOS = 15;
-        String map = CLOC.translate(CLOC.word("put_map"));
+        String map = Words.PutMap.translate();
         fontRenderer.drawString(map, MAP_XPOS - fontRenderer.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
                 .getRGB());
 
         final int START_XPOS = 88;
         final int START_YPOS = 85;
-        String start = CLOC.translate(CLOC.word("start"));
+        String start = Words.Start.translate();
         fontRenderer.drawString(start, START_XPOS - fontRenderer.getStringWidth(start) / 2, START_YPOS, Color.darkGray
                 .getRGB());
 

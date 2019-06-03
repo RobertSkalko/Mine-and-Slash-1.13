@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Words;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.UniqueItems;
@@ -9,7 +10,6 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -58,7 +58,8 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(CLOC.word("unique_stats")
+        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(Words.UniqueStats
+                .locName()
                 .appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {

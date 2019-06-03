@@ -1,8 +1,8 @@
 package com.robertx22.items.level_incentives;
 
+import com.robertx22.Words;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Load;
@@ -246,26 +246,27 @@ public class Hearthstone extends Item {
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.word("distance")
+                .appendSibling(Words.Distance.locName()
                         .appendText(" " + this.blocksTeleported)
                         .appendText(" ")
-                        .appendSibling(CLOC.word("blocks").appendText(". "))), tooltip);
+                        .appendSibling(Words.Blocks.locName()
+                                .appendText(". "))), tooltip);
 
         Tooltip.add(Styles.GREENCOMP()
-                .appendSibling(CLOC.word("uses")
+                .appendSibling(Words.Uses.locName()
                         .appendText(": " + this.totalUses)
                         .appendText(" ")
-                        .appendSibling(CLOC.word("left"))
+                        .appendSibling(Words.Left.locName())
                         .appendText(": " + this.getRemainingUses(stack))), tooltip);
 
         Tooltip.add(Styles.REDCOMP()
-                .appendSibling(CLOC.word("activation_time")
+                .appendSibling(Words.ActivationTime.locName()
                         .appendText(": " + this.activationTimeSeconds + " ")
-                        .appendSibling(CLOC.word("seconds"))), tooltip);
+                        .appendSibling(Words.Seconds.locName())), tooltip);
 
         if (getLoc(stack) != null) {
             Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(CLOC.word("position")
+                    .appendSibling(Words.Position.locName()
                             .appendText(": " + locTooltip(stack))), tooltip);
 
             Tooltip.add(Styles.BLUECOMP()

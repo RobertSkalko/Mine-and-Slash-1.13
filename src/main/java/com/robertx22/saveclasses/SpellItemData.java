@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.Words;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
@@ -8,7 +9,6 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
@@ -98,11 +98,11 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetScalingDesc(boolean moreInfo) {
 
-        ITextComponent text = CLOC.word("scaling_value")
+        ITextComponent text = Words.ScalingValue.locName()
                 .appendText(": ")
                 .appendSibling(GetSpell().ScalingValue().GetStat().locName())
                 .appendText(" ")
-                .appendSibling(CLOC.word("by"))
+                .appendSibling(Words.By.locName())
                 .appendText(" : " + (int) (GetScalingValue() * 100) + "%");
 
         if (moreInfo) {
@@ -115,7 +115,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetBaseDesc(boolean moreInfo) {
 
-        ITextComponent text = CLOC.word("base_value")
+        ITextComponent text = Words.BaseValue.locName()
                 .appendText(": " + this.GetBaseValue());
 
         if (moreInfo) {
@@ -128,7 +128,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetManaDesc(boolean moreInfo) {
 
-        ITextComponent text = CLOC.word("mana_cost")
+        ITextComponent text = Words.ManaCost.locName()
                 .appendText(": " + this.GetManaCost());
 
         if (moreInfo) {
@@ -206,7 +206,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
             boolean moreInfo = GuiScreen.isShiftKeyDown();
 
             Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(CLOC.word("stats").appendText(": ")), tooltip);
+                    .appendSibling(Words.Stats.locName().appendText(": ")), tooltip);
 
             Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
 
@@ -219,12 +219,13 @@ public class SpellItemData implements ISalvagable, ITooltip {
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(new TextComponentString("Use Time: " + GetSpell().getUseDurationInSeconds() + " sec.")), tooltip);
+                    .appendSibling(Words.UseTime.locName()
+                            .appendText(": " + GetSpell().getUseDurationInSeconds() + " sec.")), tooltip);
 
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.AQUACOMP()
-                    .appendSibling(CLOC.word("type")
+                    .appendSibling(Words.Type.locName()
                             .appendText(": ")
                             .appendText(spell.typeString())), tooltip);
 

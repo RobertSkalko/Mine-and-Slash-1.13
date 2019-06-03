@@ -23,16 +23,8 @@ public class CLOC {
 
     }
 
-    public static ITextComponent word(String str) {
-
-        return base(Ref.MODID + ".word." + str);
-
-    }
-
     public static ITextComponent rarity(String str) {
-
         return base(Ref.MODID + ".rarity." + str);
-
     }
 
     public static ITextComponent lore(String str) {

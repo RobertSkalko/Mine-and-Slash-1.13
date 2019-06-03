@@ -1,5 +1,6 @@
 package com.robertx22.database.stats;
 
+import com.robertx22.Words;
 import com.robertx22.database.IGUID;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.StatData;
@@ -84,7 +85,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         ITextComponent str = basestat.locName();
 
         if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-            str.appendText(" ").appendSibling(CLOC.word("percent"));
+            str.appendText(" ").appendSibling(Words.Percent.locName());
         }
 
         if (info.isSet == false) {
@@ -121,7 +122,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         } else if (mod.Type() == StatTypes.Percent) {
             text.appendText("%");
         } else {
-            text.appendText("% ").appendSibling(CLOC.word("multi"));
+            text.appendText("% ").appendSibling(Words.Multi.locName());
         }
 
         if (GuiScreen.isShiftKeyDown() && info.isSet == false) {

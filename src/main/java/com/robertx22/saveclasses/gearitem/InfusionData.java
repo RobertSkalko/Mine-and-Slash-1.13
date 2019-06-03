@@ -1,8 +1,8 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Words;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -92,8 +92,8 @@ public class InfusionData extends StatGroupData implements ITooltipList {
         if (isEmpty() == false) {
 
             list.add(Styles.LIGHT_PURPLECOMP()
-                    .appendSibling(new TextComponentString("+" + this.currentLevel + " ").appendSibling(CLOC
-                            .word("infusion")
+                    .appendSibling(new TextComponentString("+" + this.currentLevel + " ").appendSibling(Words.Infusion
+                            .locName()
                             .appendText(": "))));
 
             for (LevelAndStats part : this.GetAllStats(info.level)) {

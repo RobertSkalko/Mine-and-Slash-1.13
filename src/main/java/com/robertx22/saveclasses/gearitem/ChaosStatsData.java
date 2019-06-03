@@ -1,11 +1,11 @@
 package com.robertx22.saveclasses.gearitem;
 
+import com.robertx22.Words;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -30,7 +30,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.REDCOMP()
-                .appendSibling(CLOC.word("chaos_stats").appendText(":")));
+                .appendSibling(Words.ChaosStats.locName().appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

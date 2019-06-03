@@ -1,5 +1,6 @@
 package com.robertx22.blocks.salvage_station;
 
+import com.robertx22.Words;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
@@ -70,7 +71,7 @@ public class GuiInventorySalvage extends TileGui {
 
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(CLOC.translate(CLOC.word("progress")) + ": ");
+            hoveringText.add(Words.Progress.translate() + ": ");
             int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }

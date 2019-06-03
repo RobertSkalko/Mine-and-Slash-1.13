@@ -1,5 +1,6 @@
 package com.robertx22.items.misc;
 
+import com.robertx22.Words;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.items.currency.ICurrencyItemEffect;
@@ -46,8 +47,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
         if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(CLOC.word("runeword").appendText(": ")), tooltip);
-
+                    .appendSibling(Words.Runeword.locName().appendText(": ")), tooltip);
             String word = this.getWord(stack);
 
             RuneWord runeword = RuneWords.All.get(word);
