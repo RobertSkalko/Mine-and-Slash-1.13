@@ -2,7 +2,6 @@ package com.robertx22.saveclasses;
 
 import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.database.stats.StatMod;
@@ -121,14 +120,7 @@ public class GearItemData implements ITooltip, ISalvagable {
     public int timesLeveledUp = 0;
     //
 
-    public boolean isUpgradable() {
-        return this.GetBaseGearType().slotType().equals(GearSlotType.Weapon);
-    }
-
-    public boolean isEnchantable() {
-        return this.GetBaseGearType().slotType().equals(GearSlotType.Jewerly);
-    }
-
+    // used when upgrading item rarity
     public Item getItem() {
 
         if (isUnique) {
@@ -161,17 +153,11 @@ public class GearItemData implements ITooltip, ISalvagable {
         int power = 0;
 
         for (IStatsContainer container : this.GetAllStatContainers()) {
-
             for (LevelAndStats stats : container.GetAllStats(1)) {
-
                 for (StatModData mod : stats.mods) {
-
                     power += mod.percent;
-
                 }
-
             }
-
         }
 
         return power;
@@ -179,7 +165,6 @@ public class GearItemData implements ITooltip, ISalvagable {
     }
 
     public ItemRarity GetRarity() {
-
         if (isUnique) {
             return new UniqueItem();
         } else {
@@ -189,7 +174,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
-        ITextComponent text = new TextComponentString("");
+        ITextComponent text = new TextComponentString(this.GetRarity()
+                .textFormatColor() + "");
 
         if (isUnique) {
             IUnique uniq = (IUnique) this.getItem();
@@ -213,9 +199,6 @@ public class GearItemData implements ITooltip, ISalvagable {
             }
 
         }
-
-        text.setStyle(new net.minecraft.util.text.Style().setColor(this.GetRarity()
-                .textFormatColor()));
 
         return text;
 

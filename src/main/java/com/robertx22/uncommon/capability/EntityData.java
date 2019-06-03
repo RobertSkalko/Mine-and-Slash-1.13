@@ -69,8 +69,14 @@ public class EntityData {
     private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
+    private static final String LAST_ATTACK_TICK = "LAST_ATTACK_TICK";
 
     public interface UnitData extends ICommonCapability {
+
+        void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim);
+
+        boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
+                                           EntityLivingBase victim);
 
         void syncToClient(EntityPlayer player);
 
@@ -243,6 +249,7 @@ public class EntityData {
         boolean isNewbie = true;
         boolean equipsChanged = true;
         int tier = 0;
+        int lastAttackTick = 0;
 
         float dmgByNonPlayers = 0;
 
@@ -258,6 +265,7 @@ public class EntityData {
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
             nbt.putInt(TIER, tier);
+            nbt.putInt(LAST_ATTACK_TICK, lastAttackTick);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
@@ -280,6 +288,7 @@ public class EntityData {
             this.exp = value.getInt(EXP);
             this.rarity = value.getInt(RARITY);
             this.tier = value.getInt(TIER);
+            this.lastAttackTick = value.getInt(LAST_ATTACK_TICK);
             this.uuid = value.getString(UUID);
             this.energy = value.getFloat(ENERGY);
             this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
@@ -465,6 +474,38 @@ public class EntityData {
         }
 
         @Override
+        public void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim) {
+
+            this.lastAttackTick = attacker.ticksExisted;
+
+        }
+
+        static int ATTACK_COOLDOWN = 10;
+
+        @Override
+        public boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
+                                                  EntityLivingBase victim) {
+
+            if ((float) victim.hurtResistantTime > (float) victim.maxHurtResistantTime / 2.0F) {
+                return false;
+            }
+
+            if (this.lastAttackTick < ATTACK_COOLDOWN) {
+                return true;
+            }
+
+            if (this.lastAttackTick > attacker.ticksExisted) {
+                return true;
+            }
+
+            if (this.lastAttackTick - attacker.ticksExisted < ATTACK_COOLDOWN) {
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
         public void syncToClient(EntityPlayer player) {
             if (unit != null) {
                 PlayerUnitPacket packet = new PlayerUnitPacket(this.getNBT());
@@ -619,6 +660,7 @@ public class EntityData {
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();
                 iWep.Attack(source, target, this, targetdata);
+                this.onAttackEntity(source, target);
 
             }
         }

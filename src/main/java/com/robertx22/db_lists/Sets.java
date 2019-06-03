@@ -3,10 +3,7 @@ package com.robertx22.db_lists;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.sets.endgame_lvl.AscensionOfElement;
 import com.robertx22.database.sets.from_lvl_50.*;
-import com.robertx22.database.sets.low_lvl.armors.BarbarianArmor;
-import com.robertx22.database.sets.low_lvl.armors.MagesRobes;
-import com.robertx22.database.sets.low_lvl.armors.RangerArmor;
-import com.robertx22.database.sets.low_lvl.armors.RockmanChains;
+import com.robertx22.database.sets.low_lvl.armors.*;
 import com.robertx22.database.sets.low_lvl.elemental_jewerly.FlamingDevil;
 import com.robertx22.database.sets.low_lvl.elemental_jewerly.ForestGuardian;
 import com.robertx22.database.sets.low_lvl.elemental_jewerly.IceLord;
@@ -61,6 +58,7 @@ public class Sets implements IRandomDefault<Set> {
 
                 put(new TreeOfLife().GUID(), new TreeOfLife());
                 put(new Limitless().GUID(), new Limitless());
+                put(new ScholarRobes().GUID(), new ScholarRobes());
 
             }
         }
