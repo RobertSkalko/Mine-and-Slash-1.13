@@ -4,7 +4,7 @@ import com.robertx22.database.requirements.ExactUniquesRequierement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.database.unique_items.bracelets.BraceletSetDrop;
 import com.robertx22.database.unique_items.necklaces.NecklaceSetDrop;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -31,7 +31,7 @@ public class TreasureFinder extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new XBonusLootDropFlat(LootType.All));
+                    put(2, new LootTypeBonusFlat(LootType.All));
                 }
             }
         };

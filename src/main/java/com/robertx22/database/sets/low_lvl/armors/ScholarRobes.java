@@ -6,7 +6,7 @@ import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.uncommon.enumclasses.LootType;
 
 import java.util.HashMap;
@@ -25,8 +25,8 @@ public class ScholarRobes extends Set {
             {
                 {
                     put(2, new BonusExpFlat());
-                    put(3, new XBonusLootDropFlat(LootType.NormalItem));
-                    put(4, new XBonusLootDropFlat(LootType.Map));
+                    put(3, new LootTypeBonusFlat(LootType.NormalItem));
+                    put(4, new LootTypeBonusFlat(LootType.Map));
 
                 }
             }

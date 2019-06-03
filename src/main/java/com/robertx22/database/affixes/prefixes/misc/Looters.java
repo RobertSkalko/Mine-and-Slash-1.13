@@ -6,7 +6,7 @@ import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.uncommon.enumclasses.LootType;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class Looters extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new XBonusLootDropFlat(LootType.All));
+        return Arrays.asList(new LootTypeBonusFlat(LootType.All));
     }
 
     @Override

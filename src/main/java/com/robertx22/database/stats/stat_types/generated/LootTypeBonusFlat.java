@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
+public class LootTypeBonusFlat extends Stat implements IGenerated<Stat> {
 
     public LootType type;
 
-    public XBonusLootDrop(LootType type) {
+    public LootTypeBonusFlat(LootType type) {
         this.type = type;
 
     }
@@ -51,7 +51,7 @@ public class XBonusLootDrop extends Stat implements IGenerated<Stat> {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Arrays.asList(LootType.values()).forEach(x -> list.add(new XBonusLootDrop(x)));
+        Arrays.asList(LootType.values()).forEach(x -> list.add(new LootTypeBonusFlat(x)));
         return list;
 
     }

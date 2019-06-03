@@ -1,18 +1,18 @@
-package com.robertx22.database.stats.stat_effects;
+package com.robertx22.database.stats.stat_effects.offense;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
-import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
-public class LifestealEffect implements IStatEffect {
+public class ElementalFocusEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.Last.priority;
+        return Priority.Second.priority;
     }
 
     @Override
@@ -25,17 +25,24 @@ public class LifestealEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK)) {
-                if (Effect.canceled == false) {
+            if (Effect instanceof DamageEffect) {
 
-                    float healed = ((float) data.Value * Effect.Number / 100);
+                DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                    DamageEffect dmgeffect = (DamageEffect) Effect;
-                    dmgeffect.healthHealed += healed;
+                if (dmgeffect.Element != null && dmgeffect.Element != Elements.None) {
+
+                    float amount = dmgeffect.Number * data.Value / 100;
+
+                    if (dmgeffect.Element.equals(stat.Element())) {
+                        dmgeffect.Number += amount;
+                    } else {
+                        dmgeffect.Number -= amount;
+                    }
 
                 }
+
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -28,11 +28,13 @@ public class ManaOnHitEffect implements IStatEffect {
             if (Effect instanceof DamageEffect && Effect.getEffectType()
                     .equals(EffectTypes.BASIC_ATTACK)) {
 
-                int mana_restored = (int) data.Value;
+                if (Effect.canceled == false) {
 
-                DamageEffect dmgeffect = (DamageEffect) Effect;
-                dmgeffect.manaRestored += mana_restored;
+                    int mana_restored = (int) data.Value;
 
+                    DamageEffect dmgeffect = (DamageEffect) Effect;
+                    dmgeffect.manaRestored += mana_restored;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

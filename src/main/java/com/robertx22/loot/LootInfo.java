@@ -1,7 +1,7 @@
 package com.robertx22.loot;
 
 import com.robertx22.config.dimension_configs.DimensionsContainer;
-import com.robertx22.database.stats.stat_types.generated.XBonusLootDrop;
+import com.robertx22.database.stats.stat_types.generated.LootTypeBonusFlat;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.loot.gens.BaseLootGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -99,10 +99,10 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit().MyStats.get(new XBonusLootDrop(gen.lootType())
+            chance *= this.playerData.getUnit().MyStats.get(new LootTypeBonusFlat(gen.lootType())
                     .GUID()).getMultiplier();
 
-            chance *= this.playerData.getUnit().MyStats.get(new XBonusLootDrop(LootType.All)
+            chance *= this.playerData.getUnit().MyStats.get(new LootTypeBonusFlat(LootType.All)
                     .GUID()).getMultiplier();
 
         }

@@ -28,11 +28,12 @@ public class LifeOnHitEffect implements IStatEffect {
             if (Effect instanceof DamageEffect && Effect.getEffectType()
                     .equals(EffectTypes.BASIC_ATTACK)) {
 
-                int healed = (int) data.Value;
+                if (Effect.canceled == false) {
+                    int healed = (int) data.Value;
 
-                DamageEffect dmgeffect = (DamageEffect) Effect;
-                dmgeffect.healthHealed += healed;
-
+                    DamageEffect dmgeffect = (DamageEffect) Effect;
+                    dmgeffect.healthHealed += healed;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

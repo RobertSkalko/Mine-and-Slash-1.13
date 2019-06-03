@@ -2,7 +2,6 @@ package com.robertx22.database.stats.stat_mods.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.generated.XBonusLootDrop;
 import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -11,18 +10,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
+public class LootTypeBonusFlat extends StatMod implements IGenerated<StatMod> {
 
     public LootType type;
 
-    public XBonusLootDropFlat(LootType type) {
+    public LootTypeBonusFlat(LootType type) {
         this.type = type;
 
     }
 
     @Override
     public Stat GetBaseStat() {
-        return new XBonusLootDrop(type);
+        return new com.robertx22.database.stats.stat_types.generated.LootTypeBonusFlat(type);
     }
 
     @Override
@@ -48,8 +47,7 @@ public class XBonusLootDropFlat extends StatMod implements IGenerated<StatMod> {
     @Override
     public List<StatMod> generateAllPossibleStatVariations() {
         List<StatMod> list = new ArrayList<>();
-        Arrays.asList(LootType.values())
-                .forEach(x -> list.add(new XBonusLootDropFlat(x)));
+        Arrays.asList(LootType.values()).forEach(x -> list.add(new LootTypeBonusFlat(x)));
         return list;
 
     }

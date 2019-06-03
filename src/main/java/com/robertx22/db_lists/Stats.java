@@ -181,7 +181,7 @@ public class Stats {
                 add(new ElementalConversion(Elements.None, Elements.None));
                 add(new ElementalTransfer(Elements.None, Elements.None));
                 add(new ElementalAffinity(Elements.None));
-                add(new XBonusLootDrop(LootType.NormalItem));
+                add(new LootTypeBonusFlat(LootType.NormalItem));
                 add(new WeaponDamage(WeaponTypes.None));
                 add(new ElementalAttackDamage(Elements.None));
                 add(new ElementalSpellToAttackDMG(Elements.None));
@@ -189,6 +189,7 @@ public class Stats {
                 add(new ElementalSpellDamage(Elements.None));
                 add(new ElementalResist(Elements.None));
                 add(new ElementalPene(Elements.None));
+                add(new ElementalFocus(Elements.None));
 
             }
         }

@@ -213,7 +213,7 @@ public class StatMods {
                 add(new ElementalConversionFlat(Elements.None, Elements.None));
                 add(new ElementalTransferFlat(Elements.None, Elements.None));
                 add(new ElementalAffinityFlat(Elements.None));
-                add(new XBonusLootDropFlat(LootType.NormalItem));
+                add(new LootTypeBonusFlat(LootType.NormalItem));
                 add(new WeaponDamageFlat(WeaponTypes.None));
                 add(new LessWeaponDamageFlat(WeaponTypes.None));
                 add(new ElementalAttackDamageFlat(Elements.None));
@@ -225,6 +225,7 @@ public class StatMods {
                 add(new ElementalSpellDamageMulti(Elements.None));
                 add(new ElementalPeneFlat(Elements.None));
                 add(new ElementalPenePercent(Elements.None));
+                add(new ElementalFocusFlat(Elements.None));
 
             }
         }

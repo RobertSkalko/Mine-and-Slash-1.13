@@ -5,7 +5,7 @@ import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.uncommon.enumclasses.LootType;
 
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class TreasureSeeker extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new XBonusLootDropFlat(LootType.Map));
+        return Arrays.asList(new LootTypeBonusFlat(LootType.Map));
     }
 
     @Override

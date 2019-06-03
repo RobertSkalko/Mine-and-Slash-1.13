@@ -2,7 +2,7 @@ package com.robertx22.database.unique_items.bracelets;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
-import com.robertx22.database.stats.stat_mods.generated.XBonusLootDropFlat;
+import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -33,7 +33,7 @@ public class BraceletSetDrop extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellDamageFlat(), new XBonusLootDropFlat(LootType.UniqueItem));
+        return Arrays.asList(new SpellDamageFlat(), new LootTypeBonusFlat(LootType.UniqueItem));
     }
 
     @Override
