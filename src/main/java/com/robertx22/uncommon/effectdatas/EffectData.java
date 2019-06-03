@@ -15,6 +15,8 @@ import java.util.List;
 
 public abstract class EffectData {
 
+    public boolean isDodged = false;
+
     public EffectData(EntityLivingBase source, EntityLivingBase target) {
 
         this.Source = source;
@@ -88,7 +90,10 @@ public abstract class EffectData {
     public WeaponTypes weaponType = WeaponTypes.None;
 
     public enum EffectTypes {
-        NORMAL, SPELL, BASIC_ATTACK, BONUS_ATTACK
+        NORMAL,
+        SPELL,
+        BASIC_ATTACK,
+        BONUS_ATTACK
     }
 
     public UnitData sourceData;
