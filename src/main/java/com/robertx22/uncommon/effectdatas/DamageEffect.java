@@ -48,6 +48,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     @Override
     protected void activate() {
 
+        if (this.canceled) {
+            return; // TODO check if this works
+        }
+
         this.Number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
 
         MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
@@ -127,7 +131,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.Source instanceof EntityPlayer) {
 
-            String s = Words.Dealt.locNameForLangFile() + LogDamage() + Words.To.locNameForLangFile() + " " + this.Target
+            String s = Words.Dealt.translate() + LogDamage() + Words.To.translate() + " " + this.Target
                     .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
             this.Source.sendMessage(new TextComponentString(s));
 
@@ -135,7 +139,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.Target instanceof EntityPlayer) {
 
-            String s = Words.Took.locNameForLangFile() + LogDamage() + Words.From.locNameForLangFile() + " " + this.Source
+            String s = Words.Took.translate() + LogDamage() + Words.From.translate() + " " + this.Source
                     .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
             this.Target.sendMessage(new TextComponentString(s));
 
@@ -183,7 +187,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         String num = FormatDamageNumber(this);
 
-        String str = " " + num + " " + Words.Damage.locNameForLangFile() + " ";
+        String str = " " + num + " " + Words.Damage.translate() + " ";
 
         if (Element == null || Element.equals(Elements.None)) {
             str = TextFormatting.GRAY + str;

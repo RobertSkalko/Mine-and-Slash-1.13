@@ -84,10 +84,6 @@ public enum Words implements IAutoLocName {
     MajorSuccessBonus(),
     MajorArcana();
 
-    public String translate() {
-        return CLOC.translate(this.locName());
-    }
-
     @Override
     public String locNameLangFileGUID(String guid) {
         return Ref.MODID + ".word." + guid;
