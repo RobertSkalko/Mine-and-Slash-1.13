@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.effectdatas;
 
 import com.robertx22.config.ClientContainer;
+import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
@@ -65,11 +66,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(Source, Target);
 
-            // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
-            int hurttime = Target.hurtResistantTime;
-            Target.hurtResistantTime = 0;
+            int hurtResistantTime = 0;
+
+            if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
+                hurtResistantTime = Target.hurtResistantTime;
+            } else {
+                hurtResistantTime = 3;
+            }
+
+            Target.hurtResistantTime = 0;   // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
+
             Target.attackEntityFrom(dmgsource, dmg);
-            Target.hurtResistantTime = hurttime;
+            Target.hurtResistantTime = hurtResistantTime;
             //
 
             addBonusElementDamage();

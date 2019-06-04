@@ -4,6 +4,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.containers.*;
 import com.robertx22.database.rarities.items.UniqueItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rarities {
@@ -18,7 +19,7 @@ public class Rarities {
     public static final SpellRarities Spells = new SpellRarities();
 
     public static List<ItemRarity> allIncludingUnique() {
-        List<ItemRarity> list = Items.rarities();
+        List<ItemRarity> list = new ArrayList<>(Items.rarities());
         list.add(new UniqueItem());
         return list;
     }

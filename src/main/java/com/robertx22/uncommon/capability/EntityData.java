@@ -482,13 +482,11 @@ public class EntityData {
 
         static int ATTACK_COOLDOWN = 15;
 
+        // makes sure hammers the aoe weapons arent machine guns
         @Override
         public boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
                                                   EntityLivingBase victim) {
 
-            if ((float) victim.hurtResistantTime > (float) victim.maxHurtResistantTime / 2.0F) {
-                return false;
-            }
             if (this.lastAttackTick < ATTACK_COOLDOWN) {
                 return true;
             }
