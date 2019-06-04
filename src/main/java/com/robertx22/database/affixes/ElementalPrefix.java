@@ -24,7 +24,7 @@ public abstract class ElementalPrefix extends Prefix implements IElementalGenera
     @Override
     public List<Prefix> generateAllPossibleStatVariations() {
         List<Prefix> list = new ArrayList<>();
-        Elements.getAll().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }

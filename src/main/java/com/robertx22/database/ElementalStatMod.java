@@ -25,11 +25,10 @@ public abstract class ElementalStatMod extends StatMod implements IElementalGene
 
     }
 
-    public List<StatMod> allSingleElements() {
+    public List<StatMod> allSingleElementVariations() {
 
         return generateAllPossibleStatVariations().stream()
                 .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
                 .collect(Collectors.toList());
     }
-
 }

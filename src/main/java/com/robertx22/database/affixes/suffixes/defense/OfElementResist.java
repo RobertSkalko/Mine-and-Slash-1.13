@@ -5,7 +5,8 @@ import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class OfElementResist extends Suffix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new AllEleResistFlat());
+        return Arrays.asList(new ElementalResistFlat(Elements.All));
 
     }
 

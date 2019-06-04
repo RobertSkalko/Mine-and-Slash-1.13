@@ -23,7 +23,7 @@ public enum Elements implements IColor {
 
     public int i = 0;
 
-    public static List<Elements> getAll() {
+    public static List<Elements> getAllSingleElements() {
 
         return Arrays.stream(Elements.values())
                 .filter(x -> x.isSingleElement)

@@ -24,7 +24,7 @@ public class Charm extends GearItemSlot {
     @Override
     public List<StatMod> PrimaryStats() {
 
-        return ListUtils.newList(new ElementalPeneFlat(Elements.None).allSingleElements(), new ArmorPeneFlat());
+        return ListUtils.newList(new ElementalPeneFlat(Elements.None).allSingleElementVariations(), new ArmorPeneFlat());
 
     }
 

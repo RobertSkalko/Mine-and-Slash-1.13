@@ -7,6 +7,9 @@ import com.robertx22.database.stats.stat_types.generated.ElementalPene;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElementalFocusFlat extends ElementalStatMod {
 
     public ElementalFocusFlat(Elements element) {
@@ -42,5 +45,13 @@ public class ElementalFocusFlat extends ElementalStatMod {
     public StatMod newGeneratedInstance(Elements element) {
         return new ElementalFocusFlat(element);
     }
+
+    @Override
+    public List<StatMod> generateAllPossibleStatVariations() {
+        List<StatMod> list = new ArrayList<>();
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        return list;
+    }
+
 }
 

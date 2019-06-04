@@ -49,7 +49,7 @@ public class MobStatUtils {
         unit.MyStats.get(CriticalHit.GUID).Flat += 5 * rar.StatMultiplier();
         unit.MyStats.get(CriticalDamage.GUID).Flat += 5 * rar.StatMultiplier();
 
-        for (Elements element : Elements.getAll()) {
+        for (Elements element : Elements.getAllSingleElements()) {
 
             unit.MyStats.get(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
                     .StatMultiplier();

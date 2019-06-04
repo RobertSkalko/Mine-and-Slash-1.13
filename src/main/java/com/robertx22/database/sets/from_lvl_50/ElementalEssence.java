@@ -5,8 +5,9 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
 
@@ -23,7 +24,7 @@ public class ElementalEssence extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new AllEleResistFlat());
+                    put(2, new ElementalResistFlat(Elements.All));
                     put(3, new AllEleSpellDmgFlat());
 
                 }

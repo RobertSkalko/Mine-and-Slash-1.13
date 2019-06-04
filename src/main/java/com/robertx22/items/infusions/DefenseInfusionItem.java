@@ -34,7 +34,7 @@ public class DefenseInfusionItem extends BaseInfusionItem {
     @Override
     public List<StatMod> armorInfusions() {
 
-        return ListUtils.newList(new ElementalResistFlat(Elements.None).allSingleElements(), new ArmorFlat(), new DodgeFlat());
+        return ListUtils.newList(new ElementalResistFlat(Elements.None).allSingleElementVariations(), new ArmorFlat(), new DodgeFlat());
     }
 
     @Override

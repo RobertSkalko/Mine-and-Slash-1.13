@@ -20,7 +20,6 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
-import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleResistFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
@@ -61,7 +60,6 @@ public class StatMods {
         {
             {
                 put(new AllAttributesFlat().GUID(), new AllAttributesFlat());
-                put(new AllEleResistFlat().GUID(), new AllEleResistFlat());
 
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
                 put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());

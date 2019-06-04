@@ -7,6 +7,7 @@ import com.robertx22.uncommon.interfaces.IElementalGenerated;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,4 +57,12 @@ public class ElementalFocus extends Stat implements IElementalGenerated<Stat>, I
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new ElementalFocusEffect());
     }
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = new ArrayList<>();
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        return list;
+    }
+
 }
