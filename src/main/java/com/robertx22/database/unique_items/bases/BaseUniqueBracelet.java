@@ -15,4 +15,14 @@ public abstract class BaseUniqueBracelet extends ItemBracelet implements IUnique
     public String slot() {
         return new Bracelet().GUID();
     }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

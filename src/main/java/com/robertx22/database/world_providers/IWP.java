@@ -26,6 +26,11 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
 
     void setModDimension(ModDimension mod);
 
+    @Override
+    public default Group locNameGroup() {
+        return Group.World_Types;
+    }
+
     Biome getBiome();
 
     List<String> smallSurfaceDecorations();

@@ -13,8 +13,8 @@ public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, I
     public int rarity = 0;
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return formatString(this.getRegistryName().toString());
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
     }
 
     @Override
@@ -27,6 +27,11 @@ public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, I
     static int Enchantability = 10;
 
     public abstract String Name();
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
 
     public BaseArmorItem(int rarity, EntityEquipmentSlot slot) {
 

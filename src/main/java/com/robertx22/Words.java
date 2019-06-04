@@ -84,8 +84,13 @@ public enum Words implements IAutoLocName {
     WorldType();
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".word." + guid;
+    public Group locNameGroup() {
+        return Group.Words;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".word." + formattedGUID();
     }
 
     @Override

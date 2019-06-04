@@ -1,7 +1,6 @@
 package com.robertx22.uncommon.develeper;
 
 import com.robertx22.Words;
-import com.robertx22.database.IGUID;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.*;
 import com.robertx22.items.runes.base.BaseRuneItem;
@@ -37,8 +36,8 @@ public class CreateLangFile {
                         }
                     }
 
-                    json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
-                            .formatString(iauto.locNameForLangFile()) + "\",\n";
+                    json += "\t" + "\"" + iauto.formattedLocNameLangFileGUID() + "\": \"" + iauto
+                            .locNameForLangFile() + "\",\n";
                 }
             }
             json += comment(entry.getKey());
@@ -58,8 +57,8 @@ public class CreateLangFile {
                         }
                     }
 
-                    json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
-                            .formatString(iauto.locDescForLangFile()) + "\",\n";
+                    json += "\t" + "\"" + iauto.formattedLocDescLangFileGUID() + "\": \"" + iauto
+                            .locDescForLangFile() + "\",\n";
                 }
             }
             json += comment(entry.getKey());
@@ -111,7 +110,6 @@ public class CreateLangFile {
         list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
         list.put("STATS", new ArrayList<>(Stats.All.values()));
         list.put("GEAR SLOT TYPES", new ArrayList<>(GearTypes.All.values()));
-        list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
         list.put("WORLD TYPES", new ArrayList<>(WorldProviders.All.values()));
         list.put("WORDS", Arrays.asList(Words.values()));
         list.put("RARITIES", new ArrayList<>(Rarities.Items.rarities()));
@@ -119,6 +117,7 @@ public class CreateLangFile {
         List<IAutoLocName> gearItems = new ArrayList<>();
         List<IAutoLocName> runes = new ArrayList<>();
         List<IAutoLocName> misc = new ArrayList<>();
+        List<IAutoLocName> uniques = new ArrayList<>();
 
         for (Item item : ForgeRegistries.ITEMS) {
 
@@ -128,25 +127,32 @@ public class CreateLangFile {
                 continue;
             }
 
-            if (item instanceof IAutoLocName && item instanceof IUnique == false) {
-                if (item instanceof BaseRuneItem) {
+            if (item instanceof IAutoLocName) {
+
+                if (item instanceof IUnique) {
+                    uniques.add((IAutoLocName) item);
+                } else if (item instanceof BaseRuneItem) {
                     runes.add((IAutoLocName) item);
                 } else if (item instanceof IGearItem) {
                     gearItems.add((IAutoLocName) item);
                 } else {
                     misc.add((IAutoLocName) item);
                 }
+
             }
         }
         list.put("GEAR ITEMS", gearItems);
         list.put("RUNES", runes);
         list.put("MISC ITEMS", misc);
+        list.put("UNIQUE ITEM NAMES", uniques);
 
         HashMap<String, List<IAutoLocName>> sortedMap = new HashMap<>();
         for (Map.Entry<String, List<IAutoLocName>> entry : list.entrySet()) {
             List<IAutoLocName> sortedlist = new ArrayList<>(entry.getValue());
             sortName(sortedlist);
-            sortedMap.put(entry.getKey(), sortedlist);
+            if (sortedlist.size() > 0) {
+                sortedMap.put(entry.getKey(), sortedlist);
+            }
         }
 
         return sortedMap;
@@ -156,19 +162,36 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         HashMap<String, List<IAutoLocDesc>> list = new HashMap<>();
         list.put("STAT DESCRIPTIONS", new ArrayList<>(Stats.All.values()));
-        list.put("UNIQUE ITEM DESCRIPTIONS", new ArrayList<>(UniqueItems.getAll()));
+
+        List<IAutoLocDesc> uniquedesc = new ArrayList<>();
+        List<IAutoLocDesc> miscDesc = new ArrayList<>();
 
         for (Item item : ForgeRegistries.ITEMS) {
-            if (item instanceof IAutoLocDesc && item instanceof IUnique == false) {
 
+            if (item.getRegistryName() == null || item.getRegistryName()
+                    .getNamespace()
+                    .equals(Ref.MODID) == false) {
+                continue;
+            }
+
+            if (item instanceof IAutoLocDesc) {
+                if (item instanceof IUnique) {
+                    uniquedesc.add((IAutoLocDesc) item);
+                } else {
+                    miscDesc.add((IAutoLocDesc) item);
+                }
             }
         }
+        list.put("UNIQUE ITEM DESC", uniquedesc);
+        list.put("MISC ITEM DESC", miscDesc);
 
         HashMap<String, List<IAutoLocDesc>> sortedMap = new HashMap<>();
         for (Map.Entry<String, List<IAutoLocDesc>> entry : list.entrySet()) {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
             sortDesc(sortedlist);
-            sortedMap.put(entry.getKey(), sortedlist);
+            if (sortedlist.size() > 0) {
+                sortedMap.put(entry.getKey(), sortedlist);
+            }
         }
 
         return sortedMap;
@@ -178,7 +201,7 @@ public class CreateLangFile {
     private static void sortName(List<IAutoLocName> list) {
         if (list != null && list.size() > 1) {
             try {
-                Collections.sort(list, Comparator.comparing(x -> x.locNameLangFileGUID(x.GUID())));
+                Collections.sort(list, Comparator.comparing(x -> x.locNameLangFileGUID()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -188,7 +211,7 @@ public class CreateLangFile {
     private static void sortDesc(List<IAutoLocDesc> list) {
         if (list != null && list.size() > 1) {
             try {
-                Collections.sort(list, Comparator.comparing(IGUID::GUID));
+                Collections.sort(list, Comparator.comparing(x -> x.locDescLangFileGUID()));
             } catch (Exception e) {
                 e.printStackTrace();
             }

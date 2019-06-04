@@ -2,7 +2,6 @@ package com.robertx22.database.unique_items;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.ITiered;
@@ -26,13 +25,8 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IAutoLocName, IAutoL
     }
 
     @Override
-    public default String locNameLangFileGUID(String guid) {
-        return "item." + Ref.MODID + ".uniques." + slot().toLowerCase() + "." + guid;
-    }
-
-    @Override
-    public default String locDescLangFileGUID(String guid) {
-        return Ref.MODID + ".uniques.tooltip." + guid;
+    public default Group locNameGroup() {
+        return Group.Unique_Items;
     }
 
 }

@@ -17,4 +17,14 @@ public abstract class BaseUniquePants extends ItemPants implements IUnique {
         return new Pants().GUID();
     }
 
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
 }

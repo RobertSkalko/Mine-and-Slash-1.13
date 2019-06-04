@@ -15,4 +15,14 @@ public abstract class BaseUniqueHammer extends ItemHammer implements IUnique {
     public String slot() {
         return new Hammer().GUID();
     }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

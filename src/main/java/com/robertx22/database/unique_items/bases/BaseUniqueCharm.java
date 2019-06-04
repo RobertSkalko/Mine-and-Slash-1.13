@@ -14,4 +14,14 @@ public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
     public String slot() {
         return new Charm().GUID();
     }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

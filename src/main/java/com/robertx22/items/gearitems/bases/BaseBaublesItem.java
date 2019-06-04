@@ -20,7 +20,12 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
         return formatString(this.getRegistryName().toString());
     }
 

@@ -5,7 +5,12 @@ import com.robertx22.mmorpg.Ref;
 public abstract class Suffix extends BaseAffix {
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".suffix." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".suffix." + formattedGUID();
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Suffixes;
     }
 }

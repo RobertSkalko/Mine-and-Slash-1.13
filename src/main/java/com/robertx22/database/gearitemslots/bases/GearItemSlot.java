@@ -24,6 +24,11 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName {
         OffHand
     }
 
+    @Override
+    public Group locNameGroup() {
+        return Group.Gear_Slots;
+    }
+
     public abstract GearSlotType slotType();
 
     public List<StatMod> coreStatMods() {
@@ -31,8 +36,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName {
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".gear_type." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".gear_type." + formattedGUID();
     }
 
     public abstract List<StatMod> PrimaryStats();

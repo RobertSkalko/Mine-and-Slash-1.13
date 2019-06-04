@@ -14,4 +14,14 @@ public abstract class BaseUniqueSword extends ItemSword implements IUnique {
     public String slot() {
         return new Sword().GUID();
     }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

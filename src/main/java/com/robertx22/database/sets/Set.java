@@ -21,13 +21,18 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".set." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".set." + formattedGUID();
     }
 
     public int StatPercent = 100;
 
     public MinMax statPercents = new MinMax(100, 100);
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Item_Sets;
+    }
 
     @Override
     public int Weight() {

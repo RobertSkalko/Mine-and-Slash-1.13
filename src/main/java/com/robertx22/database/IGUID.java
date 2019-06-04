@@ -10,7 +10,10 @@ public interface IGUID {
     }
 
     public default String formatString(String str) {
-        return str.toLowerCase().replaceAll(" ", "_").replaceAll("/", ".");
+        return str.toLowerCase()
+                .replaceAll(" ", "_")
+                .replaceAll("/", ".")
+                .replaceAll(":", ".");
     }
 
 }

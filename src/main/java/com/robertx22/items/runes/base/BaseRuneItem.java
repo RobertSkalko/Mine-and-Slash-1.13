@@ -37,7 +37,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     public int rarity;
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
     }
 
@@ -49,6 +49,11 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
         return rar.textFormatColor() + this.name()
                 .toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
 
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Runes;
     }
 
     @Override

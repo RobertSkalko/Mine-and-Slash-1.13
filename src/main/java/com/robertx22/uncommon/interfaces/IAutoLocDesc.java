@@ -5,12 +5,27 @@ import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocDesc extends IAutoLocName {
 
-    String locDescLangFileGUID(String guid);
+    public default String getGroupName() {
+        return locDescGroup().name()
+                .toUpperCase()
+                .replaceAll("_", " ") + " - DESCRIPTIONS";
+    }
+
+    public default Group locDescGroup() {
+        return this.locNameGroup();
+    }
+
+    String locDescLangFileGUID();
 
     String locDescForLangFile();
 
     public default ITextComponent locDesc() {
-        return CLOC.blank(formatString(locDescLangFileGUID(formattedGUID())));
+        return CLOC.blank(formatString(locDescLangFileGUID()));
+    }
+
+    public default String formattedLocDescLangFileGUID() {
+        return getPrefix() + formatString(locDescLangFileGUID());
     }
 
 }
+

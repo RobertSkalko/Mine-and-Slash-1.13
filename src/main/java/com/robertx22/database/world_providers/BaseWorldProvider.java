@@ -38,7 +38,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public String locNameLangFileGUID() {
         return Ref.MODID + ".world_type." + formattedGUID();
     }
 

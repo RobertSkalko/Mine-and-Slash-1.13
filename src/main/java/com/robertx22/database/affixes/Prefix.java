@@ -9,7 +9,12 @@ public abstract class Prefix extends BaseAffix {
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".prefix." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".prefix." + formattedGUID();
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Prefixes;
     }
 }

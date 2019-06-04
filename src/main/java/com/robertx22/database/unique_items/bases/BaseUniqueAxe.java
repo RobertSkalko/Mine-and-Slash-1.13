@@ -16,4 +16,13 @@ public abstract class BaseUniqueAxe extends ItemAxe implements IUnique {
         return new Axe().GUID();
     }
 
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

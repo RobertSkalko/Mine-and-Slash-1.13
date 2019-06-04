@@ -16,14 +16,19 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
     public abstract String GUID();
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".word." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".word." + formattedGUID();
     }
 
     public abstract List<BaseRuneItem> runes();
 
     public int size() {
         return runes().size();
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Rune_Words;
     }
 
     @Override

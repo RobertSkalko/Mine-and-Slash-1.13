@@ -17,4 +17,13 @@ public abstract class BaseUniqueBoots extends ItemBoots implements IUnique {
         return new Boots().GUID();
     }
 
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

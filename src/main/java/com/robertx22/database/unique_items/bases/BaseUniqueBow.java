@@ -16,4 +16,13 @@ public abstract class BaseUniqueBow extends ItemBow implements IUnique {
         return new Bow().GUID();
     }
 
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 }

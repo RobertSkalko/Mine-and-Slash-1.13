@@ -32,6 +32,11 @@ public class NormalShield extends ItemShield implements IEffectItem, IAutoLocNam
 
     }
 
+    @Override
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
+
     public int rarity = 0;
 
     @Override
@@ -41,7 +46,7 @@ public class NormalShield extends ItemShield implements IEffectItem, IAutoLocNam
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public String locNameLangFileGUID() {
         return formatString(this.getRegistryName().toString());
     }
 

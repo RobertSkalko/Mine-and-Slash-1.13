@@ -24,7 +24,12 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
     public int rarity = 0;
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
     }
 

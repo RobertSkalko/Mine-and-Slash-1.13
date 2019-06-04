@@ -45,7 +45,12 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
     }
 

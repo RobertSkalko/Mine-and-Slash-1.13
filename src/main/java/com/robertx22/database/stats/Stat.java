@@ -27,13 +27,18 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
-        return Ref.MODID + ".stat." + guid;
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".stat." + formattedGUID();
     }
 
     @Override
-    public String locDescLangFileGUID(String guid) {
-        return Ref.MODID + ".stat_desc." + guid;
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + formattedGUID();
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Stats;
     }
 
     public int maximumValue = Integer.MAX_VALUE;

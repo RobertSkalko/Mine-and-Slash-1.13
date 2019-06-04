@@ -29,12 +29,17 @@ public class ItemBow extends net.minecraft.item.ItemBow implements IWeapon, IAut
     }
 
     @Override
+    public Group locNameGroup() {
+        return Group.Gear_Items;
+    }
+
+    @Override
     public WeaponMechanic mechanic() {
         return new BowWeaponMechanic();
     }
 
     @Override
-    public String locNameLangFileGUID(String guid) {
+    public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
     }
 
