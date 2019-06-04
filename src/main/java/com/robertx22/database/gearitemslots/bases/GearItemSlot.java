@@ -5,12 +5,10 @@ import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +28,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName {
 
     public List<StatMod> coreStatMods() {
         return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
-    }
-
-    @Override
-    public ITextComponent locName() {
-        return CLOC.blank(formattedGUID());
     }
 
     @Override

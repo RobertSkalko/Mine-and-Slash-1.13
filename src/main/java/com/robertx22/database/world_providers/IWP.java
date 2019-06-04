@@ -3,12 +3,10 @@ package com.robertx22.database.world_providers;
 import com.robertx22.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
 
@@ -29,10 +27,6 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
     void setModDimension(ModDimension mod);
 
     Biome getBiome();
-
-    public default ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
-    }
 
     List<String> smallSurfaceDecorations();
 

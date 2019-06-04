@@ -6,7 +6,6 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -25,15 +24,6 @@ import java.util.List;
 public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     public Stat() {
-    }
-
-    public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
-    }
-
-    @Override
-    public ITextComponent locDesc() {
-        return CLOC.blank(locDescLangFileGUID(formattedGUID()));
     }
 
     @Override

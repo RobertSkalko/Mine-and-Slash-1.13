@@ -1,9 +1,7 @@
 package com.robertx22;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
-import net.minecraft.util.text.ITextComponent;
 
 public enum Words implements IAutoLocName {
 
@@ -93,11 +91,6 @@ public enum Words implements IAutoLocName {
     @Override
     public String locNameForLangFile() {
         return this.name().replaceAll("(.)([A-Z])", "$1 $2");
-    }
-
-    @Override
-    public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     @Override

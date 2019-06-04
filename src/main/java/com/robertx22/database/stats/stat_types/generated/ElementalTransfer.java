@@ -59,9 +59,9 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
 
         List<Stat> stats = new ArrayList<>();
 
-        for (Elements from : Elements.values()) {
+        for (Elements from : Elements.getAll()) {
             if (from != Elements.None) {
-                for (Elements to : Elements.values()) {
+                for (Elements to : Elements.getAll()) {
                     if (to != Elements.None && to != from) {
                         ElementalTransfer stat = new ElementalTransfer(from, to);
                         stats.add(stat);

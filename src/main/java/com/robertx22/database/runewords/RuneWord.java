@@ -4,10 +4,8 @@ import com.robertx22.database.IGUID;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
-import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
@@ -16,11 +14,6 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
     public abstract List<StatMod> mods();
 
     public abstract String GUID();
-
-    @Override
-    public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
-    }
 
     @Override
     public String locNameLangFileGUID(String guid) {

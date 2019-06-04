@@ -14,7 +14,7 @@ public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, I
 
     @Override
     public String locNameLangFileGUID(String guid) {
-        return this.getRegistryName().toString();
+        return formatString(this.getRegistryName().toString());
     }
 
     @Override

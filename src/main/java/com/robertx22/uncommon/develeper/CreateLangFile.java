@@ -38,7 +38,7 @@ public class CreateLangFile {
                     }
 
                     json += "\t" + "\"" + iauto.locNameLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
-                            .locNameForLangFile() + "\",\n";
+                            .formatString(iauto.locNameForLangFile()) + "\",\n";
                 }
             }
             json += comment(entry.getKey());
@@ -59,7 +59,7 @@ public class CreateLangFile {
                     }
 
                     json += "\t" + "\"" + iauto.locDescLangFileGUID(iauto.formattedGUID()) + "\": \"" + iauto
-                            .locDescForLangFile() + "\",\n";
+                            .formatString(iauto.locDescForLangFile()) + "\",\n";
                 }
             }
             json += comment(entry.getKey());
@@ -178,7 +178,7 @@ public class CreateLangFile {
     private static void sortName(List<IAutoLocName> list) {
         if (list != null && list.size() > 1) {
             try {
-                Collections.sort(list, Comparator.comparing(IGUID::GUID));
+                Collections.sort(list, Comparator.comparing(x -> x.locNameLangFileGUID(x.GUID())));
             } catch (Exception e) {
                 e.printStackTrace();
             }

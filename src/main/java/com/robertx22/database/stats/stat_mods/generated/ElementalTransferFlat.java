@@ -57,9 +57,9 @@ public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod
 
         List<StatMod> stats = new ArrayList<>();
 
-        for (Elements from : Elements.values()) {
+        for (Elements from : Elements.getAll()) {
             if (from != Elements.None) {
-                for (Elements to : Elements.values()) {
+                for (Elements to : Elements.getAll()) {
                     if (to != Elements.None && to != from) {
                         ElementalTransferFlat stat = new ElementalTransferFlat(from, to);
                         stats.add(stat);

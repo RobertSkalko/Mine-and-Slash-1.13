@@ -7,10 +7,8 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
-import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +18,6 @@ import java.util.Map.Entry;
 public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLocName {
 
     public Set() {
-    }
-
-    @Override
-    public ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
     }
 
     @Override
@@ -58,7 +51,7 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
                 mods.add(mod.getValue());
             }
         }
-      
+
         return mods;
     }
 

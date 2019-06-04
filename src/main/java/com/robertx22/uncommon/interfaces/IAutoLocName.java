@@ -14,7 +14,7 @@ public interface IAutoLocName extends ILocName {
     public String locNameForLangFile();
 
     public default ITextComponent locName() {
-        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
+        return CLOC.blank(formatString(locNameLangFileGUID(formattedGUID())));
     }
 
 }
