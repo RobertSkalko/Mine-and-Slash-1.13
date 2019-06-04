@@ -11,17 +11,22 @@ public abstract class BaseUniqueRing extends ItemRing implements IUnique {
     }
 
     @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString() + ".desc";
+    }
+
+    @Override
     public String slot() {
         return new Ring().GUID();
     }
 
     @Override
-    public String locDescLangFileGUID() {
+    public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
     }
 
     @Override
-    public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+    public Group locNameGroup() {
+        return Group.Unique_Items;
     }
 }

@@ -1,20 +1,14 @@
 package com.robertx22.uncommon.develeper;
 
 import com.robertx22.Words;
-import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.*;
-import com.robertx22.items.runes.base.BaseRuneItem;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
-import com.robertx22.uncommon.interfaces.IGearItem;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CreateLangFile {
 
@@ -24,7 +18,7 @@ public class CreateLangFile {
 
         for (Map.Entry<String, List<IAutoLocName>> entry : getMap().entrySet()) {
 
-            json += comment(entry.getKey());
+            json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
                 if (iauto.locNameForLangFile().isEmpty() == false) {
 
@@ -40,12 +34,12 @@ public class CreateLangFile {
                             .locNameForLangFile() + "\",\n";
                 }
             }
-            json += comment(entry.getKey());
+            json += CreateLangFileUtils.comment(entry.getKey());
 
         }
         for (Map.Entry<String, List<IAutoLocDesc>> entry : getDescMap().entrySet()) {
 
-            json += comment(entry.getKey());
+            json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocDesc iauto : entry.getValue()) {
                 if (iauto.locDescForLangFile().isEmpty() == false) {
 
@@ -61,15 +55,15 @@ public class CreateLangFile {
                             .locDescForLangFile() + "\",\n";
                 }
             }
-            json += comment(entry.getKey());
+            json += CreateLangFileUtils.comment(entry.getKey());
 
         }
 
         json += "";
 
-        json = replaceLast(json, ",", ""); // removes last , or else json wont work
+        json = CreateLangFileUtils.replaceLast(json, ",", ""); // removes last , or else json wont work
 
-        File file = new File(filepath());
+        File file = new File(CreateLangFileUtils.filepath());
 
         try {
             FileWriter fw = new FileWriter(file);
@@ -79,79 +73,37 @@ public class CreateLangFile {
             System.out.println(e);
         }
 
-        System.out.println("Wrote [LANG] file to " + filepath());
+        System.out.println("Wrote [LANG] file to " + CreateLangFileUtils.filepath());
 
-    }
-
-    public static String replaceLast(String string, String toReplace,
-                                     String replacement) {
-        int pos = string.lastIndexOf(toReplace);
-        if (pos > -1) {
-            return string.substring(0, pos) + replacement + string.substring(pos + toReplace
-                    .length(), string.length());
-        } else {
-            return string;
-        }
-    }
-
-    private static String filepath() {
-        return FMLPaths.GAMEDIR.get().toString() + "/autolang.txt";
-    }
-
-    private static String comment(String str) {
-        return "\n" + "\"_comment\": \"" + " [CATEGORY]: " + str + "\",\n" + "\n";
     }
 
     public static HashMap<String, List<IAutoLocName>> getMap() {
-        HashMap<String, List<IAutoLocName>> list = new HashMap<>();
-        list.put("ITEM SETS", new ArrayList<>(Sets.All.values()));
-        list.put("RUNEWORDS", new ArrayList<>(RuneWords.All.values()));
-        list.put("PREFIXES", new ArrayList<>(Prefixes.all.values()));
-        list.put("SUFFIXES", new ArrayList<>(Suffixes.all.values()));
-        list.put("STATS", new ArrayList<>(Stats.All.values()));
-        list.put("GEAR SLOT TYPES", new ArrayList<>(GearTypes.All.values()));
-        list.put("WORLD TYPES", new ArrayList<>(WorldProviders.All.values()));
-        list.put("WORDS", Arrays.asList(Words.values()));
-        list.put("RARITIES", new ArrayList<>(Rarities.Items.rarities()));
+        List<IAutoLocName> list = CreateLangFileUtils.getNamesFromRegistries();
 
-        List<IAutoLocName> gearItems = new ArrayList<>();
-        List<IAutoLocName> runes = new ArrayList<>();
-        List<IAutoLocName> misc = new ArrayList<>();
-        List<IAutoLocName> uniques = new ArrayList<>();
+        list.addAll(Sets.All.values());
+        list.addAll(RuneWords.All.values());
+        list.addAll(Prefixes.all.values());
+        list.addAll(Suffixes.all.values());
+        list.addAll(Stats.All.values());
+        list.addAll(GearTypes.All.values());
+        list.addAll(WorldProviders.All.values());
+        list.addAll(Arrays.asList(Words.values()));
+        list.addAll(Rarities.Items.rarities());
 
-        for (Item item : ForgeRegistries.ITEMS) {
+        HashMap<IAutoLocName.Group, List<IAutoLocName>> map = new HashMap<>();
 
-            if (item.getRegistryName() == null || item.getRegistryName()
-                    .getNamespace()
-                    .equals(Ref.MODID) == false) {
-                continue;
-            }
-
-            if (item instanceof IAutoLocName) {
-
-                if (item instanceof IUnique) {
-                    uniques.add((IAutoLocName) item);
-                } else if (item instanceof BaseRuneItem) {
-                    runes.add((IAutoLocName) item);
-                } else if (item instanceof IGearItem) {
-                    gearItems.add((IAutoLocName) item);
-                } else {
-                    misc.add((IAutoLocName) item);
-                }
-
-            }
+        for (IAutoLocName.Group group : IAutoLocName.Group.values()) {
+            map.put(group, list.stream()
+                    .filter(x -> x.locNameGroup().equals(group))
+                    .collect(Collectors.toList()));
         }
-        list.put("GEAR ITEMS", gearItems);
-        list.put("RUNES", runes);
-        list.put("MISC ITEMS", misc);
-        list.put("UNIQUE ITEM NAMES", uniques);
 
         HashMap<String, List<IAutoLocName>> sortedMap = new HashMap<>();
-        for (Map.Entry<String, List<IAutoLocName>> entry : list.entrySet()) {
+        for (Map.Entry<IAutoLocName.Group, List<IAutoLocName>> entry : map.entrySet()) {
             List<IAutoLocName> sortedlist = new ArrayList<>(entry.getValue());
-            sortName(sortedlist);
+            CreateLangFileUtils.sortName(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getKey(), sortedlist);
+                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
             }
         }
 
@@ -160,62 +112,28 @@ public class CreateLangFile {
     }
 
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
-        HashMap<String, List<IAutoLocDesc>> list = new HashMap<>();
-        list.put("STAT DESCRIPTIONS", new ArrayList<>(Stats.All.values()));
+        List<IAutoLocDesc> list = CreateLangFileUtils.getDescsFromRegistries();
+        list.addAll(Stats.All.values());
 
-        List<IAutoLocDesc> uniquedesc = new ArrayList<>();
-        List<IAutoLocDesc> miscDesc = new ArrayList<>();
+        HashMap<IAutoLocDesc.Group, List<IAutoLocDesc>> map = new HashMap<>();
 
-        for (Item item : ForgeRegistries.ITEMS) {
-
-            if (item.getRegistryName() == null || item.getRegistryName()
-                    .getNamespace()
-                    .equals(Ref.MODID) == false) {
-                continue;
-            }
-
-            if (item instanceof IAutoLocDesc) {
-                if (item instanceof IUnique) {
-                    uniquedesc.add((IAutoLocDesc) item);
-                } else {
-                    miscDesc.add((IAutoLocDesc) item);
-                }
-            }
+        for (IAutoLocDesc.Group group : IAutoLocDesc.Group.values()) {
+            map.put(group, list.stream()
+                    .filter(x -> x.locDescGroup().equals(group))
+                    .collect(Collectors.toList()));
         }
-        list.put("UNIQUE ITEM DESC", uniquedesc);
-        list.put("MISC ITEM DESC", miscDesc);
 
         HashMap<String, List<IAutoLocDesc>> sortedMap = new HashMap<>();
-        for (Map.Entry<String, List<IAutoLocDesc>> entry : list.entrySet()) {
+        for (Map.Entry<IAutoLocDesc.Group, List<IAutoLocDesc>> entry : map.entrySet()) {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
-            sortDesc(sortedlist);
+            CreateLangFileUtils.sortDesc(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getKey(), sortedlist);
+                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
             }
         }
 
         return sortedMap;
 
-    }
-
-    private static void sortName(List<IAutoLocName> list) {
-        if (list != null && list.size() > 1) {
-            try {
-                Collections.sort(list, Comparator.comparing(x -> x.locNameLangFileGUID()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void sortDesc(List<IAutoLocDesc> list) {
-        if (list != null && list.size() > 1) {
-            try {
-                Collections.sort(list, Comparator.comparing(x -> x.locDescLangFileGUID()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 }

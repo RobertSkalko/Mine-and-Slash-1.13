@@ -31,7 +31,6 @@ public class CLOC {
     }
 
     public static ITextComponent blank(String string) {
-
         return base(string);
     }
 

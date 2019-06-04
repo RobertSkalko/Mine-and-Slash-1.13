@@ -73,19 +73,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     public ITextComponent name(ItemStack stack) {
 
-        if (isUnique) {
-            if (UniqueItems.ITEMS.containsKey(this.uniqueGUID)) {
-                return ((IUnique) UniqueItems.ITEMS.get(this.uniqueGUID)).locName();
-            }
-        } else {
-            if (gearTypeName.isEmpty()) {
-
-            } else {
-                return stack.getDisplayName();
-            }
-        }
-
-        return new TextComponentString("error");
+        return stack.getDisplayName();
 
     }
 
@@ -175,11 +163,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         ITextComponent text = new TextComponentString(this.GetRarity()
                 .textFormatColor() + "");
 
-        if (isUnique) {
-            IUnique uniq = (IUnique) this.getItem();
-            text.appendSibling(uniq.locName());
-
-        } else if (this.isRuned()) {
+        if (this.isRuned()) {
             text.appendSibling(Words.Runed.locName()
                     .appendText(" ")
                     .appendSibling(name(stack)));
@@ -318,6 +302,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     }
 
+    static final int MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES = 33;
+
     private List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {
 
         List<ITextComponent> newt = new ArrayList();
@@ -326,6 +312,12 @@ public class GearItemData implements ITooltip, ISalvagable {
         for (int i = 0; i < list.size(); i++) {
 
             if (i > 0) {
+
+                if (list.get(i)
+                        .getSiblings()
+                        .size() == 0 && list.size() > MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES) {
+                    continue;
+                }
 
                 if (s.equals(list.get(i).toString()) && s.isEmpty()) {
 

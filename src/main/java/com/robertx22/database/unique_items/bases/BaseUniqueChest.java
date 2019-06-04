@@ -19,12 +19,17 @@ public abstract class BaseUniqueChest extends ItemChest implements IUnique {
 
     @Override
     public String locDescLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName().toString() + ".desc";
     }
 
     @Override
     public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
+    }
+
+    @Override
+    public Group locNameGroup() {
+        return Group.Unique_Items;
     }
 
 }

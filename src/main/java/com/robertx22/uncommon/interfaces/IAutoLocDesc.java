@@ -20,7 +20,7 @@ public interface IAutoLocDesc extends IAutoLocName {
     String locDescForLangFile();
 
     public default ITextComponent locDesc() {
-        return CLOC.blank(formatString(locDescLangFileGUID()));
+        return CLOC.blank(formatString(formattedLocDescLangFileGUID()));
     }
 
     public default String formattedLocDescLangFileGUID() {
