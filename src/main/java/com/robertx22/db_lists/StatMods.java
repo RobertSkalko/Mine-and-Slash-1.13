@@ -197,6 +197,20 @@ public class StatMods {
         }
     };
 
+    private static List<StatMod> nonGenerated = new ArrayList<StatMod>() {
+        {
+            add(new AllAttributesFlat());
+            add(new StrengthFlat());
+            add(new DexterityFlat());
+            add(new WisdomFlat());
+            add(new IntelligenceFlat());
+            add(new StaminaFlat());
+            add(new VitalityFlat());
+
+        }
+
+    };
+
     private static List<IGenerated<StatMod>> generated = new ArrayList<IGenerated<StatMod>>() {
         {
             {
@@ -216,19 +230,17 @@ public class StatMods {
                 add(new ElementalPeneFlat(Elements.None));
                 add(new ElementalPenePercent(Elements.None));
                 add(new ElementalFocusFlat(Elements.None));
-                add(new AllAttributesFlat());
-                add(new StrengthFlat());
-                add(new DexterityFlat());
-                add(new WisdomFlat());
-                add(new IntelligenceFlat());
-                add(new StaminaFlat());
-                add(new VitalityFlat());
 
             }
         }
     };
 
     static {
+
+        for (StatMod mod : nonGenerated) {
+            All.put(mod.GUID(), mod);
+        }
+
         for (IGenerated<StatMod> gen : generated) {
             for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
                 All.put(statmod.GUID(), statmod);

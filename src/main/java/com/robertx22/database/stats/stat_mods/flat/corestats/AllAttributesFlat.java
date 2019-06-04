@@ -1,16 +1,12 @@
 package com.robertx22.database.stats.stat_mods.flat.corestats;
 
-import com.robertx22.database.stats.IAmountsGenerated;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.StatModSizes;
 import com.robertx22.database.stats.stat_types.core_stats.AllAttributes;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
-public class AllAttributesFlat extends StatMod implements IAmountsGenerated {
-
-    public StatModSizes size = StatModSizes.Medium;
+public class AllAttributesFlat extends StatMod {
 
     @Override
     public int Weight() {
@@ -21,10 +17,6 @@ public class AllAttributesFlat extends StatMod implements IAmountsGenerated {
 
     }
 
-    public AllAttributesFlat(StatModSizes size) {
-        this.size = size;
-    }
-
     @Override
     public Stat GetBaseStat() {
         return new AllAttributes();
@@ -32,12 +24,12 @@ public class AllAttributesFlat extends StatMod implements IAmountsGenerated {
 
     @Override
     public float Min() {
-        return 1 * this.size.multi;
+        return 1;
     }
 
     @Override
     public float Max() {
-        return 4 * this.size.multi;
+        return 4;
     }
 
     @Override
@@ -47,17 +39,8 @@ public class AllAttributesFlat extends StatMod implements IAmountsGenerated {
 
     @Override
     public String GUID() {
-        return this.getGUIDPrefix() + "_all_attributes_flat";
+        return "all_attributes_flat";
     }
 
-    @Override
-    public StatModSizes modSize() {
-        return size;
-    }
-
-    @Override
-    public StatMod newGeneratedInstance(StatModSizes size) {
-        return new AllAttributesFlat(size);
-    }
 }
 

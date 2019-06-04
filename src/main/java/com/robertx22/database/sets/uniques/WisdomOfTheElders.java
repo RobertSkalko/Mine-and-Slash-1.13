@@ -29,7 +29,7 @@ public class WisdomOfTheElders extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new WisdomFlat(StatModSizes.VeryBig));
+                    put(2, new WisdomFlat().bySize(StatModSizes.VeryBig));
                 }
             }
         };
