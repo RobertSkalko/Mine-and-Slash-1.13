@@ -42,7 +42,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(Health.GUID, 0.25F);
+        return new EffectCalculation(new Health(), 0.25F);
 
     }
 

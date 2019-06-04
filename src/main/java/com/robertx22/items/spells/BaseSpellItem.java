@@ -12,11 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public abstract String GUID();
+
+    public TextFormatting color = TextFormatting.RED;
 
     public abstract BaseSpell Spell();
 

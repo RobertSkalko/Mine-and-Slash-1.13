@@ -22,7 +22,7 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()).GUID(), this.damageScaling);
+        return new EffectCalculation(new ElementalSpellDamage(this.Element()), this.damageScaling);
     }
 
     @Override

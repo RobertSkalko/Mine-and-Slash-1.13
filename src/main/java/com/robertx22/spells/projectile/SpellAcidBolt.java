@@ -2,7 +2,7 @@ package com.robertx22.spells.projectile;
 
 import com.robertx22.items.spells.projectile.ItemAcidBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
-import com.robertx22.spells.entities.EntityElementalBolt;
+import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;

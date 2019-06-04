@@ -11,6 +11,6 @@ public abstract class BaseBoltItem extends BaseSpellItem {
 
     @Override
     public String locNameForLangFile() {
-        return this.Spell().Element().name() + " Bolt";
+        return color + this.Spell().Element().name() + " Bolt";
     }
 }

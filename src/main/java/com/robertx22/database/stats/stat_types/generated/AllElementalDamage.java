@@ -48,7 +48,7 @@ public class AllElementalDamage extends ElementalStat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "All" + this.Element().name() + " Damage";
+        return "All " + this.Element().name() + " Damage";
     }
 
 }

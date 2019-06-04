@@ -1,4 +1,4 @@
-package com.robertx22.spells.entities;
+package com.robertx22.spells.entities.bases;
 
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;

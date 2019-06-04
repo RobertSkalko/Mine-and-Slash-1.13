@@ -1,6 +1,6 @@
 package com.robertx22.spells.nova;
 
-import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.database.stats.stat_types.generated.ElementalResist;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
@@ -53,7 +53,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalResistFlat(this.Element()).GUID(), scaling);
+        return new EffectCalculation(new ElementalResist(this.Element()), scaling);
     }
 
     @Override

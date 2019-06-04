@@ -1,4 +1,4 @@
-package com.robertx22.spells.entities;
+package com.robertx22.spells.entities.bases;
 
 import com.mojang.datafixers.DataFixer;
 import com.robertx22.spells.bases.BaseSpell.SpellType;

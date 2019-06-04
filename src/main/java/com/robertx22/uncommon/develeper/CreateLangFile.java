@@ -1,8 +1,10 @@
 package com.robertx22.uncommon.develeper;
 
+import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.db_lists.*;
 import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.Words;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 
@@ -91,6 +93,8 @@ public class CreateLangFile {
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Items.rarities());
         list.addAll(Arrays.asList(Chats.values()));
+
+        Object test = Stats.All.get(new ElementalSpellDamage(Elements.Water).GUID());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 

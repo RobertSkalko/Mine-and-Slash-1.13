@@ -11,6 +11,6 @@ public abstract class BaseExplosionItem extends BaseSpellItem {
 
     @Override
     public String locNameForLangFile() {
-        return this.Spell().Element().name() + " Explosion";
+        return color + this.Spell().Element().name() + " Explosion";
     }
 }

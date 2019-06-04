@@ -28,6 +28,6 @@ public class ItemSelfRegen extends BaseSpellItem {
 
     @Override
     public String locNameForLangFile() {
-        return "Regenerate";
+        return color + "Regenerate";
     }
 }

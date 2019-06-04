@@ -5,7 +5,7 @@ import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
-import com.robertx22.spells.entities.EntityElementalBolt;
+import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -46,7 +46,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()).GUID(), 0.25F);
+        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.25F);
     }
 
 }

@@ -28,7 +28,7 @@ public class ItemInstantHeal extends BaseSpellItem {
 
     @Override
     public String locNameForLangFile() {
-        return "Instant Heal";
+        return color + "Instant Heal";
     }
 }
 
