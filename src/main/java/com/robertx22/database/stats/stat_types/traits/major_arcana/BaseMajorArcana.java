@@ -9,7 +9,7 @@ public abstract class BaseMajorArcana extends Trait implements INameSuffix {
 
     @Override
     public ITextComponent locSuffix() {
-        return Words.MajorArcana.locName();
+        return Words.Major_Arcana.locName();
     }
 
     @Override

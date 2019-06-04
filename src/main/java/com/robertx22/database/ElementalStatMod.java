@@ -1,8 +1,10 @@
 package com.robertx22.database;
 
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IElementalGenerated;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,15 @@ public abstract class ElementalStatMod extends StatMod implements IElementalGene
 
     @Override
     public List<StatMod> generateAllPossibleStatVariations() {
+
         List<StatMod> list = new ArrayList<>();
-        Elements.getAllExceptNone().forEach(x -> list.add(newGeneratedInstance(x)));
+
+        IGenerated<Stat> gen = (IGenerated<Stat>) this.GetBaseStat();
+
+        for (Stat stat : gen.generateAllPossibleStatVariations()) {
+            list.add(this.newGeneratedInstance(stat.Element()));
+        }
+
         return list;
 
     }

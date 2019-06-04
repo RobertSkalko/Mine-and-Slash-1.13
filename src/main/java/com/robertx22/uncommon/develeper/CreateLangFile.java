@@ -78,6 +78,19 @@ public class CreateLangFile {
 
         System.out.println("Wrote [LANG] file to " + CreateLangFileUtils.filepath());
 
+        String ch = "";
+        for (Chats chat : Chats.values()) {
+            ch += chat.name() + "(" + '"' + chat.locNameForLangFile() + '"' + "),";
+        }
+
+        System.out.println(ch);
+        ch = "";
+        for (Words chat : Words.values()) {
+            ch += chat.name() + "(" + '"' + chat.locNameForLangFile() + '"' + "),";
+        }
+
+        System.out.println(ch);
+
     }
 
     public static HashMap<String, List<IAutoLocName>> getMap() {
@@ -91,7 +104,7 @@ public class CreateLangFile {
         list.addAll(GearTypes.All.values());
         list.addAll(WorldProviders.All.values());
         list.addAll(Arrays.asList(Words.values()));
-        list.addAll(Rarities.Items.rarities());
+        list.addAll(Rarities.allIncludingUnique());
         list.addAll(Arrays.asList(Chats.values()));
 
         Object test = Stats.All.get(new ElementalSpellDamage(Elements.Water).GUID());

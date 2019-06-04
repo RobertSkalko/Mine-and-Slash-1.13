@@ -101,7 +101,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
         ITextComponent text = new TextComponentString("");
 
         try {
-            text = Words.ScalingValue.locName()
+            text = Words.Scaling_Value.locName()
                     .appendText(": ")
                     .appendSibling(GetSpell().ScalingValue().GetStat().locName())
                     .appendText(" ")
@@ -135,7 +135,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetManaDesc(boolean moreInfo) {
 
-        ITextComponent text = Words.ManaCost.locName()
+        ITextComponent text = Words.Mana_Cost.locName()
                 .appendText(": " + this.GetManaCost());
 
         if (moreInfo) {
@@ -226,7 +226,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(Words.UseTime.locName()
+                    .appendSibling(Words.Use_Time.locName()
                             .appendText(": " + GetSpell().getUseDurationInSeconds() + " sec.")), tooltip);
 
             Tooltip.add("", tooltip);

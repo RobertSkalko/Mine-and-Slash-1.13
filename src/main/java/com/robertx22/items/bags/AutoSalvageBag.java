@@ -192,7 +192,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(Words.BonusSalvageChance.locName()
+        Tooltip.add(Words.Bonus_Salvage_Chance.locName()
                 .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
 
         Tooltip.add("", tooltip);

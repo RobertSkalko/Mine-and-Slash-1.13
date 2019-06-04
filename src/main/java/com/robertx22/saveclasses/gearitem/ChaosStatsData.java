@@ -30,7 +30,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.REDCOMP()
-                .appendSibling(Words.ChaosStats.locName().appendText(":")));
+                .appendSibling(Words.Chaos_Stats.locName().appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

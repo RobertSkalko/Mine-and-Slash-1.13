@@ -260,7 +260,7 @@ public class Hearthstone extends Item {
                         .appendText(": " + this.getRemainingUses(stack))), tooltip);
 
         Tooltip.add(Styles.REDCOMP()
-                .appendSibling(Words.ActivationTime.locName()
+                .appendSibling(Words.Activation_Time.locName()
                         .appendText(": " + this.activationTimeSeconds + " ")
                         .appendSibling(Words.Seconds.locName())), tooltip);
 

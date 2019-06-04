@@ -66,7 +66,7 @@ public class GuiMap extends TileGui {
 
         final int MAP_XPOS = 90;
         final int MAP_YPOS = 15;
-        String map = Words.PutMap.translate();
+        String map = Words.Put_Map.translate();
         fontRenderer.drawString(map, MAP_XPOS - fontRenderer.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
                 .getRGB());
 

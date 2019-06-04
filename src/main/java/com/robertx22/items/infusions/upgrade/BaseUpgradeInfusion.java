@@ -34,15 +34,15 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
         Tooltip.add("", tooltip);
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.MajorSuccessChance.locName()
+                .appendSibling(Words.Major_Success_Chance.locName()
                         .appendText(": " + this.bonusSuccessChance() + "%")), tooltip);
 
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.MajorSuccessBonus.locName()
+                .appendSibling(Words.Major_Success_Bonus.locName()
                         .appendText(": " + this.critOnSuccessChance() + "%")), tooltip);
 
         Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.MajorFailureChance.locName()
+                .appendSibling(Words.Major_Failure_Chance.locName()
                         .appendText(": " + this.majorFailureChance() + "%")), tooltip);
 
     }

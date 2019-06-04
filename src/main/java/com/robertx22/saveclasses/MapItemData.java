@@ -234,7 +234,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             try {
                 tooltip.add(Styles.BLUECOMP()
-                        .appendSibling(Words.WorldType.locName())
+                        .appendSibling(Words.World_Type.locName())
                         .appendText(": ")
                         .appendSibling(this.getIWP().locName()));
             } catch (Exception e) {
@@ -253,7 +253,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.YELLOWCOMP()
-                    .appendSibling(Words.BonusLootAmount.locName()
+                    .appendSibling(Words.Bonus_Loot_Amount.locName()
                             .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
 
             Tooltip.add("", tooltip);
@@ -295,11 +295,11 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         ITextComponent str = new TextComponentString("");
 
         if (affected.equals(AffectedEntities.Players)) {
-            str.appendSibling(Words.PlayerAffixes.locName());
+            str.appendSibling(Words.Player_Affixes.locName());
         } else if (affected.equals(AffectedEntities.Mobs)) {
-            str.appendSibling(Words.MobAffixes.locName());
+            str.appendSibling(Words.Mob_Affixes.locName());
         } else {
-            str.appendSibling(Words.AffixesAffectingAll.locName());
+            str.appendSibling(Words.Affixes_Affecting_All.locName());
         }
 
         Tooltip.add(Styles.GREENCOMP().appendSibling(str), tooltip);

@@ -50,7 +50,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                .appendSibling(Words.PrimaryStats.locName().appendText(":")));
+                .appendSibling(Words.Primary_Stats.locName().appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

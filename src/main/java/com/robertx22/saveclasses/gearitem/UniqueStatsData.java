@@ -58,7 +58,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(Words.UniqueStats
+        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
                 .locName()
                 .appendText(":")));
 
