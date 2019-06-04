@@ -4,16 +4,14 @@ import com.robertx22.database.IGUID;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
-import java.util.Random;
-
 public abstract class StatMod implements IWeighted, IGUID {
+
+    StatModSizes size = StatModSizes.Medium;
 
     @Override
     public int Weight() {
         return IWeighted.UncommonWeight;
     }
-
-    private static Random ran = new Random();
 
     public abstract Stat GetBaseStat();
 
@@ -25,23 +23,9 @@ public abstract class StatMod implements IWeighted, IGUID {
 
     public abstract String GUID();
 
-    public int GetValueByPercent(int percent) {
-
-        return (int) GetFloatByPercent(percent);
-
-    }
-
     public float GetFloatByPercent(int percent) {
 
         return (Min() + (Max() - Min()) * percent / 100);
-
-    }
-
-    public int GetRandomNumber() {
-
-        int max = Math.round(Max() - Min() + 1);
-
-        return (int) (Min() + ran.nextInt(max));
 
     }
 

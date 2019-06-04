@@ -59,7 +59,6 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
-                put(new AllAttributesFlat().GUID(), new AllAttributesFlat());
 
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
                 put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
@@ -67,13 +66,6 @@ public class StatMods {
                 put(new BlockStrengthPercent().GUID(), new BlockStrengthPercent());
                 put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
                 put(new SpellDamagePercent().GUID(), new SpellDamagePercent());
-
-                put(new StrengthFlat().GUID(), new StrengthFlat());
-                put(new DexterityFlat().GUID(), new DexterityFlat());
-                put(new WisdomFlat().GUID(), new WisdomFlat());
-                put(new IntelligenceFlat().GUID(), new IntelligenceFlat());
-                put(new StaminaFlat().GUID(), new StaminaFlat());
-                put(new VitalityFlat().GUID(), new VitalityFlat());
 
                 put(new BonusExpFlat().GUID(), new BonusExpFlat());
 
@@ -224,6 +216,13 @@ public class StatMods {
                 add(new ElementalPeneFlat(Elements.None));
                 add(new ElementalPenePercent(Elements.None));
                 add(new ElementalFocusFlat(Elements.None));
+                add(new AllAttributesFlat());
+                add(new StrengthFlat());
+                add(new DexterityFlat());
+                add(new WisdomFlat());
+                add(new IntelligenceFlat());
+                add(new StaminaFlat());
+                add(new VitalityFlat());
 
             }
         }
