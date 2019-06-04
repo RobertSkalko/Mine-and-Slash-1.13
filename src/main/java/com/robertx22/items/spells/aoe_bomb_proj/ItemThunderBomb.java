@@ -1,13 +1,12 @@
 package com.robertx22.items.spells.aoe_bomb_proj;
 
-import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
 import com.robertx22.spells.bases.BaseSpell;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemThunderBomb extends BaseSpellItem {
+public class ItemThunderBomb extends BaseBombitem {
 
     public ItemThunderBomb() {
         super();

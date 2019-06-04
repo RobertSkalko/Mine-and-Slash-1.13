@@ -15,22 +15,22 @@ public class RarityWeight {
         builder.push(prefix);
 
         COMMON_WEIGHT = builder.translation("mmorpg.rarity.common")
-                .defineInRange("COMMON_WEIGHT", 25000, 0, 9999999);
+                .defineInRange("COMMON_WEIGHT", 25000, 0, Integer.MAX_VALUE);
 
         UNCOMMON_WEIGHT = builder.translation("mmorpg.rarity.uncommon")
-                .defineInRange("UNCOMMON_WEIGHT", 20000, 0, 9999999);
+                .defineInRange("UNCOMMON_WEIGHT", 20000, 0, Integer.MAX_VALUE);
 
         RARE_WEIGHT = builder.translation("mmorpg.rarity.rare")
-                .defineInRange("RARE_WEIGHT", 5000, 0, 9999999);
+                .defineInRange("RARE_WEIGHT", 5000, 0, Integer.MAX_VALUE);
 
         EPIC_WEIGHT = builder.translation("mmorpg.rarity.epic")
-                .defineInRange("EPIC_WEIGHT", 3000, 0, 9999999);
+                .defineInRange("EPIC_WEIGHT", 3000, 0, Integer.MAX_VALUE);
 
         LEGENDARY_WEIGHT = builder.translation("mmorpg.rarity.legendary")
-                .defineInRange("LEGENDARY_WEIGHT", 1250, 0, 9999999);
+                .defineInRange("LEGENDARY_WEIGHT", 1250, 0, Integer.MAX_VALUE);
 
         MYTHICAL_WEIGHT = builder.translation("mmorpg.rarity.mythical")
-                .defineInRange("MYTHICAL_WEIGHT", 300, 0, 9999999);
+                .defineInRange("MYTHICAL_WEIGHT", 300, 0, Integer.MAX_VALUE);
 
         builder.pop();
     }

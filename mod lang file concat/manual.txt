@@ -70,31 +70,6 @@
     "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
     "item.mmorpg.awaken_runeword": "§cAwaken RuneWord",
 
-
-    "_comment": "SPELL ITEMS",
-    "item.mmorpg.spell_acidbolt": "§cAcid Bolt",
-    "item.mmorpg.spell_firebolt": "§cFire Bolt",
-    "item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-    "item.mmorpg.spell_thunderbolt": "§cThunder Bolt",
-
-    "item.mmorpg.spell_acid_bomb": "§cAcid Bomb",
-    "item.mmorpg.spell_fire_bomb": "§cFire Bomb",
-    "item.mmorpg.spell_ice_bomb": "§cIce Bomb",
-    "item.mmorpg.spell_thunder_bomb": "§cThunder Bomb",
-
-    "item.mmorpg.spell_acidexplosion": "§cAcid Explosion",
-    "item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-    "item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-    "item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-
-    "item.mmorpg.spell_frost_nova": "§cFrost Nova",
-    "item.mmorpg.spell_fire_nova": "§cFire Nova",
-    "item.mmorpg.spell_thunder_nova": "§cThunder Nova",
-    "item.mmorpg.spell_poison_nova": "§cPoison Nova",
-
-    "item.mmorpg.spell_instantheal": "§cInstant Heal",
-    "item.mmorpg.spell_self_regen": "§cRegenerate",
-
     "_comment": "STATUS EFFECTS",
     "effect.mmorpg.self_regen": "Regen Health",
     "effect.mmorpg.mana_regen": "Regen Mana",

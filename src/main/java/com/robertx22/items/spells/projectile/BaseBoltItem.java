@@ -9,4 +9,8 @@ public abstract class BaseBoltItem extends BaseSpellItem {
 
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return this.Spell().Element().name() + " Bolt";
+    }
 }

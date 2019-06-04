@@ -26,6 +26,10 @@ public class ItemInstantHeal extends BaseSpellItem {
         return Ref.MODID + ":spell_instantheal";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Instant Heal";
+    }
 }
 
 

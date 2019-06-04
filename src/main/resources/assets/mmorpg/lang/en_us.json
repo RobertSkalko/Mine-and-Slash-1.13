@@ -71,31 +71,6 @@
     "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
     "item.mmorpg.awaken_runeword": "§cAwaken RuneWord",
 
-
-    "_comment": "SPELL ITEMS",
-    "item.mmorpg.spell_acidbolt": "§cAcid Bolt",
-    "item.mmorpg.spell_firebolt": "§cFire Bolt",
-    "item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-    "item.mmorpg.spell_thunderbolt": "§cThunder Bolt",
-
-    "item.mmorpg.spell_acid_bomb": "§cAcid Bomb",
-    "item.mmorpg.spell_fire_bomb": "§cFire Bomb",
-    "item.mmorpg.spell_ice_bomb": "§cIce Bomb",
-    "item.mmorpg.spell_thunder_bomb": "§cThunder Bomb",
-
-    "item.mmorpg.spell_acidexplosion": "§cAcid Explosion",
-    "item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-    "item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-    "item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-
-    "item.mmorpg.spell_frost_nova": "§cFrost Nova",
-    "item.mmorpg.spell_fire_nova": "§cFire Nova",
-    "item.mmorpg.spell_thunder_nova": "§cThunder Nova",
-    "item.mmorpg.spell_poison_nova": "§cPoison Nova",
-
-    "item.mmorpg.spell_instantheal": "§cInstant Heal",
-    "item.mmorpg.spell_self_regen": "§cRegenerate",
-
     "_comment": "STATUS EFFECTS",
     "effect.mmorpg.self_regen": "Regen Health",
     "effect.mmorpg.mana_regen": "Regen Mana",
@@ -277,6 +252,30 @@
 	"item.mmorpg.consumable.restore_energy_item": "Energy potion",
 	"item.mmorpg.consumable.restore_mana_item": "Mana potion",
 	
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "Nature Bomb",
+	"item.mmorpg.spell_acidbolt": "Nature Bolt",
+	"item.mmorpg.spell_acidexplosion": "Nature Explosion",
+	"item.mmorpg.spell_fire_bomb": "Fire Bomb",
+	"item.mmorpg.spell_fire_nova": "Fire Nova",
+	"item.mmorpg.spell_firebolt": "Fire Bolt",
+	"item.mmorpg.spell_flameexplosion": "Fire Explosion",
+	"item.mmorpg.spell_frost_nova": "Water Nova",
+	"item.mmorpg.spell_frostbolt": "Water Bolt",
+	"item.mmorpg.spell_frostexplosion": "Water Explosion",
+	"item.mmorpg.spell_ice_bomb": "Water Bomb",
+	"item.mmorpg.spell_instantheal": "Instant Heal",
+	"item.mmorpg.spell_lightningexplosion": "Thunder Explosion",
+	"item.mmorpg.spell_poison_nova": "Nature Nova",
+	"item.mmorpg.spell_self_regen": "Regenerate",
+	"item.mmorpg.spell_thunder_bomb": "Thunder Bomb",
+	"item.mmorpg.spell_thunder_nova": "Thunder Nova",
+	"item.mmorpg.spell_thunderbolt": "Thunder Bolt",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
@@ -518,6 +517,7 @@
 	"mmorpg.word.affixesaffectingall": "Affixes Affecting All",
 	"mmorpg.word.animal": "Animal",
 	"mmorpg.word.attack": "Attack",
+	"mmorpg.word.automatically_salvages_items": "Automatically_salvages_items",
 	"mmorpg.word.basevalue": "Base Value",
 	"mmorpg.word.blocks": "Blocks",
 	"mmorpg.word.bonuslootamount": "Bonus Loot Amount",
@@ -590,9 +590,42 @@
 	"mmorpg.word.unsalvagable": "Unsalvagable",
 	"mmorpg.word.uses": "Uses",
 	"mmorpg.word.usetime": "Use Time",
+	"mmorpg.word.works_when_equipped": "Works_when_equipped",
 	"mmorpg.word.worldtype": "World Type",
 
 "_comment": " [CATEGORY]: WORDS - NAMES",
+
+
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
+
+	"mmorpg.suffix.of_balance": "Of Balance",
+	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
+	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
+	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
+	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
+	"mmorpg.suffix.of_element_resist": "Of Element Resist",
+	"mmorpg.suffix.of_firestorms": "Of Firestorms",
+	"mmorpg.suffix.of_godhood": "Of Godhood",
+	"mmorpg.suffix.of_guidance": "Of Guidance",
+	"mmorpg.suffix.of_icestorms": "Of IceStorms",
+	"mmorpg.suffix.of_immortality": "Of Immortality",
+	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
+	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
+	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
+	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
+	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
+	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
+	"mmorpg.suffix.of_swiftness": "Of Swiftness",
+	"mmorpg.suffix.of_the_sage": "Of The Sage",
+	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
+	"mmorpg.suffix.of_vitality": "Of Vitality",
+	"mmorpg.suffix.offorce": "Of Force",
+	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
+	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
+	"mmorpg.suffix.ofthedepths": "Of The Depths",
+	"mmorpg.suffix.ofvampirism": "Of Vampirism",
+
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
 
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
@@ -655,38 +688,6 @@
 	"item.mmorpg.uniques.sword.swordwater0": "§eIce Elemental Sword",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
-
-	"mmorpg.suffix.of_balance": "Of Balance",
-	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
-	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
-	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
-	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
-	"mmorpg.suffix.of_element_resist": "Of Element Resist",
-	"mmorpg.suffix.of_firestorms": "Of Firestorms",
-	"mmorpg.suffix.of_godhood": "Of Godhood",
-	"mmorpg.suffix.of_guidance": "Of Guidance",
-	"mmorpg.suffix.of_icestorms": "Of IceStorms",
-	"mmorpg.suffix.of_immortality": "Of Immortality",
-	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
-	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
-	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
-	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
-	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
-	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
-	"mmorpg.suffix.of_swiftness": "Of Swiftness",
-	"mmorpg.suffix.of_the_sage": "Of The Sage",
-	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
-	"mmorpg.suffix.of_vitality": "Of Vitality",
-	"mmorpg.suffix.offorce": "Of Force",
-	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
-	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
-	"mmorpg.suffix.ofthedepths": "Of The Depths",
-	"mmorpg.suffix.ofvampirism": "Of Vampirism",
-
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
@@ -1216,6 +1217,5 @@
 	"mmorpg.stat_desc.zephyr's_speed": "Your Self Heal Spells now boost your speed temporarily.",
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS"
-
 
 }

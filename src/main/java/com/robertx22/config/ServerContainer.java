@@ -58,31 +58,27 @@ public class ServerContainer {
 
         MAXIMUM_WORN_RUNED_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAXIMUM_WORN_RUNED_ITEMS", 3, 0, 100000);
+                .defineInRange("MAXIMUM_WORN_RUNED_ITEMS", 3, 0, Integer.MAX_VALUE);
 
         MAXIMUM_WORN_UNIQUE_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAXIMUM_WORN_UNIQUE_ITEMS", 4, 0, 100000);
-
-        MAX_PLAYERS_PER_MAP = builder.comment(".")
-                .translation("mmorpg.word.")
-                .defineInRange("MAX_PLAYERS_PER_MAP", 5, 0, 100000);
+                .defineInRange("MAXIMUM_WORN_UNIQUE_ITEMS", 4, 0, Integer.MAX_VALUE);
 
         MAPS_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAPS_DROP_AFTER_LEVEL", 15, 0, 100000);
+                .defineInRange("MAPS_DROP_AFTER_LEVEL", 15, 0, Integer.MAX_VALUE);
 
         CURRENCY_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("CURRENCY_DROP_AFTER_LEVEL", 10, 0, 100000);
+                .defineInRange("CURRENCY_DROP_AFTER_LEVEL", 10, 0, Integer.MAX_VALUE);
 
         MAXIMUM_PLAYER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAXIMUM_PLAYER_LEVEL", 100, 0, 100000);
+                .defineInRange("MAXIMUM_PLAYER_LEVEL", 100, 0, Integer.MAX_VALUE);
 
         NON_MOD_DAMAGE_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("NON_MOD_DAMAGE_MULTI", 0.03D, 0D, 100000D);
+                .defineInRange("NON_MOD_DAMAGE_MULTI", 0.03D, 0D, Integer.MAX_VALUE);
 
         STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT = builder.comment(".")
                 .translation("mmorpg.word.")
@@ -90,19 +86,19 @@ public class ServerContainer {
 
         MOB_ENVIRONMENT_DAMAGE_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MOB_ENVIRONMENT_DAMAGE_MULTI", 0.2D, 0D, 100000D);
+                .defineInRange("MOB_ENVIRONMENT_DAMAGE_MULTI", 0.2D, 0D, Integer.MAX_VALUE);
 
         NON_MOD_HEAL_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("NON_MOD_HEAL_MULTI", 0.1D, 0D, 100000D);
+                .defineInRange("NON_MOD_HEAL_MULTI", 0.1D, 0D, Integer.MAX_VALUE);
 
         EXPERIENCE_MULTIPLIER = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("EXPERIENCE_MULTIPLIER", 1D, 0D, 100000D);
+                .defineInRange("EXPERIENCE_MULTIPLIER", 1D, 0D, Integer.MAX_VALUE);
 
         UNARMED_ENERGY_COST = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("UNARMED_ENERGY_COST", 1D, 0D, 100000D);
+                .defineInRange("UNARMED_ENERGY_COST", 1D, 0D, Integer.MAX_VALUE);
 
         ENTITIES_UNDER_SYSTEM = builder.comment(".")
                 .translation("mmorpg.word.")

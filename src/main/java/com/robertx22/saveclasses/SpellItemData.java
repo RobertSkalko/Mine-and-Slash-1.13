@@ -98,12 +98,19 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetScalingDesc(boolean moreInfo) {
 
-        ITextComponent text = Words.ScalingValue.locName()
-                .appendText(": ")
-                .appendSibling(GetSpell().ScalingValue().GetStat().locName())
-                .appendText(" ")
-                .appendSibling(Words.By.locName())
-                .appendText(" : " + (int) (GetScalingValue() * 100) + "%");
+        ITextComponent text = new TextComponentString("");
+
+        try {
+            text = Words.ScalingValue.locName()
+                    .appendText(": ")
+                    .appendSibling(GetSpell().ScalingValue().GetStat().locName())
+                    .appendText(" ")
+                    .appendSibling(Words.By.locName())
+                    .appendText(" : " + (int) (GetScalingValue() * 100) + "%");
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
         if (moreInfo) {
             text.appendText(" (" + MinScaling() + "-" + MaxScaling() + ")");

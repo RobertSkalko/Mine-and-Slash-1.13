@@ -3,6 +3,7 @@ package com.robertx22.items.spells;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -13,7 +14,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public abstract class BaseSpellItem extends Item {
+public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public abstract String GUID();
 
@@ -24,6 +25,16 @@ public abstract class BaseSpellItem extends Item {
 
         this.setRegistryName(GUID().toLowerCase());
 
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
     }
 
     @Override

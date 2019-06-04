@@ -1,13 +1,12 @@
 package com.robertx22.items.spells.aoe_projectile;
 
-import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
 import com.robertx22.spells.bases.BaseSpell;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemAcidExplosion extends BaseSpellItem {
+public class ItemAcidExplosion extends BaseExplosionItem {
 
     public ItemAcidExplosion() {
         super();

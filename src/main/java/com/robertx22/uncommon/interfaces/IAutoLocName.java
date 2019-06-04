@@ -10,6 +10,7 @@ public interface IAutoLocName extends ILocName {
     public enum AutoLocGroup {
         Runes,
         Unique_Items,
+        Spells,
         Gear_Items,
         Words,
         Rarities,

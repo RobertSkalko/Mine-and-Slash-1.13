@@ -165,7 +165,8 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
             nbt = new NBTTagCompound();
         }
 
-        Tooltip.add(CLOC.tooltip("auto_salvage_items").appendText("!"), tooltip);
+        Tooltip.add(Words.Automatically_salvages_items.locName()
+                .appendText("!"), tooltip);
 
         Tooltip.add("", tooltip);
 
@@ -191,12 +192,12 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(CLOC.tooltip("bonus_salvage_chance")
+        Tooltip.add(Words.BonusSalvageChance.locName()
                 .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(CLOC.tooltip("works_when_in_baubles_slot"), tooltip);
+        Tooltip.add(Words.Works_when_equipped.locName(), tooltip);
         Tooltip.add("", tooltip);
 
         if (GuiScreen.isShiftKeyDown() == false) {

@@ -26,4 +26,8 @@ public class ItemSelfRegen extends BaseSpellItem {
         return Ref.MODID + ":spell_self_regen";
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Regenerate";
+    }
 }

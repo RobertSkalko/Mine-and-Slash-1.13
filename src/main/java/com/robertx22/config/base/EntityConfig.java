@@ -11,10 +11,10 @@ public class EntityConfig {
         builder.push(prefix);
 
         LOOT_MULTI = builder.translation("mmorpg.config.loot_multi")
-                .defineInRange("_LOOT_MULTI", loot, 0D, 10000D);
+                .defineInRange("_LOOT_MULTI", loot, 0D, Integer.MAX_VALUE);
 
         EXP_MULTI = builder.translation("mmorpg.config.exp_multi")
-                .defineInRange("_EXP_MULTI", exp, 0D, 10000D);
+                .defineInRange("_EXP_MULTI", exp, 0D, Integer.MAX_VALUE);
 
         builder.pop();
 
