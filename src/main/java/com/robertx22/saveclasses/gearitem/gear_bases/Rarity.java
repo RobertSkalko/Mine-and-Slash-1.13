@@ -24,8 +24,8 @@ public interface Rarity extends IWeighted, IAutoLocName, IColor {
     }
 
     @Override
-    public default Group locNameGroup() {
-        return Group.Rarities;
+    public default AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Rarities;
     }
 
 }

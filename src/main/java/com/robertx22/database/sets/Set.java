@@ -30,8 +30,8 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
     public MinMax statPercents = new MinMax(100, 100);
 
     @Override
-    public Group locNameGroup() {
-        return Group.Item_Sets;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Item_Sets;
     }
 
     @Override

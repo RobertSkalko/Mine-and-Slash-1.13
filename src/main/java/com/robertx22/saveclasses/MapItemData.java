@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.Words;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
@@ -18,6 +17,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;

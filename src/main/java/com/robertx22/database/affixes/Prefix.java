@@ -14,7 +14,7 @@ public abstract class Prefix extends BaseAffix {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Prefixes;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Prefixes;
     }
 }

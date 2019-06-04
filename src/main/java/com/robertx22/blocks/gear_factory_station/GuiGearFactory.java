@@ -1,8 +1,8 @@
 package com.robertx22.blocks.gear_factory_station;
 
-import com.robertx22.Words;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;

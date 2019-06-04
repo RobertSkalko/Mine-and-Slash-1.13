@@ -1,9 +1,9 @@
 package com.robertx22.blocks.item_modify_station;
 
-import com.robertx22.Words;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

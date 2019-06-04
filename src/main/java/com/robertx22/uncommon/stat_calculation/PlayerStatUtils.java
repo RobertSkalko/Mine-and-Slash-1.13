@@ -11,7 +11,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
@@ -139,7 +139,7 @@ public class PlayerStatUtils {
         for (GearItemData gear : gears) {
             if (gear.level > level) {
                 if (entity instanceof EntityPlayer) {
-                    entity.sendMessage(SLOC.chat("too_high_level"));
+                    entity.sendMessage(Chats.A_Piece_of_gear_is_too_high_level_for_you.locName());
                 }
             } else {
 

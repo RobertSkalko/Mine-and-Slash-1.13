@@ -4,7 +4,8 @@ import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
@@ -141,18 +142,18 @@ public class PlayerMapData {
 
                 this.minutesPassed += 555555;
 
-                player.sendMessage(SLOC.chat("player_died_mapworld")
+                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
                         .appendText(" " + player.getDisplayName()
                                 .getFormattedText() + " ")
-                        .appendText("World closing due to permadeath"));
+                        .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
 
             } else {
                 int punishment = 5;
 
-                player.sendMessage(SLOC.chat("player_died_mapworld")
+                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
                         .appendText(" " + player.getDisplayName()
                                 .getFormattedText() + " ")
-                        .appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
+                        .appendSibling(Chats.Map_time_penalty_activated.locName()));
 
                 this.minutesPassed += punishment;
 
@@ -275,15 +276,15 @@ public class PlayerMapData {
 
         private void announceEnd(EntityPlayer player) {
 
-            player.sendMessage(SLOC.chat("mapworld_ran_out_of_time"));
+            player.sendMessage(Chats.Ran_Out_Of_Time.locName());
 
         }
 
         private void announceTimeLeft(EntityPlayer player) {
 
-            player.sendMessage(SLOC.chat("mapworld_time_left")
+            player.sendMessage(Chats.Remaining_Map_Time_is.locName()
                     .appendText(" " + this.getMinutesLeft() + " ")
-                    .appendSibling(SLOC.chat("minutes")));
+                    .appendSibling(Words.Minutes.locName()));
 
         }
 

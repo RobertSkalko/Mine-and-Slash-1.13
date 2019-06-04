@@ -52,8 +52,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Runes;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Runes;
     }
 
     @Override

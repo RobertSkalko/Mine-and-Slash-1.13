@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import com.robertx22.Words;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.uncommon.Words;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;

@@ -17,6 +17,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -37,16 +38,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemLootbox extends BaseItem implements IWeighted {
+public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     public static HashMap<String, ItemLootbox> Items = new HashMap<String, ItemLootbox>();
 
-    public enum LootTypes {
-        Gear, Spell, Currency
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Lootboxes;
+    }
 
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return Rarities.Items.get(rarity).textFormatColor() + Rarities.Items.get(rarity)
+                .locNameForLangFile() + " " + this.size.name() + " " + this.lootType.name() + " " + "Loot Box";
+    }
+
+    @Override
+    public String GUID() {
+        return this.getRegistryName().toString();
+    }
+
+    public enum LootTypes {
+        Gear,
+        Spell,
+        Currency
     }
 
     public enum LootBoxSizes {
-        Small(2F), Medium(1F), Big(0.3F);
+        Small(2F),
+        Medium(1F),
+        Big(0.3F);
 
         LootBoxSizes(float mult) {
             this.weightMult = mult;
@@ -56,7 +81,9 @@ public class ItemLootbox extends BaseItem implements IWeighted {
     }
 
     public enum GearType {
-        Runed, Normal, Compatible
+        Runed,
+        Normal,
+        Compatible
     }
 
     public static Item GetItem(int rarity, LootTypes type, LootBoxSizes size) {

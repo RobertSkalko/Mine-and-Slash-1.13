@@ -27,8 +27,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Rune_Words;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Rune_Words;
     }
 
     @Override

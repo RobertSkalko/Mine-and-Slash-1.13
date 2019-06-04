@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.Words;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
@@ -10,6 +9,7 @@ import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

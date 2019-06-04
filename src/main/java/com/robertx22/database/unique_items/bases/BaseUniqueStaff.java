@@ -27,7 +27,7 @@ public abstract class BaseUniqueStaff extends ItemStaff implements IUnique {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Unique_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Unique_Items;
     }
 }

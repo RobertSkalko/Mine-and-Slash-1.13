@@ -2,7 +2,7 @@ package com.robertx22.onevent.item;
 
 import com.robertx22.items.level_incentives.Hearthstone;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -36,10 +36,10 @@ public class OnLeftClickHearthstone {
                 DimensionType type = evt.getWorld().getDimension().getType();
 
                 item.setLoc(stack, new BlockPos(evt.getHitVec()), type);
-                player.sendMessage(SLOC.chat("attunement_set"));
+                player.sendMessage(Chats.You_have_attuned_to_this_Altar.locName());
 
             } else {
-                player.sendMessage(SLOC.chat("not_attunement_altar"));
+                player.sendMessage(Chats.This_is_not_an_Attunement_Altar.locName());
             }
         }
 

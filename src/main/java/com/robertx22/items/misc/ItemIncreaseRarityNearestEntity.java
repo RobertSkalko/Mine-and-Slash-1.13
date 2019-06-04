@@ -2,7 +2,7 @@ package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -49,12 +49,10 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
                             player.getHeldItem(hand).shrink(1);
 
-                            player.sendMessage(SLOC.chat("you_increased_rarity_entity"));
-
                             return new ActionResult<ItemStack>(EnumActionResult.PASS, player
                                     .getHeldItem(hand));
                         } else {
-                            player.sendMessage(SLOC.chat("no_targets_found"));
+                            player.sendMessage(Chats.No_targets_found.locName());
                         }
                     }
 

@@ -28,8 +28,8 @@ public abstract class BaseUniquePants extends ItemPants implements IUnique {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Unique_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Unique_Items;
     }
 
 }

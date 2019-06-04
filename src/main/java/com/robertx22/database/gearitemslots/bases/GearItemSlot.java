@@ -25,8 +25,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Slots;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Slots;
     }
 
     public abstract GearSlotType slotType();

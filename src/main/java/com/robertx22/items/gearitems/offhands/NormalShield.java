@@ -33,8 +33,8 @@ public class NormalShield extends ItemShield implements IEffectItem, IAutoLocNam
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
     }
 
     public int rarity = 0;

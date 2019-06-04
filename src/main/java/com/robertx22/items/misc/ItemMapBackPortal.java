@@ -2,7 +2,7 @@ package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -54,7 +54,7 @@ public class ItemMapBackPortal extends Item {
                         nbt.putBoolean("porting", false);
                         nbt.putInt("ticks", 0);
 
-                        entityIn.sendMessage(SLOC.chat("teleport_canceled"));
+                        entityIn.sendMessage(Chats.Teleport_canceled_due_to_movement.locName());
 
                     } else {
 
@@ -104,12 +104,12 @@ public class ItemMapBackPortal extends Item {
                             .getTag()
                             .putLong("pos", player.getPosition().toLong());
 
-                    player.sendMessage(SLOC.chat("teleport_begin"));
+                    player.sendMessage(Chats.Teleport_started.locName());
 
                     return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 
                 } else {
-                    player.sendMessage(SLOC.chat("not_inside_map"));
+                    player.sendMessage(Chats.You_are_not_inside_a_map_world.locName());
 
                 }
 

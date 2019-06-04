@@ -10,7 +10,7 @@ public abstract class Suffix extends BaseAffix {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Suffixes;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Suffixes;
     }
 }

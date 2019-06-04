@@ -7,7 +7,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocName extends ILocName {
 
-    public enum Group {
+    public enum AutoLocGroup {
         Runes,
         Unique_Items,
         Gear_Items,
@@ -20,14 +20,18 @@ public interface IAutoLocName extends ILocName {
         Stats,
         Misc,
         Gear_Slots,
-        World_Types
+        World_Types,
+        Lootboxes,
+        Chat_Messages,
+        Configs
+
     }
 
     public default String getGroupName() {
         return locNameGroup().name().toUpperCase().replaceAll("_", " ") + " - NAMES";
     }
 
-    Group locNameGroup();
+    AutoLocGroup locNameGroup();
 
     String locNameLangFileGUID();
 

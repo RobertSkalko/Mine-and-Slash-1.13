@@ -1,6 +1,6 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,7 +27,8 @@ public class MyDamageSource extends EntityDamageSource {
 
         try {
             return new TextComponentString(entityLivingBaseIn.getDisplayName()
-                    .getFormattedText() + " ").appendSibling(SLOC.chat("has_died_by_the_hands_of"))
+                    .getFormattedText() + " ").appendSibling(Chats.has_died_by_the_hands_of
+                    .locName())
                     .appendText(" " + this.damageSourceEntity.getDisplayName()
                             .getFormattedText());
         } catch (Exception e) {

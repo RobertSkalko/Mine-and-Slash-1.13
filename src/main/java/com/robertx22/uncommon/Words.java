@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.uncommon;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
@@ -84,8 +84,8 @@ public enum Words implements IAutoLocName {
     WorldType();
 
     @Override
-    public Group locNameGroup() {
-        return Group.Words;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Words;
     }
 
     @Override

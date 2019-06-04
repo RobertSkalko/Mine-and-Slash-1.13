@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.Words;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Sets;
@@ -8,6 +7,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

@@ -29,8 +29,8 @@ public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, I
     public abstract String Name();
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
     }
 
     public BaseArmorItem(int rarity, EntityEquipmentSlot slot) {

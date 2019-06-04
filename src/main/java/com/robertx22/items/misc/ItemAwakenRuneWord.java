@@ -1,6 +1,5 @@
 package com.robertx22.items.misc;
 
-import com.robertx22.Words;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.items.currency.ICurrencyItemEffect;
@@ -8,6 +7,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;

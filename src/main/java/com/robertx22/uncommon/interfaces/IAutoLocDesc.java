@@ -11,7 +11,7 @@ public interface IAutoLocDesc extends IAutoLocName {
                 .replaceAll("_", " ") + " - DESCRIPTIONS";
     }
 
-    public default Group locDescGroup() {
+    public default AutoLocGroup locDescGroup() {
         return this.locNameGroup();
     }
 

@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.Words;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
@@ -19,6 +18,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

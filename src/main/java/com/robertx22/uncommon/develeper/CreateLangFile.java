@@ -1,7 +1,8 @@
 package com.robertx22.uncommon.develeper;
 
-import com.robertx22.Words;
 import com.robertx22.db_lists.*;
+import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 
@@ -89,17 +90,18 @@ public class CreateLangFile {
         list.addAll(WorldProviders.All.values());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Items.rarities());
+        list.addAll(Arrays.asList(Chats.values()));
 
-        HashMap<IAutoLocName.Group, List<IAutoLocName>> map = new HashMap<>();
+        HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
-        for (IAutoLocName.Group group : IAutoLocName.Group.values()) {
-            map.put(group, list.stream()
-                    .filter(x -> x.locNameGroup().equals(group))
+        for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
+            map.put(autoLocGroup, list.stream()
+                    .filter(x -> x.locNameGroup().equals(autoLocGroup))
                     .collect(Collectors.toList()));
         }
 
         HashMap<String, List<IAutoLocName>> sortedMap = new HashMap<>();
-        for (Map.Entry<IAutoLocName.Group, List<IAutoLocName>> entry : map.entrySet()) {
+        for (Map.Entry<IAutoLocName.AutoLocGroup, List<IAutoLocName>> entry : map.entrySet()) {
             List<IAutoLocName> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortName(sortedlist);
             if (sortedlist.size() > 0) {
@@ -115,16 +117,16 @@ public class CreateLangFile {
         List<IAutoLocDesc> list = CreateLangFileUtils.getDescsFromRegistries();
         list.addAll(Stats.All.values());
 
-        HashMap<IAutoLocDesc.Group, List<IAutoLocDesc>> map = new HashMap<>();
+        HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
 
-        for (IAutoLocDesc.Group group : IAutoLocDesc.Group.values()) {
-            map.put(group, list.stream()
-                    .filter(x -> x.locDescGroup().equals(group))
+        for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
+            map.put(autoLocGroup, list.stream()
+                    .filter(x -> x.locDescGroup().equals(autoLocGroup))
                     .collect(Collectors.toList()));
         }
 
         HashMap<String, List<IAutoLocDesc>> sortedMap = new HashMap<>();
-        for (Map.Entry<IAutoLocDesc.Group, List<IAutoLocDesc>> entry : map.entrySet()) {
+        for (Map.Entry<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> entry : map.entrySet()) {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortDesc(sortedlist);
             if (sortedlist.size() > 0) {

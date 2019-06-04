@@ -2,7 +2,7 @@ package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.dimensions.MyTeleporter;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
@@ -67,8 +67,7 @@ public class MapPortalBlock extends BlockEndPortal {
                                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
                                     if (data.hasTimeForMap()) {
-                                        entity.sendMessage(SLOC.chat("traveling_to_mapworld")
-                                                .appendText(portal.id + ""));
+                                        entity.sendMessage(Chats.Teleport_started.locName());
 
                                         BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
                                                 .getLevel());
@@ -78,11 +77,10 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                         entity.changeDimension(type, new MyTeleporter(world, pos1, player));
                                     } else {
-                                        entity.sendMessage(SLOC.chat("no_time_for_map"));
+                                        entity.sendMessage(Chats.Not_enough_time.locName());
                                     }
 
                                 } else { // if not mapworld
-                                    entity.sendMessage(SLOC.chat("not_mapworld"));
 
                                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 

@@ -1,10 +1,10 @@
 package com.robertx22.items.level_incentives;
 
-import com.robertx22.Words;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -109,7 +109,7 @@ public class Hearthstone extends Item {
                             nbt.putBoolean("porting", false);
                             nbt.putInt("ticks", 0);
 
-                            entity.sendMessage(SLOC.chat("teleport_canceled"));
+                            entity.sendMessage(Chats.Teleport_canceled_due_to_movement.locName());
 
                         } else {
 
@@ -159,7 +159,7 @@ public class Hearthstone extends Item {
             player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 
         } else {
-            player.sendMessage(SLOC.chat("not_attuned"));
+            player.sendMessage(Chats.Not_attuned_to_any_altars.locName());
 
         }
     }
@@ -315,19 +315,19 @@ public class Hearthstone extends Item {
                 }
 
                 if (item.hasLoc(stack) == false) {
-                    player.sendMessage(SLOC.chat("not_attuned"));
+                    player.sendMessage(Chats.Not_attuned_to_any_altars.locName());
                     stack.getTag().putBoolean("porting", false);
                     return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
                 }
 
                 if (item.distanceCanBeTeleported(player, stack) == false) {
-                    player.sendMessage(SLOC.chat("distance_warning"));
+                    player.sendMessage(Chats.Distance_too_high_to_teleport.locName());
                     stack.getTag().putBoolean("porting", false);
                     return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
                 }
 
                 if (Load.Unit(player).getLevel() < item.levelReq) {
-                    player.sendMessage(SLOC.chat("not_high_enough_level"));
+                    player.sendMessage(Chats.You_are_too_low_level.locName());
                     stack.getTag().putBoolean("porting", false);
                     return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
                 }
@@ -337,7 +337,7 @@ public class Hearthstone extends Item {
                 stack.getTag().putBoolean("porting", true);
                 stack.getTag().putLong("pos", player.getPosition().toLong());
 
-                player.sendMessage(SLOC.chat("teleport_begin"));
+                player.sendMessage(Chats.Teleport_started.locName());
 
             } catch (Exception e) {
                 e.printStackTrace();

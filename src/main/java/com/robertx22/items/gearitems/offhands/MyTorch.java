@@ -45,8 +45,8 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
     }
 
     @Override

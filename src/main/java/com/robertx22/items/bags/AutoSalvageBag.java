@@ -1,7 +1,6 @@
 package com.robertx22.items.bags;
 
 import com.mmorpg_libraries.curios.interfaces.ISalvageBag;
-import com.robertx22.Words;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
@@ -12,6 +11,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;

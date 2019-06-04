@@ -25,8 +25,8 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IAutoLocName, IAutoL
     }
 
     @Override
-    public default Group locNameGroup() {
-        return Group.Unique_Items;
+    public default AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Unique_Items;
     }
 
 }

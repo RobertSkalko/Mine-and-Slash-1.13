@@ -1,12 +1,12 @@
 package com.robertx22.database.stats;
 
-import com.robertx22.Words;
 import com.robertx22.database.IGUID;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
@@ -37,8 +37,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Stats;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Stats;
     }
 
     public int maximumValue = Integer.MAX_VALUE;

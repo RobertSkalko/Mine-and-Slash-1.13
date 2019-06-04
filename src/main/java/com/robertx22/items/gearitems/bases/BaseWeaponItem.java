@@ -1,7 +1,7 @@
 package com.robertx22.items.gearitems.bases;
 
 import com.google.common.collect.Sets;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
 import net.minecraft.block.Block;
@@ -24,8 +24,8 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
     public int rarity = 0;
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
     }
 
     @Override
@@ -41,7 +41,7 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
     public static boolean checkDurability(EntityLivingBase attacker, ItemStack stack) {
 
         if (stack.getDamage() > stack.getMaxDamage() - 20) {
-            attacker.sendMessage(SLOC.chat("low_weapon_durability"));
+            attacker.sendMessage(Chats.Weapon_durability_is_too_low.locName());
             return false;
 
         }

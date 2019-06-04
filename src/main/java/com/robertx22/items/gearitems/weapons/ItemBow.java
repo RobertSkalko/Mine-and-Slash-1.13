@@ -29,8 +29,8 @@ public class ItemBow extends net.minecraft.item.ItemBow implements IWeapon, IAut
     }
 
     @Override
-    public Group locNameGroup() {
-        return Group.Gear_Items;
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
     }
 
     @Override

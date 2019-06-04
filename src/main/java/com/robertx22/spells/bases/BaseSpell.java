@@ -3,7 +3,7 @@ package com.robertx22.spells.bases;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -18,7 +18,12 @@ import net.minecraft.world.World;
 public abstract class BaseSpell implements IWeighted {
 
     public enum SpellType {
-        Single_Target_Projectile, Aoe_Projectile, Self_Heal, Aoe_Bomb_Projectile, Restore_Energy, Aoe_Damage_Nova
+        Single_Target_Projectile,
+        Aoe_Projectile,
+        Self_Heal,
+        Aoe_Bomb_Projectile,
+        Restore_Energy,
+        Aoe_Damage_Nova
     }
 
     public String typeString() {
@@ -83,7 +88,7 @@ public abstract class BaseSpell implements IWeighted {
             if (unit != null) {
 
                 if (data.level > unit.getLevel()) {
-                    caster.sendMessage(SLOC.chat("too_low_level"));
+                    caster.sendMessage(Chats.You_are_too_low_level.locName());
 
                     return false;
                 }

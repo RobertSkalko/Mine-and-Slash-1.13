@@ -14,7 +14,7 @@ import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.SLOC;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
@@ -428,9 +428,9 @@ public class EntityData {
         public boolean LevelUp(EntityPlayer player) {
 
             if (!CheckIfCanLevelUp()) {
-                player.sendMessage(SLOC.chat("not_enough_experience"));
+                player.sendMessage(Chats.Not_enough_experience.locName());
             } else if (!CheckLevelCap()) {
-                player.sendMessage(SLOC.chat("cannot_over_maximum_level"));
+                player.sendMessage(Chats.Can_not_go_over_maximum_level.locName());
             }
 
             if (CheckIfCanLevelUp() && CheckLevelCap()) {
@@ -439,7 +439,7 @@ public class EntityData {
 
                 setExp(getRemainingExp());
 
-                player.sendMessage(SLOC.chat("levelup_success"));
+                player.sendMessage(Chats.You_have_leveled_up.locName());
 
                 return true;
             }
