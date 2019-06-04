@@ -147,12 +147,12 @@ public class PlayerStatUtils {
                 for (LevelAndStats datas : levelstats) {
                     for (StatModData data : datas.mods) {
 
-                        StatMod mod = data.GetBaseMod();
+                        StatMod mod = data.getStatMod();
 
                         if (mod == null) {
                             System.out.println(data.baseModName + " is null");
                         } else {
-                            Stat stat = data.GetBaseMod().GetBaseStat();
+                            Stat stat = data.getStatMod().GetBaseStat();
 
                             if (stat != null) {
                                 StatData statdata = unit.MyStats.get(stat.GUID());

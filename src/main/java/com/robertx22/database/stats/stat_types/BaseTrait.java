@@ -45,7 +45,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
     }
 
     public ITextComponent TraitText(StatModData data) {
-        StatMod mod = data.GetBaseMod();
+        StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
         ITextComponent comp = Styles.GREENCOMP()
                 .appendSibling(new TextComponentString(" * ").appendSibling(basestat.locName()));
@@ -63,7 +63,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
     @Override
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = data.GetBaseMod();
+        StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
         ITextComponent text = new TextComponentString("");
 

@@ -3,6 +3,7 @@ package com.robertx22.saveclasses.gearitem;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.StatModSizes;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.loot.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -55,6 +56,7 @@ public class StatModData implements ITooltipString {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = percent;
+        data.size = mod.size;
 
         return data;
     }
@@ -66,16 +68,20 @@ public class StatModData implements ITooltipString {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = percent;
+        data.size = mod.size;
 
         return data;
     }
 
     public void useOnPlayer(UnitData unit) {
-        String guid = this.GetBaseMod().GetBaseStat().GUID();
+        String guid = this.getStatMod().GetBaseStat().GUID();
         if (unit.getUnit().MyStats.containsKey(guid)) {
             unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
         }
     }
+
+    @Store
+    public StatModSizes size = StatModSizes.Medium;
 
     @Store
     public StatTypes type;
@@ -86,13 +92,13 @@ public class StatModData implements ITooltipString {
     @Store
     public String baseModName;
 
-    public StatMod GetBaseMod() {
-        return StatMods.All.get(baseModName);
+    public StatMod getStatMod() {
+        return StatMods.All.get(baseModName).bySize(size);
     }
 
     public float GetActualVal(int level) {
 
-        StatMod mod = GetBaseMod();
+        StatMod mod = getStatMod();
 
         Stat stat = mod.GetBaseStat();
 
@@ -112,16 +118,14 @@ public class StatModData implements ITooltipString {
 
         DecimalFormat format = new DecimalFormat();
 
-        if (val < 10) {
+        if (Math.abs(val) < 10) {
             format.setMaximumFractionDigits(1);
 
             return format.format(val);
 
         } else {
-
             int intval = (int) val;
             return intval + "";
-
         }
 
     }
@@ -130,7 +134,7 @@ public class StatModData implements ITooltipString {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         try {
-            return GetBaseMod().GetBaseStat().getTooltipList(info, this);
+            return getStatMod().GetBaseStat().getTooltipList(info, this);
         } catch (Exception e) {
             e.printStackTrace();
         }

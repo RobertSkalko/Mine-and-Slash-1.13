@@ -28,7 +28,7 @@ public class CommonStatUtils {
             for (LevelAndStats levelstat : levelsandstats) {
                 for (StatModData data : levelstat.mods) {
 
-                    StatData stat = unit.MyStats.get(data.GetBaseMod()
+                    StatData stat = unit.MyStats.get(data.getStatMod()
                             .GetBaseStat()
                             .GUID());
                     if (stat == null) {
@@ -95,7 +95,7 @@ public class CommonStatUtils {
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();
             for (StatModData data : datas) {
-                StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().GUID());
+                StatData stat = unit.MyStats.get(data.getStatMod().GetBaseStat().GUID());
                 if (stat == null) {
                 } else {
                     stat.Add(data, level);

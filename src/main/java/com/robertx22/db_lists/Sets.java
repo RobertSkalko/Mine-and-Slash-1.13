@@ -15,6 +15,7 @@ import com.robertx22.database.sets.mid_lvl.ArtifactArmor;
 import com.robertx22.database.sets.mid_lvl.SpiritOfTheArcane;
 import com.robertx22.database.sets.mid_lvl.TheProtector;
 import com.robertx22.database.sets.uniques.TreasureFinder;
+import com.robertx22.database.sets.uniques.WisdomOfTheElders;
 import com.robertx22.db_lists.bases.IRandomDefault;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -59,6 +60,8 @@ public class Sets implements IRandomDefault<Set> {
                 put(new TreeOfLife().GUID(), new TreeOfLife());
                 put(new Limitless().GUID(), new Limitless());
                 put(new ScholarRobes().GUID(), new ScholarRobes());
+
+                put(new WisdomOfTheElders().GUID(), new WisdomOfTheElders());
 
             }
         }

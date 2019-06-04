@@ -74,7 +74,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     public ITextComponent NameText(TooltipInfo info, StatModData data) {
-        StatMod mod = data.GetBaseMod();
+        StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
 
         ITextComponent str = basestat.locName();
@@ -104,7 +104,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = data.GetBaseMod();
+        StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
         ITextComponent text = NameAndValueText(info, data);
 
@@ -122,8 +122,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
         if (GuiScreen.isShiftKeyDown() && info.isSet == false) {
 
-            StatModData min = StatModData.Load(data.GetBaseMod(), info.minmax.Min);
-            StatModData max = StatModData.Load(data.GetBaseMod(), info.minmax.Max);
+            StatModData min = StatModData.Load(data.getStatMod(), info.minmax.Min);
+            StatModData max = StatModData.Load(data.getStatMod(), info.minmax.Max);
 
             ITextComponent extraInfo = Styles.GREENCOMP()
                     .appendSibling(new TextComponentString(" (" + min.printValue(info.level) + " - " + max
