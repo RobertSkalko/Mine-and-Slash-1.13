@@ -1,6 +1,8 @@
 package com.mmorpg_libraries.curios.interfaces;
 
-public interface ICuriosType {
+import com.robertx22.uncommon.interfaces.IGearItem;
+
+public interface ICuriosType extends IGearItem {
 
     String curioTypeName();
 

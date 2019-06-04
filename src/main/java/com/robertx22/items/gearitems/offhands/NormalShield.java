@@ -1,5 +1,9 @@
 package com.robertx22.items.gearitems.offhands;
 
+import com.robertx22.db_lists.Rarities;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IGearItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
@@ -14,18 +18,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class NormalShield extends ItemShield implements IEffectItem {
+public class NormalShield extends ItemShield implements IEffectItem, IAutoLocName, IGearItem {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     ResourceLocation resource = new ResourceLocation("");
 
-    public NormalShield(Properties prop, String name) {
+    public NormalShield(int rarity, Properties prop, String name) {
 
         super(prop);
-
+        this.rarity = rarity;
         resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
 
+    }
+
+    public int rarity = 0;
+
+    @Override
+    public String locNameForLangFile() {
+        Rarity rar = Rarities.Items.get(rarity);
+        return rar.textFormatColor() + "Shield";
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String GUID() {
+        return "";
     }
 
     @Override

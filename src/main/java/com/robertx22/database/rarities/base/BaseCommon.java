@@ -32,4 +32,8 @@ public abstract class BaseCommon implements Rarity {
         return new RGB(128, 128, 128);
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Common";
+    }
 }

@@ -1,7 +1,9 @@
 package com.robertx22.items.gearitems.baubles;
 
 import com.mmorpg_libraries.curios.interfaces.INecklace;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.gearitems.bases.BaseBaublesItem;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -9,7 +11,14 @@ import java.util.HashMap;
 public class ItemNecklace extends BaseBaublesItem implements INecklace {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemNecklace() {
+    public ItemNecklace(int rar) {
+        super(rar);
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        Rarity rar = Rarities.Items.get(rarity);
+        return rar.textFormatColor() + "Necklace";
     }
 
 }

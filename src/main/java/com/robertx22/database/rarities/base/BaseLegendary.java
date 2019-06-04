@@ -33,4 +33,8 @@ public abstract class BaseLegendary implements Rarity {
         return new RGB(255, 153, 51);
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Legendary";
+    }
 }

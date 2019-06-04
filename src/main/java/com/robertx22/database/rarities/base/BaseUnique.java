@@ -38,4 +38,9 @@ public abstract class BaseUnique implements Rarity {
         return new Elements.RGB(255, 255, 0);
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Unique";
+    }
+
 }

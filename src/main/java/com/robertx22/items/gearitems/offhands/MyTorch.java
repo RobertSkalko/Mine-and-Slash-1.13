@@ -1,8 +1,12 @@
 package com.robertx22.items.gearitems.offhands;
 
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.spells.BaseSpellItem;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IGearItem;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,11 +28,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MyTorch extends Item implements IEffectItem {
+public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public MyTorch() {
+    public MyTorch(int rar) {
         super(new Properties().maxStackSize(1).defaultMaxDamage(1000));
+        this.rarity = rar;
+    }
+
+    public int rarity = 0;
+
+    @Override
+    public String locNameForLangFile() {
+        Rarity rar = Rarities.Items.get(rarity);
+        return rar.textFormatColor() + "Torch";
+    }
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String GUID() {
+        return "";
     }
 
     @Override

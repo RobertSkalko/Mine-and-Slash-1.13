@@ -1,10 +1,17 @@
 package com.robertx22.uncommon.develeper;
 
 import com.robertx22.Words;
+import com.robertx22.database.IGUID;
+import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.*;
+import com.robertx22.items.runes.base.BaseRuneItem;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IGearItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -107,8 +114,42 @@ public class CreateLangFile {
         list.put("UNIQUE ITEM NAMES", new ArrayList<>(UniqueItems.getAll()));
         list.put("WORLD TYPES", new ArrayList<>(WorldProviders.All.values()));
         list.put("WORDS", Arrays.asList(Words.values()));
+        list.put("RARITIES", new ArrayList<>(Rarities.Items.rarities()));
 
-        return list;
+        List<IAutoLocName> gearItems = new ArrayList<>();
+        List<IAutoLocName> runes = new ArrayList<>();
+        List<IAutoLocName> misc = new ArrayList<>();
+
+        for (Item item : ForgeRegistries.ITEMS) {
+
+            if (item.getRegistryName() == null || item.getRegistryName()
+                    .getNamespace()
+                    .equals(Ref.MODID) == false) {
+                continue;
+            }
+
+            if (item instanceof IAutoLocName && item instanceof IUnique == false) {
+                if (item instanceof BaseRuneItem) {
+                    runes.add((IAutoLocName) item);
+                } else if (item instanceof IGearItem) {
+                    gearItems.add((IAutoLocName) item);
+                } else {
+                    misc.add((IAutoLocName) item);
+                }
+            }
+        }
+        list.put("GEAR ITEMS", gearItems);
+        list.put("RUNES", runes);
+        list.put("MISC ITEMS", misc);
+
+        HashMap<String, List<IAutoLocName>> sortedMap = new HashMap<>();
+        for (Map.Entry<String, List<IAutoLocName>> entry : list.entrySet()) {
+            List<IAutoLocName> sortedlist = new ArrayList<>(entry.getValue());
+            sortName(sortedlist);
+            sortedMap.put(entry.getKey(), sortedlist);
+        }
+
+        return sortedMap;
 
     }
 
@@ -117,7 +158,41 @@ public class CreateLangFile {
         list.put("STAT DESCRIPTIONS", new ArrayList<>(Stats.All.values()));
         list.put("UNIQUE ITEM DESCRIPTIONS", new ArrayList<>(UniqueItems.getAll()));
 
-        return list;
+        for (Item item : ForgeRegistries.ITEMS) {
+            if (item instanceof IAutoLocDesc && item instanceof IUnique == false) {
+
+            }
+        }
+
+        HashMap<String, List<IAutoLocDesc>> sortedMap = new HashMap<>();
+        for (Map.Entry<String, List<IAutoLocDesc>> entry : list.entrySet()) {
+            List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
+            sortDesc(sortedlist);
+            sortedMap.put(entry.getKey(), sortedlist);
+        }
+
+        return sortedMap;
 
     }
+
+    private static void sortName(List<IAutoLocName> list) {
+        if (list != null && list.size() > 1) {
+            try {
+                Collections.sort(list, Comparator.comparing(IGUID::GUID));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void sortDesc(List<IAutoLocDesc> list) {
+        if (list != null && list.size() > 1) {
+            try {
+                Collections.sort(list, Comparator.comparing(IGUID::GUID));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

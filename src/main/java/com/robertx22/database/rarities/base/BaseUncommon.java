@@ -31,4 +31,9 @@ public abstract class BaseUncommon implements Rarity {
     public Elements.RGB getRGBColor() {
         return new Elements.RGB(102, 255, 102);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Uncommon";
+    }
 }

@@ -33,4 +33,8 @@ public abstract class BaseMythical implements Rarity {
         return new Elements.RGB(204, 0, 255);
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mythical";
+    }
 }

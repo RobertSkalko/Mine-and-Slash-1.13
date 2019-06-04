@@ -1,11 +1,13 @@
 package com.robertx22.items.gearitems.weapons;
 
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.spells.entities.EntityStaffProjectile;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -31,13 +33,14 @@ import java.util.List;
 public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemStaff() {
-
+    public ItemStaff(int rar) {
+        super(rar);
     }
 
     @Override
-    public String Name() {
-        return "Staff";
+    public String locNameForLangFile() {
+        Rarity rar = Rarities.Items.get(rarity);
+        return rar.textFormatColor() + "Staff";
     }
 
     @Override

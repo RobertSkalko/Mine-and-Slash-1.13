@@ -32,4 +32,9 @@ public abstract class BaseRare implements Rarity {
     public Elements.RGB getRGBColor() {
         return new Elements.RGB(255, 255, 102);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Rare";
+    }
 }

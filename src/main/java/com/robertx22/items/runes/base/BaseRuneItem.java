@@ -4,8 +4,10 @@ import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.generated.*;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
@@ -14,6 +16,7 @@ import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -29,9 +32,29 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect {
+public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName {
 
     public int rarity;
+
+    @Override
+    public String locNameLangFileGUID(String guid) {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+
+        Rarity rar = Rarities.Runes.get(rarity);
+
+        return rar.textFormatColor() + this.name()
+                .toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
+
+    }
+
+    @Override
+    public String GUID() {
+        return "";
+    }
 
     @Override
     public int Weight() {

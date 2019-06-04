@@ -14,4 +14,5 @@ public class ItemRarities extends RaritiesContainer<ItemRarity> {
     public List<ItemRarity> rarities() {
         return Items;
     }
+
 }

@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.interfaces;
 
 import com.robertx22.uncommon.CLOC;
+import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocName extends ILocName {
 
@@ -11,4 +12,9 @@ public interface IAutoLocName extends ILocName {
     }
 
     public String locNameForLangFile();
+
+    public default ITextComponent locName() {
+        return CLOC.blank(locNameLangFileGUID(formattedGUID()));
+    }
+
 }

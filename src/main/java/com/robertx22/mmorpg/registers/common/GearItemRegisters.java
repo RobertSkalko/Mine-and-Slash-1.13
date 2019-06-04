@@ -73,28 +73,32 @@ public class GearItemRegisters {
                     .toLowerCase(), rank);
 
             // offhands
-            regRarities(new NormalShield(shieldprop, "normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield", rarity
-                    .Rank());
+            regRarities(new NormalShield(rarity.Rank(), shieldprop, "normal_shield" + rarity
+                    .Rank()), NormalShield.Items, "shields/normal_shield", rarity.Rank());
 
-            regRarities(new MyTorch(), MyTorch.Items, "torch/torch", rarity.Rank());
+            regRarities(new MyTorch(rarity.Rank()), MyTorch.Items, "torch/torch", rarity.Rank());
 
             //regRarities(new MagicOrb(orbprop, "orb" + rarity.Rank()), MagicOrb.Items, "magic_orb/orb", rarity
             //       .Rank());
 
             // weapons
-            regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
-            regRarities(new ItemHammer(), ItemHammer.Items, "hammer/hammer", rarity.Rank());
-            regRarities(new ItemAxe(), ItemAxe.Items, "axe/axe", rarity.Rank());
-            regRarities(new ItemBow(), ItemBow.Items, "bow/bow", rarity.Rank());
-            regRarities(new ItemStaff(), ItemStaff.Items, "staff/staff", rarity.Rank());
+            regRarities(new ItemSword(rarity.Rank()), ItemSword.Items, "sword/sword", rarity
+                    .Rank());
+            regRarities(new ItemHammer(rarity.Rank()), ItemHammer.Items, "hammer/hammer", rarity
+                    .Rank());
+            regRarities(new ItemAxe(rarity.Rank()), ItemAxe.Items, "axe/axe", rarity.Rank());
+            regRarities(new ItemBow(rarity.Rank()), ItemBow.Items, "bow/bow", rarity.Rank());
+            regRarities(new ItemStaff(rarity.Rank()), ItemStaff.Items, "staff/staff", rarity
+                    .Rank());
 
             // baubles
-            regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace/necklace", rarity
+            regRarities(new ItemNecklace(rarity.Rank()), ItemNecklace.Items, "necklace/necklace", rarity
                     .Rank());
-            regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet/bracelet", rarity
+            regRarities(new ItemBracelet(rarity.Rank()), ItemBracelet.Items, "bracelet/bracelet", rarity
                     .Rank());
-            regRarities(new ItemRing(), ItemRing.Items, "ring/ring", rarity.Rank());
-            regRarities(new ItemCharm(), ItemCharm.Items, "charm/charm", rarity.Rank());
+            regRarities(new ItemRing(rarity.Rank()), ItemRing.Items, "ring/ring", rarity.Rank());
+            regRarities(new ItemCharm(rarity.Rank()), ItemCharm.Items, "charm/charm", rarity
+                    .Rank());
 
             // armors
             regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());

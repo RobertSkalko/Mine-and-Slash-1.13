@@ -5,6 +5,8 @@ public interface IGUID {
     public String GUID();
 
     public default String formattedGUID() {
-        return GUID().toLowerCase().replaceAll(" ", "_");
+
+        return GUID().toLowerCase().replaceAll(" ", "_").replaceAll("/", ".");
+
     }
 }

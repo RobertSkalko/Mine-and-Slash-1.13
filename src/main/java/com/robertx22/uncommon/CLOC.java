@@ -23,10 +23,6 @@ public class CLOC {
 
     }
 
-    public static ITextComponent rarity(String str) {
-        return base(Ref.MODID + ".rarity." + str);
-    }
-
     public static ITextComponent lore(String str) {
 
         return new TextComponentString(TextFormatting.GREEN + "'").appendSibling(base(Ref.MODID + ".lore." + str)

@@ -177,7 +177,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (data.crit) {
             num += "!";
-
         }
 
         return num;

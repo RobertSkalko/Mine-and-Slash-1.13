@@ -32,4 +32,9 @@ public abstract class BaseEpic implements Rarity {
     public RGB getRGBColor() {
         return new RGB(51, 102, 255);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Epic";
+    }
 }
