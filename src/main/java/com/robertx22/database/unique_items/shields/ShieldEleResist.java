@@ -1,6 +1,7 @@
 package com.robertx22.database.unique_items.shields;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.BlockStrengthFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.StaminaFlat;
 import com.robertx22.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
@@ -24,8 +25,8 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.All), new VitalityFlat().multi(2), new StaminaFlat()
-                .multi(1.5F));
+        return Arrays.asList(new BlockStrengthFlat(), new ElementalResistFlat(Elements.All), new VitalityFlat()
+                .multi(2), new StaminaFlat().multi(1.5F));
     }
 
     @Override

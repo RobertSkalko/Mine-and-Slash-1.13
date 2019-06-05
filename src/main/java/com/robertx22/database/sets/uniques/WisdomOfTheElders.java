@@ -1,12 +1,16 @@
 package com.robertx22.database.sets.uniques;
 
+import com.robertx22.database.requirements.ExactUniquesRequierement;
 import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
+import com.robertx22.database.unique_items.helmet.HelmetWisdom;
+import com.robertx22.database.unique_items.shields.ShieldWisdom;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class WisdomOfTheElders extends Set {
@@ -35,7 +39,8 @@ public class WisdomOfTheElders extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50());
+        return new Requirements(LevelRequirement.fromLVL50(), new ExactUniquesRequierement(Arrays
+                .asList(new HelmetWisdom(), new ShieldWisdom())));
     }
 
     @Override

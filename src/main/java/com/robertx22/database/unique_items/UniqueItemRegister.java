@@ -31,6 +31,7 @@ import com.robertx22.database.unique_items.rings.RingEnergy;
 import com.robertx22.database.unique_items.rings.RingWaterFire;
 import com.robertx22.database.unique_items.shields.ShieldEleResist;
 import com.robertx22.database.unique_items.shields.ShieldElemental;
+import com.robertx22.database.unique_items.shields.ShieldWisdom;
 import com.robertx22.database.unique_items.staffs.*;
 import com.robertx22.database.unique_items.swords.SwordNature;
 import com.robertx22.database.unique_items.swords.SwordPhysical;
@@ -46,6 +47,9 @@ public class UniqueItemRegister {
      * this needs to be called before serialization of config
      */
     public static void register() {
+
+        add(new HelmetWisdom());
+        add(new ShieldWisdom());
 
         add(new ShieldElemental(Elements.None));
 
