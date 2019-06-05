@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/consumable/restore_mana_item"
+        "layer0": "mmorpg:items/paidassets/pixeltiers/potions/restore_mana_item"
     }
 }
