@@ -29,7 +29,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public String locDescForLangFile() {
-        return "";
+        return "Fear no " + element.name();
     }
 
     @Override

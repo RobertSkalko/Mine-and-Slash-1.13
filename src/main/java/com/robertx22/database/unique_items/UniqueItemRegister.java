@@ -47,7 +47,7 @@ public class UniqueItemRegister {
      */
     public static void register() {
 
-        add(new ShieldElemental(Elements.Water));
+        add(new ShieldElemental(Elements.None));
 
         add(new ShieldEleResist());
         // bows
@@ -141,7 +141,7 @@ public class UniqueItemRegister {
         if (item instanceof IGenerated) {
             IGenerated<IUnique> gen = (IGenerated) item;
             for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
-                UniqueItems.ITEMS.put(uniq.GUID(), item);
+                UniqueItems.ITEMS.put(uniq.GUID(), (Item) uniq);
             }
 
         } else {
