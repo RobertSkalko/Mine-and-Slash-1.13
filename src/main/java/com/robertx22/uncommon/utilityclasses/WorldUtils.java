@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
+import com.robertx22.config.dimension_configs.DimensionConfig;
 import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.world_providers.BaseWorldProvider;
 import com.robertx22.database.world_providers.IWP;
@@ -7,6 +8,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.testing.Watch;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -47,21 +49,15 @@ public class WorldUtils {
 
     public static BlockPos getPosByLevel(World world, int lvl) {
 
-        BlockPos pos = world.getSpawnPoint();
+        Watch watch = new Watch();
 
-        int destinationLvl = LevelUtils.determineLevel(world, pos);
+        DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(world);
 
-        while (destinationLvl != lvl) {
-
-            if (destinationLvl < lvl) {
-                pos = pos.south(20);
-            } else {
-                pos = pos.north();
-            }
-            destinationLvl = LevelUtils.determineLevel(world, pos);
-        }
+        BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
         pos = getSurface(world, pos);
+
+        watch.print("getting spawn pos took ");
 
         return pos;
 

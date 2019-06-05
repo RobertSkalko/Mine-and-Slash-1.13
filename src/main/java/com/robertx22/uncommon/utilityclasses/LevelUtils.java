@@ -50,6 +50,21 @@ public class LevelUtils {
 
     }
 
+    public static BlockPos getAreaPosOfLevel(World world, int level,
+                                             DimensionConfig config) {
+
+        if (level == 1) {
+            return world.getSpawnPoint();
+        }
+
+        int distance = config.MOB_LEVEL_PER_DISTANCE * level;
+
+        BlockPos pos = new BlockPos(distance, 0, world.getSpawnPoint().getZ());
+
+        return pos;
+
+    }
+
     public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos) {
 
         return determineLevelPerDistanceFromSpawn(world, pos, DimensionsContainer.INSTANCE

@@ -138,11 +138,12 @@ public class PlayerStatUtils {
     public static void AddAllGearStats(Entity entity, List<GearItemData> gears, Unit unit,
                                        int level) {
 
+        boolean gearTooHighLevel = false;
+
         for (GearItemData gear : gears) {
             if (gear.level > level) {
-                if (entity instanceof EntityPlayer) {
-                    entity.sendMessage(Chats.A_Piece_of_gear_is_too_high_level_for_you.locName());
-                }
+                gearTooHighLevel = true;
+
             } else {
 
                 List<LevelAndStats> levelstats = gear.GetAllStats(gear.level);
@@ -168,6 +169,13 @@ public class PlayerStatUtils {
                 }
             }
         }
+
+        if (gearTooHighLevel) {
+            if (entity instanceof EntityPlayer) {
+                entity.sendMessage(Chats.A_Piece_of_gear_is_too_high_level_for_you.locName());
+            }
+        }
+
     }
 
 }

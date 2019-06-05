@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class WorldGenRegisters {
 
-    public static final float SMALL_DECO_CHANCE = 100F;
+    public static final float SMALL_DECO_CHANCE = 1F;
     public static final CompositeFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(), new AtSurfaceChancePlacement(), new MyChanceConfig(1F));
     public static final CompositeFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new SmallRandomSurfaceDecoration());
 
