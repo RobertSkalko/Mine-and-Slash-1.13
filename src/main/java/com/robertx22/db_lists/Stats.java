@@ -3,10 +3,7 @@ package com.robertx22.db_lists;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.database.stats.stat_types.core_stats.*;
-import com.robertx22.database.stats.stat_types.defense.Armor;
-import com.robertx22.database.stats.stat_types.defense.BlockStrength;
-import com.robertx22.database.stats.stat_types.defense.Dodge;
-import com.robertx22.database.stats.stat_types.defense.SpellDodge;
+import com.robertx22.database.stats.stat_types.defense.*;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.database.stats.stat_types.generated.*;
@@ -188,6 +185,7 @@ public class Stats {
                 add(new ElementalResist(Elements.None));
                 add(new ElementalPene(Elements.None));
                 add(new ElementalFocus(Elements.None));
+                add(new BlockReflect(Elements.None));
 
             }
         }

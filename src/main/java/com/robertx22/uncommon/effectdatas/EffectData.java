@@ -93,7 +93,8 @@ public abstract class EffectData {
         NORMAL,
         SPELL,
         BASIC_ATTACK,
-        BONUS_ATTACK
+        BONUS_ATTACK,
+        REFLECT,
     }
 
     public UnitData sourceData;

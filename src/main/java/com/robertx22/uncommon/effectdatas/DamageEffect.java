@@ -46,6 +46,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean isFullyBlocked = false;
     public boolean isPartiallyBlocked = false;
 
+    public boolean isBlocked() {
+
+        if (isFullyBlocked || isPartiallyBlocked) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     protected void activate() {
 

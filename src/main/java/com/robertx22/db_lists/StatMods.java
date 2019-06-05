@@ -235,6 +235,7 @@ public class StatMods {
                 add(new ElementalPenePercent(Elements.None));
                 add(new ElementalFocusFlat(Elements.None));
                 add(new StatDoublePercent(new UnknownStat()));
+                add(new BlockReflectFlat(Elements.None));
 
             }
         }

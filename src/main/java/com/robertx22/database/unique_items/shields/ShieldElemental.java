@@ -2,6 +2,7 @@ package com.robertx22.database.unique_items.shields;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.BlockStrengthFlat;
+import com.robertx22.database.stats.stat_mods.generated.BlockReflectFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.unique_items.IUnique;
@@ -23,8 +24,8 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new BlockStrengthFlat().multi(1.2F), new ElementalAffinityFlat(element), new ElementalResistFlat(element)
-                .multi(2));
+        return Arrays.asList(new BlockStrengthFlat(), new BlockReflectFlat(element), new ElementalAffinityFlat(element)
+                .multi(0.5F), new ElementalResistFlat(element));
     }
 
     @Override
@@ -34,7 +35,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public String locNameForLangFile() {
-        return "Shield of " + element.name();
+        return "Shield of " + element.name() + " Thorns";
     }
 
     @Override
