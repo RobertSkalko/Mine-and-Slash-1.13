@@ -24,7 +24,7 @@ public class MobThunderDMGSE extends BaseMobEleDMG {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(this.percent, new ElementalSpellToAttackDMGFlat(Elements.Thunder)));
+        return Arrays.asList(StatModData.Load(new ElementalSpellToAttackDMGFlat(Elements.Thunder), percent));
     }
 
 }

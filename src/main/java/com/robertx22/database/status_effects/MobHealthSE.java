@@ -23,7 +23,7 @@ public class MobHealthSE extends BaseStatusEffect {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(500, new HealthPercent()));
+        return Arrays.asList(StatModData.Load(new HealthPercent(), 500));
     }
 
 }

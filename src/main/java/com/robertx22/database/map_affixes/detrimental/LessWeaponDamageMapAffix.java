@@ -32,7 +32,7 @@ public class LessWeaponDamageMapAffix extends DetrimentalMapAffix implements IGe
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new WeaponDamageFlat(weaponType)));
+        return Arrays.asList(StatModData.Load(new WeaponDamageFlat(weaponType), percent));
 
     }
 

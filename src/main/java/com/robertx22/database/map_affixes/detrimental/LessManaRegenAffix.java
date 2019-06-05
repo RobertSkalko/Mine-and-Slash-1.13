@@ -16,7 +16,7 @@ public class LessManaRegenAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new LessManaRegenMap()));
+        return Arrays.asList(StatModData.Load(new LessManaRegenMap(), percent));
     }
 
 }

@@ -141,7 +141,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         for (IStatsContainer container : this.GetAllStatContainers()) {
             for (LevelAndStats stats : container.GetAllStats(1)) {
                 for (StatModData mod : stats.mods) {
-                    power += mod.percent;
+                    power += mod.getPercent();
                 }
             }
         }

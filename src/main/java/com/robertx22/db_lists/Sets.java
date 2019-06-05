@@ -80,7 +80,7 @@ public class Sets implements IRandomDefault<Set> {
         return All;
     }
 
-    static {
+    public static void init() {
         for (IGenerated<Set> gen : generated) {
             for (Set statmod : gen.generateAllPossibleStatVariations()) {
                 All.put(statmod.GUID(), statmod);

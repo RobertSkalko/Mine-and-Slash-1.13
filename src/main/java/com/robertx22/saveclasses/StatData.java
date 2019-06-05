@@ -3,8 +3,6 @@ package com.robertx22.saveclasses;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.db_lists.Stats;
-import com.robertx22.saveclasses.gearitem.StatModData;
-import com.robertx22.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -53,17 +51,6 @@ public class StatData {
 
     public float getMultiplier() {
         return 1 + Value / 100;
-    }
-
-    public void Add(StatModData mod, int level) {
-
-        if (mod.type == StatTypes.Flat) {
-            Flat += mod.GetActualVal(level);
-        } else if (mod.type == StatTypes.Percent) {
-            Percent += mod.GetActualVal(level);
-        } else if (mod.type == StatTypes.Multi) {
-            Multi += mod.GetActualVal(level);
-        }
     }
 
 }

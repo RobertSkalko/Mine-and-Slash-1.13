@@ -125,7 +125,9 @@ public class PlayerStatUtils {
 
                 String name = mod.GetBaseStat().GUID();
                 if (unit.MyStats.containsKey(name)) {
-                    unit.MyStats.get(name).Add(data, level);
+
+                    data.Add(unit.MyStats.get(name), level);
+
                 }
             }
 
@@ -150,18 +152,19 @@ public class PlayerStatUtils {
                         StatMod mod = data.getStatMod();
 
                         if (mod == null) {
-                            System.out.println(data.baseModName + " is null");
+                            //  System.out.println(data.baseModName + " is null");
                         } else {
                             Stat stat = data.getStatMod().GetBaseStat();
 
                             if (stat != null) {
                                 StatData statdata = unit.MyStats.get(stat.GUID());
                                 if (statdata != null) {
-                                    statdata.Add(data, datas.level);
+                                    data.Add(statdata, datas.level);
                                 }
                             }
                         }
                     }
+
                 }
             }
         }

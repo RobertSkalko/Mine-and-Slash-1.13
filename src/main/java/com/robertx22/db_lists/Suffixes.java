@@ -75,7 +75,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
         }
     };
 
-    static {
+    public static void init() {
 
         List<Suffix> list = new ArrayList<Suffix>();
         list.addAll(allSuffixes);

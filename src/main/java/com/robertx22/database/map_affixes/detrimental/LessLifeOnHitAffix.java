@@ -16,7 +16,7 @@ public class LessLifeOnHitAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new LessLifeOnHitMap()));
+        return Arrays.asList(StatModData.Load(new LessLifeOnHitMap(), percent));
     }
 
 }

@@ -6,6 +6,7 @@ import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
+import com.robertx22.db_lists.Initialization;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mmorpg.proxy.ClientProxy;
@@ -80,6 +81,8 @@ public class MMORPG {
 
         ConfigRegister.register(); // MUST BE IN MAIN CLASS
         ConfigRegister.load();  // MUST BE IN MAIN CLASS
+
+        Initialization.initAllDatabases(); // after config init
 
         bus.addListener(this::commonSetupEvent);
         bus.addListener(this::interModProcessEvent);

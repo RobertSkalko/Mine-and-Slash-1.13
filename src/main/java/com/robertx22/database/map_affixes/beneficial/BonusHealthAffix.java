@@ -16,7 +16,7 @@ public class BonusHealthAffix extends BeneficialMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new BonusHealthMap()));
+        return Arrays.asList(StatModData.Load(new BonusHealthMap(), percent));
     }
 
 }

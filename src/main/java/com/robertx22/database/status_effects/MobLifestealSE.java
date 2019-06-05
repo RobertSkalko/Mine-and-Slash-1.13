@@ -23,7 +23,7 @@ public class MobLifestealSE extends BaseStatusEffect {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(1200, new LifestealFlat()));
+        return Arrays.asList(StatModData.Load(new LifestealFlat(), 1000));
     }
 
 }

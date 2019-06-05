@@ -16,7 +16,9 @@ import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllFireDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllNatureDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllThunderDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
@@ -45,6 +47,7 @@ import com.robertx22.database.stats.stat_mods.percent.*;
 import com.robertx22.database.stats.stat_mods.percent.less.*;
 import com.robertx22.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.database.stats.stat_mods.percent.offense.*;
+import com.robertx22.database.stats.stat_types.BaseTrait;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -235,7 +238,7 @@ public class StatMods {
         }
     };
 
-    static {
+    public static void init() {
 
         for (StatMod mod : nonGenerated) {
             All.put(mod.GUID(), mod);
@@ -246,6 +249,16 @@ public class StatMods {
                 All.put(statmod.GUID(), statmod);
             }
         }
+
+        // this makes all StatMod classes for traits cus they are all the same!
+        for (Stat stat : Stats.All.values()) {
+            if (stat instanceof BaseTrait) {
+                BaseTrait trait = (BaseTrait) stat;
+                AllTraitMods traitMod = new AllTraitMods(trait);
+                StatMods.All.put(traitMod.GUID(), traitMod);
+            }
+        }
+        // how didnt i think of this before.
 
     }
 

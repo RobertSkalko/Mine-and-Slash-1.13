@@ -6,10 +6,10 @@ import com.robertx22.uncommon.interfaces.IWeighted;
 
 public abstract class StatMod implements IWeighted, IGUID {
 
-    public StatModSizes size = StatModSizes.Medium;
+    public float multiplier = 1F;
 
     public float sizeMultiplier() {
-        return size.multi;
+        return multiplier;
     }
 
     @Override
@@ -28,13 +28,11 @@ public abstract class StatMod implements IWeighted, IGUID {
     public abstract String GUID();
 
     public float GetFloatByPercent(int percent) {
-
-        return (Min() + (Max() - Min()) * percent / 100) * size.multi;
-
+        return (Min() + (Max() - Min()) * percent / 100) * multiplier;
     }
 
-    public StatMod bySize(StatModSizes size) {
-        this.size = size;
+    public StatMod multi(float multiplier) {
+        this.multiplier = multiplier;
         return this;
     }
 

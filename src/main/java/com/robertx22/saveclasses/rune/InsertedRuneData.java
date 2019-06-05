@@ -59,7 +59,7 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         int per = 0;
 
         for (StatModData mod : Mods) {
-            per += mod.percent;
+            per += mod.getPercent();
 
         }
 

@@ -4,7 +4,6 @@ import com.robertx22.database.requirements.LevelRequirement;
 import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.StatModSizes;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
@@ -28,7 +27,7 @@ public class WisdomOfTheElders extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new WisdomFlat().bySize(StatModSizes.VeryBig));
+                    put(2, new WisdomFlat().multi(3));
                 }
             }
         };

@@ -16,7 +16,7 @@ public class BonusLifestealAffix extends BeneficialMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new BonusLifestealMap()));
+        return Arrays.asList(StatModData.Load(new BonusLifestealMap(), percent));
     }
 
 }

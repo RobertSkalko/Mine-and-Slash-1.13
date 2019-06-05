@@ -1,12 +1,11 @@
 package com.robertx22.saveclasses.gearitem;
 
-import com.robertx22.database.rarities.RuneRarity;
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.StatModSizes;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.loot.StatGen;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -27,36 +26,13 @@ public class StatModData implements ITooltipString {
 
     }
 
-    public static StatModData NewRandom(GearItemData gear, StatMod mod) {
-
-        StatModData data = new StatModData();
-
-        data.baseModName = mod.GUID();
-        data.type = mod.Type();
-        data.percent = StatGen.GenPercent(gear.GetRarity());
-
-        return data;
-    }
-
-    public static StatModData NewRandom(RuneRarity rar, StatMod mod) {
+    public static StatModData NewRandom(ItemRarity rar, StatMod mod) {
 
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = StatGen.GenPercent(rar);
-
-        return data;
-    }
-
-    public static StatModData NewStatusEffect(int percent, StatMod mod) {
-
-        StatModData data = new StatModData();
-
-        data.baseModName = mod.GUID();
-        data.type = mod.Type();
-        data.percent = percent;
-        data.size = mod.size;
 
         return data;
     }
@@ -68,7 +44,7 @@ public class StatModData implements ITooltipString {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = percent;
-        data.size = mod.size;
+        data.multiplier = mod.multiplier;
 
         return data;
     }
@@ -76,24 +52,32 @@ public class StatModData implements ITooltipString {
     public void useOnPlayer(UnitData unit) {
         String guid = this.getStatMod().GetBaseStat().GUID();
         if (unit.getUnit().MyStats.containsKey(guid)) {
-            unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
+            Add(unit.getUnit().MyStats.get(guid), unit.getLevel());
         }
     }
 
-    @Store
-    public StatModSizes size = StatModSizes.Medium;
+    public int getPercent() {
+        return percent;
+    }
+
+    public void setPercent(int perc) {
+        this.percent = perc;
+    }
 
     @Store
-    public StatTypes type;
+    private float multiplier = 1F;
 
     @Store
-    public int percent;
+    private StatTypes type;
 
     @Store
-    public String baseModName;
+    private int percent;
+
+    @Store
+    private String baseModName;
 
     public StatMod getStatMod() {
-        return StatMods.All.get(baseModName).bySize(size);
+        return StatMods.All.get(baseModName).multi(multiplier);
     }
 
     public float GetActualVal(int level) {
@@ -142,4 +126,16 @@ public class StatModData implements ITooltipString {
         return Arrays.asList(new TextComponentString(""));
     }
 
+    public void Add(StatData data, int level) {
+
+        if (type == StatTypes.Flat) {
+            data.Flat += GetActualVal(level);
+        } else if (type == StatTypes.Percent) {
+            data.Percent += GetActualVal(level);
+        } else if (type == StatTypes.Multi) {
+            data.Multi += GetActualVal(level);
+
+        }
+
+    }
 }

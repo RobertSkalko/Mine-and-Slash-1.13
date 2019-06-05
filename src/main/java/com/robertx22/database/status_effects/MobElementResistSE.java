@@ -26,10 +26,9 @@ public class MobElementResistSE extends BaseStatusEffect {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new ElementalResistFlat(Elements.Fire)), StatModData
-                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Water)), StatModData
-                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Thunder)), StatModData
-                .NewStatusEffect(percent, new ElementalResistFlat(Elements.Nature)));
+        return Arrays.asList(StatModData.Load(new ElementalResistFlat(Elements.Fire), percent), StatModData
+                .Load(new ElementalResistFlat(Elements.Water), percent), StatModData.Load(new ElementalResistFlat(Elements.Thunder), percent), StatModData
+                .Load(new ElementalResistFlat(Elements.Nature), percent));
     }
 
 }

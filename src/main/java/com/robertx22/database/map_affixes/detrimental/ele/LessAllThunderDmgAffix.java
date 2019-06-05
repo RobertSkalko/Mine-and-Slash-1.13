@@ -16,7 +16,7 @@ public class LessAllThunderDmgAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new LessAllThunderDamageMap()));
+        return Arrays.asList(StatModData.Load(new LessAllThunderDamageMap(), percent));
     }
 
 }

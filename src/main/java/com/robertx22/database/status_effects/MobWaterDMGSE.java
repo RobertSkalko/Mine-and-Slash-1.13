@@ -24,7 +24,7 @@ public class MobWaterDMGSE extends BaseMobEleDMG {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(this.percent, new ElementalSpellToAttackDMGFlat(Elements.Water)));
+        return Arrays.asList(StatModData.Load(new ElementalSpellToAttackDMGFlat(Elements.Water), percent));
     }
 
 }

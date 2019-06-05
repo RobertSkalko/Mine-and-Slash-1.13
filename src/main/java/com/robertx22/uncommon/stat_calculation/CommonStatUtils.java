@@ -34,7 +34,7 @@ public class CommonStatUtils {
                     if (stat == null) {
 
                     } else {
-                        stat.Add(data, level);
+                        data.Add(stat, level);
                     }
                 }
             }
@@ -98,7 +98,8 @@ public class CommonStatUtils {
                 StatData stat = unit.MyStats.get(data.getStatMod().GetBaseStat().GUID());
                 if (stat == null) {
                 } else {
-                    stat.Add(data, level);
+
+                    data.Add(stat, level);
 
                 }
             }

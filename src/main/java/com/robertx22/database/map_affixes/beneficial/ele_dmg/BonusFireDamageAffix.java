@@ -16,7 +16,7 @@ public class BonusFireDamageAffix extends BaseBeneficialEleAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new BonusFireDamageMap()));
+        return Arrays.asList(StatModData.Load(new BonusFireDamageMap(), percent));
     }
 
 }

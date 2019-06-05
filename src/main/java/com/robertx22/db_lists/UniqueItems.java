@@ -14,6 +14,10 @@ public class UniqueItems {
 
     static List<IUnique> all = new ArrayList();
 
+    public static void init() {
+
+    }
+
     public static List<IUnique> getAll() {
         if (all.isEmpty()) {
             for (Item item : ITEMS.values()) {

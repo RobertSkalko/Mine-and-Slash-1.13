@@ -16,7 +16,7 @@ public class BonusThunderResistAffix extends BaseBeneficialEleAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new BonusThunderResistMap()));
+        return Arrays.asList(StatModData.Load(new BonusThunderResistMap(), percent));
 
     }
 

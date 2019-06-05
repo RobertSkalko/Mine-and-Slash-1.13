@@ -23,7 +23,7 @@ public class MobArmorSE extends BaseStatusEffect {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(300, new ArmorFlat()));
+        return Arrays.asList(StatModData.Load(new ArmorFlat(), 300));
     }
 
 }

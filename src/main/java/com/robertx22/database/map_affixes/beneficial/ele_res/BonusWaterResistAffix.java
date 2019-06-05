@@ -16,7 +16,7 @@ public class BonusWaterResistAffix extends BaseBeneficialEleAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new BonusWaterResistMap()));
+        return Arrays.asList(StatModData.Load(new BonusWaterResistMap(), percent));
 
     }
 

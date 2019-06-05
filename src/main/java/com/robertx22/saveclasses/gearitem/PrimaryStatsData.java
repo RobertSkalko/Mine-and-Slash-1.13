@@ -29,7 +29,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
 
-        StatModData moddata = StatModData.NewRandom(gear, mod);
+        StatModData moddata = StatModData.NewRandom(gear.GetRarity(), mod);
 
         this.Mods.add(moddata);
 
@@ -39,7 +39,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.percent = StatGen.GenPercent(gear.GetRarity());
+            data.setPercent(StatGen.GenPercent(gear.GetRarity()));
         }
 
     }

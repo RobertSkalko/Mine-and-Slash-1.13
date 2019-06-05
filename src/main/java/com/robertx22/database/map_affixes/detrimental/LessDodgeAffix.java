@@ -16,7 +16,7 @@ public class LessDodgeAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.NewStatusEffect(percent, new LessDodgeMap()));
+        return Arrays.asList(StatModData.Load(new LessDodgeMap(), percent));
     }
 
 }

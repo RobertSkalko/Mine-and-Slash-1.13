@@ -99,7 +99,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
         }
     };
 
-    static {
+    public static void init() {
         List<Prefix> list = new ArrayList<Prefix>();
         list.addAll(allPrefixes);
 

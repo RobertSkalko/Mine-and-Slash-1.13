@@ -49,6 +49,7 @@
 	"mmorpg.set.treasure_finder": "Treasure Finder",
 	"mmorpg.set.tree_of_life": "Tree of Life",
 	"mmorpg.set.will_of_lightning": "Will of Lightning",
+	"mmorpg.set.wisdom_of_the_elders": "Wisdom of the Elders",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
@@ -144,6 +145,7 @@
 	"mmorpgs.rarity.mythical": "Mythical",
 	"mmorpgs.rarity.rare": "Rare",
 	"mmorpgs.rarity.uncommon": "Uncommon",
+	"mmorpgs.rarity.unique": "Unique",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
@@ -341,6 +343,38 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
+
+	"mmorpg.suffix.of_balance": "Of Balance",
+	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
+	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
+	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
+	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
+	"mmorpg.suffix.of_element_resist": "Of Element Resist",
+	"mmorpg.suffix.of_firestorms": "Of Firestorms",
+	"mmorpg.suffix.of_godhood": "Of Godhood",
+	"mmorpg.suffix.of_guidance": "Of Guidance",
+	"mmorpg.suffix.of_icestorms": "Of IceStorms",
+	"mmorpg.suffix.of_immortality": "Of Immortality",
+	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
+	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
+	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
+	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
+	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
+	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
+	"mmorpg.suffix.of_swiftness": "Of Swiftness",
+	"mmorpg.suffix.of_the_sage": "Of The Sage",
+	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
+	"mmorpg.suffix.of_vitality": "Of Vitality",
+	"mmorpg.suffix.offorce": "Of Force",
+	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
+	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
+	"mmorpg.suffix.ofthedepths": "Of The Depths",
+	"mmorpg.suffix.ofvampirism": "Of Vampirism",
+
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -401,38 +435,6 @@
 	"item.mmorpg.uniques.sword.swordwater0": "§eIce Elemental Sword",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
-
-	"mmorpg.suffix.of_balance": "Of Balance",
-	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
-	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
-	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
-	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
-	"mmorpg.suffix.of_element_resist": "Of Element Resist",
-	"mmorpg.suffix.of_firestorms": "Of Firestorms",
-	"mmorpg.suffix.of_godhood": "Of Godhood",
-	"mmorpg.suffix.of_guidance": "Of Guidance",
-	"mmorpg.suffix.of_icestorms": "Of IceStorms",
-	"mmorpg.suffix.of_immortality": "Of Immortality",
-	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
-	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
-	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
-	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
-	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
-	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
-	"mmorpg.suffix.of_swiftness": "Of Swiftness",
-	"mmorpg.suffix.of_the_sage": "Of The Sage",
-	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
-	"mmorpg.suffix.of_vitality": "Of Vitality",
-	"mmorpg.suffix.offorce": "Of Force",
-	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
-	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
-	"mmorpg.suffix.ofthedepths": "Of The Depths",
-	"mmorpg.suffix.ofvampirism": "Of Vampirism",
-
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",

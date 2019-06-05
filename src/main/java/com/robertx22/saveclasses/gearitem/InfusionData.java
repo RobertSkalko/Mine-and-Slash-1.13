@@ -70,7 +70,7 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 
         List<StatModData> list = new ArrayList<StatModData>(Mods);
         for (StatModData mod : list) {
-            mod.percent += bonusModPercent();
+            mod.setPercent(mod.getPercent() + bonusModPercent());
         }
 
         return Arrays.asList(new LevelAndStats(list, level));

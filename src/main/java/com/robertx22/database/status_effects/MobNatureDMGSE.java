@@ -24,7 +24,7 @@ public class MobNatureDMGSE extends BaseMobEleDMG {
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.NewStatusEffect(this.percent, new ElementalSpellToAttackDMGFlat(Elements.Nature)));
+        return Arrays.asList(StatModData.Load(new ElementalSpellToAttackDMGFlat(Elements.Nature), percent));
     }
 
 }
