@@ -15,9 +15,13 @@ import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
 import com.robertx22.database.affixes.suffixes.resource.OfVampirism;
+import com.robertx22.database.affixes.suffixes.unique.OfGodhood;
+import com.robertx22.database.affixes.suffixes.unique.OfTheHydra;
+import com.robertx22.database.affixes.suffixes.unique.OfWeaponFlurry;
 import com.robertx22.db_lists.bases.IRandomDefault;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.interfaces.IElementalGenerated;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +34,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
     private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
             {
+                add(new OfTheHydra());
 
                 add(new OfBalance());
                 add(new OfGuidance());
@@ -65,11 +70,12 @@ public class Suffixes implements IRandomDefault<Suffix> {
 
     public static HashMap<String, Suffix> all = new HashMap<>();
 
-    private static List<IElementalGenerated<Suffix>> allGenerated = new ArrayList<IElementalGenerated<Suffix>>() {
+    private static List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
         {
             {
 
                 add(new OfMajorAffinity(Elements.None));
+                add(new OfWeaponFlurry(WeaponTypes.None));
 
             }
         }
@@ -84,7 +90,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
             all.put(s.GUID(), s);
         }
 
-        for (IElementalGenerated<Suffix> gen : allGenerated) {
+        for (IGenerated<Suffix> gen : allGenerated) {
             for (Suffix statmod : gen.generateAllPossibleStatVariations()) {
                 all.put(statmod.GUID(), statmod);
             }

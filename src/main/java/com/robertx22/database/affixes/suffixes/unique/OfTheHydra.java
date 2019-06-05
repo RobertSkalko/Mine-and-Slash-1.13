@@ -1,4 +1,4 @@
-package com.robertx22.database.affixes.suffixes.defense;
+package com.robertx22.database.affixes.suffixes.unique;
 
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.gearitemslots.Helmet;
@@ -7,24 +7,24 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.requirements.UniqueTierRequirement;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.MajorDodgeFlat;
-import com.robertx22.database.stats.stat_mods.multi.defense.HealthMulti;
+import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class OfGodhood extends Suffix {
+public class OfTheHydra extends Suffix {
 
     @Override
     public String GUID() {
-        return "of_godhood";
+        return "of_the_hydra";
     }
 
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new HealthMulti(), new MajorDodgeFlat(), new ArmorFlat());
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Axe).multi(0.5F), new WeaponDamageFlat(WeaponTypes.Bow)
+                .multi(0.5F), new WeaponDamageFlat(WeaponTypes.Hammer).multi(0.5F));
 
     }
 
@@ -40,6 +40,6 @@ public class OfGodhood extends Suffix {
 
     @Override
     public String locNameForLangFile() {
-        return "Of Godhood";
+        return "Of the Hydra";
     }
 }
