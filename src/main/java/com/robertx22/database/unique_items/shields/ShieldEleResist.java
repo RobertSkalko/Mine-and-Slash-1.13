@@ -20,7 +20,7 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
 
     @Override
     public String locDescForLangFile() {
-        return "";
+        return "Fear no elements.";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
 
     @Override
     public String locNameForLangFile() {
-        return "Shielf of Resistance";
+        return "Shield of Resistance";
     }
 
     @Override
