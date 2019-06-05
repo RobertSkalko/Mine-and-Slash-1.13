@@ -48,6 +48,7 @@ import com.robertx22.database.stats.stat_mods.percent.less.*;
 import com.robertx22.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.database.stats.stat_mods.percent.offense.*;
 import com.robertx22.database.stats.stat_types.BaseTrait;
+import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -233,6 +234,7 @@ public class StatMods {
                 add(new ElementalPeneFlat(Elements.None));
                 add(new ElementalPenePercent(Elements.None));
                 add(new ElementalFocusFlat(Elements.None));
+                add(new StatDoublePercent(new UnknownStat()));
 
             }
         }
