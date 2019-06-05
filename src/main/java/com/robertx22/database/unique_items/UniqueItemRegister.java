@@ -30,11 +30,14 @@ import com.robertx22.database.unique_items.rings.RingDodge;
 import com.robertx22.database.unique_items.rings.RingEnergy;
 import com.robertx22.database.unique_items.rings.RingWaterFire;
 import com.robertx22.database.unique_items.shields.ShieldEleResist;
+import com.robertx22.database.unique_items.shields.ShieldElemental;
 import com.robertx22.database.unique_items.staffs.*;
 import com.robertx22.database.unique_items.swords.SwordNature;
 import com.robertx22.database.unique_items.swords.SwordPhysical;
 import com.robertx22.database.unique_items.swords.SwordWater;
 import com.robertx22.db_lists.UniqueItems;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 
 public class UniqueItemRegister {
@@ -43,6 +46,8 @@ public class UniqueItemRegister {
      * this needs to be called before serialization of config
      */
     public static void register() {
+
+        add(new ShieldElemental(Elements.Water));
 
         add(new ShieldEleResist());
         // bows
@@ -133,8 +138,17 @@ public class UniqueItemRegister {
 
     private static void add(Item item) {
 
-        IUnique uniq = (IUnique) item;
-        UniqueItems.ITEMS.put(uniq.GUID(), item);
+        if (item instanceof IGenerated) {
+            IGenerated<IUnique> gen = (IGenerated) item;
+            for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
+                UniqueItems.ITEMS.put(uniq.GUID(), item);
+            }
+
+        } else {
+
+            IUnique uniq = (IUnique) item;
+            UniqueItems.ITEMS.put(uniq.GUID(), item);
+        }
     }
 
 }
