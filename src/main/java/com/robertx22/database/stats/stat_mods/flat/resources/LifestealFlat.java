@@ -13,32 +13,32 @@ public class LifestealFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "LifestealFlat";
+        return "LifestealFlat";
     }
 
     @Override
     public float Min() {
-	return 2;
+        return 2;
     }
 
     @Override
     public float Max() {
-	return 6;
+        return 5;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Lifesteal();
+        return new Lifesteal();
     }
 
     @Override
     public int Weight() {
-	return IWeighted.UncommonWeight;
+        return IWeighted.UncommonWeight;
     }
 
 }

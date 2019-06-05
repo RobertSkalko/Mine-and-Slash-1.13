@@ -855,7 +855,7 @@ public class EntityData {
 
         @Override
         public float getStatMultiplierIncreaseByTier() {
-            return 1 + tier * 0.1F;
+            return 1 + tier * 0.2F;
         }
 
         @Override

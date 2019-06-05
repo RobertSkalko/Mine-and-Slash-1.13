@@ -13,31 +13,31 @@ public class LifeOnHitFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "LifeOnHitFlat";
+        return "LifeOnHitFlat";
     }
 
     @Override
     public float Min() {
-	return 0.75F;
+        return 0.5F;
     }
 
     @Override
     public float Max() {
-	return 2.25F;
+        return 2F;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new LifeOnHit();
+        return new LifeOnHit();
     }
 
     @Override
     public int Weight() {
-	return IWeighted.UncommonWeight;
+        return IWeighted.UncommonWeight;
     }
 }
