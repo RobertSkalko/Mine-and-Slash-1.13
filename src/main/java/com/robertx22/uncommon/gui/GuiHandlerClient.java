@@ -81,8 +81,8 @@ public class GuiHandlerClient {
                 }
             }
         } else { // it means it's from a bag then, no tileentity but does have a hand boolean
-            boolean isOffHand = msg.getAdditionalData().readBoolean();
 
+            boolean isOffHand = msg.getAdditionalData().readBoolean();
             EnumHand hand = isOffHand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 
             switch (msg.getId().toString()) {
