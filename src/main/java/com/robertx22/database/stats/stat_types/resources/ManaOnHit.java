@@ -13,6 +13,11 @@ public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "Mana On Hit";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Regeneration;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Gives mana on basic attack";
     }

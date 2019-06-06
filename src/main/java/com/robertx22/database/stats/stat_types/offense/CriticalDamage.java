@@ -13,6 +13,11 @@ public class CriticalDamage extends Stat implements IStatEffects {
     public static String GUID = "Critical Damage";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Damage;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "If Critical, multiply by x";
     }

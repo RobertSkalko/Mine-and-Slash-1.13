@@ -7,6 +7,11 @@ public class Energy extends FillableStat {
     public static String GUID = "Energy";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Main;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Energy is used to do basic attacks";
     }

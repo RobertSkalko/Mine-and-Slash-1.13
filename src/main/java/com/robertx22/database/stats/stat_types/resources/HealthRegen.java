@@ -5,6 +5,11 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class HealthRegen extends BaseRegenClass {
     public static String GUID = "Health Regen";
 
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Main;
+    }
+
     public HealthRegen() {
 
     }

@@ -9,6 +9,11 @@ public class Health extends Stat {
     public static String GUID = "Health";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Main;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Allows you to take more damage from mobs";
     }

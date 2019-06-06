@@ -13,6 +13,11 @@ import java.util.List;
 public class AllAttributes extends Stat implements IPreCoreStat {
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.CoreStat;
+    }
+
+    @Override
     public boolean IsPercent() {
         return false;
     }

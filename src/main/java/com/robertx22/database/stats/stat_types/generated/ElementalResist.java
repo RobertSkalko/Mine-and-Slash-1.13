@@ -12,6 +12,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Defenses;
+    }
 
     public ElementalResist(Elements element) {
         super(element);

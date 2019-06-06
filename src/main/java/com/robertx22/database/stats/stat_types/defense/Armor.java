@@ -13,6 +13,11 @@ import java.util.List;
 public class Armor extends Stat implements IStatEffects, IUsableStat {
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Defenses;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Decreases damage taken by a percent";
     }

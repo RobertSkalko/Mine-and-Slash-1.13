@@ -13,6 +13,11 @@ public class LifeOnHit extends Stat implements IStatEffects {
     public static String GUID = "Life On Hit";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Regeneration;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Gives health on basic attack hit";
     }

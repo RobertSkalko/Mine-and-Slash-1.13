@@ -3,6 +3,11 @@ package com.robertx22.database.stats.stat_types.resources;
 public class EnergyRegen extends BaseRegenClass {
     public static String GUID = "Energy Regen";
 
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Main;
+    }
+
     public EnergyRegen() {
 
     }

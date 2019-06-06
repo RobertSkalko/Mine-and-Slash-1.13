@@ -13,6 +13,11 @@ public class Dodge extends Stat implements IStatEffects {
     public static String GUID = "Dodge";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Defenses;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Chance to ignore all damage";
     }

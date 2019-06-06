@@ -7,6 +7,11 @@ public class Mana extends FillableStat {
     public static String GUID = "Mana";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Main;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Mana is used to cast spells";
     }

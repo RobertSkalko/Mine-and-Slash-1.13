@@ -13,6 +13,11 @@ public class Lifesteal extends Stat implements IStatEffects {
     public static String GUID = "Lifesteal";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Regeneration;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "% of basic attack DMG added to health";
     }

@@ -11,6 +11,11 @@ public class ElementalSpellDamage extends ElementalStat {
     }
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.SpellDamage;
+    }
+
+    @Override
     public Stat newGeneratedInstance(Elements element) {
         return new ElementalSpellDamage(element);
     }

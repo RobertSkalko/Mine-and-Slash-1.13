@@ -10,6 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockStrength extends Stat implements IStatEffects {
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Defenses;
+    }
 
     @Override
     public String locDescForLangFile() {

@@ -7,6 +7,11 @@ public class PhysicalDamage extends Stat {
     public static String GUID = "Physical Damage";
 
     @Override
+    public StatGroup statGroup() {
+        return StatGroup.Damage;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "How much DMG your basic attacks do";
     }

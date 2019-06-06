@@ -18,6 +18,11 @@ public class SpellDamage extends Stat implements IStatEffects {
         return "Increases DMG of all spells no matter the element";
     }
 
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.SpellDamage;
+    }
+
     public SpellDamage() {
 
     }

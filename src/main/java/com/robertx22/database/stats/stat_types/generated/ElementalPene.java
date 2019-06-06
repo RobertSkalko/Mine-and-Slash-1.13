@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ElementalPene extends ElementalStat implements IStatEffects {
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Penetration;
+    }
 
     public ElementalPene(Elements element) {
         super(element);
