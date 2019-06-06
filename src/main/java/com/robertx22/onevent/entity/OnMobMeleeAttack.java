@@ -2,7 +2,6 @@ package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -64,13 +63,6 @@ public class OnMobMeleeAttack {
                 return;
             }
 
-            Unit targetUnit = targetData.getUnit();
-            Unit sourceUnit = sourceData.getUnit();
-
-            if (targetUnit == null || sourceUnit == null) {
-                return;
-            }
-
             targetData.recalculateStats(target);
             sourceData.recalculateStats(source);
 
@@ -90,13 +82,6 @@ public class OnMobMeleeAttack {
             } else { // if its a mob
 
                 sourceData.mobBasicAttack(source, target, sourceData, targetData, event.getAmount());
-
-                if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-                    EntityLivingBase defender = event.getEntityLiving();
-                    EntityLivingBase attacker = (EntityLivingBase) event.getSource()
-                            .getTrueSource();
-                    defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
-                }
 
             }
 
