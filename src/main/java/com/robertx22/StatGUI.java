@@ -22,10 +22,8 @@ import java.util.stream.Collectors;
 
 public class StatGUI extends GuiScreen {
 
-    EntityData.UnitData data;
-
     public StatGUI() {
-        data = Load.Unit(mc.player);
+
         genStatList();
 
     }
@@ -89,6 +87,8 @@ public class StatGUI extends GuiScreen {
     List<Stat> statlist = new ArrayList<>();
 
     private int renderStats() {
+
+        EntityData.UnitData data = Load.Unit(mc.player);
 
         List<String> list = new ArrayList<>();
 
