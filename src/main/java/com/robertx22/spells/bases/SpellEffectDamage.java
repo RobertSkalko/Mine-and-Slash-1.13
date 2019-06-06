@@ -27,7 +27,7 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
         SpellDamageEffect dmg = new SpellDamageEffect(dmgdata.caster, target, num, dmgdata.casterUnit, Load
                 .Unit(target), dmgdata.spellItem.GetSpell());
-        dmg.Element = this.element;
+        dmg.element = this.element;
         dmg.Activate();
 
     }

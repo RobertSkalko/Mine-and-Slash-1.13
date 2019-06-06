@@ -43,9 +43,9 @@ public class ArmorEffect implements IStatEffect {
                     EffectiveArmor = 0;
                 }
 
-                float old = Effect.Number;
+                float old = Effect.number;
 
-                Effect.Number -= EffectiveArmor * Effect.Number;
+                Effect.number -= EffectiveArmor * Effect.number;
 
             }
         } catch (Exception e) {

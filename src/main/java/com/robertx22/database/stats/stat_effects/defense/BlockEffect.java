@@ -30,13 +30,13 @@ public class BlockEffect implements IStatEffect {
             if (Effect instanceof DamageEffect) {
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                DamageSource dmgsource = DamageSource.causeMobDamage(Effect.Source);
+                DamageSource dmgsource = DamageSource.causeMobDamage(Effect.source);
 
-                if (canBlockDamageSource(Effect.Target, dmgsource)) {
+                if (canBlockDamageSource(Effect.target, dmgsource)) {
 
                     float blockval = data.Value;
 
-                    float afterblock = Effect.Number - blockval;
+                    float afterblock = Effect.number - blockval;
 
                     if (afterblock < 0) {
                         dmgeffect.isFullyBlocked = true;
@@ -44,7 +44,7 @@ public class BlockEffect implements IStatEffect {
                         dmgeffect.isPartiallyBlocked = true;
                     }
 
-                    dmgeffect.Number = afterblock;
+                    dmgeffect.number = afterblock;
 
                 }
 

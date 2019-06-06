@@ -30,11 +30,11 @@ public class ElementalAttackDamageEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.BonusElementDamageMap.containsKey(stat.Element())) {
-                    dmgeffect.BonusElementDamageMap.put(stat.Element(), (int) (dmgeffect.BonusElementDamageMap
+                if (dmgeffect.bonusElementDamageMap.containsKey(stat.Element())) {
+                    dmgeffect.bonusElementDamageMap.put(stat.Element(), (int) (dmgeffect.bonusElementDamageMap
                             .get(stat.Element()) + data.Value));
                 } else {
-                    dmgeffect.BonusElementDamageMap.put(stat.Element(), (int) data.Value);
+                    dmgeffect.bonusElementDamageMap.put(stat.Element(), (int) data.Value);
                 }
 
             }

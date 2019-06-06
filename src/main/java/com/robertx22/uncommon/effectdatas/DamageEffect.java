@@ -29,15 +29,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         super(source, target, sourceData, targetData);
 
         this.setEffectType(effectType, weptype);
-        this.Number = dmg;
+        this.number = dmg;
     }
 
-    public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
+    public HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
-    public static String DmgSourceName = Ref.MODID + ".custom_damage";
-    public Elements Element = Elements.Physical;
-    public int ArmorPene;
-    public int ElementalPene;
+    public static String dmgSourceName = Ref.MODID + ".custom_damage";
+    public Elements element = Elements.Physical;
+    public int armorPene;
+    public int elementalPene;
 
     public float damageMultiplier = 1;
 
@@ -45,6 +45,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float manaRestored;
     public boolean isFullyBlocked = false;
     public boolean isPartiallyBlocked = false;
+    public boolean isDodged = false;
 
     public boolean isBlocked() {
 
@@ -58,13 +59,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     protected void activate() {
 
         if (this.canceled) {
-            return; // TODO check if this works
+            return;
         }
 
-        this.Number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
+        this.number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
 
-        MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-        float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
+        MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
+        float dmg = HealthUtils.DamageToMinecraftHealth(number + 1, target);
 
         if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();
@@ -72,20 +73,20 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.isFullyBlocked == false) {
 
-            this.sourceData.onAttackEntity(Source, Target);
+            this.sourceData.onAttackEntity(source, target);
 
             int hurtResistantTime = 0;
 
             if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                hurtResistantTime = Target.hurtResistantTime;
+                hurtResistantTime = target.hurtResistantTime;
             } else {
                 hurtResistantTime = 3;
             }
 
-            Target.hurtResistantTime = 0;   // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
+            target.hurtResistantTime = 0;   // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
 
-            Target.attackEntityFrom(dmgsource, dmg);
-            Target.hurtResistantTime = hurtResistantTime;
+            target.attackEntityFrom(dmgsource, dmg);
+            target.hurtResistantTime = hurtResistantTime;
             //
 
             addBonusElementDamage();
@@ -96,10 +97,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 LogCombat();
             }
 
-            if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
+            if ((int) number > 0 && source instanceof EntityPlayerMP) {
 
-                EntityPlayerMP player = (EntityPlayerMP) Source;
-                DmgNumPacket packet = new DmgNumPacket(Target, this.Element, FormatDamageNumber(this));
+                EntityPlayerMP player = (EntityPlayerMP) source;
+                DmgNumPacket packet = new DmgNumPacket(target, this.element, FormatDamageNumber(this));
                 MMORPG.sendToClient(packet, player);
 
             }
@@ -118,7 +119,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     private void Heal() {
         int healed = (int) healthHealed;
         if (healed > 0) {
-            sourceData.heal(Source, healed);
+            sourceData.heal(source, healed);
         }
     }
 
@@ -128,10 +129,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     private void addBonusElementDamage() {
-        for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
+        for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
-                bonus.Element = entry.getKey();
+                DamageEffect bonus = new DamageEffect(source, target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
+                bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.Activate();
             }
@@ -145,19 +146,19 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        if (this.Source instanceof EntityPlayer) {
+        if (this.source instanceof EntityPlayer) {
 
-            String s = Words.Dealt.translate() + LogDamage() + Words.To.translate() + " " + this.Target
-                    .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
-            this.Source.sendMessage(new TextComponentString(s));
+            String s = Words.Dealt.translate() + LogDamage() + Words.To.translate() + " " + this.target
+                    .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
+            this.source.sendMessage(new TextComponentString(s));
 
         }
 
-        if (this.Target instanceof EntityPlayer) {
+        if (this.target instanceof EntityPlayer) {
 
-            String s = Words.Took.translate() + LogDamage() + Words.From.translate() + " " + this.Source
-                    .getName() + " " + LogCurrentHP(this.Target, this.targetUnit);
-            this.Target.sendMessage(new TextComponentString(s));
+            String s = Words.Took.translate() + LogDamage() + Words.From.translate() + " " + this.source
+                    .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
+            this.target.sendMessage(new TextComponentString(s));
 
         }
 
@@ -189,7 +190,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public static String FormatDamageNumber(DamageEffect data) {
-        String num = FormatNumber((int) data.Number);
+        String num = FormatNumber((int) data.number);
 
         if (data.crit) {
             num += "!";
@@ -204,8 +205,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         String str = " " + num + " " + Words.Damage.translate() + " ";
 
-        if (Element != null) {
-            str = Element.format + str;
+        if (element != null) {
+            str = element.format + str;
 
         }
 
@@ -215,38 +216,38 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     @Override
     public EntityLivingBase Source() {
-        return Source;
+        return source;
     }
 
     @Override
     public EntityLivingBase Target() {
-        return Target;
+        return target;
     }
 
     @Override
     public float Number() {
-        return Number;
+        return number;
     }
 
     @Override
     public Elements GetElement() {
-        return Element;
+        return element;
     }
 
     @Override
     public void SetArmorPenetration(int val) {
-        this.ArmorPene = val;
+        this.armorPene = val;
 
     }
 
     @Override
     public void addElementalPenetration(int val) {
-        this.ElementalPene += val;
+        this.elementalPene += val;
     }
 
     @Override
     public int GetArmorPenetration() {
-        return this.ArmorPene;
+        return this.armorPene;
     }
 
     public boolean crit = false;
@@ -254,7 +255,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     @Override
     public void SetCrit(boolean bool) {
         crit = bool;
-
     }
 
     @Override
@@ -264,7 +264,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     @Override
     public int GetElementalPenetration() {
-        return this.ElementalPene;
+        return this.elementalPene;
     }
 
 }

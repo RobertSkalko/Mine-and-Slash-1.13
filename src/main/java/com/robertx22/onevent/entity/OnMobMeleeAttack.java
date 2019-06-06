@@ -31,7 +31,7 @@ public class OnMobMeleeAttack {
 
         if (event.getSource() instanceof MyDamageSource || event.getSource()
                 .getDamageType()
-                .equals(DamageEffect.DmgSourceName)) {
+                .equals(DamageEffect.dmgSourceName)) {
             return;
         }
 

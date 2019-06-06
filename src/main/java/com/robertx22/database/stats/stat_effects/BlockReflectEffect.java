@@ -49,8 +49,8 @@ public class BlockReflectEffect implements IStatEffect {
 
                         float dmg = data.Value;
 
-                        DamageEffect effect = new DamageEffect(Effect.Target, Effect.Source, (int) dmg, Effect.targetData, Effect.sourceData, EffectTypes.REFLECT, WeaponTypes.None);
-                        effect.Element = stat.Element();
+                        DamageEffect effect = new DamageEffect(Effect.target, Effect.source, (int) dmg, Effect.targetData, Effect.sourceData, EffectTypes.REFLECT, WeaponTypes.None);
+                        effect.element = stat.Element();
 
                         effect.Activate();
                     }

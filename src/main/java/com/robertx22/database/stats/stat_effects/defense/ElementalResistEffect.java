@@ -50,7 +50,7 @@ public class ElementalResistEffect implements IStatEffect {
                         EffectiveArmor = 0;
                     }
 
-                    Effect.Number -= EffectiveArmor * Effect.Number;
+                    Effect.number -= EffectiveArmor * Effect.number;
 
                 }
             }

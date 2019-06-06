@@ -28,7 +28,7 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
         this.buffable = buffable;
 
-        this.Source = source;
+        this.source = source;
 
         this.sourceData = Load.Unit(source);
 
@@ -54,14 +54,14 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
     public void Activate() {
 
-        if (Source == null || canceled == true || sourceUnit == null || sourceData == null)
+        if (source == null || canceled == true || sourceUnit == null || sourceData == null)
             return;
 
         TryApplyEffects(this.GetSource());
 
         if (this.canceled != true) {
 
-            sourceData.setUnit(sourceUnit, Source);
+            sourceData.setUnit(sourceUnit, source);
 
             activate();
 

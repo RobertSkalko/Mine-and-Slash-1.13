@@ -16,12 +16,22 @@ import java.util.List;
 
 public abstract class EffectData {
 
-    public boolean isDodged = false;
+    public UnitData sourceData;
+    public UnitData targetData;
+
+    public boolean canceled = false;
+    public Unit sourceUnit;
+    public Unit targetUnit;
+
+    public EntityLivingBase source;
+    public EntityLivingBase target;
+
+    public float number = 0;
 
     public EffectData(EntityLivingBase source, EntityLivingBase target) {
 
-        this.Source = source;
-        this.Target = target;
+        this.source = source;
+        this.target = target;
 
         if (target != null) {
             this.targetData = Load.Unit(target);
@@ -61,8 +71,8 @@ public abstract class EffectData {
     public EffectData(EntityLivingBase source, EntityLivingBase target,
                       UnitData sourceData, UnitData targetData) {
 
-        this.Source = source;
-        this.Target = target;
+        this.source = source;
+        this.target = target;
 
         if (sourceData != null && targetData != null) {
             this.sourceData = sourceData;
@@ -98,18 +108,6 @@ public abstract class EffectData {
         REFLECT,
     }
 
-    public UnitData sourceData;
-    public UnitData targetData;
-
-    public boolean canceled = false;
-    public Unit sourceUnit;
-    public Unit targetUnit;
-
-    public EntityLivingBase Source;
-    public EntityLivingBase Target;
-
-    public float Number = 0;
-
     public Unit GetSource() {
 
         return sourceUnit;
@@ -121,7 +119,7 @@ public abstract class EffectData {
 
     public void Activate() {
 
-        if (Source == null || Target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
+        if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
             return;
 
         TryApplyEffects(this.GetSource());

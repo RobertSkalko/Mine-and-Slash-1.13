@@ -30,10 +30,10 @@ public class GivePotionEffect extends BaseCauseEffect {
         EntityLivingBase entity;
 
         if (oncause.whoGetsEffect.equals(IStatEffect.EffectSides.Source)) {
-            entity = effect.Source;
+            entity = effect.source;
 
         } else {
-            entity = effect.Target;
+            entity = effect.target;
         }
 
         entity.addPotionEffect(new PotionEffect(potion, durationInSeconds * 20, amplifier));

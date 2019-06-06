@@ -29,7 +29,7 @@ public class AllSpellDamageEffect implements IStatEffect {
                 SpellDamageEffect dmgeffect = (SpellDamageEffect) Effect;
 
                 if (dmgeffect.getEffectType().equals(EffectData.EffectTypes.SPELL)) {
-                    dmgeffect.Number += data.Value * dmgeffect.spell.ScalingValue().Multi;
+                    dmgeffect.number += data.Value * dmgeffect.spell.ScalingValue().Multi;
                 }
 
             }

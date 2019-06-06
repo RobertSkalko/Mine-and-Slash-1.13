@@ -30,7 +30,7 @@ public class SpellDodgeEffect implements IStatEffect {
                     .equals(EffectTypes.SPELL)) {
 
                 if (RandomUtils.roll(data.Value)) {
-                    Effect.Number = 0;
+                    Effect.number = 0;
                     Effect.isDodged = true;
                     Effect.canceled = true;
                 }

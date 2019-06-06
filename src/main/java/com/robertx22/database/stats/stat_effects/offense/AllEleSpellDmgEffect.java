@@ -29,9 +29,9 @@ public class AllEleSpellDmgEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element.equals(Elements.Physical) == false) {
+                if (dmgeffect.element.equals(Elements.Physical) == false) {
                     if (dmgeffect.getEffectType().equals(EffectData.EffectTypes.SPELL)) {
-                        dmgeffect.Number *= data.getMultiplier();
+                        dmgeffect.number *= data.getMultiplier();
                     }
 
                 }

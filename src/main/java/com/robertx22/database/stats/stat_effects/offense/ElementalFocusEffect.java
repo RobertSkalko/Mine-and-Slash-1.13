@@ -29,14 +29,14 @@ public class ElementalFocusEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element != null && dmgeffect.Element != Elements.Physical) {
+                if (dmgeffect.element != null && dmgeffect.element != Elements.Physical) {
 
-                    float amount = dmgeffect.Number * data.Value / 100;
+                    float amount = dmgeffect.number * data.Value / 100;
 
-                    if (dmgeffect.Element.equals(stat.Element())) {
-                        dmgeffect.Number += amount;
+                    if (dmgeffect.element.equals(stat.Element())) {
+                        dmgeffect.number += amount;
                     } else {
-                        dmgeffect.Number -= amount;
+                        dmgeffect.number -= amount;
                     }
 
                 }

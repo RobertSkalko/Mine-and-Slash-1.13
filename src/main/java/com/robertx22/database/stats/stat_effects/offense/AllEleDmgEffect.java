@@ -29,9 +29,9 @@ public class AllEleDmgEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element.equals(Elements.Physical) == false) {
+                if (dmgeffect.element.equals(Elements.Physical) == false) {
 
-                    dmgeffect.Number *= data.getMultiplier();
+                    dmgeffect.number *= data.getMultiplier();
 
                 }
             }
