@@ -3,7 +3,7 @@ package com.robertx22.database.stats.stat_mods.generated;
 import com.robertx22.database.ElementalStatMod;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_types.defense.BlockReflect;
+import com.robertx22.database.stats.stat_types.generated.BlockReflect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 

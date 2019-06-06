@@ -7,7 +7,7 @@ import com.robertx22.database.requirements.Requirements;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.StatDoublePercent;
-import com.robertx22.database.stats.stat_types.defense.BlockReflect;
+import com.robertx22.database.stats.stat_types.generated.BlockReflect;
 import com.robertx22.database.unique_items.shields.ShieldElemental;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;

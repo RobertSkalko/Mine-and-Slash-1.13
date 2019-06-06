@@ -19,6 +19,10 @@ import java.util.stream.Collectors;
 
 public class StatGUI extends GuiScreen {
 
+    Stat.StatGroup statgroup = Stat.StatGroup.Main;
+    int currentElement = 0;
+    HashMap<String, List<Stat>> statmap = new HashMap<>();
+
     public StatGUI() {
 
         genStatList();
@@ -77,9 +81,6 @@ public class StatGUI extends GuiScreen {
 
         return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
-
-    Stat.StatGroup statgroup = Stat.StatGroup.Main;
-    int currentElement = 0;
 
     private List<String> getList() {
 
@@ -152,6 +153,14 @@ public class StatGUI extends GuiScreen {
 
     }
 
+    private boolean needsScrolling() {
+        int heightAdd = this.fontRenderer.FONT_HEIGHT + 1;
+        int y = getList().stream().mapToInt(x -> heightAdd).sum();
+
+        return y > this.sizeY - 50;
+
+    }
+
     public static String formattedValue(float val) {
 
         DecimalFormat format = new DecimalFormat();
@@ -173,11 +182,13 @@ public class StatGUI extends GuiScreen {
         this.currentElement -= pMouseScrolled1;
         this.currentElement = MathHelper.clamp(currentElement, 0, renderStats());
 
+        if (needsScrolling() == false) {
+            this.currentElement = 0;
+        }
+
         return true;
 
     }
-
-    HashMap<String, List<Stat>> statmap = new HashMap<>();
 
     void genStatList() {
 

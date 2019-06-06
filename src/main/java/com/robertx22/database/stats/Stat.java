@@ -168,7 +168,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         return StatGroup.Misc;
     }
 
-    // 7
     public enum StatGroup {
         Main(Words.Main, 0),
         Misc(Words.Misc, 10),

@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.stat_types.defense;
+package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.BlockReflectEffect;
@@ -50,7 +50,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     // include none, the physical damage
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
-        List<Elements> elements = Elements.getAllExceptNone();
+        List<Elements> elements = Elements.getAllSingleElements();
         elements.add(Elements.None);
         List<Stat> list = new ArrayList<>();
         elements.forEach(x -> list.add(newGeneratedInstance(x)));
