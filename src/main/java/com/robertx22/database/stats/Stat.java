@@ -168,21 +168,32 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         return StatGroup.Misc;
     }
 
+    // 7
     public enum StatGroup {
-        Main,
-        Misc,
-        CoreStat,
-        SpellDamage,
-        EleAttackDamage,
-        Defenses,
-        Penetration,
-        Damage,
-        Regeneration;
+        Main(0),
+        Misc(10),
+        CoreStat(6),
+        SpellDamage(3),
+        EleAttackDamage(2),
+        Defenses(4),
+        Penetration(7),
+        Damage(1),
+        Regeneration(8);
 
-        public StatGroup()
+        StatGroup(int place) {
+            this.place = place;
+        }
 
-        public int Y = 8;
-        public int X;
+        public final int width = 18;
+        public final int height = 18;
+
+        public int place = 0;
+
+        public final int Y = 8;
+
+        public int X() {
+            return 7 + width * place;
+        }
     }
 
 }

@@ -58,6 +58,16 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
 
     }
 
+    private int getGUIStartX() {
+
+        return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2);
+    }
+
+    private int getGUIStartY() {
+
+        return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2);
+    }
+
     private int getTextStartX() {
 
         return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2 + 15);
@@ -77,6 +87,9 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
         EntityData.UnitData data = Load.Unit(mc.player);
 
         List<String> list = new ArrayList<>();
+
+        list.add(this.statgroup.name() + ": ");
+        list.add("");
 
         for (Stat stat : Stats.All.values()
                 .stream()
@@ -153,6 +166,17 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
             return true;
         } else {
             // my stuff
+
+            for (Stat.StatGroup group : Stat.StatGroup.values()) {
+
+                int x = group.X() + this.getGUIStartX();
+                int y = group.Y + this.getGUIStartY();
+
+                if (isInRect(x, y, group.width, group.height, (int) X, (int) Y)) {
+                    this.statgroup = group;
+                }
+
+            }
 
             return true;
         }
