@@ -29,7 +29,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public String GUID() {
-        return "BonusElementReflectPrefix";
+        return "Bonus" + element.name() + "ReflectPrefix";
     }
 
     @Override

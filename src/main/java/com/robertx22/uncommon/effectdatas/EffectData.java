@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.effectdatas;
 
 import com.robertx22.db_lists.Stats;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -174,14 +175,17 @@ public abstract class EffectData {
         if (unit != null) {
 
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
-                for (IStatEffect stateffect : stateffects.GetEffects()) {
-                    effects.add(new EffectUnitStat(stateffect, unit, unit.MyStats.get(stateffects
-                            .GUID())));
+                StatData stat = unit.MyStats.get(stateffects.GUID());
+                if (stat.Value != 0) {
+                    for (IStatEffect stateffect : stateffects.GetEffects()) {
+                        effects.add(new EffectUnitStat(stateffect, unit, stat));
+                    }
                 }
 
             }
 
         }
+
         return effects;
     }
 
