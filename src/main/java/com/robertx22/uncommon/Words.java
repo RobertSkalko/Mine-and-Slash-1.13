@@ -83,6 +83,10 @@ public enum Words implements IAutoLocName {
     Unsalvagable("Unsalvagable"),
     Use_Time("Use Time"),
     Uses("Uses"),
+    Beware("Beware"),
+    MapWorldsAreResetOnGameReload("Map Worlds Are Reset On Game Reload"),
+    DoNotBuildInMaps("Do not build in maps!"),
+
     World_Type("World Type");
 
     private String localization = "";

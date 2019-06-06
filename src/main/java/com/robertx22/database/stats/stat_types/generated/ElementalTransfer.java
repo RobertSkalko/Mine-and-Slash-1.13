@@ -17,6 +17,11 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
     }
 
     @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
+    @Override
     public boolean IsPercent() {
         return true;
     }

@@ -19,6 +19,11 @@ public class LootTypeBonusFlat extends Stat implements IGenerated<Stat> {
     }
 
     @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
+    @Override
     public boolean IsPercent() {
         return true;
     }

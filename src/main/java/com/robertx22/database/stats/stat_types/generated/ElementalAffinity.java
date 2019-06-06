@@ -22,6 +22,11 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     }
 
     @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
+    @Override
     public boolean IsPercent() {
         return false;
     }

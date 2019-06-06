@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -268,6 +269,13 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            tooltip.add(new TextComponentString(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
+                    .locName()));
+            tooltip.add(new TextComponentString(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
+                    .locName()));
 
         }
 

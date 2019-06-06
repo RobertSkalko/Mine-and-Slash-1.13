@@ -30,7 +30,7 @@ public class AllowMobSpawnsInMap {
             if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
                 if (en instanceof EntitySlime) {
-
+                    return;
                     // no
                 } else {
                     if (EntityTypeUtils.isMob(en)) {

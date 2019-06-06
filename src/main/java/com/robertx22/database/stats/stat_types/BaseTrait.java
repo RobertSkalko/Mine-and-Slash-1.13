@@ -33,6 +33,11 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
     }
 
     @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
+    @Override
     public void CalcVal(StatData data, EntityData.UnitData Source) {
 
         if (data.Flat > 0) {

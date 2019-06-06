@@ -25,6 +25,11 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
 
     }
 
+    @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
     public String GUID;
     public Elements fromElement;
     public Elements toElement;
