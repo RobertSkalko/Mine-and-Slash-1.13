@@ -6,6 +6,8 @@ import com.robertx22.db_lists.Stats;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
+import java.text.DecimalFormat;
+
 @Storable
 public class StatData {
 
@@ -46,6 +48,24 @@ public class StatData {
         Flat = 0;
         Percent = 0;
         Multi = 0;
+
+    }
+
+    public String formattedValue() {
+
+        float val = Value;
+
+        DecimalFormat format = new DecimalFormat();
+
+        if (Math.abs(val) < 10) {
+            format.setMaximumFractionDigits(1);
+
+            return format.format(val);
+
+        } else {
+            int intval = (int) val;
+            return intval + "";
+        }
 
     }
 

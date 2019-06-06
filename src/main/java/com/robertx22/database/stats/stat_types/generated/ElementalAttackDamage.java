@@ -12,6 +12,11 @@ import java.util.List;
 
 public class ElementalAttackDamage extends ElementalStat implements IStatEffects {
 
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.EleAttackDamage;
+    }
+
     public ElementalAttackDamage(Elements element) {
         super(element);
     }

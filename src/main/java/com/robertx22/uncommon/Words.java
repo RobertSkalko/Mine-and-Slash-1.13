@@ -4,7 +4,10 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
-
+    Penetration("Penetration"),
+    Core_Stat("Core Stat"),
+    Elemental_Attack_Damage("Elemental Attack Damage"),
+    Main("Main"),
     Activation_Time("Activation Time"),
     Affixes_Affecting_All("Affixes Affecting All"),
     Animal("Animal"),

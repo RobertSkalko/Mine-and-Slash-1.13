@@ -1,5 +1,6 @@
 package com.robertx22;
 
+import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.Ref;
@@ -8,22 +9,26 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IInteractionObject;
 
-import javax.annotation.Nullable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StatGUI extends GuiScreen implements IInteractionObject {
+public class StatGUI extends GuiScreen {
+
+    EntityData.UnitData data;
+
+    public StatGUI() {
+        data = Load.Unit(mc.player);
+        genStatList();
+
+    }
 
     public static final String ID = Ref.MODID + ":stats_screen_gui";
 
@@ -78,28 +83,36 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
         return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
-    Stat.StatGroup statgroup = Stat.StatGroup.Misc;
-
+    Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
+
+    List<Stat> statlist = new ArrayList<>();
 
     private int renderStats() {
 
-        EntityData.UnitData data = Load.Unit(mc.player);
-
         List<String> list = new ArrayList<>();
 
-        list.add(this.statgroup.name() + ": ");
+        list.add("");
+        list.add(this.statgroup.word.translate() + ": ");
         list.add("");
 
-        for (Stat stat : Stats.All.values()
-                .stream()
-                .filter(x -> x.IsShownOnTooltip() && x.statGroup().equals(statgroup))
-                .collect(Collectors.toList())) {
+        for (Stat stat : statlist) {
 
-            String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID()).Value;
+            String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
+                    .formattedValue();
 
             if (stat.IsPercent()) {
                 str += '%';
+            }
+
+            if (stat instanceof IUsableStat) {
+                IUsableStat usable = (IUsableStat) stat;
+
+                String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
+                        .getUnit().MyStats.get(stat.GUID()).Value) * 100);
+
+                str += " (" + value + "%)";
+
             }
 
             list.add(str);
@@ -110,19 +123,39 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
 
         int added = 0;
 
+        int heightAdd = this.fontRenderer.FONT_HEIGHT + 1;
+
         for (int i = currentElement; i < list.size(); i++) {
-            if (i > 0 && i < list.size() - 1) {
+            if (i > 0) { // or scrolling crashes
                 String str = list.get(i);
 
                 if (added < this.sizeY - 50) {
-                    this.drawString(mc.fontRenderer, str, x, y, TextFormatting.YELLOW.getColor());
-                    y += this.fontRenderer.FONT_HEIGHT + 1;
-                    added += this.fontRenderer.FONT_HEIGHT + 1;
+                    this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GOLD.getColor());
+                    y += heightAdd;
+                    added += heightAdd;
+
                 }
             }
+
         }
 
         return list.size();
+
+    }
+
+    public static String formattedValue(float val) {
+
+        DecimalFormat format = new DecimalFormat();
+
+        if (Math.abs(val) < 10) {
+            format.setMaximumFractionDigits(1);
+
+            return format.format(val);
+
+        } else {
+            int intval = (int) val;
+            return intval + "";
+        }
 
     }
 
@@ -130,39 +163,25 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
     public boolean mouseScrolled(double pMouseScrolled1) {
         this.currentElement -= pMouseScrolled1;
         this.currentElement = MathHelper.clamp(currentElement, 0, renderStats());
+
         return true;
 
     }
 
-    @Override
-    public Container createContainer(InventoryPlayer playerInventory,
-                                     EntityPlayer playerIn) {
-        return new Container() {
-            @Override
-            public boolean canInteractWith(EntityPlayer playerIn) {
-                return true;
-            }
-        };
+    void genStatList() {
+        this.statlist = Stats.All.values()
+                .stream()
+                .filter(stat -> stat.IsShownOnTooltip() && stat.statGroup()
+                        .equals(statgroup))
+                .collect(Collectors.toList());
+
+        Collections.sort(statlist, Comparator.comparing(stat -> stat.GUID()));
+
     }
 
     @Override
-    public String getGuiID() {
-        return ID;
-    }
-
-    @Override
-    public ITextComponent getName() {
-        return new TextComponentString("Stats Screen");
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return false;
-    }
-
-    @Override
-    public boolean mouseClicked(double X, double Y, int p_mouseClicked_5_) {
-        if (super.mouseClicked(X, Y, p_mouseClicked_5_)) {
+    public boolean mouseClicked(double X, double Y, int idk) {
+        if (super.mouseClicked(X, Y, idk)) {
             return true;
         } else {
             // my stuff
@@ -173,7 +192,10 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
                 int y = group.Y + this.getGUIStartY();
 
                 if (isInRect(x, y, group.width, group.height, (int) X, (int) Y)) {
+
+                    this.currentElement = 0;
                     this.statgroup = group;
+                    genStatList();
                 }
 
             }
@@ -182,9 +204,4 @@ public class StatGUI extends GuiScreen implements IInteractionObject {
         }
     }
 
-    @Nullable
-    @Override
-    public ITextComponent getCustomName() {
-        return new TextComponentString("Stats Screen");
-    }
 }

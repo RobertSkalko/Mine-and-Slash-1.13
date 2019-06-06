@@ -170,19 +170,22 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     // 7
     public enum StatGroup {
-        Main(0),
-        Misc(10),
-        CoreStat(6),
-        SpellDamage(3),
-        EleAttackDamage(2),
-        Defenses(4),
-        Penetration(7),
-        Damage(1),
-        Regeneration(8);
+        Main(Words.Main, 0),
+        Misc(Words.Misc, 10),
+        CoreStat(Words.Core_Stat, 6),
+        SpellDamage(Words.Spell_Damage, 3),
+        EleAttackDamage(Words.Elemental_Attack_Damage, 2),
+        Defenses(Words.Defenses, 4),
+        Penetration(Words.Penetration, 7),
+        Damage(Words.Damage, 1),
+        Regeneration(Words.Regeneration, 8);
 
-        StatGroup(int place) {
+        StatGroup(Words word, int place) {
             this.place = place;
+            this.word = word;
         }
+
+        public Words word;
 
         public final int width = 18;
         public final int height = 18;
