@@ -51,7 +51,7 @@ public class UniqueItemRegister {
         add(new HelmetWisdom());
         add(new ShieldWisdom());
 
-        add(new ShieldElemental(Elements.None));
+        add(new ShieldElemental(Elements.Physical));
 
         add(new ShieldEleResist());
         // bows

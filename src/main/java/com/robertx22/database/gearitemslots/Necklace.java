@@ -28,7 +28,7 @@ public class Necklace extends GearItemSlot {
     @Override
     public List<StatMod> PossibleSecondaryStats() {
 
-        return new ElementalResistFlat(Elements.None).allSingleElementVariations();
+        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
 
     }
 

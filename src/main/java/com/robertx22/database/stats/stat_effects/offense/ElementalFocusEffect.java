@@ -29,7 +29,7 @@ public class ElementalFocusEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.Element != null && dmgeffect.Element != Elements.None) {
+                if (dmgeffect.Element != null && dmgeffect.Element != Elements.Physical) {
 
                     float amount = dmgeffect.Number * data.Value / 100;
 

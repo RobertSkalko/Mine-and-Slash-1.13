@@ -218,24 +218,24 @@ public class StatMods {
     private static List<IGenerated<StatMod>> generated = new ArrayList<IGenerated<StatMod>>() {
         {
             {
-                add(new ElementalConversionFlat(Elements.None, Elements.None));
-                add(new ElementalTransferFlat(Elements.None, Elements.None));
-                add(new ElementalAffinityFlat(Elements.None));
+                add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
+                add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));
+                add(new ElementalAffinityFlat(Elements.Physical));
                 add(new LootTypeBonusFlat(LootType.NormalItem));
                 add(new WeaponDamageFlat(WeaponTypes.None));
                 add(new LessWeaponDamageFlat(WeaponTypes.None));
-                add(new ElementalAttackDamageFlat(Elements.None));
-                add(new AllElementalDamageMulti(Elements.None));
-                add(new ElementalSpellToAttackDMGFlat(Elements.None));
-                add(new ElementalSpellDamagePercent(Elements.None));
-                add(new ElementalSpellDamageFlat(Elements.None));
-                add(new ElementalResistFlat(Elements.None));
-                add(new ElementalSpellDamageMulti(Elements.None));
-                add(new ElementalPeneFlat(Elements.None));
-                add(new ElementalPenePercent(Elements.None));
-                add(new ElementalFocusFlat(Elements.None));
+                add(new ElementalAttackDamageFlat(Elements.Physical));
+                add(new AllElementalDamageMulti(Elements.Physical));
+                add(new ElementalSpellToAttackDMGFlat(Elements.Physical));
+                add(new ElementalSpellDamagePercent(Elements.Physical));
+                add(new ElementalSpellDamageFlat(Elements.Physical));
+                add(new ElementalResistFlat(Elements.Physical));
+                add(new ElementalSpellDamageMulti(Elements.Physical));
+                add(new ElementalPeneFlat(Elements.Physical));
+                add(new ElementalPenePercent(Elements.Physical));
+                add(new ElementalFocusFlat(Elements.Physical));
                 add(new StatDoublePercent(new UnknownStat()));
-                add(new BlockReflectFlat(Elements.None));
+                add(new BlockReflectFlat(Elements.Physical));
 
             }
         }

@@ -22,13 +22,13 @@ public class Bracelet extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return ListUtils.newList(new ElementalSpellDamageFlat(Elements.None).allSingleElementVariations(), new SpellDamageFlat());
+        return ListUtils.newList(new ElementalSpellDamageFlat(Elements.Physical).allSingleElementVariations(), new SpellDamageFlat());
 
     }
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return new ElementalResistFlat(Elements.None).allSingleElementVariations();
+        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }
 
     @Override

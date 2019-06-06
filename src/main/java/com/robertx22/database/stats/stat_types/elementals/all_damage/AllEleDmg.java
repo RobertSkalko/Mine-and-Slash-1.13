@@ -49,6 +49,6 @@ public class AllEleDmg extends Stat implements IStatEffects {
 
     @Override
     public Elements Element() {
-        return Elements.None;
+        return Elements.Physical;
     }
 }

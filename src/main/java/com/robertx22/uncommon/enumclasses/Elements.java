@@ -1,30 +1,36 @@
 package com.robertx22.uncommon.enumclasses;
 
+import net.minecraft.util.text.TextFormatting;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Elements implements IColor {
-    None(0, new RGB(0, 0, 0), false, "Physical"),
-    Fire(1, new RGB(255, 0, 0), true, "Flame"),
-    Water(2, new RGB(0, 128, 255), true, "Frost"),
-    Thunder(3, new RGB(255, 255, 0), true, "Lightning"),
-    Nature(4, new RGB(0, 204, 0), true, "Poison"),
-    Elemental(5, new RGB(0, 0, 0), false, "All");
+    Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GRAY),
+    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED),
+    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.AQUA),
+    Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW),
+    Nature(4, new RGB(0, 204, 0), true, "Poison", TextFormatting.GREEN),
+    Elemental(5, new RGB(0, 0, 0), false, "All", TextFormatting.GOLD);
 
     public boolean isSingleElement = true;
     private RGB color;
 
-    Elements(int i, RGB color, boolean isSingleElement, String dmgname) {
+    Elements(int i, RGB color, boolean isSingleElement, String dmgname,
+             TextFormatting format) {
         this.i = i;
         this.color = color;
         this.isSingleElement = isSingleElement;
         this.dmgName = dmgname;
+        this.format = format;
 
     }
 
     public String dmgName;
     public int i = 0;
+
+    public TextFormatting format;
 
     public static List<Elements> getAllSingleElements() {
 

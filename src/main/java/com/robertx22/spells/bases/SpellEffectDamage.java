@@ -18,7 +18,7 @@ public class SpellEffectDamage extends BaseSpellEffect {
         this.element = el;
     }
 
-    Elements element = Elements.None;
+    Elements element = Elements.Physical;
 
     @Override
     public void Activate(DamageData dmgdata, EntityLivingBase target) {

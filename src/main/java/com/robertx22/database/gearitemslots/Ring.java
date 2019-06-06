@@ -26,7 +26,7 @@ public class Ring extends GearItemSlot {
     @Override
     public List<StatMod> PrimaryStats() {
 
-        return ListUtils.newList(new ElementalSpellDamageFlat(Elements.None).allSingleElementVariations(), new SpellDamageFlat());
+        return ListUtils.newList(new ElementalSpellDamageFlat(Elements.Physical).allSingleElementVariations(), new SpellDamageFlat());
 
     }
 

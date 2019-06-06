@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class MyDamageSource extends EntityDamageSource {
 
-    public Elements element = Elements.None;
+    public Elements element = Elements.Physical;
     public int realDamage = 0;
 
     public MyDamageSource(String damageTypeIn, Entity source, Elements element, int dmg) {

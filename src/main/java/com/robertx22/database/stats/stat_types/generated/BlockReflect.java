@@ -51,7 +51,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Elements> elements = Elements.getAllSingleElements();
-        elements.add(Elements.None);
+        elements.add(Elements.Physical);
         List<Stat> list = new ArrayList<>();
         elements.forEach(x -> list.add(newGeneratedInstance(x)));
         return list;

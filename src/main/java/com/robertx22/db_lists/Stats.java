@@ -3,7 +3,10 @@ package com.robertx22.db_lists;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.database.stats.stat_types.core_stats.*;
-import com.robertx22.database.stats.stat_types.defense.*;
+import com.robertx22.database.stats.stat_types.defense.Armor;
+import com.robertx22.database.stats.stat_types.defense.BlockStrength;
+import com.robertx22.database.stats.stat_types.defense.Dodge;
+import com.robertx22.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.database.stats.stat_types.generated.*;
@@ -173,19 +176,19 @@ public class Stats {
     private static List<IGenerated<Stat>> generated = new ArrayList<IGenerated<Stat>>() {
         {
             {
-                add(new ElementalConversion(Elements.None, Elements.None));
-                add(new ElementalTransfer(Elements.None, Elements.None));
-                add(new ElementalAffinity(Elements.None));
+                add(new ElementalConversion(Elements.Physical, Elements.Physical));
+                add(new ElementalTransfer(Elements.Physical, Elements.Physical));
+                add(new ElementalAffinity(Elements.Physical));
                 add(new LootTypeBonusFlat(LootType.NormalItem));
                 add(new WeaponDamage(WeaponTypes.None));
-                add(new ElementalAttackDamage(Elements.None));
-                add(new ElementalSpellToAttackDMG(Elements.None));
-                add(new AllElementalDamage(Elements.None));
-                add(new ElementalSpellDamage(Elements.None));
-                add(new ElementalResist(Elements.None));
-                add(new ElementalPene(Elements.None));
-                add(new ElementalFocus(Elements.None));
-                add(new BlockReflect(Elements.None));
+                add(new ElementalAttackDamage(Elements.Physical));
+                add(new ElementalSpellToAttackDMG(Elements.Physical));
+                add(new AllElementalDamage(Elements.Physical));
+                add(new ElementalSpellDamage(Elements.Physical));
+                add(new ElementalResist(Elements.Physical));
+                add(new ElementalPene(Elements.Physical));
+                add(new ElementalFocus(Elements.Physical));
+                add(new BlockReflect(Elements.Physical));
 
             }
         }

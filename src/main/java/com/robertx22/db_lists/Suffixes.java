@@ -74,7 +74,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
         {
             {
 
-                add(new OfMajorAffinity(Elements.None));
+                add(new OfMajorAffinity(Elements.Physical));
                 add(new OfWeaponFlurry(WeaponTypes.None));
 
             }

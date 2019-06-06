@@ -97,7 +97,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<IElementalGenerated<Prefix>> allGenerated = new ArrayList<IElementalGenerated<Prefix>>() {
         {
             {
-                add(new ElementThornsMastery(Elements.None));
+                add(new ElementThornsMastery(Elements.Physical));
 
             }
         }

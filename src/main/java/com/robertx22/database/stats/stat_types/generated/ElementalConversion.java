@@ -45,9 +45,9 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
         List<Stat> stats = new ArrayList<>();
 
         for (Elements from : Elements.getAllSingleElements()) {
-            if (from != Elements.None) {
+            if (from != Elements.Physical) {
                 for (Elements to : Elements.getAllSingleElements()) {
-                    if (to != Elements.None && to != from) {
+                    if (to != Elements.Physical && to != from) {
                         ElementalConversion stat = new ElementalConversion(from, to);
                         stats.add(stat);
                     }

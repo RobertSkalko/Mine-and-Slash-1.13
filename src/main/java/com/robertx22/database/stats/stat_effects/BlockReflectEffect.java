@@ -13,7 +13,7 @@ import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class BlockReflectEffect implements IStatEffect {
 
-    public Elements element = Elements.None;
+    public Elements element = Elements.Physical;
 
     public BlockReflectEffect(Elements element) {
         this.element = element;

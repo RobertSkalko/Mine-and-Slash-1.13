@@ -35,7 +35,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
 
     public static String DmgSourceName = Ref.MODID + ".custom_damage";
-    public Elements Element = Elements.None;
+    public Elements Element = Elements.Physical;
     public int ArmorPene;
     public int ElementalPene;
 
@@ -204,21 +204,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         String str = " " + num + " " + Words.Damage.translate() + " ";
 
-        if (Element == null || Element.equals(Elements.None)) {
-            str = TextFormatting.GRAY + str;
-        } else {
-            if (Element.equals(Elements.Fire)) {
-                str = TextFormatting.RED + str;
-            }
-            if (Element.equals(Elements.Water)) {
-                str = TextFormatting.BLUE + str;
-            }
-            if (Element.equals(Elements.Thunder)) {
-                str = TextFormatting.YELLOW + str;
-            }
-            if (Element.equals(Elements.Nature)) {
-                str = TextFormatting.GREEN + str;
-            }
+        if (Element != null) {
+            str = Element.format + str;
+
         }
 
         return str;

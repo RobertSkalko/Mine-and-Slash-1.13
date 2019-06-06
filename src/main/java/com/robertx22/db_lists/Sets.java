@@ -69,7 +69,7 @@ public class Sets implements IRandomDefault<Set> {
     private static List<IGenerated<Set>> generated = new ArrayList<IGenerated<Set>>() {
         {
             {
-                add(new AscensionOfElement(Elements.None));
+                add(new AscensionOfElement(Elements.Physical));
 
             }
         }

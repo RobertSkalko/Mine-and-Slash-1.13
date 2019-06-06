@@ -29,17 +29,17 @@ public class AttackInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> weaponInfusions() {
-        return ListUtils.newList(new ElementalSpellToAttackDMGFlat(Elements.None).allSingleElementVariations(), new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent());
+        return ListUtils.newList(new ElementalSpellToAttackDMGFlat(Elements.Physical).allSingleElementVariations(), new CriticalHitFlat(), new CriticalDamageFlat(), new PhysicalDamagePercent());
     }
 
     @Override
     public List<StatMod> armorInfusions() {
-        return ListUtils.newList(new ElementalSpellDamagePercent(Elements.None).allSingleElementVariations(), new PhysicalDamagePercent());
+        return ListUtils.newList(new ElementalSpellDamagePercent(Elements.Physical).allSingleElementVariations(), new PhysicalDamagePercent());
     }
 
     @Override
     public List<StatMod> jewerlyInfusions() {
-        return new ElementalResistFlat(Elements.None).allSingleElementVariations();
+        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }
 
     @Override

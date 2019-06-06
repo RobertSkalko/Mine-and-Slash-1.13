@@ -25,7 +25,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
 
     @Override
     public Elements Element() {
-        return Elements.None;
+        return Elements.Physical;
     }
 
     public int Weight() {

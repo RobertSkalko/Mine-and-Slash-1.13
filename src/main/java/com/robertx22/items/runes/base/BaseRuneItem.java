@@ -178,27 +178,27 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     public List<StatMod> spellDamageFlats() {
-        return allElements(new ElementalSpellDamageFlat(Elements.None));
+        return allElements(new ElementalSpellDamageFlat(Elements.Physical));
     }
 
     public List<StatMod> spellDamageMultis() {
-        return allElements(new ElementalSpellDamageMulti(Elements.None));
+        return allElements(new ElementalSpellDamageMulti(Elements.Physical));
     }
 
     public List<StatMod> resistFlats() {
-        return allElements(new ElementalResistFlat(Elements.None));
+        return allElements(new ElementalResistFlat(Elements.Physical));
     }
 
     public List<StatMod> peneFlats() {
-        return allElements(new ElementalPeneFlat(Elements.None));
+        return allElements(new ElementalPeneFlat(Elements.Physical));
     }
 
     public List<StatMod> penePercents() {
-        return allElements(new ElementalPenePercent(Elements.None));
+        return allElements(new ElementalPenePercent(Elements.Physical));
     }
 
     public List<StatMod> spellDamagePercents() {
-        return allElements(new ElementalSpellDamagePercent(Elements.None));
+        return allElements(new ElementalSpellDamagePercent(Elements.Physical));
     }
 
 }

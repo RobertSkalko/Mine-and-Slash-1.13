@@ -40,7 +40,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
 
     @Override
     public Elements Element() {
-        return Elements.None;
+        return Elements.Physical;
     }
 
     @Override
