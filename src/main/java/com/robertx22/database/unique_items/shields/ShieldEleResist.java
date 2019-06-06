@@ -25,7 +25,7 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new BlockStrengthFlat(), new ElementalResistFlat(Elements.All), new VitalityFlat()
+        return Arrays.asList(new BlockStrengthFlat(), new ElementalResistFlat(Elements.Elemental), new VitalityFlat()
                 .multi(2), new StaminaFlat().multi(1.5F));
     }
 

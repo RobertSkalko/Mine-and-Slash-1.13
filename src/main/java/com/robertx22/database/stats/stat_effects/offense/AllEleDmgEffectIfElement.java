@@ -30,7 +30,7 @@ public class AllEleDmgEffectIfElement implements IStatEffect {
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
                 if (dmgeffect.Element.equals(stat.Element()) || stat.Element()
-                        .equals(Elements.All)) {
+                        .equals(Elements.Elemental)) {
 
                     dmgeffect.Number *= data.getMultiplier();
 

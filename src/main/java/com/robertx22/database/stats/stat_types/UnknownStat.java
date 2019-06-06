@@ -11,6 +11,11 @@ public class UnknownStat extends Stat {
     }
 
     @Override
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "";
     }

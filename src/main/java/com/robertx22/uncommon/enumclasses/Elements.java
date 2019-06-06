@@ -10,7 +10,7 @@ public enum Elements implements IColor {
     Water(2, new RGB(0, 128, 255), true, "Frost"),
     Thunder(3, new RGB(255, 255, 0), true, "Lightning"),
     Nature(4, new RGB(0, 204, 0), true, "Poison"),
-    All(5, new RGB(0, 0, 0), false, "All");
+    Elemental(5, new RGB(0, 0, 0), false, "All");
 
     public boolean isSingleElement = true;
     private RGB color;
@@ -37,7 +37,7 @@ public enum Elements implements IColor {
     public static List<Elements> getAllExceptNone() {
 
         return Arrays.stream(Elements.values())
-                .filter(x -> x.isSingleElement || x == Elements.All)
+                .filter(x -> x.isSingleElement || x == Elements.Elemental)
                 .collect(Collectors.toList());
 
     }

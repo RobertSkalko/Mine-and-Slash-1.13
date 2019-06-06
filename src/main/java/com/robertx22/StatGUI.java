@@ -14,10 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StatGUI extends GuiScreen {
@@ -84,9 +81,7 @@ public class StatGUI extends GuiScreen {
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
 
-    List<Stat> statlist = new ArrayList<>();
-
-    private int renderStats() {
+    private List<String> getList() {
 
         EntityData.UnitData data = Load.Unit(mc.player);
 
@@ -96,28 +91,42 @@ public class StatGUI extends GuiScreen {
         list.add(this.statgroup.word.translate() + ": ");
         list.add("");
 
-        for (Stat stat : statlist) {
+        for (Map.Entry<String, List<Stat>> entry : statmap.entrySet()) {
+            for (Stat stat : entry.getValue()) {
 
-            String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
-                    .formattedValue();
+                String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
+                        .formattedValue();
 
-            if (stat.IsPercent()) {
-                str += '%';
+                if (stat.IsPercent()) {
+                    str += '%';
+                }
+
+                if (stat instanceof IUsableStat) {
+                    IUsableStat usable = (IUsableStat) stat;
+
+                    String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
+                            .getUnit().MyStats.get(stat.GUID()).Value) * 100);
+
+                    str += " (" + value + "%)";
+
+                }
+
+                list.add(str);
+
             }
-
-            if (stat instanceof IUsableStat) {
-                IUsableStat usable = (IUsableStat) stat;
-
-                String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
-                        .getUnit().MyStats.get(stat.GUID()).Value) * 100);
-
-                str += " (" + value + "%)";
-
+            if (list.size() > 0) {
+                list.add("");
             }
-
-            list.add(str);
-
         }
+
+        return list;
+
+    }
+
+    private int renderStats() {
+
+        List<String> list = getList();
+
         int x = this.getTextStartX();
         int y = this.getTextStartY();
 
@@ -168,14 +177,34 @@ public class StatGUI extends GuiScreen {
 
     }
 
+    HashMap<String, List<Stat>> statmap = new HashMap<>();
+
     void genStatList() {
-        this.statlist = Stats.All.values()
+
+        this.statmap = new HashMap<>();
+
+        List<Stat> statlist = Stats.All.values()
                 .stream()
                 .filter(stat -> stat.IsShownOnTooltip() && stat.statGroup()
                         .equals(statgroup))
                 .collect(Collectors.toList());
 
         Collections.sort(statlist, Comparator.comparing(stat -> stat.GUID()));
+
+        List<Stat> misc = new ArrayList<>();
+
+        for (Stat stat : statlist) {
+            List<Stat> same = statlist.stream()
+                    .filter(x -> x.getClass() == stat.getClass())
+                    .collect(Collectors.toList());
+
+            if (same.size() > 1) {
+                statmap.put(stat.getClass().getName(), same);
+            } else {
+                misc.add(stat);
+            }
+        }
+        statmap.put("misc", misc);
 
     }
 

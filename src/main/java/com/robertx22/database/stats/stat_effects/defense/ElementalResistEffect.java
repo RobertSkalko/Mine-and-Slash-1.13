@@ -33,7 +33,7 @@ public class ElementalResistEffect implements IStatEffect {
                 IElementalEffect ele = (IElementalEffect) Effect;
 
                 if (ele.GetElement().equals(stat.Element()) || stat.Element()
-                        .equals(Elements.All)) {
+                        .equals(Elements.Elemental)) {
 
                     int pene = 0;
 

@@ -24,7 +24,7 @@ public class ElementalEssence extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new ElementalResistFlat(Elements.All));
+                    put(2, new ElementalResistFlat(Elements.Elemental));
                     put(3, new AllEleSpellDmgFlat());
 
                 }

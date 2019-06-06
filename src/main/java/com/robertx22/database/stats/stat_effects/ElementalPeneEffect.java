@@ -30,7 +30,7 @@ public class ElementalPeneEffect implements IStatEffect {
                 IElementalEffect ele = (IElementalEffect) Effect;
 
                 if (ele.GetElement().equals(stat.Element()) || stat.Element()
-                        .equals(Elements.All)) {
+                        .equals(Elements.Elemental)) {
                     IElementalPenetrable ipene = (IElementalPenetrable) Effect;
                     ipene.addElementalPenetration((int) data.Value);
                 }

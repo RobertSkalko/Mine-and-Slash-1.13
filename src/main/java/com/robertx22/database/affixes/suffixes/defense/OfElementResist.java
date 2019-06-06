@@ -24,7 +24,7 @@ public class OfElementResist extends Suffix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new ElementalResistFlat(Elements.All));
+        return Arrays.asList(new ElementalResistFlat(Elements.Elemental));
 
     }
 

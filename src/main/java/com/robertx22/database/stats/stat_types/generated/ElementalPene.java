@@ -23,6 +23,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
+
         return new ElementalPene(element);
     }
 
