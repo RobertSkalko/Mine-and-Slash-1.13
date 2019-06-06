@@ -18,7 +18,7 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.AttackDamage;
+        return StatGroup.EleAttackDamage;
     }
 
     @Override

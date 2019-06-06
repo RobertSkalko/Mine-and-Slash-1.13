@@ -292,8 +292,8 @@ public class HealthBarRenderer {
         }
     }
 
-    private static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU,
-                                   int intV) {
+    public static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU,
+                                  int intV) {
         try {
             Minecraft mc = Minecraft.getInstance();
             IBakedModel iBakedModel = mc.getItemRenderer()

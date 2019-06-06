@@ -173,11 +173,16 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         Misc,
         CoreStat,
         SpellDamage,
-        AttackDamage,
+        EleAttackDamage,
         Defenses,
         Penetration,
         Damage,
-        Regeneration
+        Regeneration;
+
+        public StatGroup()
+
+        public int Y = 8;
+        public int X;
     }
 
 }
