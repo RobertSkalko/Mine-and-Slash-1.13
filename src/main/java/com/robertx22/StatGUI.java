@@ -56,8 +56,6 @@ public class StatGUI extends GuiScreen {
         drawTexturedModalRect(mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, mc.mainWindow
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
 
-        //GlStateManager.scalef(textScale, textScale, textScale);
-
         renderStats();
 
     }

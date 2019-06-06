@@ -170,14 +170,14 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     public enum StatGroup {
         Main(Words.Main, 0),
-        Misc(Words.Misc, 10),
-        CoreStat(Words.Core_Stat, 6),
+        Misc(Words.Misc, 8),
+        CoreStat(Words.Core_Stat, 5),
         SpellDamage(Words.Spell_Damage, 3),
         EleAttackDamage(Words.Elemental_Attack_Damage, 2),
         Defenses(Words.Defenses, 4),
-        Penetration(Words.Penetration, 7),
+        Penetration(Words.Penetration, 6),
         Damage(Words.Damage, 1),
-        Regeneration(Words.Regeneration, 8);
+        Regeneration(Words.Regeneration, 7);
 
         StatGroup(Words word, int place) {
             this.place = place;
@@ -194,7 +194,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         public final int Y = 8;
 
         public int X() {
-            return 7 + width * place;
+            return 25 + width * place;
         }
     }
 
