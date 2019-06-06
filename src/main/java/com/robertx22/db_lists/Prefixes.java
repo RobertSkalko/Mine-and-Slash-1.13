@@ -22,6 +22,7 @@ import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.db_lists.bases.IRandomDefault;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IElementalGenerated;
 
 import java.util.ArrayList;
@@ -96,6 +97,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<IElementalGenerated<Prefix>> allGenerated = new ArrayList<IElementalGenerated<Prefix>>() {
         {
             {
+                add(new ElementThornsMastery(Elements.None));
 
             }
         }

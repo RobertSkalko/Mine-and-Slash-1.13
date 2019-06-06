@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.registers.common;
 
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.world_gen.configs.MyChanceConfig;
 import com.robertx22.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.world_gen.placements.AtSurfaceChancePlacement;
@@ -13,6 +14,8 @@ import net.minecraft.world.gen.placement.BasePlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.stream.Collectors;
+
 public class WorldGenRegisters {
 
     public static final float SMALL_DECO_CHANCE = 1F;
@@ -25,8 +28,16 @@ public class WorldGenRegisters {
 
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
-            add(biome, randomSurfaceChest);
-            add(biome, smallRandomSurfaceDecoration);
+            // only register world gen where it can actually be used
+            if (WorldProviders.All.values()
+                    .stream()
+                    .filter(iwp -> iwp.getBiome().equals(biome))
+                    .collect(Collectors.toList())
+                    .size() > 0) {
+
+                add(biome, randomSurfaceChest);
+                add(biome, smallRandomSurfaceDecoration);
+            }
         }
 
         // biome.addStructure(new BigWoodPillar(), IFeatureConfig.NO_FEATURE_CONFIG);
