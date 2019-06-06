@@ -24,7 +24,7 @@ public class HelmetWisdom extends BaseUniqueHelmet {
 
     @Override
     public int Tier() {
-        return 16;
+        return 12;
     }
 
     @Override

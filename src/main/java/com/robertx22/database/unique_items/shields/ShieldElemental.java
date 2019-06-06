@@ -44,8 +44,13 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
     }
 
     @Override
+    public int Weight() {
+        return EpicWeight;
+    }
+
+    @Override
     public int Tier() {
-        return 5;
+        return 8;
     }
 
     @Override

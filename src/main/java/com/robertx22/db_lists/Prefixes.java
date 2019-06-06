@@ -1,10 +1,7 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Prefix;
-import com.robertx22.database.affixes.prefixes.defense.Evasive;
-import com.robertx22.database.affixes.prefixes.defense.Gatekeepers;
-import com.robertx22.database.affixes.prefixes.defense.Hardened;
-import com.robertx22.database.affixes.prefixes.defense.HeavenlySkin;
+import com.robertx22.database.affixes.prefixes.defense.*;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixFireRes;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixNatureRes;
 import com.robertx22.database.affixes.prefixes.defense.element.PrefixThunderRes;
@@ -23,6 +20,7 @@ import com.robertx22.database.affixes.prefixes.resource.Wise;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
+import com.robertx22.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.db_lists.bases.IRandomDefault;
 import com.robertx22.uncommon.interfaces.IElementalGenerated;
 
@@ -37,6 +35,10 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
         {
             {
+
+                add(new Heros());
+                add(new Defenders());
+
                 add(new Looters());
                 add(new Archaeologists());
                 add(new TreasureSeeker());

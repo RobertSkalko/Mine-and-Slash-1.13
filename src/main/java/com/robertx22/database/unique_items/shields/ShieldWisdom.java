@@ -44,7 +44,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public int Tier() {
-        return 15;
+        return 12;
     }
 }
 

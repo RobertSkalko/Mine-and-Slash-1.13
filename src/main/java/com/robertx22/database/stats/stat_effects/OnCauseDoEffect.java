@@ -29,8 +29,8 @@ public class OnCauseDoEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.Last.priority;
-    }
+        return Priority.Last.priority + 1;
+    } // TODO might be problematic
 
     @Override
     public EffectSides Side() {
