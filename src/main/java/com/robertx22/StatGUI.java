@@ -2,11 +2,11 @@ package com.robertx22;
 
 import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
@@ -50,9 +50,8 @@ public class StatGUI extends GuiScreen {
 
         this.drawDefaultBackground();
 
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        mc.getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
         drawTexturedModalRect(mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, mc.mainWindow
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
 
@@ -72,7 +71,7 @@ public class StatGUI extends GuiScreen {
 
     private int getTextStartX() {
 
-        return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2 + 15);
+        return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2 + 35);
     }
 
     private int getTextStartY() {
@@ -80,67 +79,81 @@ public class StatGUI extends GuiScreen {
         return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
-    private List<String> getList() {
+    private String getStatString(Stat stat, EntityData.UnitData data) {
 
-        EntityData.UnitData data = Load.Unit(mc.player);
+        String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
+                .formattedValue();
 
-        List<String> list = new ArrayList<>();
+        if (stat.IsPercent()) {
+            str += '%';
+        }
 
-        list.add("");
-        list.add(this.statgroup.word.translate() + ": ");
-        list.add("");
+        if (stat instanceof IUsableStat) {
+            IUsableStat usable = (IUsableStat) stat;
+
+            String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
+                    .getUnit().MyStats.get(stat.GUID()).Value) * 100);
+
+            str += " (" + value + "%)";
+
+        }
+        return str;
+
+    }
+
+    private List<Stat> getList() {
+
+        List<Stat> list = new ArrayList<>();
 
         for (Map.Entry<String, List<Stat>> entry : statmap.entrySet()) {
             for (Stat stat : entry.getValue()) {
-
-                String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
-                        .formattedValue();
-
-                if (stat.IsPercent()) {
-                    str += '%';
-                }
-
-                if (stat instanceof IUsableStat) {
-                    IUsableStat usable = (IUsableStat) stat;
-
-                    String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
-                            .getUnit().MyStats.get(stat.GUID()).Value) * 100);
-
-                    str += " (" + value + "%)";
-
-                }
-
-                list.add(str);
-
+                list.add(stat);
             }
-            if (list.size() > 0) {
-                list.add("");
-            }
+            list.add(new UnknownStat());
         }
 
         return list;
 
     }
 
+    private int drawAndIncreaseSpacing(int x, int y, String str) {
+        this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GOLD.getColor());
+        return this.getHeightSpacing();
+
+    }
+
     private int renderStats() {
 
-        List<String> list = getList();
+        List<Stat> list = getList();
 
         int x = this.getTextStartX();
         int y = this.getTextStartY();
 
         int added = 0;
 
-        int heightAdd = this.fontRenderer.FONT_HEIGHT + 1;
+        added += this.drawAndIncreaseSpacing(x, y + added, this.statgroup.word.translate() + ": ");
+        added += this.drawAndIncreaseSpacing(x, y + added, "");
+
+        EntityData.UnitData data = Load.Unit(mc.player);
 
         for (int i = currentElement; i < list.size(); i++) {
-            if (i > 0) { // or scrolling crashes
-                String str = list.get(i);
+            if (i > -1) { // or scrolling crashes
+
+                if (list.get(i) instanceof UnknownStat) {
+                    added += this.drawAndIncreaseSpacing(x, y + added, "");
+                    continue;
+                }
+
+                Stat stat = list.get(i);
+                String str = this.getStatString(stat, data);
 
                 if (added < this.sizeY - 50) {
-                    this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GOLD.getColor());
-                    y += heightAdd;
-                    added += heightAdd;
+                    // HERE
+                    mc.getTextureManager().bindTexture(stat.statIcon());
+                    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    drawTexturedModalRect(x - 50, y + added, 0, 0, 16, 16);
+
+                    added += this.drawAndIncreaseSpacing(x, y + added, str);
 
                 }
             }
@@ -151,12 +164,8 @@ public class StatGUI extends GuiScreen {
 
     }
 
-    private boolean needsScrolling() {
-        int heightAdd = this.fontRenderer.FONT_HEIGHT + 1;
-        int y = getList().stream().mapToInt(x -> heightAdd).sum();
-
-        return y > this.sizeY - 50;
-
+    private int getHeightSpacing() {
+        return 18;
     }
 
     public static String formattedValue(float val) {
@@ -179,10 +188,6 @@ public class StatGUI extends GuiScreen {
     public boolean mouseScrolled(double pMouseScrolled1) {
         this.currentElement -= pMouseScrolled1;
         this.currentElement = MathHelper.clamp(currentElement, 0, renderStats());
-
-        if (needsScrolling() == false) {
-            this.currentElement = 0;
-        }
 
         return true;
 
