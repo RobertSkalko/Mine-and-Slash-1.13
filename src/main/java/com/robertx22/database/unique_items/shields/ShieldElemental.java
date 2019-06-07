@@ -9,6 +9,7 @@ import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.database.unique_items.bases.BaseUniqueShield;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public String locNameForLangFile() {
-        return "Shield of " + element.dmgName + " Thorns";
+        return TextFormatting.YELLOW + "Shield of " + element.dmgName + " Thorns";
     }
 
     @Override

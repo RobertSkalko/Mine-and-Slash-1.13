@@ -123,6 +123,12 @@ public class StatGUI extends GuiScreen {
 
     }
 
+    private int drawTitleAndIncreaseSpacing(int x, int y, String str) {
+        this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GREEN.getColor());
+        return this.getHeightSpacing();
+
+    }
+
     private int renderStats() {
 
         List<Stat> list = getList();
@@ -132,8 +138,8 @@ public class StatGUI extends GuiScreen {
 
         int added = 0;
 
-        added += this.drawAndIncreaseSpacing(x, y + added, this.statgroup.word.translate() + ": ");
-        added += this.drawAndIncreaseSpacing(x, y + added, "");
+        added += this.drawTitleAndIncreaseSpacing(x - 22, y + added, this.statgroup.word.translate() + ": ");
+        added += this.getHeightSpacing() / 3;
 
         EntityData.UnitData data = Load.Unit(mc.player);
 

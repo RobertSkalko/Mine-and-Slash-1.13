@@ -34,7 +34,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public int Weight() {
-        return IWeighted.LegendaryWeight;
+        return IWeighted.EpicWeight;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new ExactUniquesRequierement(new ShieldElemental(element).generateAllPossibleStatVariations()));
+        return new Requirements(new ExactUniquesRequierement(new ShieldElemental(element)));
     }
 
     @Override

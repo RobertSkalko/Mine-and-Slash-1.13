@@ -8,6 +8,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.database.unique_items.bases.BaseUniqueShield;
 import com.robertx22.uncommon.enumclasses.Elements;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
 
     @Override
     public String locNameForLangFile() {
-        return "Shield of Resistance";
+        return TextFormatting.YELLOW + "Shield of Resistance";
     }
 
     @Override

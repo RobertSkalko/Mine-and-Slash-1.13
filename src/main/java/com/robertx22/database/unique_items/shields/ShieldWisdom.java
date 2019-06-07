@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.database.unique_items.bases.BaseUniqueShield;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +35,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public String locNameForLangFile() {
-        return "Wisdom Shield";
+        return TextFormatting.YELLOW + "Wisdom Shield";
     }
 
     @Override
