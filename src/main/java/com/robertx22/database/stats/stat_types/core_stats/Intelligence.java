@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Intelligence extends BaseCoreStat {
+    @Override
+    public int iconSpriteNumber() {
+        return 15;
+    }
 
     @Override
     public String locDescForLangFile() {

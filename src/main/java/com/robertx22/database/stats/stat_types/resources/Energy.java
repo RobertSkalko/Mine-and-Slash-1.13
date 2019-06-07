@@ -7,6 +7,11 @@ public class Energy extends FillableStat {
     public static String GUID = "Energy";
 
     @Override
+    public int iconSpriteNumber() {
+        return 3;
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }

@@ -13,7 +13,6 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -27,14 +26,24 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     public Stat() {
     }
 
-    private static final ResourceLocation icon = getIconLoc("default");
+    // 14 per 14
 
-    public static ResourceLocation getIconLoc(String name) {
-        return new ResourceLocation(Ref.MODID, "textures/items/paidassets/pixeltiers/stat_icons/" + name + ".png");
+    static final int rows = 13;
+    static final int spriteSize = 18;
+
+    public int getSpriteX() {
+        int placeX = this.iconSpriteNumber() % rows;
+        return 1 + placeX * spriteSize;
     }
 
-    public ResourceLocation statIcon() {
-        return icon;
+    public int getSpriteY() {
+        int placeY = this.iconSpriteNumber() / rows;
+
+        return 1 + placeY * spriteSize;
+    }
+
+    public int iconSpriteNumber() {
+        return 0;
     }
 
     @Override

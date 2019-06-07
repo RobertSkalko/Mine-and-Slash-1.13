@@ -11,6 +11,11 @@ import java.util.List;
 public class Dexterity extends BaseCoreStat {
 
     @Override
+    public int iconSpriteNumber() {
+        return 13;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Increases Crit Hit, Dodge and Armor";
     }

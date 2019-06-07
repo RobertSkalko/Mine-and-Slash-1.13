@@ -35,6 +35,7 @@ public class StatGUI extends GuiScreen {
     int sizeX = 215;
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/stats_screen.png");
+    private static final ResourceLocation icons = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons.png");
 
     // Returns true if the given x,y coordinates are within the given rectangle
     public boolean isInRect(int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
@@ -148,10 +149,16 @@ public class StatGUI extends GuiScreen {
                 String str = this.getStatString(stat, data);
 
                 if (added < this.sizeY - 50) {
-                    // HERE
-                    mc.getTextureManager().bindTexture(stat.statIcon());
+
+                    // so i can use icons from spritesheet
+                    mc.getTextureManager()
+                            .deleteTexture(icons); // seems i need to delete and then
+                    mc.getTextureManager()
+                            .bindTexture(icons); // add it or else it wont works
                     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    drawTexturedModalRect(x - 50, y + added, 0, 0, 16, 16);
+
+                    drawTexturedModalRect(x - 22, y + added - this.getHeightSpacing() / 4, stat
+                            .getSpriteX(), stat.getSpriteY(), 16, 16);
 
                     added += this.drawAndIncreaseSpacing(x, y + added, str);
 

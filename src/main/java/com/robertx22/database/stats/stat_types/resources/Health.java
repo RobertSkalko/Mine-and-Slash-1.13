@@ -9,6 +9,11 @@ public class Health extends Stat {
     public static String GUID = "Health";
 
     @Override
+    public int iconSpriteNumber() {
+        return 1;
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }

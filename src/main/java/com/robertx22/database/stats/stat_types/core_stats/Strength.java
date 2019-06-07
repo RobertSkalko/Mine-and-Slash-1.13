@@ -9,6 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Strength extends BaseCoreStat {
+
+    @Override
+    public int iconSpriteNumber() {
+        return 16;
+    }
+
     @Override
     public String locDescForLangFile() {
         return "Increases Physical DMG, Critical DMG, Physical DMG multi";

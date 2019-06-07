@@ -7,6 +7,11 @@ public class Mana extends FillableStat {
     public static String GUID = "Mana";
 
     @Override
+    public int iconSpriteNumber() {
+        return 2;
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }
