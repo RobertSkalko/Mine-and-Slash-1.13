@@ -30,8 +30,10 @@ public class DodgeEffect implements IStatEffect {
                     .equals(EffectTypes.SPELL) == false) {
 
                 if (RandomUtils.roll(data.Value)) {
+                    DamageEffect dmgeffect = (DamageEffect) Effect;
+
                     Effect.number = 0;
-                    Effect.isDodged = true;
+                    dmgeffect.isDodged = true;
                     Effect.canceled = true;
                 }
 

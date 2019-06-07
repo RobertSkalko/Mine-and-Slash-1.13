@@ -30,12 +30,12 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public String locDescForLangFile() {
-        return "Fear no " + element.name();
+        return "Fear no " + element.dmgName;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Shield of " + element.name() + " Thorns";
+        return "Shield of " + element.dmgName + " Thorns";
     }
 
     @Override

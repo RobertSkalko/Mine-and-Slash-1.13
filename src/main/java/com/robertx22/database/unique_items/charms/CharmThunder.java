@@ -1,12 +1,11 @@
 package com.robertx22.database.unique_items.charms;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.generated.ElementalAffinityFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalPenePercent;
-import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
-import com.robertx22.database.stats.stat_mods.percent.offense.CriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -32,7 +31,8 @@ public class CharmThunder extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(), new ElementalPenePercent(Elements.Thunder), new CriticalHitPercent(), new ElementalResistFlat(Elements.Thunder), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(), new ElementalPenePercent(Elements.Thunder), new ElementalAffinityFlat(Elements.Thunder)
+                .multi(0.8F), new CrippleLifeOnHitPercent());
     }
 
     @Override

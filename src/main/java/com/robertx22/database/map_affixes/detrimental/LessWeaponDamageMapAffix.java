@@ -2,7 +2,7 @@ package com.robertx22.database.map_affixes.detrimental;
 
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
+import com.robertx22.database.map_mods.bases.LessWeaponDamageFlat;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -32,7 +32,7 @@ public class LessWeaponDamageMapAffix extends DetrimentalMapAffix implements IGe
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new WeaponDamageFlat(weaponType), percent));
+        return Arrays.asList(StatModData.Load(new LessWeaponDamageFlat(weaponType), percent));
 
     }
 
