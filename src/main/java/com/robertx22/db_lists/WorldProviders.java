@@ -12,13 +12,13 @@ public class WorldProviders {
     public static HashMap<String, BaseWorldProvider> All = new HashMap<String, BaseWorldProvider>() {
         {
             {
-                put(new DesertHillsIWP().GUID(), new DesertHillsIWP());
-                put(new SnowyMountainsIWP().GUID(), new SnowyMountainsIWP());
-                put(new SavannaIWP().GUID(), new SavannaIWP());
-                put(new RockDesertIWP().GUID(), new RockDesertIWP());
-                put(new RockMountainsIWP().GUID(), new RockMountainsIWP());
-                put(new BirchForestIWP().GUID(), new BirchForestIWP());
-                put(new NetherIWP().GUID(), new NetherIWP());
+                put(new DesertHillsIWP(null, null).GUID(), new DesertHillsIWP(null, null));
+                put(new SnowyMountainsIWP(null, null).GUID(), new SnowyMountainsIWP(null, null));
+                put(new SavannaIWP(null, null).GUID(), new SavannaIWP(null, null));
+                put(new RockDesertIWP(null, null).GUID(), new RockDesertIWP(null, null));
+                put(new RockMountainsIWP(null, null).GUID(), new RockMountainsIWP(null, null));
+                put(new BirchForestIWP(null, null).GUID(), new BirchForestIWP(null, null));
+                put(new NetherIWP(null, null).GUID(), new NetherIWP(null, null));
 
             }
 

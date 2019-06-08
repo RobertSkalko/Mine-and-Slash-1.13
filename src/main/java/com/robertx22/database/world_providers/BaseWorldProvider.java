@@ -26,7 +26,7 @@ import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP {
 
@@ -48,7 +48,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         this.moddim = mod;
     }
 
-    public abstract Function<DimensionType, ? extends net.minecraft.world.dimension.Dimension> classFactory();
+    public abstract BiFunction<World, DimensionType, ? extends Dimension> classFactory();
 
     @Override
     public float getBonusLootMulti() {
@@ -59,7 +59,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public ModDimension newModDimension() {
         return new ModDimension() {
             @Override
-            public Function<DimensionType, ? extends Dimension> getFactory() {
+            public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
                 return classFactory();
             }
         };
@@ -152,11 +152,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public int Weight() {
         return UncommonWeight;
 
-    }
-
-    @Override
-    public boolean canDropChunk(int x, int z) {
-        return true;
     }
 
     /**

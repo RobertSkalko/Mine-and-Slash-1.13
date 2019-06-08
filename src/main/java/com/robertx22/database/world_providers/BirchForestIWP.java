@@ -10,7 +10,7 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 import static com.robertx22.db_lists.Templates.bigWoodPillar;
 import static com.robertx22.db_lists.Templates.smallWoodPillar;
@@ -19,7 +19,6 @@ public class BirchForestIWP extends BaseWorldProvider {
 
     public BirchForestIWP(World world, DimensionType type) {
         super(world, type);
-
     }
 
     @Override
@@ -43,7 +42,7 @@ public class BirchForestIWP extends BaseWorldProvider {
     }
 
     @Override
-    public Function<DimensionType, ? extends Dimension> classFactory() {
+    public BiFunction<World, DimensionType, ? extends Dimension> classFactory() {
         return BirchForestIWP::new;
     }
 

@@ -3,23 +3,20 @@ package com.robertx22.database.world_providers;
 import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
 import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 public class NetherIWP extends BaseWorldProvider {
 
-    public NetherIWP() {
-        super();
-    }
-
-    public NetherIWP(DimensionType type) {
-        super(type);
+    public NetherIWP(World world, DimensionType type) {
+        super(world, type);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class NetherIWP extends BaseWorldProvider {
     }
 
     @Override
-    public Function<DimensionType, ? extends Dimension> classFactory() {
+    public BiFunction<World, DimensionType, ? extends Dimension> classFactory() {
         return NetherIWP::new;
     }
 
