@@ -2,8 +2,9 @@ package com.robertx22.blocks.map_device;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,7 +33,15 @@ public class ContainerMap extends Container {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
-    public ContainerMap(PlayerInventory invPlayer, TileMap tile) {
+    public static final ContainerType<ContainerMap> TYPE = new ContainerType<>(ContainerMap::new);
+
+    private ContainerMap(int i, PlayerInventory playerInventory) {
+        super(TYPE, i);
+    }
+
+    public ContainerMap(int num, PlayerInventory invPlayer, TileMap tile) {
+        super(TYPE, num);
+
         this.tile = tile;
 
         final int SLOT_X_SPACING = 18;

@@ -2,12 +2,14 @@ package com.robertx22.blocks.item_modify_station;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
+import com.robertx22.blocks.gear_factory_station.ContainerGearFactory;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,15 +24,15 @@ public class GuiInventoryModify extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
     private TileInventoryModify tileEntity;
 
-    public GuiInventoryModify(PlayerInventory invPlayer,
-                              TileInventoryModify tileInventory) {
-        super(new ContainerInventoryModify(invPlayer, tileInventory));
+    public GuiInventoryModify(ContainerGearFactory cont, PlayerInventory invPlayer,
+                              TileInventoryModify tile) {
+        super(cont, invPlayer, new StringTextComponent("Modify"));
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tileInventory;
+        this.tileEntity = tile;
     }
 
     // some [x,y] coordinates of graphical elements

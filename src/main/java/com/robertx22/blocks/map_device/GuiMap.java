@@ -8,6 +8,7 @@ import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -20,14 +21,14 @@ public class GuiMap extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
     private TileMap tileEntity;
 
-    public GuiMap(PlayerInventory invPlayer, TileMap tileInventory) {
-        super(new ContainerMap(invPlayer, tileInventory));
+    public GuiMap(ContainerMap cont, PlayerInventory invPlayer, TileMap tile) {
+        super(cont, invPlayer, new StringTextComponent("Factory"));
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tileInventory;
+        this.tileEntity = tile;
     }
 
     @Override

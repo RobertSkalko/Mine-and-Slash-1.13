@@ -8,14 +8,17 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Map;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Items;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
+
+import javax.annotation.Nullable;
 
 public class TileMap extends BaseTile {
     @Override
@@ -80,7 +83,7 @@ public class TileMap extends BaseTile {
                 BlockPos p = this.pos;
 
                 PlayerEntity player = this.getWorld()
-                        .getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, false);
+                        .getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, EntityPredicates.IS_ALIVE);
 
                 if (player != null) {
 
@@ -133,39 +136,15 @@ public class TileMap extends BaseTile {
     }
 
     @Override
-    public boolean hasCustomName() {
-        return false;
-    }
-
-    @Override
-    public int getField(int id) {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {
-
-    }
-
-    @Override
-    public int getFieldCount() {
-        return 0;
-    }
-
-    @Override
-    public ITextComponent getName() {
+    public ITextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.map_device");
+
     }
 
+    @Nullable
     @Override
-    public Container createContainer(PlayerInventory playerInventory,
-                                     PlayerEntity playerIn) {
-        return new ContainerMap(playerInventory, this);
+    public Container createMenu(int i, PlayerInventory playerInventory,
+                                PlayerEntity playerEntity) {
+        return new ContainerMap(i, playerInventory, this);
     }
-
-    @Override
-    public String getGuiID() {
-        return BlockRegister.MAP_DEVICE_ID;
-    }
-
 }

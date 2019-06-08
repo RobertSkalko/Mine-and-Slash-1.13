@@ -222,10 +222,9 @@ public class TileInventoryModify extends BaseTile {
 
     @Nullable
     @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory inventory,
-                                PlayerEntity player) {
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
 
-        return new ContainerInventoryModify(inventory, this);
+        return new ContainerInventoryModify(num, inventory, this);
 
     }
 

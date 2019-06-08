@@ -1,15 +1,12 @@
 package com.robertx22.blocks.repair_station;
 
-import com.robertx22.uncommon.utilityclasses.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -66,12 +63,17 @@ public class ContainerInventoryRepair extends Container {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerInventoryRepair(PlayerInventory invPlayer,
-                                    TileInventoryRepair tileInventoryFurnace) {
+    public static final ContainerType<ContainerInventoryRepair> TYPE = new ContainerType<>(ContainerInventoryRepair::new);
 
-        super(null, ContainerUtils.windowId(invPlayer));
+    private ContainerInventoryRepair(int i, PlayerInventory playerInventory) {
+        super(TYPE, i);
+    }
 
-        this.tileInventoryRepair = tileInventoryFurnace;
+    public ContainerInventoryRepair(int num, PlayerInventory invPlayer,
+                                    TileInventoryRepair tile) {
+        super(TYPE, num);
+
+        this.tileInventoryRepair = tile;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -100,7 +102,7 @@ public class ContainerInventoryRepair extends Container {
         // Add the tile fuel slots
         for (int x = 0; x < FUEL_SLOTS_COUNT; x++) {
             int slotNumber = x + FIRST_FUEL_SLOT_NUMBER;
-            addSlot(new SlotFuel(tileInventoryFurnace, slotNumber, FUEL_SLOTS_XPOS + SLOT_X_SPACING * x, FUEL_SLOTS_YPOS));
+            addSlot(new SlotFuel(tile, slotNumber, FUEL_SLOTS_XPOS + SLOT_X_SPACING * x, FUEL_SLOTS_YPOS));
         }
 
         final int INPUT_SLOTS_XPOS = 26;
@@ -108,7 +110,7 @@ public class ContainerInventoryRepair extends Container {
         // Add the tile input slots
         for (int y = 0; y < INPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_INPUT_SLOT_NUMBER;
-            addSlot(new SlotSmeltableInput(tileInventoryFurnace, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotSmeltableInput(tile, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int OUTPUT_SLOTS_XPOS = 134;
@@ -116,7 +118,7 @@ public class ContainerInventoryRepair extends Container {
         // Add the tile output slots
         for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_OUTPUT_SLOT_NUMBER;
-            addSlot(new SlotOutput(tileInventoryFurnace, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotOutput(tile, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
@@ -124,7 +126,7 @@ public class ContainerInventoryRepair extends Container {
         // Add the tile capacitor slot
         for (int x = 0; x < 1; x++) {
             int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
-            addSlot(new Slot(tileInventoryFurnace, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
+            addSlot(new Slot(tile, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
         }
 
     }
@@ -180,47 +182,6 @@ public class ContainerInventoryRepair extends Container {
 
         sourceSlot.onTake(player, sourceStack); // onPickupFromSlot()
         return copyOfSourceStack;
-    }
-
-    /* Client Synchronization */
-    @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
-
-        boolean allFieldsHaveChanged = false;
-        boolean fieldHasChanged[] = new boolean[tileInventoryRepair.getFieldCount()];
-        if (cachedFields == null) {
-            cachedFields = new int[tileInventoryRepair.getFieldCount()];
-            allFieldsHaveChanged = true;
-        }
-        for (int i = 0; i < cachedFields.length; ++i) {
-            if (allFieldsHaveChanged || cachedFields[i] != tileInventoryRepair.getField(i)) {
-                cachedFields[i] = tileInventoryRepair.getField(i);
-                fieldHasChanged[i] = true;
-            }
-        }
-
-        // go through the list of listeners (players using this container) and update
-        // them if necessary
-        for (IContainerListener listener : this.listeners) {
-            for (int fieldID = 0; fieldID < tileInventoryRepair.getFieldCount(); ++fieldID) {
-                if (fieldHasChanged[fieldID]) {
-                    // Note that although sendWindowProperty takes 2 ints on a server these are
-                    // truncated to shorts
-                    listener.sendWindowProperty(this, fieldID, cachedFields[fieldID]);
-                }
-            }
-        }
-    }
-
-    // Called when a progress bar update is received from the server. The two values
-    // (id and dataInstance) are the same two
-    // values given to sendWindowProperty. In this case we are using fields so we
-    // just pass them to the tileEntity.
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void updateProgressBar(int id, int data) {
-        tileInventoryRepair.setField(id, data);
     }
 
     // SlotFuel is a slot for fuel items
