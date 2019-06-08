@@ -12,8 +12,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiMap extends TileGui {
@@ -49,39 +47,33 @@ public class GuiMap extends TileGui {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        fontRenderer.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         final int TIER_XPOS = 35;
         final int TIER_YPOS = 105;
         String tier = Words.Tier.translate() + "+";
-        fontRenderer.drawString(tier, TIER_XPOS - fontRenderer.getStringWidth(tier) / 2, TIER_YPOS, Color.darkGray
+        font.drawString(tier, TIER_XPOS - font.getStringWidth(tier) / 2, TIER_YPOS, Color.darkGray
                 .getRGB());
 
         final int LEVEL_XPOS = 143;
         final int LEVEL_YPOS = 105;
         String level = Words.Level.translate() + "+";
-        fontRenderer.drawString(level, LEVEL_XPOS - fontRenderer.getStringWidth(level) / 2, LEVEL_YPOS, Color.darkGray
+        font.drawString(level, LEVEL_XPOS - font.getStringWidth(level) / 2, LEVEL_YPOS, Color.darkGray
                 .getRGB());
 
         final int MAP_XPOS = 90;
         final int MAP_YPOS = 15;
         String map = Words.Put_Map.translate();
-        fontRenderer.drawString(map, MAP_XPOS - fontRenderer.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
+        font.drawString(map, MAP_XPOS - font.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
                 .getRGB());
 
         final int START_XPOS = 88;
         final int START_YPOS = 85;
         String start = Words.Start.translate();
-        fontRenderer.drawString(start, START_XPOS - fontRenderer.getStringWidth(start) / 2, START_YPOS, Color.darkGray
+        font.drawString(start, START_XPOS - font.getStringWidth(start) / 2, START_YPOS, Color.darkGray
                 .getRGB());
 
-        List<String> hoveringText = new ArrayList<String>();
-
-        // If hoveringText is not empty draw the hovering text
-        if (!hoveringText.isEmpty()) {
-            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
-        }
     }
 
     // Returns true if the given x,y coordinates are within the given rectangle

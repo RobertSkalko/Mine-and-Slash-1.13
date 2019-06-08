@@ -9,6 +9,7 @@ import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.testing.Watch;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorldUtils {
+
+    public static void spawnEntity(World world, Entity entity) {
+        world.func_217376_c(entity);
+    }
 
     public static List<MapAffixData> getAllAffixesThatAffect(
             PlayerMapData.IPlayerMapData mapdata, LivingEntity entity) {
@@ -65,7 +70,7 @@ public class WorldUtils {
 
     public static BlockPos getSurface(World world, BlockPos pos) {
 
-        pos = pos.add(0, world.getHeight() - 1, 0);
+        pos = pos.add(0, world.getActualHeight() - 1, 0);
 
         while (world.isAirBlock(pos)) {
 

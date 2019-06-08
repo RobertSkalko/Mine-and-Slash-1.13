@@ -4,6 +4,7 @@ import com.mmorpg_libraries.curios.CurioSlots;
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.items.bags.AutoSalvageBag;
 import com.robertx22.uncommon.interfaces.ISalvagable;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -42,7 +43,7 @@ public class OnPickUpSalvage {
 
                                 ItemEntity enitem = new ItemEntity(player.world, player.posX, player.posY, player.posZ, result);
                                 enitem.setNoPickupDelay();
-                                player.world.spawnEntity(enitem);
+                                WorldUtils.spawnEntity(player.world, enitem);
                             } else {
                                 // this shouldnt happen
                             }

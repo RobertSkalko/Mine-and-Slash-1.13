@@ -6,11 +6,11 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.init.Particles;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -57,7 +57,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         }
 
-        this.world.addParticle(Particles.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
+        this.world.addParticle(ParticleTypes.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
 
         boolean hit = false;
 
@@ -101,12 +101,9 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        switch (result.type) {
+        switch (result.getType()) {
             case BLOCK:
-                this.motionX = 0;
-                this.motionY = 0;
-                this.motionZ = 0;
-
+                this.setMotion(0, 0, 0);
                 break;
             case ENTITY:
                 break;

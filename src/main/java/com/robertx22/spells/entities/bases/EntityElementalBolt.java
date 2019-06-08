@@ -7,9 +7,10 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -53,10 +54,6 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     public List<LivingEntity> entitiesHit = new ArrayList();
 
     private LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
-
-        if (result.entity instanceof LivingEntity) {
-            return (LivingEntity) result.entity;
-        }
 
         List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
 
@@ -142,7 +139,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
         setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
         shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.3F, 0.5F); // start velocity
 
-        world.spawnEntity(this);
+        WorldUtils.spawnEntity(world, this);
     }
 
 }

@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.PlayerOncePerMapData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -43,10 +44,11 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     public void firework() {
 
         // turns invisible for some reason?
-        FireworkRocketEntity firework = new FireworkRocketEntity(world);
+        FireworkRocketEntity firework = new FireworkRocketEntity(world, pos.getX(), pos.getY() + 2, pos
+                .getZ(), ItemStack.EMPTY);
         firework.setPosition(pos.getX(), pos.getY() + 2, pos.getZ());
         firework.setInvulnerable(true);
-        world.spawnEntity(firework);
+        WorldUtils.spawnEntity(world, firework);
 
     }
 
@@ -59,7 +61,8 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
             List<ItemStack> loot = MasterLootGen.generateLoot(new LootInfo(player).setMinimum(1));
 
             for (ItemStack stack : loot) {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
+                WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 2, pos
+                        .getZ(), stack));
             }
             if (loot.size() > 0) {
                 firework();

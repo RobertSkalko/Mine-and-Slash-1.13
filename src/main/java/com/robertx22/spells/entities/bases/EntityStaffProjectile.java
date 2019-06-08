@@ -6,9 +6,10 @@ import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -33,6 +34,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     @Override
     protected void onImpact(RayTraceResult result) {
+        
         if (result.entity != null && result.entity instanceof LivingEntity && staff != null) {
 
             if (!world.isRemote) {
@@ -68,8 +70,8 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         if (world.isRemote) {
             for (int i = 0; i < 5; i++) {
 
-                this.world.addParticle(Particles.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this.height / 2 + rand
-                        .nextFloat() * 0.2 - 0.1, this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
+                this.world.addParticle(ParticleTypes.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this
+                        .getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
 
             }
         }
@@ -90,7 +92,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
         shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-        world.spawnEntity(this);
+        WorldUtils.spawnEntity(world, this);
     }
 
 }

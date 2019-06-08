@@ -20,6 +20,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -240,9 +241,9 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn,
                                                     Hand handIn) {
 
-        FireworkRocketEntity firework = new FireworkRocketEntity(worldIn);
+        FireworkRocketEntity firework = new FireworkRocketEntity(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, ItemStack.EMPTY);
         firework.setPosition(playerIn.posX, playerIn.posY, playerIn.posZ);
-        worldIn.spawnEntity(firework);
+        WorldUtils.spawnEntity(worldIn, firework);
 
         if (!worldIn.isRemote) {
             try {

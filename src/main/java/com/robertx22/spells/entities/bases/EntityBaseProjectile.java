@@ -12,8 +12,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.init.Particles;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -231,9 +231,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
      */
     @OnlyIn(Dist.CLIENT)
     public void setVelocity(double x, double y, double z) {
-        this.motionX = x;
-        this.motionY = y;
-        this.motionZ = z;
+        this.setMotion(new Vec3d(x, y, z));
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt(x * x + z * z);
@@ -396,7 +394,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         if (this.isInWater()) {
             for (int j = 0; j < 4; ++j) {
                 float f3 = 0.25F;
-                this.world.addParticle(Particles.BUBBLE, flag, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
+                this.world.addParticle(ParticleTypes.BUBBLE, flag, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
             }
 
             f1 = 0.8F;
