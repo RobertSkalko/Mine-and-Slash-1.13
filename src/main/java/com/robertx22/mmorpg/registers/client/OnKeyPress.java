@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.registers.client;
 
-import com.robertx22.StatGUI;
+import com.robertx22.uncommon.gui.StatGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.InputEvent;

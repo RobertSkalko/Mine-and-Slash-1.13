@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.enumclasses;
 
+import com.robertx22.uncommon.interfaces.IColor;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;

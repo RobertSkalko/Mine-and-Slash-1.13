@@ -3,7 +3,7 @@ package com.robertx22.network;
 import com.robertx22.database.particle_gens.ParticleGen;
 import com.robertx22.db_lists.ParticleGens;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.enumclasses.IColor;
+import com.robertx22.uncommon.interfaces.IColor;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 

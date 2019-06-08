@@ -1,6 +1,6 @@
 package com.robertx22.config;
 
-import com.robertx22.uncommon.enumclasses.Player_GUIs;
+import com.robertx22.uncommon.enumclasses.PlayerGUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
@@ -28,7 +28,7 @@ public class ClientContainer {
     public BooleanValue SHOW_FLOATING_EXP;
     public BooleanValue SHOW_VANILLA_HEARTS;
 
-    public EnumValue<Player_GUIs> PLAYER_GUI_TYPE;
+    public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
@@ -63,7 +63,7 @@ public class ClientContainer {
 
         PLAYER_GUI_TYPE = builder.comment(".")
                 .translation("mmorpg.config.player_gui_overlay_type")
-                .defineEnum("PLAYER_GUI_TYPE", Player_GUIs.Bottom_Middle_Corners);
+                .defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.Bottom_Middle_Corners);
 
         builder.pop();
     }

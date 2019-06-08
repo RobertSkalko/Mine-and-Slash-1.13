@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.uncommon.gui;
 
 import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;

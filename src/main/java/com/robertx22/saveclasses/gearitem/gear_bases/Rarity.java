@@ -1,8 +1,8 @@
 package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.enumclasses.IColor;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IColor;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.util.text.TextFormatting;
 

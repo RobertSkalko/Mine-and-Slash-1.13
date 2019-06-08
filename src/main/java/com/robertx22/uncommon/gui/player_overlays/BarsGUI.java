@@ -4,7 +4,7 @@ import com.robertx22.config.ClientContainer;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.enumclasses.Player_GUIs;
+import com.robertx22.uncommon.enumclasses.PlayerGUIs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -79,16 +79,16 @@ public class BarsGUI extends Gui {
             }
 
             if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(Player_GUIs.Top_Left)) {
+                    .equals(PlayerGUIs.Top_Left)) {
                 topleft.Draw(this, mc, mc.player, event, unit, data);
             } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(Player_GUIs.Bottom_Middle)) {
+                    .equals(PlayerGUIs.Bottom_Middle)) {
                 bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
             } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(Player_GUIs.Bottom_Middle_Corners)) {
+                    .equals(PlayerGUIs.Bottom_Middle_Corners)) {
                 bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
             } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(Player_GUIs.Middle)) {
+                    .equals(PlayerGUIs.Middle)) {
                 middle.Draw(this, mc, mc.player, event, unit, data);
             }
         } catch (Exception e) {

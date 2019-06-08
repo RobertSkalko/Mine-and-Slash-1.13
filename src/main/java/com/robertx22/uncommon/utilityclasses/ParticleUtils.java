@@ -2,7 +2,7 @@ package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.ParticleGenPacket;
-import com.robertx22.uncommon.enumclasses.IColor;
+import com.robertx22.uncommon.interfaces.IColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Particles;
