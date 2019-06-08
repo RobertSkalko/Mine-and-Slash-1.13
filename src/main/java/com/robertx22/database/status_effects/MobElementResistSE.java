@@ -4,7 +4,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;

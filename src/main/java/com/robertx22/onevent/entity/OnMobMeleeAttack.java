@@ -6,8 +6,8 @@ import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,13 +38,13 @@ public class OnMobMeleeAttack {
         try {
             if (event.getEntityLiving() == null || event.getSource()
                     .getTrueSource() == null || !(event.getSource()
-                    .getTrueSource() instanceof EntityLivingBase)) {
+                    .getTrueSource() instanceof LivingEntity)) {
                 return;
             }
 
-            EntityLivingBase source = (EntityLivingBase) event.getSource()
+            LivingEntity source = (LivingEntity) event.getSource()
                     .getTrueSource();
-            EntityLivingBase target = event.getEntityLiving();
+            LivingEntity target = event.getEntityLiving();
 
             if (target.isAlive() == false) {
                 return; // stops attacking dead mobs
@@ -66,7 +66,7 @@ public class OnMobMeleeAttack {
             targetData.recalculateStats(target);
             sourceData.recalculateStats(source);
 
-            if (source instanceof EntityPlayer) {
+            if (source instanceof PlayerEntity) {
 
                 GearItemData weapondata = sourceData.getWeaponData(source);
 

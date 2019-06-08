@@ -26,11 +26,11 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -160,7 +160,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
-        ITextComponent text = new TextComponentString(this.GetRarity()
+        ITextComponent text = new StringTextComponent(this.GetRarity()
                 .textFormatColor() + "");
 
         if (this.isRuned()) {
@@ -228,7 +228,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         tip.add(TooltipUtils.level(level));
 
-        tip.add(new TextComponentString(""));
+        tip.add(new StringTextComponent(""));
 
         List<ITooltipList> list = new ArrayList<ITooltipList>();
 
@@ -242,7 +242,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             tip.addAll(runes.GetTooltipString(info));
         }
 
-        tip.add(new TextComponentString(""));
+        tip.add(new StringTextComponent(""));
 
         list.add(secondaryStats);
         list.add(prefix);
@@ -255,7 +255,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
             if (part != null) {
                 tip.addAll(part.GetTooltipString(info));
-                tip.add(new TextComponentString(""));
+                tip.add(new StringTextComponent(""));
             }
 
         }
@@ -266,17 +266,17 @@ public class GearItemData implements ITooltip, ISalvagable {
             IUnique unique = this.uniqueStats.getUniqueItem();
 
             tip.add(Styles.GREENCOMP()
-                    .appendSibling(new TextComponentString("'"))
+                    .appendSibling(new StringTextComponent("'"))
                     .appendSibling(unique.locDesc())
                     .appendText("'"));
 
-            tip.add(new TextComponentString(""));
+            tip.add(new StringTextComponent(""));
 
             tip.add(Styles.YELLOWCOMP()
                     .appendSibling(Words.Tier.locName())
                     .appendText(": " + unique.Tier()));
 
-            tip.add(new TextComponentString(""));
+            tip.add(new StringTextComponent(""));
         }
 
         ItemRarity rarity = GetRarity();
@@ -288,11 +288,11 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         if (this.GetBaseGearType() instanceof IWeapon) {
             IWeapon iwep = (IWeapon) this.GetBaseGearType();
-            tip.add(new TextComponentString(""));
+            tip.add(new StringTextComponent(""));
             tip.add(Styles.GREENCOMP()
                     .appendSibling(new Energy().locName()
                             .appendText(": " + iwep.mechanic().GetEnergyCost())));
-            tip.add(new TextComponentString(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
+            tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
                     .tooltipDesc()));
         }
 
@@ -338,7 +338,7 @@ public class GearItemData implements ITooltip, ISalvagable {
         if (this.set != null) {
             event.getToolTip()
                     .add(Styles.GREENCOMP()
-                            .appendSibling(new TextComponentString("[Set]: ").appendSibling(set
+                            .appendSibling(new StringTextComponent("[Set]: ").appendSibling(set
                                     .GetSet()
                                     .locName())));
 
@@ -361,7 +361,7 @@ public class GearItemData implements ITooltip, ISalvagable {
                 for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
                         .GetTooltipString(info)) {
 
-                    ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
+                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent(entry
                             .getKey() + " ").appendSibling(Words.Set.locName()
                             .appendText(": ")
                             .appendSibling(str)));
@@ -370,7 +370,7 @@ public class GearItemData implements ITooltip, ISalvagable {
                 }
 
             }
-            event.getToolTip().add(new TextComponentString(""));
+            event.getToolTip().add(new StringTextComponent(""));
         }
     }
 

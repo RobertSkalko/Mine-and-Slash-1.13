@@ -1,10 +1,10 @@
 package com.robertx22.blocks.conditions;
 
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public class NoMobAroundCondition extends LootCrateCondition {
 
@@ -15,12 +15,12 @@ public class NoMobAroundCondition extends LootCrateCondition {
     }
 
     @Override
-    public boolean canOpenCrate(EntityPlayer player) {
+    public boolean canOpenCrate(PlayerEntity player) {
 
         long entities = player.world.getEntitiesWithinAABBExcludingEntity(player, player.getBoundingBox()
                 .grow(radius))
                 .stream()
-                .filter(x -> x instanceof EntityLivingBase && x instanceof EntityPlayer == false && EntityTypeUtils
+                .filter(x -> x instanceof LivingEntity && x instanceof PlayerEntity == false && EntityTypeUtils
                         .isMob(x))
                 .count();
 
@@ -29,6 +29,6 @@ public class NoMobAroundCondition extends LootCrateCondition {
 
     @Override
     public ITextComponent tellCondition() {
-        return new TextComponentString("You cannot open this crate while mobs are around.");
+        return new StringTextComponent("You cannot open this crate while mobs are around.");
     }
 }

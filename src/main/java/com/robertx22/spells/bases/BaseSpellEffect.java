@@ -1,6 +1,6 @@
 package com.robertx22.spells.bases;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 public abstract class BaseSpellEffect {
 
@@ -10,6 +10,6 @@ public abstract class BaseSpellEffect {
 
 	}
 
-	public abstract void Activate(DamageData dmgdata, EntityLivingBase target);
+	public abstract void Activate(DamageData dmgdata, LivingEntity target);
 
 }

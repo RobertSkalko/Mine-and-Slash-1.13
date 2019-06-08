@@ -1,23 +1,23 @@
 package com.mmorpg_libraries.neat_mob_overlay;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.culling.Frustum;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -42,7 +42,7 @@ import java.util.Stack;
 @EventBusSubscriber(Dist.CLIENT)
 public class HealthBarRenderer {
 
-    static List<EntityLivingBase> renderedEntities = new ArrayList<>();
+    static List<LivingEntity> renderedEntities = new ArrayList<>();
 
     @SubscribeEvent
     public static void onRenderWorldLast(RenderWorldLastEvent event) {
@@ -63,26 +63,26 @@ public class HealthBarRenderer {
 
         if (NeatConfig.showOnlyFocused) {
             Entity focused = getEntityLookedAt(mc.player);
-            if (focused != null && focused instanceof EntityLivingBase && focused.isAlive())
-                renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
+            if (focused != null && focused instanceof LivingEntity && focused.isAlive())
+                renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
         } else {
-            WorldClient client = mc.world;
-            Set<Entity> entities = ObfuscationReflectionHelper.getPrivateValue(WorldClient.class, client, "entityList");
+            ClientWorld client = mc.world;
+            Set<Entity> entities = ObfuscationReflectionHelper.getPrivateValue(ClientWorld.class, client, "entityList");
             for (Entity entity : entities)
-                if (entity != null && entity instanceof EntityLivingBase && entity != mc.player && entity
+                if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity
                         .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector
                                 .getZ()) && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity
                         .getBoundingBox())) && entity.isAlive() && entity.getRecursivePassengers()
                         .isEmpty())
-                    renderHealthBar((EntityLivingBase) entity, partialTicks, cameraEntity);
+                    renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
         }
     }
 
-    public static void renderHealthBar(EntityLivingBase passedEntity, float partialTicks,
+    public static void renderHealthBar(LivingEntity passedEntity, float partialTicks,
                                        Entity viewPoint) {
-        Stack<EntityLivingBase> ridingStack = new Stack<>();
+        Stack<LivingEntity> ridingStack = new Stack<>();
 
-        EntityLivingBase entity = passedEntity;
+        LivingEntity entity = passedEntity;
         ridingStack.push(entity);
 
         // MY CODE
@@ -97,8 +97,8 @@ public class HealthBarRenderer {
         }
         // MY CODE
 
-        while (entity.getRidingEntity() != null && entity.getRidingEntity() instanceof EntityLivingBase) {
-            entity = (EntityLivingBase) entity.getRidingEntity();
+        while (entity.getRidingEntity() != null && entity.getRidingEntity() instanceof LivingEntity) {
+            entity = (LivingEntity) entity.getRidingEntity();
             ridingStack.push(entity);
         }
 
@@ -121,7 +121,7 @@ public class HealthBarRenderer {
                     break processing;
                 if (!NeatConfig.showOnBosses && !boss)
                     break processing;
-                if (!NeatConfig.showOnPlayers && entity instanceof EntityPlayer)
+                if (!NeatConfig.showOnPlayers && entity instanceof PlayerEntity)
                     break processing;
 
                 double x = passedEntity.lastTickPosX + (passedEntity.posX - passedEntity.lastTickPosX) * partialTicks;
@@ -138,7 +138,8 @@ public class HealthBarRenderer {
                     break processing;
 
                 float percent = (int) ((health / maxHealth) * 100F);
-                RenderManager renderManager = Minecraft.getInstance().getRenderManager();
+                EntityRendererManager renderManager = Minecraft.getInstance()
+                        .getRenderManager();
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef((float) (x - renderManager.viewerPosX), (float) (y - renderManager.viewerPosY + passedEntity.height + NeatConfig.heightAbove), (float) (z - renderManager.viewerPosZ));
@@ -262,7 +263,7 @@ public class HealthBarRenderer {
                 s1 = 0.5F;
                 GlStateManager.scalef(s1, s1, s1);
                 GlStateManager.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
-                mc.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
                 // SHOW ICONS HERE
 
@@ -303,7 +304,7 @@ public class HealthBarRenderer {
                     .getAtlasSprite(iBakedModel.getParticleTexture()
                             .getName()
                             .toString());
-            mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            mc.getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder buffer = tessellator.getBuffer();
             buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -336,7 +337,7 @@ public class HealthBarRenderer {
         RayTraceResult pos = raycast(e, finalDistance);
 
         Vec3d positionVector = e.getPositionVector();
-        if (e instanceof EntityPlayer)
+        if (e instanceof PlayerEntity)
             positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
         if (pos != null)
@@ -383,7 +384,7 @@ public class HealthBarRenderer {
 
     public static RayTraceResult raycast(Entity e, double len) {
         Vec3d vec = new Vec3d(e.posX, e.posY, e.posZ);
-        if (e instanceof EntityPlayer)
+        if (e instanceof PlayerEntity)
             vec = vec.add(new Vec3d(0, e.getEyeHeight(), 0));
 
         Vec3d look = e.getLookVec();

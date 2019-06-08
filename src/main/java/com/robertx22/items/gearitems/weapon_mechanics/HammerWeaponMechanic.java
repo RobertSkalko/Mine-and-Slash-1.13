@@ -8,10 +8,10 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new TextComponentString(Styles.GREEN + "Aoe Attack");
+        return new StringTextComponent(Styles.GREEN + "Aoe Attack");
     }
 
     @Override
@@ -36,19 +36,19 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     float radius = 1.5F;
 
     @Override
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target,
+    public boolean Attack(LivingEntity source, LivingEntity target,
                           UnitData unitsource, UnitData targetUnit) {
 
-        List<EntityLivingBase> entities = new ArrayList<EntityLivingBase>();
+        List<LivingEntity> entities = new ArrayList<LivingEntity>();
 
         for (Entity en : target.world.getEntitiesWithinAABBExcludingEntity(source, new AxisAlignedBB(target.posX - radius, target.posY - radius, target.posZ - radius, target.posX + radius, target.posY + radius, target.posZ + radius))) {
-            if (en instanceof EntityLivingBase) {
-                entities.add((EntityLivingBase) en);
+            if (en instanceof LivingEntity) {
+                entities.add((LivingEntity) en);
             }
         }
         int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 
-        for (EntityLivingBase entity : entities) {
+        for (LivingEntity entity : entities) {
 
             DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
             dmg.Activate();

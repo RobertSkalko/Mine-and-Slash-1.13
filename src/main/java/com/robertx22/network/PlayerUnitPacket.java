@@ -2,8 +2,8 @@ package com.robertx22.network;
 
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -15,9 +15,9 @@ public class PlayerUnitPacket {
 
     }
 
-    private NBTTagCompound nbt;
+    private CompoundNBT nbt;
 
-    public PlayerUnitPacket(NBTTagCompound nbt) {
+    public PlayerUnitPacket(CompoundNBT nbt) {
         this.nbt = nbt;
     }
 
@@ -41,7 +41,7 @@ public class PlayerUnitPacket {
         ctx.get().enqueueWork(() -> {
             try {
 
-                final EntityPlayer player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
+                final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
                 if (player != null) {
 

@@ -11,10 +11,10 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Items;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
@@ -367,8 +367,8 @@ public class TileGearFactory extends BaseTile {
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory,
-                                     EntityPlayer playerIn) {
+    public Container createContainer(PlayerInventory playerInventory,
+                                     PlayerEntity playerIn) {
 
         return new ContainerGearFactory(playerInventory, this);
     }

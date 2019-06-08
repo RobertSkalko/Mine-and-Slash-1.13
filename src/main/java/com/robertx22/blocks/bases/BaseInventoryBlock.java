@@ -1,6 +1,6 @@
 package com.robertx22.blocks.bases;
 
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
@@ -17,14 +17,14 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
     }
 
     @Override
-    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos,
+    public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos,
                                         int fortune) {
 
         return this;
     }
 
     @Override
-    public void onPlayerDestroy(IWorld worldIn, BlockPos pos, IBlockState state) {
+    public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
         if (tileEntity instanceof IInventory) {
             InventoryHelper.dropInventoryItems((World) worldIn, pos, (IInventory) tileEntity);
@@ -40,7 +40,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state) {
+    public boolean hasTileEntity(BlockState state) {
         return true;
     }
 

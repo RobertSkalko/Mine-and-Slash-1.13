@@ -10,7 +10,7 @@ import com.robertx22.uncommon.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -174,9 +174,9 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         List<ITextComponent> list = new ArrayList();
 
-        list.add(new TextComponentString(""));
+        list.add(new StringTextComponent(""));
 
-        list.add(Styles.GRAYCOMP().appendSibling(new TextComponentString("Runes: ")));
+        list.add(Styles.GRAYCOMP().appendSibling(new StringTextComponent("Runes: ")));
 
         for (InsertedRuneData rune : runes) {
 
@@ -188,11 +188,11 @@ public class RunesData implements ITooltipList, IStatsContainer {
         for (int i = 0; i < empty; i++) {
 
             list.add(Styles.GRAYCOMP()
-                    .appendSibling(new TextComponentString("Rune: [Empty ]")));
+                    .appendSibling(new StringTextComponent("Rune: [Empty ]")));
 
         }
 
-        list.add(new TextComponentString(""));
+        list.add(new StringTextComponent(""));
 
         if (this.runewords != null && runewords.size() > 0) {
             for (RuneWordData word : runewords) {

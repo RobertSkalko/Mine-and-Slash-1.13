@@ -1,25 +1,25 @@
 package com.robertx22.blocks.gear_factory_station;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiGearFactory extends GuiContainer {
+public class GuiGearFactory extends ContainerScreen {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/gear_factory_station.png");
     private TileGearFactory tileEntity;
 
-    public GuiGearFactory(InventoryPlayer invPlayer,
+    public GuiGearFactory(PlayerInventory invPlayer,
                           TileGearFactory tileInventoryFurnace) {
         super(new ContainerGearFactory(invPlayer, tileInventoryFurnace));
 
@@ -53,18 +53,18 @@ public class GuiGearFactory extends GuiContainer {
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // get cook progress as a double between 0 and 1
         double cookProgress = tileEntity.fractionOfCookTimeComplete();
         // draw the cook progress bar
-        drawTexturedModalRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
         for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
             double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
             int yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
-            drawTexturedModalRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
+            blit(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
 
         // renderHoveredToolTip(x, y);

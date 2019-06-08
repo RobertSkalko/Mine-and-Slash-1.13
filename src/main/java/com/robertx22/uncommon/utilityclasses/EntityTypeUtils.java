@@ -2,7 +2,7 @@ package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.config.ModConfig;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.INpc;
+import net.minecraft.entity.INPC;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IAnimal;
 
@@ -64,7 +64,7 @@ public class EntityTypeUtils {
      */
     public static boolean isNPC(Entity en) {
 
-        return en instanceof INpc;
+        return en instanceof INPC;
 
     }
 }

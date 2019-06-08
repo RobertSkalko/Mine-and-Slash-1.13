@@ -1,19 +1,19 @@
 package com.robertx22.items.gearitems.bases.armor_materials;
 
 import com.robertx22.mmorpg.Ref;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 
 public class LegendaryMat extends BaseMat {
 
     static int[] damageReductions = new int[]{3, 5, 7, 3};
 
     @Override
-    public int getDurability(EntityEquipmentSlot slotIn) {
+    public int getDurability(EquipmentSlotType slotIn) {
         return 1250;
     }
 
     @Override
-    public int getDamageReductionAmount(EntityEquipmentSlot slotIn) {
+    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
         return damageReductions[slotIn.getIndex()];
     }
 

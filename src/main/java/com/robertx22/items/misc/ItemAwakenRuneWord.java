@@ -14,9 +14,9 @@ import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -52,10 +52,10 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
             RuneWord runeword = RuneWords.All.get(word);
 
-            Tooltip.add(new TextComponentString(TextFormatting.GOLD + "").appendSibling(runeword
+            Tooltip.add(new StringTextComponent(TextFormatting.GOLD + "").appendSibling(runeword
                     .locName()), tooltip);
 
-            Tooltip.add(new TextComponentString(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
 
             Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);
 
@@ -83,9 +83,9 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     public void setWord(ItemStack stack, RuneWord word) {
-        NBTTagCompound nbt = stack.getTag();
+        CompoundNBT nbt = stack.getTag();
         if (nbt == null) {
-            nbt = new NBTTagCompound();
+            nbt = new CompoundNBT();
         }
         nbt.putString("runeword", word.GUID());
         stack.setTag(nbt);

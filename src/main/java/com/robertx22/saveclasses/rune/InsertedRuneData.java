@@ -9,7 +9,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,7 +82,7 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         RuneRarity rar = this.getRarity();
 
         for (ITextComponent s : list) {
-            list2.add(new TextComponentString(rar.Color() + rune.toUpperCase() + rar.Color() + ": [" + s + rar
+            list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [" + s + rar
                     .Color() + " ]"));
         }
 

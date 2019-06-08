@@ -12,9 +12,9 @@ import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ITrait;
 import com.robertx22.uncommon.interfaces.IWeighted;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
         StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
         ITextComponent comp = Styles.GREENCOMP()
-                .appendSibling(new TextComponentString(" * ").appendSibling(basestat.locName()));
+                .appendSibling(new StringTextComponent(" * ").appendSibling(basestat.locName()));
 
         if (basestat instanceof INameSuffix) {
             INameSuffix suffix = (INameSuffix) basestat;
@@ -70,15 +70,15 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
-        ITextComponent text = new TextComponentString("");
+        ITextComponent text = new StringTextComponent("");
 
         text = TraitText(data);
 
         list.add(text);
 
-        if (GuiScreen.isAltKeyDown()) {
+        if (Screen.hasAltDown()) {
 
-            list.add(new TextComponentString(TextFormatting.BLUE + "[").appendSibling(this
+            list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
                     .locDesc()).appendText("]"));
 
             if (basestat instanceof Trait) {

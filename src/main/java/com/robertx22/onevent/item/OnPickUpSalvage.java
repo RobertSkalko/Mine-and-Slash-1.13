@@ -4,8 +4,8 @@ import com.mmorpg_libraries.curios.CurioSlots;
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.items.bags.AutoSalvageBag;
 import com.robertx22.uncommon.interfaces.ISalvagable;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -20,7 +20,7 @@ public class OnPickUpSalvage {
 
         if (event.getEntityPlayer() != null) {
 
-            EntityPlayer player = event.getEntityPlayer();
+            PlayerEntity player = event.getEntityPlayer();
 
             if (!player.world.isRemote) {
 
@@ -40,7 +40,7 @@ public class OnPickUpSalvage {
                             if (result.isEmpty() == false) {
                                 stack.setCount(0);
 
-                                EntityItem enitem = new EntityItem(player.world, player.posX, player.posY, player.posZ, result);
+                                ItemEntity enitem = new ItemEntity(player.world, player.posX, player.posY, player.posZ, result);
                                 enitem.setNoPickupDelay();
                                 player.world.spawnEntity(enitem);
                             } else {

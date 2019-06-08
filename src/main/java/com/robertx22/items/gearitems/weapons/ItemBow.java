@@ -7,12 +7,13 @@ import com.robertx22.items.gearitems.weapon_mechanics.BowWeaponMechanic;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 
-public class ItemBow extends net.minecraft.item.ItemBow implements IWeapon, IAutoLocName, IGearItem {
+public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemBow(int rar) {

@@ -8,7 +8,7 @@ import com.robertx22.loot.gens.MapLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -36,7 +36,7 @@ public class GiveMap {
                                                         ))))))));
     }
 
-    private static int run(CommandSource commandSource, @Nullable EntityPlayer player,
+    private static int run(CommandSource commandSource, @Nullable PlayerEntity player,
                            int lvl, int rarity, int tier, int amount) {
 
         if (Objects.isNull(player)) {

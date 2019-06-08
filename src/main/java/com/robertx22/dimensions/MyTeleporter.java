@@ -1,25 +1,25 @@
 package com.robertx22.dimensions;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
 
 public class MyTeleporter extends Teleporter {
     private final BlockPos targetPos;
     DimensionType type = null;
 
-    public MyTeleporter(World world, BlockPos pos, EntityPlayer player) {
-        super((WorldServer) world);
+    public MyTeleporter(World world, BlockPos pos, PlayerEntity player) {
+        super((ServerWorld) world);
         this.targetPos = pos;
     }
 
     public MyTeleporter(World world, DimensionType type, BlockPos pos,
-                        EntityPlayer player) {
-        super((WorldServer) world);
+                        PlayerEntity player) {
+        super((ServerWorld) world);
         this.targetPos = pos;
         this.type = type;
     }

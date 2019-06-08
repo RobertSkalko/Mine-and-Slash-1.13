@@ -1,19 +1,19 @@
 package com.robertx22.items.gearitems.bases.armor_materials;
 
 import com.robertx22.mmorpg.Ref;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 
 public class RareMat extends BaseMat {
 
     static int[] damageReductions = new int[]{2, 4, 5, 2};
 
     @Override
-    public int getDurability(EntityEquipmentSlot slotIn) {
+    public int getDurability(EquipmentSlotType slotIn) {
         return 900;
     }
 
     @Override
-    public int getDamageReductionAmount(EntityEquipmentSlot slotIn) {
+    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
         return damageReductions[slotIn.getIndex()];
     }
 

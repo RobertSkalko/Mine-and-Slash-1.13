@@ -3,7 +3,7 @@ package com.robertx22.network;
 import com.mmorpg_libraries.dmg_number_particle.OnDisplayDamage;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -23,13 +23,13 @@ public class DmgNumPacket {
 
     }
 
-    public DmgNumPacket(EntityLivingBase entity, Elements ele, String str) {
+    public DmgNumPacket(LivingEntity entity, Elements ele, String str) {
         this.element = ele.toString();
         this.string = str;
         this.x = entity.posX;
         this.y = entity.posY;
         this.z = entity.posZ;
-        this.height = entity.height;
+        this.height = entity.getHeight();
 
     }
 

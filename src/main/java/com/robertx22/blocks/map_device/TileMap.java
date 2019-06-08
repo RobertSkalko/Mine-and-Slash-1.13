@@ -6,11 +6,11 @@ import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Map;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Items;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -79,7 +79,7 @@ public class TileMap extends BaseTile {
 
                 BlockPos p = this.pos;
 
-                EntityPlayer player = this.getWorld()
+                PlayerEntity player = this.getWorld()
                         .getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, false);
 
                 if (player != null) {
@@ -158,8 +158,8 @@ public class TileMap extends BaseTile {
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory,
-                                     EntityPlayer playerIn) {
+    public Container createContainer(PlayerInventory playerInventory,
+                                     PlayerEntity playerIn) {
         return new ContainerMap(playerInventory, this);
     }
 

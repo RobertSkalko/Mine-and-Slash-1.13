@@ -5,9 +5,9 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.util.EntitySelectors;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemFrameEntity;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -77,7 +77,7 @@ public class OnDisplayDamage {
         Vec3d hitVector = null;
         List<Entity> list = this.mc.world.getEntitiesInAABBexcluding(observer, observer.getBoundingBox()
                 .expand(lookVector.x * reachDistance, lookVector.y * reachDistance, lookVector.z * reachDistance)
-                .expand(1.0D, 1.0D, 1.0D), EntitySelectors.NOT_SPECTATING);
+                .expand(1.0D, 1.0D, 1.0D), EntityPredicates.NOT_SPECTATING);
         double d2 = distance;
 
         for (Entity entity1 : list) {
@@ -112,7 +112,7 @@ public class OnDisplayDamage {
 
         objectMouseOver = new RayTraceResult(this.pointedEntity, hitVector);
 
-        if (this.pointedEntity instanceof EntityLivingBase || this.pointedEntity instanceof EntityItemFrame) {
+        if (this.pointedEntity instanceof LivingEntity || this.pointedEntity instanceof ItemFrameEntity) {
             this.mc.pointedEntity = this.pointedEntity;
         }
 

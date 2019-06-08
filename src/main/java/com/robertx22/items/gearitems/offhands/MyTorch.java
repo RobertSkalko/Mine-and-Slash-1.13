@@ -8,19 +8,19 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumAction;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -60,8 +60,8 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public EnumAction getUseAction(ItemStack stack) {
-        return EnumAction.NONE;
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.NONE;
     }
 
     @Override
@@ -70,21 +70,21 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
+                                                    Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
         if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
-            return new ActionResult<>(EnumActionResult.FAIL, itemstack);
+            return new ActionResult<>(ActionResultType.FAIL, itemstack);
         }
 
         player.setActiveHand(handIn);
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
-                                     EntityLivingBase player) {
+                                     LivingEntity player) {
 
         // stops using it when you want to right click a spell
         if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
@@ -111,8 +111,8 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
                 }
             }
 
-            player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 3));
-            player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 350, 2));
+            player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100, 3));
+            player.addPotionEffect(new EffectInstance(Effects.HUNGER, 350, 2));
         } else {
             ParticleUtils.spawnEnergyRestoreParticles(player, 4);
             ParticleUtils.spawnManaRestoreParticles(player, 4);
@@ -139,10 +139,10 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new TextComponentString(""));
-        list.add(new TextComponentString(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
+        list.add(new StringTextComponent(""));
+        list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
         if (moreInfo) {
-            list.add(new TextComponentString(color() + "Restores Mana/Energy Based on Missing Amount"));
+            list.add(new StringTextComponent(color() + "Restores Mana/Energy Based on Missing Amount"));
         }
         return list;
     }

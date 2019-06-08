@@ -6,7 +6,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class HealthRegenPotion extends SpellPotionBase {
@@ -26,13 +26,13 @@ public class HealthRegenPotion extends SpellPotionBase {
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
+    public void doEffect(Entity applier, Entity caster, LivingEntity target,
                          int amplifier) {
 
     }
 
     @Override
-    public void performEffectEverySetTime(EntityLivingBase entity, int amplifier) {
+    public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
 
         try {
 

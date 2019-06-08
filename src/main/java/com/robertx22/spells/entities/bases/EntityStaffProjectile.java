@@ -6,7 +6,7 @@ import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
@@ -33,11 +33,11 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        if (result.entity != null && result.entity instanceof EntityLivingBase && staff != null) {
+        if (result.entity != null && result.entity instanceof LivingEntity && staff != null) {
 
             if (!world.isRemote) {
                 try {
-                    EntityLivingBase target = (EntityLivingBase) result.entity;
+                    LivingEntity target = (LivingEntity) result.entity;
 
                     ItemStaff staffclass = (ItemStaff) staff.getItem();
 
@@ -80,7 +80,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     }
 
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
-                              EntityLivingBase caster) {
+                              LivingEntity caster) {
 
         this.ignoreEntity = caster;
         Vec3d look = caster.getLookVec();

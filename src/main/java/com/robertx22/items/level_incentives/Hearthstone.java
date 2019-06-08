@@ -12,19 +12,18 @@ import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.init.Particles;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -76,10 +75,10 @@ public class Hearthstone extends Item {
                               boolean isSelected) {
 
         try {
-            if (entity.ticksExisted % tickRate == 0 && entity instanceof EntityPlayer) {
+            if (entity.ticksExisted % tickRate == 0 && entity instanceof PlayerEntity) {
 
                 if (worldIn.isRemote) {
-                    NBTTagCompound nbt = stack.getTag();
+                    CompoundNBT nbt = stack.getTag();
 
                     if (nbt != null && nbt.getBoolean("porting")) {
 
@@ -87,16 +86,16 @@ public class Hearthstone extends Item {
                             entity.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.5F, 1);
                         }
 
-                        ParticleUtils.spawnParticles(Particles.HAPPY_VILLAGER, (EntityPlayer) entity, 15);
+                        ParticleUtils.spawnParticles(Particles.HAPPY_VILLAGER, (PlayerEntity) entity, 15);
 
                     }
 
                 } else {
 
-                    NBTTagCompound nbt = stack.getTag();
+                    CompoundNBT nbt = stack.getTag();
 
                     if (nbt == null) {
-                        nbt = new NBTTagCompound();
+                        nbt = new CompoundNBT();
                         stack.setTag(nbt);
                     }
 
@@ -115,7 +114,7 @@ public class Hearthstone extends Item {
 
                             if (nbt.contains("ticks")) {
 
-                                ParticleUtils.spawnParticles(Particles.HEART, (EntityPlayer) entity, 10);
+                                ParticleUtils.spawnParticles(Particles.HEART, (PlayerEntity) entity, 10);
 
                                 int ticks = nbt.getInt("ticks");
                                 nbt.putInt("ticks", ticks + tickRate);
@@ -125,7 +124,7 @@ public class Hearthstone extends Item {
                                     nbt.putInt("ticks", 0);
                                     nbt.putBoolean("porting", false);
 
-                                    teleportBack((EntityPlayer) entity, stack);
+                                    teleportBack((PlayerEntity) entity, stack);
 
                                 }
                             } else {
@@ -142,7 +141,7 @@ public class Hearthstone extends Item {
         }
     }
 
-    public void teleportBack(EntityPlayer player, ItemStack stack) {
+    public void teleportBack(PlayerEntity player, ItemStack stack) {
 
         BlockPos pos = getLoc(stack);
 
@@ -185,7 +184,7 @@ public class Hearthstone extends Item {
         }
     }
 
-    public boolean distanceCanBeTeleported(EntityPlayer player, ItemStack stack) {
+    public boolean distanceCanBeTeleported(PlayerEntity player, ItemStack stack) {
 
         BlockPos place = getLoc(stack);
         BlockPos current = player.getPosition();
@@ -207,7 +206,7 @@ public class Hearthstone extends Item {
     private int getRemainingUses(ItemStack stack) {
 
         if (stack.hasTag()) {
-            NBTTagCompound nbt = stack.getTag();
+            CompoundNBT nbt = stack.getTag();
 
             if (nbt.contains("uses")) {
                 return nbt.getInt("uses");
@@ -219,7 +218,7 @@ public class Hearthstone extends Item {
 
     private void decreaseUses(ItemStack stack) {
 
-        NBTTagCompound nbt = stack.getTag();
+        CompoundNBT nbt = stack.getTag();
 
         int left = this.totalUses;
 
@@ -270,7 +269,7 @@ public class Hearthstone extends Item {
                             .appendText(": " + locTooltip(stack))), tooltip);
 
             Tooltip.add(Styles.BLUECOMP()
-                    .appendSibling(new TextComponentString(dimTooltip(stack))), tooltip);
+                    .appendSibling(new StringTextComponent(dimTooltip(stack))), tooltip);
 
         }
 
@@ -295,15 +294,15 @@ public class Hearthstone extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
+                                                    Hand hand) {
 
         if (world.isRemote == false) {
 
             ItemStack stack = player.getHeldItem(hand);
 
             if (stack.getItem() instanceof Hearthstone == false) {
-                return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
             }
 
             Hearthstone item = (Hearthstone) stack.getItem();
@@ -311,25 +310,25 @@ public class Hearthstone extends Item {
             try {
 
                 if (!stack.hasTag()) {
-                    stack.setTag(new NBTTagCompound());
+                    stack.setTag(new CompoundNBT());
                 }
 
                 if (item.hasLoc(stack) == false) {
                     player.sendMessage(Chats.Not_attuned_to_any_altars.locName());
                     stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                    return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
                 }
 
                 if (item.distanceCanBeTeleported(player, stack) == false) {
                     player.sendMessage(Chats.Distance_too_high_to_teleport.locName());
                     stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                    return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
                 }
 
                 if (Load.Unit(player).getLevel() < item.levelReq) {
                     player.sendMessage(Chats.You_are_too_low_level.locName());
                     stack.getTag().putBoolean("porting", false);
-                    return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+                    return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
                 }
 
                 item.decreaseUses(stack);
@@ -344,7 +343,7 @@ public class Hearthstone extends Item {
             }
         }
 
-        return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
+        return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
     }
 
 }

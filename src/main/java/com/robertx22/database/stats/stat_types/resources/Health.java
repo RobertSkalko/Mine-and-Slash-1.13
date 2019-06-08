@@ -3,7 +3,7 @@ package com.robertx22.database.stats.stat_types.resources;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 public class Health extends Stat {
     public static String GUID = "Health";
@@ -46,7 +46,7 @@ public class Health extends Stat {
         return false;
     }
 
-    public int CurrentValue(EntityLivingBase entity, Unit unit) {
+    public int CurrentValue(LivingEntity entity, Unit unit) {
 
         float mult = entity.getHealth() / entity.getMaxHealth();
 

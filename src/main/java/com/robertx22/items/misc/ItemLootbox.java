@@ -21,13 +21,13 @@ import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.FireworkRocketEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -180,7 +180,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
     }
 
-    private void GiveItems(EntityPlayer player, int lvl) {
+    private void GiveItems(PlayerEntity player, int lvl) {
 
         List<ItemStack> stacks = new ArrayList<ItemStack>();
 
@@ -237,10 +237,10 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn,
+                                                    Hand handIn) {
 
-        EntityFireworkRocket firework = new EntityFireworkRocket(worldIn);
+        FireworkRocketEntity firework = new FireworkRocketEntity(worldIn);
         firework.setPosition(playerIn.posX, playerIn.posY, playerIn.posZ);
         worldIn.spawnEntity(firework);
 
@@ -254,7 +254,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
                     GiveItems(playerIn, lvl);
 
-                    return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(playerIn
+                    return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(playerIn
                             .getHeldItem(handIn)));
 
                 }
@@ -262,7 +262,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
     }
 
     public String Name() {

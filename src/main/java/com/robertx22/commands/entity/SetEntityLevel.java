@@ -8,7 +8,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 import javax.annotation.Nullable;
 
@@ -25,7 +25,7 @@ public class SetEntityLevel {
     private static int execute(CommandSource commandSource, @Nullable Entity entity,
                                int lvl) {
 
-        EntityLivingBase living = (EntityLivingBase) entity;
+        LivingEntity living = (LivingEntity) entity;
 
         EntityData.UnitData data = Load.Unit(living);
 

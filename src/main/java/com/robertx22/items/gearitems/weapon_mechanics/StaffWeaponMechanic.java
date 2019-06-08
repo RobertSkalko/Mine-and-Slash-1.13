@@ -4,15 +4,15 @@ import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new TextComponentString(Styles.GREEN + "Double Damage");
+        return new StringTextComponent(Styles.GREEN + "Double Damage");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target,
+    public boolean Attack(LivingEntity source, LivingEntity target,
                           UnitData unitsource, UnitData targetUnit) {
 
         super.multiplyDamage(source, target, unitsource, targetUnit, 2);

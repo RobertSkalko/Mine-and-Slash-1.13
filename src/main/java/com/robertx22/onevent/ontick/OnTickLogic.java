@@ -8,7 +8,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -36,7 +36,7 @@ public class OnTickLogic {
 
             try {
 
-                EntityPlayerMP player = (EntityPlayerMP) event.player;
+                ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
                 PlayerTickData data = PlayerTickDatas.get(player.getUniqueID());
 

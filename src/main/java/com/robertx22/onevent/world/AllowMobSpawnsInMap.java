@@ -2,9 +2,9 @@ package com.robertx22.onevent.world;
 
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -23,19 +23,19 @@ public class AllowMobSpawnsInMap {
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-        EntityLivingBase en = event.getEntityLiving();
+        LivingEntity en = event.getEntityLiving();
 
         if (en instanceof IMob) {
 
             if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
-                if (en instanceof EntitySlime) {
+                if (en instanceof SlimeEntity) {
                     return;
                     // no
                 } else {
                     if (EntityTypeUtils.isMob(en)) {
 
-                        IBlockState iblockstate = en.world.getBlockState((new BlockPos(en))
+                        BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
                                 .down());
 
                         if (!iblockstate.canEntitySpawn(en)) {

@@ -16,9 +16,9 @@ import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderSprite;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -62,7 +62,7 @@ public class RenderRegister {
 
     public static <T extends Entity> IRenderFactory<T> newRenFac(
             final Item itemToRender) {
-        return manager -> new RenderSprite<>(manager, itemToRender, Minecraft.getInstance()
+        return manager -> new SpriteRenderer<>(manager, itemToRender, Minecraft.getInstance()
                 .getItemRenderer());
     }
 }

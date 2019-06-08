@@ -1,12 +1,12 @@
 package com.robertx22.blocks.map_device;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,7 +22,7 @@ public class GuiMap extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
     private TileMap tileEntity;
 
-    public GuiMap(InventoryPlayer invPlayer, TileMap tileInventory) {
+    public GuiMap(PlayerInventory invPlayer, TileMap tileInventory) {
         super(new ContainerMap(invPlayer, tileInventory));
 
         // Set the width and height of the gui
@@ -39,7 +39,7 @@ public class GuiMap extends TileGui {
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
     }
 

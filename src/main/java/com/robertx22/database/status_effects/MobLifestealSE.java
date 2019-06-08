@@ -3,7 +3,7 @@ package com.robertx22.database.status_effects;
 import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.saveclasses.gearitem.StatModData;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;

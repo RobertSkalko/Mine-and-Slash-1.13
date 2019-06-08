@@ -1,14 +1,14 @@
 package com.robertx22.dimensions.blocks;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 
@@ -83,7 +83,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
             float f3 = (RANDOM.nextFloat() * 0.5F + 0.1F) * f1;
             float f4 = (RANDOM.nextFloat() * 0.5F + 0.4F) * f1;
             float f5 = (RANDOM.nextFloat() * 0.5F + 0.5F) * f1;
-            if (tileEntityIn.shouldRenderFace(EnumFacing.SOUTH)) {
+            if (tileEntityIn.shouldRenderFace(Direction.SOUTH)) {
                 bufferbuilder.pos(x, y, z + 1.0D).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x + 1.0D, y, z + 1.0D)
                         .color(f3, f4, f5, 1.0F)
@@ -96,7 +96,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
                         .endVertex();
             }
 
-            if (tileEntityIn.shouldRenderFace(EnumFacing.NORTH)) {
+            if (tileEntityIn.shouldRenderFace(Direction.NORTH)) {
                 bufferbuilder.pos(x, y + 1.0D, z).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x + 1.0D, y + 1.0D, z)
                         .color(f3, f4, f5, 1.0F)
@@ -105,7 +105,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
                 bufferbuilder.pos(x, y, z).color(f3, f4, f5, 1.0F).endVertex();
             }
 
-            if (tileEntityIn.shouldRenderFace(EnumFacing.EAST)) {
+            if (tileEntityIn.shouldRenderFace(Direction.EAST)) {
                 bufferbuilder.pos(x + 1.0D, y + 1.0D, z)
                         .color(f3, f4, f5, 1.0F)
                         .endVertex();
@@ -118,7 +118,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
                 bufferbuilder.pos(x + 1.0D, y, z).color(f3, f4, f5, 1.0F).endVertex();
             }
 
-            if (tileEntityIn.shouldRenderFace(EnumFacing.WEST)) {
+            if (tileEntityIn.shouldRenderFace(Direction.WEST)) {
                 bufferbuilder.pos(x, y, z).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x, y, z + 1.0D).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x, y + 1.0D, z + 1.0D)
@@ -127,7 +127,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
                 bufferbuilder.pos(x, y + 1.0D, z).color(f3, f4, f5, 1.0F).endVertex();
             }
 
-            if (tileEntityIn.shouldRenderFace(EnumFacing.DOWN)) {
+            if (tileEntityIn.shouldRenderFace(Direction.DOWN)) {
                 bufferbuilder.pos(x, y, z).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x + 1.0D, y, z).color(f3, f4, f5, 1.0F).endVertex();
                 bufferbuilder.pos(x + 1.0D, y, z + 1.0D)
@@ -136,7 +136,7 @@ public class RenderTileMapPortal extends TileEntityRenderer<TileMapPortal> {
                 bufferbuilder.pos(x, y, z + 1.0D).color(f3, f4, f5, 1.0F).endVertex();
             }
 
-            if (tileEntityIn.shouldRenderFace(EnumFacing.UP)) {
+            if (tileEntityIn.shouldRenderFace(Direction.UP)) {
                 bufferbuilder.pos(x, y + (double) f, z + 1.0D)
                         .color(f3, f4, f5, 1.0F)
                         .endVertex();

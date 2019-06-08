@@ -3,10 +3,10 @@ package com.robertx22.spells.bases;
 import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public class MyDamageSource extends EntityDamageSource {
 
@@ -23,10 +23,10 @@ public class MyDamageSource extends EntityDamageSource {
     }
 
     @Override
-    public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn) {
+    public ITextComponent getDeathMessage(LivingEntity entityLivingBaseIn) {
 
         try {
-            return new TextComponentString(entityLivingBaseIn.getDisplayName()
+            return new StringTextComponent(entityLivingBaseIn.getDisplayName()
                     .getFormattedText() + " ").appendSibling(Chats.has_died_by_the_hands_of
                     .locName())
                     .appendText(" " + this.damageSourceEntity.getDisplayName()
@@ -34,7 +34,7 @@ public class MyDamageSource extends EntityDamageSource {
         } catch (Exception e) {
             e.printStackTrace();
 
-            return new TextComponentString("");
+            return new StringTextComponent("");
         }
 
     }

@@ -5,9 +5,9 @@ import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.SpellBuffCheck;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell.SpellBuffType;
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 
 import java.util.ArrayList;
 
@@ -32,19 +32,19 @@ public abstract class BaseSpellHeal extends BaseSpell {
         return super.Weight() * 3;
     }
 
-    public void checkZephyrSpeedBoost(EntityPlayer caster, SpellBuffCheck buffable) {
+    public void checkZephyrSpeedBoost(PlayerEntity caster, SpellBuffCheck buffable) {
 
         if (buffable.getBuff().equals(SpellBuffType.Zephyr_Speed_Boost)) {
-            caster.addPotionEffect(new PotionEffect(MobEffects.SPEED, 200));
+            caster.addPotionEffect(new EffectInstance(Effects.SPEED, 200));
         }
 
     }
 
-    public void checkPurityRemoveNegativeEffect(EntityPlayer caster,
+    public void checkPurityRemoveNegativeEffect(PlayerEntity caster,
                                                 SpellBuffCheck buffable) {
 
         if (buffable.getBuff().equals(SpellBuffType.Purity_Remove_Negative_Effects)) {
-            for (PotionEffect pot : new ArrayList<PotionEffect>(caster.getActivePotionEffects())) {
+            for (EffectInstance pot : new ArrayList<EffectInstance>(caster.getActivePotionEffects())) {
                 if (pot.getPotion().isBadEffect()) {
                     caster.removePotionEffect(pot.getPotion());
                     break;
@@ -54,14 +54,14 @@ public abstract class BaseSpellHeal extends BaseSpell {
 
     }
 
-    public void checkAddLightBuff(EntityPlayer caster, SpellBuffCheck buffable) {
+    public void checkAddLightBuff(PlayerEntity caster, SpellBuffCheck buffable) {
         if (buffable.getBuff().equals(SpellBuffType.Light_Aoe_Regen)) {
-            caster.addPotionEffect(new PotionEffect(AoeRegenPotion.INSTANCE, 200));
+            caster.addPotionEffect(new EffectInstance(AoeRegenPotion.INSTANCE, 200));
         }
 
     }
 
-    public void checkSpellBuffs(EntityPlayer caster, SpellBuffCheck buffable) {
+    public void checkSpellBuffs(PlayerEntity caster, SpellBuffCheck buffable) {
         checkZephyrSpeedBoost(caster, buffable);
         checkAddLightBuff(caster, buffable);
         checkPurityRemoveNegativeEffect(caster, buffable);

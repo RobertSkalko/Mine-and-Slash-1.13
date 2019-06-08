@@ -9,9 +9,9 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -260,8 +260,8 @@ public class TileInventorySalvage extends BaseTile {
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory,
-                                     EntityPlayer playerIn) {
+    public Container createContainer(PlayerInventory playerInventory,
+                                     PlayerEntity playerIn) {
         return new ContainerInventorySalvage(playerInventory, this);
     }
 

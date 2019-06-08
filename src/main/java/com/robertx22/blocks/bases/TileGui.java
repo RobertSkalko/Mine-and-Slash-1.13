@@ -1,9 +1,9 @@
 package com.robertx22.blocks.bases;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.inventory.container.Container;
 
-public abstract class TileGui extends GuiContainer {
+public abstract class TileGui extends ContainerScreen {
 
     public TileGui(Container inventorySlotsIn) {
         super(inventorySlotsIn);

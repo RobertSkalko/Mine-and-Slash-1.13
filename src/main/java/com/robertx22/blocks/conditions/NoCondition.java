@@ -1,18 +1,18 @@
 package com.robertx22.blocks.conditions;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public class NoCondition extends LootCrateCondition {
 
     @Override
-    public boolean canOpenCrate(EntityPlayer player) {
+    public boolean canOpenCrate(PlayerEntity player) {
         return true;
     }
 
     @Override
     public ITextComponent tellCondition() {
-        return new TextComponentString("");
+        return new StringTextComponent("");
     }
 }

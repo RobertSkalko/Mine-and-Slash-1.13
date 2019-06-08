@@ -1,6 +1,6 @@
 package com.robertx22.items.gearitems.bases.armor_materials;
 
-import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;

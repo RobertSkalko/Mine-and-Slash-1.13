@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.gui;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
@@ -7,23 +8,24 @@ import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class StatGUI extends GuiScreen {
+public class StatGUI extends Screen {
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
     HashMap<String, List<Stat>> statmap = new HashMap<>();
 
     public StatGUI() {
+        super(new StringTextComponent("Stats Screen"));
 
         genStatList();
 
@@ -49,11 +51,12 @@ public class StatGUI extends GuiScreen {
 
         super.render(mouseX, mouseY, partialTicks);
 
-        this.drawDefaultBackground();
+        //this.drawDefaultBackground();
 
-        mc.getTextureManager().bindTexture(texture);
+        minecraft.getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexturedModalRect(mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, mc.mainWindow
+
+        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
 
         renderStats();
@@ -62,22 +65,22 @@ public class StatGUI extends GuiScreen {
 
     private int getGUIStartX() {
 
-        return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2);
+        return (int) (minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2);
     }
 
     private int getGUIStartY() {
 
-        return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2);
+        return (int) (minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2);
     }
 
     private int getTextStartX() {
 
-        return (int) (mc.mainWindow.getScaledWidth() / 2 - this.sizeX / 2 + 35);
+        return (int) (minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2 + 35);
     }
 
     private int getTextStartY() {
 
-        return (int) (mc.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
+        return (int) (minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
     private String getStatString(Stat stat, EntityData.UnitData data) {
@@ -118,13 +121,13 @@ public class StatGUI extends GuiScreen {
     }
 
     private int drawAndIncreaseSpacing(int x, int y, String str) {
-        this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GOLD.getColor());
+        this.drawString(minecraft.fontRenderer, str, x, y, TextFormatting.GOLD.getColor());
         return this.getHeightSpacing();
 
     }
 
     private int drawTitleAndIncreaseSpacing(int x, int y, String str) {
-        this.drawString(mc.fontRenderer, str, x, y, TextFormatting.GREEN.getColor());
+        this.drawString(minecraft.fontRenderer, str, x, y, TextFormatting.GREEN.getColor());
         return this.getHeightSpacing();
 
     }
@@ -141,7 +144,7 @@ public class StatGUI extends GuiScreen {
         added += this.drawTitleAndIncreaseSpacing(x - 22, y + added, this.statgroup.word.translate() + ": ");
         added += this.getHeightSpacing() / 3;
 
-        EntityData.UnitData data = Load.Unit(mc.player);
+        EntityData.UnitData data = Load.Unit(minecraft.field_71439_g);
 
         for (int i = currentElement; i < list.size(); i++) {
             if (i > -1) { // or scrolling crashes
@@ -157,14 +160,14 @@ public class StatGUI extends GuiScreen {
                 if (added < this.sizeY - 50) {
 
                     // so i can use icons from spritesheet
-                    mc.getTextureManager()
+                    minecraft.getTextureManager()
                             .deleteTexture(icons); // seems i need to delete and then
-                    mc.getTextureManager()
+                    minecraft.getTextureManager()
                             .bindTexture(icons); // add it or else it wont works
                     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-                    drawTexturedModalRect(x - 22, y + added - this.getHeightSpacing() / 4, stat
-                            .getSpriteX(), stat.getSpriteY(), 16, 16);
+                    blit(x - 22, y + added - this.getHeightSpacing() / 4, stat.getSpriteX(), stat
+                            .getSpriteY(), 16, 16);
 
                     added += this.drawAndIncreaseSpacing(x, y + added, str);
 

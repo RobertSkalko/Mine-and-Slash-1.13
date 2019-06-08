@@ -12,11 +12,11 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumHand;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -59,7 +59,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
     }
 
     @Override
-    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse,
+    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
                         SpellItemData data) {
         try {
 
@@ -72,7 +72,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
                 int healed = (int) (data.GetBaseValue() + data.GetScalingValue() * unit.getUnit()
                         .healthData().Value / 100);
 
-                caster.addPotionEffect(new PotionEffect(HealthRegenPotion.INSTANCE, 400, healed));
+                caster.addPotionEffect(new EffectInstance(HealthRegenPotion.INSTANCE, 400, healed));
 
                 // spell buffs
                 SpellBuffCheck check = new SpellBuffCheck(this.Type());

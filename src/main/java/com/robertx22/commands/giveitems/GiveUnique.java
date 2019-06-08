@@ -11,7 +11,7 @@ import com.robertx22.loot.gens.UniqueGearLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -39,7 +39,7 @@ public class GiveUnique {
                                                         ))))))));
     }
 
-    private static int execute(CommandSource commandSource, @Nullable EntityPlayer player,
+    private static int execute(CommandSource commandSource, @Nullable PlayerEntity player,
                                String type, int lvl, int tier, int amount) {
 
         if (Objects.isNull(player)) {

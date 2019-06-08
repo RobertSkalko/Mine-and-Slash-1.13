@@ -1,11 +1,11 @@
 package com.robertx22.blocks.gear_factory_station;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -63,7 +63,7 @@ public class ContainerGearFactory extends Container {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerGearFactory(InventoryPlayer invPlayer, TileGearFactory tile) {
+    public ContainerGearFactory(PlayerInventory invPlayer, TileGearFactory tile) {
         this.tileGearFactory = tile;
 
         final int SLOT_X_SPACING = 18;
@@ -125,13 +125,13 @@ public class ContainerGearFactory extends Container {
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(PlayerEntity player) {
         return tileGearFactory.isUsableByPlayer(player);
     }
 
     // shift click logic
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
         Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
         if (sourceSlot == null || !sourceSlot.getHasStack())
             return ItemStack.EMPTY; // EMPTY_ITEM

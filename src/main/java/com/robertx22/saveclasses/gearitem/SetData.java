@@ -12,7 +12,7 @@ import com.robertx22.uncommon.capability.EntityData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -55,7 +55,7 @@ public class SetData {
 
         event.getToolTip()
                 .add(Styles.GREENCOMP()
-                        .appendSibling(new TextComponentString("[Set]: ").appendSibling(GetSet()
+                        .appendSibling(new StringTextComponent("[Set]: ").appendSibling(GetSet()
                                 .locName())));
 
         for (Map.Entry<Integer, StatMod> entry : GetSet().AllMods().entrySet()) {
@@ -75,7 +75,7 @@ public class SetData {
             for (ITextComponent str : StatModData.Load(entry.getValue(), GetSet().StatPercent)
                     .GetTooltipString(info)) {
 
-                ITextComponent comp = new TextComponentString(color + "").appendSibling(new TextComponentString(entry
+                ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent(entry
                         .getKey() + " ").appendSibling(Words.Set.locName()
                         .appendText(": ")
                         .appendSibling(str)));
@@ -84,7 +84,7 @@ public class SetData {
             }
 
         }
-        event.getToolTip().add(new TextComponentString(""));
+        event.getToolTip().add(new StringTextComponent(""));
 
     }
 

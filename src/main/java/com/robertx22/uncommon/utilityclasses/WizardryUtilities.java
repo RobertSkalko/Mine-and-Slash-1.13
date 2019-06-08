@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -21,10 +21,10 @@ public final class WizardryUtilities {
      * @param z      The z coordinate to search around
      * @param world  The world to search in
      */
-    public static List<EntityLivingBase> getEntitiesWithinRadius(double radius, double x,
-                                                                 double y, double z,
-                                                                 World world) {
-        return getEntitiesWithinRadius(radius, x, y, z, world, EntityLivingBase.class);
+    public static List<LivingEntity> getEntitiesWithinRadius(double radius, double x,
+                                                             double y, double z,
+                                                             World world) {
+        return getEntitiesWithinRadius(radius, x, y, z, world, LivingEntity.class);
     }
 
     /**
@@ -74,7 +74,7 @@ public final class WizardryUtilities {
         return entityList;
     }
 
-    public static double getPlayerEyesPos(EntityLivingBase player) {
+    public static double getPlayerEyesPos(LivingEntity player) {
         return player.getBoundingBox().minY + player.getEyeHeight();
     }
 

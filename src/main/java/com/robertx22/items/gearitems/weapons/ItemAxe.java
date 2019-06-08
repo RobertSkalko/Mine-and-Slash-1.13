@@ -7,9 +7,9 @@ import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -36,11 +36,11 @@ public class ItemAxe extends BaseWeaponItem implements IWeapon {
     /**
      * Check whether this Item can harvest the given Block
      */
-    public boolean canHarvestBlock(IBlockState blockIn) {
+    public boolean canHarvestBlock(BlockState blockIn) {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
-    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         Block block = state.getBlock();
 
         if (block == Blocks.COBWEB) {

@@ -4,18 +4,18 @@ import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_gen.configs.MyChanceConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.IChunkGenSettings;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.placement.BasePlacement;
+import net.minecraft.world.gen.placement.Placement;
 
 import java.util.Random;
 
-public class AtSurfaceChancePlacement extends BasePlacement<MyChanceConfig> {
+public class AtSurfaceChancePlacement extends Placement<MyChanceConfig> {
     public <C extends IFeatureConfig> boolean generate(IWorld worldIn,
-                                                       IChunkGenerator<? extends IChunkGenSettings> chunkGenerator,
+                                                       ChunkGenerator<? extends GenerationSettings> chunkGenerator,
                                                        Random random, BlockPos pos,
                                                        MyChanceConfig placementConfig,
                                                        Feature<C> featureIn,

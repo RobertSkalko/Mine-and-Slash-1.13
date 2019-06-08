@@ -6,11 +6,11 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.init.Particles;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -41,11 +41,11 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
     }
 
     @Override
-    protected boolean onExpireProc(EntityLivingBase caster) {
+    protected boolean onExpireProc(LivingEntity caster) {
         return doEffect(caster);
     }
 
-    public boolean doEffect(EntityLivingBase caster) {
+    public boolean doEffect(LivingEntity caster) {
 
         if (world.isRemote) {
 
@@ -63,10 +63,10 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         if (!this.world.isRemote && caster != null && effect != null) {
 
-            List<EntityLivingBase> list = WizardryUtilities.getEntitiesWithinRadius(radius(), this, EntityLivingBase.class);
+            List<LivingEntity> list = WizardryUtilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
 
             for (int i = 0; i < list.size(); ++i) {
-                EntityLivingBase entity = list.get(i);
+                LivingEntity entity = list.get(i);
 
                 if (Load.hasUnit(entity)) {
                     effect.Activate(data, entity);
@@ -84,16 +84,16 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     }
 
-    public void checkOnKill(EntityLivingBase entity) {
+    public void checkOnKill(LivingEntity entity) {
 
         if (entity.isAlive() == false && this.getThrower() != null) {
 
             if (this.getBuff().equals(SpellBuffType.Energy_Regen)) {
                 this.getThrower()
-                        .addPotionEffect(new PotionEffect(EnergyRegenPotion.INSTANCE, 400, 2));
+                        .addPotionEffect(new EffectInstance(EnergyRegenPotion.INSTANCE, 400, 2));
             } else if (this.getBuff().equals(SpellBuffType.Mana_Regen)) {
                 this.getThrower()
-                        .addPotionEffect(new PotionEffect(ManaRegenPotion.INSTANCE, 400, 2));
+                        .addPotionEffect(new EffectInstance(ManaRegenPotion.INSTANCE, 400, 2));
             }
         }
     }

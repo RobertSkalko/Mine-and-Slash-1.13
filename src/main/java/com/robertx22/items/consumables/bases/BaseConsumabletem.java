@@ -6,15 +6,14 @@ import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumAction;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.UseAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,7 +35,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
         return 30;
     }
 
-    public abstract void onFinish(ItemStack stack, World world, EntityLivingBase player,
+    public abstract void onFinish(ItemStack stack, World world, LivingEntity player,
                                   EntityData.UnitData unitdata);
 
     @Override
@@ -49,8 +48,8 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
     }
 
     @Override
-    public EnumAction getUseAction(ItemStack stack) {
-        return EnumAction.EAT;
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.EAT;
     }
 
     @Override
@@ -60,7 +59,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world,
-                                     EntityLivingBase player) {
+                                     LivingEntity player) {
 
         onFinish(stack, world, player, Load.Unit(player));
         stack.shrink(1);
@@ -68,11 +67,11 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
+                                                    Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
         player.setActiveHand(handIn);
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
 
 }

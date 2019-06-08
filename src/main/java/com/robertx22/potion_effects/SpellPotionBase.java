@@ -4,12 +4,12 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.interfaces.ILocName;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,9 +18,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class SpellPotionBase extends Potion implements ILocName {
+public abstract class SpellPotionBase extends Effect implements ILocName {
 
-    public abstract void performEffectEverySetTime(EntityLivingBase entityLivingBaseIn,
+    public abstract void performEffectEverySetTime(LivingEntity entityLivingBaseIn,
 
                                                    int amplifier);
 
@@ -33,9 +33,9 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
 
     public abstract int performEachXTicks();
 
-    public List<EntityLivingBase> getEntitiesAround(Entity en, float radius) {
+    public List<LivingEntity> getEntitiesAround(Entity en, float radius) {
 
-        return en.world.getEntitiesWithinAABB(EntityLivingBase.class, en.getBoundingBox()
+        return en.world.getEntitiesWithinAABB(LivingEntity.class, en.getBoundingBox()
                 .grow(radius));
     }
 
@@ -44,7 +44,7 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
     }
 
     @Override
-    public void performEffect(EntityLivingBase en, int amplifier) {
+    public void performEffect(LivingEntity en, int amplifier) {
 
         if (en.ticksExisted % performEachXTicks() == 0)
             performEffectEverySetTime(en, amplifier);
@@ -81,7 +81,7 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
     // AreaEffect or thrown potion bottle
     @Override
     public void affectEntity(Entity applier, Entity caster,
-                             @Nonnull EntityLivingBase target, int amplifier,
+                             @Nonnull LivingEntity target, int amplifier,
                              double health) {
 
         if (target.world.isRemote && isServerSideOnly())
@@ -91,7 +91,7 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
     }
 
     @Override
-    public void applyAttributesModifiersToEntity(EntityLivingBase target,
+    public void applyAttributesModifiersToEntity(LivingEntity target,
                                                  @Nonnull AbstractAttributeMap attributes,
                                                  int amplifier) {
 
@@ -106,7 +106,7 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
     }
 
     @Override
-    public void removeAttributesModifiersFromEntity(EntityLivingBase target,
+    public void removeAttributesModifiersFromEntity(LivingEntity target,
                                                     @Nonnull AbstractAttributeMap attributes,
                                                     int amplifier) {
 
@@ -114,15 +114,15 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
         super.removeAttributesModifiersFromEntity(target, attributes, amplifier);
     }
 
-    public void onPotionAdd(EntityLivingBase target, AbstractAttributeMap attributes,
+    public void onPotionAdd(LivingEntity target, AbstractAttributeMap attributes,
                             int amplifier) {
     }
 
-    public void onPotionRemove(EntityLivingBase target, AbstractAttributeMap attributes,
+    public void onPotionRemove(LivingEntity target, AbstractAttributeMap attributes,
                                int amplifier) {
     }
 
-    public abstract void doEffect(Entity applier, Entity caster, EntityLivingBase target,
+    public abstract void doEffect(Entity applier, Entity caster, LivingEntity target,
                                   int amplifier);
 
     protected boolean shouldShowParticles() {
@@ -133,12 +133,12 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
         return false;
     }
 
-    public PotionEffect toPotionEffect(int amplifier) {
+    public EffectInstance toPotionEffect(int amplifier) {
         return toPotionEffect(1, amplifier);
     }
 
-    public PotionEffect toPotionEffect(int duration, int amplifier) {
-        return new PotionEffect(this, duration, amplifier, isAmbient(), shouldShowParticles());
+    public EffectInstance toPotionEffect(int duration, int amplifier) {
+        return new EffectInstance(this, duration, amplifier, isAmbient(), shouldShowParticles());
     }
 
     @Override
@@ -159,22 +159,22 @@ public abstract class SpellPotionBase extends Potion implements ILocName {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderInventoryEffect(PotionEffect effect,
-                                      net.minecraft.client.gui.Gui gui, int x, int y,
+    public void renderInventoryEffect(EffectInstance effect,
+                                      AbstractGui gui, int x, int y,
                                       float z) {
 
         if (gui != null && getIconTexture() != null) {
             Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-            Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
+            AbstractGui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderHUDEffect(PotionEffect effect, net.minecraft.client.gui.Gui gui,
+    public void renderHUDEffect(EffectInstance effect, AbstractGui gui,
                                 int x, int y, float z, float alpha) {
         if (getIconTexture() != null) {
             Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-            Gui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
+            AbstractGui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
         }
     }
 

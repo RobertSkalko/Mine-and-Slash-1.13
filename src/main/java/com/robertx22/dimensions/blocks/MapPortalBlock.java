@@ -7,13 +7,13 @@ import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEndPortal;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.EndPortalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
-public class MapPortalBlock extends BlockEndPortal {
+public class MapPortalBlock extends EndPortalBlock {
 
     public MapPortalBlock() {
 
@@ -35,10 +35,10 @@ public class MapPortalBlock extends BlockEndPortal {
     }
 
     @Override
-    public void onEntityCollision(IBlockState state, World world, BlockPos pos,
+    public void onEntityCollision(BlockState state, World world, BlockPos pos,
                                   Entity entity) {
         try {
-            if (world.isRemote == false && entity instanceof EntityPlayer) {
+            if (world.isRemote == false && entity instanceof PlayerEntity) {
                 if (!entity.isBeingRidden() && entity.isNonBoss()) {
 
                     TileEntity en = world.getTileEntity(pos);
@@ -62,7 +62,7 @@ public class MapPortalBlock extends BlockEndPortal {
 
                                 if (WorldUtils.isMapWorld(mapworld)) {
 
-                                    EntityPlayer player = (EntityPlayer) entity;
+                                    PlayerEntity player = (PlayerEntity) entity;
 
                                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 

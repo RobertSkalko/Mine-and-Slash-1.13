@@ -1,18 +1,18 @@
 package com.robertx22.items.gearitems.offhands;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.model.ModelShield;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.entity.model.ShieldModel;
+import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.concurrent.Callable;
 
-public class ShieldRenderer extends TileEntityItemStackRenderer implements Callable<TileEntityItemStackRenderer> {
-    public final TileEntityItemStackRenderer instance;
+public class ShieldRenderer extends ItemStackTileEntityRenderer implements Callable<ItemStackTileEntityRenderer> {
+    public final ItemStackTileEntityRenderer instance;
 
-    private final ModelShield modelShield = new ModelShield();
+    private final ShieldModel modelShield = new ShieldModel();
 
     public ShieldRenderer() {
         instance = this;
@@ -37,7 +37,7 @@ public class ShieldRenderer extends TileEntityItemStackRenderer implements Calla
     }
 
     @Override
-    public TileEntityItemStackRenderer call() throws Exception {
+    public ItemStackTileEntityRenderer call() throws Exception {
         return instance;
     }
 }

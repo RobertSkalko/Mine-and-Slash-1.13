@@ -1,10 +1,10 @@
 package com.robertx22.onevent.item;
 
 import com.robertx22.items.bags.BaseBagItem;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.SCollectItemPacket;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,7 +50,7 @@ public class OnPickupInsertIntoBag {
                                         .getItem().world.rand.nextFloat() - event.getItem().world.rand
                                         .nextFloat()) * 0.7F + 1.0F) * 2.0F);
                             }
-                            ((EntityPlayerMP) event.getEntityPlayer()).connection.sendPacket(new SPacketCollectItem(event
+                            ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
                                     .getItem()
                                     .getEntityId(), event.getEntityPlayer()
                                     .getEntityId(), numPickedUp));

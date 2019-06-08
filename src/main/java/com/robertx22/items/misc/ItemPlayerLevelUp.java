@@ -8,15 +8,15 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -38,8 +38,8 @@ public class ItemPlayerLevelUp extends BaseItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
+                                                    Hand handIn) {
 
         if (!worldIn.isRemote) {
             try {
@@ -48,20 +48,20 @@ public class ItemPlayerLevelUp extends BaseItem {
 
                 if (hasEnoughTokens(player.getHeldItem(handIn), req)) {
 
-                    if (Load.Unit(player).LevelUp((EntityPlayerMP) player)) {
+                    if (Load.Unit(player).LevelUp((ServerPlayerEntity) player)) {
 
-                        return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(player
+                        return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(player
                                 .getHeldItem(handIn), req));
 
                     }
                 } else {
-                    player.sendMessage(new TextComponentString("You need a total of " + req + " tokens to level up."));
+                    player.sendMessage(new StringTextComponent("You need a total of " + req + " tokens to level up."));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(handIn));
     }
 
     private boolean hasEnoughTokens(ItemStack stack, int tokensreq) {

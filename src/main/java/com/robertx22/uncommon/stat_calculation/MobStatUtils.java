@@ -16,7 +16,7 @@ import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
 public class MobStatUtils {
@@ -61,7 +61,7 @@ public class MobStatUtils {
     }
 
     // this apparently takes 60 ms
-    public static void AddRandomMobStatusEffects(EntityLivingBase entity, Unit unit,
+    public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit,
                                                  MobRarity rarity) {
 
         int max = rarity.MaxMobEffects();

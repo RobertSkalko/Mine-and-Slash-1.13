@@ -23,21 +23,33 @@ public class TileEntityRegister {
 
         IForgeRegistry<TileEntityType<?>> r = e.getRegistry();
 
-        r.register(TileEntityType.register(BlockRegister.MAP_PORTAL_BLOCK_ID, TileEntityType.Builder
-                .create(TileMapPortal::new)));
+        r.register(TileEntityType.Builder.func_223042_a(TileMapPortal::new, BlockRegister.PORTAL_BLOCK)
+                .build(null)
+                .setRegistryName(BlockRegister.MAP_PORTAL_BLOCK_ID));
 
-        r.register(TileEntityType.register(BlockRegister.GEAR_REPAIR_ID, TileEntityType.Builder
-                .create(TileInventoryRepair::new)));
-        r.register(TileEntityType.register(BlockRegister.GEAR_MODIFY_ID, TileEntityType.Builder
-                .create(TileInventoryModify::new)));
-        r.register(TileEntityType.register(BlockRegister.GEAR_SALVAGE_ID, TileEntityType.Builder
-                .create(TileInventorySalvage::new)));
-        r.register(TileEntityType.register(BlockRegister.MAP_DEVICE_ID, TileEntityType.Builder
-                .create(TileMap::new)));
-        r.register(TileEntityType.register(BlockRegister.GEAR_FACTORY_ID, TileEntityType.Builder
-                .create(TileGearFactory::new)));
-        r.register(TileEntityType.register(BlockRegister.EGG_LOOT_CRATE_ID, TileEntityType.Builder
-                .create(EggLootCrateTileEntity::new)));
+        r.register(TileEntityType.Builder.func_223042_a(TileInventoryRepair::new, BlockRegister.BLOCK_GEAR_REPAIR)
+                .build(null)
+                .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
+
+        r.register(TileEntityType.Builder.func_223042_a(TileInventoryModify::new, BlockRegister.BLOCK_GEAR_MODIFY)
+                .build(null)
+                .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
+
+        r.register(TileEntityType.Builder.func_223042_a(TileInventorySalvage::new, BlockRegister.BLOCK_GEAR_SALVAGE)
+                .build(null)
+                .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
+
+        r.register(TileEntityType.Builder.func_223042_a(TileMap::new, BlockRegister.BLOCK_MAP_DEVICE)
+                .build(null)
+                .setRegistryName(BlockRegister.MAP_DEVICE_ID));
+
+        r.register(TileEntityType.Builder.func_223042_a(TileGearFactory::new, BlockRegister.BLOCK_GEAR_FACTORY)
+                .build(null)
+                .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
+
+        r.register(TileEntityType.Builder.func_223042_a(EggLootCrateTileEntity::new, BlockRegister.EGG_LOOT_CRATE_BLOCK)
+                .build(null)
+                .setRegistryName(BlockRegister.EGG_LOOT_CRATE_ID));
 
     }
 

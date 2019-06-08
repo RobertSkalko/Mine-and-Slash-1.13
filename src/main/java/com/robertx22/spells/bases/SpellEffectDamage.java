@@ -3,7 +3,7 @@ package com.robertx22.spells.bases;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 public class SpellEffectDamage extends BaseSpellEffect {
 
@@ -21,7 +21,7 @@ public class SpellEffectDamage extends BaseSpellEffect {
     Elements element = Elements.Physical;
 
     @Override
-    public void Activate(DamageData dmgdata, EntityLivingBase target) {
+    public void Activate(DamageData dmgdata, LivingEntity target) {
 
         int num = dmgdata.spellItem.GetDamage(dmgdata.casterUnit.getUnit());
 

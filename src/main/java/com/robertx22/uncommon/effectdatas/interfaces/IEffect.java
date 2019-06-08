@@ -1,12 +1,12 @@
 package com.robertx22.uncommon.effectdatas.interfaces;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 public interface IEffect {
 
-	public abstract EntityLivingBase Source();
+	public abstract LivingEntity Source();
 
-	public abstract EntityLivingBase Target();
+	public abstract LivingEntity Target();
 
 	public abstract float Number();
 

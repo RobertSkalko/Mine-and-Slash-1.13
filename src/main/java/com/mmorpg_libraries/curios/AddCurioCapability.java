@@ -2,7 +2,7 @@ package com.mmorpg_libraries.curios;
 
 import com.mmorpg_libraries.curios.interfaces.ICuriosType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -39,7 +39,7 @@ public class AddCurioCapability {
                 @Nonnull
                 @Override
                 public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap,
-                                                         @Nullable EnumFacing side) {
+                                                         @Nullable Direction side) {
 
                     return CuriosCapability.ITEM.orEmpty(cap, curioOpt);
 

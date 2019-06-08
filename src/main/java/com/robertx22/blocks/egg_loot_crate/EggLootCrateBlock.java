@@ -4,11 +4,11 @@ import com.robertx22.blocks.bases.NonFullBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -24,25 +24,25 @@ public class EggLootCrateBlock extends NonFullBlock {
                 .lightValue(1));
     }
 
-    public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return SHAPE;
     }
 
     @Override
-    public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 
         return new EggLootCrateTileEntity();
 
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state) {
+    public boolean hasTileEntity(BlockState state) {
         return true;
     }
 
     @Override
-    public boolean onBlockActivated(IBlockState state, World world, BlockPos pos,
-                                    EntityPlayer player, EnumHand hand, EnumFacing side,
+    public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
+                                    PlayerEntity player, Hand hand, Direction side,
                                     float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             return true;

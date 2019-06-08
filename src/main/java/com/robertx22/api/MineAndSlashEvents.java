@@ -1,8 +1,8 @@
 package com.robertx22.api;
 
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class MineAndSlashEvents {
@@ -11,10 +11,10 @@ public class MineAndSlashEvents {
 
         public int experience = 0;
         public UnitData playerCapability;
-        public EntityLivingBase entityKilled;
-        public EntityPlayer player;
+        public LivingEntity entityKilled;
+        public PlayerEntity player;
 
-        public GiveExpEvent(EntityLivingBase killed, EntityPlayer player,
+        public GiveExpEvent(LivingEntity killed, PlayerEntity player,
                             UnitData playerdata, int exp) {
             super(player);
             this.entityKilled = killed;

@@ -1,11 +1,11 @@
 package com.robertx22.items.bags;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.inventory.Container;
+import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class BaseBagGui extends GuiContainer {
+public abstract class BaseBagGui extends ContainerScreen {
 
     public BaseBagGui(Container inventorySlotsIn) {
         super(inventorySlotsIn);
@@ -36,8 +36,8 @@ public abstract class BaseBagGui extends GuiContainer {
         this.mc.getTextureManager().bindTexture(texture());
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, rows() * 18 + 17);
-        this.drawTexturedModalRect(i, j + rows() * 18 + 17, 0, 126, this.xSize, 96);
+        this.blit(i, j, 0, 0, this.xSize, rows() * 18 + 17);
+        this.blit(i, j + rows() * 18 + 17, 0, 126, this.xSize, 96);
     }
 
 }

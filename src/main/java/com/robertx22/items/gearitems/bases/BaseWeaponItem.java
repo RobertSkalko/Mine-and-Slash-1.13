@@ -5,7 +5,7 @@ import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -38,7 +38,7 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
         return "";
     }
 
-    public static boolean checkDurability(EntityLivingBase attacker, ItemStack stack) {
+    public static boolean checkDurability(LivingEntity attacker, ItemStack stack) {
 
         if (stack.getDamage() > stack.getMaxDamage() - 20) {
             attacker.sendMessage(Chats.Weapon_durability_is_too_low.locName());
@@ -49,8 +49,8 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target,
-                             EntityLivingBase attacker) {
+    public boolean hitEntity(ItemStack stack, LivingEntity target,
+                             LivingEntity attacker) {
 
         stack.damageItem(1, attacker);
 

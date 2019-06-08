@@ -3,7 +3,7 @@ package com.robertx22.uncommon.datasaving;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 
 public class Map {
     private static final String LOC = "MAP_ITEM_DATA";
@@ -28,7 +28,7 @@ public class Map {
             return;
         }
         if (!stack.hasTag()) {
-            stack.setTag(new NBTTagCompound());
+            stack.setTag(new CompoundNBT());
         }
         if (gear != null) {
             LoadSave.Save(gear, stack.getTag(), LOC);
@@ -36,7 +36,7 @@ public class Map {
 
     }
 
-    public static MapItemData Load(NBTTagCompound nbt) {
+    public static MapItemData Load(CompoundNBT nbt) {
 
         if (nbt == null) {
             return null;
@@ -46,7 +46,7 @@ public class Map {
 
     }
 
-    public static void Save(NBTTagCompound nbt, MapItemData gear) {
+    public static void Save(CompoundNBT nbt, MapItemData gear) {
 
         if (nbt == null) {
             return;

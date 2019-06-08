@@ -4,13 +4,13 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemShield;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class NormalShield extends ItemShield implements IEffectItem, IAutoLocName, IGearItem {
+public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocName, IGearItem {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -56,7 +56,7 @@ public class NormalShield extends ItemShield implements IEffectItem, IAutoLocNam
     }
 
     @Override
-    public boolean isShield(ItemStack stack, @Nullable EntityLivingBase entity) {
+    public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
         return true;
 
     }
@@ -66,10 +66,10 @@ public class NormalShield extends ItemShield implements IEffectItem, IAutoLocNam
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new TextComponentString(""));
-        list.add(new TextComponentString(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
+        list.add(new StringTextComponent(""));
+        list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
         if (moreInfo) {
-            list.add(new TextComponentString(color() + "DMG Reduced Based on Block Strength"));
+            list.add(new StringTextComponent(color() + "DMG Reduced Based on Block Strength"));
         }
         return list;
     }

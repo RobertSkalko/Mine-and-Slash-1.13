@@ -1,11 +1,11 @@
 package com.robertx22.blocks.repair_station;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -65,7 +65,7 @@ public class ContainerInventoryRepair extends Container {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerInventoryRepair(InventoryPlayer invPlayer,
+    public ContainerInventoryRepair(PlayerInventory invPlayer,
                                     TileInventoryRepair tileInventoryFurnace) {
         this.tileInventoryRepair = tileInventoryFurnace;
 
@@ -128,13 +128,13 @@ public class ContainerInventoryRepair extends Container {
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(PlayerEntity player) {
         return tileInventoryRepair.isUsableByPlayer(player);
     }
 
     // shift click logic
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
         Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
         if (sourceSlot == null || !sourceSlot.getHasStack())
             return ItemStack.EMPTY; // EMPTY_ITEM

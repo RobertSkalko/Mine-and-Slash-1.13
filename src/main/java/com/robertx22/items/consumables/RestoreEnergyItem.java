@@ -4,10 +4,10 @@ import com.robertx22.items.consumables.bases.BaseConsumabletem;
 import com.robertx22.items.consumables.bases.IAmount;
 import com.robertx22.mmorpg.registers.common.ConsumableRegister;
 import com.robertx22.uncommon.capability.EntityData;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 public class RestoreEnergyItem extends BaseConsumabletem implements IAmount {
@@ -15,14 +15,14 @@ public class RestoreEnergyItem extends BaseConsumabletem implements IAmount {
     @Override
     public ITextComponent tooltip() {
 
-        ITextComponent comp = new TextComponentString("Restores " + amount() + " Energy");
+        ITextComponent comp = new StringTextComponent("Restores " + amount() + " Energy");
 
         return comp;
 
     }
 
     @Override
-    public void onFinish(ItemStack stack, World world, EntityLivingBase player,
+    public void onFinish(ItemStack stack, World world, LivingEntity player,
                          EntityData.UnitData unitdata) {
 
         unitdata.restoreEnergy(amount());

@@ -1,14 +1,14 @@
 package com.robertx22.uncommon.capability.bases;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 
-public abstract class BaseProvider<TYPE> implements ICapabilitySerializable<NBTTagCompound> {
+public abstract class BaseProvider<TYPE> implements ICapabilitySerializable<CompoundNBT> {
 
     public abstract TYPE defaultImpl();
 
@@ -18,21 +18,21 @@ public abstract class BaseProvider<TYPE> implements ICapabilitySerializable<NBTT
     private final LazyOptional<TYPE> cap = LazyOptional.of(() -> impl);
 
     @Override
-    public NBTTagCompound serializeNBT() {
-        return (NBTTagCompound) dataInstance().getStorage()
+    public CompoundNBT serializeNBT() {
+        return (CompoundNBT) dataInstance().getStorage()
                 .writeNBT(dataInstance(), impl, null);
 
     }
 
     @Override
-    public void deserializeNBT(NBTTagCompound nbt) {
+    public void deserializeNBT(CompoundNBT nbt) {
         dataInstance().getStorage().readNBT(dataInstance(), impl, null, nbt);
 
     }
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
         if (cap == dataInstance()) {
             return this.cap.cast();
         }

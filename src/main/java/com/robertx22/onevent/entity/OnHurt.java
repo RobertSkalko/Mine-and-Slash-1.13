@@ -5,8 +5,8 @@ import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,7 +33,7 @@ public class OnHurt {
         // required or else there's no point in getting legendary weapons if a diamond
         // sword more damage
         if (event.getSource() != null && event.getSource()
-                .getTrueSource() instanceof EntityLivingBase && Load.hasUnit(event.getEntityLiving())) {
+                .getTrueSource() instanceof LivingEntity && Load.hasUnit(event.getEntityLiving())) {
             if (event.getSource().isExplosion()) {
                 event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
                         .get()
@@ -53,12 +53,12 @@ public class OnHurt {
 
         Entity defender = event.getEntityLiving();
 
-        if (defender instanceof EntityPlayer == false) {
+        if (defender instanceof PlayerEntity == false) {
 
             if (event.getSource() != null) {
                 Entity attacker = event.getSource().getTrueSource();
 
-                if (attacker instanceof EntityPlayer == false) {
+                if (attacker instanceof PlayerEntity == false) {
                     UnitData data = Load.Unit(event.getEntityLiving());
                     if (data != null) {
                         data.onDamagedByNonPlayer(event.getAmount());

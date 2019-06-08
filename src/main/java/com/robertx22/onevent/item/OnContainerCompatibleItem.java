@@ -7,7 +7,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,7 +45,7 @@ public class OnContainerCompatibleItem {
 
                         ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
 
-                        EntityPlayer player = event.getEntityPlayer();
+                        PlayerEntity player = event.getEntityPlayer();
 
                         if (Load.hasUnit(player)) {
                             if (data == null) {

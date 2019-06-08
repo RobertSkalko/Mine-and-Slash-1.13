@@ -14,7 +14,7 @@ import com.robertx22.uncommon.Words;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(new TextComponentString(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
+        list.add(new StringTextComponent(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
                 .locName()
                 .appendText(":")));
 

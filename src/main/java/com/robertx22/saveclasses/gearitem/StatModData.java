@@ -13,7 +13,7 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -123,7 +123,7 @@ public class StatModData implements ITooltipString {
             e.printStackTrace();
         }
 
-        return Arrays.asList(new TextComponentString(""));
+        return Arrays.asList(new StringTextComponent(""));
     }
 
     public void Add(StatData data, int level) {

@@ -7,13 +7,13 @@ import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ObjectHolder;
@@ -31,17 +31,17 @@ public class ItemLevelNearestEntity extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
+                                                    Hand hand) {
 
         if (!world.isRemote) {
             try {
 
                 AxisAlignedBB box = new AxisAlignedBB(player.getPosition()).grow(2);
 
-                for (EntityLivingBase en : world.getEntitiesWithinAABB(EntityLivingBase.class, box)) {
+                for (LivingEntity en : world.getEntitiesWithinAABB(LivingEntity.class, box)) {
 
-                    if (en.isEntityEqual(player) == false && en instanceof EntityPlayer == false) {
+                    if (en.isEntityEqual(player) == false && en instanceof PlayerEntity == false) {
 
                         UnitData data = Load.Unit(en);
 
@@ -51,7 +51,7 @@ public class ItemLevelNearestEntity extends Item {
 
                             player.getHeldItem(hand).shrink(1);
 
-                            return new ActionResult<ItemStack>(EnumActionResult.PASS, player
+                            return new ActionResult<ItemStack>(ActionResultType.PASS, player
                                     .getHeldItem(hand));
                         } else {
                             player.sendMessage(Chats.No_targets_found.locName());
@@ -64,7 +64,7 @@ public class ItemLevelNearestEntity extends Item {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
     }
 
 }

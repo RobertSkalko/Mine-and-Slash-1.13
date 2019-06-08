@@ -12,17 +12,17 @@ import com.robertx22.spells.entities.bases.EntityStaffProjectile;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumAction;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -44,8 +44,8 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
     }
 
     @Override
-    public EnumAction getUseAction(ItemStack stack) {
-        return EnumAction.NONE;
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.NONE;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world,
-                                     EntityLivingBase player) {
+                                     LivingEntity player) {
 
         try {
 
@@ -77,7 +77,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                         stack.damageItem(1, player);
 
-                        SoundUtils.playSoundAtPlayer((EntityPlayer) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+                        SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 
                     }
 
@@ -94,11 +94,11 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
+                                                    Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
         player.setActiveHand(handIn);
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
 
     @Override
@@ -111,10 +111,10 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new TextComponentString(""));
-        list.add(new TextComponentString(color() + "" + TextFormatting.BOLD + "[Active]: " + "Magic Projectile"));
+        list.add(new StringTextComponent(""));
+        list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + "Magic Projectile"));
         if (moreInfo) {
-            list.add(new TextComponentString(color() + "Casts an orb that damages first enemy hit"));
+            list.add(new StringTextComponent(color() + "Casts an orb that damages first enemy hit"));
         }
         return list;
     }

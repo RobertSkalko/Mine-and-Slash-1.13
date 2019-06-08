@@ -2,7 +2,7 @@ package com.robertx22.database.world_providers;
 
 import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusWaterDamageAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import net.minecraft.init.Biomes;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;

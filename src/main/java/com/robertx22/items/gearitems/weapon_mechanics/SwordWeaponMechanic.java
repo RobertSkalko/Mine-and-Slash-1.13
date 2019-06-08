@@ -4,13 +4,13 @@ import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public class SwordWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new TextComponentString(Styles.GREEN + "Normal Attack");
+        return new StringTextComponent(Styles.GREEN + "Normal Attack");
     }
 
     @Override

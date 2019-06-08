@@ -19,17 +19,17 @@ import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -67,16 +67,16 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         return BonusSalvageValues.get(rarity);
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
+                                                    Hand hand) {
 
         if (!world.isRemote) {
             ItemStack bag = player.getHeldItem(hand);
 
-            NBTTagCompound nbt = bag.getTag();
+            CompoundNBT nbt = bag.getTag();
 
             if (nbt == null) {
-                nbt = new NBTTagCompound();
+                nbt = new CompoundNBT();
             }
 
             ItemStack stack = player.getHeldItemOffhand();
@@ -110,16 +110,16 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
                 nbt.putInt("map", -1);
                 nbt.putInt("rune", -1);
 
-                player.sendMessage(new TextComponentString("Bag Config Cleared"));
+                player.sendMessage(new StringTextComponent("Bag Config Cleared"));
             }
             bag.setTag(nbt);
         }
 
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
     }
 
-    private void successChat(EntityPlayer player) {
-        player.sendMessage(new TextComponentString("You Have Successfully Modified your Automatic Salvaging Bag."));
+    private void successChat(PlayerEntity player) {
+        player.sendMessage(new StringTextComponent("You Have Successfully Modified your Automatic Salvaging Bag."));
     }
 
     public ItemStack getSalvageResultForItem(ISalvagable sal) {
@@ -159,10 +159,10 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        NBTTagCompound nbt = stack.getTag();
+        CompoundNBT nbt = stack.getTag();
 
         if (nbt == null) {
-            nbt = new NBTTagCompound();
+            nbt = new CompoundNBT();
         }
 
         Tooltip.add(Words.Automatically_salvages_items.locName()
@@ -200,7 +200,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         Tooltip.add(Words.Works_when_equipped.locName(), tooltip);
         Tooltip.add("", tooltip);
 
-        if (GuiScreen.isShiftKeyDown() == false) {
+        if (Screen.isShiftKeyDown() == false) {
 
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(CLOC.tooltip("sal_info")), tooltip);
@@ -217,7 +217,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     public ITextComponent getSalvagedRarities(List<Rarity> rarities, int rarity) {
 
-        ITextComponent text = new TextComponentString("");
+        ITextComponent text = new StringTextComponent("");
 
         for (ItemRarity rar : Rarities.Items.rarities()) {
             if (rar.Rank() <= rarity) {
@@ -237,7 +237,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
-    public boolean shouldSalvageItem(ISalvagable sal, NBTTagCompound nbt) {
+    public boolean shouldSalvageItem(ISalvagable sal, CompoundNBT nbt) {
 
         int rarity = sal.getSalvagedRarity();
 
@@ -265,7 +265,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         return false;
     }
 
-    private int getGear(NBTTagCompound nbt) {
+    private int getGear(CompoundNBT nbt) {
 
         if (nbt != null) {
             if (nbt.contains("gear")) {
@@ -276,7 +276,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
-    private int getSpell(NBTTagCompound nbt) {
+    private int getSpell(CompoundNBT nbt) {
         if (nbt != null) {
             if (nbt.contains("spell")) {
                 return nbt.getInt("spell");
@@ -286,7 +286,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
-    private int getRune(NBTTagCompound nbt) {
+    private int getRune(CompoundNBT nbt) {
         if (nbt != null) {
             if (nbt.contains("rune")) {
                 return nbt.getInt("rune");
@@ -296,7 +296,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
-    private int getMap(NBTTagCompound nbt) {
+    private int getMap(CompoundNBT nbt) {
         if (nbt != null) {
 
             if (nbt.contains("map")) {

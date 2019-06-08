@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_types.BaseTrait;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
-import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Effects;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +41,6 @@ public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
 
     @Override
     public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(MobEffects.SPEED, 5), IStatEffect.EffectSides.Target));
+        return Arrays.asList(new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.field_76424_c, 5), IStatEffect.EffectSides.Target));
     }
 }

@@ -15,7 +15,7 @@ import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.interfaces.IStatConversion;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.List;
 
@@ -90,7 +90,7 @@ public class CommonStatUtils {
     }
 
     public static void AddMapAffixStats(PlayerMapData.IPlayerMapData mapdata, Unit unit,
-                                        int level, EntityLivingBase entity) {
+                                        int level, LivingEntity entity) {
 
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();

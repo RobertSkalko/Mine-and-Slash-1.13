@@ -12,8 +12,8 @@ import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
@@ -39,7 +39,7 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
-        float getLootMultiplier(EntityPlayer player);
+        float getLootMultiplier(PlayerEntity player);
 
         String getLastMapGUID();
 
@@ -55,15 +55,15 @@ public class PlayerMapData {
 
         DimensionType getOriginalDimension();
 
-        void teleportPlayerBack(EntityPlayer player);
+        void teleportPlayerBack(PlayerEntity player);
 
-        void onPlayerDeath(EntityPlayer player);
+        void onPlayerDeath(PlayerEntity player);
 
         boolean isPermaDeath();
 
-        void onMinute(EntityPlayer player);
+        void onMinute(PlayerEntity player);
 
-        void init(BlockPos pos, MapItemData map, DimensionType type, EntityPlayer player);
+        void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
     }
 
@@ -73,7 +73,7 @@ public class PlayerMapData {
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-            if (event.getObject() instanceof EntityPlayer) {
+            if (event.getObject() instanceof PlayerEntity) {
                 event.addCapability(RESOURCE, new Provider());
             }
         }
@@ -95,7 +95,7 @@ public class PlayerMapData {
 
     public static class DefaultImpl implements IPlayerMapData {
 
-        private NBTTagCompound nbt = new NBTTagCompound();
+        private CompoundNBT nbt = new CompoundNBT();
 
         long mapDevicePos;
         MapItemData mapdata = new MapItemData();
@@ -104,7 +104,7 @@ public class PlayerMapData {
         String mapGUID = ""; // used to check if same map for chests
 
         @Override
-        public NBTTagCompound getNBT() {
+        public CompoundNBT getNBT() {
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
@@ -123,7 +123,7 @@ public class PlayerMapData {
         }
 
         @Override
-        public void setNBT(NBTTagCompound value) {
+        public void setNBT(CompoundNBT value) {
             this.nbt = value;
 
             mapdata = Map.Load(nbt);
@@ -136,7 +136,7 @@ public class PlayerMapData {
         }
 
         @Override
-        public void onPlayerDeath(EntityPlayer player) {
+        public void onPlayerDeath(PlayerEntity player) {
 
             if (this.isPermaDeath()) {
 
@@ -172,7 +172,7 @@ public class PlayerMapData {
         }
 
         @Override
-        public void onMinute(EntityPlayer player) {
+        public void onMinute(PlayerEntity player) {
             this.minutesPassed++;
 
             if (this.getMinutesLeft() < 1) {
@@ -189,7 +189,7 @@ public class PlayerMapData {
 
         @Override
         public void init(BlockPos pos, MapItemData map, DimensionType type,
-                         EntityPlayer player) {
+                         PlayerEntity player) {
 
             this.minutesPassed = 0;
             this.mapDevicePos = pos.toLong();
@@ -199,7 +199,7 @@ public class PlayerMapData {
 
         }
 
-        private void onMinutePassAnnounce(EntityPlayer player) {
+        private void onMinutePassAnnounce(PlayerEntity player) {
             int minutesLeft = getMinutesLeft();
 
             if (minutesLeft > 0) {
@@ -210,7 +210,7 @@ public class PlayerMapData {
         }
 
         @Override
-        public float getLootMultiplier(EntityPlayer player) {
+        public float getLootMultiplier(PlayerEntity player) {
             if (WorldUtils.isMapWorld(player.world)) {
                 return this.mapdata.getBonusLootMulti();
             } else {
@@ -254,7 +254,7 @@ public class PlayerMapData {
         }
 
         @Override
-        public void teleportPlayerBack(EntityPlayer player) {
+        public void teleportPlayerBack(PlayerEntity player) {
 
             if (WorldUtils.isMapWorld(player.world)) {
                 if (this.originalDimension != null) {
@@ -274,13 +274,13 @@ public class PlayerMapData {
             }
         }
 
-        private void announceEnd(EntityPlayer player) {
+        private void announceEnd(PlayerEntity player) {
 
             player.sendMessage(Chats.Ran_Out_Of_Time.locName());
 
         }
 
-        private void announceTimeLeft(EntityPlayer player) {
+        private void announceTimeLeft(PlayerEntity player) {
 
             player.sendMessage(Chats.Remaining_Map_Time_is.locName()
                     .appendText(" " + this.getMinutesLeft() + " ")

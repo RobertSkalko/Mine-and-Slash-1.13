@@ -8,9 +8,9 @@ import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -44,21 +44,21 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     }
 
-    public void ifDamageKilledEnemy(EntityLivingBase enemy) {
+    public void ifDamageKilledEnemy(LivingEntity enemy) {
         if (enemy.getHealth() <= 0) {
 
         }
     }
 
-    public List<EntityLivingBase> entitiesHit = new ArrayList();
+    public List<LivingEntity> entitiesHit = new ArrayList();
 
-    private EntityLivingBase getEntityHit(RayTraceResult result, Entity projectile) {
+    private LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
 
-        if (result.entity instanceof EntityLivingBase) {
-            return (EntityLivingBase) result.entity;
+        if (result.entity instanceof LivingEntity) {
+            return (LivingEntity) result.entity;
         }
 
-        List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, EntityLivingBase.class);
+        List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
 
         if (entities.size() > 0) {
             return entities.get(0);
@@ -71,13 +71,13 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        EntityLivingBase entityHit = getEntityHit(result, this);
+        LivingEntity entityHit = getEntityHit(result, this);
 
         if (entityHit == this.getThrower()) {
             return;
         }
 
-        if (entityHit instanceof EntityLivingBase && effect != null && data != null) {
+        if (entityHit instanceof LivingEntity && effect != null && data != null) {
             if (world.isRemote) {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
@@ -127,7 +127,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     }
 
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
-                              EntityLivingBase caster) {
+                              LivingEntity caster) {
 
         this.spellType = data.spellItem.GetSpell().Type();
 

@@ -1,9 +1,9 @@
 package com.robertx22.world_gen.structures;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.block.Blocks;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -14,7 +14,7 @@ import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.LootTables;
 
 import java.util.Random;
 
@@ -46,7 +46,7 @@ public class SingularPiece extends TemplateStructurePiece {
     /**
      * (abstract) Helper method to write subclass data to NBT
      */
-    protected void writeAdditional(NBTTagCompound tagCompound) {
+    protected void writeAdditional(CompoundNBT tagCompound) {
         super.writeAdditional(tagCompound);
         tagCompound.putString("Template", this.resource.toString());
         tagCompound.putString("Rot", this.rotation.name());
@@ -55,7 +55,7 @@ public class SingularPiece extends TemplateStructurePiece {
     /**
      * (abstract) Helper method to read subclass data from NBT
      */
-    protected void readAdditional(NBTTagCompound tagCompound,
+    protected void readAdditional(CompoundNBT tagCompound,
                                   TemplateManager templateManager) {
         super.readAdditional(tagCompound, templateManager);
         this.resource = new ResourceLocation(tagCompound.getString("Template"));
@@ -68,8 +68,8 @@ public class SingularPiece extends TemplateStructurePiece {
         if ("chest".equals(function)) {
             worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
             TileEntity tileentity = worldIn.getTileEntity(pos.down());
-            if (tileentity instanceof TileEntityChest) {
-                ((TileEntityChest) tileentity).setLootTable(LootTableList.CHESTS_IGLOO_CHEST, rand
+            if (tileentity instanceof ChestTileEntity) {
+                ((ChestTileEntity) tileentity).setLootTable(LootTables.CHESTS_IGLOO_CHEST, rand
                         .nextLong());
             }
 

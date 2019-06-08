@@ -13,9 +13,9 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -31,7 +31,7 @@ public class OnTooltip {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemTooltip(ItemTooltipEvent event) {
 
-        if (GuiScreen.isCtrlKeyDown()) {
+        if (Screen.isCtrlKeyDown()) {
             return;
         }
 
@@ -67,18 +67,18 @@ public class OnTooltip {
 
             gear.BuildTooltip(stack, event, unit, unitdata);
 
-            if (GuiScreen.isShiftKeyDown() == false) {
+            if (Screen.isShiftKeyDown() == false) {
                 event.getToolTip()
                         .add(Styles.BLUECOMP()
                                 .appendSibling(CLOC.tooltip("press_shift_more_info")));
             } else {
                 event.getToolTip()
                         .add(Styles.GOLDCOMP()
-                                .appendSibling(new TextComponentString("Power Level: " + gear
+                                .appendSibling(new StringTextComponent("Power Level: " + gear
                                         .getPowerLevel())));
                 event.getToolTip()
                         .add(Styles.BLUECOMP()
-                                .appendSibling(new TextComponentString("[Alt]: Show Detailed Stat Descriptions")));
+                                .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
 
             }
         } else {
@@ -100,7 +100,7 @@ public class OnTooltip {
         if (stack.getItem() instanceof IEffectItem) {
             IEffectItem effect = (IEffectItem) stack.getItem();
             event.getToolTip()
-                    .addAll(effect.getEffectTooltip(GuiScreen.isShiftKeyDown()));
+                    .addAll(effect.getEffectTooltip(Screen.isShiftKeyDown()));
         }
 
         if (stack.getItem().getRegistryName() != null) {
@@ -109,7 +109,7 @@ public class OnTooltip {
                     .toString())) {
 
                 event.getToolTip()
-                        .add(new TextComponentString(Styles.RED + "Compatible Mine and Slash Item"));
+                        .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
 
             }
         }

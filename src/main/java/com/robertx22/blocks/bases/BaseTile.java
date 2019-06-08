@@ -1,18 +1,18 @@
 package com.robertx22.blocks.bases;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IInteractionObject;
 
 import javax.annotation.Nullable;
@@ -48,7 +48,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public int[] getSlotsForFace(EnumFacing side) {
+    public int[] getSlotsForFace(Direction side) {
         return slots();
     }
 
@@ -79,7 +79,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
 
         if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
             // don't insert shit
@@ -89,7 +89,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
 
         if (this.isAutomatable()) {
             // don't extract stuff that's being processed
@@ -168,11 +168,11 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
+    public void openInventory(PlayerEntity player) {
     }
 
     @Override
-    public void closeInventory(EntityPlayer player) {
+    public void closeInventory(PlayerEntity player) {
     }
 
     // -----------------------------------------------------------------------------------------------------------
@@ -209,7 +209,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(PlayerEntity player) {
         if (this.world.getTileEntity(this.pos) != this)
             return false;
         final double X_CENTRE_OFFSET = 0.5;
@@ -233,13 +233,13 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     @Override
-    public NBTTagCompound write(NBTTagCompound parentNBTTagCompound) {
+    public CompoundNBT write(CompoundNBT parentNBTTagCompound) {
         super.write(parentNBTTagCompound); // The super call is required to save and load the tiles location
 
-        NBTTagList dataForAllSlots = new NBTTagList();
+        ListNBT dataForAllSlots = new ListNBT();
         for (int i = 0; i < this.itemStacks.length; ++i) {
             if (!this.itemStacks[i].isEmpty()) { // isEmpty()
-                NBTTagCompound dataForThisSlot = new NBTTagCompound();
+                CompoundNBT dataForThisSlot = new CompoundNBT();
                 dataForThisSlot.putByte("Slot", (byte) i);
                 this.itemStacks[i].write(dataForThisSlot);
                 dataForAllSlots.add(dataForThisSlot);
@@ -258,14 +258,14 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     // This is where you load the dataInstance that you saved in write
     @Override
-    public void read(NBTTagCompound nbtTagCompound) {
+    public void read(CompoundNBT nbtTagCompound) {
         super.read(nbtTagCompound); // The super call is required to save and load the tiles location
         final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
-        NBTTagList dataForAllSlots = nbtTagCompound.getList("Items", NBT_TYPE_COMPOUND);
+        ListNBT dataForAllSlots = nbtTagCompound.getList("Items", NBT_TYPE_COMPOUND);
 
         Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty EMPTY_ITEM
         for (int i = 0; i < dataForAllSlots.size(); ++i) {
-            NBTTagCompound dataForOneSlot = dataForAllSlots.getCompound(i);
+            CompoundNBT dataForOneSlot = dataForAllSlots.getCompound(i);
             byte slotNumber = dataForOneSlot.getByte("Slot");
             if (slotNumber >= 0 && slotNumber < this.itemStacks.length) {
                 this.itemStacks[slotNumber] = ItemStack.read(dataForOneSlot);
@@ -283,15 +283,15 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     //	//  it uses getUpdatePacket(), getUpdateTag(), onDataPacket(), and handleUpdateTag() to do this
     @Override
     @Nullable
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound updateTagDescribingTileEntityState = getUpdateTag();
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        CompoundNBT updateTagDescribingTileEntityState = getUpdateTag();
         final int METADATA = 0;
-        return new SPacketUpdateTileEntity(this.pos, METADATA, updateTagDescribingTileEntityState);
+        return new SUpdateTileEntityPacket(this.pos, METADATA, updateTagDescribingTileEntityState);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        NBTTagCompound updateTagDescribingTileEntityState = pkt.getNbtCompound();
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        CompoundNBT updateTagDescribingTileEntityState = pkt.getNbtCompound();
         handleUpdateTag(updateTagDescribingTileEntityState);
     }
 
@@ -301,8 +301,8 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
      * this method, vanilla also calls it directly, so don't remove it.
      */
     @Override
-    public NBTTagCompound getUpdateTag() {
-        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+    public CompoundNBT getUpdateTag() {
+        CompoundNBT nbtTagCompound = new CompoundNBT();
         write(nbtTagCompound);
         return nbtTagCompound;
     }
@@ -313,7 +313,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
      * this method, vanilla also calls it directly, so don't remove it.
      */
     @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
+    public void handleUpdateTag(CompoundNBT tag) {
         this.read(tag);
     }
     // ------------------------
@@ -325,7 +325,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     @Override
     public ITextComponent getName() {
-        return new TextComponentTranslation(this.getGuiID());
+        return new TranslationTextComponent(this.getGuiID());
     }
 
 }

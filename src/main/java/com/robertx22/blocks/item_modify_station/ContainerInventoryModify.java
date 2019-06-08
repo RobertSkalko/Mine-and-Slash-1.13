@@ -1,12 +1,12 @@
 package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.salvage_station.TileInventorySalvage;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.container.Slot;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -41,7 +41,7 @@ public class ContainerInventoryModify extends Container {
     private final int FIRST_INPUT_SLOT_NUMBER = 0;
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
 
-    public ContainerInventoryModify(InventoryPlayer invPlayer,
+    public ContainerInventoryModify(PlayerInventory invPlayer,
                                     TileInventoryModify tileInventory) {
         this.tileInventory = tileInventory;
 
@@ -87,13 +87,13 @@ public class ContainerInventoryModify extends Container {
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(PlayerEntity player) {
         return tileInventory.isUsableByPlayer(player);
     }
 
     // shift click logic
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
         return ItemStack.EMPTY;
     }
 

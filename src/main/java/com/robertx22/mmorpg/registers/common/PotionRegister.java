@@ -2,7 +2,7 @@ package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.all.*;
-import net.minecraft.potion.Potion;
+import net.minecraft.potion.Effect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,9 +12,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class PotionRegister {
 
     @SubscribeEvent
-    public static void register(RegistryEvent.Register<Potion> event) {
+    public static void register(RegistryEvent.Register<Effect> event) {
 
-        IForgeRegistry<Potion> reg = event.getRegistry();
+        IForgeRegistry<Effect> reg = event.getRegistry();
 
         reg.register(AoeRegenPotion.INSTANCE);
         reg.register(CleansePoisonPotion.INSTANCE);

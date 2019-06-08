@@ -1,7 +1,7 @@
 package com.robertx22.uncommon;
 
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class Styles {
@@ -17,39 +17,39 @@ public class Styles {
     public static TextFormatting AQUA = TextFormatting.AQUA;
 
     public static ITextComponent BLUECOMP() {
-        return new TextComponentString(BLUE + "");
+        return new StringTextComponent(BLUE + "");
     }
 
     public static ITextComponent GOLDCOMP() {
-        return new TextComponentString(GOLD + "");
+        return new StringTextComponent(GOLD + "");
     }
 
     public static ITextComponent GREENCOMP() {
-        return new TextComponentString(GREEN + "");
+        return new StringTextComponent(GREEN + "");
     }
 
     public static ITextComponent YELLOWCOMP() {
-        return new TextComponentString(YELLOW + "");
+        return new StringTextComponent(YELLOW + "");
     }
 
     public static ITextComponent REDCOMP() {
-        return new TextComponentString(RED + "");
+        return new StringTextComponent(RED + "");
     }
 
     public static ITextComponent DARK_GREENCOMP() {
-        return new TextComponentString(DARK_GREEN + "");
+        return new StringTextComponent(DARK_GREEN + "");
     }
 
     public static ITextComponent GRAYCOMP() {
-        return new TextComponentString(GRAY + "");
+        return new StringTextComponent(GRAY + "");
     }
 
     public static ITextComponent LIGHT_PURPLECOMP() {
-        return new TextComponentString(LIGHT_PURPLE + "");
+        return new StringTextComponent(LIGHT_PURPLE + "");
     }
 
     public static ITextComponent AQUACOMP() {
-        return new TextComponentString(AQUA + "");
+        return new StringTextComponent(AQUA + "");
     }
 
 }

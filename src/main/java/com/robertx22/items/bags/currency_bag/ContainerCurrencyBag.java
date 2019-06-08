@@ -4,13 +4,13 @@ import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
 
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 public class ContainerCurrencyBag extends BaseContainer {
 
-    public ContainerCurrencyBag(InventoryPlayer playerInv, BaseInventory basebag) {
+    public ContainerCurrencyBag(PlayerInventory playerInv, BaseInventory basebag) {
 	super(playerInv, basebag);
 
     }

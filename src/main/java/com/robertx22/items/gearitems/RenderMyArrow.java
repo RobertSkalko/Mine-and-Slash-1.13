@@ -1,13 +1,13 @@
 package com.robertx22.items.gearitems;
 
-import net.minecraft.client.renderer.entity.RenderArrow;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.ArrowRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderMyArrow extends RenderArrow<MyEntityArrow> {
+public class RenderMyArrow extends ArrowRenderer<MyEntityArrow> {
     public static final ResourceLocation RES_SPECTRAL_ARROW = new ResourceLocation("textures/entity/projectiles/spectral_arrow.png");
 
-    public RenderMyArrow(RenderManager manager) {
+    public RenderMyArrow(EntityRendererManager manager) {
         super(manager);
     }
 

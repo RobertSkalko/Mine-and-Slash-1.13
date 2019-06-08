@@ -8,13 +8,13 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ObjectHolder;
@@ -37,12 +37,12 @@ public class ItemMapBackPortal extends Item {
                               int itemSlot, boolean isSelected) {
 
         try {
-            if (!worldIn.isRemote && entityIn instanceof EntityPlayer) {
+            if (!worldIn.isRemote && entityIn instanceof PlayerEntity) {
 
-                NBTTagCompound nbt = stack.getTag();
+                CompoundNBT nbt = stack.getTag();
 
                 if (nbt == null) {
-                    nbt = new NBTTagCompound();
+                    nbt = new CompoundNBT();
                 }
 
                 if (nbt.getBoolean("porting")) {
@@ -68,8 +68,8 @@ public class ItemMapBackPortal extends Item {
                                 nbt.putInt("ticks", 0);
                                 nbt.putBoolean("porting", false);
 
-                                PlayerMapData.IPlayerMapData data = Load.playerMapData((EntityPlayer) entityIn);
-                                data.teleportPlayerBack((EntityPlayer) entityIn);
+                                PlayerMapData.IPlayerMapData data = Load.playerMapData((PlayerEntity) entityIn);
+                                data.teleportPlayerBack((PlayerEntity) entityIn);
 
                                 stack.setCount(stack.getCount() - 1);
 
@@ -87,8 +87,8 @@ public class ItemMapBackPortal extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
+                                                    Hand hand) {
 
         if (!world.isRemote) {
             try {
@@ -96,7 +96,7 @@ public class ItemMapBackPortal extends Item {
                 if (WorldUtils.isMapWorld(world)) {
 
                     if (!player.getHeldItem(hand).hasTag()) {
-                        player.getHeldItem(hand).setTag(new NBTTagCompound());
+                        player.getHeldItem(hand).setTag(new CompoundNBT());
                     }
 
                     player.getHeldItem(hand).getTag().putBoolean("porting", true);
@@ -106,7 +106,7 @@ public class ItemMapBackPortal extends Item {
 
                     player.sendMessage(Chats.Teleport_started.locName());
 
-                    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+                    return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
 
                 } else {
                     player.sendMessage(Chats.You_are_not_inside_a_map_world.locName());
@@ -117,7 +117,7 @@ public class ItemMapBackPortal extends Item {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
     }
 
 }

@@ -5,8 +5,8 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.item.ItemStack;
 
 public class LootUtils {
@@ -58,7 +58,7 @@ public class LootUtils {
     }
 
     public static float applyLootMultipliers(float chance, UnitData mob,
-                                             EntityLivingBase entity) {
+                                             LivingEntity entity) {
 
         float first = chance;
 
@@ -66,7 +66,7 @@ public class LootUtils {
 
         float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
 
-        if (entity instanceof EntitySlime) {
+        if (entity instanceof SlimeEntity) {
             after_mob_health /= 15;
         }
 

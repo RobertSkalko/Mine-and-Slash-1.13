@@ -8,10 +8,10 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -76,10 +76,10 @@ public abstract class BaseSpell implements IWeighted {
         return 1000;
     }
 
-    public abstract boolean cast(World world, EntityPlayer caster, EnumHand hand,
+    public abstract boolean cast(World world, PlayerEntity caster, Hand hand,
                                  int ticksInUse, SpellItemData data);
 
-    public boolean CanCast(EntityPlayer caster, SpellItemData data) {
+    public boolean CanCast(PlayerEntity caster, SpellItemData data) {
 
         if (!caster.world.isRemote) {
 
@@ -99,8 +99,8 @@ public abstract class BaseSpell implements IWeighted {
                     return true;
 
                 } else {
-                    if (caster instanceof EntityPlayerMP) {
-                        MMORPG.sendToClient(new NoEnergyPacket(), (EntityPlayerMP) caster);
+                    if (caster instanceof ServerPlayerEntity) {
+                        MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) caster);
 
                     }
 

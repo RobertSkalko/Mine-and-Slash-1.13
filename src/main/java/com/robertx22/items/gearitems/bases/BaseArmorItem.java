@@ -4,11 +4,11 @@ import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.items.gearitems.bases.armor_materials.*;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemArmor;
 
-public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, IGearItem {
+public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
 
     public int rarity = 0;
 
@@ -33,7 +33,7 @@ public abstract class BaseArmorItem extends ItemArmor implements IAutoLocName, I
         return AutoLocGroup.Gear_Items;
     }
 
-    public BaseArmorItem(int rarity, EntityEquipmentSlot slot) {
+    public BaseArmorItem(int rarity, EquipmentSlotType slot) {
 
         super(GetMat(rarity), slot, new Properties());
         this.rarity = rarity;

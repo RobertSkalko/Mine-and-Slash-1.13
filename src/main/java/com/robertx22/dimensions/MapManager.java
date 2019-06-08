@@ -7,7 +7,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -133,7 +133,7 @@ public class MapManager {
         return loc;
     }
 
-    public static DimensionType initDimension(EntityPlayer player, UnitData unit,
+    public static DimensionType initDimension(PlayerEntity player, UnitData unit,
                                               MapItemData map, BlockPos pos) {
 
         DimensionType type = getDimension(map.getIWP().getResourceLoc());

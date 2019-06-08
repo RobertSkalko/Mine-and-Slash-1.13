@@ -29,16 +29,16 @@ import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -46,6 +46,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import java.util.Random;
 import java.util.UUID;
 
 @EventBusSubscriber
@@ -73,22 +74,21 @@ public class EntityData {
 
     public interface UnitData extends ICommonCapability {
 
-        void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim);
+        void onAttackEntity(LivingEntity attacker, LivingEntity victim);
 
-        boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
-                                           EntityLivingBase victim);
+        boolean attackCooldownAllowsAttack(LivingEntity attacker, LivingEntity victim);
 
-        void syncToClient(EntityPlayer player);
+        void syncToClient(PlayerEntity player);
 
-        GearItemData getWeaponData(EntityLivingBase entity);
+        GearItemData getWeaponData(LivingEntity entity);
 
         void setEquipsChanged(boolean bool);
 
         void onDamagedByNonPlayer(float dmg);
 
-        boolean shouldDropLoot(EntityLivingBase entity);
+        boolean shouldDropLoot(LivingEntity entity);
 
-        int PostGiveExpEvent(EntityLivingBase killed, EntityPlayer player, int exp);
+        int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int exp);
 
         boolean isNewbie();
 
@@ -100,32 +100,32 @@ public class EntityData {
 
         int getLevel();
 
-        void mobBasicAttack(EntityLivingBase source, EntityLivingBase target,
-                            UnitData sourcedata, UnitData targetdata, float event_damage);
+        void mobBasicAttack(LivingEntity source, LivingEntity target, UnitData sourcedata,
+                            UnitData targetdata, float event_damage);
 
-        void setLevel(int lvl, EntityLivingBase entity);
+        void setLevel(int lvl, LivingEntity entity);
 
-        boolean increaseRarity(EntityLivingBase entity);
+        boolean increaseRarity(LivingEntity entity);
 
         int getExp();
 
         void setExp(int exp);
 
-        int GiveExp(EntityPlayer player, int i);
+        int GiveExp(PlayerEntity player, int i);
 
         int GetExpRequiredForLevelUp();
 
         boolean CheckIfCanLevelUp();
 
-        boolean LevelUp(EntityPlayer player);
+        boolean LevelUp(PlayerEntity player);
 
         boolean CheckLevelCap();
 
-        void SetMobLevelAtSpawn(EntityLivingBase entity);
+        void SetMobLevelAtSpawn(LivingEntity entity);
 
         Unit getUnit();
 
-        void setUnit(Unit unit, EntityLivingBase entity);
+        void setUnit(Unit unit, LivingEntity entity);
 
         void setRarity(int rarity);
 
@@ -135,23 +135,22 @@ public class EntityData {
 
         void setUUID(UUID id);
 
-        ITextComponent getName(EntityLivingBase entity);
+        ITextComponent getName(LivingEntity entity);
 
         void HandleCloneEvent(UnitData old);
 
-        void recalculateStats(EntityLivingBase entity);
+        void recalculateStats(LivingEntity entity);
 
-        void forceRecalculateStats(EntityLivingBase entity);
+        void forceRecalculateStats(LivingEntity entity);
 
         void forceSetUnit(Unit unit);
 
-        boolean tryUseWeapon(GearItemData gear, EntityLivingBase entity);
+        boolean tryUseWeapon(GearItemData gear, LivingEntity entity);
 
-        void attackWithWeapon(ItemStack weapon, GearItemData gear,
-                              EntityLivingBase source, EntityLivingBase target,
-                              UnitData targetdata);
+        void attackWithWeapon(ItemStack weapon, GearItemData gear, LivingEntity source,
+                              LivingEntity target, UnitData targetdata);
 
-        void onLogin(EntityPlayer player);
+        void onLogin(PlayerEntity player);
 
         float getCurrentMana();
 
@@ -173,7 +172,7 @@ public class EntityData {
 
         void consumeEnergy(float i);
 
-        void heal(EntityLivingBase entity, int healthrestored);
+        void heal(LivingEntity entity, int healthrestored);
 
         String getCurrentMapId();
 
@@ -183,10 +182,9 @@ public class EntityData {
 
         void clearCurrentMapId();
 
-        void unarmedAttack(EntityLivingBase source, EntityLivingBase target,
-                           UnitData targetdata);
+        void unarmedAttack(LivingEntity source, LivingEntity target, UnitData targetdata);
 
-        boolean decreaseRarity(EntityLivingBase entity);
+        boolean decreaseRarity(LivingEntity entity);
 
         boolean isWeapon(GearItemData gear);
 
@@ -206,12 +204,12 @@ public class EntityData {
             boolean can = false;
 
             if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
-                    .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof EntityLivingBase) {
+                    .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof LivingEntity) {
                 can = true;
 
             } else if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
                     .equals(EntitySystemChoice.Mobs_And_Players)) {
-                if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
+                if (event.getObject() instanceof IMob || event.getObject() instanceof PlayerEntity) {
                     can = true;
                 }
             }
@@ -237,7 +235,7 @@ public class EntityData {
     }
 
     public static class DefaultImpl implements UnitData {
-        private NBTTagCompound nbt = new NBTTagCompound();
+        private CompoundNBT nbt = new CompoundNBT();
 
         boolean setMobStats = false;
         Unit unit = null;
@@ -257,7 +255,7 @@ public class EntityData {
         float mana;
 
         @Override
-        public NBTTagCompound getNBT() {
+        public CompoundNBT getNBT() {
             nbt.putFloat(MANA, mana);
             nbt.putFloat(ENERGY, energy);
             nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
@@ -282,7 +280,7 @@ public class EntityData {
         }
 
         @Override
-        public void setNBT(NBTTagCompound value) {
+        public void setNBT(CompoundNBT value) {
             this.nbt = value;
             this.level = value.getInt(LEVEL);
             this.exp = value.getInt(EXP);
@@ -306,7 +304,7 @@ public class EntityData {
         }
 
         @Override
-        public void mobBasicAttack(EntityLivingBase source, EntityLivingBase target,
+        public void mobBasicAttack(LivingEntity source, LivingEntity target,
                                    UnitData sourcedata, UnitData targetdata,
                                    float event_damage) {
 
@@ -342,7 +340,7 @@ public class EntityData {
         }
 
         @Override
-        public void SetMobLevelAtSpawn(EntityLivingBase entity) {
+        public void SetMobLevelAtSpawn(LivingEntity entity) {
 
             this.setMobStats = true;
             this.level = LevelUtils.determineLevel(entity.world, entity.getPosition());
@@ -362,7 +360,7 @@ public class EntityData {
         }
 
         @Override
-        public boolean shouldDropLoot(EntityLivingBase entity) {
+        public boolean shouldDropLoot(LivingEntity entity) {
 
             if (entity.getMaxHealth() * ModConfig.INSTANCE.Server.STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT
                     .get() >= this.dmgByNonPlayers) {
@@ -373,7 +371,7 @@ public class EntityData {
         }
 
         @Override
-        public int PostGiveExpEvent(EntityLivingBase killed, EntityPlayer player, int i) {
+        public int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int i) {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
@@ -385,7 +383,7 @@ public class EntityData {
         }
 
         @Override
-        public int GiveExp(EntityPlayer player, int i) {
+        public int GiveExp(PlayerEntity player, int i) {
 
             setExp(exp + i);
 
@@ -425,7 +423,7 @@ public class EntityData {
         }
 
         @Override
-        public boolean LevelUp(EntityPlayer player) {
+        public boolean LevelUp(PlayerEntity player) {
 
             if (!CheckIfCanLevelUp()) {
                 player.sendMessage(Chats.Not_enough_experience.locName());
@@ -454,7 +452,7 @@ public class EntityData {
         }
 
         @Override
-        public void setLevel(int lvl, EntityLivingBase entity) {
+        public void setLevel(int lvl, LivingEntity entity) {
 
             level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
                     .get());
@@ -474,7 +472,7 @@ public class EntityData {
         }
 
         @Override
-        public void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim) {
+        public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
 
             this.lastAttackTick = attacker.ticksExisted;
 
@@ -484,8 +482,8 @@ public class EntityData {
 
         // makes sure hammers the aoe weapons arent machine guns
         @Override
-        public boolean attackCooldownAllowsAttack(EntityLivingBase attacker,
-                                                  EntityLivingBase victim) {
+        public boolean attackCooldownAllowsAttack(LivingEntity attacker,
+                                                  LivingEntity victim) {
 
             if (this.lastAttackTick < ATTACK_COOLDOWN) {
                 return true;
@@ -504,10 +502,10 @@ public class EntityData {
         }
 
         @Override
-        public void syncToClient(EntityPlayer player) {
+        public void syncToClient(PlayerEntity player) {
             if (unit != null) {
                 PlayerUnitPacket packet = new PlayerUnitPacket(this.getNBT());
-                EntityPlayerMP mp = (EntityPlayerMP) player;
+                ServerPlayerEntity mp = (ServerPlayerEntity) player;
                 MMORPG.sendToClient(packet, mp);
             }
         }
@@ -519,7 +517,7 @@ public class EntityData {
         }
 
         @Override
-        public void setUnit(Unit unit, EntityLivingBase entity) {
+        public void setUnit(Unit unit, LivingEntity entity) {
 
             this.unit = unit;
 
@@ -548,11 +546,11 @@ public class EntityData {
         }
 
         @Override
-        public ITextComponent getName(EntityLivingBase entity) {
+        public ITextComponent getName(LivingEntity entity) {
 
-            if (entity instanceof EntityPlayer) {
+            if (entity instanceof PlayerEntity) {
 
-                return new TextComponentString("[Lv:").appendText(this.getLevel() + "] " + " ")
+                return new StringTextComponent("[Lv:").appendText(this.getLevel() + "] " + " ")
                         .appendSibling(entity.getDisplayName());
 
             } else {
@@ -561,9 +559,9 @@ public class EntityData {
                 ITextComponent name = entity.getDisplayName();
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
-                        .appendSibling(new TextComponentString("[Lv:" + this.getLevel() + "] "));
+                        .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
-                ITextComponent suffix = new TextComponentString(rarity.textFormatColor() + "")
+                ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "")
                         .appendSibling(rarityprefix.appendText(" ").appendSibling(name));
 
                 return lvlcomp.appendSibling(suffix);
@@ -577,7 +575,7 @@ public class EntityData {
         }
 
         @Override
-        public void recalculateStats(EntityLivingBase entity) {
+        public void recalculateStats(LivingEntity entity) {
 
             if (unit == null) {
                 unit = new Unit();
@@ -589,7 +587,7 @@ public class EntityData {
         }
 
         @Override
-        public void forceRecalculateStats(EntityLivingBase entity) {
+        public void forceRecalculateStats(LivingEntity entity) {
 
             if (unit == null) {
                 unit = new Unit();
@@ -609,12 +607,12 @@ public class EntityData {
         }
 
         @Override
-        public GearItemData getWeaponData(EntityLivingBase entity) {
+        public GearItemData getWeaponData(LivingEntity entity) {
             return Gear.Load(entity.getHeldItemMainhand());
         }
 
         @Override
-        public boolean tryUseWeapon(GearItemData weaponData, EntityLivingBase source) {
+        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
 
             try {
 
@@ -646,13 +644,13 @@ public class EntityData {
 
         @Override
         public void attackWithWeapon(ItemStack weapon, GearItemData weaponData,
-                                     EntityLivingBase source, EntityLivingBase target,
+                                     LivingEntity source, LivingEntity target,
                                      UnitData targetdata) {
 
             if (weaponData.GetBaseGearType() instanceof IWeapon) {
 
                 if (weapon != null) {
-                    weapon.damageItem(1, source);
+                    weapon.attemptDamageItem(1, new Random(), null);
                 }
 
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
@@ -663,7 +661,7 @@ public class EntityData {
         }
 
         @Override
-        public void onLogin(EntityPlayer player) {
+        public void onLogin(PlayerEntity player) {
 
             try {
 
@@ -756,7 +754,7 @@ public class EntityData {
         }
 
         @Override
-        public void heal(EntityLivingBase entity, int healthrestored) {
+        public void heal(LivingEntity entity, int healthrestored) {
 
             if (entity.isAlive()) {
                 entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
@@ -766,7 +764,7 @@ public class EntityData {
         }
 
         @Override
-        public boolean increaseRarity(EntityLivingBase entity) {
+        public boolean increaseRarity(LivingEntity entity) {
 
             if (rarity == 5) {
                 return false;
@@ -779,7 +777,7 @@ public class EntityData {
         }
 
         @Override
-        public boolean decreaseRarity(EntityLivingBase entity) {
+        public boolean decreaseRarity(LivingEntity entity) {
 
             if (rarity - 1 < 0) {
                 return false;
@@ -812,7 +810,7 @@ public class EntityData {
         }
 
         @Override
-        public void unarmedAttack(EntityLivingBase source, EntityLivingBase target,
+        public void unarmedAttack(LivingEntity source, LivingEntity target,
                                   UnitData targetdata) {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();

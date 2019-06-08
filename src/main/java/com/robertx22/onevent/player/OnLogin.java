@@ -13,10 +13,10 @@ import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 @EventBusSubscriber
 public class OnLogin {
 
-    public static void GiveStarterItems(EntityPlayer player) {
+    public static void GiveStarterItems(PlayerEntity player) {
 
         GearBlueprint print = new GearBlueprint(1);
         print.SetSpecificType(new Sword().GUID());
@@ -87,7 +87,7 @@ public class OnLogin {
 
         try {
 
-            EntityPlayer player = event.getPlayer();
+            PlayerEntity player = event.getPlayer();
 
             if (Load.hasUnit(player)) {
 
@@ -100,7 +100,7 @@ public class OnLogin {
                 Load.playerMapData(player).teleportPlayerBack(player);
 
             } else {
-                player.sendMessage(new TextComponentString("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
+                player.sendMessage(new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
         } catch (Exception e) {
             e.printStackTrace();

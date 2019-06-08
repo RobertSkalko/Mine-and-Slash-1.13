@@ -23,8 +23,8 @@ import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -181,8 +181,8 @@ public class MMORPG {
 
         Network.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
 
-        if (entity instanceof EntityPlayer) {
-            sendToClient(msg, (EntityPlayerMP) entity);
+        if (entity instanceof PlayerEntity) {
+            sendToClient(msg, (ServerPlayerEntity) entity);
         }
 
     }
@@ -200,7 +200,7 @@ public class MMORPG {
 
     }
 
-    public static <MSG> void sendToClient(MSG msg, EntityPlayerMP player) {
+    public static <MSG> void sendToClient(MSG msg, ServerPlayerEntity player) {
 
         Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
     }

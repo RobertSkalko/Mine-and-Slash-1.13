@@ -9,7 +9,7 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.uncommon.interfaces.IStatEffects;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +23,12 @@ public abstract class EffectData {
     public Unit sourceUnit;
     public Unit targetUnit;
 
-    public EntityLivingBase source;
-    public EntityLivingBase target;
+    public LivingEntity source;
+    public LivingEntity target;
 
     public float number = 0;
 
-    public EffectData(EntityLivingBase source, EntityLivingBase target) {
+    public EffectData(LivingEntity source, LivingEntity target) {
 
         this.source = source;
         this.target = target;
@@ -68,7 +68,7 @@ public abstract class EffectData {
 
     }
 
-    public EffectData(EntityLivingBase source, EntityLivingBase target,
+    public EffectData(LivingEntity source, LivingEntity target,
                       UnitData sourceData, UnitData targetData) {
 
         this.source = source;

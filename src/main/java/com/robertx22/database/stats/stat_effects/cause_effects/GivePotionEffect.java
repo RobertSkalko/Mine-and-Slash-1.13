@@ -3,17 +3,17 @@ package com.robertx22.database.stats.stat_effects.cause_effects;
 import com.robertx22.database.stats.stat_effects.OnCauseDoEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.interfaces.IStatEffect;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 
 public class GivePotionEffect extends BaseCauseEffect {
 
-    private Potion potion;
+    private Effect potion;
     private int durationInSeconds;
     private int amplifier = 1;
 
-    public GivePotionEffect(Potion potion, int durationInSeconds) {
+    public GivePotionEffect(Effect potion, int durationInSeconds) {
         this.potion = potion;
         this.durationInSeconds = durationInSeconds;
 
@@ -27,7 +27,7 @@ public class GivePotionEffect extends BaseCauseEffect {
     @Override
     public void activate(OnCauseDoEffect oncause, EffectData effect) {
 
-        EntityLivingBase entity;
+        LivingEntity entity;
 
         if (oncause.whoGetsEffect.equals(IStatEffect.EffectSides.Source)) {
             entity = effect.source;
@@ -36,7 +36,7 @@ public class GivePotionEffect extends BaseCauseEffect {
             entity = effect.target;
         }
 
-        entity.addPotionEffect(new PotionEffect(potion, durationInSeconds * 20, amplifier));
+        entity.addPotionEffect(new EffectInstance(potion, durationInSeconds * 20, amplifier));
 
     }
 }

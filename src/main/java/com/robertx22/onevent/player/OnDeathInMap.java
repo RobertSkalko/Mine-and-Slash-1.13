@@ -3,8 +3,8 @@ package com.robertx22.onevent.player;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,11 +16,11 @@ public class OnDeathInMap {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingDeath(LivingDeathEvent evt) {
 
-        EntityLivingBase living = evt.getEntityLiving();
+        LivingEntity living = evt.getEntityLiving();
 
-        if (living instanceof EntityPlayer) {
+        if (living instanceof PlayerEntity) {
 
-            EntityPlayer player = (EntityPlayer) living;
+            PlayerEntity player = (PlayerEntity) living;
 
             if (WorldUtils.isMapWorld(living.world)) {
                 PlayerMapData.IPlayerMapData data = Load.playerMapData(player);

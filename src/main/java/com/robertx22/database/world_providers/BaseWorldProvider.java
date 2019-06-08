@@ -1,13 +1,14 @@
 package com.robertx22.database.world_providers;
 
 import com.robertx22.mmorpg.Ref;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.biome.provider.SingleBiomeProvider;
@@ -15,9 +16,9 @@ import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -87,7 +88,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean checkValid) {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(p_206921_1_, 0, p_206921_2_);
         Biome biome = this.world.getBiome(blockpos$mutableblockpos);
-        IBlockState iblockstate = biome.getSurfaceBuilderConfig().getTopMaterial();
+        BlockState iblockstate = biome.getSurfaceBuilderConfig().getTopMaterial();
         if (checkValid && !iblockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
         } else {
@@ -101,7 +102,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
             } else {
                 for (int j = i + 1; j >= 0; --j) {
                     blockpos$mutableblockpos.setPos(p_206921_1_, j, p_206921_2_);
-                    IBlockState iblockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+                    BlockState iblockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
                     if (!iblockstate1.getFluidState().isEmpty()) {
                         break;
                     }
@@ -123,12 +124,8 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         return new ResourceLocation(Ref.MODID, RESETTABLE + "_" + this.GUID());
     }
 
-    public BaseWorldProvider() {
-        super();
-        this.setModDim();
-    }
-
-    public BaseWorldProvider(DimensionType type) {
+    public BaseWorldProvider(World world, DimensionType type) {
+        super(world, type);
         this.type = type;
         this.setModDim();
 
@@ -148,7 +145,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     @Nonnull
     @Override
-    public IChunkGenerator<?> createChunkGenerator() {
+    public ChunkGenerator<?> createChunkGenerator() {
 
         OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 

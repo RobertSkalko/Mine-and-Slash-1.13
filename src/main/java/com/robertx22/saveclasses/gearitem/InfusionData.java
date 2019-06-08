@@ -7,7 +7,7 @@ import com.robertx22.uncommon.Words;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -92,7 +92,7 @@ public class InfusionData extends StatGroupData implements ITooltipList {
         if (isEmpty() == false) {
 
             list.add(Styles.LIGHT_PURPLECOMP()
-                    .appendSibling(new TextComponentString("+" + this.currentLevel + " ").appendSibling(Words.Infusion
+                    .appendSibling(new StringTextComponent("+" + this.currentLevel + " ").appendSibling(Words.Infusion
                             .locName()
                             .appendText(": "))));
 

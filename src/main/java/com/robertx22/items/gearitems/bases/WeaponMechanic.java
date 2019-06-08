@@ -5,7 +5,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class WeaponMechanic {
@@ -16,7 +16,7 @@ public abstract class WeaponMechanic {
 
     public abstract WeaponTypes weaponType();
 
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target,
+    public boolean Attack(LivingEntity source, LivingEntity target,
                           UnitData unitsource, UnitData targetUnit) {
 
         int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
@@ -27,7 +27,7 @@ public abstract class WeaponMechanic {
         return true;
     }
 
-    public boolean multiplyDamage(EntityLivingBase source, EntityLivingBase target,
+    public boolean multiplyDamage(LivingEntity source, LivingEntity target,
                                   UnitData unitsource, UnitData targetUnit,
                                   float multiplier) {
 

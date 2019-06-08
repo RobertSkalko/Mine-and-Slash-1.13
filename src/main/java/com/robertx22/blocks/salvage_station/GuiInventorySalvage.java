@@ -1,12 +1,12 @@
 package com.robertx22.blocks.salvage_station;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,7 +22,7 @@ public class GuiInventorySalvage extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
     private TileInventorySalvage tileEntity;
 
-    public GuiInventorySalvage(InventoryPlayer invPlayer,
+    public GuiInventorySalvage(PlayerInventory invPlayer,
                                TileInventorySalvage tileInventorySalvage) {
         super(new ContainerInventorySalvage(invPlayer, tileInventorySalvage));
 
@@ -48,12 +48,12 @@ public class GuiInventorySalvage extends TileGui {
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // get cook progress as a double between 0 and 1
         double cookProgress = tileEntity.fractionOfCookTimeComplete();
         // draw the cook progress bar
-        drawTexturedModalRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 

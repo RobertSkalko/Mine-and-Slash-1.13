@@ -6,20 +6,20 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.init.Particles;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -38,7 +38,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     /**
      * The entity that threw this throwable item.
      */
-    protected EntityLivingBase thrower;
+    protected LivingEntity thrower;
     private String throwerName;
     private int ticksInGround;
     private int ticksInAir;
@@ -65,13 +65,13 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     @Override
-    protected void readAdditional(NBTTagCompound compound) {
+    protected void readAdditional(CompoundNBT compound) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    protected void writeAdditional(NBTTagCompound compound) {
+    protected void writeAdditional(CompoundNBT compound) {
         // TODO Auto-generated method stub
 
     }
@@ -92,7 +92,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     }
 
-    protected boolean onExpireProc(EntityLivingBase caster) {
+    protected boolean onExpireProc(LivingEntity caster) {
 
         return false;
     }
@@ -147,7 +147,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
-        this.setSize(0.25F, 0.25F);
+
     }
 
     public EntityBaseProjectile(EntityType<?> type, World worldIn, double x, double y,
@@ -157,7 +157,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     public EntityBaseProjectile(EntityType<?> type, World worldIn,
-                                EntityLivingBase throwerIn) {
+                                LivingEntity throwerIn) {
         this(type, worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D, throwerIn.posZ);
         this.thrower = throwerIn;
     }
@@ -192,8 +192,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         this.motionX += entityThrower.motionX;
         this.motionZ += entityThrower.motionZ;
 
-        if (entityThrower instanceof EntityLivingBase) {
-            this.thrower = (EntityLivingBase) entityThrower;
+        if (entityThrower instanceof LivingEntity) {
+            this.thrower = (LivingEntity) entityThrower;
         }
         if (!entityThrower.onGround) {
             this.motionY += entityThrower.motionY;
@@ -430,7 +430,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                 double seekingRange = 3.0d;
 
                 if (setHomingTarget == false) {
-                    List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world);
+                    List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world);
 
                     for (Entity possibleTarget : entities) {
                         // Decides if current entity should be replaced.
@@ -483,7 +483,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     /**
      * (abstract) Protected helper method to write subclass entity dataInstance to NBT.
      */
-    public void writeEntityToNBT(NBTTagCompound compound) {
+    public void writeEntityToNBT(CompoundNBT compound) {
         compound.putInt("xTile", this.xTile);
         compound.putInt("yTile", this.yTile);
         compound.putInt("zTile", this.zTile);
@@ -491,7 +491,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         compound.putByte("shake", (byte) this.throwableShake);
         compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
-        if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof EntityPlayer) {
+        if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof PlayerEntity) {
             this.throwerName = this.thrower.getName().toString();
         }
 
@@ -504,7 +504,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     /**
      * (abstract) Protected helper method to read subclass entity dataInstance from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound compound) {
+    public void readEntityFromNBT(CompoundNBT compound) {
         this.xTile = compound.getInt("xTile");
         this.yTile = compound.getInt("yTile");
         this.zTile = compound.getInt("zTile");
@@ -526,16 +526,16 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     @Nullable
-    public EntityLivingBase getThrower() {
+    public LivingEntity getThrower() {
         if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
             this.thrower = this.world.getPlayerEntityByName(this.throwerName);
 
-            if (this.thrower == null && this.world instanceof WorldServer) {
+            if (this.thrower == null && this.world instanceof ServerWorld) {
                 try {
-                    Entity entity = ((WorldServer) this.world).getEntityFromUuid(UUID.fromString(this.throwerName));
+                    Entity entity = ((ServerWorld) this.world).getEntityFromUuid(UUID.fromString(this.throwerName));
 
-                    if (entity instanceof EntityLivingBase) {
-                        this.thrower = (EntityLivingBase) entity;
+                    if (entity instanceof LivingEntity) {
+                        this.thrower = (LivingEntity) entity;
                     }
                 } catch (Throwable var2) {
                     this.thrower = null;

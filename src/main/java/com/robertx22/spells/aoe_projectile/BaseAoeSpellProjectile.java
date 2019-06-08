@@ -7,9 +7,9 @@ import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.util.EnumHand;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
@@ -29,7 +29,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
     }
 
     @Override
-    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse,
+    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
                         SpellItemData data) {
 
         if (!world.isRemote) {

@@ -2,9 +2,9 @@ package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -39,12 +39,12 @@ public class TileMapPortal extends TileEntity {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean shouldRenderFace(EnumFacing face) {
-        return face == EnumFacing.UP;
+    public boolean shouldRenderFace(Direction face) {
+        return face == Direction.UP;
     }
 
     @Override
-    public void read(NBTTagCompound nbt) {
+    public void read(CompoundNBT nbt) {
         super.read(nbt);
 
         id = nbt.getString("dim_Id_string");
@@ -52,7 +52,7 @@ public class TileMapPortal extends TileEntity {
     }
 
     @Override
-    public NBTTagCompound write(NBTTagCompound nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
         super.write(nbt); // The super call is required to save and load the tile loc
 
         nbt.putString("dim_Id_string", id);

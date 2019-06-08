@@ -3,16 +3,16 @@ package com.robertx22.items.bags;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBTBase;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -43,31 +43,31 @@ public abstract class BaseBagItem extends Item {
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,
-                                                    @Nonnull EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
+                                                    @Nonnull Hand hand) {
         if (!world.isRemote) {
-            NetworkHooks.openGui((EntityPlayerMP) player, getInteractionObject(player.getHeldItem(hand)), buf -> {
-                buf.writeBoolean(hand == EnumHand.OFF_HAND);
+            NetworkHooks.openGui((ServerPlayerEntity) player, getInteractionObject(player.getHeldItem(hand)), buf -> {
+                buf.writeBoolean(hand == Hand.OFF_HAND);
             });
         }
-        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+        return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }
 
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack,
-                                                NBTTagCompound oldCapNbt) {
+                                                CompoundNBT oldCapNbt) {
         return new InvProvider();
     }
 
-    private static class InvProvider implements ICapabilitySerializable<INBTBase> {
+    private static class InvProvider implements ICapabilitySerializable<INBT> {
 
         private final IItemHandler inv = new ItemStackHandler(size);
         private final LazyOptional<IItemHandler> opt = LazyOptional.of(() -> inv);
 
         @Nonnull
         @Override
-        public <T> LazyOptional<T> getCapability(Capability<T> cap, EnumFacing side) {
+        public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
             if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
                 return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, opt);
             }
@@ -75,12 +75,12 @@ public abstract class BaseBagItem extends Item {
         }
 
         @Override
-        public INBTBase serializeNBT() {
+        public INBT serializeNBT() {
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
         }
 
         @Override
-        public void deserializeNBT(INBTBase nbt) {
+        public void deserializeNBT(INBT nbt) {
             CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
 
         }

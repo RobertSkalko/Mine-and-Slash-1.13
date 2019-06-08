@@ -3,7 +3,7 @@ package com.robertx22.saveclasses;
 import com.robertx22.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
 
@@ -13,12 +13,12 @@ public class PlayerOncePerMapData {
     @Store
     public HashMap<String, String> playerGUIDandMapGUIDMap = new HashMap<>();
 
-    public void add(EntityPlayer player) {
+    public void add(PlayerEntity player) {
         playerGUIDandMapGUIDMap.put(getID(player), Load.playerMapData(player)
                 .getLastMapGUID());
     }
 
-    public boolean canDo(EntityPlayer player) {
+    public boolean canDo(PlayerEntity player) {
 
         String key = getID(player);
 
@@ -38,7 +38,7 @@ public class PlayerOncePerMapData {
 
     }
 
-    private String getID(EntityPlayer player) {
+    private String getID(PlayerEntity player) {
         return player.getUniqueID().toString();
 
     }

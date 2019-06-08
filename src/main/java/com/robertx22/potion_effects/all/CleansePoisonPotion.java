@@ -4,8 +4,8 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.SpellPotionBase;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.MobEffects;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 
 public class CleansePoisonPotion extends SpellPotionBase {
@@ -25,13 +25,13 @@ public class CleansePoisonPotion extends SpellPotionBase {
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, EntityLivingBase target,
+    public void doEffect(Entity applier, Entity caster, LivingEntity target,
                          int amplifier) {
 
     }
 
     @Override
-    public void performEffectEverySetTime(EntityLivingBase entity, int amplifier) {
+    public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
 
         try {
 
@@ -39,8 +39,8 @@ public class CleansePoisonPotion extends SpellPotionBase {
                 ParticleUtils.spawnHealParticles(entity, 1);
             } else {
 
-                if (entity.getActivePotionEffect(MobEffects.POISON) != null) {
-                    entity.removePotionEffect(MobEffects.POISON);
+                if (entity.getActivePotionEffect(Effects.POISON) != null) {
+                    entity.removePotionEffect(Effects.POISON);
                 }
 
             }

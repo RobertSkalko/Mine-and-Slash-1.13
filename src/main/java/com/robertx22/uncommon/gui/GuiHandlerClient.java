@@ -21,19 +21,19 @@ import com.robertx22.items.bags.map_bag.InventoryMapBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class GuiHandlerClient {
 
-    public static GuiScreen getClientGuiElement(FMLPlayMessages.OpenContainer msg) {
+    public static Screen getClientGuiElement(FMLPlayMessages.OpenContainer msg) {
 
-        EntityPlayer player = Minecraft.getInstance().player;
+        PlayerEntity player = Minecraft.getInstance().player;
 
         BlockPos pos = null;
         TileEntity te = null;
@@ -83,7 +83,7 @@ public class GuiHandlerClient {
         } else { // it means it's from a bag then, no tileentity but does have a hand boolean
 
             boolean isOffHand = msg.getAdditionalData().readBoolean();
-            EnumHand hand = isOffHand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
+            Hand hand = isOffHand ? Hand.OFF_HAND : Hand.MAIN_HAND;
 
             switch (msg.getId().toString()) {
 

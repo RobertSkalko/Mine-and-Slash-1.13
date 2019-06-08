@@ -26,10 +26,10 @@ import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.ArrayList;
@@ -155,7 +155,7 @@ public class Unit {
         return null;
     }
 
-    public static Unit Mob(EntityLivingBase entity, EntityPlayer nearestPlayer) {
+    public static Unit Mob(LivingEntity entity, PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.InitMobStats();
@@ -178,7 +178,7 @@ public class Unit {
 
     }
 
-    private static int randomRarity(EntityLivingBase entity, int level) {
+    private static int randomRarity(LivingEntity entity, int level) {
 
         double y = entity.posY;
 
@@ -265,11 +265,11 @@ public class Unit {
         return check;
     }
 
-    private float getHpAdded(EntityLivingBase entity, MobRarity rar, UnitData data) {
+    private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
         float hpadded = entity.getMaxHealth() * data.getLevel();
 
-        if (entity instanceof EntityPlayer) {
+        if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
 
         } else {
@@ -279,7 +279,7 @@ public class Unit {
         return hpadded;
     }
 
-    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level) {
+    public void RecalculateStats(LivingEntity entity, UnitData data, int level) {
 
         data.setEquipsChanged(false);
 
@@ -328,7 +328,7 @@ public class Unit {
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 
-        if (entity instanceof EntityPlayer) {
+        if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
 
         } else {
@@ -373,8 +373,8 @@ public class Unit {
         int unique_items = countUniqueItems(gears);
 
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
-            if (en instanceof EntityPlayer) {
-                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
+            if (en instanceof PlayerEntity) {
+                en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
                         .get()));
             }
             return false;
@@ -383,8 +383,8 @@ public class Unit {
         int runed_items = countRunedItems(gears);
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
-            if (en instanceof EntityPlayer) {
-                en.sendMessage(new TextComponentString("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
+            if (en instanceof PlayerEntity) {
+                en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
                         .get()));
             }
             return false;

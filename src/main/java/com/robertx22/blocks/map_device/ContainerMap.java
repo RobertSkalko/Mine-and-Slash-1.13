@@ -1,10 +1,10 @@
 package com.robertx22.blocks.map_device;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,7 +32,7 @@ public class ContainerMap extends Container {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
-    public ContainerMap(InventoryPlayer invPlayer, TileMap tile) {
+    public ContainerMap(PlayerInventory invPlayer, TileMap tile) {
         this.tile = tile;
 
         final int SLOT_X_SPACING = 18;
@@ -79,13 +79,13 @@ public class ContainerMap extends Container {
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(PlayerEntity player) {
         return tile.isUsableByPlayer(player);
     }
 
     // shift click logic
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
         return ItemStack.EMPTY;
     }
 

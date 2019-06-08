@@ -1,17 +1,16 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
-import java.awt.Color;
-
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
+import java.awt.*;
 
 public abstract class BasePlayerOverlay {
 
@@ -21,38 +20,39 @@ public abstract class BasePlayerOverlay {
     public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar.png");
     public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
     public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
-    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
-	    "textures/gui/experience_bar.png");
+    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/experience_bar.png");
 
-    public abstract void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
-	    UnitData level);
+    public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
+                              RenderGameOverlayEvent event, Unit unit, UnitData level);
 
-    public void DrawBar(Minecraft mc, Gui gui, Unit unit, ResourceLocation res, float current, float max, boolean isExp,
-	    UnitData data, int x, int y) {
+    public void DrawBar(Minecraft mc, AbstractGui gui, Unit unit, ResourceLocation res,
+                        float current, float max, boolean isExp, UnitData data, int x,
+                        int y) {
 
-	GlStateManager.color4f(1F, 1F, 1F, 1F);
-	mc.getTextureManager().bindTexture(res);
-	gui.drawTexturedModalRect(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
-	int barwidth = (int) (((float) current / max * 100));
-	if (barwidth > 100) {
-	    barwidth = 100;
-	}
-	gui.drawTexturedModalRect(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
+        GlStateManager.color4f(1F, 1F, 1F, 1F);
+        mc.getTextureManager().bindTexture(res);
 
-	String now = DamageEffect.FormatNumber((int) current);
-	String maximum = DamageEffect.FormatNumber((int) max);
-	String str = "";
+        gui.blit(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
+        int barwidth = (int) (((float) current / max * 100));
+        if (barwidth > 100) {
+            barwidth = 100;
+        }
+        gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 
-	if (!isExp) {
-	    str = now + "/" + maximum;
-	} else {
-	    str = "Lvl:" + data.getLevel() + " " + now + "/" + maximum;
-	}
+        String now = DamageEffect.FormatNumber((int) current);
+        String maximum = DamageEffect.FormatNumber((int) max);
+        String str = "";
 
-	float text_x = x + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2;
-	float text_y = y + TEXTURE_HEIGHT / 2 - mc.fontRenderer.FONT_HEIGHT / 2 + 0.5F;
+        if (!isExp) {
+            str = now + "/" + maximum;
+        } else {
+            str = "Lvl:" + data.getLevel() + " " + now + "/" + maximum;
+        }
 
-	mc.fontRenderer.drawString(str, text_x, text_y, Color.LIGHT_GRAY.getRGB());
+        float text_x = x + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2;
+        float text_y = y + TEXTURE_HEIGHT / 2 - mc.fontRenderer.FONT_HEIGHT / 2 + 0.5F;
+
+        mc.fontRenderer.drawString(str, text_x, text_y, Color.LIGHT_GRAY.getRGB());
 
     }
 

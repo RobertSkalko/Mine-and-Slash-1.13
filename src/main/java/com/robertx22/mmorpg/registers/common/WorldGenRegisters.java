@@ -10,7 +10,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.CompositeFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.placement.BasePlacement;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -54,7 +54,7 @@ public class WorldGenRegisters {
     }
 
     public static <F extends IFeatureConfig, D extends IPlacementConfig> CompositeFeature<F, D> create(
-            Feature feature, BasePlacement<D> basePlacementIn, D placementConfig) {
+            Feature feature, Placement<D> basePlacementIn, D placementConfig) {
 
         return Biome.createCompositeFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, basePlacementIn, placementConfig);
     }

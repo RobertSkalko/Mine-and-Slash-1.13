@@ -6,7 +6,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 
@@ -21,7 +21,7 @@ public class GiveExp {
                                         .getInteger(ctx, "exp"))))));
     }
 
-    private static int run(@Nullable EntityPlayer player, int exp) {
+    private static int run(@Nullable PlayerEntity player, int exp) {
 
         try {
             Load.Unit(player).GiveExp(player, exp);

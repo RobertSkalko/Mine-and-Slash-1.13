@@ -2,12 +2,12 @@ package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseInventoryBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IInteractionObject;
@@ -21,15 +21,15 @@ public class BlockInventorySalvage extends BaseInventoryBlock {
     }
 
     @Override
-    public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 
         return new TileInventorySalvage();
 
     }
 
     @Override
-    public boolean onBlockActivated(IBlockState state, World world, BlockPos pos,
-                                    EntityPlayer player, EnumHand hand, EnumFacing side,
+    public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
+                                    PlayerEntity player, Hand hand, Direction side,
                                     float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             return true;
@@ -39,7 +39,7 @@ public class BlockInventorySalvage extends BaseInventoryBlock {
 
         if (tile instanceof TileInventorySalvage) {
 
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+            ServerPlayerEntity entityPlayerMP = (ServerPlayerEntity) player;
             IInteractionObject interact = (IInteractionObject) tile;
             NetworkHooks.openGui(entityPlayerMP, interact, pos);
         }

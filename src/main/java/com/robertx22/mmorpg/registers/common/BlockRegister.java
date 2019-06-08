@@ -12,8 +12,8 @@ import com.robertx22.dimensions.blocks.MapPortalBlock;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,42 +47,42 @@ public class BlockRegister {
     @ObjectHolder(ATTUNEMENT_ALTAR_ID)
     public static Block ATTUNEMENT_ALTAR_BLOCK;
     @ObjectHolder(ATTUNEMENT_ALTAR_ID)
-    public static ItemBlock ATTUNEMENT_ALTAR;
+    public static BlockItem ATTUNEMENT_ALTAR;
     // NEW BLOCK
     @ObjectHolder(GEAR_FACTORY_ID)
     public static TileEntityType<?> GEAR_FACTORY;
     @ObjectHolder(GEAR_FACTORY_ID)
     public static Block BLOCK_GEAR_FACTORY;
     @ObjectHolder(GEAR_FACTORY_ID)
-    public static ItemBlock ITEMBLOCK_GEAR_FACTORY;
+    public static BlockItem ITEMBLOCK_GEAR_FACTORY;
     // NEW BLOCK
     @ObjectHolder(GEAR_MODIFY_ID)
     public static TileEntityType<?> GEAR_MODIFY;
     @ObjectHolder(GEAR_MODIFY_ID)
     public static Block BLOCK_GEAR_MODIFY;
     @ObjectHolder(GEAR_MODIFY_ID)
-    public static ItemBlock ITEMBLOCK_GEAR_MODIFY;
+    public static BlockItem ITEMBLOCK_GEAR_MODIFY;
     // NEW BLOCK
     @ObjectHolder(GEAR_REPAIR_ID)
     public static TileEntityType<?> GEAR_REPAIR;
     @ObjectHolder(GEAR_REPAIR_ID)
     public static Block BLOCK_GEAR_REPAIR;
     @ObjectHolder(GEAR_REPAIR_ID)
-    public static ItemBlock ITEMBLOCK_GEAR_REPAIR;
+    public static BlockItem ITEMBLOCK_GEAR_REPAIR;
     // NEW BLOCK
     @ObjectHolder(GEAR_SALVAGE_ID)
     public static TileEntityType<?> GEAR_SALVAGE;
     @ObjectHolder(GEAR_SALVAGE_ID)
     public static Block BLOCK_GEAR_SALVAGE;
     @ObjectHolder(GEAR_SALVAGE_ID)
-    public static ItemBlock ITEMBLOCK_GEAR_SALVAGE;
+    public static BlockItem ITEMBLOCK_GEAR_SALVAGE;
     // NEW BLOCK
     @ObjectHolder(MAP_DEVICE_ID)
     public static TileEntityType<?> MAP_DEVICE;
     @ObjectHolder(MAP_DEVICE_ID)
     public static Block BLOCK_MAP_DEVICE;
     @ObjectHolder(MAP_DEVICE_ID)
-    public static ItemBlock ITEMBLOCK_MAP_DEVICE;
+    public static BlockItem ITEMBLOCK_MAP_DEVICE;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -105,13 +105,13 @@ public class BlockRegister {
         IForgeRegistry<Item> reg = event.getRegistry();
         Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
 
-        reg.register(new ItemBlock(BLOCK_GEAR_FACTORY, stationProp).setRegistryName(GEAR_FACTORY_ID));
-        reg.register(new ItemBlock(BLOCK_GEAR_REPAIR, stationProp).setRegistryName(GEAR_REPAIR_ID));
-        reg.register(new ItemBlock(BLOCK_GEAR_MODIFY, stationProp).setRegistryName(GEAR_MODIFY_ID));
-        reg.register(new ItemBlock(BLOCK_MAP_DEVICE, stationProp).setRegistryName(MAP_DEVICE_ID));
-        reg.register(new ItemBlock(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
-        reg.register(new ItemBlock(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
-        reg.register(new ItemBlock(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
+        reg.register(new BlockItem(BLOCK_GEAR_FACTORY, stationProp).setRegistryName(GEAR_FACTORY_ID));
+        reg.register(new BlockItem(BLOCK_GEAR_REPAIR, stationProp).setRegistryName(GEAR_REPAIR_ID));
+        reg.register(new BlockItem(BLOCK_GEAR_MODIFY, stationProp).setRegistryName(GEAR_MODIFY_ID));
+        reg.register(new BlockItem(BLOCK_MAP_DEVICE, stationProp).setRegistryName(MAP_DEVICE_ID));
+        reg.register(new BlockItem(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
+        reg.register(new BlockItem(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
+        reg.register(new BlockItem(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
 
         ItemOre.RegisterItems(event);
     }

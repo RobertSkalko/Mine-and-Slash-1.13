@@ -11,12 +11,12 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,8 +40,8 @@ public class ItemNewbieGearBag extends BaseItem {
     public static int ITEMS_AMOUNT = 6;
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn,
-                                                    EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn,
+                                                    Hand handIn) {
 
         if (!worldIn.isRemote) {
             try {
@@ -68,14 +68,14 @@ public class ItemNewbieGearBag extends BaseItem {
                     playerIn.dropItem(stack, false, true);
                 }
 
-                return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(playerIn
+                return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(playerIn
                         .getHeldItem(handIn)));
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
     }
 
     @Override

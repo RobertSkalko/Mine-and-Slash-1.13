@@ -2,9 +2,9 @@ package com.robertx22.database.unique_items.bases;
 
 import com.robertx22.database.gearitemslots.Shield;
 import com.robertx22.database.unique_items.IUnique;
-import net.minecraft.item.ItemShield;
+import net.minecraft.item.ShieldItem;
 
-public abstract class BaseUniqueShield extends ItemShield implements IUnique {
+public abstract class BaseUniqueShield extends ShieldItem implements IUnique {
 
     public BaseUniqueShield() {
         super(new Properties().maxStackSize(1).defaultMaxDamage(1000));

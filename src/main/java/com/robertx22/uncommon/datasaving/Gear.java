@@ -3,7 +3,7 @@ package com.robertx22.uncommon.datasaving;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 
 public class Gear {
 
@@ -28,7 +28,7 @@ public class Gear {
             return;
         }
         if (!stack.hasTag()) {
-            stack.setTag(new NBTTagCompound());
+            stack.setTag(new CompoundNBT());
         }
         if (gear != null) {
             LoadSave.Save(gear, stack.getTag(), LOC);

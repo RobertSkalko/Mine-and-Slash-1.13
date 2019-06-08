@@ -12,7 +12,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +76,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
 
         RuneWord word = getRuneWord();
 
-        list.add(new TextComponentString(rar.Color() + "Rune Word: " + word.GUID()
+        list.add(new StringTextComponent(rar.Color() + "Rune Word: " + word.GUID()
                 .toUpperCase()));
         // list.add("");
 

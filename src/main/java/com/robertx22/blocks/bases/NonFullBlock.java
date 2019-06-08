@@ -1,7 +1,7 @@
 package com.robertx22.blocks.bases;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 
 public abstract class NonFullBlock extends Block {
 
@@ -10,7 +10,7 @@ public abstract class NonFullBlock extends Block {
     }
 
     @Override
-    public boolean isSolid(IBlockState state) {
+    public boolean isSolid(BlockState state) {
         return false;
     }
 

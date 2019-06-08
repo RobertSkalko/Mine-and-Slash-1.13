@@ -3,8 +3,8 @@ package com.robertx22.onevent.item;
 import com.robertx22.items.level_incentives.Hearthstone;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.uncommon.Chats;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
@@ -20,8 +20,8 @@ public class OnLeftClickHearthstone {
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock evt) {
         if (evt.getSide().equals(LogicalSide.SERVER)) {
 
-            EntityPlayerMP player = (EntityPlayerMP) evt.getEntityPlayer();
-            IBlockState block = player.world.getBlockState(evt.getPos());
+            ServerPlayerEntity player = (ServerPlayerEntity) evt.getEntityPlayer();
+            BlockState block = player.world.getBlockState(evt.getPos());
 
             ItemStack stack = evt.getItemStack();
 

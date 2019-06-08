@@ -1,23 +1,23 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.INBTBase;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 
 import java.util.List;
 
 public class PlayerUtils {
 
-    public static EntityPlayer findNearest(Entity entity, float radius) {
+    public static PlayerEntity findNearest(Entity entity, float radius) {
 
-        List<EntityPlayer> players = entity.world.getEntitiesWithinAABB(EntityPlayer.class, entity
+        List<PlayerEntity> players = entity.world.getEntitiesWithinAABB(PlayerEntity.class, entity
                 .getBoundingBox()
                 .grow(radius));
 
-        EntityPlayer nearest = null;
+        PlayerEntity nearest = null;
 
-        for (EntityPlayer player : players) {
+        for (PlayerEntity player : players) {
 
             if (nearest == null || nearest.getDistance(entity) > player.getDistance(entity)) {
                 nearest = player;
@@ -28,23 +28,23 @@ public class PlayerUtils {
         return nearest;
     }
 
-    public static NBTTagCompound getPersistentNBT(EntityPlayer player) {
+    public static CompoundNBT getPersistentNBT(PlayerEntity player) {
 
-        NBTTagCompound nbt = null;
+        CompoundNBT nbt = null;
 
         try {
 
-            INBTBase basenbt = player.getEntityData().get(EntityPlayer.PERSISTED_NBT_TAG);
+            INBT basenbt = player.getEntityData().get(PlayerEntity.PERSISTED_NBT_TAG);
 
             if (basenbt != null) {
-                nbt = (NBTTagCompound) basenbt;
+                nbt = (CompoundNBT) basenbt;
             }
             if (nbt == null) {
-                nbt = new NBTTagCompound();
+                nbt = new CompoundNBT();
             }
 
         } catch (Exception e) {
-            nbt = new NBTTagCompound();
+            nbt = new CompoundNBT();
             e.printStackTrace();
         }
 
@@ -52,9 +52,9 @@ public class PlayerUtils {
 
     }
 
-    public static void setPestistentNBT(EntityPlayer player, NBTTagCompound nbt) {
+    public static void setPestistentNBT(PlayerEntity player, CompoundNBT nbt) {
 
-        player.getEntityData().put(EntityPlayer.PERSISTED_NBT_TAG, nbt);
+        player.getEntityData().put(PlayerEntity.PERSISTED_NBT_TAG, nbt);
     }
 
 }

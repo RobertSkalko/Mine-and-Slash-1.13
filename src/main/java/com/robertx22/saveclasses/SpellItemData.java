@@ -18,11 +18,11 @@ import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -98,7 +98,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
 
     public ITextComponent GetScalingDesc(boolean moreInfo) {
 
-        ITextComponent text = new TextComponentString("");
+        ITextComponent text = new StringTextComponent("");
 
         try {
             text = Words.Scaling_Value.locName()
@@ -210,17 +210,17 @@ public class SpellItemData implements ISalvagable, ITooltip {
             tooltip.add(TooltipUtils.level(level));
             Tooltip.add("", tooltip);
 
-            boolean moreInfo = GuiScreen.isShiftKeyDown();
+            boolean moreInfo = Screen.hasShiftDown();
 
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.Stats.locName().appendText(": ")), tooltip);
 
-            Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
 
-            Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetBaseDesc(moreInfo)), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetBaseDesc(moreInfo)), tooltip);
 
             if (spell.hasScalingValue()) {
-                Tooltip.add(new TextComponentString(TextFormatting.RED + " * ").appendSibling(GetScalingDesc(moreInfo)), tooltip);
+                Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetScalingDesc(moreInfo)), tooltip);
             }
 
             Tooltip.add("", tooltip);

@@ -9,8 +9,8 @@ import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.testing.Watch;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class WorldUtils {
 
     public static List<MapAffixData> getAllAffixesThatAffect(
-            PlayerMapData.IPlayerMapData mapdata, EntityLivingBase entity) {
+            PlayerMapData.IPlayerMapData mapdata, LivingEntity entity) {
 
         List<MapAffixData> list = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class WorldUtils {
         return null;
     }
 
-    public int getTier(World world, EntityPlayer player) {
+    public int getTier(World world, PlayerEntity player) {
 
         if (DimensionsContainer.INSTANCE.hasConfig(world)) {
             return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER;

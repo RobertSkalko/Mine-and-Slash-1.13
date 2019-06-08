@@ -12,10 +12,10 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.*;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.Map.Entry;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg,
+    public DamageEffect(LivingEntity source, LivingEntity target, int dmg,
                         UnitData sourceData, UnitData targetData, EffectTypes effectType,
                         WeaponTypes weptype) {
         super(source, target, sourceData, targetData);
@@ -97,9 +97,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 LogCombat();
             }
 
-            if ((int) number > 0 && source instanceof EntityPlayerMP) {
+            if ((int) number > 0 && source instanceof ServerPlayerEntity) {
 
-                EntityPlayerMP player = (EntityPlayerMP) source;
+                ServerPlayerEntity player = (ServerPlayerEntity) source;
                 DmgNumPacket packet = new DmgNumPacket(target, this.element, FormatDamageNumber(this));
                 MMORPG.sendToClient(packet, player);
 
@@ -146,25 +146,25 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        if (this.source instanceof EntityPlayer) {
+        if (this.source instanceof PlayerEntity) {
 
             String s = Words.Dealt.translate() + LogDamage() + Words.To.translate() + " " + this.target
                     .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
-            this.source.sendMessage(new TextComponentString(s));
+            this.source.sendMessage(new StringTextComponent(s));
 
         }
 
-        if (this.target instanceof EntityPlayer) {
+        if (this.target instanceof PlayerEntity) {
 
             String s = Words.Took.translate() + LogDamage() + Words.From.translate() + " " + this.source
                     .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
-            this.target.sendMessage(new TextComponentString(s));
+            this.target.sendMessage(new StringTextComponent(s));
 
         }
 
     }
 
-    private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
+    private String LogCurrentHP(LivingEntity entity, Unit unit) {
 
         String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health()
                 .CurrentValue(entity, unit) + "/" + (int) unit.healthData().Value + "]";
@@ -215,12 +215,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     @Override
-    public EntityLivingBase Source() {
+    public LivingEntity Source() {
         return source;
     }
 
     @Override
-    public EntityLivingBase Target() {
+    public LivingEntity Target() {
         return target;
     }
 

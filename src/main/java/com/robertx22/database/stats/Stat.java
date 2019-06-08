@@ -12,10 +12,10 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
         if (info.isSet == false) {
             return Styles.REDCOMP()
-                    .appendSibling(new TextComponentString(" * ").appendSibling(str)
+                    .appendSibling(new StringTextComponent(" * ").appendSibling(str)
                             .appendText(": "));
         } else {
             return Styles.GREENCOMP().appendSibling(str.appendText(": "));
@@ -140,20 +140,20 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
             text.appendText("% ").appendSibling(Words.Multi.locName());
         }
 
-        if (GuiScreen.isShiftKeyDown() && info.isSet == false) {
+        if (Screen.hasShiftDown() && info.isSet == false) {
 
             StatModData min = StatModData.Load(data.getStatMod(), info.minmax.Min);
             StatModData max = StatModData.Load(data.getStatMod(), info.minmax.Max);
 
             ITextComponent extraInfo = Styles.GREENCOMP()
-                    .appendSibling(new TextComponentString(" (" + min.printValue(info.level) + " - " + max
+                    .appendSibling(new StringTextComponent(" (" + min.printValue(info.level) + " - " + max
                             .printValue(info.level) + ")"));
 
             text.appendSibling(extraInfo);
         }
 
         list.add(text);
-        if (GuiScreen.isAltKeyDown()) {
+        if (Screen.hasAltDown()) {
             list.add(Styles.BLUECOMP()
                     .appendText(" [")
                     .appendSibling(this.locDesc().appendText("]")));

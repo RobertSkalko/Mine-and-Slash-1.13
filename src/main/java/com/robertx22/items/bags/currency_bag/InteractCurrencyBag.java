@@ -1,11 +1,11 @@
 package com.robertx22.items.bags.currency_bag;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IInteractionObject;
 
 public class InteractCurrencyBag implements IInteractionObject {
@@ -18,7 +18,7 @@ public class InteractCurrencyBag implements IInteractionObject {
 
     @Override
     public ITextComponent getName() {
-        return new TextComponentString(this.getGuiID());
+        return new StringTextComponent(this.getGuiID());
     }
 
     @Override
@@ -30,12 +30,12 @@ public class InteractCurrencyBag implements IInteractionObject {
     @Override
     public ITextComponent getCustomName() {
 
-        return new TextComponentString(this.getGuiID());
+        return new StringTextComponent(this.getGuiID());
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory,
-                                     EntityPlayer playerIn) {
+    public Container createContainer(PlayerInventory playerInventory,
+                                     PlayerEntity playerIn) {
         return new ContainerCurrencyBag(playerInventory, new InventoryCurrencyBag(stack));
 
     }

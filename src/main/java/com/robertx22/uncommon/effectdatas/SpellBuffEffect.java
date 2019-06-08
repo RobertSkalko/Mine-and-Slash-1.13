@@ -8,7 +8,7 @@ import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.uncommon.interfaces.IStatEffects;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,7 +20,7 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
     private SpellBuffType buff = SpellBuffType.None;
 
-    public SpellBuffEffect(EntityLivingBase source, IBuffableSpell buffable) {
+    public SpellBuffEffect(LivingEntity source, IBuffableSpell buffable) {
 
         super(source, null);
         this.canceled = false;

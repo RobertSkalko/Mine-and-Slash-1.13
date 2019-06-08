@@ -4,8 +4,8 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -16,11 +16,11 @@ public class OnMobSpawn {
     @net.minecraftforge.eventbus.api.SubscribeEvent
     public static void onMobSpawn(EntityJoinWorldEvent event) {
 
-        if (!(event.getEntity() instanceof EntityLivingBase)) {
+        if (!(event.getEntity() instanceof LivingEntity)) {
             return;
         }
 
-        EntityLivingBase entity = (EntityLivingBase) event.getEntity();
+        LivingEntity entity = (LivingEntity) event.getEntity();
 
         if (entity.world.isRemote) {
             return;
@@ -35,11 +35,11 @@ public class OnMobSpawn {
 
         if (endata != null) {
 
-            if (entity instanceof EntityPlayer) {
+            if (entity instanceof PlayerEntity) {
 
             } else {
 
-                EntityPlayer nearestPlayer = PlayerUtils.findNearest(entity, 200F);
+                PlayerEntity nearestPlayer = PlayerUtils.findNearest(entity, 200F);
 
                 if (nearestPlayer == null) {
                     //event.setCanceled(true);

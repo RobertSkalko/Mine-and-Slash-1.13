@@ -6,7 +6,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.interfaces.IStatEffect;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 
@@ -56,7 +56,7 @@ public class BlockEffect implements IStatEffect {
         return Effect;
     }
 
-    private boolean canBlockDamageSource(EntityLivingBase target,
+    private boolean canBlockDamageSource(LivingEntity target,
                                          DamageSource damageSourceIn) {
         if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
             Vec3d vec3d = damageSourceIn.getDamageLocation();

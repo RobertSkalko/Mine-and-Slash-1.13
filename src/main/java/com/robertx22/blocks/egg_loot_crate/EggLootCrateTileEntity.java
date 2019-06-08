@@ -11,14 +11,14 @@ import com.robertx22.saveclasses.PlayerOncePerMapData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.FireworkRocketEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     public static final String timestodroploc = "timesToDrop";
 
     PlayerOncePerMapData data = new PlayerOncePerMapData();
-    EntityPlayer player;
+    PlayerEntity player;
 
     int timesToDrop = getTimesToDrop();
     public boolean isDroppingLoot = false;
@@ -43,14 +43,14 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     public void firework() {
 
         // turns invisible for some reason?
-        EntityFireworkRocket firework = new EntityFireworkRocket(world);
+        FireworkRocketEntity firework = new FireworkRocketEntity(world);
         firework.setPosition(pos.getX(), pos.getY() + 2, pos.getZ());
         firework.setInvulnerable(true);
         world.spawnEntity(firework);
 
     }
 
-    public void dropLoot(EntityPlayer player) {
+    public void dropLoot(PlayerEntity player) {
 
         timesToDrop--;
 
@@ -59,7 +59,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
             List<ItemStack> loot = MasterLootGen.generateLoot(new LootInfo(player).setMinimum(1));
 
             for (ItemStack stack : loot) {
-                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
+                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 2, pos.getZ(), stack));
             }
             if (loot.size() > 0) {
                 firework();
@@ -69,10 +69,10 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     }
 
     @Override
-    public NBTTagCompound write(NBTTagCompound nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
         super.write(nbt);
 
-        NBTTagCompound datanbt = new NBTTagCompound();
+        CompoundNBT datanbt = new CompoundNBT();
         PlayerOncePerMap.Save(datanbt, data);
         nbt.put(dataLoc, datanbt);
         nbt.putInt(timestodroploc, this.timesToDrop);
@@ -83,7 +83,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
     }
 
     @Override
-    public void read(NBTTagCompound nbt) {
+    public void read(CompoundNBT nbt) {
         super.read(nbt);
 
         this.data = PlayerOncePerMap.Load(nbt.getCompound(dataLoc));
@@ -93,7 +93,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
 
     }
 
-    public void activateDrops(EntityPlayer player) {
+    public void activateDrops(PlayerEntity player) {
         data.add(player);
         this.player = player;
         this.isDroppingLoot = true;
@@ -150,20 +150,20 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickable, ICo
 
     }
 
-    public void tryActivate(EntityPlayer player) {
+    public void tryActivate(PlayerEntity player) {
 
         if (condition().canOpenCrate(player)) {
 
             if (data.canDo(player)) {
 
                 if (isDroppingLoot) {
-                    player.sendMessage(new TextComponentString("This crate is currently being used."));
+                    player.sendMessage(new StringTextComponent("This crate is currently being used."));
                 } else {
                     activateDrops(player);
                 }
 
             } else {
-                player.sendMessage(new TextComponentString("You have already used this block. Come again next map!"));
+                player.sendMessage(new StringTextComponent("You have already used this block. Come again next map!"));
             }
 
         } else {

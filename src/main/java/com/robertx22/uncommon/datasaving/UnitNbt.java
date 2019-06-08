@@ -2,12 +2,12 @@ package com.robertx22.uncommon.datasaving;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.base.LoadSave;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 
 public class UnitNbt {
     private static final String LOC = "unit_object";
 
-    public static Unit Load(NBTTagCompound nbt) {
+    public static Unit Load(CompoundNBT nbt) {
 
         if (nbt == null) {
             return null;
@@ -17,7 +17,7 @@ public class UnitNbt {
 
     }
 
-    public static void Save(NBTTagCompound nbt, Unit gear) {
+    public static void Save(CompoundNBT nbt, Unit gear) {
 
         if (nbt == null) {
             return;

@@ -4,8 +4,8 @@ import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class EntityUnitPacket {
 
     public int id;
-    public NBTTagCompound nbt;
+    public CompoundNBT nbt;
 
     public EntityUnitPacket() {
 
@@ -56,9 +56,9 @@ public class EntityUnitPacket {
 
                 Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityByID(pkt.id);
 
-                if (entity instanceof EntityLivingBase) {
+                if (entity instanceof LivingEntity) {
 
-                    EntityLivingBase en = (EntityLivingBase) entity;
+                    LivingEntity en = (LivingEntity) entity;
 
                     Load.Unit(en).setNBT(pkt.nbt);
                 }

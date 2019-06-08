@@ -4,13 +4,13 @@ import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
 
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 public class ContainerLootBag extends BaseContainer {
 
-    public ContainerLootBag(InventoryPlayer playerInv, BaseInventory basebag) {
+    public ContainerLootBag(PlayerInventory playerInv, BaseInventory basebag) {
 	super(playerInv, basebag);
 
     }

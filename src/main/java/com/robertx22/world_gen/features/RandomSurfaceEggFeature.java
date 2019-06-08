@@ -5,8 +5,8 @@ import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenSettings;
-import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
@@ -16,7 +16,7 @@ public class RandomSurfaceEggFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean place(IWorld iworld,
-                         IChunkGenerator<? extends IChunkGenSettings> generator,
+                         ChunkGenerator<? extends GenerationSettings> generator,
                          Random rand, BlockPos pos, NoFeatureConfig config) {
 
         if (iworld.isAirBlock(pos)) {

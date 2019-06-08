@@ -25,13 +25,13 @@ import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.*;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -129,11 +129,11 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
     }
 
     public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes,
-                                                             EntityLivingBase entity) {
+                                                             LivingEntity entity) {
 
         AffectedEntities affected = AffectedEntities.All;
 
-        if (entity instanceof EntityPlayer) {
+        if (entity instanceof PlayerEntity) {
             affected = AffectedEntities.Players;
         } else if (EntityTypeUtils.isMob(entity)) {
             affected = AffectedEntities.Mobs;
@@ -168,7 +168,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         return list;
     }
 
-    public DimensionType initDimension(World ogworld, BlockPos pos, EntityPlayer player) {
+    public DimensionType initDimension(World ogworld, BlockPos pos, PlayerEntity player) {
 
         UnitData unit = Load.Unit(player);
 
@@ -272,9 +272,9 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             Tooltip.add("", tooltip);
 
-            tooltip.add(new TextComponentString(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
+            tooltip.add(new StringTextComponent(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
                     .locName()));
-            tooltip.add(new TextComponentString(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
+            tooltip.add(new StringTextComponent(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
                     .locName()));
 
         }
@@ -300,7 +300,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             return;
         }
 
-        ITextComponent str = new TextComponentString("");
+        ITextComponent str = new StringTextComponent("");
 
         if (affected.equals(AffectedEntities.Players)) {
             str.appendSibling(Words.Player_Affixes.locName());

@@ -11,8 +11,8 @@ import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ItemOre extends Item implements IWeighted {
     public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
-    public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
+    public static HashMap<Integer, BlockItem> ItemBlocks = new HashMap<Integer, BlockItem>();
     public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
 
     int rarity;
@@ -83,7 +83,7 @@ public class ItemOre extends Item implements IWeighted {
             BlockOre block = new BlockOre(i, Material.ROCK);
             Blocks.put(i, block);
 
-            ItemBlock itemblock = (ItemBlock) new ItemBlock(block, new Properties().group(CreativeTabs.MyModTab))
+            BlockItem itemblock = (BlockItem) new BlockItem(block, new Properties().group(CreativeTabs.MyModTab))
                     .setRegistryName(Ref.MODID + ":ore_block" + i);
             ItemBlocks.put(i, itemblock);
         }

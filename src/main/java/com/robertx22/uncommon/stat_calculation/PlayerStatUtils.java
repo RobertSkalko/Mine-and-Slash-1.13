@@ -15,8 +15,8 @@ import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static List<GearItemData> getEquipsExcludingWeapon(EntityLivingBase entity) {
+    public static List<GearItemData> getEquipsExcludingWeapon(LivingEntity entity) {
 
         List<ItemStack> list = new ArrayList<ItemStack>();
 
@@ -74,9 +74,9 @@ public class PlayerStatUtils {
             }
         }
 
-        if (entity instanceof EntityPlayer) {
+        if (entity instanceof PlayerEntity) {
 
-            list.addAll(MyCurioUtils.getAllSlots((EntityPlayer) entity));
+            list.addAll(MyCurioUtils.getAllSlots((PlayerEntity) entity));
 
         }
         List<GearItemData> gearitems = new ArrayList<GearItemData>();
@@ -171,7 +171,7 @@ public class PlayerStatUtils {
         }
 
         if (gearTooHighLevel) {
-            if (entity instanceof EntityPlayer) {
+            if (entity instanceof PlayerEntity) {
                 entity.sendMessage(Chats.A_Piece_of_gear_is_too_high_level_for_you.locName());
             }
         }

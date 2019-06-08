@@ -7,7 +7,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.CompositeFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.MinableConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 
 public class OreGenRegister {
@@ -32,8 +32,9 @@ public class OreGenRegister {
     public static void genOre(Block block, int amount) {
 
         CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
-        MinableConfig minableConfig = new MinableConfig(MinableConfig.IS_ROCK, block.getDefaultState(), 8);
-        CompositeFeature<MinableConfig, CountRangeConfig> feature = Biome.createCompositeFeature(Feature.MINABLE, minableConfig, Biome.COUNT_RANGE, countConfig);
+        OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.IS_ROCK, block
+                .getDefaultState(), 8);
+        CompositeFeature<OreFeatureConfig, CountRangeConfig> feature = Biome.createCompositeFeature(Feature.MINABLE, minableConfig, Biome.COUNT_RANGE, countConfig);
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);
