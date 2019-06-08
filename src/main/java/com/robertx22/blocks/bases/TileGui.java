@@ -5,9 +5,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
 
-public abstract class TileGui extends ContainerScreen {
+public abstract class TileGui<T extends Container> extends ContainerScreen<T> {
 
-    public TileGui(Container cont, PlayerInventory inv, ITextComponent text) {
+    public TileGui(T cont, PlayerInventory inv, ITextComponent text) {
         super(cont, inv, text);
     }
 

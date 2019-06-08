@@ -35,7 +35,7 @@ public class OnLeftClickHearthstone {
 
                 DimensionType type = evt.getWorld().getDimension().getType();
 
-                item.setLoc(stack, new BlockPos(evt.getHitVec()), type);
+                item.setLoc(stack, new BlockPos(evt.getPos()), type);
                 player.sendMessage(Chats.You_have_attuned_to_this_Altar.locName());
 
             } else {

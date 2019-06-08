@@ -8,6 +8,7 @@ import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,15 +23,15 @@ public class GuiInventoryRepair extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
     private TileInventoryRepair tileEntity;
 
-    public GuiInventoryRepair(PlayerInventory invPlayer,
-                              TileInventoryRepair tileInventoryFurnace) {
-        super(new ContainerInventoryRepair(invPlayer, tileInventoryFurnace));
+    public GuiInventoryRepair(ContainerInventoryRepair cont, PlayerInventory invPlayer,
+                              TileInventoryRepair tile) {
+        super(cont, invPlayer, new StringTextComponent("Modify"));
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tileInventoryFurnace;
+        this.tileEntity = tile;
     }
 
     // some [x,y] coordinates of graphical elements
