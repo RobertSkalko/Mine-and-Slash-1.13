@@ -7,6 +7,7 @@ import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
@@ -17,6 +18,11 @@ import net.minecraft.world.World;
 public class EntityStaffProjectile extends EntityBaseProjectile {
 
     ItemStack staff;
+
+    public EntityStaffProjectile(EntityType<? extends EntityStaffProjectile> type,
+                                 World world) {
+        super(type, world);
+    }
 
     public EntityStaffProjectile(World worldIn) {
         super(EntityRegister.STAFFPROJECTILE, worldIn);
@@ -34,7 +40,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        
+
         if (result.entity != null && result.entity instanceof LivingEntity && staff != null) {
 
             if (!world.isRemote) {

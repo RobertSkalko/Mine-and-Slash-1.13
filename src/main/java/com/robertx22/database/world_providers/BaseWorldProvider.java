@@ -44,11 +44,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     }
 
     @Override
-    protected void init() {
-        this.hasSkyLight = true;
-    }
-
-    @Override
     public void setModDimension(ModDimension mod) {
         this.moddim = mod;
     }

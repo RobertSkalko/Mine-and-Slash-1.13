@@ -1,6 +1,5 @@
 package com.robertx22.mmorpg.registers.common;
 
-import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
@@ -16,16 +15,15 @@ import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityRegister {
@@ -48,7 +46,6 @@ public class EntityRegister {
     public static final EntityType<?> THUNDEREXPLOSION;
 
     public static final EntityType<?> STAFFPROJECTILE;
-    public static final EntityType<?> MYARROW;
 
     static {
 
@@ -68,7 +65,6 @@ public class EntityRegister {
         THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
 
         STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, "staff_projectile");
-        MYARROW = newType(MyEntityArrow.class, MyEntityArrow::new, "my_entity_arrow");
 
     }
 
@@ -81,12 +77,14 @@ public class EntityRegister {
     }
 
     private static <T extends Entity> EntityType<T> newType(
-            Class<? extends T> entityClass, Function<? super World, ? extends T> factory,
-            String id) {
+            Class<? extends T> entityClass, EntityType.IFactory<T> factory, String id) {
 
-        EntityType<T> type = EntityType.Builder.create(entityClass, factory)
-                .tracker(64, 1, true)
+        EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC)
+                .setTrackingRange(64)
+                .setShouldReceiveVelocityUpdates(true)
+                .setUpdateInterval(1)
                 .build(Ref.MODID + ":" + id.toLowerCase());
+
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 
         ENTITY_TYPES.add(type);

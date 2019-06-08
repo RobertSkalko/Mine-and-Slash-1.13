@@ -4,11 +4,15 @@ import com.robertx22.items.spells.projectile.ItemFrostBolt;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFrostBolt extends BaseSpellProjectile {
     static public class EntityFrostBolt extends EntityElementalBolt {
+        public EntityFrostBolt(EntityType<? extends EntityFrostBolt> type, World world) {
+            super(type, world);
+        }
 
         public EntityFrostBolt(World worldIn) {
 

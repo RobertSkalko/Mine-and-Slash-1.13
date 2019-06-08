@@ -6,6 +6,7 @@ import com.robertx22.spells.aoe_bomb_proj.bases.BaseBombSpell;
 import com.robertx22.spells.entities.bases.EntityBombProjectile;
 import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -16,6 +17,9 @@ public class SpellIceBomb extends BaseBombSpell {
     }
 
     static public class EntityIceBomb extends EntityBombProjectile {
+        public EntityIceBomb(EntityType<? extends EntityIceBomb> type, World world) {
+            super(type, world);
+        }
 
         public EntityIceBomb(World worldIn) {
             super(EntityRegister.FROSTBOMB, worldIn);
