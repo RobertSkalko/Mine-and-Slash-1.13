@@ -3,12 +3,14 @@ package com.robertx22.items.bags.currency_bag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.IInteractionObject;
 
-public class InteractCurrencyBag implements IInteractionObject {
+import javax.annotation.Nullable;
+
+public class InteractCurrencyBag implements INamedContainerProvider {
 
     private final ItemStack stack;
 
@@ -16,33 +18,16 @@ public class InteractCurrencyBag implements IInteractionObject {
         this.stack = stack;
     }
 
+    @Nullable
     @Override
-    public ITextComponent getName() {
-        return new StringTextComponent(this.getGuiID());
+    public Container createMenu(int p_createMenu_1_, PlayerInventory inventory,
+                                PlayerEntity player) {
+        return new ContainerCurrencyBag(inventory, new InventoryCurrencyBag(stack));
     }
 
     @Override
-    public boolean hasCustomName() {
-
-        return false;
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-
-        return new StringTextComponent(this.getGuiID());
-    }
-
-    @Override
-    public Container createContainer(PlayerInventory playerInventory,
-                                     PlayerEntity playerIn) {
-        return new ContainerCurrencyBag(playerInventory, new InventoryCurrencyBag(stack));
-
-    }
-
-    @Override
-    public String getGuiID() {
-        return ItemCurrencyBag.ID;
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("Currency Bag");
     }
 
 }

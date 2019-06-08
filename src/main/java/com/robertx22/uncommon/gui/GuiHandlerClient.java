@@ -1,15 +1,5 @@
 package com.robertx22.uncommon.gui;
 
-import com.robertx22.blocks.gear_factory_station.GuiGearFactory;
-import com.robertx22.blocks.gear_factory_station.TileGearFactory;
-import com.robertx22.blocks.item_modify_station.GuiInventoryModify;
-import com.robertx22.blocks.item_modify_station.TileInventoryModify;
-import com.robertx22.blocks.map_device.GuiMap;
-import com.robertx22.blocks.map_device.TileMap;
-import com.robertx22.blocks.repair_station.GuiInventoryRepair;
-import com.robertx22.blocks.repair_station.TileInventoryRepair;
-import com.robertx22.blocks.salvage_station.GuiInventorySalvage;
-import com.robertx22.blocks.salvage_station.TileInventorySalvage;
 import com.robertx22.items.bags.currency_bag.GuiCurrencyBag;
 import com.robertx22.items.bags.currency_bag.InventoryCurrencyBag;
 import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
@@ -19,7 +9,6 @@ import com.robertx22.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.items.bags.map_bag.GuiMapBag;
 import com.robertx22.items.bags.map_bag.InventoryMapBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
-import com.robertx22.mmorpg.registers.common.BlockRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,46 +29,16 @@ public class GuiHandlerClient {
 
         try { // if it's from tileentity, it will send pos dataInstance, otherwise not and causes errors
             pos = msg.getAdditionalData().readBlockPos();
-            te = Minecraft.getInstance().world.getTileEntity(pos);
+            te = Minecraft.getInstance().field_71441_e.getTileEntity(pos);
 
         } catch (Exception e) {
 
         }
 
         if (te != null) {
-            switch (msg.getId().toString()) {
 
-                case BlockRegister.GEAR_FACTORY_ID: {
-                    if (te instanceof TileGearFactory) {
-                        return new GuiGearFactory(player.inventory, (TileGearFactory) te);
-                    }
-                    break;
-                }
-                case BlockRegister.GEAR_MODIFY_ID: {
-                    if (te instanceof TileInventoryModify) {
-                        return new GuiInventoryModify(player.inventory, (TileInventoryModify) te);
-                    }
-                    break;
-                }
-                case BlockRegister.GEAR_SALVAGE_ID: {
-                    if (te instanceof TileInventorySalvage) {
-                        return new GuiInventorySalvage(player.inventory, (TileInventorySalvage) te);
-                    }
-                    break;
-                }
-                case BlockRegister.MAP_DEVICE_ID: {
-                    if (te instanceof TileMap) {
-                        return new GuiMap(player.inventory, (TileMap) te);
-                    }
-                    break;
-                }
-                case BlockRegister.GEAR_REPAIR_ID: {
-                    if (te instanceof TileInventoryRepair) {
-                        return new GuiInventoryRepair(player.inventory, (TileInventoryRepair) te);
-                    }
-                    break;
-                }
-            }
+            msg.getType().func_221506_a(0, player.field_71071_by);
+
         } else { // it means it's from a bag then, no tileentity but does have a hand boolean
 
             boolean isOffHand = msg.getAdditionalData().readBoolean();

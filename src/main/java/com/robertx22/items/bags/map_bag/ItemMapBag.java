@@ -4,9 +4,9 @@ import com.robertx22.items.bags.BaseBagItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.datasaving.Map;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class ItemMapBag extends BaseBagItem {
@@ -22,7 +22,7 @@ public class ItemMapBag extends BaseBagItem {
     }
 
     @Override
-    public IInteractionObject getInteractionObject(ItemStack stack) {
+    public INamedContainerProvider getInteractionObject(ItemStack stack) {
         return new InteractMapBag(stack);
     }
 

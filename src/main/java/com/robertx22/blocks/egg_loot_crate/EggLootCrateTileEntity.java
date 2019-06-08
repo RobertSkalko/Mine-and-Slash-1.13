@@ -11,13 +11,13 @@ import com.robertx22.saveclasses.PlayerOncePerMapData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
+import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;

@@ -5,9 +5,9 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class ItemCurrencyBag extends BaseBagItem {
@@ -28,7 +28,7 @@ public class ItemCurrencyBag extends BaseBagItem {
     }
 
     @Override
-    public IInteractionObject getInteractionObject(ItemStack stack) {
+    public INamedContainerProvider getInteractionObject(ItemStack stack) {
         return new InteractCurrencyBag(stack);
     }
 

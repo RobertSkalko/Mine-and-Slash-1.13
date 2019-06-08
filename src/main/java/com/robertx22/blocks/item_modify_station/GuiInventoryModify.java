@@ -63,7 +63,7 @@ public class GuiInventoryModify extends TileGui {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        fontRenderer.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        this.font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
@@ -77,7 +77,8 @@ public class GuiInventoryModify extends TileGui {
 
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
-            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
+
+            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
         }
     }
 

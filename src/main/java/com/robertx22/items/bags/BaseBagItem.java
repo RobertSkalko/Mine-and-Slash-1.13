@@ -5,15 +5,15 @@ import com.robertx22.items.ItemSingle;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -30,7 +30,7 @@ public abstract class BaseBagItem extends Item {
 
     public abstract boolean IsValidItem(ItemStack stack);
 
-    public abstract IInteractionObject getInteractionObject(ItemStack stack);
+    public abstract INamedContainerProvider getInteractionObject(ItemStack stack);
 
     public static int size = 9 * 6;
 
@@ -55,8 +55,7 @@ public abstract class BaseBagItem extends Item {
 
     @Nonnull
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack,
-                                                CompoundNBT oldCapNbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
         return new InvProvider();
     }
 

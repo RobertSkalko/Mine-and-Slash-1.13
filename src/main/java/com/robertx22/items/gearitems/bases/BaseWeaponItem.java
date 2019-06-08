@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.Random;
 import java.util.Set;
 
 public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocName, IGearItem {
@@ -52,7 +53,7 @@ public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocNa
     public boolean hitEntity(ItemStack stack, LivingEntity target,
                              LivingEntity attacker) {
 
-        stack.damageItem(1, attacker);
+        stack.attemptDamageItem(1, new Random(), null);
 
         return true;
     }

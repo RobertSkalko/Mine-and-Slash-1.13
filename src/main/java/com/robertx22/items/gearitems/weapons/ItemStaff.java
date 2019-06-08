@@ -14,13 +14,14 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.UseAction;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -29,6 +30,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
@@ -54,8 +56,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world,
-                                     LivingEntity player) {
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity player) {
 
         try {
 
@@ -75,7 +76,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
                         projectile.SetReady(stack);
                         projectile.SpawnAndShoot(null, null, player);
 
-                        stack.damageItem(1, player);
+                        stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 
                         SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 

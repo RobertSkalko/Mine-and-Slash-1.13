@@ -5,8 +5,8 @@ import com.robertx22.network.ParticleGenPacket;
 import com.robertx22.uncommon.interfaces.IColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.init.Particles;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,19 +14,19 @@ public class ParticleUtils {
 
     public static void spawnHealParticles(LivingEntity en, int amount) {
 
-        spawnParticles(Particles.HEART, en, amount);
+        spawnParticles(ParticleTypes.HEART, en, amount);
 
     }
 
     public static void spawnEnergyRestoreParticles(LivingEntity en, int amount) {
 
-        spawnParticles(Particles.HAPPY_VILLAGER, en, amount);
+        spawnParticles(ParticleTypes.HAPPY_VILLAGER, en, amount);
 
     }
 
     public static void spawnManaRestoreParticles(LivingEntity en, int amount) {
 
-        spawnParticles(Particles.BUBBLE, en, amount);
+        spawnParticles(ParticleTypes.BUBBLE, en, amount);
 
     }
 

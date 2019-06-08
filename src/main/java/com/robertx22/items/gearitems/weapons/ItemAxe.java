@@ -7,9 +7,9 @@ import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -47,7 +47,7 @@ public class ItemAxe extends BaseWeaponItem implements IWeapon {
             return 15.0F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.PLANTS && material != Material.VINE && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.PLANTS && smaterial != Material.CORAL && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
 }

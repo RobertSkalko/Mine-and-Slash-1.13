@@ -2,14 +2,14 @@ package com.robertx22.blocks.egg_loot_crate;
 
 import com.robertx22.blocks.bases.NonFullBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -42,8 +42,8 @@ public class EggLootCrateBlock extends NonFullBlock {
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
-                                    PlayerEntity player, Hand hand, Direction side,
-                                    float hitX, float hitY, float hitZ) {
+                                    PlayerEntity player, Hand hand,
+                                    BlockRayTraceResult ray) {
         if (world.isRemote) {
             return true;
         }

@@ -3,12 +3,16 @@ package com.robertx22.blocks.bases;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
+
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class BaseInventoryBlock extends NonFullBlock {
     protected BaseInventoryBlock(Properties prop) {
@@ -16,11 +20,10 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
     }
 
-    @Override
-    public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos,
-                                        int fortune) {
-
-        return this;
+    @Deprecated
+    public List<ItemStack> getDrops(BlockState p_220076_1_,
+                                    LootContext.Builder p_220076_2_) {
+        return Arrays.asList(new ItemStack(this));
     }
 
     @Override

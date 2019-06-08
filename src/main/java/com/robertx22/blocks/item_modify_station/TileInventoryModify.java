@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
+
 public class TileInventoryModify extends BaseTile {
 
     @Override
@@ -213,55 +215,22 @@ public class TileInventoryModify extends BaseTile {
     // will add a key for this container to the lang file so we can name it in the
     // GUI
 
-    @Override
-    public boolean hasCustomName() {
-        return false;
-    }
-
     // standard code to look up what the human-readable name is
 
     private static final byte COOK_FIELD_ID = 0;
     private static final byte NUMBER_OF_FIELDS = 1;
 
+    @Nullable
     @Override
-    public int getField(int id) {
-        if (id == COOK_FIELD_ID)
-            return cookTime;
+    public Container createMenu(int p_createMenu_1_, PlayerInventory inventory,
+                                PlayerEntity player) {
 
-        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
-        // id);
-        return 0;
+        return new ContainerInventoryModify(inventory, this);
+
     }
 
     @Override
-    public void setField(int id, int value) {
-        if (id == COOK_FIELD_ID) {
-            cookTime = (short) value;
-        } else {
-            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
-            // id);
-        }
-    }
-
-    @Override
-    public int getFieldCount() {
-        return NUMBER_OF_FIELDS;
-    }
-
-    @Override
-    public ITextComponent getName() {
+    public ITextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.modify_station");
     }
-
-    @Override
-    public Container createContainer(PlayerInventory playerInventory,
-                                     PlayerEntity playerIn) {
-        return new ContainerInventoryModify(playerInventory, this);
-    }
-
-    @Override
-    public String getGuiID() {
-        return BlockRegister.GEAR_MODIFY_ID;
-    }
-
 }

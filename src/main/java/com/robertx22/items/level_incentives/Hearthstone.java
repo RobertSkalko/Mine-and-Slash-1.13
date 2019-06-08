@@ -13,14 +13,11 @@ import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.init.Particles;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -86,7 +83,7 @@ public class Hearthstone extends Item {
                             entity.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.5F, 1);
                         }
 
-                        ParticleUtils.spawnParticles(Particles.HAPPY_VILLAGER, (PlayerEntity) entity, 15);
+                        ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, (PlayerEntity) entity, 15);
 
                     }
 
@@ -114,7 +111,7 @@ public class Hearthstone extends Item {
 
                             if (nbt.contains("ticks")) {
 
-                                ParticleUtils.spawnParticles(Particles.HEART, (PlayerEntity) entity, 10);
+                                ParticleUtils.spawnParticles(ParticleTypes.HEART, (PlayerEntity) entity, 10);
 
                                 int ticks = nbt.getInt("ticks");
                                 nbt.putInt("ticks", ticks + tickRate);
@@ -189,7 +186,7 @@ public class Hearthstone extends Item {
         BlockPos place = getLoc(stack);
         BlockPos current = player.getPosition();
 
-        double distance = place.getDistance(current);
+        double distance = place.manhattanDistance(current);
 
         if (distance < this.blocksTeleported) {
             return true;

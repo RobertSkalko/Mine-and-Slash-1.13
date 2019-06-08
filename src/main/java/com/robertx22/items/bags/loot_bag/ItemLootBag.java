@@ -8,9 +8,9 @@ import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class ItemLootBag extends BaseBagItem {
@@ -26,7 +26,7 @@ public class ItemLootBag extends BaseBagItem {
     }
 
     @Override
-    public IInteractionObject getInteractionObject(ItemStack stack) {
+    public INamedContainerProvider getInteractionObject(ItemStack stack) {
         return new InteractLootBag(stack);
     }
 

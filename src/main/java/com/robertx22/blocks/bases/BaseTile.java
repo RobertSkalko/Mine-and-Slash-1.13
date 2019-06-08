@@ -1,7 +1,10 @@
 package com.robertx22.blocks.bases;
 
+import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.container.IContainerProvider;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -10,15 +13,11 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IInteractionObject;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 
-public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable, IInteractionObject {
+public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable, IContainerProvider, INamedContainerProvider {
 
     public BaseTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -29,17 +28,6 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     public int ticks = 0;
     public short cookTime = 0;
     public int FuelRemaining = 0;
-
-    @Nullable
-    @Override
-    public ITextComponent getDisplayName() {
-        return this.getName();
-    }
-
-    @Override
-    public ITextComponent getCustomName() {
-        return this.getName();
-    }
 
     // OVERRIDE IF AUTOMATABLE
     @Override
@@ -317,15 +305,5 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         this.read(tag);
     }
     // ------------------------
-
-    @Override
-    public boolean hasCustomName() {
-        return false;
-    }
-
-    @Override
-    public ITextComponent getName() {
-        return new TranslationTextComponent(this.getGuiID());
-    }
 
 }
