@@ -78,7 +78,7 @@ public class GuiInventoryModify extends TileGui {
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
-            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
+            renderTooltip(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
         }
     }
 

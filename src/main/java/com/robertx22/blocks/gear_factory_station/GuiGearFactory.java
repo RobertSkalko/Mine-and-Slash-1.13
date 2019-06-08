@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class GuiGearFactory extends ContainerScreen {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/gear_factory_station.png");
     private TileGearFactory tileEntity;
 
-    public GuiGearFactory(PlayerInventory invPlayer,
+    public GuiGearFactory(ContainerGearFactory cont, PlayerInventory invPlayer,
                           TileGearFactory tileInventoryFurnace) {
-        super(new ContainerGearFactory(invPlayer, tileInventoryFurnace));
+        super(cont, invPlayer, new StringTextComponent("Factory"));
 
         // Set the width and height of the gui
         xSize = 176;
@@ -77,7 +78,7 @@ public class GuiGearFactory extends ContainerScreen {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        fontRenderer.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
@@ -98,9 +99,11 @@ public class GuiGearFactory extends ContainerScreen {
 
             }
         }
+
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
-            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
+
+            this.renderTooltip(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
 
         }
 

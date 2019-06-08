@@ -103,8 +103,7 @@ public class GuiInventoryRepair extends TileGui {
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
-            this.drawString();
-            drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
+            renderTooltip(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
         }
         //		// You must re bind the texture and reset the colour if you still need to use it after drawing a string
         //		Minecraft.getInstance().getTextureManager().bindTexture(texture);

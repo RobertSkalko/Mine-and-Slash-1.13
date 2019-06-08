@@ -13,13 +13,14 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Items;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public class TileGearFactory extends BaseTile {
@@ -326,56 +327,16 @@ public class TileGearFactory extends BaseTile {
 
     }
 
-    private static final byte COOK_FIELD_ID = 0;
-    private static final byte FIRST_BURN_TIME_REMAINING_FIELD_ID = 1;
-    private static final byte FIRST_BURN_TIME_INITIAL_FIELD_ID = FIRST_BURN_TIME_REMAINING_FIELD_ID + (byte) FUEL_SLOTS_COUNT;
-    private static final byte NUMBER_OF_FIELDS = FIRST_BURN_TIME_INITIAL_FIELD_ID + (byte) FUEL_SLOTS_COUNT;
-
     @Override
-    public int getField(int id) {
-        if (id == COOK_FIELD_ID)
-            return cookTime;
-        if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
-            return this.FuelRemaining;
-        }
-
-        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
-        // id);
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {
-        if (id == COOK_FIELD_ID) {
-            cookTime = (short) value;
-        } else if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
-            this.FuelRemaining = value;
-        } else {
-            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
-            // id);
-        }
-    }
-
-    @Override
-    public int getFieldCount() {
-        return NUMBER_OF_FIELDS;
-    }
-
-    @Override
-    public ITextComponent getName() {
+    public ITextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.factory_station");
     }
 
+    @Nullable
     @Override
-    public Container createContainer(PlayerInventory playerInventory,
-                                     PlayerEntity playerIn) {
+    public Container createMenu(int i, PlayerInventory playerInventory,
+                                PlayerEntity playerEntity) {
 
-        return new ContainerGearFactory(playerInventory, this);
+        return new ContainerGearFactory(i, playerInventory, this);
     }
-
-    @Override
-    public String getGuiID() {
-        return BlockRegister.GEAR_FACTORY_ID;
-    }
-
 }

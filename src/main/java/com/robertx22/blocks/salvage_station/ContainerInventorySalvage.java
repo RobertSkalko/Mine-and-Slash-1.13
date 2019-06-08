@@ -46,7 +46,7 @@ public class ContainerInventorySalvage extends Container {
     public ContainerInventorySalvage(PlayerInventory invPlayer,
                                      TileInventorySalvage tileInventorySalvage) {
 
-        super(null, ContainerUtils.windowId(invPlayer));
+        super(ContainerUtils.windowId(invPlayer));
 
         this.tileInventorySalvage = tileInventorySalvage;
 

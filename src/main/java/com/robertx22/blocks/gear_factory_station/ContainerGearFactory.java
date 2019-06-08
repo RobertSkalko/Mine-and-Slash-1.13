@@ -4,7 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -63,7 +63,16 @@ public class ContainerGearFactory extends Container {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerGearFactory(PlayerInventory invPlayer, TileGearFactory tile) {
+    public static final ContainerType<ContainerGearFactory> TYPE = new ContainerType<>(ContainerGearFactory::new);
+
+    private ContainerGearFactory(int i, PlayerInventory playerInventory) {
+        super(TYPE, i);
+    }
+
+    public ContainerGearFactory(int num, PlayerInventory invPlayer,
+                                TileGearFactory tile) {
+        super(TYPE, num);
+
         this.tileGearFactory = tile;
 
         final int SLOT_X_SPACING = 18;
@@ -171,47 +180,6 @@ public class ContainerGearFactory extends Container {
 
         sourceSlot.onTake(player, sourceStack); // onPickupFromSlot()
         return copyOfSourceStack;
-    }
-
-    /* Client Synchronization */
-    @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
-
-        boolean allFieldsHaveChanged = false;
-        boolean fieldHasChanged[] = new boolean[tileGearFactory.getFieldCount()];
-        if (cachedFields == null) {
-            cachedFields = new int[tileGearFactory.getFieldCount()];
-            allFieldsHaveChanged = true;
-        }
-        for (int i = 0; i < cachedFields.length; ++i) {
-            if (allFieldsHaveChanged || cachedFields[i] != tileGearFactory.getField(i)) {
-                cachedFields[i] = tileGearFactory.getField(i);
-                fieldHasChanged[i] = true;
-            }
-        }
-
-        // go through the list of listeners (players using this container) and update
-        // them if necessary
-        for (IContainerListener listener : this.listeners) {
-            for (int fieldID = 0; fieldID < tileGearFactory.getFieldCount(); ++fieldID) {
-                if (fieldHasChanged[fieldID]) {
-                    // Note that although sendWindowProperty takes 2 ints on a server these are
-                    // truncated to shorts
-                    listener.sendWindowProperty(this, fieldID, cachedFields[fieldID]);
-                }
-            }
-        }
-    }
-
-    // Called when a progress bar update is received from the server. The two values
-    // (id and dataInstance) are the same two
-    // values given to sendWindowProperty. In this case we are using fields so we
-    // just pass them to the tileEntity.
-
-    @Override
-    public void updateProgressBar(int id, int data) {
-        tileGearFactory.setField(id, data);
     }
 
     // SlotFuel is a slot for fuel items
