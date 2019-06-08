@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -50,11 +51,9 @@ public abstract class SpellPotionBase extends Effect implements ILocName {
             performEffectEverySetTime(en, amplifier);
     }
 
-    protected SpellPotionBase(boolean isBadEffectIn, int liquidColorIn) {
-        super(isBadEffectIn, liquidColorIn);
-        if (!isBadEffectIn) {
-            setBeneficial();
-        }
+    protected SpellPotionBase(EffectType type, int liquidColorIn) {
+        super(type, liquidColorIn);
+
     }
 
     public boolean canSelfCast() {
@@ -80,9 +79,8 @@ public abstract class SpellPotionBase extends Effect implements ILocName {
     // Called when the potion is being applied by an
     // AreaEffect or thrown potion bottle
     @Override
-    public void affectEntity(Entity applier, Entity caster,
-                             @Nonnull LivingEntity target, int amplifier,
-                             double health) {
+    public void affectEntity(Entity applier, Entity caster, @Nonnull LivingEntity target,
+                             int amplifier, double health) {
 
         if (target.world.isRemote && isServerSideOnly())
             return;
@@ -154,27 +152,27 @@ public abstract class SpellPotionBase extends Effect implements ILocName {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + getLiquidColor();
-        hash = 31 * hash + (isBadEffect() ? 1 : 0);
+        hash = 31 * hash + (this.isBeneficial() ? 1 : 0);
         return hash;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderInventoryEffect(EffectInstance effect,
-                                      AbstractGui gui, int x, int y,
-                                      float z) {
+    public void renderInventoryEffect(EffectInstance effect, AbstractGui gui, int x,
+                                      int y, float z) {
 
         if (gui != null && getIconTexture() != null) {
             Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-            AbstractGui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
+
+            AbstractGui.blit(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderHUDEffect(EffectInstance effect, AbstractGui gui,
-                                int x, int y, float z, float alpha) {
+    public void renderHUDEffect(EffectInstance effect, AbstractGui gui, int x, int y,
+                                float z, float alpha) {
         if (getIconTexture() != null) {
             Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-            AbstractGui.drawModalRectWithCustomSizedTexture(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
+            AbstractGui.blit(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
         }
     }
 

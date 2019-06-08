@@ -7,6 +7,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
 public class EnergyRegenPotion extends SpellPotionBase {
@@ -15,7 +16,7 @@ public class EnergyRegenPotion extends SpellPotionBase {
 
     private EnergyRegenPotion() {
         // boolean isBadEffectIn, int liquidColorIn
-        super(false, 4393423);
+        super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }

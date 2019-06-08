@@ -29,7 +29,7 @@ public class GuiHandlerClient {
 
         try { // if it's from tileentity, it will send pos dataInstance, otherwise not and causes errors
             pos = msg.getAdditionalData().readBlockPos();
-            te = Minecraft.getInstance().field_71441_e.getTileEntity(pos);
+            te = Minecraft.getInstance().player.getTileEntity(pos);
 
         } catch (Exception e) {
 
@@ -37,7 +37,7 @@ public class GuiHandlerClient {
 
         if (te != null) {
 
-            msg.getType().func_221506_a(0, player.field_71071_by);
+            msg.getType().func_221506_a(0, player.inventory);
 
         } else { // it means it's from a bag then, no tileentity but does have a hand boolean
 

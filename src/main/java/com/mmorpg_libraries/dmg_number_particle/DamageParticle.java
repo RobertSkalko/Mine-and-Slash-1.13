@@ -1,12 +1,13 @@
 package com.mmorpg_libraries.dmg_number_particle;
 
+import com.mojang.blaze3d.platform.GLX;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,10 +33,11 @@ public class DamageParticle extends Particle {
                           double parY, double parZ, double parMotionX, double parMotionY,
                           double parMotionZ) {
         super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
-        particleTextureJitterX = 0.0F;
-        particleTextureJitterY = 0.0F;
+
+        //particleTextureJitterX = 0.0F;
+        //particleTextureJitterY = 0.0F;
         particleGravity = GRAVITY;
-        particleScale = SIZE;
+        scale = SIZE;
         this.maxAge = LIFESPAN;
         this.text = str;
 
@@ -48,9 +50,8 @@ public class DamageParticle extends Particle {
     }
 
     @Override
-    public void renderParticle(final BufferBuilder renderer, final Entity entity,
-                               final float x, final float y, final float z,
-                               final float dX, final float dY, final float dZ) {
+    public void renderParticle(BufferBuilder renderer, ActiveRenderInfo entityIn, float x,
+                               float y, float z, float dX, float dY, float dZ) {
         float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
         float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
@@ -69,10 +70,10 @@ public class DamageParticle extends Particle {
         GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        GL11.glScaled(this.particleScale * 0.008D, this.particleScale * 0.008D, this.particleScale * 0.008D);
+        GL11.glScaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
         GL11.glScaled(this.scale, this.scale, this.scale);
 
-        OpenGlHelper.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
+        GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
         GL11.glEnable(3553);
         GL11.glDisable(3042);
         GL11.glDepthMask(true);
@@ -96,12 +97,12 @@ public class DamageParticle extends Particle {
 
         GL11.glPopMatrix();
         if (this.grow) {
-            this.particleScale *= 1.08F;
-            if (this.particleScale > SIZE * 3.0D) {
+            this.scale *= 1.08F;
+            if (this.scale > SIZE * 3.0D) {
                 this.grow = false;
             }
         } else {
-            this.particleScale *= 0.96F;
+            this.scale *= 0.96F;
         }
     }
 
@@ -122,8 +123,13 @@ public class DamageParticle extends Particle {
         return -1;
     }
 
-    public int getFXLayer() {
-        return 3;
-    }
+    //@Override
+    //public int getFXLayer() {
+    //      return 3; TODO IS THIS NEEDED?
+    // }
 
+    @Override
+    public IParticleRenderType func_217558_b() {
+        return IParticleRenderType.field_217601_a; // TODO WTF IS THIS
+    }
 }

@@ -3,7 +3,6 @@ package com.robertx22.saveclasses;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.MapRarity;
-import com.robertx22.database.world_providers.BirchForestIWP;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
@@ -74,7 +73,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             return iwp;
         }
 
-        return WorldProviders.All.get(new BirchForestIWP().GUID());
+        return (IWP) WorldProviders.All.values().toArray()[0];
     }
 
     @Override

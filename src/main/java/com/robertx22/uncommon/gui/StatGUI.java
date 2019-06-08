@@ -144,7 +144,7 @@ public class StatGUI extends Screen {
         added += this.drawTitleAndIncreaseSpacing(x - 22, y + added, this.statgroup.word.translate() + ": ");
         added += this.getHeightSpacing() / 3;
 
-        EntityData.UnitData data = Load.Unit(minecraft.field_71439_g);
+        EntityData.UnitData data = Load.Unit(minecraft.player);
 
         for (int i = currentElement; i < list.size(); i++) {
             if (i > -1) { // or scrolling crashes
