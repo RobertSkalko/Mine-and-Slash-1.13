@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,14 +26,21 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory> implements IHa
     private TileGearFactory tileEntity;
 
     public GuiGearFactory(ContainerGearFactory cont, PlayerInventory invPlayer,
-                          TileGearFactory tileInventoryFurnace) {
-        super(cont, invPlayer, new StringTextComponent("Factory"));
+                          TileGearFactory tile) {
+
+        this(cont, invPlayer, new StringTextComponent("Factory"));
+
+        this.tileEntity = tile;
+    }
+
+    public GuiGearFactory(ContainerGearFactory cont, PlayerInventory invPlayer,
+                          ITextComponent comp) {
+        super(cont, invPlayer, comp);
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tileInventoryFurnace;
     }
 
     // some [x,y] coordinates of graphical elements
