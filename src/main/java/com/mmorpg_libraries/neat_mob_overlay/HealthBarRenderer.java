@@ -341,7 +341,7 @@ public class HealthBarRenderer {
             positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
         if (pos != null)
-            distance = pos.hitVec.distanceTo(positionVector);
+            distance = pos.getHitVec().distanceTo(positionVector);
 
         Vec3d lookVector = e.getLookVec();
         Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
@@ -366,7 +366,7 @@ public class HealthBarRenderer {
                         minDistance = 0.0D;
                     }
                 } else if (interceptPosition != null) {
-                    double distanceToEntity = positionVector.distanceTo(interceptPosition.hitVec);
+                    double distanceToEntity = positionVector.distanceTo(interceptPosition.getHitVec());
 
                     if (distanceToEntity < minDistance || minDistance == 0.0D) {
                         lookedEntity = entity;

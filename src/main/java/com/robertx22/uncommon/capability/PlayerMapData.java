@@ -1,7 +1,6 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.Chats;
@@ -263,7 +262,7 @@ public class PlayerMapData {
                         if (getMapDevicePos() != null) {
                             pos = getMapDevicePos();
                             pos = pos.north(2);
-                            player.changeDimension(this.originalDimension, new MyTeleporter(player.world, pos, player));
+                            player.changeDimension(this.originalDimension); // TODO test if works
                             player.setPosition(pos.getX(), pos.getY(), pos.getZ());
                         }
 

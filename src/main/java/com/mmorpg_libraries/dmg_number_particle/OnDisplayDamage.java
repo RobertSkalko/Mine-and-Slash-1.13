@@ -68,7 +68,7 @@ public class OnDisplayDamage {
         double distance = reachDistance;
 
         if (objectMouseOver != null) {
-            distance = objectMouseOver.hitVec.distanceTo(observerPositionEyes);
+            distance = objectMouseOver.getHitVec().distanceTo(observerPositionEyes);
         }
 
         Vec3d lookVector = observer.getLook(partialTicks);
@@ -88,22 +88,23 @@ public class OnDisplayDamage {
             if (axisalignedbb.contains(observerPositionEyes)) {
                 if (d2 >= 0.0D) {
                     this.pointedEntity = entity1;
-                    hitVector = raytraceresult == null ? observerPositionEyes : raytraceresult.hitVec;
+                    hitVector = raytraceresult == null ? observerPositionEyes : raytraceresult
+                            .getHitVec();
                     d2 = 0.0D;
                 }
             } else if (raytraceresult != null) {
-                double d3 = observerPositionEyes.distanceTo(raytraceresult.hitVec);
+                double d3 = observerPositionEyes.distanceTo(raytraceresult.getHitVec());
 
                 if (d3 < d2 || d2 == 0.0D) {
                     if (entity1.getLowestRidingEntity() == observer.getLowestRidingEntity() && !observer
                             .canRiderInteract()) {
                         if (d2 == 0.0D) {
                             this.pointedEntity = entity1;
-                            hitVector = raytraceresult.hitVec;
+                            hitVector = raytraceresult.getHitVec();
                         }
                     } else {
                         this.pointedEntity = entity1;
-                        hitVector = raytraceresult.hitVec;
+                        hitVector = raytraceresult.getHitVec();
                         d2 = d3;
                     }
                 }
