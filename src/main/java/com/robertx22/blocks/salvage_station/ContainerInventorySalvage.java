@@ -1,10 +1,11 @@
 package com.robertx22.blocks.salvage_station;
 
+import com.robertx22.uncommon.utilityclasses.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,6 +45,9 @@ public class ContainerInventorySalvage extends Container {
 
     public ContainerInventorySalvage(PlayerInventory invPlayer,
                                      TileInventorySalvage tileInventorySalvage) {
+
+        super(null, ContainerUtils.windowId(invPlayer));
+
         this.tileInventorySalvage = tileInventorySalvage;
 
         final int SLOT_X_SPACING = 18;

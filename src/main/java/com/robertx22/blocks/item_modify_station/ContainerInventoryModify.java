@@ -1,12 +1,13 @@
 package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.salvage_station.TileInventorySalvage;
+import com.robertx22.uncommon.utilityclasses.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -43,6 +44,8 @@ public class ContainerInventoryModify extends Container {
 
     public ContainerInventoryModify(PlayerInventory invPlayer,
                                     TileInventoryModify tileInventory) {
+        super(null, ContainerUtils.windowId(invPlayer));
+
         this.tileInventory = tileInventory;
 
         final int SLOT_X_SPACING = 18;
