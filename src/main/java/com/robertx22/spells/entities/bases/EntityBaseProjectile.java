@@ -7,10 +7,7 @@ import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -26,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class EntityBaseProjectile extends Entity implements IProjectile, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends Entity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
 
     private int xTile;
     private int yTile;

@@ -6,6 +6,8 @@ import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class SpellAcidBolt extends BaseSpellProjectile {
@@ -25,6 +27,10 @@ public class SpellAcidBolt extends BaseSpellProjectile {
             return Elements.Nature;
         }
 
+        @Override
+        public ItemStack getPotion() {
+            return new ItemStack(Items.SLIME_BALL);
+        }
     }
 
     public SpellAcidBolt() {

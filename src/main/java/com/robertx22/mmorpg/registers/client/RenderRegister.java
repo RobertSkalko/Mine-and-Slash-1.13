@@ -1,7 +1,5 @@
 package com.robertx22.mmorpg.registers.client;
 
-import com.robertx22.items.gearitems.MyEntityArrow;
-import com.robertx22.items.gearitems.RenderMyArrow;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
@@ -18,8 +16,8 @@ import com.robertx22.spells.projectile.SpellThunderBolt;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,8 +35,6 @@ public class RenderRegister {
 
     @SubscribeEvent
     public static void regRenders(ModelRegistryEvent evt) {
-
-        RenderingRegistry.registerEntityRenderingHandler(MyEntityArrow.class, RenderMyArrow::new);
 
         RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class, newRenFac(FIRE));
         RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class, newRenFac(FIRE));
@@ -60,6 +56,7 @@ public class RenderRegister {
 
     }
 
+    // need to AT this too??!?
     public static <T extends Entity> IRenderFactory<T> newRenFac(
             final Item itemToRender) {
         return manager -> new SpriteRenderer<>(manager, itemToRender, Minecraft.getInstance()

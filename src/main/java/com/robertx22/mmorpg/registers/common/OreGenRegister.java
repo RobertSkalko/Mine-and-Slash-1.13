@@ -3,12 +3,14 @@ package com.robertx22.mmorpg.registers.common;
 import com.robertx22.config.ModConfig;
 import com.robertx22.items.ores.ItemOre;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.CompositeFeature;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.placement.Placement;
 
 public class OreGenRegister {
     public static void register() {
@@ -32,9 +34,10 @@ public class OreGenRegister {
     public static void genOre(Block block, int amount) {
 
         CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
-        OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.IS_ROCK, block
+        OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.STONE
                 .getDefaultState(), 8);
-        CompositeFeature<OreFeatureConfig, CountRangeConfig> feature = Biome.createCompositeFeature(Feature.MINABLE, minableConfig, Biome.COUNT_RANGE, countConfig);
+
+        ConfiguredFeature<?> feature = Biome.func_222280_a(Feature.MINABLE, minableConfig, Placement.field_215028_n, countConfig);
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);

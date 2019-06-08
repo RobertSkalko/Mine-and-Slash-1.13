@@ -3,6 +3,7 @@ package com.robertx22.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -51,7 +52,9 @@ public final class WizardryUtilities {
         AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius);
         List<T> entityList = world.getEntitiesWithinAABB(entityType, aabb);
         for (int i = 0; i < entityList.size(); i++) {
-            if (entityList.get(i).getDistance(x, y, z) > radius) {
+            if (entityList.get(i)
+                    .getPosition()
+                    .manhattanDistance(new Vec3i(x, y, z)) > radius) {
                 entityList.remove(i);
             }
         }
@@ -67,7 +70,7 @@ public final class WizardryUtilities {
         AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius);
         List<T> entityList = entity.world.getEntitiesWithinAABB(entityType, aabb);
         for (int i = 0; i < entityList.size(); i++) {
-            if (entityList.get(i).getDistance(x, y, z) > radius) {
+            if (entityList.get(i).getDistance(entity) > radius) {
                 entityList.remove(i);
             }
         }
