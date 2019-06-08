@@ -4,8 +4,8 @@ import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -38,7 +38,7 @@ public class AllowMobSpawnsInMap {
                         BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
                                 .down());
 
-                        if (!iblockstate.canEntitySpawn(en)) {
+                        if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en.getType())) {
                             return;
                         }
 

@@ -2,13 +2,13 @@ package com.robertx22.items.ores;
 
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.storage.loot.LootContext;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockOre extends Block {
 
@@ -26,21 +26,24 @@ public class BlockOre extends Block {
     }
 
     @Override
-    public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos,
-                                        int fortune) {
-
-        return ItemOre.ItemOres.get(rarity);
-    }
-
-    @Override
-    public int getItemsToDropCount(BlockState state, int fortune, World worldIn,
-                                   BlockPos pos, Random random) {
+    public List<ItemStack> getDrops(BlockState p_220076_1_, LootContext.Builder loot) {
         if (this.minDropAmount > this.maxDropAmount) {
             int i = this.minDropAmount;
             this.minDropAmount = this.maxDropAmount;
             this.maxDropAmount = i;
         }
-        return this.minDropAmount + random.nextInt(this.maxDropAmount - this.minDropAmount + 1);
+
+        int amount = this.minDropAmount + this.RANDOM.nextInt(this.maxDropAmount - this.minDropAmount + 1);
+
+        List<ItemStack> list = new ArrayList<>();
+
+        ItemStack ore = new ItemStack(ItemOre.ItemOres.get(rarity));
+        ore.setCount(amount);
+
+        list.add(ore);
+
+        return list;
+
     }
 
 }

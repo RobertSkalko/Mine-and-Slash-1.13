@@ -25,9 +25,11 @@ public class MyTeleporter extends Teleporter {
     }
 
     @Override
-    public void placeEntity(World world, Entity entity, float yaw) {
+    public boolean func_222268_a(Entity entity, float yaw) {
 
         entity.moveToBlockPosAndAngles(targetPos, yaw, entity.rotationPitch);
+
+        return true;
 
     }
 

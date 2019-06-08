@@ -200,7 +200,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         Tooltip.add(Words.Works_when_equipped.locName(), tooltip);
         Tooltip.add("", tooltip);
 
-        if (Screen.isShiftKeyDown() == false) {
+        if (Screen.hasShiftDown() == false) {
 
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(CLOC.tooltip("sal_info")), tooltip);

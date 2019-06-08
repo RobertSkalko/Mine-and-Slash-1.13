@@ -1,17 +1,16 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.EndPortalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -75,7 +74,10 @@ public class MapPortalBlock extends EndPortalBlock {
                                         DimensionType type = mapworld.getDimension()
                                                 .getType();
 
-                                        entity.changeDimension(type, new MyTeleporter(world, pos1, player));
+                                        entity.changeDimension(type);
+
+                                        entity.setPosition(pos1.getX(), pos1.getY(), pos1.getZ());
+
                                     } else {
                                         entity.sendMessage(Chats.Not_enough_time.locName());
                                     }

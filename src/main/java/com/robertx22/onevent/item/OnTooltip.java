@@ -31,7 +31,7 @@ public class OnTooltip {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemTooltip(ItemTooltipEvent event) {
 
-        if (Screen.isCtrlKeyDown()) {
+        if (Screen.hasControlDown()) {
             return;
         }
 
@@ -67,7 +67,7 @@ public class OnTooltip {
 
             gear.BuildTooltip(stack, event, unit, unitdata);
 
-            if (Screen.isShiftKeyDown() == false) {
+            if (Screen.hasShiftDown() == false) {
                 event.getToolTip()
                         .add(Styles.BLUECOMP()
                                 .appendSibling(CLOC.tooltip("press_shift_more_info")));
@@ -99,8 +99,7 @@ public class OnTooltip {
 
         if (stack.getItem() instanceof IEffectItem) {
             IEffectItem effect = (IEffectItem) stack.getItem();
-            event.getToolTip()
-                    .addAll(effect.getEffectTooltip(Screen.isShiftKeyDown()));
+            event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
         }
 
         if (stack.getItem().getRegistryName() != null) {

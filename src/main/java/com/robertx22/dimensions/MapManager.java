@@ -34,7 +34,7 @@ public class MapManager {
 
                 if (DimensionManager.getRegistry().containsKey(res) == false) {
                     ModDimension moddim = iwp.getModDim();
-                    DimensionManager.registerDimension(res, moddim, null);
+                    DimensionManager.registerDimension(res, moddim, null, true);
                 }
             }
 
@@ -85,7 +85,7 @@ public class MapManager {
 
             ModDimension moddim = IWPType.getModDim();
 
-            return DimensionManager.registerDimension(res, moddim, null);
+            return DimensionManager.registerDimension(res, moddim, null, true);
         }
     }
 
