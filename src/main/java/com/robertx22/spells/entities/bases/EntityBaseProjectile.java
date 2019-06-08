@@ -16,10 +16,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -196,14 +193,15 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         float f1 = -MathHelper.sin((rotationPitchIn + pitchOffset) * 0.017453292F);
         float f2 = MathHelper.cos(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
         this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
-        this.getMotion().x += entityThrower.motionX;
-        this.getMotion().z += entityThrower.motionZ;
+        this.setMotion(getMotion().x + entityThrower.getMotion().x, getMotion().y, getMotion().z + entityThrower
+                .getMotion().z);
 
         if (entityThrower instanceof LivingEntity) {
             this.thrower = (LivingEntity) entityThrower;
         }
         if (!entityThrower.onGround) {
-            this.getMotion().y += entityThrower.motionY;
+            this.setMotion(this.getMotion().add(0, entityThrower.getMotion().y, 0));
+
         }
     }
 
@@ -222,9 +220,9 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         x = x * (double) velocity;
         y = y * (double) velocity;
         z = z * (double) velocity;
-        this.getMotion().x = x;
-        this.getMotion().y = y;
-        this.getMotion().z = z;
+
+        this.setMotion(x, y, z);
+
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
         this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
@@ -247,20 +245,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             this.prevRotationYaw = this.rotationYaw;
             this.prevRotationPitch = this.rotationPitch;
         }
-    }
-
-    /**
-     * Sets this projectile's velocity as a normalised vector towards the target.
-     */
-    public void directTowards(Entity target, float velocity) {
-
-        double dx = target.posX - this.posX;
-        double dy = target.getBoundingBox().minY + (double) (target.getHeight() / 2.0F) - (this.posY + (double) (this.height / 2.0F));
-        double dz = target.posZ - this.posZ;
-
-        this.setMotion(dx / this.getDistance(target) * velocity, dy / this.getDistance(target) * velocity, dz / this
-                .getDistance(target) * velocity);
-
     }
 
     /**
@@ -296,9 +280,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             }
 
             this.inGround = false;
-            this.getMotion().x *= (double) (this.rand.nextFloat() * 0.2F);
-            this.getMotion().y *= (double) (this.rand.nextFloat() * 0.2F);
-            this.getMotion().z *= (double) (this.rand.nextFloat() * 0.2F);
+
+            this.setMotion(getMotion().x * this.rand.nextFloat() * 0.2F, getMotion().y * this.rand
+                    .nextFloat() * 0.2F, getMotion().z * this.rand.nextFloat() * 0.2F);
+
             this.ticksInGround = 0;
             this.ticksInAir = 0;
         } else {
@@ -356,7 +341,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         }
 
         if (entity != null) {
-            raytraceresult = new RayTraceResult(entity);
+            raytraceresult = new EntityRayTraceResult(entity);
         }
 
         if (raytraceresult != null) {
@@ -461,7 +446,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                 if (homindTarget != null && Math.abs(this.getMotion().x) < 5 && Math.abs(this
                         .getMotion().y) < 5 && Math.abs(this.getMotion().z) < 5) {
 
-                    this.addVelocity((homindTarget.posX - this.posX) / 30, (homindTarget.posY + homindTarget.height / 2 - this.posY) / 30, (homindTarget.posZ - this.posZ) / 30);
+                    this.addVelocity((homindTarget.posX - this.posX) / 30, (homindTarget.posY + homindTarget
+                            .getHeight() / 2 - this.posY) / 30, (homindTarget.posZ - this.posZ) / 30);
 
                     // this.getMotion().y += (target.posY + target.height - this.posY) / 30;
 
@@ -536,11 +522,11 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     @Nullable
     public LivingEntity getThrower() {
         if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
-            this.thrower = this.world.getPlayerEntityByName(this.throwerName);
+            this.thrower = this.world.getPlayerByUuid(UUID.fromString(this.throwerName));
 
             if (this.thrower == null && this.world instanceof ServerWorld) {
                 try {
-                    Entity entity = ((ServerWorld) this.world).getEntityFromUuid(UUID.fromString(this.throwerName));
+                    Entity entity = ((ServerWorld) this.world).func_217461_a(UUID.fromString(this.throwerName));
 
                     if (entity instanceof LivingEntity) {
                         this.thrower = (LivingEntity) entity;
