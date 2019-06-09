@@ -5,6 +5,7 @@ import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -29,11 +30,11 @@ public class ContainerMapDevice extends BaseTileContainer {
     private final int START_SLOT_INDEX = 3;
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new TileMapDevice());
+        this(i, playerInventory, new Inventory(4));
     }
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,
-                              TileMapDevice tile) {
+                              IInventory inventory) {
         super(ContainerTypeRegisters.MAP_DEVICE, i);
 
         final int SLOT_X_SPACING = 18;
@@ -61,19 +62,19 @@ public class ContainerMapDevice extends BaseTileContainer {
         // VANILLA END
         final int TIER_X = 26;
         final int TIER_Y = 85;
-        addSlot(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
+        addSlot(new NormalSlot(inventory, TIER_SLOT_INDEX, TIER_X, TIER_Y));
 
         final int LEVEL_X = 134;
         final int LEVEL_Y = 85;
-        addSlot(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
+        addSlot(new NormalSlot(inventory, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
 
         final int MAP_X = 81;
         final int MAP_Y = 28;
-        addSlot(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
+        addSlot(new NormalSlot(inventory, MAP_SLOT_INDEX, MAP_X, MAP_Y));
 
         final int START_X = 80;
         final int START_Y = 99;
-        addSlot(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
+        addSlot(new NormalSlot(inventory, START_SLOT_INDEX, START_X, START_Y));
 
     }
 
