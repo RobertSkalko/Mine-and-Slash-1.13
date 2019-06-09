@@ -15,9 +15,6 @@ import javax.annotation.Nullable;
 
 public class ContainerMapDevice extends BaseTileContainer {
 
-    // Stores the tile entity instance for later use
-    private TileMapDevice tile;
-
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
     private int[] cachedFields;
@@ -38,12 +35,11 @@ public class ContainerMapDevice extends BaseTileContainer {
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory) {
         super(ContainerTypeRegisters.MAP_DEVICE, i);
+
     }
 
     public ContainerMapDevice(int num, PlayerInventory invPlayer, TileMapDevice tile) {
         super(ContainerTypeRegisters.MAP_DEVICE, num);
-
-        this.tile = tile;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -90,7 +86,7 @@ public class ContainerMapDevice extends BaseTileContainer {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return tile.isUsableByPlayer(player);
+        return true;
     }
 
     // shift click logic

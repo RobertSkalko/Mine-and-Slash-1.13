@@ -5,6 +5,7 @@ import com.robertx22.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
     Penetration("Penetration"),
+    Map_Device("Map Device"),
     Core_Stat("Core Stat"),
     Elemental_Attack_Damage("Elemental Attack Damage"),
     Main("Main"),

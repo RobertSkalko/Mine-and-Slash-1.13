@@ -36,7 +36,7 @@ public class BlockMapDevice extends BaseInventoryBlock {
 
         if (tile instanceof TileMapDevice) {
 
-            player.openContainer(new ContainerMapDevice(0, player.inventory, (TileMapDevice) tile));
+            player.openContainer(new ContainerMapDevice(5, player.inventory, (TileMapDevice) tile));
 
         }
 

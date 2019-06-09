@@ -3,7 +3,6 @@ package com.robertx22.blocks.map_device;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,7 +19,6 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
-    private TileMapDevice tileEntity;
 
     public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
                         ITextComponent comp) {
@@ -29,13 +27,13 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
     public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
                         TileMapDevice tile) {
+
         super(cont, invPlayer, new StringTextComponent("Factory"));
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tile;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(Words.Map_Device.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         final int TIER_XPOS = 35;
@@ -84,9 +82,4 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
     }
 
-    // Returns true if the given x,y coordinates are within the given rectangle
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
-    }
 }
