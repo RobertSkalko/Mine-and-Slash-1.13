@@ -24,11 +24,11 @@ public class OreGenRegister {
                 if (amount < 1) {
                     amount = 1;
                 }
-
                 genOre(ItemOre.Blocks.get(i), amount--);
             }
 
         }
+        s
     }
 
     public static void genOre(Block block, int amount) {

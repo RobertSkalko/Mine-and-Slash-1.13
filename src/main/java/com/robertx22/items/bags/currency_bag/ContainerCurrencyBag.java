@@ -16,6 +16,10 @@ public class ContainerCurrencyBag extends BaseContainer {
 
     }
 
+    public ContainerCurrencyBag(PlayerInventory playerInv, BaseInventory basebag) {
+        super(ContainerTypeRegisters.CURRENCY_BAG, 0);
+    }
+
     public class SlotCurrency extends BaseSlot {
 
         public SlotCurrency(IItemHandler itemHandler, int index, int xPosition,

@@ -11,6 +11,7 @@ public class GuiCurrencyBag extends BaseBagGui {
 
     public GuiCurrencyBag(PlayerInventory playerInv, InventoryCurrencyBag baginv) {
         super(new ContainerCurrencyBag(playerInv, baginv), playerInv);
+
     }
 
     @Override

@@ -15,8 +15,7 @@ public class ContainerMapBag extends BaseContainer {
     }
 
     public ContainerMapBag(PlayerInventory playerInv, BaseInventory basebag) {
-        super(playerInv, basebag);
-
+        super(ContainerTypeRegisters.MAP_BAG, 0);
     }
 
     public class SlotMapBag extends BaseSlot {

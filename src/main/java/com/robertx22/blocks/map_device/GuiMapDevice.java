@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiMapDevice extends TileGui {
+public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");

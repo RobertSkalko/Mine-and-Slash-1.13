@@ -19,10 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -143,8 +140,8 @@ public class HealthBarRenderer {
                         .getRenderManager();
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translatef((float) (x - renderManager.playerViewX), (float) (y - renderManager.playerViewY + passedEntity
-                        .getHeight() + NeatConfig.heightAbove), (float) (z - renderManager.viewerPosZ));
+                GlStateManager.translatef((float) (x - renderManager.renderPosX), (float) (y - renderManager.renderPosY + passedEntity
+                        .getHeight() + NeatConfig.heightAbove), (float) (z - renderManager.renderPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -398,14 +395,14 @@ public class HealthBarRenderer {
         if (look == null)
             return null;
 
-        return raycast(e.getEntityWorld(), vec, look, len);
+        return raycast(e.getEntityWorld(), vec, look, len, e);
     }
 
-    public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray,
-                                         double len) {
+    public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray, double len,
+                                         Entity entity) {
         Vec3d end = origin.add(ray.normalize().scale(len));
 
-        RayTraceResult pos = world.rayTraceBlocks(origin, end);
+        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, entity));
         return pos;
     }
 }

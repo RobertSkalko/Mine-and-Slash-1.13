@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiGearRepair extends TileGui {
+public class GuiGearRepair extends TileGui<ContainerGearRepair> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");

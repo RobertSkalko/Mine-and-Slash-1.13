@@ -51,7 +51,7 @@ public class ContainerGearModify extends BaseTileContainer {
     public ContainerGearModify(int num, PlayerInventory invPlayer, TileGearModify tile) {
         super(ContainerTypeRegisters.GEAR_MODIFY, num);
 
-        this.tileInventory = tileInventory;
+        this.tileInventory = tile;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
