@@ -60,8 +60,7 @@ public class ContainerMapDevice extends BaseTileContainer {
         }
         PlayerEntity player = playerInventory.player;
 
-        TileEntity tile = player.world.getTileEntity(PlayerUtils.getNearestTileEntity(player.world, player
-                .getPosition()));
+        TileEntity tile = PlayerUtils.getTileEntityLookedAt(player);
 
         if (tile instanceof TileMapDevice) {
 
@@ -87,7 +86,7 @@ public class ContainerMapDevice extends BaseTileContainer {
         }
 
     }
-    
+
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override

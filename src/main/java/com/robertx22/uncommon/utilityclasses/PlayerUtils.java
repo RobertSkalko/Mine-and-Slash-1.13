@@ -4,32 +4,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.util.math.BlockRayTraceResult;
 
 import java.util.List;
 
 public class PlayerUtils {
 
-    // TODO find nearest, not any
-    public static BlockPos getNearestTileEntity(World world, BlockPos pos) {
+    public static TileEntity getTileEntityLookedAt(PlayerEntity player) {
 
-        for (int x = -5; x < 5; x++) {
-            for (int y = -5; y < 5; y++) {
-                for (int z = -5; z < 5; z++) {
+        BlockRayTraceResult ray = (BlockRayTraceResult) player.func_213324_a(20.0D, 0.0F, false);
 
-                    BlockPos check = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+        BlockPos pos = ray.getPos();
 
-                    if (world.getTileEntity(check) != null) {
-                        return check;
-                    }
-
-                }
-            }
-
-        }
-
-        return pos;
+        return player.world.getTileEntity(pos);
 
     }
 
