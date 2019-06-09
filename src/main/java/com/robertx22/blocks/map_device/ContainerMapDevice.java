@@ -2,18 +2,11 @@ package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
 import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
-import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-
-import javax.annotation.Nullable;
 
 public class ContainerMapDevice extends BaseTileContainer {
 
@@ -36,7 +29,13 @@ public class ContainerMapDevice extends BaseTileContainer {
     private final int START_SLOT_INDEX = 3;
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory) {
+        this(i, playerInventory, new TileMapDevice());
+    }
+
+    public ContainerMapDevice(int i, PlayerInventory playerInventory,
+                              TileMapDevice tile) {
         super(ContainerTypeRegisters.MAP_DEVICE, i);
+
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
         final int HOTBAR_XPOS = 8;
@@ -58,37 +57,26 @@ public class ContainerMapDevice extends BaseTileContainer {
                 addSlot(new Slot(playerInventory, slotNumber, xpos, ypos));
             }
         }
-        PlayerEntity player = playerInventory.player;
 
-        TileEntity tile = PlayerUtils.getTileEntityLookedAt(player);
+        // VANILLA END
+        final int TIER_X = 26;
+        final int TIER_Y = 85;
+        addSlot(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
 
-        if (tile instanceof TileMapDevice) {
+        final int LEVEL_X = 134;
+        final int LEVEL_Y = 85;
+        addSlot(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
 
-            TileMapDevice map = (TileMapDevice) tile;
+        final int MAP_X = 81;
+        final int MAP_Y = 28;
+        addSlot(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
 
-            // VANILLA END
-            final int TIER_X = 26;
-            final int TIER_Y = 85;
-            addSlot(new NormalSlot(map, TIER_SLOT_INDEX, TIER_X, TIER_Y));
-
-            final int LEVEL_X = 134;
-            final int LEVEL_Y = 85;
-            addSlot(new NormalSlot(map, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
-
-            final int MAP_X = 81;
-            final int MAP_Y = 28;
-            addSlot(new NormalSlot(map, MAP_SLOT_INDEX, MAP_X, MAP_Y));
-
-            final int START_X = 80;
-            final int START_Y = 99;
-            addSlot(new NormalSlot(map, START_SLOT_INDEX, START_X, START_Y));
-
-        }
+        final int START_X = 80;
+        final int START_Y = 99;
+        addSlot(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
 
     }
 
-    // Checks each tick to make sure the player is still able to access the
-    // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
         return true;
@@ -100,36 +88,16 @@ public class ContainerMapDevice extends BaseTileContainer {
         return ItemStack.EMPTY;
     }
 
-    /* Client Synchronization */
-    @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
-
-    }
-
-    // SlotSmeltableInput is a slot for input items
     public class NormalSlot extends Slot {
         public NormalSlot(IInventory inventoryIn, int index, int xPosition,
                           int yPosition) {
             super(inventoryIn, index, xPosition, yPosition);
         }
 
-        // if this function returns false, the player won't be able to insert the given
-        // item into this slot
         @Override
         public boolean isItemValid(ItemStack stack) {
             return true;
         }
     }
 
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent("Map Device");
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.MAP_DEVICE.func_221506_a(num, inv);
-    }
 }

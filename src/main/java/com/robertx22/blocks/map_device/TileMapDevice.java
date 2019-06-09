@@ -2,7 +2,6 @@ package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemMap;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
@@ -67,6 +66,7 @@ public class TileMapDevice extends BaseTile {
 
             }
         }
+
     }
 
     private void doLogic() {
@@ -151,7 +151,7 @@ public class TileMapDevice extends BaseTile {
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
 
-        return ContainerTypeRegisters.MAP_DEVICE.func_221506_a(i, playerInventory);
+        return new ContainerMapDevice(i, playerInventory, this);
 
     }
 }

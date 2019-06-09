@@ -5,13 +5,8 @@ import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-
-import javax.annotation.Nullable;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -228,17 +223,6 @@ public class ContainerGearRepair extends BaseTileContainer {
         public boolean isItemValid(ItemStack stack) {
             return TileGearRepair.isItemValidForOutputSlot(stack);
         }
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent("Repair");
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.GEAR_REPAIR.func_221506_a(num, inv);
     }
 
 }

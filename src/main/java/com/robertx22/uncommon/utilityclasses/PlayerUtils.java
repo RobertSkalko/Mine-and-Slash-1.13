@@ -5,21 +5,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class PlayerUtils {
 
+    @Nullable
     public static TileEntity getTileEntityLookedAt(PlayerEntity player) {
-
         BlockRayTraceResult ray = (BlockRayTraceResult) player.func_213324_a(20.0D, 0.0F, false);
-
-        BlockPos pos = ray.getPos();
-
-        return player.world.getTileEntity(pos);
-
+        return player.world.getTileEntity(ray.getPos());
     }
 
     public static PlayerEntity findNearest(Entity entity, float radius) {

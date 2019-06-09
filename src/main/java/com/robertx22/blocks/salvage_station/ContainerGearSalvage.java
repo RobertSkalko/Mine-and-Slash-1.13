@@ -5,13 +5,8 @@ import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-
-import javax.annotation.Nullable;
 
 public class ContainerGearSalvage extends BaseTileContainer {
 
@@ -185,14 +180,4 @@ public class ContainerGearSalvage extends BaseTileContainer {
         }
     }
 
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent("Salvage");
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.GEAR_SALVAGE.func_221506_a(num, inv);
-    }
 }
