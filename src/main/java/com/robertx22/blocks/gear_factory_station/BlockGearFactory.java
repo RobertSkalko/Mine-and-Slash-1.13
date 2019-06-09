@@ -4,15 +4,12 @@ import com.robertx22.blocks.bases.BaseInventoryBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BlockGearFactory extends BaseInventoryBlock {
 
@@ -39,9 +36,11 @@ public class BlockGearFactory extends BaseInventoryBlock {
 
         if (tile instanceof TileGearFactory) {
 
-            ServerPlayerEntity entityPlayerMP = (ServerPlayerEntity) player;
-            INamedContainerProvider interact = (INamedContainerProvider) tile;
-            NetworkHooks.openGui(entityPlayerMP, interact, pos);
+            player.openContainer(new ContainerGearFactory(0, player.inventory, (TileGearFactory) tile));
+
+            //  ServerPlayerEntity entityPlayerMP = (ServerPlayerEntity) player;
+            // INamedContainerProvider interact = (INamedContainerProvider) tile;
+            //NetworkHooks.openGui(entityPlayerMP, interact, pos);
         }
 
         return true;

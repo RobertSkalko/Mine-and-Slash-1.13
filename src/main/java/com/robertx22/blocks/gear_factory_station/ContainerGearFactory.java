@@ -1,12 +1,18 @@
 package com.robertx22.blocks.gear_factory_station;
 
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+
+import javax.annotation.Nullable;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -15,7 +21,7 @@ import net.minecraft.item.ItemStack;
  * inventory and it is where you add the slots holding items. It is also used to
  * send server side dataInstance such as progress bars to the client for use in guis
  */
-public class ContainerGearFactory extends Container {
+public class ContainerGearFactory extends Container implements INamedContainerProvider {
 
     // Stores the tile entity instance for later use
     private TileGearFactory tileGearFactory;
@@ -180,6 +186,17 @@ public class ContainerGearFactory extends Container {
 
         sourceSlot.onTake(player, sourceStack); // onPickupFromSlot()
         return copyOfSourceStack;
+    }
+
+    @Override
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("Factory");
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+        return ContainerTypeRegisters.GEAR_FACTORY.func_221506_a(num, inv);
     }
 
     // SlotFuel is a slot for fuel items
