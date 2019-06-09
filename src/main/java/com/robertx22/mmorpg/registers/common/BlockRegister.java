@@ -2,10 +2,10 @@ package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.blocks.egg_loot_crate.EggLootCrateBlock;
 import com.robertx22.blocks.gear_factory_station.BlockGearFactory;
-import com.robertx22.blocks.item_modify_station.BlockInventoryModify;
-import com.robertx22.blocks.map_device.BlockMap;
-import com.robertx22.blocks.repair_station.BlockInventoryRepair;
-import com.robertx22.blocks.salvage_station.BlockInventorySalvage;
+import com.robertx22.blocks.item_modify_station.BlockGearModify;
+import com.robertx22.blocks.map_device.BlockMapDevice;
+import com.robertx22.blocks.repair_station.BlockGearRepair;
+import com.robertx22.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.blocks.simple.AttunementBlock;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.blocks.MapPortalBlock;
@@ -89,10 +89,10 @@ public class BlockRegister {
         IForgeRegistry<Block> reg = event.getRegistry();
 
         reg.register(new BlockGearFactory().setRegistryName(GEAR_FACTORY_ID));
-        reg.register(new BlockMap().setRegistryName(MAP_DEVICE_ID));
-        reg.register(new BlockInventorySalvage().setRegistryName(GEAR_SALVAGE_ID));
-        reg.register(new BlockInventoryRepair().setRegistryName(GEAR_REPAIR_ID));
-        reg.register(new BlockInventoryModify().setRegistryName(GEAR_MODIFY_ID));
+        reg.register(new BlockMapDevice().setRegistryName(MAP_DEVICE_ID));
+        reg.register(new BlockGearSalvage().setRegistryName(GEAR_SALVAGE_ID));
+        reg.register(new BlockGearRepair().setRegistryName(GEAR_REPAIR_ID));
+        reg.register(new BlockGearModify().setRegistryName(GEAR_MODIFY_ID));
         reg.register(new AttunementBlock().setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new MapPortalBlock().setRegistryName(MAP_PORTAL_BLOCK_ID));
         reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));

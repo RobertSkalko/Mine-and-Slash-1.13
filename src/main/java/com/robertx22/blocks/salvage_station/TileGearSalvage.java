@@ -1,6 +1,7 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
@@ -16,7 +17,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
-public class TileInventorySalvage extends BaseTile {
+import javax.annotation.Nullable;
+
+public class TileGearSalvage extends BaseTile {
 
     @Override
     public int[] inputSlots() {
@@ -68,7 +71,7 @@ public class TileInventorySalvage extends BaseTile {
 
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
-    public TileInventorySalvage() {
+    public TileGearSalvage() {
         super(BlockRegister.GEAR_SALVAGE);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
@@ -216,58 +219,19 @@ public class TileInventorySalvage extends BaseTile {
     }
 
     @Override
-    public boolean hasCustomName() {
-        return false;
-    }
-
-    private static final byte COOK_FIELD_ID = 0;
-    private static final byte FIRST_BURN_TIME_REMAINING_FIELD_ID = 1;
-    private static final byte NUMBER_OF_FIELDS = 1;
-
-    @Override
-    public int getField(int id) {
-        if (id == COOK_FIELD_ID)
-            return cookTime;
-
-        // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.getField:" +
-        // id);
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {
-        if (id == COOK_FIELD_ID) {
-            cookTime = (short) value;
-        } else {
-            // System.err.println("Invalid field GEAR_FACTORY_ID in TileInventorySmelting.setField:" +
-            // id);
-        }
-    }
-
-    @Override
-    public int getFieldCount() {
-        return NUMBER_OF_FIELDS;
-    }
-
-    @Override
     public boolean isItemValidInput(ItemStack stack) {
         return this.getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
     @Override
-    public ITextComponent getName() {
+    public ITextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.salvage_station");
+
     }
 
+    @Nullable
     @Override
-    public Container createContainer(PlayerInventory playerInventory,
-                                     PlayerEntity playerIn) {
-        return new ContainerGearSalvage(playerInventory, this);
+    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+        return ContainerTypeRegisters.GEAR_SALVAGE.func_221506_a(num, inv);
     }
-
-    @Override
-    public String getGuiID() {
-        return BlockRegister.GEAR_SALVAGE_ID;
-    }
-
 }

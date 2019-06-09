@@ -1,12 +1,11 @@
 package com.robertx22.blocks.gear_factory_station;
 
+import com.robertx22.blocks.bases.BaseTileContainer;
 import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -21,7 +20,7 @@ import javax.annotation.Nullable;
  * inventory and it is where you add the slots holding items. It is also used to
  * send server side dataInstance such as progress bars to the client for use in guis
  */
-public class ContainerGearFactory extends Container implements INamedContainerProvider {
+public class ContainerGearFactory extends BaseTileContainer {
 
     // Stores the tile entity instance for later use
     private TileGearFactory tileGearFactory;
@@ -69,15 +68,13 @@ public class ContainerGearFactory extends Container implements INamedContainerPr
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public static final ContainerType<ContainerGearFactory> TYPE = new ContainerType<>(ContainerGearFactory::new);
-
     public ContainerGearFactory(int i, PlayerInventory playerInventory) {
-        super(TYPE, i);
+        super(ContainerTypeRegisters.GEAR_FACTORY, i);
     }
 
     public ContainerGearFactory(int num, PlayerInventory invPlayer,
                                 TileGearFactory tile) {
-        super(TYPE, num);
+        super(ContainerTypeRegisters.GEAR_FACTORY, num);
 
         this.tileGearFactory = tile;
 

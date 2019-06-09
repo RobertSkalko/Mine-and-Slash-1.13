@@ -20,7 +20,7 @@ import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
 
-public class TileMap extends BaseTile {
+public class TileMapDevice extends BaseTile {
     @Override
     public boolean isAutomatable() {
         return false;
@@ -47,7 +47,7 @@ public class TileMap extends BaseTile {
         return itemStacks[2];
     }
 
-    public TileMap() {
+    public TileMapDevice() {
         super(BlockRegister.MAP_DEVICE);
 
         itemStacks = new ItemStack[4];

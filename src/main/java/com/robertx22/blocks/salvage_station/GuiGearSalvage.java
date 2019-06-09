@@ -1,4 +1,4 @@
-package com.robertx22.blocks.repair_station;
+package com.robertx22.blocks.salvage_station;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
@@ -8,6 +8,7 @@ import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -17,21 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiInventoryRepair extends TileGui {
+public class GuiGearSalvage extends TileGui {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
-    private TileInventoryRepair tileEntity;
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
+    private TileGearSalvage tileEntity;
 
-    public GuiInventoryRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
-                              TileInventoryRepair tile) {
-        super(cont, invPlayer, new StringTextComponent("Modify"));
+    public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
+                          ITextComponent comp) {
+        super(cont, invPlayer, comp);
+    }
+
+    public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
+                          TileGearSalvage tileGearSalvage) {
+        super(cont, invPlayer, new StringTextComponent("Salvage"));
 
         // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tile;
+        this.tileEntity = tileGearSalvage;
     }
 
     // some [x,y] coordinates of graphical elements
@@ -41,14 +47,6 @@ public class GuiInventoryRepair extends TileGui {
     final int COOK_BAR_ICON_V = 207;
     final int COOK_BAR_WIDTH = 80;
     final int COOK_BAR_HEIGHT = 17;
-
-    final int FLAME_XPOS = 81;// 54;
-    final int FLAME_YPOS = 80;
-    final int FLAME_ICON_U = 176; // texture position of flame icon
-    final int FLAME_ICON_V = 0;
-    final int FLAME_WIDTH = 14;
-    final int FLAME_HEIGHT = 14;
-    final int FLAME_X_SPACING = 18;
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
@@ -64,15 +62,6 @@ public class GuiInventoryRepair extends TileGui {
         // draw the cook progress bar
         blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
-        // draw the fuel remaining bar for each fuel slot flame
-        for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-            double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
-            int yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
-            blit(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
-        }
-
-        // renderHoveredToolTip(x, y);
-
     }
 
     @Override
@@ -81,6 +70,7 @@ public class GuiInventoryRepair extends TileGui {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
+
         font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
@@ -93,23 +83,11 @@ public class GuiInventoryRepair extends TileGui {
             hoveringText.add(cookPercentage + "%");
         }
 
-        // If the mouse is over one of the burn time indicator add the burn time
-        // indicator hovering text
-        for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-            if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
-                // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + tileEntity.secondsOfFuelRemaining(i));
-            }
-        }
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
             renderTooltip(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
         }
-        //		// You must re bind the texture and reset the colour if you still need to use it after drawing a string
-        //		Minecraft.getInstance().getTextureManager().bindTexture(texture);
-        //		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
     }
 
     // Returns true if the given x,y coordinates are within the given rectangle

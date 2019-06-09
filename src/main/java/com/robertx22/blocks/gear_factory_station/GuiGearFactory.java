@@ -37,10 +37,6 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory> implements IHa
                           ITextComponent comp) {
         super(cont, invPlayer, comp);
 
-        // Set the width and height of the gui
-        xSize = 176;
-        ySize = 207;
-
     }
 
     // some [x,y] coordinates of graphical elements

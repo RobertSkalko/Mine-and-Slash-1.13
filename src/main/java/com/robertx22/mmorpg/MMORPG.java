@@ -18,7 +18,6 @@ import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
 import com.robertx22.onevent.world.OnStartResetMaps;
 import com.robertx22.uncommon.develeper.CreateLangFile;
-import com.robertx22.uncommon.gui.GuiHandlerClient;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
@@ -33,8 +32,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -138,8 +135,8 @@ public class MMORPG {
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
-        ModLoadingContext.get()
-                .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
+        //ModLoadingContext.get()
+        //      .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
     }
 

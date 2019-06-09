@@ -1,19 +1,22 @@
 package com.robertx22.blocks.map_device;
 
+import com.robertx22.blocks.bases.BaseTileContainer;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
-public class ContainerMapDevice extends Container {
+import javax.annotation.Nullable;
+
+public class ContainerMapDevice extends BaseTileContainer {
 
     // Stores the tile entity instance for later use
-    private TileMap tile;
+    private TileMapDevice tile;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -33,14 +36,12 @@ public class ContainerMapDevice extends Container {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
-    public static final ContainerType<ContainerMapDevice> TYPE = new ContainerType<>(ContainerMapDevice::new);
-
-    private ContainerMapDevice(int i, PlayerInventory playerInventory) {
-        super(TYPE, i);
+    public ContainerMapDevice(int i, PlayerInventory playerInventory) {
+        super(ContainerTypeRegisters.MAP_DEVICE, i);
     }
 
-    public ContainerMapDevice(int num, PlayerInventory invPlayer, TileMap tile) {
-        super(TYPE, num);
+    public ContainerMapDevice(int num, PlayerInventory invPlayer, TileMapDevice tile) {
+        super(ContainerTypeRegisters.MAP_DEVICE, num);
 
         this.tile = tile;
 
@@ -105,16 +106,6 @@ public class ContainerMapDevice extends Container {
 
     }
 
-    // Called when a progress bar update is received from the server. The two values
-    // (id and dataInstance) are the same two
-    // values given to sendWindowProperty. In this case we are using fields so we
-    // just pass them to the tileEntity.
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void updateProgressBar(int id, int data) {
-        tile.setField(id, data);
-    }
-
     // SlotSmeltableInput is a slot for input items
     public class NormalSlot extends Slot {
         public NormalSlot(IInventory inventoryIn, int index, int xPosition,
@@ -130,4 +121,14 @@ public class ContainerMapDevice extends Container {
         }
     }
 
+    @Override
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("Map Device");
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+        return ContainerTypeRegisters.MAP_DEVICE.func_221506_a(num, inv);
+    }
 }

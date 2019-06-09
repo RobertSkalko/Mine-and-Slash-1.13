@@ -3,11 +3,16 @@ package com.robertx22.items.bags.map_bag;
 import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 public class ContainerMapBag extends BaseContainer {
+
+    public ContainerMapBag(int i, PlayerInventory playerInventory) {
+        super(ContainerTypeRegisters.MAP_BAG, i);
+    }
 
     public ContainerMapBag(PlayerInventory playerInv, BaseInventory basebag) {
         super(playerInv, basebag);

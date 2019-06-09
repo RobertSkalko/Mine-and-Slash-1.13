@@ -8,6 +8,7 @@ import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,13 +16,19 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiMap extends TileGui {
+public class GuiMapDevice extends TileGui {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
-    private TileMap tileEntity;
+    private TileMapDevice tileEntity;
 
-    public GuiMap(ContainerMapDevice cont, PlayerInventory invPlayer, TileMap tile) {
+    public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
+                        ITextComponent comp) {
+        super(cont, invPlayer, comp);
+    }
+
+    public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
+                        TileMapDevice tile) {
         super(cont, invPlayer, new StringTextComponent("Factory"));
 
         // Set the width and height of the gui

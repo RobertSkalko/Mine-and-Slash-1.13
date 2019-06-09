@@ -10,15 +10,13 @@ import com.robertx22.uncommon.interfaces.IGearItem;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.UseAction;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -111,8 +109,8 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
                 }
             }
 
-            player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100, 3));
-            player.addPotionEffect(new EffectInstance(Effects.HUNGER, 350, 2));
+            //player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100, 3));
+            //player.addPotionEffect(new EffectInstance(Effects.HUNGER, 350, 2));
         } else {
             ParticleUtils.spawnEnergyRestoreParticles(player, 4);
             ParticleUtils.spawnManaRestoreParticles(player, 4);

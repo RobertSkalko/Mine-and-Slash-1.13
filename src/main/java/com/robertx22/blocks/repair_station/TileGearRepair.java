@@ -1,7 +1,9 @@
-package com.robertx22.blocks.item_modify_station;
+package com.robertx22.blocks.repair_station;
 
 import com.robertx22.blocks.bases.BaseTile;
-import com.robertx22.items.currency.ICurrencyItemEffect;
+import com.robertx22.items.misc.ItemCapacitor;
+import com.robertx22.items.ores.ItemOre;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
@@ -9,13 +11,14 @@ import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
 
-public class TileInventoryModify extends BaseTile {
+public class TileGearRepair extends BaseTile {
 
     @Override
     public boolean isAutomatable() {
@@ -24,63 +27,77 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public boolean isItemValidInput(ItemStack stack) {
-        return true;
+        return getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
+    private int FuelRemaining = 0;
+    private int MaximumFuel = 5000;
+
+    // returns the smelting result for the given stack. Returns null if the given
+    // stack can not be smelted
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
-
-        ItemStack gearStack = this.GearSlot();
-        ItemStack craftStack = this.CraftItemSlot();
-
-        if (gearStack == null || gearStack.isEmpty() || craftStack == null || craftStack.isEmpty()) {
-            return ItemStack.EMPTY;
-        }
-
         GearItemData gear = Gear.Load(stack);
+        if (gear != null) {
+            ItemStack copy = stack.copy();
+            int dmg = copy.getDamage() - FuelRemaining;
 
-        if (gear != null && craftStack.getItem() instanceof ICurrencyItemEffect) {
-
-            ICurrencyItemEffect effect = (ICurrencyItemEffect) craftStack.getItem();
-
-            if (effect.canItemBeModified(gearStack, craftStack)) {
-                ItemStack copy = gearStack.copy();
-                copy = effect.ModifyItem(copy, craftStack);
-                return copy;
-            } else {
-                return ItemStack.EMPTY;
+            if (dmg < 0) {
+                dmg = 0;
             }
+            copy.setDamage(dmg);
 
+            return copy;
         }
-
         return ItemStack.EMPTY;
-    }
 
-    public ItemStack GearSlot() {
-        return itemStacks[FIRST_INPUT_SLOT];
     }
-
-    public ItemStack CraftItemSlot() {
-        return itemStacks[FIRST_INPUT_SLOT + 1];
-    }
-
     // IMPORTANT STUFF ABOVE
 
     // Create and initialize the itemStacks variable that will store store the
     // itemStacks
-    public static final int INPUT_SLOTS_COUNT = 2;
-    public static final int OUTPUT_SLOTS_COUNT = 1;
-    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+    public static final int FUEL_SLOTS_COUNT = 1;
+    public static final int INPUT_SLOTS_COUNT = 5;
+    public static final int OUTPUT_SLOTS_COUNT = 5;
+    public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
 
-    public static final int FIRST_INPUT_SLOT = 0;
+    public static final int FIRST_FUEL_SLOT = 0;
+    public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT + FUEL_SLOTS_COUNT;
     public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
+    public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
-    public TileInventoryModify() {
-        super(BlockRegister.GEAR_MODIFY);
+    public TileGearRepair() {
+        super(BlockRegister.GEAR_REPAIR);
+
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
+    }
 
+    /**
+     * Returns the amount of fuel remaining on the currently burning item in the
+     * given fuel slot.
+     *
+     * @return fraction remaining, between 0 - 1
+     * @fuelSlot the number of the fuel slot (0..3)
+     */
+    public double fractionOfFuelRemaining(int fuelSlot) {
+        if (this.FuelRemaining <= 0)
+            return 0;
+        double fraction = FuelRemaining / (double) MaximumFuel;
+        return MathHelper.clamp(fraction, 0.0, 1.0);
+    }
+
+    /**
+     * return the remaining burn time of the fuel in the given slot
+     *
+     * @param fuelSlot the number of the fuel slot (0..3)
+     * @return seconds remaining
+     */
+    public int secondsOfFuelRemaining(int fuelSlot) {
+        if (FuelRemaining <= 0)
+            return 0;
+        return FuelRemaining; // 20 ticks per second
     }
 
     /**
@@ -95,8 +112,9 @@ public class TileInventoryModify extends BaseTile {
 
     @Override
     public void tick() {
-        if (!this.world.isRemote) {
 
+        if (!this.world.isRemote) {
+            int numberOfFuelBurning = burnFuel();
             ticks++;
             if (ticks > 20) {
                 ticks = 0;
@@ -117,7 +135,50 @@ public class TileInventoryModify extends BaseTile {
                 }
             }
         }
+    }
 
+    /**
+     * for each fuel slot: decreases the burn time, checks if burnTimeRemaining = 0
+     * and tries to consume a new piece of fuel if one is available
+     *
+     * @return the number of fuel slots which are burning
+     */
+    private int burnFuel() {
+        int burningCount = 0;
+        boolean inventoryChanged = false;
+        // Iterate over all the fuel slots
+        for (int i = 0; i < FUEL_SLOTS_COUNT; i++) {
+            int fuelSlotNumber = i + FIRST_FUEL_SLOT;
+
+            if (this.FuelRemaining < this.MaximumFuel) {
+                if (!itemStacks[fuelSlotNumber].isEmpty() && itemStacks[fuelSlotNumber].getItem() instanceof ItemOre) { // isEmpty()
+                    // If the stack in this slot is not null and is fuel, set burnTimeRemaining &
+                    // burnTimeInitialValue to the
+                    // item's burn time and decrease the stack size
+
+                    ItemOre ore = (ItemOre) itemStacks[fuelSlotNumber].getItem();
+
+                    FuelRemaining += ore.GetFuelValue();
+
+                    itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
+                    ++burningCount;
+                    inventoryChanged = true;
+                    // If the stack size now equals 0 set the slot contents to the items container
+                    // item. This is for fuel
+                    // items such as lava buckets so that the bucket is not consumed. If the item
+                    // dose not have
+                    // a container item getContainerItem returns null which sets the slot contents
+                    // to null
+                    if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
+                        itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
+                                .getContainerItem(itemStacks[fuelSlotNumber]);
+                    }
+                }
+            }
+        }
+        if (inventoryChanged)
+            markDirty();
+        return burningCount;
     }
 
     /**
@@ -147,16 +208,47 @@ public class TileInventoryModify extends BaseTile {
      * @return false if no items can be smelted, true otherwise
      */
     private boolean smeltItem(boolean performSmelt) {
+        if (this.FuelRemaining < 1) {
+            return false;
+        }
+
         Integer firstSuitableInputSlot = null;
         Integer firstSuitableOutputSlot = null;
-        ItemStack result = ItemStack.EMPTY;
+        ItemStack result = ItemStack.EMPTY; // EMPTY_ITEM
+
+        int fuelNeeded = 0;
+        float fuelMulti = 1F;
+
+        // TODO
+
+        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
+
+            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
+
+            if (item instanceof ItemCapacitor) {
+                fuelMulti = ((ItemCapacitor) item).GetFuelMultiplier();
+                // System.out.println("it works!");
+            }
+
+        }
 
         // finds the first input slot which is smeltable and whose result fits into an
         // output slot (stacking if possible)
         for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-                result = getSmeltingResultForItem(itemStacks[inputSlot]);
+                fuelNeeded = itemStacks[inputSlot].getDamage();
+
+                if (fuelNeeded > this.FuelRemaining) {
+                    fuelNeeded = this.FuelRemaining;
+                }
+
+                if (fuelNeeded * fuelMulti <= this.FuelRemaining) {
+                    result = getSmeltingResultForItem(itemStacks[inputSlot]);
+
+                } else {
+                    result = ItemStack.EMPTY;
+                }
 
                 if (!result.isEmpty()) { // isEmpty()
                     // find the first suitable output slot- either empty, or with identical item
@@ -199,37 +291,27 @@ public class TileInventoryModify extends BaseTile {
         }
         if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
             itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
-            result = ItemStack.EMPTY;
-
         } else {
             int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();
             itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
-        this.CraftItemSlot().setCount(this.CraftItemSlot().getCount() - 1);
+        FuelRemaining -= fuelNeeded * fuelMulti; // TODO
 
         markDirty();
         return true;
     }
 
-    // will add a key for this container to the lang file so we can name it in the
-    // GUI
-
-    // standard code to look up what the human-readable name is
-
-    private static final byte COOK_FIELD_ID = 0;
-    private static final byte NUMBER_OF_FIELDS = 1;
-
-    @Nullable
     @Override
-    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-
-        return new ContainerGearModify(num, inventory, this);
+    public ITextComponent getDisplayName() {
+        return CLOC.blank("block.mmorpg.repair_station");
 
     }
 
+    @Nullable
     @Override
-    public ITextComponent getDisplayName() {
-        return CLOC.blank("block.mmorpg.modify_station");
+    public Container createMenu(int num, PlayerInventory inv,
+                                PlayerEntity p_createMenu_3_) {
+        return ContainerTypeRegisters.GEAR_REPAIR.func_221506_a(num, inv);
     }
 }

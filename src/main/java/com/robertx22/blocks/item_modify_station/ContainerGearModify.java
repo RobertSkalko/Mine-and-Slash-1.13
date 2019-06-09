@@ -1,18 +1,23 @@
 package com.robertx22.blocks.item_modify_station;
 
-import com.robertx22.blocks.salvage_station.TileInventorySalvage;
+import com.robertx22.blocks.bases.BaseTileContainer;
+import com.robertx22.blocks.salvage_station.TileGearSalvage;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
-public class ContainerGearModify extends Container {
+import javax.annotation.Nullable;
+
+public class ContainerGearModify extends BaseTileContainer {
 
     // Stores the tile entity instance for later use
-    private TileInventoryModify tileInventory;
+    private TileGearModify tileInventory;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -39,15 +44,12 @@ public class ContainerGearModify extends Container {
     private final int FIRST_INPUT_SLOT_NUMBER = 0;
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
 
-    public static final ContainerType<ContainerGearModify> TYPE = new ContainerType<>(ContainerGearModify::new);
-
-    private ContainerGearModify(int i, PlayerInventory playerInventory) {
-        super(TYPE, i);
+    public ContainerGearModify(int i, PlayerInventory playerInventory) {
+        super(ContainerTypeRegisters.GEAR_MODIFY, i);
     }
 
-    public ContainerGearModify(int num, PlayerInventory invPlayer,
-                               TileInventoryModify tile) {
-        super(TYPE, num);
+    public ContainerGearModify(int num, PlayerInventory invPlayer, TileGearModify tile) {
+        super(ContainerTypeRegisters.GEAR_MODIFY, num);
 
         this.tileInventory = tileInventory;
 
@@ -103,6 +105,17 @@ public class ContainerGearModify extends Container {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("Modify");
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+        return ContainerTypeRegisters.GEAR_MODIFY.func_221506_a(num, inv);
+    }
+
     // SlotSmeltableInput is a slot for input items
     public class SlotSmeltableInput extends Slot {
         public SlotSmeltableInput(IInventory inventoryIn, int index, int xPosition,
@@ -114,7 +127,7 @@ public class ContainerGearModify extends Container {
         // item into this slot
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return TileInventorySalvage.isItemValidForInputSlot(stack);
+            return TileGearSalvage.isItemValidForInputSlot(stack);
         }
     }
 
@@ -129,7 +142,7 @@ public class ContainerGearModify extends Container {
         // item into this slot
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return TileInventorySalvage.isItemValidForOutputSlot(stack);
+            return TileGearSalvage.isItemValidForOutputSlot(stack);
         }
     }
 }
