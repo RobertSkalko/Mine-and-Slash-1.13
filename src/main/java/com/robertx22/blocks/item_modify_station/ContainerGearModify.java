@@ -113,6 +113,8 @@ public class ContainerGearModify extends BaseTileContainer {
     @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+
+
         return ContainerTypeRegisters.GEAR_MODIFY.func_221506_a(num, inv);
     }
 

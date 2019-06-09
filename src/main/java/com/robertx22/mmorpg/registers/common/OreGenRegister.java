@@ -28,7 +28,7 @@ public class OreGenRegister {
             }
 
         }
-        s
+
     }
 
     public static void genOre(Block block, int amount) {
