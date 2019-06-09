@@ -17,6 +17,7 @@ public class KeybindsRegister {
         ClientRegistry.registerKeyBinding(Player_Stats);
         //ClientRegistry.registerKeyBinding(Map_Stats);
         //ClientRegistry.registerKeyBinding(Map_Drops);
+
     }
 
 }

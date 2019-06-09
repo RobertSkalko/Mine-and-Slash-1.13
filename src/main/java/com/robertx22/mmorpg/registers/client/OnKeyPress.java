@@ -17,10 +17,12 @@ public class OnKeyPress {
 
         PlayerEntity player = Minecraft.getInstance().player;
 
-        if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
+        if (Minecraft.getInstance().field_71462_r == null) {
 
-            Minecraft.getInstance().displayGuiScreen(new StatGUI());
+            if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
 
+                Minecraft.getInstance().displayGuiScreen(new StatGUI());
+            }
         }
 
     }
