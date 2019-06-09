@@ -4,6 +4,7 @@ import com.robertx22.blocks.bases.BaseInventoryBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -36,7 +37,11 @@ public class BlockMapDevice extends BaseInventoryBlock {
 
         if (tile instanceof TileMapDevice) {
 
-            player.openContainer(new ContainerMapDevice(5, player.inventory, (TileMapDevice) tile));
+            TileMapDevice map = (TileMapDevice) tile;
+
+            player.openContainer((INamedContainerProvider) map.createMenu(1, player.inventory, player));
+
+            //  player.openContainer(new ContainerMapDevice(5, player.inventory, (TileMapDevice) tile));
 
         }
 

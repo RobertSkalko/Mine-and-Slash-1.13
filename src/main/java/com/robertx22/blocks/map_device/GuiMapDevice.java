@@ -22,7 +22,12 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
     public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
                         ITextComponent comp) {
+
         super(cont, invPlayer, comp);
+
+        xSize = 176;
+        ySize = 207;
+
     }
 
     public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,

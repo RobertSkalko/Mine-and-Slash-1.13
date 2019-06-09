@@ -3,7 +3,6 @@ package com.robertx22.blocks.bases;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.container.IContainerProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -17,7 +16,7 @@ import net.minecraft.util.Direction;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 
-public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable, IContainerProvider, INamedContainerProvider {
+public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable, INamedContainerProvider {
 
     public BaseTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
