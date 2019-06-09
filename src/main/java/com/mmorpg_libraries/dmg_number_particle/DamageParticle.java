@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 public class DamageParticle extends Particle {
 
     protected static final float GRAVITY = 0.15F;
-    protected static final float SIZE = 3.0F;
+    protected static final float SIZE = 1.0F;
     protected static final int LIFESPAN = 12;
     protected static final double BOUNCE_STRENGTH = 1.3F;
 
@@ -44,65 +44,64 @@ public class DamageParticle extends Particle {
         this.element = element;
     }
 
-    protected DamageParticle(Elements element, World worldIn, double posXIn,
-                             double posYIn, double posZIn) {
-        this(element, "", worldIn, posXIn, posYIn, posZIn, 0, 0, 0);
-    }
-
     @Override
     public void renderParticle(BufferBuilder renderer, ActiveRenderInfo entityIn, float x,
                                float y, float z, float dX, float dY, float dZ) {
-        float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
-        float rotationPitch = Minecraft.getInstance().player.rotationPitch;
+        try {
+            float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
+            float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
-        final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX));
-        final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY));
-        final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ));
+            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX));
+            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY));
+            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ));
 
-        GL11.glPushMatrix();
-        if (this.shouldOnTop) {
-            GL11.glDepthFunc(519);
-        } else {
-            GL11.glDepthFunc(515);
-        }
-        GL11.glTranslatef(locX, locY, locZ);
-        GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
-
-        GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        GL11.glScaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
-        GL11.glScaled(this.scale, this.scale, this.scale);
-
-        GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
-        GL11.glEnable(3553);
-        GL11.glDisable(3042);
-        GL11.glDepthMask(true);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glEnable(3553);
-        GL11.glEnable(2929);
-        GL11.glDisable(2896);
-        GL11.glBlendFunc(770, 771);
-        GL11.glEnable(3042);
-        GL11.glEnable(3008);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-        int color = this.ChooseColor(element);
-
-        final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
-        fontRenderer.drawStringWithShadow(this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1, -MathHelper
-                .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, color);
-
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glDepthFunc(515);
-
-        GL11.glPopMatrix();
-        if (this.grow) {
-            this.scale *= 1.08F;
-            if (this.scale > SIZE * 3.0D) {
-                this.grow = false;
+            GL11.glPushMatrix();
+            if (this.shouldOnTop) {
+                GL11.glDepthFunc(519);
+            } else {
+                GL11.glDepthFunc(515);
             }
-        } else {
-            this.scale *= 0.96F;
+            GL11.glTranslatef(locX, locY, locZ);
+            GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
+
+            GL11.glScalef(-1.0F, -1.0F, 1.0F);
+            GL11.glScaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
+            GL11.glScaled(this.scale, this.scale, this.scale);
+
+            GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
+            GL11.glEnable(3553);
+            GL11.glDisable(3042);
+            GL11.glDepthMask(true);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glEnable(3553);
+            GL11.glEnable(2929);
+            GL11.glDisable(2896);
+            GL11.glBlendFunc(770, 771);
+            GL11.glEnable(3042);
+            GL11.glEnable(3008);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            int color = this.ChooseColor(element);
+
+            final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+            fontRenderer.drawStringWithShadow(this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1, -MathHelper
+                    .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, color);
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glDepthFunc(515);
+
+            GL11.glPopMatrix();
+            if (this.grow) {
+                this.scale *= 1.08F;
+                if (this.scale > SIZE * 3.0D) {
+                    this.grow = false;
+                }
+            } else {
+                this.scale *= 0.96F;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -123,13 +122,8 @@ public class DamageParticle extends Particle {
         return -1;
     }
 
-    //@Override
-    //public int getFXLayer() {
-    //      return 3; TODO IS THIS NEEDED?
-    // }
-
     @Override
-    public IParticleRenderType func_217558_b() {
-        return IParticleRenderType.field_217601_a; // TODO WTF IS THIS
+    public IParticleRenderType func_217558_b() { // custom?
+        return IParticleRenderType.field_217605_e; // TODO WTF IS THIS
     }
 }

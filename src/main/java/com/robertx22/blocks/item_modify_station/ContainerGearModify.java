@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -17,7 +18,7 @@ import javax.annotation.Nullable;
 public class ContainerGearModify extends BaseTileContainer {
 
     // Stores the tile entity instance for later use
-    private TileGearModify tileInventory;
+    public TileGearModify tileInventory;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -107,15 +108,14 @@ public class ContainerGearModify extends BaseTileContainer {
 
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent("Modify");
+        return new StringTextComponent("test");
     }
 
     @Nullable
     @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-
-
-        return ContainerTypeRegisters.GEAR_MODIFY.func_221506_a(num, inv);
+    public Container createMenu(int i, PlayerInventory playerInventory,
+                                PlayerEntity playerEntity) {
+        return ContainerTypeRegisters.GEAR_MODIFY.func_221506_a(i, playerInventory);
     }
 
     // SlotSmeltableInput is a slot for input items

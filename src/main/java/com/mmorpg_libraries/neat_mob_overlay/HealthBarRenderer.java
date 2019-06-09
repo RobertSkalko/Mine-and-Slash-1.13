@@ -339,6 +339,8 @@ public class HealthBarRenderer {
         if (e instanceof PlayerEntity)
             positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
+
+
         if (pos != null)
             distance = pos.getHitVec().distanceTo(positionVector);
 
@@ -402,7 +404,7 @@ public class HealthBarRenderer {
                                          Entity entity) {
         Vec3d end = origin.add(ray.normalize().scale(len));
 
-        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, entity));
+        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, entity));
         return pos;
     }
 }

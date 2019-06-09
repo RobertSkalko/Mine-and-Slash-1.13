@@ -22,23 +22,20 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
-    private TileGearModify tileEntity;
+   private TileGearModify tileEntity;
 
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
         super(cont, invPlayer, comp);
-    }
 
-    public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer,
-                         TileGearModify tile) {
-        super(cont, invPlayer, new StringTextComponent("Modify"));
-
-        // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity = tile;
+        this.tileEntity=  cont.tileInventory;
     }
+
+
+
 
     // some [x,y] coordinates of graphical elements
     final int COOK_BAR_XPOS = 49;
