@@ -2,12 +2,14 @@ package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
 import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -56,53 +58,36 @@ public class ContainerMapDevice extends BaseTileContainer {
                 addSlot(new Slot(playerInventory, slotNumber, xpos, ypos));
             }
         }
+        PlayerEntity player = playerInventory.player;
 
-    }
+        TileEntity tile = player.world.getTileEntity(PlayerUtils.getNearestTileEntity(player.world, player
+                .getPosition()));
 
-    public ContainerMapDevice(int num, PlayerInventory invPlayer, TileMapDevice tile) {
-        super(ContainerTypeRegisters.MAP_DEVICE, num);
+        if (tile instanceof TileMapDevice) {
 
-        final int SLOT_X_SPACING = 18;
-        final int SLOT_Y_SPACING = 18;
-        final int HOTBAR_XPOS = 8;
-        final int HOTBAR_YPOS = 183;
-        // Add the players hotbar to the gui - the [xpos, ypos] location of each item
-        for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
-            int slotNumber = x;
-            addSlot(new Slot(invPlayer, slotNumber, HOTBAR_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
+            TileMapDevice map = (TileMapDevice) tile;
+
+            // VANILLA END
+            final int TIER_X = 26;
+            final int TIER_Y = 85;
+            addSlot(new NormalSlot(map, TIER_SLOT_INDEX, TIER_X, TIER_Y));
+
+            final int LEVEL_X = 134;
+            final int LEVEL_Y = 85;
+            addSlot(new NormalSlot(map, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
+
+            final int MAP_X = 81;
+            final int MAP_Y = 28;
+            addSlot(new NormalSlot(map, MAP_SLOT_INDEX, MAP_X, MAP_Y));
+
+            final int START_X = 80;
+            final int START_Y = 99;
+            addSlot(new NormalSlot(map, START_SLOT_INDEX, START_X, START_Y));
+
         }
 
-        final int PLAYER_INVENTORY_XPOS = 8;
-        final int PLAYER_INVENTORY_YPOS = 125;
-        // Add the rest of the players inventory to the gui
-        for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
-            for (int x = 0; x < PLAYER_INVENTORY_COLUMN_COUNT; x++) {
-                int slotNumber = HOTBAR_SLOT_COUNT + y * PLAYER_INVENTORY_COLUMN_COUNT + x;
-                int xpos = PLAYER_INVENTORY_XPOS + x * SLOT_X_SPACING;
-                int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
-                addSlot(new Slot(invPlayer, slotNumber, xpos, ypos));
-            }
-        }
-
-        // VANILLA END
-        final int TIER_X = 26;
-        final int TIER_Y = 85;
-        addSlot(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
-
-        final int LEVEL_X = 134;
-        final int LEVEL_Y = 85;
-        addSlot(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
-
-        final int MAP_X = 81;
-        final int MAP_Y = 28;
-        addSlot(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
-
-        final int START_X = 80;
-        final int START_Y = 99;
-        addSlot(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
-
     }
-
+    
     // Checks each tick to make sure the player is still able to access the
     // inventory and if not closes the gui
     @Override

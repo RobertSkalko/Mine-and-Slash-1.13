@@ -9,14 +9,13 @@ import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
 
-public class TileGearModify extends BaseTile   {
+public class TileGearModify extends BaseTile {
 
     @Override
     public boolean isAutomatable() {
@@ -212,8 +211,6 @@ public class TileGearModify extends BaseTile   {
         markDirty();
         return true;
     }
-
-
 
     @Nullable
     @Override

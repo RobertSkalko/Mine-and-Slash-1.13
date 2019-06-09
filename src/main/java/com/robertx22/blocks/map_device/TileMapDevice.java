@@ -2,6 +2,7 @@ package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemMap;
+import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
@@ -78,6 +79,22 @@ public class TileMapDevice extends BaseTile {
 
         if (map != null) {
 
+            if (level != null) {
+
+                if (map.increaseLevel(level.rarity + 1)) {
+                    this.LevelSlot().shrink(1);
+                    Map.Save(this.MapSlot(), map);
+                }
+
+            }
+            if (tier != null) {
+
+                if (map.increaseTier(tier.rarity + 1)) {
+                    this.TierSlot().shrink(1);
+                    Map.Save(this.MapSlot(), map);
+                }
+            }
+
             if (start != null && start.getItem().equals(Items.WHEAT_SEEDS)) {
 
                 BlockPos p = this.pos;
@@ -114,20 +131,8 @@ public class TileMapDevice extends BaseTile {
                         e.printStackTrace();
                     }
 
-                } else if (level != null) {
-
-                    if (map.increaseLevel(level.rarity + 1)) {
-                        this.LevelSlot().shrink(1);
-                        Map.Save(this.MapSlot(), map);
-                    }
-
-                } else if (tier != null) {
-
-                    if (map.increaseTier(tier.rarity + 1)) {
-                        this.TierSlot().shrink(1);
-                        Map.Save(this.MapSlot(), map);
-                    }
                 }
+
             }
 
             markDirty();
@@ -145,6 +150,8 @@ public class TileMapDevice extends BaseTile {
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-        return new ContainerMapDevice(i, playerInventory, this);
+
+        return ContainerTypeRegisters.MAP_DEVICE.func_221506_a(i, playerInventory);
+
     }
 }

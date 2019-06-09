@@ -8,7 +8,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,17 +24,6 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice> {
 
         super(cont, invPlayer, comp);
 
-        xSize = 176;
-        ySize = 207;
-
-    }
-
-    public GuiMapDevice(ContainerMapDevice cont, PlayerInventory invPlayer,
-                        TileMapDevice tile) {
-
-        super(cont, invPlayer, new StringTextComponent("Factory"));
-
-        // Set the width and height of the gui
         xSize = 176;
         ySize = 207;
 
