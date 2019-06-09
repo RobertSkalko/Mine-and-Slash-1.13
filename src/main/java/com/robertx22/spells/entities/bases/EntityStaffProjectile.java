@@ -6,14 +6,18 @@ import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityStaffProjectile extends EntityBaseProjectile {
 
@@ -41,19 +45,26 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        if (result.entity != null && result.entity instanceof LivingEntity && staff != null) {
+        List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(0.5D, this, LivingEntity.class);
+
+        if (entities.size() == 0) {
+            return;
+        }
+
+        LivingEntity entity = entities.get(0);
+
+        if (entity != null && staff != null) {
 
             if (!world.isRemote) {
                 try {
-                    LivingEntity target = (LivingEntity) result.entity;
 
                     ItemStaff staffclass = (ItemStaff) staff.getItem();
 
                     UnitData sourcedata = Load.Unit(this.thrower);
-                    UnitData targetdata = Load.Unit(target);
+                    UnitData targetdata = Load.Unit(entity);
 
                     staffclass.mechanic()
-                            .Attack(this.getThrower(), target, sourcedata, targetdata);
+                            .Attack(this.getThrower(), entity, sourcedata, targetdata);
                 } catch (Exception e) {
                     e.printStackTrace();
 
@@ -101,4 +112,8 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         WorldUtils.spawnEntity(world, this);
     }
 
+    @Override
+    public ItemStack getItem() {
+        return new ItemStack(Items.ENDER_PEARL);
+    }
 }

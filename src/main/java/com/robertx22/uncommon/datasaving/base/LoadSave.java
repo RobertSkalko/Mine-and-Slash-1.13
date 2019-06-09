@@ -2,8 +2,6 @@ package com.robertx22.uncommon.datasaving.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import info.loenwind.autosave.Reader;
-import info.loenwind.autosave.Writer;
 import net.minecraft.nbt.CompoundNBT;
 
 public class LoadSave {
@@ -25,7 +23,7 @@ public class LoadSave {
             nbt.putString(loc + GSONLOC, json);
 
         } else {
-            Writer.write(nbt, obj);
+            // Writer.write(nbt, obj); TODO
         }
 
         return nbt;
@@ -51,7 +49,7 @@ public class LoadSave {
 
             if (nbt.contains(loc)) {
                 CompoundNBT thenbt = (CompoundNBT) nbt.get(loc);
-                Reader.read(thenbt, newobj);
+                //Reader.read(thenbt, newobj); TODO
             }
 
         }

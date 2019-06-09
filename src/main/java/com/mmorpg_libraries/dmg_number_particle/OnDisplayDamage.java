@@ -8,9 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemFrameEntity;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -47,7 +45,8 @@ public class OnDisplayDamage {
         Vec3d vec3d = e.getEyePosition(partialTicks);
         Vec3d vec3d1 = e.getLook(partialTicks);
         Vec3d vec3d2 = vec3d.add(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance, vec3d1.z * blockReachDistance);
-        return mc.world.rayTraceBlocks(vec3d, vec3d2);
+        return mc.world.rayTraceBlocks(new RayTraceContext(vec3d, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, e));
+
     }
 
     public RayTraceResult getMouseOver(float partialTicks) {
@@ -111,7 +110,7 @@ public class OnDisplayDamage {
             }
         }
 
-        objectMouseOver = new RayTraceResult(this.pointedEntity, hitVector);
+        objectMouseOver = new EntityRayTraceResult(this.pointedEntity, hitVector);
 
         if (this.pointedEntity instanceof LivingEntity || this.pointedEntity instanceof ItemFrameEntity) {
             this.mc.pointedEntity = this.pointedEntity;

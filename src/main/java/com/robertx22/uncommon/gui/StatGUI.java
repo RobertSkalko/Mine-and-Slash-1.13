@@ -10,7 +10,6 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -200,6 +199,7 @@ public class StatGUI extends Screen {
 
     }
 
+    /*
     @Override
     public boolean mouseScrolled(double pMouseScrolled1) {
         this.currentElement -= pMouseScrolled1;
@@ -209,6 +209,8 @@ public class StatGUI extends Screen {
 
     }
 
+
+     */
     void genStatList() {
 
         this.statmap = new HashMap<>();
