@@ -262,7 +262,7 @@ public class TileInventorySalvage extends BaseTile {
     @Override
     public Container createContainer(PlayerInventory playerInventory,
                                      PlayerEntity playerIn) {
-        return new ContainerInventorySalvage(playerInventory, this);
+        return new ContainerGearSalvage(playerInventory, this);
     }
 
     @Override

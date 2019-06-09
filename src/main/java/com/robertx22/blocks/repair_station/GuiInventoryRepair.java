@@ -23,7 +23,7 @@ public class GuiInventoryRepair extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
     private TileInventoryRepair tileEntity;
 
-    public GuiInventoryRepair(ContainerInventoryRepair cont, PlayerInventory invPlayer,
+    public GuiInventoryRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
                               TileInventoryRepair tile) {
         super(cont, invPlayer, new StringTextComponent("Modify"));
 

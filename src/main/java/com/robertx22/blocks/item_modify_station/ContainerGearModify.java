@@ -1,5 +1,6 @@
-package com.robertx22.blocks.salvage_station;
+package com.robertx22.blocks.item_modify_station;
 
+import com.robertx22.blocks.salvage_station.TileInventorySalvage;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -8,10 +9,10 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerInventorySalvage extends Container {
+public class ContainerGearModify extends Container {
 
     // Stores the tile entity instance for later use
-    private TileInventorySalvage tileInventorySalvage;
+    private TileInventoryModify tileInventory;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -23,34 +24,32 @@ public class ContainerInventorySalvage extends Container {
     private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
-    public final int INPUT_SLOTS_COUNT = 5;
-    public final int OUTPUT_SLOTS_COUNT = 5;
-    public final int SALVAGE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
+    public final int INPUT_SLOTS_COUNT = 2;
+    public final int OUTPUT_SLOTS_COUNT = 1;
+    public final int MODIFY_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
 
     // slot index is the unique index for all slots in this container i.e. 0 - 35
     // for invPlayer then 36 - 49 for tileInventoryFurnace
     private final int VANILLA_FIRST_SLOT_INDEX = 0;
     private final int FIRST_INPUT_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
-    private final int FIRST_CAPACITOR_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
 
     // slot number is the slot number within each component; i.e. invPlayer slots 0
     // - 35, and tileInventoryFurnace slots 0 - 14
     private final int FIRST_INPUT_SLOT_NUMBER = 0;
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
-    private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public static final ContainerType<ContainerInventorySalvage> TYPE = new ContainerType<>(ContainerInventorySalvage::new);
+    public static final ContainerType<ContainerGearModify> TYPE = new ContainerType<>(ContainerGearModify::new);
 
-    private ContainerInventorySalvage(int i, PlayerInventory playerInventory) {
+    private ContainerGearModify(int i, PlayerInventory playerInventory) {
         super(TYPE, i);
     }
 
-    public ContainerInventorySalvage(int num, PlayerInventory invPlayer,
-                                     TileInventorySalvage tile) {
+    public ContainerGearModify(int num, PlayerInventory invPlayer,
+                               TileInventoryModify tile) {
         super(TYPE, num);
 
-        this.tileInventorySalvage = tile;
+        this.tileInventory = tileInventory;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -74,29 +73,20 @@ public class ContainerInventorySalvage extends Container {
             }
         }
 
+        // VANILLA END
+
         final int INPUT_SLOTS_XPOS = 26;
         final int INPUT_SLOTS_YPOS = 24;
         // Add the tile input slots
-        for (int y = 0; y < INPUT_SLOTS_COUNT; y++) {
-            int slotNumber = y + FIRST_INPUT_SLOT_NUMBER;
-            addSlot(new SlotSmeltableInput(tileInventorySalvage, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
-        }
+
+        addSlot(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+
+        addSlot(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER + 1, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
         final int OUTPUT_SLOTS_XPOS = 134;
         final int OUTPUT_SLOTS_YPOS = 24;
-        // Add the tile output slots
-        for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
-            int slotNumber = y + FIRST_OUTPUT_SLOT_NUMBER;
-            addSlot(new SlotOutput(tileInventorySalvage, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
-        }
 
-        final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
-        final int CAPACITOR_SLOTS_YPOS = 24;
-        // Add the tile capacitor slot
-        for (int x = 0; x < 1; x++) {
-            int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
-            addSlot(new Slot(tileInventorySalvage, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
-        }
+        addSlot(new SlotOutput(tileInventory, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
     }
 
@@ -104,52 +94,13 @@ public class ContainerInventorySalvage extends Container {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return tileInventorySalvage.isUsableByPlayer(player);
-    }
-
-    private boolean IsCustomContainer(int index) {
-
-        return index > VANILLA_FIRST_SLOT_INDEX + this.VANILLA_SLOT_COUNT;
+        return tileInventory.isUsableByPlayer(player);
     }
 
     // shift click logic
     @Override
     public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
-        Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
-        if (sourceSlot == null || !sourceSlot.getHasStack())
-            return ItemStack.EMPTY; // EMPTY_ITEM
-        ItemStack sourceStack = sourceSlot.getStack();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        // Check if the slot clicked is one of the vanilla container slots
-        if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // if (!TileInventorySalvage.getSmeltingResultForItem(sourceStack).isEmpty()) {
-            // // isEmptyItem
-            if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT, false)) {
-                return ItemStack.EMPTY; // EMPTY_ITEM;
-                // }
-            } else {
-                return ItemStack.EMPTY; // this is the thing that gave me problems.. without this it crashes without an
-            } // error message
-
-        } else if (sourceSlotIndex >= FIRST_INPUT_SLOT_INDEX && sourceSlotIndex < FIRST_INPUT_SLOT_INDEX + SALVAGE_SLOTS_COUNT) {
-            if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY; // EMPTY_ITEM;
-            }
-        } else {
-            System.err.print("Invalid slotIndex:" + sourceSlotIndex);
-            return ItemStack.EMPTY; // EMPTY_ITEM;
-        }
-
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
-        if (sourceStack.getCount() == 0) { // getStackSize()
-            sourceSlot.putStack(ItemStack.EMPTY); // Empty Item
-        } else {
-            sourceSlot.onSlotChanged();
-        }
-
-        sourceSlot.onTake(player, sourceStack); // onPickupFromSlot()
-        return copyOfSourceStack;
+        return ItemStack.EMPTY;
     }
 
     // SlotSmeltableInput is a slot for input items

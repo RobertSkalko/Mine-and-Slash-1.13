@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ContainerMap extends Container {
+public class ContainerMapDevice extends Container {
 
     // Stores the tile entity instance for later use
     private TileMap tile;
@@ -33,13 +33,13 @@ public class ContainerMap extends Container {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
-    public static final ContainerType<ContainerMap> TYPE = new ContainerType<>(ContainerMap::new);
+    public static final ContainerType<ContainerMapDevice> TYPE = new ContainerType<>(ContainerMapDevice::new);
 
-    private ContainerMap(int i, PlayerInventory playerInventory) {
+    private ContainerMapDevice(int i, PlayerInventory playerInventory) {
         super(TYPE, i);
     }
 
-    public ContainerMap(int num, PlayerInventory invPlayer, TileMap tile) {
+    public ContainerMapDevice(int num, PlayerInventory invPlayer, TileMap tile) {
         super(TYPE, num);
 
         this.tile = tile;

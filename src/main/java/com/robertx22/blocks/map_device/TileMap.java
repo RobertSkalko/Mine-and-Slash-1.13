@@ -145,6 +145,6 @@ public class TileMap extends BaseTile {
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-        return new ContainerMap(i, playerInventory, this);
+        return new ContainerMapDevice(i, playerInventory, this);
     }
 }

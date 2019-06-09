@@ -24,7 +24,7 @@ public class GuiInventorySalvage extends TileGui {
 
     public GuiInventorySalvage(PlayerInventory invPlayer,
                                TileInventorySalvage tileInventorySalvage) {
-        super(new ContainerInventorySalvage(invPlayer, tileInventorySalvage));
+        super(new ContainerGearSalvage(invPlayer, tileInventorySalvage));
 
         // Set the width and height of the gui
         xSize = 176;

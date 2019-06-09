@@ -21,7 +21,7 @@ public class GuiMap extends TileGui {
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
     private TileMap tileEntity;
 
-    public GuiMap(ContainerMap cont, PlayerInventory invPlayer, TileMap tile) {
+    public GuiMap(ContainerMapDevice cont, PlayerInventory invPlayer, TileMap tile) {
         super(cont, invPlayer, new StringTextComponent("Factory"));
 
         // Set the width and height of the gui

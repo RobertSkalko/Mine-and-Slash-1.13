@@ -352,7 +352,7 @@ public class TileInventoryRepair extends BaseTile {
     @Override
     public Container createContainer(PlayerInventory playerInventory,
                                      PlayerEntity playerIn) {
-        return new ContainerInventoryRepair(playerInventory, this);
+        return new ContainerGearRepair(playerInventory, this);
     }
 
     @Override
