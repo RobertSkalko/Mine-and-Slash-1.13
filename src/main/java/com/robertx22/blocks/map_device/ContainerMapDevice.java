@@ -30,7 +30,7 @@ public class ContainerMapDevice extends BaseTileContainer {
     private final int START_SLOT_INDEX = 3;
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new Inventory(4));
+        this(i, playerInventory, new Inventory(TileMapDevice.size));
     }
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,

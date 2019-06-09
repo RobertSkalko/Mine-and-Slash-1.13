@@ -3,13 +3,11 @@ package com.robertx22.blocks.item_modify_station;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -19,10 +17,10 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiGearModify extends TileGui<ContainerGearModify> {
+    public TileGearModify tile;
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
-   private TileGearModify tileEntity;
 
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
@@ -31,11 +29,9 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         xSize = 176;
         ySize = 207;
 
-        this.tileEntity=  cont.tileInventory;
+        this.tile = cont.tile;
+
     }
-
-
-
 
     // some [x,y] coordinates of graphical elements
     final int COOK_BAR_XPOS = 49;
@@ -54,10 +50,9 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-        // get cook progress as a double between 0 and 1
-        double cookProgress = tileEntity.fractionOfCookTimeComplete();
         // draw the cook progress bar
-        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
+                .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 
@@ -67,7 +62,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        this.font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        this.font.drawString(Words.Gear_Modify.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
@@ -75,7 +70,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
+            int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
 

@@ -90,8 +90,8 @@ public enum Words implements IAutoLocName {
     Beware("Beware"),
     MapWorldsAreResetOnGameReload("Map Worlds Are Reset On Game Reload"),
     DoNotBuildInMaps("Do not build in maps!"),
-
-    World_Type("World Type");
+    World_Type("World Type"),
+    Gear_Modify("Gear Modify");
 
     private String localization = "";
 

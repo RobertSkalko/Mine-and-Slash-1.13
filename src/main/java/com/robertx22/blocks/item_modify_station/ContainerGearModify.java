@@ -12,11 +12,12 @@ import net.minecraft.item.ItemStack;
 public class ContainerGearModify extends BaseTileContainer {
 
     // Stores the tile entity instance for later use
-    public TileGearModify tileInventory;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
     private int[] cachedFields;
+
+    public TileGearModify tile;
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -40,13 +41,13 @@ public class ContainerGearModify extends BaseTileContainer {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
 
     public ContainerGearModify(int i, PlayerInventory playerInventory) {
-        super(ContainerTypeRegisters.GEAR_MODIFY, i);
+        this(i, playerInventory, new TileGearModify());
     }
 
-    public ContainerGearModify(int num, PlayerInventory invPlayer, TileGearModify tile) {
-        super(ContainerTypeRegisters.GEAR_MODIFY, num);
+    public ContainerGearModify(int i, PlayerInventory invPlayer, TileGearModify tile) {
+        super(ContainerTypeRegisters.GEAR_MODIFY, i);
 
-        this.tileInventory = tile;
+        this.tile = tile;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -76,14 +77,14 @@ public class ContainerGearModify extends BaseTileContainer {
         final int INPUT_SLOTS_YPOS = 24;
         // Add the tile input slots
 
-        addSlot(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+        addSlot(new SlotSmeltableInput(tile, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
-        addSlot(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER + 1, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+        addSlot(new SlotSmeltableInput(tile, FIRST_INPUT_SLOT_NUMBER + 1, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
         final int OUTPUT_SLOTS_XPOS = 134;
         final int OUTPUT_SLOTS_YPOS = 24;
 
-        addSlot(new SlotOutput(tileInventory, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+        addSlot(new SlotOutput(tile, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
     }
 
@@ -91,7 +92,7 @@ public class ContainerGearModify extends BaseTileContainer {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return tileInventory.isUsableByPlayer(player);
+        return true;
     }
 
     // shift click logic
