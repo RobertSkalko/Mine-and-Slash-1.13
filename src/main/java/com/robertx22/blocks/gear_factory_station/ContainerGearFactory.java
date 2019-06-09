@@ -65,7 +65,7 @@ public class ContainerGearFactory extends Container {
 
     public static final ContainerType<ContainerGearFactory> TYPE = new ContainerType<>(ContainerGearFactory::new);
 
-    private ContainerGearFactory(int i, PlayerInventory playerInventory) {
+    public ContainerGearFactory(int i, PlayerInventory playerInventory) {
         super(TYPE, i);
     }
 

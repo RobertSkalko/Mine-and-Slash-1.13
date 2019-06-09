@@ -21,6 +21,7 @@ import java.util.List;
 public class WorldUtils {
 
     public static void spawnEntity(World world, Entity entity) {
+
         world.func_217376_c(entity);
     }
 
