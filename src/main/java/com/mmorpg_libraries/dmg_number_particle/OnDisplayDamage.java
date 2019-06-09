@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemFrameEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -82,7 +83,10 @@ public class OnDisplayDamage {
         for (Entity entity1 : list) {
             AxisAlignedBB axisalignedbb = entity1.getBoundingBox()
                     .grow((double) entity1.getCollisionBorderSize());
-            RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(observerPositionEyes, lookVectorFromEyePosition);
+
+            RayTraceResult raytraceresult = VoxelShapes.create(entity1.getBoundingBox())
+                    .rayTrace(observerPositionEyes, lookVectorFromEyePosition, entity1.getPosition());
+            // TODO CHEKC
 
             if (axisalignedbb.contains(observerPositionEyes)) {
                 if (d2 >= 0.0D) {

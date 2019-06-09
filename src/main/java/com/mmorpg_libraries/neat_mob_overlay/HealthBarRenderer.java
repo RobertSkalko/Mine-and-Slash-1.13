@@ -23,6 +23,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -142,7 +143,8 @@ public class HealthBarRenderer {
                         .getRenderManager();
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translatef((float) (x - renderManager.viewerPosX), (float) (y - renderManager.viewerPosY + passedEntity.height + NeatConfig.heightAbove), (float) (z - renderManager.viewerPosZ));
+                GlStateManager.translatef((float) (x - renderManager.playerViewX), (float) (y - renderManager.playerViewY + passedEntity
+                        .getHeight() + NeatConfig.heightAbove), (float) (z - renderManager.viewerPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -151,7 +153,7 @@ public class HealthBarRenderer {
                 GlStateManager.disableLighting();
                 GlStateManager.depthMask(false);
                 GlStateManager.disableDepthTest();
-                GlStateManager.disableTexture2D();
+                GlStateManager.disableTexture();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 Tessellator tessellator = Tessellator.getInstance();
@@ -225,7 +227,7 @@ public class HealthBarRenderer {
                         .endVertex();
                 tessellator.draw();
 
-                GlStateManager.enableTexture2D();
+                GlStateManager.enableTexture();
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef(-size, -4.5F, 0F);
@@ -358,9 +360,14 @@ public class HealthBarRenderer {
                 float collisionBorderSize = entity.getCollisionBorderSize();
                 AxisAlignedBB hitbox = entity.getBoundingBox()
                         .expand(collisionBorderSize, collisionBorderSize, collisionBorderSize);
-                RayTraceResult interceptPosition = hitbox.calculateIntercept(positionVector, reachVector);
+
+                //   RayTraceResult interceptPosition = hitbox.calculateIntercept(positionVector, reachVector);
+                // TODO UNSURE IF THIS WORKS
+                RayTraceResult interceptPosition = VoxelShapes.create(entity.getBoundingBox())
+                        .rayTrace(positionVector, reachVector, entity.getPosition());
 
                 if (hitbox.contains(positionVector)) {
+
                     if (0.0D < minDistance || minDistance == 0.0D) {
                         lookedEntity = entity;
                         minDistance = 0.0D;
@@ -397,6 +404,7 @@ public class HealthBarRenderer {
     public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray,
                                          double len) {
         Vec3d end = origin.add(ray.normalize().scale(len));
+
         RayTraceResult pos = world.rayTraceBlocks(origin, end);
         return pos;
     }
