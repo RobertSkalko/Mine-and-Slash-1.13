@@ -22,7 +22,7 @@ public class WorldUtils {
 
     public static void spawnEntity(World world, Entity entity) {
 
-        world.func_217376_c(entity);
+        world.addEntity(entity);
     }
 
     public static List<MapAffixData> getAllAffixesThatAffect(

@@ -41,6 +41,6 @@ public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
 
     @Override
     public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.field_76424_c, 5), IStatEffect.EffectSides.Target));
+        return Arrays.asList(new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.SPEED, 5), IStatEffect.EffectSides.Target));
     }
 }

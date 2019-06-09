@@ -35,7 +35,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
     public void checkZephyrSpeedBoost(PlayerEntity caster, SpellBuffCheck buffable) {
 
         if (buffable.getBuff().equals(SpellBuffType.Zephyr_Speed_Boost)) {
-            caster.addPotionEffect(new EffectInstance(Effects.field_76424_c, 200));
+            caster.addPotionEffect(new EffectInstance(Effects.SPEED, 200));
         }
 
     }

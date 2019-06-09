@@ -1,6 +1,8 @@
 package com.robertx22.uncommon.enumclasses;
 
 import com.robertx22.uncommon.interfaces.IColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -8,23 +10,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Elements implements IColor {
-    Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GRAY),
-    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED),
-    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.AQUA),
-    Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW),
-    Nature(4, new RGB(0, 204, 0), true, "Poison", TextFormatting.GREEN),
-    Elemental(5, new RGB(0, 0, 0), false, "All", TextFormatting.GOLD);
+    Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GRAY, Items.COAL),
+    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.MAGMA_CREAM),
+    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.AQUA, Items.SNOWBALL),
+    Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW, Items.GLOWSTONE_DUST),
+    Nature(4, new RGB(0, 204, 0), true, "Poison", TextFormatting.GREEN, Items.SLIME_BALL),
+    Elemental(5, new RGB(0, 0, 0), false, "All", TextFormatting.GOLD, Items.EMERALD);
 
     public boolean isSingleElement = true;
+    public Item projectileItem;
     private RGB color;
 
     Elements(int i, RGB color, boolean isSingleElement, String dmgname,
-             TextFormatting format) {
+             TextFormatting format, Item item) {
         this.i = i;
         this.color = color;
         this.isSingleElement = isSingleElement;
         this.dmgName = dmgname;
         this.format = format;
+        this.projectileItem = item;
 
     }
 

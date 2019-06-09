@@ -40,8 +40,8 @@ public class CleansePoisonPotion extends SpellPotionBase {
                 ParticleUtils.spawnHealParticles(entity, 1);
             } else {
 
-                if (entity.getActivePotionEffect(Effects.field_76436_u) != null) {
-                    entity.removePotionEffect(Effects.field_76436_u);
+                if (entity.getActivePotionEffect(Effects.POISON) != null) {
+                    entity.removePotionEffect(Effects.POISON);
                 }
 
             }

@@ -11,6 +11,7 @@ import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -20,6 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EntityElementalBolt extends EntityBaseProjectile {
+
+    @Override
+    public ItemStack getItem() {
+        return new ItemStack(this.element().projectileItem);
+    }
 
     protected BaseSpellEffect effect;
     protected DamageData data;

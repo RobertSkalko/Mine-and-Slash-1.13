@@ -294,7 +294,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3d1 = new Vec3d(this.posX + this.getMotion().x, this.posY + this.getMotion().y, this.posZ + this
                 .getMotion().z);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d, vec3d1);
+
+        RayTraceContext ctx = new RayTraceContext(vec3d, vec3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, this);
+
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(ctx);
         vec3d = new Vec3d(this.posX, this.posY, this.posZ);
         vec3d1 = new Vec3d(this.posX + this.getMotion().x, this.posY + this.getMotion().y, this.posZ + this
                 .getMotion().z);
@@ -519,11 +522,15 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     @Nullable
     public LivingEntity getThrower() {
         if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
-            this.thrower = this.world.getPlayerByUuid(UUID.fromString(this.throwerName));
 
+            if (((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName)) instanceof LivingEntity) {
+                this.thrower = (LivingEntity) ((ServerWorld) this.world).getEntityByUuid(UUID
+                        .fromString(this.throwerName));
+            }
+            
             if (this.thrower == null && this.world instanceof ServerWorld) {
                 try {
-                    Entity entity = ((ServerWorld) this.world).func_217461_a(UUID.fromString(this.throwerName));
+                    Entity entity = ((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName));
 
                     if (entity instanceof LivingEntity) {
                         this.thrower = (LivingEntity) entity;

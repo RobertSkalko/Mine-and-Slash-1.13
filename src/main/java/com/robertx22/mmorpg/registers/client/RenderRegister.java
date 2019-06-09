@@ -16,6 +16,7 @@ import com.robertx22.spells.projectile.SpellThunderBolt;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
@@ -56,10 +57,10 @@ public class RenderRegister {
 
     }
 
-    // need to AT this too??!?
-    public static <T extends Entity> IRenderFactory<T> newRenFac(
+    // TODO IDK IF THIS WORKS
+    public static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac(
             final Item itemToRender) {
-        return manager -> new SpriteRenderer<>(manager, itemToRender, Minecraft.getInstance()
+        return manager -> new SpriteRenderer<>(manager, Minecraft.getInstance()
                 .getItemRenderer());
     }
 }

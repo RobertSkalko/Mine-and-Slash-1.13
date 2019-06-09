@@ -37,7 +37,7 @@ public class OreGenRegister {
         OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.STONE
                 .getDefaultState(), 8);
 
-        ConfiguredFeature<?> feature = Biome.func_222280_a(Feature.MINABLE, minableConfig, Placement.field_215028_n, countConfig);
+        ConfiguredFeature<?> feature = Biome.createDecoratedFeature(Feature.ORE, minableConfig, Placement.COUNT_RANGE, countConfig);
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);

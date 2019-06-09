@@ -50,13 +50,13 @@ public class WorldGenRegisters {
 
     public static ConfiguredFeature createSmallSurfaceDeco(Feature feature) {
 
-        return Biome.func_222280_a(feature, IFeatureConfig.NO_FEATURE_CONFIG, new AtSurfaceChancePlacement(), new MyChanceConfig(SMALL_DECO_CHANCE));
+        return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, new AtSurfaceChancePlacement(), new MyChanceConfig(SMALL_DECO_CHANCE));
     }
 
     public static <F extends IFeatureConfig, D extends IPlacementConfig> ConfiguredFeature<F> create(
             Feature feature, Placement<D> basePlacementIn, D placementConfig) {
 
-        return Biome.func_222280_a(feature, IFeatureConfig.NO_FEATURE_CONFIG, basePlacementIn, placementConfig);
+        return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, basePlacementIn, placementConfig);
     }
 
 }
