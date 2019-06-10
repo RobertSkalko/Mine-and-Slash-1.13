@@ -41,7 +41,7 @@ public abstract class SpellPotionBase extends Effect implements ILocName {
     }
 
     public ResourceLocation getIconTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/status_effects/" + GUID() + ".png");
+        return new ResourceLocation(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
     }
 
     @Override
