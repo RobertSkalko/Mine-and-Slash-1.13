@@ -48,7 +48,7 @@ public abstract class BaseContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity player) {
-        return true;
+        return player.getHeldItemMainhand() == this.inventory.bag || player.getHeldItemOffhand() == this.inventory.bag;
     }
 
     @Nonnull
