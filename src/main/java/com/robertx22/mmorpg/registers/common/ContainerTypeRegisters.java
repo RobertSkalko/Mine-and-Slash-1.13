@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers;
+package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.blocks.gear_factory_station.ContainerGearFactory;
 import com.robertx22.blocks.item_modify_station.ContainerGearModify;
@@ -9,7 +9,6 @@ import com.robertx22.items.bags.currency_bag.ContainerCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.registers.common.BlockRegister;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

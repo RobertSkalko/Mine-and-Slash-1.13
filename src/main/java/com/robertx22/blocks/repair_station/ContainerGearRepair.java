@@ -1,7 +1,7 @@
 package com.robertx22.blocks.repair_station;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

@@ -3,7 +3,7 @@ package com.robertx22.items.bags.map_bag;
 import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;

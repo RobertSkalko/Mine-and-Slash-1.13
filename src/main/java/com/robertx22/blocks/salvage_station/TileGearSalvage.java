@@ -1,8 +1,8 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;

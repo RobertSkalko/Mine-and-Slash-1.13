@@ -12,24 +12,24 @@ import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
-public class EggLootCrateTileEntity extends TileEntity implements ITickable, IConditionalLootCrate {
+public class EggLootCrateTileEntity extends TileEntity implements ITickableTileEntity, IConditionalLootCrate {
 
     public static final String dataLoc = "PlayerOncePerMapData";
     public static final String isdroppingloc = "isdroppingloc";
     public static final String droplootticksloc = "droplootticksloc";
     public static final String timestodroploc = "timesToDrop";
-
+    
     PlayerOncePerMapData data = new PlayerOncePerMapData();
     PlayerEntity player;
 

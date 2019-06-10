@@ -1,6 +1,6 @@
 package com.robertx22.database.world_providers;
 
-import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
+import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -30,7 +30,7 @@ public class RockDesertIWP extends BaseWorldProvider {
 
     @Override
     public List<MapAffixData> getMapAffixes() {
-        return Arrays.asList(new MapAffixData(new BonusFireResistAffix(), 100));
+        return Arrays.asList(new MapAffixData(new BonusFireDamageAffix(), 100));
     }
 
     @Override

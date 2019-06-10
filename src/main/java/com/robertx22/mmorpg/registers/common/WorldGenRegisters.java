@@ -1,11 +1,15 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.db_lists.WorldProviders;
+import com.robertx22.world_gen.RandomSurfaceEggFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.placement.AtSurfaceWithChance;
+import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,7 +19,7 @@ import java.util.stream.Collectors;
 public class WorldGenRegisters {
 
     public static final float SMALL_DECO_CHANCE = 1F;
-    // public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(), new AtSurfaceChancePlacement(), new MyChanceConfig(1F));
+    public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(2));
     // public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new SmallRandomSurfaceDecoration());
 
     public static void register() {
@@ -31,7 +35,7 @@ public class WorldGenRegisters {
                     .collect(Collectors.toList())
                     .size() > 0) {
 
-                // add(biome, randomSurfaceChest);
+                add(biome, randomSurfaceChest);
                 //add(biome, smallRandomSurfaceDecoration);
             }
         }

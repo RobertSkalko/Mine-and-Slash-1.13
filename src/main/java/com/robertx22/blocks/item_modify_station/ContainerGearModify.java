@@ -2,7 +2,7 @@ package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
 import com.robertx22.blocks.salvage_station.TileGearSalvage;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

@@ -12,7 +12,6 @@ import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
-import com.robertx22.mmorpg.registers.ContainerGuiRegisters;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
