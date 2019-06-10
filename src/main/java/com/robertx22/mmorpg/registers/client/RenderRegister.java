@@ -50,9 +50,8 @@ public class RenderRegister {
 
     }
 
-    // TODO IDK IF THIS WORKS
-    public static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac() {
-        return manager -> new SpriteRenderer<>(Minecraft.getInstance()
-                .getRenderManager(), Minecraft.getInstance().getItemRenderer());
+    private static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac() {
+        return manager -> new SpriteRenderer<>(manager, Minecraft.getInstance()
+                .getItemRenderer());
     }
 }
