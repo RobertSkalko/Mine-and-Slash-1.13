@@ -65,6 +65,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         };
     }
 
+    @Override
+    public boolean hasSkyLight() {
+        return true;
+    }
+
     @Nullable
     public BlockPos findSpawn(ChunkPos p_206920_1_, boolean checkValid) {
         for (int i = p_206920_1_.getXStart(); i <= p_206920_1_.getXEnd(); ++i) {
@@ -173,6 +178,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
+
         double d0 = MathHelper.frac((double) worldTime / 24000.0D - 0.25D);
         double d1 = 0.5D - Math.cos(d0 * Math.PI) / 2.0D;
         return (float) (d0 * 2.0D + d1) / 3.0F;
@@ -184,6 +190,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     @Override
     @OnlyIn(Dist.CLIENT)
     public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+
         float f = MathHelper.cos(p_76562_1_ * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
         f = MathHelper.clamp(f, 0.0F, 1.0F);
         float f1 = 0.7529412F;
