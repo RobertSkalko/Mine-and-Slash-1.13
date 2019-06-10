@@ -8,7 +8,6 @@ import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.EndPortalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -82,10 +81,6 @@ public class MapPortalBlock extends EndPortalBlock {
                                     } else {
                                         entity.sendMessage(Chats.Not_enough_time.locName());
                                     }
-
-                                } else { // if not mapworld
-
-                                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
                                 }
                             }

@@ -120,7 +120,7 @@ public class PlayerUtils {
             player.setWorld(serverworld1);
             serverworld1.func_217447_b(player);
             player.func_213846_b(serverworld);
-            player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, f1, f);
+            player.connection.setPlayerLocation(pos.getX(), pos.getY(), pos.getZ(), f1, f);
             player.interactionManager.setWorld(serverworld1);
             player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
             playerlist.sendWorldInfo(player, serverworld1);
