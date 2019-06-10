@@ -21,8 +21,6 @@ public class PlayerUtils {
 
     @Nullable
     public static Entity changeDimension(PlayerEntity player, DimensionType destination) {
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
-            return null;
         if (!player.world.isRemote && !player.removed) {
             player.world.getProfiler().startSection("changeDimension");
             MinecraftServer minecraftserver = player.getServer();

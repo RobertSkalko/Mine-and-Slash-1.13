@@ -2,6 +2,7 @@ package com.robertx22.items.bags;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
@@ -25,7 +26,7 @@ import javax.annotation.Nonnull;
 
 public abstract class BaseBagItem extends Item {
 
-    public abstract boolean IsValidItem(ItemStack stack);
+    public abstract ItemFilterGroup filterGroup();
 
     public abstract INamedContainerProvider getNamedContainer(ItemStack stack);
 

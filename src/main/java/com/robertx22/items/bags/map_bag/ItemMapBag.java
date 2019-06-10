@@ -2,8 +2,7 @@ package com.robertx22.items.bags.map_bag;
 
 import com.robertx22.items.bags.BaseBagItem;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,16 +25,9 @@ public class ItemMapBag extends BaseBagItem {
         return new InteractMapBag(stack);
     }
 
-    public boolean IsValidItem(ItemStack stack) {
-
-        MapItemData map = Map.Load(stack);
-
-        if (map != null) {
-            return true;
-
-        }
-
-        return false;
+    @Override
+    public ItemFilterGroup filterGroup() {
+        return ItemFilterGroup.ANY_MAP;
     }
 
 }

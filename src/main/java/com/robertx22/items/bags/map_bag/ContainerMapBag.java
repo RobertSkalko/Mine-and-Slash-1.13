@@ -4,6 +4,7 @@ import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
 import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -28,7 +29,7 @@ public class ContainerMapBag extends BaseContainer {
 
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return new ItemMapBag().IsValidItem(stack);
+            return ItemFilterGroup.ANY_MAP.anyMatchesFilter(stack);
         }
 
         @Override

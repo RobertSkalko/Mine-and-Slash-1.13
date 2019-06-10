@@ -9,6 +9,7 @@ import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -262,7 +263,7 @@ public class PlayerMapData {
                         if (getMapDevicePos() != null) {
                             pos = getMapDevicePos();
                             pos = pos.north(2);
-                            player.changeDimension(this.originalDimension); // TODO test if works
+                            PlayerUtils.changeDimension(player, this.originalDimension); // TODO test if works
                             player.setPosition(pos.getX(), pos.getY(), pos.getZ());
                         }
 

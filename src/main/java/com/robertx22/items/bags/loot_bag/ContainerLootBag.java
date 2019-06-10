@@ -1,10 +1,10 @@
 package com.robertx22.items.bags.loot_bag;
 
-import com.robertx22.LootBagItemFilter;
 import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
 import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -29,7 +29,7 @@ public class ContainerLootBag extends BaseContainer {
 
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return new LootBagItemFilter().IsValidItem(stack);
+            return ItemFilterGroup.LOOT_BAG_FILTER.anyMatchesFilter(stack);
         }
 
         @Override

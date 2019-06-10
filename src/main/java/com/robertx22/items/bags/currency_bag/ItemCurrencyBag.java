@@ -1,10 +1,8 @@
 package com.robertx22.items.bags.currency_bag;
 
 import com.robertx22.items.bags.BaseBagItem;
-import com.robertx22.items.currency.CurrencyItem;
-import com.robertx22.items.currency.ICurrencyItemEffect;
-import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,10 +19,9 @@ public class ItemCurrencyBag extends BaseBagItem {
         super(ID);
     }
 
-    public boolean IsValidItem(ItemStack stack) {
-
-        return stack.getItem() instanceof ICurrencyItemEffect || stack.getItem() instanceof CurrencyItem || stack
-                .getItem() instanceof ItemOre;
+    @Override
+    public ItemFilterGroup filterGroup() {
+        return ItemFilterGroup.ANY_CURRENCY;
     }
 
     @Override

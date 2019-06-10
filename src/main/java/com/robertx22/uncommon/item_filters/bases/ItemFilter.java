@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.uncommon.item_filters.bases;
 
 import net.minecraft.item.ItemStack;
 

@@ -2,10 +2,10 @@ package com.robertx22.onevent.item;
 
 import com.robertx22.items.bags.BaseBagItem;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.SCollectItemPacket;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SCollectItemPacket;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,7 +34,8 @@ public class OnPickupInsertIntoBag {
 
                 BaseBagItem bagitem = (BaseBagItem) bag.getItem();
 
-                if (bagitem.IsValidItem(stack) && stack.getCount() > 0) {
+                if (stack.getCount() > 0 && bagitem.filterGroup()
+                        .anyMatchesFilter(stack)) {
 
                     for (int x = 0; x < bagInv.getSlots(); x++) {
                         ItemStack result = bagInv.insertItem(x, stack, false);
