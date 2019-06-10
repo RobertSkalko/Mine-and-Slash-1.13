@@ -9,6 +9,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellThunderBomb extends BaseBombSpell {
 
@@ -24,6 +25,11 @@ public class SpellThunderBomb extends BaseBombSpell {
 
         public EntityThunderBomb(World worldIn) {
             super(EntityRegister.THUNDERBOMB, worldIn);
+
+        }
+
+        public EntityThunderBomb(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.THUNDERBOMB, world);
 
         }
 

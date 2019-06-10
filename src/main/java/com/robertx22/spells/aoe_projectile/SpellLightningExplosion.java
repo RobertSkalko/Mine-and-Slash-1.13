@@ -8,9 +8,11 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellLightningExplosion extends BaseAoeSpellProjectile {
     static public class EntityLightningExplosion extends EntityElementalBoltAOE {
+
         public EntityLightningExplosion(
                 EntityType<? extends EntityLightningExplosion> type, World world) {
             super(type, world);
@@ -20,6 +22,11 @@ public class SpellLightningExplosion extends BaseAoeSpellProjectile {
 
             super(EntityRegister.THUNDEREXPLOSION, worldIn);
 
+        }
+
+        public EntityLightningExplosion(FMLPlayMessages.SpawnEntity spawnEntity,
+                                        World world) {
+            super(EntityRegister.THUNDEREXPLOSION, world);
         }
 
         @Override

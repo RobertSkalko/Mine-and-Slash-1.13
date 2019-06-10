@@ -52,7 +52,7 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
 
     @Override
     public String locNameForLangFile() {
-        return this.Element().name() + " Spell to Attack Damage";
+        return this.Element().name() + " Spell to Atk Dmg";
     }
 
     @Override

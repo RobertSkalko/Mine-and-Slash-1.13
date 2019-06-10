@@ -9,10 +9,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.*;
 import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
@@ -20,10 +23,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class EntityBaseProjectile extends Entity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends LivingEntity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
 
     private int xTile;
     private int yTile;
@@ -50,28 +54,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     public abstract double radius();
 
-    protected boolean shouldExcludeCaster() {
-        return true;
-    }
-
-    @Override
-    protected void registerData() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void readAdditional(CompoundNBT compound) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void writeAdditional(CompoundNBT compound) {
-        // TODO Auto-generated method stub
-
-    }
-
     @Override
     public IPacket<?> createSpawnPacket() {
         return new SSpawnObjectPacket(this);
@@ -96,6 +78,26 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     protected boolean onExpireProc(LivingEntity caster) {
 
         return false;
+    }
+
+    @Override
+    public Iterable<ItemStack> getArmorInventoryList() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ItemStack getItemStackFromSlot(EquipmentSlotType slotIn) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack) {
+
+    }
+
+    @Override
+    public HandSide getPrimaryHand() {
+        return HandSide.LEFT;
     }
 
     @Override
@@ -143,7 +145,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         this.doGroundProc = newVal;
     }
 
-    public EntityBaseProjectile(EntityType<?> type, World worldIn) {
+    public EntityBaseProjectile(EntityType<? extends LivingEntity> type, World worldIn) {
         super(type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
@@ -151,19 +153,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     }
 
-    public EntityBaseProjectile(EntityType<?> type, World worldIn, double x, double y,
-                                double z) {
+    public EntityBaseProjectile(EntityType<? extends LivingEntity> type, World worldIn,
+                                double x, double y, double z) {
         this(type, worldIn);
         this.setPosition(x, y, z);
-    }
-
-    public EntityBaseProjectile(EntityType<?> type, World worldIn,
-                                LivingEntity throwerIn) {
-        this(type, worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D, throwerIn.posZ);
-        this.thrower = throwerIn;
-    }
-
-    protected void entityInit() {
     }
 
     /**
@@ -527,7 +520,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                 this.thrower = (LivingEntity) ((ServerWorld) this.world).getEntityByUuid(UUID
                         .fromString(this.throwerName));
             }
-            
+
             if (this.thrower == null && this.world instanceof ServerWorld) {
                 try {
                     Entity entity = ((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName));

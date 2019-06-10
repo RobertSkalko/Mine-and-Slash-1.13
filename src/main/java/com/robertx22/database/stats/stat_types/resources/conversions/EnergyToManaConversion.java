@@ -25,7 +25,7 @@ public class EnergyToManaConversion extends Stat implements IStatConversion {
 
     @Override
     public String locNameForLangFile() {
-        return "Convert Energy Reg to Mana";
+        return "Boost Energy Reg to Mana";
     }
 
     @Override

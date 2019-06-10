@@ -3,8 +3,8 @@ package com.robertx22.spells.entities.bases;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -13,7 +13,8 @@ import java.util.List;
 
 public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
-    public EntityElementalBoltAOE(EntityType<?> type, World worldIn) {
+    public EntityElementalBoltAOE(EntityType<? extends LivingEntity> type,
+                                  World worldIn) {
         super(type, worldIn);
 
     }

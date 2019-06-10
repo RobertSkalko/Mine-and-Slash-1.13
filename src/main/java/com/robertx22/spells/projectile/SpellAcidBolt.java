@@ -7,6 +7,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellAcidBolt extends BaseSpellProjectile {
     static public class EntityAcidBolt extends EntityElementalBolt {
@@ -17,6 +18,11 @@ public class SpellAcidBolt extends BaseSpellProjectile {
         public EntityAcidBolt(World worldIn) {
 
             super(EntityRegister.ACIDBOLT, worldIn);
+
+        }
+
+        public EntityAcidBolt(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.ACIDBOLT, world);
 
         }
 

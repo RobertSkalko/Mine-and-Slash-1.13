@@ -84,7 +84,7 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
 
     @Override
     public String locNameForLangFile() {
-        return "Convert " + fromElement.name() + " to " + toElement.name();
+        return "Boost " + fromElement.name() + " to " + toElement.name();
     }
 
 }

@@ -9,6 +9,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellAcidBomb extends BaseBombSpell {
 
@@ -24,6 +25,10 @@ public class SpellAcidBomb extends BaseBombSpell {
         public EntityAcidBomb(World worldIn) {
             super(EntityRegister.ACIDBOMB, worldIn);
 
+        }
+
+        public EntityAcidBomb(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.ACIDBOMB, world);
         }
 
         @Override

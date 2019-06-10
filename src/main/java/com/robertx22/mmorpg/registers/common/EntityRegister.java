@@ -14,59 +14,24 @@ import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BiFunction;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityRegister {
 
-    public static List<EntityType<?>> ENTITY_TYPES = new LinkedList();
-
-    public static final EntityType<?> FIREBOLT;
-    public static final EntityType<?> FROSTBOLT;
-    public static final EntityType<?> ACIDBOLT;
-    public static final EntityType<?> THUNDERBOLT;
-
-    public static final EntityType<?> FIREBOMB;
-    public static final EntityType<?> FROSTBOMB;
-    public static final EntityType<?> ACIDBOMB;
-    public static final EntityType<?> THUNDERBOMB;
-
-    public static final EntityType<?> FIREEXPLOSION;
-    public static final EntityType<?> FROSTEXPLOSION;
-    public static final EntityType<?> ACIDEXPLOSION;
-    public static final EntityType<?> THUNDEREXPLOSION;
-
-    public static final EntityType<?> STAFFPROJECTILE;
-
-    static {
-
-        FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
-        FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
-        ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
-        THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new, "entity_thunder_bolt");
-
-        FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class, SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
-        FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class, SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
-        ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class, SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
-        THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class, SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
-
-        FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
-        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
-        ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
-        THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
-
-        STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, "staff_projectile");
-
-    }
+    public static List<EntityType<? extends LivingEntity>> ENTITY_TYPES = new LinkedList();
 
     @SubscribeEvent
     public static void registerEntityTypes(
@@ -76,13 +41,54 @@ public class EntityRegister {
 
     }
 
-    private static <T extends Entity> EntityType<T> newType(
-            Class<? extends T> entityClass, EntityType.IFactory<T> factory, String id) {
+    public static final EntityType<? extends LivingEntity> FIREBOLT;
+    public static final EntityType<? extends LivingEntity> FROSTBOLT;
+    public static final EntityType<? extends LivingEntity> ACIDBOLT;
+    public static final EntityType<? extends LivingEntity> THUNDERBOLT;
+
+    public static final EntityType<? extends LivingEntity> FIREBOMB;
+    public static final EntityType<? extends LivingEntity> FROSTBOMB;
+    public static final EntityType<? extends LivingEntity> ACIDBOMB;
+    public static final EntityType<? extends LivingEntity> THUNDERBOMB;
+
+    public static final EntityType<? extends LivingEntity> FIREEXPLOSION;
+    public static final EntityType<? extends LivingEntity> FROSTEXPLOSION;
+    public static final EntityType<? extends LivingEntity> ACIDEXPLOSION;
+    public static final EntityType<? extends LivingEntity> THUNDEREXPLOSION;
+
+    public static final EntityType<? extends LivingEntity> STAFFPROJECTILE;
+
+    static {
+
+        FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
+        FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
+        ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
+        THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new, SpellThunderBolt.EntityThunderBolt::new, "entity_thunder_bolt");
+
+        FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class, SpellFlameExplosion.EntityFlameExplosion::new, SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
+        FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class, SpellFrostExplosion.EntityFrostExplosion::new, SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
+        ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class, SpellAcidExplosion.EntityAcidExplosion::new, SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
+        THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class, SpellLightningExplosion.EntityLightningExplosion::new, SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
+
+        FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
+        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
+        ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
+        THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
+
+        STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
+
+    }
+
+    private static <T extends LivingEntity> EntityType<T> newType(
+            Class<? extends T> entityClass, EntityType.IFactory<T> factory,
+            BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif, String id) {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC)
+                .setCustomClientFactory(bif)
                 .setTrackingRange(64)
-                .setShouldReceiveVelocityUpdates(true)
                 .setUpdateInterval(1)
+                .setShouldReceiveVelocityUpdates(true)
+                .size(0.25F, 0.25F)
                 .build(Ref.MODID + ":" + id.toLowerCase());
 
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
@@ -93,3 +99,5 @@ public class EntityRegister {
     }
 
 }
+
+

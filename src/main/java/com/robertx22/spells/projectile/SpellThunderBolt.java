@@ -7,6 +7,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellThunderBolt extends BaseSpellProjectile {
     static public class EntityThunderBolt extends EntityElementalBolt {
@@ -19,6 +20,11 @@ public class SpellThunderBolt extends BaseSpellProjectile {
         public EntityThunderBolt(World worldIn) {
 
             super(EntityRegister.THUNDERBOLT, worldIn);
+
+        }
+
+        public EntityThunderBolt(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.THUNDERBOLT, world);
 
         }
 

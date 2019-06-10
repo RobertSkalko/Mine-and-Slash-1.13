@@ -16,6 +16,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     public EntityStaffProjectile(World worldIn) {
         super(EntityRegister.STAFFPROJECTILE, worldIn);
 
+    }
+
+    public EntityStaffProjectile(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+        super(EntityRegister.STAFFPROJECTILE, world);
     }
 
     public void SetReady(ItemStack staff) {

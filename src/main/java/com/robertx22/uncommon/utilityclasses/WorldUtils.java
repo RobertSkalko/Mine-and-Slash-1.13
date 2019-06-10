@@ -23,6 +23,7 @@ public class WorldUtils {
     public static void spawnEntity(World world, Entity entity) {
 
         world.addEntity(entity);
+
     }
 
     public static List<MapAffixData> getAllAffixesThatAffect(

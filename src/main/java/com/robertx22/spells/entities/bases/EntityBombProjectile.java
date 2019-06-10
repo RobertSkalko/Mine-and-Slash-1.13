@@ -23,7 +23,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
         return 2.5D;
     }
 
-    public EntityBombProjectile(EntityType<?> type, World worldIn) {
+    public EntityBombProjectile(EntityType<? extends LivingEntity> type, World worldIn) {
         super(type, worldIn);
 
         this.setDeathTime(60);

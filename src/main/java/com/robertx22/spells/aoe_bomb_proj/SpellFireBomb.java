@@ -9,6 +9,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellFireBomb extends BaseBombSpell {
 
@@ -22,7 +23,12 @@ public class SpellFireBomb extends BaseBombSpell {
         }
 
         public EntityFireBomb(World worldIn) {
-            super(EntityRegister.FIREBOLT, worldIn);
+            super(EntityRegister.FIREBOMB, worldIn);
+
+        }
+
+        public EntityFireBomb(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.FIREBOMB, world);
 
         }
 
@@ -30,6 +36,7 @@ public class SpellFireBomb extends BaseBombSpell {
         public Elements element() {
             return Elements.Fire;
         }
+
     }
 
     @Override

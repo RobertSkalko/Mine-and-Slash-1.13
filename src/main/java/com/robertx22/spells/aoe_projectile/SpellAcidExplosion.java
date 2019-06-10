@@ -8,6 +8,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellAcidExplosion extends BaseAoeSpellProjectile {
 
@@ -20,6 +21,11 @@ public class SpellAcidExplosion extends BaseAoeSpellProjectile {
         public EntityAcidExplosion(World worldIn) {
 
             super(EntityRegister.ACIDEXPLOSION, worldIn);
+
+        }
+
+        public EntityAcidExplosion(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+            super(EntityRegister.ACIDEXPLOSION, world);
 
         }
 

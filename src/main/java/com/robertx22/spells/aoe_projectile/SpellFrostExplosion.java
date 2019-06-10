@@ -8,6 +8,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellFrostExplosion extends BaseAoeSpellProjectile {
     static public class EntityFrostExplosion extends EntityElementalBoltAOE {
@@ -20,6 +21,11 @@ public class SpellFrostExplosion extends BaseAoeSpellProjectile {
 
             super(EntityRegister.FROSTEXPLOSION, worldIn);
 
+        }
+
+        public EntityFrostExplosion(FMLPlayMessages.SpawnEntity spawnEntity,
+                                    World world) {
+            super(EntityRegister.FROSTEXPLOSION, world);
         }
 
         @Override

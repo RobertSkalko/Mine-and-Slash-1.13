@@ -173,21 +173,14 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        int i = (int) (worldTime % 24000L);
-        float f = ((float) i + partialTicks) / 24000.0F - 0.25F;
-        if (f < 0.0F) {
-            ++f;
-        }
-
-        if (f > 1.0F) {
-            --f;
-        }
-
-        float f1 = 1.0F - (float) ((Math.cos((double) f * Math.PI) + 1.0D) / 2.0D);
-        f = f + (f1 - f) / 3.0F;
-        return f;
+        double d0 = MathHelper.frac((double) worldTime / 24000.0D - 0.25D);
+        double d1 = 0.5D - Math.cos(d0 * Math.PI) / 2.0D;
+        return (float) (d0 * 2.0D + d1) / 3.0F;
     }
 
+    /**
+     * Return Vec3D with biome specific fog color
+     */
     @Override
     @OnlyIn(Dist.CLIENT)
     public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
