@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerLootBag extends BaseContainer {
 
     public ContainerLootBag(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new InventoryLootBag(ItemStack.EMPTY));
+        this(i, playerInventory, new InventoryLootBag(new ItemStack(ItemLootBag.ITEM)));
     }
 
     public ContainerLootBag(int i, PlayerInventory playerInv, BaseInventory basebag) {

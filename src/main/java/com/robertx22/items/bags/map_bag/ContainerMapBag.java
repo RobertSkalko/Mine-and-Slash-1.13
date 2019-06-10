@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerMapBag extends BaseContainer {
 
     public ContainerMapBag(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new InventoryMapBag(ItemStack.EMPTY));
+        this(i, playerInventory, new InventoryMapBag(new ItemStack(ItemMapBag.ITEM)));
     }
 
     public ContainerMapBag(int i, PlayerInventory playerInv, BaseInventory basebag) {

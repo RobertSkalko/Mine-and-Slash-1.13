@@ -20,10 +20,6 @@ public abstract class BaseContainer extends Container {
     public static int size = 9 * 6;
     public static int numRows = 6;
 
-    public BaseContainer(@Nullable ContainerType<?> type, int id) {
-        super(type, id);
-    }
-
     public BaseContainer(@Nullable ContainerType<?> type, int id,
                          PlayerInventory playerInv, BaseInventory basebag) {
         super(type, id);

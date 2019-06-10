@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerCurrencyBag extends BaseContainer {
 
     public ContainerCurrencyBag(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new InventoryCurrencyBag(ItemStack.EMPTY));
+        this(i, playerInventory, new InventoryCurrencyBag(new ItemStack(ItemCurrencyBag.ITEM)));
     }
 
     public ContainerCurrencyBag(int i, PlayerInventory playerInv, BaseInventory basebag) {

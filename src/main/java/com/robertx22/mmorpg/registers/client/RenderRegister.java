@@ -17,8 +17,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,38 +27,32 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(Dist.CLIENT)
 public class RenderRegister {
 
-    private static final Item THUNDER = Items.GLOWSTONE_DUST;
-    private static final Item FIRE = Items.MAGMA_CREAM;
-    private static final Item WATER = Items.SNOWBALL;
-    private static final Item NATURE = Items.SLIME_BALL;
-
     @SubscribeEvent
     public static void regRenders(ModelRegistryEvent evt) {
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class, newRenFac(FIRE));
-        RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class, newRenFac(FIRE));
-        RenderingRegistry.registerEntityRenderingHandler(SpellFlameExplosion.EntityFlameExplosion.class, newRenFac(FIRE));
+        RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellFlameExplosion.EntityFlameExplosion.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellFrostBolt.EntityFrostBolt.class, newRenFac(WATER));
-        RenderingRegistry.registerEntityRenderingHandler(SpellIceBomb.EntityIceBomb.class, newRenFac(WATER));
-        RenderingRegistry.registerEntityRenderingHandler(SpellFrostExplosion.EntityFrostExplosion.class, newRenFac(WATER));
+        RenderingRegistry.registerEntityRenderingHandler(SpellFrostBolt.EntityFrostBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellIceBomb.EntityIceBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellFrostExplosion.EntityFrostExplosion.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBolt.EntityThunderBolt.class, newRenFac(THUNDER));
-        RenderingRegistry.registerEntityRenderingHandler(SpellLightningExplosion.EntityLightningExplosion.class, newRenFac(THUNDER));
-        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBomb.EntityThunderBomb.class, newRenFac(THUNDER));
+        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBolt.EntityThunderBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellLightningExplosion.EntityLightningExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBomb.EntityThunderBomb.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBolt.EntityAcidBolt.class, newRenFac(NATURE));
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidExplosion.EntityAcidExplosion.class, newRenFac(NATURE));
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBomb.EntityAcidBomb.class, newRenFac(NATURE));
+        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBolt.EntityAcidBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellAcidExplosion.EntityAcidExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBomb.EntityAcidBomb.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac(Items.ENDER_PEARL));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac());
 
     }
 
     // TODO IDK IF THIS WORKS
-    public static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac(
-            final Item itemToRender) {
-        return manager -> new SpriteRenderer<>(manager, Minecraft.getInstance()
-                .getItemRenderer());
+    public static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac() {
+        return manager -> new SpriteRenderer<>(Minecraft.getInstance()
+                .getRenderManager(), Minecraft.getInstance().getItemRenderer());
     }
 }
