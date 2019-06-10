@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -155,16 +156,18 @@ public class Unit {
         return null;
     }
 
-    public static Unit Mob(LivingEntity entity, PlayerEntity nearestPlayer) {
+    public static Unit Mob(LivingEntity entity, @Nullable PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.InitMobStats();
 
         UnitData endata = Load.Unit(entity);
 
-        if (WorldUtils.isMapWorld(entity.world)) {
-            PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
-            endata.setTier(mapdata.getTier());
+        if (nearestPlayer != null) {
+            if (WorldUtils.isMapWorld(entity.world)) {
+                PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+                endata.setTier(mapdata.getTier());
+            }
         }
 
         endata.SetMobLevelAtSpawn(entity);

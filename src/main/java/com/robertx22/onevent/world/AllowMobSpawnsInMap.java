@@ -43,7 +43,7 @@ public class AllowMobSpawnsInMap {
                             return;
                         }
 
-                        if (RandomUtils.roll(80)) {
+                        if (RandomUtils.roll(50)) {
                             event.setResult(Result.ALLOW);
                         }
                     }
