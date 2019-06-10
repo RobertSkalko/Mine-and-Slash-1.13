@@ -163,7 +163,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
      */
     @Override
     public boolean isSurfaceWorld() {
-        return (this.world == null) ? false : this.world.isRemote;
+        return (this.world != null) && this.world.isRemote;
     }
 
     @Override
