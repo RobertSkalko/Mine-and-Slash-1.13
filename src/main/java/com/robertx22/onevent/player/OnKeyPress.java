@@ -1,8 +1,8 @@
-package com.robertx22.mmorpg.registers.client;
+package com.robertx22.onevent.player;
 
+import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.StatGUI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,9 +16,7 @@ public class OnKeyPress {
 
         int key = event.getKey();
 
-        PlayerEntity player = Minecraft.getInstance().player;
-
-        if (Minecraft.getInstance().field_71462_r == null) { // TODO UNSURE
+        if (Minecraft.getInstance().field_71462_r == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
 
             if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
 

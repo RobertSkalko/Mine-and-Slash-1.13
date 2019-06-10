@@ -4,6 +4,7 @@ import com.robertx22.dimensions.MapManager;
 import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -74,7 +75,7 @@ public class MapPortalBlock extends EndPortalBlock {
                                         DimensionType type = mapworld.getDimension()
                                                 .getType();
 
-                                        entity.changeDimension(type);
+                                        PlayerUtils.changeDimension(player, type);
 
                                         entity.setPosition(pos1.getX(), pos1.getY(), pos1.getZ());
 
