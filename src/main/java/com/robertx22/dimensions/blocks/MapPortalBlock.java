@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -75,9 +76,8 @@ public class MapPortalBlock extends EndPortalBlock {
                                         DimensionType type = mapworld.getDimension()
                                                 .getType();
 
-                                        PlayerUtils.changeDimension(player, type);
-
-                                        entity.setPosition(pos1.getX(), pos1.getY(), pos1.getZ());
+                                        // TODO
+                                        PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
 
                                     } else {
                                         entity.sendMessage(Chats.Not_enough_time.locName());

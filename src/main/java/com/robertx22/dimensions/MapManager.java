@@ -114,7 +114,7 @@ public class MapManager {
                 return world;
             }
 
-            return DimensionManager.initWorld(getServer(), type);
+            return null;
         }
     }
 

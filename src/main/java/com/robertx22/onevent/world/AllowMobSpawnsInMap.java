@@ -1,10 +1,10 @@
 package com.robertx22.onevent.world;
 
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -25,7 +25,7 @@ public class AllowMobSpawnsInMap {
 
         LivingEntity en = event.getEntityLiving();
 
-        if (en instanceof IMob) {
+        if (EntityTypeUtils.isMob(en)) {
 
             if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
@@ -33,22 +33,24 @@ public class AllowMobSpawnsInMap {
                     return;
                     // no
                 } else {
-                    if (EntityTypeUtils.isMob(en)) {
+
+                    if (en.getPosition().getY() > 60) {
 
                         BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
-                                .down());
+                                .down()); // down might be problem
 
                         if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en.getType())) {
                             return;
                         }
 
-                        event.setResult(Result.ALLOW);
-
+                        if (RandomUtils.roll(80)) {
+                            event.setResult(Result.ALLOW);
+                        }
                     }
-
                 }
-            }
 
+            }
         }
+
     }
 }

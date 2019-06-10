@@ -13,6 +13,7 @@ import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -263,8 +264,8 @@ public class PlayerMapData {
                         if (getMapDevicePos() != null) {
                             pos = getMapDevicePos();
                             pos = pos.north(2);
-                            PlayerUtils.changeDimension(player, this.originalDimension); // TODO test if works
-                            player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+                            PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO test if works
+
                         }
 
                     }
