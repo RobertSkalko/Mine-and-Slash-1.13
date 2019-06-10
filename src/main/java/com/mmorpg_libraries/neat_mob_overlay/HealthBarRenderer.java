@@ -339,8 +339,6 @@ public class HealthBarRenderer {
         if (e instanceof PlayerEntity)
             positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
-
-
         if (pos != null)
             distance = pos.getHitVec().distanceTo(positionVector);
 
@@ -383,6 +381,10 @@ public class HealthBarRenderer {
 
             if (lookedEntity != null && (minDistance < distance || pos == null))
                 foundEntity = lookedEntity;
+        }
+
+        if (foundEntity == null) {
+            foundEntity = Minecraft.getInstance().pointedEntity;
         }
 
         return foundEntity;

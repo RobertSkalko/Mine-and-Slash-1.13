@@ -226,12 +226,11 @@ public class TileGearSalvage extends BaseTile {
     @Override
     public ITextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.salvage_station");
-
     }
 
     @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.GEAR_SALVAGE.create(num, inv);
+        return ContainerTypeRegisters.GEAR_SALVAGE.func_221506_a(num, inv);
     }
 }

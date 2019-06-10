@@ -193,7 +193,7 @@ public class ContainerGearFactory extends Container implements INamedContainerPr
     @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.GEAR_FACTORY.create(num, inv);
+        return ContainerTypeRegisters.GEAR_FACTORY.func_221506_a(num, inv);
     }
 
     // SlotFuel is a slot for fuel items
