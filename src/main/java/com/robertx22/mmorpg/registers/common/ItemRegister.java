@@ -99,9 +99,9 @@ public class ItemRegister {
 
         IForgeRegistry<Item> r = event.getRegistry();
 
-        r.register(new ItemCurrencyBag());
-        r.register(new ItemLootBag());
-        r.register(new ItemMapBag());
+        r.register(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
+        r.register(new ItemLootBag().setRegistryName(ItemLootBag.ID));
+        r.register(new ItemMapBag().setRegistryName(ItemMapBag.ID));
 
         r.register(new CreateNewUnique());
         r.register(new ItemAddPrefix());

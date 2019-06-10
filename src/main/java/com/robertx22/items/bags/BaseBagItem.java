@@ -2,7 +2,6 @@ package com.robertx22.items.bags;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
-import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
@@ -35,7 +34,6 @@ public abstract class BaseBagItem extends Item {
     public BaseBagItem(String name) {
 
         super(new ItemSingle().group(CreativeTabs.MyModTab));
-        RegisterItemUtils.RegisterItemName(this, name);
 
     }
 

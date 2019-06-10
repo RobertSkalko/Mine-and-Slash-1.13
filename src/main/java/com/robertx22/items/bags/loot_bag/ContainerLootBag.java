@@ -1,5 +1,6 @@
 package com.robertx22.items.bags.loot_bag;
 
+import com.robertx22.LootBagItemFilter;
 import com.robertx22.items.bags.BaseContainer;
 import com.robertx22.items.bags.BaseInventory;
 import com.robertx22.items.bags.BaseSlot;
@@ -28,7 +29,7 @@ public class ContainerLootBag extends BaseContainer {
 
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return new ItemLootBag().IsValidItem(stack);
+            return new LootBagItemFilter().IsValidItem(stack);
         }
 
         @Override
