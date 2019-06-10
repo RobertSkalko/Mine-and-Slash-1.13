@@ -18,7 +18,7 @@ public class OnKeyPress {
 
         PlayerEntity player = Minecraft.getInstance().player;
 
-        if (Minecraft.getInstance().field_71462_r == null) {
+        if (Minecraft.getInstance().ingameGUI == null) { // TODO UNSURE
 
             if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
 

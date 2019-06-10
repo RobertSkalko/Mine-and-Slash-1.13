@@ -3,7 +3,6 @@ package com.robertx22.blocks.repair_station;
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.misc.ItemCapacitor;
 import com.robertx22.items.ores.ItemOre;
-import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
@@ -310,8 +309,7 @@ public class TileGearRepair extends BaseTile {
 
     @Nullable
     @Override
-    public Container createMenu(int num, PlayerInventory inv,
-                                PlayerEntity p_createMenu_3_) {
-        return ContainerTypeRegisters.GEAR_REPAIR.func_221506_a(num, inv);
+    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
+        return new ContainerGearRepair(num, inv, this);
     }
 }

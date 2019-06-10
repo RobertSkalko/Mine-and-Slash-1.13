@@ -38,7 +38,7 @@ public class ConfigRegister {
         ConfigDimensionsSerialization.INSTANCE.load();
 
     }
-
+    // MUST BE CALLED IN MAIN CLASS
     private static void loadConfig(ForgeConfigSpec spec, Path path) {
 
         final CommentedFileConfig configData = CommentedFileConfig.builder(path)

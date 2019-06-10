@@ -5,6 +5,7 @@ import com.robertx22.mmorpg.registers.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -16,9 +17,6 @@ import net.minecraft.item.ItemStack;
  * send server side dataInstance such as progress bars to the client for use in guis
  */
 public class ContainerGearRepair extends BaseTileContainer {
-
-    // Stores the tile entity instance for later use
-    private TileGearRepair tileGearRepair;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -64,13 +62,11 @@ public class ContainerGearRepair extends BaseTileContainer {
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
     public ContainerGearRepair(int i, PlayerInventory playerInventory) {
-        super(ContainerTypeRegisters.GEAR_REPAIR, i);
+        this(i, playerInventory, new Inventory(TileGearRepair.TOTAL_SLOTS_COUNT));
     }
 
-    public ContainerGearRepair(int num, PlayerInventory invPlayer, TileGearRepair tile) {
+    public ContainerGearRepair(int num, PlayerInventory invPlayer, IInventory inv) {
         super(ContainerTypeRegisters.GEAR_REPAIR, num);
-
-        this.tileGearRepair = tile;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -99,7 +95,7 @@ public class ContainerGearRepair extends BaseTileContainer {
         // Add the tile fuel slots
         for (int x = 0; x < FUEL_SLOTS_COUNT; x++) {
             int slotNumber = x + FIRST_FUEL_SLOT_NUMBER;
-            addSlot(new SlotFuel(tile, slotNumber, FUEL_SLOTS_XPOS + SLOT_X_SPACING * x, FUEL_SLOTS_YPOS));
+            addSlot(new SlotFuel(inv, slotNumber, FUEL_SLOTS_XPOS + SLOT_X_SPACING * x, FUEL_SLOTS_YPOS));
         }
 
         final int INPUT_SLOTS_XPOS = 26;
@@ -107,7 +103,7 @@ public class ContainerGearRepair extends BaseTileContainer {
         // Add the tile input slots
         for (int y = 0; y < INPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_INPUT_SLOT_NUMBER;
-            addSlot(new SlotSmeltableInput(tile, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotSmeltableInput(inv, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int OUTPUT_SLOTS_XPOS = 134;
@@ -115,7 +111,7 @@ public class ContainerGearRepair extends BaseTileContainer {
         // Add the tile output slots
         for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_OUTPUT_SLOT_NUMBER;
-            addSlot(new SlotOutput(tile, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotOutput(inv, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
@@ -123,7 +119,7 @@ public class ContainerGearRepair extends BaseTileContainer {
         // Add the tile capacitor slot
         for (int x = 0; x < 1; x++) {
             int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
-            addSlot(new Slot(tile, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
+            addSlot(new Slot(inv, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
         }
 
     }
@@ -132,7 +128,7 @@ public class ContainerGearRepair extends BaseTileContainer {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return tileGearRepair.isUsableByPlayer(player);
+        return true;
     }
 
     // shift click logic
