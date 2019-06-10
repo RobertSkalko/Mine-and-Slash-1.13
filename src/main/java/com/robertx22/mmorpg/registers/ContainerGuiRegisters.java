@@ -10,6 +10,7 @@ import com.robertx22.blocks.repair_station.ContainerGearRepair;
 import com.robertx22.blocks.repair_station.GuiGearRepair;
 import com.robertx22.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.blocks.salvage_station.GuiGearSalvage;
+import com.robertx22.items.bags.map_bag.GuiMapBag;
 import net.minecraft.client.gui.ScreenManager;
 
 public class ContainerGuiRegisters {
@@ -24,9 +25,9 @@ public class ContainerGuiRegisters {
         ScreenManager.<ContainerGearRepair, GuiGearRepair>registerFactory(ContainerTypeRegisters.GEAR_REPAIR, GuiGearRepair::new);
         ScreenManager.<ContainerGearSalvage, GuiGearSalvage>registerFactory(ContainerTypeRegisters.GEAR_SALVAGE, GuiGearSalvage::new);
 
-        //    ScreenManager.registerFactory(ContainerTypeRegisters.LOOT_BAG, GuiLootBag::new);
-        //   ScreenManager.registerFactory(ContainerTypeRegisters.MAP_BAG, GuiMapBag::new);
-        //  ScreenManager.registerFactory(ContainerTypeRegisters.CURRENCY_BAG, GuiCurrencyBag::new);
+        //ScreenManager.registerFactory(ContainerTypeRegisters.LOOT_BAG, GuiLootBag::new);
+        ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ContainerTypeRegisters.MAP_BAG, GuiMapBag::new);
+        //ScreenManager.registerFactory(ContainerTypeRegisters.CURRENCY_BAG, GuiCurrencyBag::new);
 
     }
 

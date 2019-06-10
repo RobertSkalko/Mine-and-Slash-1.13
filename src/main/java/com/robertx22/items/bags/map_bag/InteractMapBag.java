@@ -20,9 +20,8 @@ public class InteractMapBag implements INamedContainerProvider {
 
     @Nullable
     @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory inventory,
-                                PlayerEntity player) {
-        return new ContainerMapBag(inventory, new InventoryMapBag(stack));
+    public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
+        return new ContainerMapBag(i, inventory, new InventoryMapBag(stack));
     }
 
     @Override

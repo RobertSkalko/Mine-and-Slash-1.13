@@ -11,11 +11,11 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerMapBag extends BaseContainer {
 
     public ContainerMapBag(int i, PlayerInventory playerInventory) {
-        super(ContainerTypeRegisters.MAP_BAG, i);
+        this(i, playerInventory, new InventoryMapBag(ItemStack.EMPTY));
     }
 
-    public ContainerMapBag(PlayerInventory playerInv, BaseInventory basebag) {
-        super(ContainerTypeRegisters.MAP_BAG, 0);
+    public ContainerMapBag(int i, PlayerInventory playerInv, BaseInventory basebag) {
+        super(ContainerTypeRegisters.MAP_BAG, i, playerInv, basebag);
     }
 
     public class SlotMapBag extends BaseSlot {

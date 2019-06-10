@@ -9,9 +9,12 @@ import net.minecraft.util.text.StringTextComponent;
 
 public abstract class BaseBagGui extends ContainerScreen {
 
-    public BaseBagGui(Container inventorySlotsIn, PlayerInventory inv) {
+    public BaseBagGui(PlayerInventory inv, Container inventorySlotsIn) {
         super(inventorySlotsIn, inv, new StringTextComponent(""));
     }
+
+    public static final int bagXSize = 176;
+    public static final int bagYSize = 207;
 
     public abstract ResourceLocation texture();
 
