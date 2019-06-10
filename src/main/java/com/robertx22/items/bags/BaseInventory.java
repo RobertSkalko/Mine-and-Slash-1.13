@@ -3,6 +3,7 @@ package com.robertx22.items.bags;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 
 import javax.annotation.Nonnull;
 
@@ -13,8 +14,8 @@ public abstract class BaseInventory implements IItemHandlerModifiable {
 
     public BaseInventory(ItemStack bag) {
         this.bag = bag;
-        bagInv = (IItemHandlerModifiable) bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
-                .orElseGet(null);
+        bagInv = (IItemHandlerModifiable) bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+                .orElse(new EmptyHandler());
     }
 
     @Override

@@ -26,7 +26,7 @@ public class ItemLootBag extends BaseBagItem {
     }
 
     @Override
-    public INamedContainerProvider getInteractionObject(ItemStack stack) {
+    public INamedContainerProvider getNamedContainer(ItemStack stack) {
         return new InteractLootBag(stack);
     }
 

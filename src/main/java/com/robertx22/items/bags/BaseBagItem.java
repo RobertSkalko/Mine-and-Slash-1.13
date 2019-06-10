@@ -4,7 +4,6 @@ import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.ItemSingle;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +18,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -30,7 +28,7 @@ public abstract class BaseBagItem extends Item {
 
     public abstract boolean IsValidItem(ItemStack stack);
 
-    public abstract INamedContainerProvider getInteractionObject(ItemStack stack);
+    public abstract INamedContainerProvider getNamedContainer(ItemStack stack);
 
     public static int size = 9 * 6;
 
@@ -46,9 +44,7 @@ public abstract class BaseBagItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
                                                     @Nonnull Hand hand) {
         if (!world.isRemote) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, getInteractionObject(player.getHeldItem(hand)), buf -> {
-                buf.writeBoolean(hand == Hand.OFF_HAND);
-            });
+            player.openContainer(getNamedContainer(player.getHeldItem(hand)));
         }
         return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }

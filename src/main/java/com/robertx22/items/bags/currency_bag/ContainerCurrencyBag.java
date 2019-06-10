@@ -10,14 +10,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ContainerCurrencyBag extends BaseContainer {
 
-    public ContainerCurrencyBag(int num, PlayerInventory playerInv,
-                                BaseInventory basebag) {
-        super(ContainerTypeRegisters.CURRENCY_BAG, num, playerInv, basebag);
-
+    public ContainerCurrencyBag(int i, PlayerInventory playerInventory) {
+        this(i, playerInventory, new InventoryCurrencyBag(ItemStack.EMPTY));
     }
 
-    public ContainerCurrencyBag(PlayerInventory playerInv, BaseInventory basebag) {
-        super(ContainerTypeRegisters.CURRENCY_BAG, 0);
+    public ContainerCurrencyBag(int i, PlayerInventory playerInv, BaseInventory basebag) {
+        super(ContainerTypeRegisters.CURRENCY_BAG, i, playerInv, basebag);
     }
 
     public class SlotCurrency extends BaseSlot {

@@ -6,11 +6,11 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class GuiMapBag extends BaseBagGui {
+public class GuiMapBag extends BaseBagGui<ContainerMapBag> {
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/loot_bag.png");
 
-    public GuiMapBag(PlayerInventory inv, ContainerMapBag bag, ITextComponent comp) {
+    public GuiMapBag(ContainerMapBag bag, PlayerInventory inv, ITextComponent comp) {
         super(inv, bag);
 
         this.xSize = BaseBagGui.bagXSize;

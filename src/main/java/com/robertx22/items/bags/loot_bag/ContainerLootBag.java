@@ -10,8 +10,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ContainerLootBag extends BaseContainer {
 
-    public ContainerLootBag(PlayerInventory playerInv, BaseInventory basebag) {
-        super(ContainerTypeRegisters.LOOT_BAG, 0);
+    public ContainerLootBag(int i, PlayerInventory playerInventory) {
+        this(i, playerInventory, new InventoryLootBag(ItemStack.EMPTY));
+    }
+
+    public ContainerLootBag(int i, PlayerInventory playerInv, BaseInventory basebag) {
+        super(ContainerTypeRegisters.LOOT_BAG, i, playerInv, basebag);
     }
 
     public class SlotLootBag extends BaseSlot {

@@ -54,8 +54,8 @@ public class ContainerTypeRegisters {
         r.register(new ContainerType<>(ContainerMapDevice::new).setRegistryName(BlockRegister.MAP_DEVICE_ID));
 
         r.register(new ContainerType<>(ContainerMapBag::new).setRegistryName(MAP_BAG_ID));
-        // r.register(new ContainerType<>(ContainerLootBag::new).setRegistryName(LOOT_BAG_ID));
-        // r.register(new ContainerType<>(ContainerCurrencyBag::new).setRegistryName(CURRENCY_BAG_ID));
+        r.register(new ContainerType<>(ContainerLootBag::new).setRegistryName(LOOT_BAG_ID));
+        r.register(new ContainerType<>(ContainerCurrencyBag::new).setRegistryName(CURRENCY_BAG_ID));
 
     }
 

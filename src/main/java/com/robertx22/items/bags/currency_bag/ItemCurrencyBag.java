@@ -28,7 +28,7 @@ public class ItemCurrencyBag extends BaseBagItem {
     }
 
     @Override
-    public INamedContainerProvider getInteractionObject(ItemStack stack) {
+    public INamedContainerProvider getNamedContainer(ItemStack stack) {
         return new InteractCurrencyBag(stack);
     }
 

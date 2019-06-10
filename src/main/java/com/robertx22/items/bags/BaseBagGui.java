@@ -7,9 +7,9 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
-public abstract class BaseBagGui extends ContainerScreen {
+public abstract class BaseBagGui<T extends Container> extends ContainerScreen<T> {
 
-    public BaseBagGui(PlayerInventory inv, Container inventorySlotsIn) {
+    public BaseBagGui(PlayerInventory inv, T inventorySlotsIn) {
         super(inventorySlotsIn, inv, new StringTextComponent(""));
     }
 
