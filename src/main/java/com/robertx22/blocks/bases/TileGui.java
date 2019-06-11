@@ -25,6 +25,10 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
 
+        if (tile == null) {
+            return;
+        }
+
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
