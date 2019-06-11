@@ -448,6 +448,9 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
 
     @Override
     public void writeAdditional(CompoundNBT compound) {
+
+        super.writeAdditional(compound);
+
         compound.putInt("xTile", this.xTile);
         compound.putInt("yTile", this.yTile);
         compound.putInt("zTile", this.zTile);
@@ -470,6 +473,8 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
      */
     @Override
     public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+
         this.xTile = compound.getInt("xTile");
         this.yTile = compound.getInt("yTile");
         this.zTile = compound.getInt("zTile");
