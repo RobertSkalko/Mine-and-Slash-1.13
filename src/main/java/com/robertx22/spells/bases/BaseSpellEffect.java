@@ -9,7 +9,7 @@ public abstract class BaseSpellEffect {
     public BaseSpellEffect() {
 
     }
-	
+
     public abstract void Activate(DamageData dmgdata, LivingEntity target);
 
 }

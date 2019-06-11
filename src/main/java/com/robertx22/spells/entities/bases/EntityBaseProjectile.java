@@ -1,6 +1,5 @@
 package com.robertx22.spells.entities.bases;
 
-import com.mojang.datafixers.DataFixer;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
@@ -29,6 +28,9 @@ import java.util.UUID;
 
 public abstract class EntityBaseProjectile extends LivingEntity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
 
+    Entity homindTarget = null;
+    boolean setHomingTarget = false;
+
     private int xTile;
     private int yTile;
     private int zTile;
@@ -47,7 +49,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     private boolean doGroundProc;
 
     public Entity ignoreEntity;
-    private int ignoreTime;
 
     public SpellBuffType buff = SpellBuffType.None;
     public SpellType spellType = SpellType.Self_Heal;
@@ -72,11 +73,9 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     @Override
     public void setBuff(SpellBuffType buff) {
         this.buff = buff;
-
     }
 
     protected boolean onExpireProc(LivingEntity caster) {
-
         return false;
     }
 
@@ -152,16 +151,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
         this.zTile = -1;
 
     }
-
-    public EntityBaseProjectile(EntityType<? extends LivingEntity> type, World worldIn,
-                                double x, double y, double z) {
-        this(type, worldIn);
-        this.setPosition(x, y, z);
-    }
-
-    /**
-     * Checks if the entity is in range to render.
-     */
 
     public boolean isInRangeToRenderDist(double distance) {
         double d0 = this.getBoundingBox().getAverageEdgeLength() * 4.0D;
@@ -325,14 +314,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
             }
         }
 
-        if (this.ignoreEntity != null) {
-            if (flag) {
-                this.ignoreTime = 2;
-            } else if (this.ignoreTime-- <= 0) {
-                this.ignoreEntity = null;
-            }
-        }
-
         if (entity != null) {
             raytraceresult = new EntityRayTraceResult(entity);
         }
@@ -449,9 +430,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
         }
     }
 
-    Entity homindTarget = null;
-    boolean setHomingTarget = false;
-
     /**
      * Gets the amount of gravity to apply to the thrown entity with each tick.
      */
@@ -464,13 +442,12 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
      */
     protected abstract void onImpact(RayTraceResult result);
 
-    public static void registerFixesThrowable(DataFixer fixer, String name) {
-    }
-
     /**
      * (abstract) Protected helper method to write subclass entity dataInstance to NBT.
      */
-    public void writeEntityToNBT(CompoundNBT compound) {
+
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
         compound.putInt("xTile", this.xTile);
         compound.putInt("yTile", this.yTile);
         compound.putInt("zTile", this.zTile);
@@ -491,7 +468,8 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     /**
      * (abstract) Protected helper method to read subclass entity dataInstance from NBT.
      */
-    public void readEntityFromNBT(CompoundNBT compound) {
+    @Override
+    public void readAdditional(CompoundNBT compound) {
         this.xTile = compound.getInt("xTile");
         this.yTile = compound.getInt("yTile");
         this.zTile = compound.getInt("zTile");

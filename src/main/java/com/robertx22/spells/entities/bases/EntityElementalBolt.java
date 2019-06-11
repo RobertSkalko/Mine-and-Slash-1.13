@@ -60,7 +60,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public List<LivingEntity> entitiesHit = new ArrayList();
 
-    private LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
+    public LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
 
         EntityRayTraceResult enres = null;
 
@@ -86,7 +86,6 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     protected void onImpact(RayTraceResult result) {
 
         LivingEntity entityHit = getEntityHit(result, this);
-
         if (entityHit == this.getThrower()) {
             return;
         }
