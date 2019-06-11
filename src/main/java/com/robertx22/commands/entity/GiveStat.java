@@ -3,6 +3,7 @@ package com.robertx22.commands.entity;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.robertx22.commands.bases.StatModSuggestions;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
@@ -19,6 +20,7 @@ public class GiveStat {
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.entity())
                         .then(Commands.argument("statGUID", StringArgumentType.string())
+                                .suggests(new StatModSuggestions())
                                 .then(Commands.argument("GUID", StringArgumentType.string())
                                         .then(Commands.argument("percent", IntegerArgumentType
                                                 .integer())
@@ -28,7 +30,7 @@ public class GiveStat {
                                                         .getInteger(ctx, "percent"))))))));
     }
 
-    private static int run(@Nullable Entity en, String GUID, String statGUD,
+    private static int run(@Nullable Entity en, String statGUID, String GUID,
                            int percent) {
 
         try {
@@ -37,7 +39,7 @@ public class GiveStat {
 
                 EntityData.UnitData data = Load.Unit(en);
 
-                data.getCustomStats().add(GUID, statGUD, percent, 1);
+                data.getCustomStats().add(GUID, statGUID, percent, 1);
 
             }
 

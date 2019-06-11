@@ -278,7 +278,7 @@ public class EntityData {
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
 
             if (customStats != null) {
-                nbt.put(CustomStats.LOC, CustomStats.Save(nbt, customStats));
+                CustomStats.Save(nbt, customStats);
             }
 
             if (unit != null) {
