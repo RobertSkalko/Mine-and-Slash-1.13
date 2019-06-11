@@ -1,5 +1,7 @@
 package com.robertx22.blocks.bases;
 
+import com.robertx22.mmorpg.MMORPG;
+import com.robertx22.network.RequestTilePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,8 +12,12 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
 
     public Tile tile;
 
+    Minecraft mc;
+
     public TileGui(T cont, PlayerInventory inv, ITextComponent text, Class<Tile> token) {
         super(cont, inv, text);
+
+        this.mc = Minecraft.getInstance();
 
         TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
 
@@ -27,6 +33,10 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
 
         if (tile == null) {
             return;
+        }
+
+        if (mc.player.ticksExisted % 20 == 0) {
+            MMORPG.sendToServer(new RequestTilePacket(tile.getPos(), mc.player));
         }
 
         this.renderBackground();

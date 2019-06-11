@@ -17,6 +17,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, PlayerUnitPacket.class, PlayerUnitPacket::encode, PlayerUnitPacket::decode, PlayerUnitPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, RequestTilePacket.class, RequestTilePacket::encode, RequestTilePacket::decode, RequestTilePacket::handle);
+
     }
 }
 

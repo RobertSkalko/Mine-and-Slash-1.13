@@ -1,8 +1,6 @@
 package com.robertx22.blocks.bases;
 
-import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -18,7 +16,6 @@ import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.List;
 
 public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -42,26 +39,12 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     public abstract int tickRate();
 
-    private void sendUpdate() {
-
-        List<ServerPlayerEntity> players = Utilities.getEntitiesWithinRadius(5, pos.getX(), pos
-                .getY(), pos.getZ(), this.world, ServerPlayerEntity.class);
-
-        for (ServerPlayerEntity player : players) {
-            SUpdateTileEntityPacket supdatetileentitypacket = this.getUpdatePacket();
-            if (supdatetileentitypacket != null) {
-                player.connection.sendPacket(supdatetileentitypacket);
-            }
-        }
-
-    }
-
     @Override
     public void tick() {
         if (!this.world.isRemote) {
 
             if (onTickDoLogicAndUpdateIfTrue()) {
-                sendUpdate();
+
             }
 
             ticks++;
@@ -75,7 +58,6 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
                         finishCooking();
                         cookTime = 0;
                     }
-                    sendUpdate();
 
                 } else {
                     cookTime = 0;

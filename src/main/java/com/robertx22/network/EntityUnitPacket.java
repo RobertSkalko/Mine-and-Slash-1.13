@@ -69,7 +69,6 @@ public class EntityUnitPacket {
         });
 
         ctx.get().setPacketHandled(true);
-
     }
 
 }
