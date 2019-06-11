@@ -26,6 +26,9 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory, TileGearFactor
                           ITextComponent comp) {
         super(cont, invPlayer, comp, TileGearFactory.class);
 
+        xSize = 176;
+        ySize = 207;
+
     }
 
     // some [x,y] coordinates of graphical elements
@@ -91,8 +94,8 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory, TileGearFactor
         // indicator hovering text
         for (int i = 0; i < tile.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
-                // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + tile.secondsOfFuelRemaining(i));
+
+                hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);
 
             }
         }

@@ -29,7 +29,6 @@ public class TileGearRepair extends BaseTile {
         return getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
-    public int FuelRemaining = 0;
     public int MaximumFuel = 5000;
 
     // returns the smelting result for the given stack. Returns null if the given
@@ -38,7 +37,7 @@ public class TileGearRepair extends BaseTile {
         GearItemData gear = Gear.Load(stack);
         if (gear != null) {
             ItemStack copy = stack.copy();
-            int dmg = copy.getDamage() - FuelRemaining;
+            int dmg = copy.getDamage() - fuel;
 
             if (dmg < 0) {
                 dmg = 0;
@@ -81,9 +80,9 @@ public class TileGearRepair extends BaseTile {
      * @fuelSlot the number of the fuel slot (0..3)
      */
     public double fractionOfFuelRemaining(int fuelSlot) {
-        if (this.FuelRemaining <= 0)
+        if (this.fuel <= 0)
             return 0;
-        double fraction = FuelRemaining / (double) MaximumFuel;
+        double fraction = fuel / (double) MaximumFuel;
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
@@ -94,9 +93,9 @@ public class TileGearRepair extends BaseTile {
      * @return seconds remaining
      */
     public int secondsOfFuelRemaining(int fuelSlot) {
-        if (FuelRemaining <= 0)
+        if (fuel <= 0)
             return 0;
-        return FuelRemaining; // 20 ticks per second
+        return fuel; // 20 ticks per second
     }
 
     /**
@@ -122,9 +121,12 @@ public class TileGearRepair extends BaseTile {
     @Override
     public boolean isCooking() {
 
-        this.burnFuel();
-
         return canSmelt();
+    }
+
+    @Override
+    public boolean onTickDoLogicAndUpdateIfTrue() {
+        return burnFuel() > 0;
     }
 
     @Override
@@ -145,7 +147,7 @@ public class TileGearRepair extends BaseTile {
         for (int i = 0; i < FUEL_SLOTS_COUNT; i++) {
             int fuelSlotNumber = i + FIRST_FUEL_SLOT;
 
-            if (this.FuelRemaining < this.MaximumFuel) {
+            if (this.fuel < this.MaximumFuel) {
                 if (!itemStacks[fuelSlotNumber].isEmpty() && itemStacks[fuelSlotNumber].getItem() instanceof ItemOre) { // isEmpty()
                     // If the stack in this slot is not null and is fuel, set burnTimeRemaining &
                     // burnTimeInitialValue to the
@@ -153,7 +155,7 @@ public class TileGearRepair extends BaseTile {
 
                     ItemOre ore = (ItemOre) itemStacks[fuelSlotNumber].getItem();
 
-                    FuelRemaining += ore.GetFuelValue();
+                    fuel += ore.GetFuelValue();
 
                     itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
                     ++burningCount;
@@ -203,7 +205,7 @@ public class TileGearRepair extends BaseTile {
      * @return false if no items can be smelted, true otherwise
      */
     private boolean smeltItem(boolean performSmelt) {
-        if (this.FuelRemaining < 1) {
+        if (this.fuel < 1) {
             return false;
         }
 
@@ -234,11 +236,11 @@ public class TileGearRepair extends BaseTile {
 
                 fuelNeeded = itemStacks[inputSlot].getDamage();
 
-                if (fuelNeeded > this.FuelRemaining) {
-                    fuelNeeded = this.FuelRemaining;
+                if (fuelNeeded > this.fuel) {
+                    fuelNeeded = this.fuel;
                 }
 
-                if (fuelNeeded * fuelMulti <= this.FuelRemaining) {
+                if (fuelNeeded * fuelMulti <= this.fuel) {
                     result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
                 } else {
@@ -291,7 +293,7 @@ public class TileGearRepair extends BaseTile {
             itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
-        FuelRemaining -= fuelNeeded * fuelMulti; // TODO
+        fuel -= fuelNeeded * fuelMulti; // TODO
 
         markDirty();
         return true;

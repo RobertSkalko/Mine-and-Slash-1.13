@@ -103,6 +103,11 @@ public class TileGearModify extends BaseTile {
         return 10;
     }
 
+    @Override
+    public boolean onTickDoLogicAndUpdateIfTrue() {
+        return false;
+    }
+
     /**
      * Returns the amount of cook time completed on the currently cooking item.
      *

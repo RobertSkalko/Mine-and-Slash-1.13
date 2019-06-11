@@ -30,13 +30,15 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     public int ticks = 0;
     public short cookTime = 0;
-    public int FuelRemaining = 0;
+    public int fuel = 0;
 
     public abstract int ticksRequired();
 
     public abstract void finishCooking();
 
     public abstract boolean isCooking();
+
+    public abstract boolean onTickDoLogicAndUpdateIfTrue();
 
     public abstract int tickRate();
 
@@ -57,6 +59,10 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     @Override
     public void tick() {
         if (!this.world.isRemote) {
+
+            if (onTickDoLogicAndUpdateIfTrue()) {
+                sendUpdate();
+            }
 
             ticks++;
             if (ticks > tickRate()) {
@@ -299,7 +305,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         // Save everything else
         parentNBTTagCompound.putShort("CookTime", cookTime);
 
-        parentNBTTagCompound.putInt("fuel", this.FuelRemaining);
+        parentNBTTagCompound.putInt("fuel", this.fuel);
         return parentNBTTagCompound;
     }
 
@@ -323,7 +329,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         // the correct number of elements
         cookTime = nbtTagCompound.getShort("CookTime");
         ticks = nbtTagCompound.getInt("ticks");
-        this.FuelRemaining = nbtTagCompound.getInt("fuel");
+        this.fuel = nbtTagCompound.getInt("fuel");
     }
 
     //	// When the world loads from disk, the server needs to send the TileEntity information to the client

@@ -97,7 +97,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + tile.FuelRemaining);
+                hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);
             }
         }
         // If hoveringText is not empty draw the hovering text

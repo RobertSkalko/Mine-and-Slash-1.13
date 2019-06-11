@@ -71,7 +71,7 @@ public class TileGearFactory extends BaseTile {
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
 
-        if (FuelRemaining > pointsNeeded) {
+        if (fuel > pointsNeeded) {
 
             GearItemData gear = Gear.Load(stack);
 
@@ -128,9 +128,9 @@ public class TileGearFactory extends BaseTile {
      * @fuelSlot the number of the FuelRemaining slot (0..3)
      */
     public double fractionOfFuelRemaining(int fuelSlot) {
-        if (this.FuelRemaining <= 0)
+        if (this.fuel <= 0)
             return 0;
-        double fraction = FuelRemaining / (double) maxFuel;
+        double fraction = fuel / (double) maxFuel;
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
@@ -141,9 +141,9 @@ public class TileGearFactory extends BaseTile {
      * @return seconds remaining
      */
     public int secondsOfFuelRemaining(int fuelSlot) {
-        if (FuelRemaining <= 0)
+        if (fuel <= 0)
             return 0;
-        return FuelRemaining; // 20 ticks per second
+        return fuel; // 20 ticks per second
     }
 
     /**
@@ -168,15 +168,17 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public boolean isCooking() {
-
-        this.burnFuel();
-
         return canSmelt();
     }
 
     @Override
     public int tickRate() {
         return 10;
+    }
+
+    @Override
+    public boolean onTickDoLogicAndUpdateIfTrue() {
+        return burnFuel() > 0;
     }
 
     /**
@@ -192,7 +194,7 @@ public class TileGearFactory extends BaseTile {
         for (int i = 0; i < FUEL_SLOTS_COUNT; i++) {
             int fuelSlotNumber = i + FIRST_FUEL_SLOT;
 
-            if (this.FuelRemaining < this.maxFuel) {
+            if (this.fuel < this.maxFuel) {
                 if (!itemStacks[fuelSlotNumber].isEmpty()) { // isEmpty()
                     // If the stack in this slot is not null and is FuelRemaining, set burnTimeRemaining &
                     // burnTimeInitialValue to the
@@ -201,7 +203,7 @@ public class TileGearFactory extends BaseTile {
                     int fuel = GetFuelGain(itemStacks[fuelSlotNumber]);
 
                     if (fuel > 0) {
-                        this.FuelRemaining += fuel;
+                        this.fuel += fuel;
 
                     } else {
                         return 0;
@@ -264,7 +266,7 @@ public class TileGearFactory extends BaseTile {
         for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-                if (pointsNeeded < this.FuelRemaining) {
+                if (pointsNeeded < this.fuel) {
                     result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
                 } else {
@@ -317,7 +319,7 @@ public class TileGearFactory extends BaseTile {
             itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
-        FuelRemaining -= pointsNeeded;
+        fuel -= pointsNeeded;
 
         markDirty();
         return true;

@@ -78,6 +78,11 @@ public class TileMapDevice extends BaseTile {
     }
 
     @Override
+    public boolean onTickDoLogicAndUpdateIfTrue() {
+        return false;
+    }
+
+    @Override
     public void tick() {
         if (!this.world.isRemote) {
 
