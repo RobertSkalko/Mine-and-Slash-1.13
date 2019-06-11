@@ -14,8 +14,8 @@ import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -23,6 +23,36 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 @EventBusSubscriber
 public class OnLogin {
+
+    @SubscribeEvent
+    public static void onLogin(PlayerLoggedInEvent event) {
+
+        if (event.getPlayer().world.isRemote) {
+            return;
+        }
+
+        try {
+
+            PlayerEntity player = event.getPlayer();
+
+            if (Load.hasUnit(player)) {
+
+                UnitData data = Load.Unit(player);
+
+                data.onLogin(player);
+
+                data.syncToClient(player);
+
+                Load.playerMapData(player).teleportPlayerBack(player);
+
+            } else {
+                player.sendMessage(new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void GiveStarterItems(PlayerEntity player) {
 
@@ -75,36 +105,6 @@ public class OnLogin {
         ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
         mapdevice.setCount(64);
         player.inventory.addItemStackToInventory(mapdevice);
-
-    }
-
-    @SubscribeEvent
-    public static void onLogin(PlayerLoggedInEvent event) {
-
-        if (event.getPlayer().world.isRemote) {
-            return;
-        }
-
-        try {
-
-            PlayerEntity player = event.getPlayer();
-
-            if (Load.hasUnit(player)) {
-
-                UnitData data = Load.Unit(player);
-
-                data.onLogin(player);
-
-                data.syncToClient(player);
-
-                Load.playerMapData(player).teleportPlayerBack(player);
-
-            } else {
-                player.sendMessage(new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 

@@ -40,25 +40,27 @@ public class OnMobSpawn {
 
         if (endata != null) {
 
-            if (entity instanceof PlayerEntity) {
+        } else {
 
-            } else {
+            PlayerEntity nearestPlayer = null;
 
-                PlayerEntity nearestPlayer = PlayerUtils.findNearest(entity, 150F);
+            if (WorldUtils.isMapWorld(entity.world)) {
+
+                nearestPlayer = PlayerUtils.findNearest(entity, 150F);
 
                 if (nearestPlayer == null) {
-                    if (WorldUtils.isMapWorld(entity.world)) {
-                        event.setResult(Event.Result.DENY);
-                    }
-                } else {
-                    if (endata.needsToBeGivenStats()) {
-                        Unit unit = Unit.Mob(entity, nearestPlayer);
-                        endata.forceSetUnit(unit);
-                    }
+                    event.setResult(Event.Result.DENY);
+                    return;
                 }
             }
 
+            if (endata.needsToBeGivenStats()) {
+                Unit unit = Unit.Mob(entity, nearestPlayer);
+                endata.forceSetUnit(unit);
+            }
+
         }
+
     }
 
 }
