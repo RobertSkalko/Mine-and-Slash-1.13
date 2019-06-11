@@ -5,7 +5,7 @@ import com.robertx22.potion_effects.all.ManaRegenPotion;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -63,7 +63,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         if (!this.world.isRemote && caster != null && effect != null) {
 
-            List<LivingEntity> list = WizardryUtilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
+            List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
 
             for (int i = 0; i < list.size(); ++i) {
                 LivingEntity entity = list.get(i);

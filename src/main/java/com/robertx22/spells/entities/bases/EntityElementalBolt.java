@@ -6,7 +6,7 @@ import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -68,7 +68,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
             return (LivingEntity) enres.getEntity();
         }
 
-        List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
+        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
 
         if (entities.size() > 0) {
             return entities.get(0);

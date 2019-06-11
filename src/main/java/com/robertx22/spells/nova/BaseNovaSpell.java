@@ -10,7 +10,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -64,7 +64,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
             ElementalParticleUtils.SpawnNovaParticle(this.Element(), caster, radius, 200);
 
-            List<LivingEntity> list = WizardryUtilities.getEntitiesWithinRadius(radius, caster, LivingEntity.class);
+            List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius, caster, LivingEntity.class);
 
             for (int i = 0; i < list.size(); ++i) {
                 LivingEntity entity1 = list.get(i);

@@ -37,7 +37,7 @@ public class ParticleUtils {
             // Apparently the client side spawns the particles 1 block higher than it
             // should... hence the -
             // 0.5F.
-            double d1 = (double) ((float) WizardryUtilities.getPlayerEyesPos(en) - 0.5F + en.world.rand
+            double d1 = (double) ((float) Utilities.getPlayerEyesPos(en) - 0.5F + en.world.rand
                     .nextFloat());
             double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 

@@ -6,6 +6,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,6 +22,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
 
+    TileGearModify tile = new TileGearModify();
+
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
         super(cont, invPlayer, comp);
@@ -28,6 +31,11 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         xSize = 176;
         ySize = 207;
 
+        TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
+
+        if (en instanceof TileGearModify) {
+            this.tile = (TileGearModify) en;
+        }
     }
 
     // some [x,y] coordinates of graphical elements
@@ -41,6 +49,12 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
+        TileEntity en = Minecraft.getInstance().world.getTileEntity(this.getContainer().pos);
+
+        if (en instanceof TileGearModify) {
+            this.tile = (TileGearModify) en;
+        }
+
         // Bind the image texture
         Minecraft.getInstance().
 
@@ -53,8 +67,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // draw the cook progress bar
-        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (this
-                .getContainer().cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (this.tile
+                .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 
@@ -72,7 +86,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (this.getContainer().cookProgress * 100);
+            int cookPercentage = (int) (this.tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
 

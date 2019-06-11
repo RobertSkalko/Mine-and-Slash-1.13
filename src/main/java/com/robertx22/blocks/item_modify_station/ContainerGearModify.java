@@ -10,12 +10,13 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearModify extends BaseTileContainer {
 
     //public double cookProgress = 0;
 
-    public double cookProgress = 0;
+    public BlockPos pos = new BlockPos(0, 0, 0);
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -41,15 +42,15 @@ public class ContainerGearModify extends BaseTileContainer {
     public ContainerGearModify(int i, PlayerInventory playerInventory,
                                PacketBuffer packetBuffer) {
         this(i, playerInventory, new Inventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
-                .readDouble());
+                .readBlockPos());
     }
 
     public ContainerGearModify(int i, PlayerInventory invPlayer, IInventory inventory,
-                               double cookProgress) {
+                               BlockPos pos) {
 
         super(ContainerTypeRegisters.GEAR_MODIFY, i);
 
-        this.cookProgress = cookProgress;
+        this.pos = pos;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;

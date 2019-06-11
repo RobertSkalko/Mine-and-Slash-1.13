@@ -2,7 +2,7 @@ package com.robertx22.spells.entities.bases;
 
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
@@ -38,7 +38,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
         }
         if (effect != null && data != null) {
 
-            List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
+            List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
 
             if (entities != null) {
                 for (LivingEntity entity : entities) {

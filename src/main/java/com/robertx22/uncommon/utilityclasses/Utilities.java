@@ -8,11 +8,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public final class WizardryUtilities {
+public final class Utilities {
 
     /**
      * Shorthand for
-     * {@link WizardryUtilities#getEntitiesWithinRadius(double, double, double, double, World, Class)}
+     * {@link Utilities#getEntitiesWithinRadius(double, double, double, double, World, Class)}
      * with EntityLivingBase as the entity type. This is by far the most common use
      * for that method, which is why this shorthand exists.
      *
@@ -42,7 +42,7 @@ public final class WizardryUtilities {
      * @param world      The world to search in
      * @param entityType The class of entity to search for; pass in Entity.class for
      *                   all entities
-     * @see {@link WizardryUtilities#getEntitiesWithinRadius(double, double, double, double, World)}
+     * @see {@link Utilities#getEntitiesWithinRadius(double, double, double, double, World)}
      */
     public static <T extends Entity> List<T> getEntitiesWithinRadius(double radius,
                                                                      double x, double y,

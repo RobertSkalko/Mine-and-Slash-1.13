@@ -68,7 +68,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
             BaseTile basetile = (BaseTile) tile;
 
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, extraData -> {
-                extraData.writeDouble(basetile.fractionOfCookTimeComplete());
+                extraData.writeBlockPos(tile.getPos());
             });
 
             //player.openContainer((INamedContainerProvider) tile);

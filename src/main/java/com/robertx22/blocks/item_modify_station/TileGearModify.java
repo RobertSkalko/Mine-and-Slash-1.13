@@ -6,14 +6,18 @@ import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class TileGearModify extends BaseTile {
 
@@ -93,6 +97,20 @@ public class TileGearModify extends BaseTile {
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
+    private void sendUpdate() {
+
+        List<ServerPlayerEntity> players = Utilities.getEntitiesWithinRadius(5, pos.getX(), pos
+                .getY(), pos.getZ(), this.world, ServerPlayerEntity.class);
+
+        for (ServerPlayerEntity player : players) {
+            SUpdateTileEntityPacket supdatetileentitypacket = this.getUpdatePacket();
+            if (supdatetileentitypacket != null) {
+                player.connection.sendPacket(supdatetileentitypacket);
+            }
+        }
+
+    }
+
     @Override
     public void tick() {
         if (!this.world.isRemote) {
@@ -115,6 +133,9 @@ public class TileGearModify extends BaseTile {
                 } else {
                     cookTime = 0;
                 }
+
+                sendUpdate();
+
             }
         }
 
@@ -216,7 +237,7 @@ public class TileGearModify extends BaseTile {
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
 
-        return new ContainerGearModify(num, inventory, this, this.fractionOfCookTimeComplete());
+        return new ContainerGearModify(num, inventory, this, this.getPos());
 
     }
 

@@ -4,7 +4,7 @@ import com.mojang.datafixers.DataFixer;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
-import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -417,7 +417,7 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
                 double seekingRange = 3.0d;
 
                 if (setHomingTarget == false) {
-                    List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world);
+                    List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world);
 
                     for (Entity possibleTarget : entities) {
                         // Decides if current entity should be replaced.
