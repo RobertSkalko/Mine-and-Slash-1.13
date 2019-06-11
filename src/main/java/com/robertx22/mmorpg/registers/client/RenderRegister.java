@@ -42,6 +42,7 @@ public class RenderRegister {
         RenderingRegistry.registerEntityRenderingHandler(SpellAcidBomb.EntityAcidBomb.class, newRenFac());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(TestEntity.class, newRenFac());
 
     }
 

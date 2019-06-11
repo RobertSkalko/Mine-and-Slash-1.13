@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.registers.client.TestEntity;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
@@ -41,6 +42,8 @@ public class EntityRegister {
 
     }
 
+    public static final EntityType<TestEntity> TESTENTITY;
+
     public static final EntityType<SpellFireBolt.EntityFireBolt> FIREBOLT;
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> ACIDBOLT;
@@ -59,6 +62,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
 
     static {
+        TESTENTITY = newType(TestEntity.class, TestEntity::new, TestEntity::new, "testentitysdsd");
 
         FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
         FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
@@ -85,9 +89,6 @@ public class EntityRegister {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC)
                 .setCustomClientFactory(bif)
-                .setTrackingRange(64)
-                .setUpdateInterval(1)
-                .setShouldReceiveVelocityUpdates(true)
                 .size(0.25F, 0.25F)
                 .build(Ref.MODID + ":" + id.toLowerCase());
 

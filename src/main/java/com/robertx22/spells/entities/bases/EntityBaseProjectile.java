@@ -12,13 +12,13 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     @Override
     public IPacket<?> createSpawnPacket() {
-        return new SSpawnObjectPacket(this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -146,9 +146,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     }
 
+    @Override
+    @OnlyIn(Dist.CLIENT)
     public boolean isInRangeToRenderDist(double distance) {
         double d0 = this.getBoundingBox().getAverageEdgeLength() * 4.0D;
-
         if (Double.isNaN(d0)) {
             d0 = 4.0D;
         }

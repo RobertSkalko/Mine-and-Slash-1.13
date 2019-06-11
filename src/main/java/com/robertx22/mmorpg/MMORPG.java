@@ -176,6 +176,9 @@ public class MMORPG {
         if (msg == null || entity == null) {
             return;
         }
+        if (entity.world.isRemote) {
+            return;
+        }
 
         Network.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
 
