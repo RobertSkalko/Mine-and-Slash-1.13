@@ -1,5 +1,6 @@
-package com.robertx22.mmorpg;
+package com.robertx22.onevent.item;
 
+import com.robertx22.uncommon.interfaces.IRenamed;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -10,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.HashMap;
 
 @Mod.EventBusSubscriber
-public class MissingMappings {
+public class OnMissingMappings {
 
     static final HashMap<String, Item> map = new HashMap<>();
 

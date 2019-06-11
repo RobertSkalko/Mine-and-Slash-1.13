@@ -17,6 +17,10 @@ public class OnMobSpawn {
     @net.minecraftforge.eventbus.api.SubscribeEvent
     public static void onMobSpawn(EntityJoinWorldEvent event) {
 
+        if (event.getEntity() instanceof PlayerEntity) {
+            return;
+        }
+
         if (!(event.getEntity() instanceof LivingEntity)) {
             return;
         }

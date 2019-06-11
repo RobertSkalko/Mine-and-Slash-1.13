@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg;
+package com.robertx22.uncommon.interfaces;
 
 import java.util.List;
 

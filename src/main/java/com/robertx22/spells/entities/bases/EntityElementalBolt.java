@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -60,6 +61,12 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     public List<LivingEntity> entitiesHit = new ArrayList();
 
     private LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
+
+        EntityRayTraceResult enres = (EntityRayTraceResult) result;
+
+        if (enres.getEntity() instanceof LivingEntity) {
+            return (LivingEntity) enres.getEntity();
+        }
 
         List<LivingEntity> entities = WizardryUtilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
 

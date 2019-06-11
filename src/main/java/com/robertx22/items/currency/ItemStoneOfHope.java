@@ -3,7 +3,7 @@ package com.robertx22.items.currency;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.gens.GearLootGen;
-import com.robertx22.mmorpg.IRenamed;
+import com.robertx22.uncommon.interfaces.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;

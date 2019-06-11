@@ -54,7 +54,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    private static boolean RUN_DEV_TOOLS = true;
+    private static boolean RUN_DEV_TOOLS = false;
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -136,8 +136,6 @@ public class MMORPG {
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
-        //ModLoadingContext.get()
-        //      .registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandlerClient::getClientGuiElement);
 
     }
 

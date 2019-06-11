@@ -3,10 +3,10 @@ package com.robertx22.items.currency;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.loot.blueprints.UniqueBlueprint;
 import com.robertx22.loot.gens.UniqueGearLootGen;
-import com.robertx22.mmorpg.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.interfaces.IRenamed;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;

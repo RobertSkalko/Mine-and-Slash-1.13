@@ -7,7 +7,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocName extends ILocName {
 
-    public enum AutoLocGroup {
+    enum AutoLocGroup {
         Runes,
         Unique_Items,
         Spells,
