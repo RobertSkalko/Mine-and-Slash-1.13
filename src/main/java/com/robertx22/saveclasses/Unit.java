@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+// this stores data that can be lost without issue, stats that are recalculated all the time
+// and mob status effects.
 @Storable
 public class Unit {
 
@@ -50,9 +52,6 @@ public class Unit {
 
     @Store
     public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
-
-    //@Store
-    //public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>(); // possibly not needed as i can just get affixes from world?
 
     @Store
     public String GUID = UUID.randomUUID().toString();
@@ -359,6 +358,7 @@ public class Unit {
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
         CommonStatUtils.CalcTraitsAndCoreStats(data);
+        CommonStatUtils.addCustomStats(data, this, level);
 
         CalcStats(data);
 

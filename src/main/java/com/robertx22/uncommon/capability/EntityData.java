@@ -12,6 +12,7 @@ import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
+import com.robertx22.saveclasses.CustomStatsData;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.Chats;
@@ -19,6 +20,7 @@ import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.uncommon.datasaving.CustomStats;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
@@ -193,6 +195,8 @@ public class EntityData {
         int getTier();
 
         float getStatMultiplierIncreaseByTier();
+
+        CustomStatsData getCustomStats();
     }
 
     @EventBusSubscriber
@@ -254,6 +258,8 @@ public class EntityData {
         float energy;
         float mana;
 
+        CustomStatsData customStats = new CustomStatsData();
+
         @Override
         public CompoundNBT getNBT() {
             nbt.putFloat(MANA, mana);
@@ -270,6 +276,10 @@ public class EntityData {
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
+
+            if (customStats != null) {
+                nbt.put(CustomStats.LOC, CustomStats.Save(nbt, customStats));
+            }
 
             if (unit != null) {
                 UnitNbt.Save(this.nbt, unit);
@@ -295,6 +305,11 @@ public class EntityData {
             this.setMobStats = value.getBoolean(SET_MOB_STATS);
             this.isNewbie = value.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = value.getBoolean(EQUIPS_CHANGED);
+
+            CustomStatsData newstats = CustomStats.Load(nbt);
+            if (newstats != null) {
+                this.customStats = newstats;
+            }
 
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
@@ -854,6 +869,11 @@ public class EntityData {
         @Override
         public float getStatMultiplierIncreaseByTier() {
             return 1 + tier * 0.15F;
+        }
+
+        @Override
+        public CustomStatsData getCustomStats() {
+            return this.customStats;
         }
 
         @Override

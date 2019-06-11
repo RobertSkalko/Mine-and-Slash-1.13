@@ -10,7 +10,7 @@ import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.interfaces.IStatConversion;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
@@ -20,6 +20,12 @@ import net.minecraft.entity.LivingEntity;
 import java.util.List;
 
 public class CommonStatUtils {
+
+    public static void addCustomStats(UnitData data, Unit unit, int level) {
+        for (StatModData stat : data.getCustomStats().stats.values()) {
+            stat.useOnPlayer(data);
+        }
+    }
 
     public static void AddStatusEffectStats(Unit unit, int level) {
 
@@ -42,7 +48,7 @@ public class CommonStatUtils {
 
     }
 
-    public static void CalcTraitsAndCoreStats(EntityData.UnitData unit) {
+    public static void CalcTraitsAndCoreStats(UnitData unit) {
 
         Unit theunit = unit.getUnit();
 

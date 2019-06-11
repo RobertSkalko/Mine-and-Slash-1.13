@@ -39,6 +39,7 @@ public class ContainerGearModify extends BaseTileContainer {
                                PacketBuffer packetBuffer) {
         this(i, playerInventory, new Inventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
                 .readBlockPos());
+
     }
 
     public ContainerGearModify(int i, PlayerInventory invPlayer, IInventory inventory,
