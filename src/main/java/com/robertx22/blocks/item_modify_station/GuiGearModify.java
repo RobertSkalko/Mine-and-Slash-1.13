@@ -17,7 +17,6 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiGearModify extends TileGui<ContainerGearModify> {
-    public TileGearModify tile;
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
@@ -28,8 +27,6 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
 
         xSize = 176;
         ySize = 207;
-
-        this.tile = cont.tile;
 
     }
 
@@ -45,14 +42,19 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
         // Bind the image texture
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        Minecraft.getInstance().
+
+                getTextureManager().
+
+                bindTexture(texture);
         // Draw the image
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // draw the cook progress bar
-        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
-                .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (this
+                .getContainer().cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 
@@ -70,7 +72,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify> {
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
+            int cookPercentage = (int) (this.getContainer().cookProgress * 100);
             hoveringText.add(cookPercentage + "%");
         }
 

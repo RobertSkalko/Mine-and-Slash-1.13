@@ -12,6 +12,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -27,6 +28,13 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     public int ticks = 0;
     public short cookTime = 0;
     public int FuelRemaining = 0;
+
+    private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
+
+    public double fractionOfCookTimeComplete() {
+        double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
+        return MathHelper.clamp(fraction, 0.0, 1.0);
+    }
 
     // OVERRIDE IF AUTOMATABLE
     @Override

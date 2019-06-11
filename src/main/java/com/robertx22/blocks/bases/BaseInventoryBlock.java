@@ -2,6 +2,7 @@ package com.robertx22.blocks.bases;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -14,6 +15,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootContext;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,9 +63,15 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile instanceof INamedContainerProvider) {
+        if (tile instanceof BaseTile) {
 
-            player.openContainer((INamedContainerProvider) tile);
+            BaseTile basetile = (BaseTile) tile;
+
+            NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, extraData -> {
+                extraData.writeDouble(basetile.fractionOfCookTimeComplete());
+            });
+
+            //player.openContainer((INamedContainerProvider) tile);
 
         }
 

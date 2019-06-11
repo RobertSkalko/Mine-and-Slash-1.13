@@ -10,6 +10,7 @@ import com.robertx22.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,7 +48,8 @@ public class ContainerTypeRegisters {
         IForgeRegistry<ContainerType<?>> r = event.getRegistry();
 
         r.register(new ContainerType<>(ContainerGearFactory::new).setRegistryName(BlockRegister.GEAR_FACTORY_ID));
-        r.register(new ContainerType<>(ContainerGearModify::new).setRegistryName(BlockRegister.GEAR_MODIFY_ID));
+        r.register(IForgeContainerType.create(ContainerGearModify::new)
+                .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
         r.register(new ContainerType<>(ContainerGearRepair::new).setRegistryName(BlockRegister.GEAR_REPAIR_ID));
         r.register(new ContainerType<>(ContainerGearSalvage::new).setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
         r.register(new ContainerType<>(ContainerMapDevice::new).setRegistryName(BlockRegister.MAP_DEVICE_ID));

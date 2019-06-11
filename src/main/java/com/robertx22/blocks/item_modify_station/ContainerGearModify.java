@@ -6,18 +6,16 @@ import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 
 public class ContainerGearModify extends BaseTileContainer {
 
-    // Stores the tile entity instance for later use
+    //public double cookProgress = 0;
 
-    // These store cache values, used by the server to only update the client side
-    // tile entity when values have changed
-    private int[] cachedFields;
-
-    public TileGearModify tile;
+    public double cookProgress = 0;
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -40,14 +38,18 @@ public class ContainerGearModify extends BaseTileContainer {
     private final int FIRST_INPUT_SLOT_NUMBER = 0;
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
 
-    public ContainerGearModify(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new TileGearModify());
+    public ContainerGearModify(int i, PlayerInventory playerInventory,
+                               PacketBuffer packetBuffer) {
+        this(i, playerInventory, new Inventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
+                .readDouble());
     }
 
-    public ContainerGearModify(int i, PlayerInventory invPlayer, TileGearModify tile) {
+    public ContainerGearModify(int i, PlayerInventory invPlayer, IInventory inventory,
+                               double cookProgress) {
+
         super(ContainerTypeRegisters.GEAR_MODIFY, i);
 
-        this.tile = tile;
+        this.cookProgress = cookProgress;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -77,14 +79,14 @@ public class ContainerGearModify extends BaseTileContainer {
         final int INPUT_SLOTS_YPOS = 24;
         // Add the tile input slots
 
-        addSlot(new SlotSmeltableInput(tile, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+        addSlot(new SlotSmeltableInput(inventory, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
-        addSlot(new SlotSmeltableInput(tile, FIRST_INPUT_SLOT_NUMBER + 1, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+        addSlot(new SlotSmeltableInput(inventory, FIRST_INPUT_SLOT_NUMBER + 1, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
         final int OUTPUT_SLOTS_XPOS = 134;
         final int OUTPUT_SLOTS_YPOS = 24;
 
-        addSlot(new SlotOutput(tile, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+        addSlot(new SlotOutput(inventory, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
     }
 

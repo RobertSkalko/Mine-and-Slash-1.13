@@ -216,7 +216,7 @@ public class TileGearModify extends BaseTile {
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
 
-        return new ContainerGearModify(num, inventory, this);
+        return new ContainerGearModify(num, inventory, this, this.fractionOfCookTimeComplete());
 
     }
 
