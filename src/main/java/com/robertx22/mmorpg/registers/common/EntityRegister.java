@@ -14,9 +14,9 @@ import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
@@ -31,7 +31,7 @@ import java.util.function.BiFunction;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityRegister {
 
-    public static List<EntityType<? extends LivingEntity>> ENTITY_TYPES = new LinkedList();
+    public static List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
 
     @SubscribeEvent
     public static void registerEntityTypes(
@@ -41,22 +41,22 @@ public class EntityRegister {
 
     }
 
-    public static final EntityType<? extends LivingEntity> FIREBOLT;
-    public static final EntityType<? extends LivingEntity> FROSTBOLT;
-    public static final EntityType<? extends LivingEntity> ACIDBOLT;
-    public static final EntityType<? extends LivingEntity> THUNDERBOLT;
+    public static final EntityType<SpellFireBolt.EntityFireBolt> FIREBOLT;
+    public static final EntityType<? extends Entity> FROSTBOLT;
+    public static final EntityType<? extends Entity> ACIDBOLT;
+    public static final EntityType<? extends Entity> THUNDERBOLT;
 
-    public static final EntityType<? extends LivingEntity> FIREBOMB;
-    public static final EntityType<? extends LivingEntity> FROSTBOMB;
-    public static final EntityType<? extends LivingEntity> ACIDBOMB;
-    public static final EntityType<? extends LivingEntity> THUNDERBOMB;
+    public static final EntityType<? extends Entity> FIREBOMB;
+    public static final EntityType<SpellIceBomb.EntityIceBomb> FROSTBOMB;
+    public static final EntityType<? extends Entity> ACIDBOMB;
+    public static final EntityType<? extends Entity> THUNDERBOMB;
 
-    public static final EntityType<? extends LivingEntity> FIREEXPLOSION;
-    public static final EntityType<? extends LivingEntity> FROSTEXPLOSION;
-    public static final EntityType<? extends LivingEntity> ACIDEXPLOSION;
-    public static final EntityType<? extends LivingEntity> THUNDEREXPLOSION;
+    public static final EntityType<? extends Entity> FIREEXPLOSION;
+    public static final EntityType<? extends Entity> FROSTEXPLOSION;
+    public static final EntityType<? extends Entity> ACIDEXPLOSION;
+    public static final EntityType<? extends Entity> THUNDEREXPLOSION;
 
-    public static final EntityType<? extends LivingEntity> STAFFPROJECTILE;
+    public static final EntityType<? extends Entity> STAFFPROJECTILE;
 
     static {
 
@@ -79,7 +79,7 @@ public class EntityRegister {
 
     }
 
-    private static <T extends LivingEntity> EntityType<T> newType(
+    private static <T extends Entity> EntityType<T> newType(
             Class<? extends T> entityClass, EntityType.IFactory<T> factory,
             BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif, String id) {
 

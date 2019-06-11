@@ -14,7 +14,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.HandSide;
 import net.minecraft.util.math.*;
 import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class EntityBaseProjectile extends LivingEntity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends Entity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
 
     Entity homindTarget = null;
     boolean setHomingTarget = false;
@@ -54,6 +53,11 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     public SpellType spellType = SpellType.Self_Heal;
 
     public abstract double radius();
+
+    @Override
+    protected void registerData() {
+
+    }
 
     @Override
     public IPacket<?> createSpawnPacket() {
@@ -85,18 +89,8 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     }
 
     @Override
-    public ItemStack getItemStackFromSlot(EquipmentSlotType slotIn) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
     public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack) {
 
-    }
-
-    @Override
-    public HandSide getPrimaryHand() {
-        return HandSide.LEFT;
     }
 
     @Override
@@ -144,7 +138,7 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
         this.doGroundProc = newVal;
     }
 
-    public EntityBaseProjectile(EntityType<? extends LivingEntity> type, World worldIn) {
+    public EntityBaseProjectile(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
@@ -449,8 +443,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
     @Override
     public void writeAdditional(CompoundNBT compound) {
 
-        super.writeAdditional(compound);
-
         compound.putInt("xTile", this.xTile);
         compound.putInt("yTile", this.yTile);
         compound.putInt("zTile", this.zTile);
@@ -473,7 +465,6 @@ public abstract class EntityBaseProjectile extends LivingEntity implements IProj
      */
     @Override
     public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
 
         this.xTile = compound.getInt("xTile");
         this.yTile = compound.getInt("yTile");

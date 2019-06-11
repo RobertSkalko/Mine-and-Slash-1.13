@@ -6,6 +6,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.Utilities;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -23,7 +24,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
         return 2.5D;
     }
 
-    public EntityBombProjectile(EntityType<? extends LivingEntity> type, World worldIn) {
+    public EntityBombProjectile(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
 
         this.setDeathTime(60);
@@ -37,6 +38,11 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
     public void tick() {
 
         super.tick();
+
+        if (this.world.isRemote) {
+
+            System.out.println("it works");
+        }
 
     }
 

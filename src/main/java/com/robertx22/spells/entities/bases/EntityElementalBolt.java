@@ -33,7 +33,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public abstract Elements element();
 
-    public EntityElementalBolt(EntityType<? extends LivingEntity> type, World worldIn) {
+    public EntityElementalBolt(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
 
     }
