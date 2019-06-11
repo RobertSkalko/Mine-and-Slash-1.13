@@ -6,18 +6,14 @@ import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class TileGearModify extends BaseTile {
 
@@ -87,6 +83,26 @@ public class TileGearModify extends BaseTile {
 
     }
 
+    @Override
+    public int ticksRequired() {
+        return COOK_TIME_FOR_COMPLETION;
+    }
+
+    @Override
+    public void finishCooking() {
+        this.smeltItem();
+    }
+
+    @Override
+    public boolean isCooking() {
+        return canSmelt();
+    }
+
+    @Override
+    public int tickRate() {
+        return 10;
+    }
+
     /**
      * Returns the amount of cook time completed on the currently cooking item.
      *
@@ -95,50 +111,6 @@ public class TileGearModify extends BaseTile {
     public double fractionOfCookTimeComplete() {
         double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
         return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
-    private void sendUpdate() {
-
-        List<ServerPlayerEntity> players = Utilities.getEntitiesWithinRadius(5, pos.getX(), pos
-                .getY(), pos.getZ(), this.world, ServerPlayerEntity.class);
-
-        for (ServerPlayerEntity player : players) {
-            SUpdateTileEntityPacket supdatetileentitypacket = this.getUpdatePacket();
-            if (supdatetileentitypacket != null) {
-                player.connection.sendPacket(supdatetileentitypacket);
-            }
-        }
-
-    }
-
-    @Override
-    public void tick() {
-        if (!this.world.isRemote) {
-
-            ticks++;
-            if (ticks > 20) {
-                ticks = 0;
-                if (canSmelt()) {
-
-                    cookTime += 20;
-
-                    if (cookTime < 0)
-                        cookTime = 0;
-
-                    // If cookTime has reached maxCookTime smelt the item and reset cookTime
-                    if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-                        smeltItem();
-                        cookTime = 0;
-                    }
-                } else {
-                    cookTime = 0;
-                }
-
-                sendUpdate();
-
-            }
-        }
-
     }
 
     /**
@@ -236,9 +208,7 @@ public class TileGearModify extends BaseTile {
     @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-
         return new ContainerGearModify(num, inventory, this, this.getPos());
-
     }
 
     @Override

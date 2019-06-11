@@ -1,6 +1,7 @@
 package com.robertx22.blocks.repair_station;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
+import com.robertx22.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,32 +9,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 
-/**
- * User: brandon3055 Date: 06/01/2015
- * <p>
- * ContainerSmelting is used to link the client side gui to the server side
- * inventory and it is where you add the slots holding items. It is also used to
- * send server side dataInstance such as progress bars to the client for use in guis
- */
 public class ContainerGearRepair extends BaseTileContainer {
-
-    // These store cache values, used by the server to only update the client side
-    // tile entity when values have changed
-    private int[] cachedFields;
-
-    // must assign a slot index to each of the slots used by the GUI.
-    // For this container, we can see the furnace fuel, input, and output slots as
-    // well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container using addSlot(), it
-    // automatically increases the slotIndex, which means
-    // 0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 -
-    // 8)
-    // 9 - 35 = player inventory slots (which map to the InventoryPlayer slot
-    // numbers 9 - 35)
-    // 36 - 39 = fuel slots (tileEntity 0 - 3)
-    // 40 - 44 = input slots (tileEntity 4 - 8)
-    // 45 - 49 = output slots (tileEntity 9 - 13)
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -61,12 +40,15 @@ public class ContainerGearRepair extends BaseTileContainer {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerGearRepair(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new Inventory(TileGearRepair.TOTAL_SLOTS_COUNT));
+    public ContainerGearRepair(int i, PlayerInventory playerInventory, PacketBuffer buf) {
+        this(i, playerInventory, new Inventory(TileGearSalvage.TOTAL_SLOTS_COUNT), buf.readBlockPos());
     }
 
-    public ContainerGearRepair(int num, PlayerInventory invPlayer, IInventory inv) {
+    public ContainerGearRepair(int num, PlayerInventory invPlayer, IInventory inv,
+                               BlockPos pos) {
         super(ContainerTypeRegisters.GEAR_REPAIR, num);
+
+        this.pos = pos;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;

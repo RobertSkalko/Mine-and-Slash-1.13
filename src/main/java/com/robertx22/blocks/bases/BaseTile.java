@@ -1,6 +1,8 @@
 package com.robertx22.blocks.bases;
 
+import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -28,6 +31,54 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     public int ticks = 0;
     public short cookTime = 0;
     public int FuelRemaining = 0;
+
+    public abstract int ticksRequired();
+
+    public abstract void finishCooking();
+
+    public abstract boolean isCooking();
+
+    public abstract int tickRate();
+
+    private void sendUpdate() {
+
+        List<ServerPlayerEntity> players = Utilities.getEntitiesWithinRadius(5, pos.getX(), pos
+                .getY(), pos.getZ(), this.world, ServerPlayerEntity.class);
+
+        for (ServerPlayerEntity player : players) {
+            SUpdateTileEntityPacket supdatetileentitypacket = this.getUpdatePacket();
+            if (supdatetileentitypacket != null) {
+                player.connection.sendPacket(supdatetileentitypacket);
+            }
+        }
+
+    }
+
+    @Override
+    public void tick() {
+        if (!this.world.isRemote) {
+
+            ticks++;
+            if (ticks > tickRate()) {
+                ticks = 0;
+                if (isCooking()) {
+
+                    cookTime += tickRate();
+
+                    if (cookTime >= ticksRequired()) {
+                        finishCooking();
+                        cookTime = 0;
+                    }
+                    sendUpdate();
+
+                } else {
+                    cookTime = 0;
+                }
+
+            }
+        }
+
+    }
 
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
@@ -243,6 +294,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         // the array of hashmaps is then inserted into the instance hashmap for the
         // container
         parentNBTTagCompound.put("Items", dataForAllSlots);
+        parentNBTTagCompound.putInt("ticks", ticks);
 
         // Save everything else
         parentNBTTagCompound.putShort("CookTime", cookTime);
@@ -270,7 +322,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         // Load everything else. Trim the arrays (or pad with 0) to make sure they have
         // the correct number of elements
         cookTime = nbtTagCompound.getShort("CookTime");
-
+        ticks = nbtTagCompound.getInt("ticks");
         this.FuelRemaining = nbtTagCompound.getInt("fuel");
     }
 

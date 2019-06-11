@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -18,23 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiGearFactory extends TileGui<ContainerGearFactory> {
+public class GuiGearFactory extends TileGui<ContainerGearFactory, TileGearFactory> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/gear_factory_station.png");
-    private TileGearFactory tileEntity;
-
-    public GuiGearFactory(ContainerGearFactory cont, PlayerInventory invPlayer,
-                          TileGearFactory tile) {
-
-        this(cont, invPlayer, new StringTextComponent("Factory"));
-
-        this.tileEntity = tile;
-    }
 
     public GuiGearFactory(ContainerGearFactory cont, PlayerInventory invPlayer,
                           ITextComponent comp) {
-        super(cont, invPlayer, comp);
+        super(cont, invPlayer, comp, TileGearFactory.class);
 
     }
 
@@ -64,13 +54,13 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory> {
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // get cook progress as a double between 0 and 1
-        double cookProgress = tileEntity.fractionOfCookTimeComplete();
+        double cookProgress = tile.fractionOfCookTimeComplete();
         // draw the cook progress bar
         blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
-        for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-            double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
+        for (int i = 0; i < tile.FUEL_SLOTS_COUNT; ++i) {
+            double burnRemaining = tile.fractionOfFuelRemaining(i);
             int yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
             blit(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
@@ -85,7 +75,7 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory> {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        font.drawString(CLOC.translate(tileEntity.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
@@ -93,16 +83,16 @@ public class GuiGearFactory extends TileGui<ContainerGearFactory> {
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
+            int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
 
         // If the mouse is over one of the burn time indicator add the burn time
         // indicator hovering text
-        for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
+        for (int i = 0; i < tile.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + tileEntity.secondsOfFuelRemaining(i));
+                hoveringText.add(Words.Fuel.translate() + ": " + tile.secondsOfFuelRemaining(i));
 
             }
         }

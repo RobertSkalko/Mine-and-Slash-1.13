@@ -17,17 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiGearRepair extends TileGui<ContainerGearRepair> {
+public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
 
-    double cookProgress = 0;
-    int fuel = 0;
-
     public GuiGearRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
-        super(cont, invPlayer, new StringTextComponent("Modify"));
+        super(cont, invPlayer, new StringTextComponent("Modify"), TileGearRepair.class);
 
         // Set the width and height of the gui
         xSize = 176;
@@ -62,13 +59,14 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair> {
 
         // get cook progress as a double between 0 and 1
         // draw the cook progress bar
-        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
+                .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
             //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
 
-            int yOffset = (int) ((1.0 - cookProgress) * FLAME_HEIGHT);
+            int yOffset = (int) ((1.0 - tile.fractionOfCookTimeComplete()) * FLAME_HEIGHT);
             blit(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
 
@@ -90,7 +88,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair> {
         // If the mouse is over the progress bar add the progress bar hovering text
         if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (cookProgress * 100);
+            int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
         }
 
@@ -99,7 +97,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair> {
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
             if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + fuel);
+                hoveringText.add(Words.Fuel.translate() + ": " + tile.FuelRemaining);
             }
         }
         // If hoveringText is not empty draw the hovering text

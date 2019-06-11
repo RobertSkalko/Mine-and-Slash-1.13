@@ -65,13 +65,9 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
         if (tile instanceof BaseTile) {
 
-            BaseTile basetile = (BaseTile) tile;
-
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, extraData -> {
                 extraData.writeBlockPos(tile.getPos());
             });
-
-            //player.openContainer((INamedContainerProvider) tile);
 
         }
 

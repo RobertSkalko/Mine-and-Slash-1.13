@@ -47,11 +47,15 @@ public class ContainerTypeRegisters {
 
         IForgeRegistry<ContainerType<?>> r = event.getRegistry();
 
-        r.register(new ContainerType<>(ContainerGearFactory::new).setRegistryName(BlockRegister.GEAR_FACTORY_ID));
+        r.register(IForgeContainerType.create(ContainerGearFactory::new)
+                .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
         r.register(IForgeContainerType.create(ContainerGearModify::new)
                 .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
-        r.register(new ContainerType<>(ContainerGearRepair::new).setRegistryName(BlockRegister.GEAR_REPAIR_ID));
-        r.register(new ContainerType<>(ContainerGearSalvage::new).setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
+        r.register(IForgeContainerType.create(ContainerGearRepair::new)
+                .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
+        r.register(IForgeContainerType.create(ContainerGearSalvage::new)
+                .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
+
         r.register(new ContainerType<>(ContainerMapDevice::new).setRegistryName(BlockRegister.MAP_DEVICE_ID));
 
         r.register(new ContainerType<>(ContainerMapBag::new).setRegistryName(MAP_BAG_ID));

@@ -29,8 +29,8 @@ public class TileGearRepair extends BaseTile {
         return getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
-    private int FuelRemaining = 0;
-    private int MaximumFuel = 5000;
+    public int FuelRemaining = 0;
+    public int MaximumFuel = 5000;
 
     // returns the smelting result for the given stack. Returns null if the given
     // stack can not be smelted
@@ -110,30 +110,26 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public void tick() {
+    public int ticksRequired() {
+        return COOK_TIME_FOR_COMPLETION;
+    }
 
-        if (!this.world.isRemote) {
-            int numberOfFuelBurning = burnFuel();
-            ticks++;
-            if (ticks > 20) {
-                ticks = 0;
-                if (canSmelt()) {
+    @Override
+    public void finishCooking() {
+        this.smeltItem();
+    }
 
-                    cookTime += 20;
+    @Override
+    public boolean isCooking() {
 
-                    if (cookTime < 0)
-                        cookTime = 0;
+        this.burnFuel();
 
-                    // If cookTime has reached maxCookTime smelt the item and reset cookTime
-                    if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-                        smeltItem();
-                        cookTime = 0;
-                    }
-                } else {
-                    cookTime = 0;
-                }
-            }
-        }
+        return canSmelt();
+    }
+
+    @Override
+    public int tickRate() {
+        return 10;
     }
 
     /**
@@ -309,7 +305,7 @@ public class TileGearRepair extends BaseTile {
 
     @Nullable
     @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return new ContainerGearRepair(num, inv, this);
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new ContainerGearRepair(num, inventory, this, this.getPos());
     }
 }

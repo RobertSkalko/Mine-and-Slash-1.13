@@ -58,6 +58,26 @@ public class TileMapDevice extends BaseTile {
     }
 
     @Override
+    public int ticksRequired() {
+        return 0;
+    }
+
+    @Override
+    public void finishCooking() {
+
+    }
+
+    @Override
+    public boolean isCooking() {
+        return false;
+    }
+
+    @Override
+    public int tickRate() {
+        return 0;
+    }
+
+    @Override
     public void tick() {
         if (!this.world.isRemote) {
 

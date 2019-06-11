@@ -14,10 +14,6 @@ import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearModify extends BaseTileContainer {
 
-    //public double cookProgress = 0;
-
-    public BlockPos pos = new BlockPos(0, 0, 0);
-
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;

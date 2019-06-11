@@ -5,17 +5,13 @@ import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearSalvage extends BaseTileContainer {
-
-    // Stores the tile entity instance for later use
-    private TileGearSalvage tileGearSalvage;
-
-    // These store cache values, used by the server to only update the client side
-    // tile entity when values have changed
-    private int[] cachedFields;
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -40,15 +36,16 @@ public class ContainerGearSalvage extends BaseTileContainer {
     private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
-    public ContainerGearSalvage(int i, PlayerInventory playerInventory) {
-        super(ContainerTypeRegisters.GEAR_SALVAGE, i);
+    public ContainerGearSalvage(int i, PlayerInventory playerInventory,
+                                PacketBuffer buf) {
+        this(i, playerInventory, new Inventory(TileGearSalvage.TOTAL_SLOTS_COUNT), buf.readBlockPos());
     }
 
-    public ContainerGearSalvage(int num, PlayerInventory invPlayer,
-                                TileGearSalvage tile) {
+    public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
+                                BlockPos pos) {
         super(ContainerTypeRegisters.GEAR_SALVAGE, num);
 
-        this.tileGearSalvage = tile;
+        this.pos = pos;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -77,7 +74,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile input slots
         for (int y = 0; y < INPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_INPUT_SLOT_NUMBER;
-            addSlot(new SlotSmeltableInput(tileGearSalvage, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotSmeltableInput(inventory, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int OUTPUT_SLOTS_XPOS = 134;
@@ -85,7 +82,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile output slots
         for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_OUTPUT_SLOT_NUMBER;
-            addSlot(new SlotOutput(tileGearSalvage, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SlotOutput(inventory, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
@@ -93,7 +90,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile capacitor slot
         for (int x = 0; x < 1; x++) {
             int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
-            addSlot(new Slot(tileGearSalvage, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
+            addSlot(new Slot(inventory, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
         }
 
     }
@@ -102,7 +99,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return tileGearSalvage.isUsableByPlayer(player);
+        return true;
     }
 
     private boolean IsCustomContainer(int index) {

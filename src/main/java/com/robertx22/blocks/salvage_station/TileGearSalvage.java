@@ -2,7 +2,6 @@ package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
@@ -88,30 +87,23 @@ public class TileGearSalvage extends BaseTile {
     }
 
     @Override
-    public void tick() {
+    public int ticksRequired() {
+        return COOK_TIME_FOR_COMPLETION;
+    }
 
-        if (!this.world.isRemote) {
-            ticks++;
-            if (ticks > 10) {
-                ticks = 0;
-                if (canSmelt()) {
+    @Override
+    public void finishCooking() {
+        this.smeltItem();
+    }
 
-                    cookTime += 20;
+    @Override
+    public boolean isCooking() {
+        return canSmelt();
+    }
 
-                    if (cookTime < 0)
-                        cookTime = 0;
-
-                    // If cookTime has reached maxCookTime smelt the item and reset cookTime
-                    if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-                        smeltItem();
-                        cookTime = 0;
-                    }
-                } else {
-                    cookTime = 0;
-                }
-            }
-        }
-
+    @Override
+    public int tickRate() {
+        return 10;
     }
 
     /**
@@ -230,7 +222,7 @@ public class TileGearSalvage extends BaseTile {
 
     @Nullable
     @Override
-    public Container createMenu(int num, PlayerInventory inv, PlayerEntity player) {
-        return ContainerTypeRegisters.GEAR_SALVAGE.func_221506_a(num, inv);
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new ContainerGearSalvage(num, inventory, this, this.getPos());
     }
 }

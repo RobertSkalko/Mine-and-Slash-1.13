@@ -157,29 +157,26 @@ public class TileGearFactory extends BaseTile {
     }
 
     @Override
-    public void tick() {
+    public int ticksRequired() {
+        return COOK_TIME_FOR_COMPLETION;
+    }
 
-        if (!this.world.isRemote) {
-            ticks++;
-            if (ticks > 20) {
-                ticks = 0;
-                if (canSmelt()) {
+    @Override
+    public void finishCooking() {
+        this.smeltItem();
+    }
 
-                    cookTime += 5;
+    @Override
+    public boolean isCooking() {
 
-                    if (cookTime < 0)
-                        cookTime = 0;
+        this.burnFuel();
 
-                    // If cookTime has reached maxCookTime smelt the item and reset cookTime
-                    if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-                        smeltItem();
-                        cookTime = 0;
-                    }
-                } else {
-                    cookTime = 0;
-                }
-            }
-        }
+        return canSmelt();
+    }
+
+    @Override
+    public int tickRate() {
+        return 10;
     }
 
     /**
@@ -337,6 +334,6 @@ public class TileGearFactory extends BaseTile {
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
 
-        return new ContainerGearFactory(i, playerInventory, this);
+        return new ContainerGearFactory(i, playerInventory, this, this.pos);
     }
 }

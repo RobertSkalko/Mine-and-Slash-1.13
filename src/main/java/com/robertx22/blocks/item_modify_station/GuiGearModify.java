@@ -17,25 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiGearModify extends TileGui<ContainerGearModify> {
+public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/modify_station.png");
 
-    TileGearModify tile = new TileGearModify();
-
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
-        super(cont, invPlayer, comp);
+        super(cont, invPlayer, comp, TileGearModify.class);
 
         xSize = 176;
         ySize = 207;
 
-        TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
-
-        if (en instanceof TileGearModify) {
-            this.tile = (TileGearModify) en;
-        }
     }
 
     // some [x,y] coordinates of graphical elements
