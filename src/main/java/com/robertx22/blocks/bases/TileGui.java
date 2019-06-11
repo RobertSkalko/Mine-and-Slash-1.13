@@ -36,7 +36,7 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
         }
 
         if (mc.player.ticksExisted % 20 == 0) {
-            MMORPG.sendToServer(new RequestTilePacket(tile.getPos(), mc.player));
+            MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
         }
 
         this.renderBackground();

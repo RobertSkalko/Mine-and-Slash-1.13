@@ -1,6 +1,7 @@
 package com.robertx22.items.currency;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.database.IGUID;
 import com.robertx22.items.ItemDefault;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
@@ -20,7 +21,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
+public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered {
 
     public static List<CurrencyItem> ITEMS = new ArrayList<>();
 
@@ -40,8 +41,9 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(Styles.GREENCOMP().appendSibling(CLOC.tooltip(GUID())), tooltip);
-        Tooltip.add(CLOC.lore(GUID()), tooltip);
+        Tooltip.add(Styles.GREENCOMP()
+                .appendSibling(CLOC.tooltip(formattedGUID())), tooltip);
+        Tooltip.add(CLOC.lore(formattedGUID()), tooltip);
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);
 

@@ -1,6 +1,5 @@
 package com.robertx22.network;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -18,7 +17,7 @@ public class RequestTilePacket {
 
     }
 
-    public RequestTilePacket(BlockPos pos, PlayerEntity player) {
+    public RequestTilePacket(BlockPos pos) {
         this.pos = pos;
     }
 
@@ -49,7 +48,7 @@ public class RequestTilePacket {
                 if (player != null) {
                     sendUpdate(pkt.pos, player);
                 }
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
