@@ -62,9 +62,13 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     private LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
 
-        EntityRayTraceResult enres = (EntityRayTraceResult) result;
+        EntityRayTraceResult enres = null;
 
-        if (enres.getEntity() instanceof LivingEntity) {
+        if (result instanceof EntityRayTraceResult) {
+            enres = (EntityRayTraceResult) result;
+        }
+
+        if (enres != null && enres.getEntity() instanceof LivingEntity) {
             return (LivingEntity) enres.getEntity();
         }
 

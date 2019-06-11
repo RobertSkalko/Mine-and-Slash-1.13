@@ -31,6 +31,7 @@ public abstract class BaseBolt extends BaseSpell {
             projectile.SpawnAndShoot(new SpellEffectDamage(this.Element()), new DamageData(caster, data), caster);
 
         }
+
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SPLASH_POTION_THROW, 1, 1);
         caster.swingArm(hand);
         return true;

@@ -6,9 +6,9 @@ import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.UseAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -58,18 +58,10 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
             try {
                 SpellItemData data = Spell.Load(stack);
 
-                if (worldIn.isRemote) {
-                    this.Spell()
-                            .cast(worldIn, (PlayerEntity) playerIn, playerIn.getActiveHand(), 5, data);
-                } else {
-
-                    if (data != null) {
-
-                        if (Spell().CanCast((PlayerEntity) playerIn, data)) {
-                            Spell().cast(worldIn, (PlayerEntity) playerIn, playerIn.getActiveHand(), 5, data);
-                        }
-                    }
+                if (Spell().CanCast((PlayerEntity) playerIn, data)) {
+                    Spell().cast(worldIn, (PlayerEntity) playerIn, playerIn.getActiveHand(), 5, data);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
