@@ -16,7 +16,7 @@ public class OnKeyPress {
 
         int key = event.getKey();
 
-        if (Minecraft.getInstance().field_71462_r == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
+        if (Minecraft.getInstance().currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
 
             if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
 

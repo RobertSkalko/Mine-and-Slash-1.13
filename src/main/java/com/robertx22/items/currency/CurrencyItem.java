@@ -2,6 +2,7 @@ package com.robertx22.items.currency;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.IGUID;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.ItemDefault;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
@@ -11,6 +12,7 @@ import com.robertx22.uncommon.interfaces.ITiered;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
+import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -71,10 +73,20 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
             }
         }
 
+        //Tooltip.add("", tooltip);
+
         if (this instanceof IAutoLocDesc) {
             IAutoLocDesc auto = (IAutoLocDesc) this;
             tooltip.add(Styles.YELLOWCOMP().appendSibling(auto.locDesc()));
         }
+        //Tooltip.add("", tooltip);
+
+        Tooltip.add("", tooltip);
+
+        tooltip.add(TooltipUtils.tier(this.Tier()));
+        tooltip.add(TooltipUtils.rarity(Rarities.Items.get(this.rarity())));
+
+        Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);

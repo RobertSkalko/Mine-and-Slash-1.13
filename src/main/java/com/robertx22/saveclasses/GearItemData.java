@@ -26,9 +26,9 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -272,9 +272,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
             tip.add(new StringTextComponent(""));
 
-            tip.add(Styles.YELLOWCOMP()
-                    .appendSibling(Words.Tier.locName())
-                    .appendText(": " + unique.Tier()));
+            tip.add(TooltipUtils.tier(unique.Tier()));
 
             tip.add(new StringTextComponent(""));
         }
