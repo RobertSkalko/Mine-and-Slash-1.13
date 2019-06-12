@@ -54,6 +54,10 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     public boolean doEffect(LivingEntity caster) {
 
+        if (this.ticksExisted < this.getAirProcTime()) {
+            return false;
+        }
+
         if (world.isRemote) {
 
             SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.6F, 0.6F);

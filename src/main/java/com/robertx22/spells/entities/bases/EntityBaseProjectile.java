@@ -81,7 +81,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     protected boolean onExpireProc(LivingEntity caster) {
-        return false;
+        return true;
     }
 
     @Override
@@ -345,9 +345,10 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         checkHoming();
 
         if (this.ticksExisted > this.deathTime || this.inGround) {
-            this.onExpireProc(this.getThrower());
-            this.remove();
-            return;
+            if (this.onExpireProc(this.getThrower())) {
+                this.remove();
+                return;
+            }
 
         }
 
@@ -399,9 +400,11 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             } else {
                 this.inGround = true;
                 this.onImpact(raytraceresult);
-                this.onExpireProc(this.getThrower());
-                this.remove();
-                return;
+                if (this.onExpireProc(this.getThrower())) {
+                    this.onExpireProc(this.getThrower());
+                    this.remove();
+                    return;
+                }
             }
 
         }

@@ -61,7 +61,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
     }
 
     public int GetBaseValue() {
-        return 1 + GetSpell().BaseValue() * level * baseEffectPercent / 100;
+        return 2 + GetSpell().BaseValue() * level * baseEffectPercent / 100;
     }
 
     public float GetScalingValue() {
