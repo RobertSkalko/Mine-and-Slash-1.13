@@ -2,10 +2,11 @@ package com.robertx22.uncommon.effectdatas;
 
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.LivingEntity;
 
-public class SpellDamageEffect extends DamageEffect {
+public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
 
     public BaseSpell spell;
 
@@ -17,4 +18,8 @@ public class SpellDamageEffect extends DamageEffect {
         this.spell = spell;
     }
 
+    @Override
+    public BaseSpell getSpell() {
+        return spell;
+    }
 }

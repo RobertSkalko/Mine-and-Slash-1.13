@@ -5,7 +5,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.effectdatas.EffectData;
-import com.robertx22.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 
 public class BonusSpecificSpellEffect implements IStatEffect {
@@ -31,12 +31,12 @@ public class BonusSpecificSpellEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
-            if (Effect instanceof SpellDamageEffect) {
+            if (Effect instanceof IHasSpellEffect) {
 
-                SpellDamageEffect dmg = (SpellDamageEffect) Effect;
+                IHasSpellEffect dmg = (IHasSpellEffect) Effect;
 
-                if (dmg.spell.GUID().equals(spell.GUID())) {
-                    dmg.number *= data.getMultiplier();
+                if (dmg.getSpell().GUID().equals(spell.GUID())) {
+                    Effect.number *= data.getMultiplier();
                 }
 
             }

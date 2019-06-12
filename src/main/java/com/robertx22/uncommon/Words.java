@@ -13,7 +13,7 @@ public enum Words implements IAutoLocName {
     Affixes_Affecting_All("Affixes Affecting All"),
     Animal("Animal"),
     Attack("Attack"),
-    BaseValue("BaseValue"),
+    BaseValue("Base Value"),
     Works_when_equipped("Works when equipped"),
     Blocks("Blocks"),
     Automatically_salvages_items("Automatically salvages items"),
