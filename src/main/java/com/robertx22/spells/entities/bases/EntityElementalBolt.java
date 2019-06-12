@@ -6,14 +6,12 @@ import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.uncommon.utilityclasses.Utilities;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -60,35 +58,10 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public List<LivingEntity> entitiesHit = new ArrayList();
 
-    public LivingEntity getEntityHit(RayTraceResult result, Entity projectile) {
-
-        EntityRayTraceResult enres = null;
-
-        if (result instanceof EntityRayTraceResult) {
-            enres = (EntityRayTraceResult) result;
-        }
-
-        if (enres != null && enres.getEntity() instanceof LivingEntity) {
-            return (LivingEntity) enres.getEntity();
-        }
-
-        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(0.3D, projectile, LivingEntity.class);
-
-        if (entities.size() > 0) {
-            return entities.get(0);
-        }
-
-        return null;
-
-    }
-
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        LivingEntity entityHit = getEntityHit(result, this);
-        if (entityHit == this.getThrower()) {
-            return;
-        }
+        LivingEntity entityHit = getEntityHit(result, 0.3D);
 
         if (entityHit instanceof LivingEntity && effect != null && data != null) {
             if (world.isRemote) {
@@ -115,6 +88,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
                 // them all
                 this.world.setEntityState(this, (byte) 3);
                 this.remove();
+                return;
             }
 
         }
@@ -127,14 +101,10 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
         super.tick();
 
-        if (world.isRemote) {
-
-            ticks++;
-            if (ticks > 1) {
-                ticks = 0;
-                ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
-            }
-
+        ticks++;
+        if (ticks > 1) {
+            ticks = 0;
+            ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
         }
 
     }

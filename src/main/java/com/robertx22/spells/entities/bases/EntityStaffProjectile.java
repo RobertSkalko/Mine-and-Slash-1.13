@@ -6,7 +6,6 @@ import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.Utilities;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,8 +16,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
-
-import java.util.List;
 
 public class EntityStaffProjectile extends EntityBaseProjectile {
 
@@ -50,13 +47,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(0.5D, this, LivingEntity.class);
-
-        if (entities.size() == 0) {
-            return;
-        }
-
-        LivingEntity entity = entities.get(0);
+        LivingEntity entity = getEntityHit(result, 0.5D);
 
         if (entity != null && staff != null) {
 

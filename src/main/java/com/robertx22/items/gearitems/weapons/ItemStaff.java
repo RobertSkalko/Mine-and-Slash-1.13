@@ -6,7 +6,6 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.items.gearitems.offhands.IEffectItem;
 import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
-import com.robertx22.mmorpg.registers.client.TestEntity;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.spells.entities.bases.EntityStaffProjectile;
@@ -16,7 +15,6 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -75,14 +73,6 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
                         EntityStaffProjectile projectile = new EntityStaffProjectile(world);
                         projectile.SetReady(stack);
                         projectile.SpawnAndShoot(null, null, player);
-
-                        TestEntity test = new TestEntity(world);
-                        test.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-                        world.addEntity(test);
-
-                        SnowballEntity snowball = new SnowballEntity(world, player);
-                        snowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-                        // world.addEntity(snowball);
 
                         stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 

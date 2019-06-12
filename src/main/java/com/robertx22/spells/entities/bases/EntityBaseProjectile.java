@@ -146,6 +146,48 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     }
 
+    @Nullable
+    public LivingEntity getEntityHit(RayTraceResult result, double radius) {
+
+        EntityRayTraceResult enres = null;
+
+        if (result instanceof EntityRayTraceResult) {
+            enres = (EntityRayTraceResult) result;
+        }
+
+        if (enres != null && enres.getEntity() instanceof LivingEntity) {
+            if (enres.getEntity() == this.getThrower()) {
+                return null;
+            } else {
+                return (LivingEntity) enres.getEntity();
+            }
+        }
+
+        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius, this, LivingEntity.class);
+
+        if (entities.size() > 0) {
+
+            LivingEntity closest = entities.get(0);
+
+            for (LivingEntity en : entities) {
+                if (en != closest) {
+                    if (this.getDistance(en) < this.getDistance(closest)) {
+                        closest = en;
+                    }
+                }
+            }
+
+            if (closest == this.getThrower()) {
+                return null;
+            }
+
+            return closest;
+        }
+
+        return null;
+
+    }
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean isInRangeToRenderDist(double distance) {
@@ -235,12 +277,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             --this.throwableShake;
         }
 
-        if (this.getDoExpireProc() && this.ticksExisted > 0 && this.ticksExisted % this.deathTime == 0) {
-            if (this.onExpireProc(this.getThrower())) {
-                this.remove();
-            }
-        }
-
         if (this.inGround) {
             if (this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile))
                     .getBlock() == this.inTile) {
@@ -249,7 +285,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                 if (this.ticksInGround == 1200) {
                     this.remove();
                 }
-
                 return;
             }
 
@@ -267,6 +302,57 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         this.posX += this.getMotion().x;
         this.posY += this.getMotion().y;
         this.posZ += this.getMotion().z;
+
+        checkIfImpact();
+
+        this.rotationYaw = (float) (MathHelper.atan2(this.getMotion().x, this.getMotion().z) * (180D / Math.PI));
+
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
+            this.prevRotationPitch += 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
+            this.prevRotationYaw -= 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
+            this.prevRotationYaw += 360.0F;
+        }
+
+        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+        float f1 = 0.99F;
+        float f2 = this.getGravityVelocity();
+
+        if (this.isInWater()) {
+            for (int j = 0; j < 4; ++j) {
+                this.world.addParticle(ParticleTypes.BUBBLE, true, this.posX - this.getMotion().x * 0.25D, this.posY - this
+                        .getMotion().y * 0.25D, this.posZ - this.getMotion().z * 0.25D, this
+                        .getMotion().x, this.getMotion().y, this.getMotion().z);
+            }
+            f1 = 0.8F;
+        }
+
+        this.setMotion(this.getMotion().x * f1, this.getMotion().y * f1, this.getMotion().z * f1);
+
+        if (!this.hasNoGravity()) {
+            this.setMotion(this.getMotion().subtract(new Vec3d(0D, (double) f2, 0D)));
+        }
+
+        this.setPosition(this.posX, this.posY, this.posZ);
+
+        checkHoming();
+
+        if (this.getDoExpireProc() && this.ticksExisted > this.deathTime) {
+            if (this.onExpireProc(this.getThrower())) {
+                this.remove();
+                return;
+            }
+        }
+
+    }
+
+    public void checkIfImpact() {
 
         Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3d1 = new Vec3d(this.posX + this.getMotion().x, this.posY + this.getMotion().y, this.posZ + this
@@ -313,72 +399,28 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             raytraceresult = new EntityRayTraceResult(entity);
         }
 
-        if (raytraceresult != null) {
+        if (raytraceresult instanceof BlockRayTraceResult) {
 
-            if (raytraceresult.hitInfo == RayTraceResult.Type.BLOCK) {
-                Block block = this.world.getBlockState(new BlockPos(raytraceresult.getHitVec()))
-                        .getBlock();
+            Block block = this.world.getBlockState(new BlockPos(raytraceresult.getHitVec()))
+                    .getBlock();
 
-                if (block.equals(Blocks.GRASS) || block.equals(Blocks.TALL_GRASS) || block
-                        .equals(Blocks.TALL_SEAGRASS)) {
-                    // ignore grass
-                } else {
-                    this.onImpact(raytraceresult);
-                }
+            if (block.equals(Blocks.AIR) || block.equals(Blocks.GRASS) || block.equals(Blocks.TALL_GRASS) || block
+                    .equals(Blocks.TALL_SEAGRASS)) {
+                // ignore grass
             } else {
+                this.inGround = true;
                 this.onImpact(raytraceresult);
             }
 
         }
 
-        float f = MathHelper.sqrt(this.getMotion().x * this.getMotion().x + this.getMotion().z * this
-                .getMotion().z);
-        this.rotationYaw = (float) (MathHelper.atan2(this.getMotion().x, this.getMotion().z) * (180D / Math.PI));
+        if (raytraceresult != null) {
 
-        for (this.rotationPitch = (float) (MathHelper.atan2(this.getMotion().y, (double) f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-            ;
-        }
-
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-            this.prevRotationPitch += 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-            this.prevRotationYaw -= 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-            this.prevRotationYaw += 360.0F;
-        }
-
-        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-        float f1 = 0.99F;
-        float f2 = this.getGravityVelocity();
-
-        if (this.isInWater()) {
-            for (int j = 0; j < 4; ++j) {
-                float f3 = 0.25F;
-                this.world.addParticle(ParticleTypes.BUBBLE, flag, this.posX - this.getMotion().x * 0.25D, this.posY - this
-                        .getMotion().y * 0.25D, this.posZ - this.getMotion().z * 0.25D, this
-                        .getMotion().x, this.getMotion().y, this.getMotion().z);
+            if (raytraceresult instanceof EntityRayTraceResult) {
+                if (((EntityRayTraceResult) raytraceresult).getEntity() != this.getThrower()) {
+                    this.onImpact(raytraceresult);
+                }
             }
-
-            f1 = 0.8F;
-        }
-
-        this.setMotion(this.getMotion().x * f1, this.getMotion().y * f1, this.getMotion().z * f1);
-
-        if (!this.hasNoGravity()) {
-            this.setMotion(this.getMotion().subtract(new Vec3d(0D, (double) f2, 0D)));
-        }
-
-        this.setPosition(this.posX, this.posY, this.posZ);
-
-        checkHoming();
-
-        if (this.ticksExisted > this.getDeathTime()) {
-            this.remove();
         }
 
     }

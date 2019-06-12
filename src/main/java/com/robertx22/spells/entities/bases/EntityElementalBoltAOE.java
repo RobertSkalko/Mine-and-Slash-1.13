@@ -27,16 +27,11 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-        LivingEntity entityHit = getEntityHit(result, this);
-        if (entityHit == this.getThrower()) {
-            return;
-        }
-
         if (world.isRemote) {
-
             SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
 
         } else {
+            SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
 
             ElementalParticleUtils.SpawnAoeParticle(element(), this, radius(), 500);
 
@@ -56,6 +51,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte) 3);
             this.remove();
+            return;
         }
 
     }

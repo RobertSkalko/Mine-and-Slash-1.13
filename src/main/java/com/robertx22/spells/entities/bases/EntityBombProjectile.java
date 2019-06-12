@@ -21,16 +21,15 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     @Override
     public double radius() {
-        return 2.5D;
+        return 4D;
     }
 
     public EntityBombProjectile(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
 
-        this.setDeathTime(60);
-        this.setAirProcTime(40);
+        this.setDeathTime(30);
+        this.setAirProcTime(30);
         this.setDoExpireProc(true);
-        this.setNoGravity(true); // REQUIRED
 
     }
 
@@ -39,9 +38,10 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         super.tick();
 
-        if (this.world.isRemote) {
-
-            System.out.println("it works");
+        if (this.inGround) {
+            this.setPosition(getPosition().getX(), getPosition().getY() + 1.5D, getPosition()
+                    .getZ());
+            this.setMotion(0, 0, 0);
         }
 
     }
@@ -65,8 +65,6 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         this.world.addParticle(ParticleTypes.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
 
-        boolean hit = false;
-
         if (!this.world.isRemote && caster != null && effect != null) {
 
             List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
@@ -79,14 +77,13 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
                     checkOnKill(entity);
 
-                    hit = true;
                 }
 
             }
-            return hit;
+
         }
 
-        return false;
+        return true;
 
     }
 
