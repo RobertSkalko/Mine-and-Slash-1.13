@@ -61,4 +61,20 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
     public int rarity() {
         return 1;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Do not gamble what you are not willing to lose.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Chaos Orb";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Permanently adds a Chaos stat";
+    }
+
 }

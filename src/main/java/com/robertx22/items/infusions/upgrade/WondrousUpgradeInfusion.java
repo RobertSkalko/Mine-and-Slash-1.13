@@ -4,6 +4,9 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
 
     public WondrousUpgradeInfusion() {
@@ -45,4 +48,13 @@ public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
         return 3;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Grasp Luck with your own hands.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Wondrous Infusion Upgrade";
+    }
 }

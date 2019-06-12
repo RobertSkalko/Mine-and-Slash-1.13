@@ -96,4 +96,9 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     public abstract float majorFailureChance();
 
+    @Override
+    public String locDescForLangFile() {
+        return "Used when attempting Infusion Upgrading";
+    }
+
 }

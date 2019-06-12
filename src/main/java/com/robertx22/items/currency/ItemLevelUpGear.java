@@ -60,4 +60,19 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
         return 5;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Who said your sword can't level with you?");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Crystal Of Ascension";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Increases item level";
+    }
+
 }

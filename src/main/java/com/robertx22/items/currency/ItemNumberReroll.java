@@ -58,4 +58,19 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     public int rarity() {
         return 0;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Hopefully works better than the last time.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Orb Of Blessing";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Re-rolls all numbers on a gear";
+    }
 }

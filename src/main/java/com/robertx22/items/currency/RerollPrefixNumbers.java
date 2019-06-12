@@ -56,4 +56,19 @@ public class RerollPrefixNumbers extends CurrencyItem implements ICurrencyItemEf
     public int rarity() {
         return 3;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("I command you to change!");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Orb Of Prefix Blessing";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Re-rolls numbers of a prefix";
+    }
 }

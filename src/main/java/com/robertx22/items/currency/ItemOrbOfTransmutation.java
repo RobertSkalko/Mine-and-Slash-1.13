@@ -76,4 +76,19 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
     public int rarity() {
         return 0;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Turn trash into treasure!");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Orb Of Transmutation";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Transform Common Item";
+    }
 }

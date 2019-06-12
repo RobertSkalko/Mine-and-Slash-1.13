@@ -4,6 +4,9 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
 
     public SuperiorUpgradeInfusion() {
@@ -46,4 +49,13 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
         return 2;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Your understanding of luck deepens.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Superior Infusion Upgrade";
+    }
 }

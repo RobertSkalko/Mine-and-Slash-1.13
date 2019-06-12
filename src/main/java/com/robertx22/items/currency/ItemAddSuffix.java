@@ -59,4 +59,19 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect, 
     public int rarity() {
         return 4;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("And soar to the skies.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Unearth Suffix";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Add a suffix";
+    }
 }

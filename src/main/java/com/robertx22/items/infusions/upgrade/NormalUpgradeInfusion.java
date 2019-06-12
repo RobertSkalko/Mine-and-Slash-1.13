@@ -4,6 +4,9 @@ import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
 
     private static final String name = "normal_upgrade_infusion";
@@ -44,6 +47,16 @@ public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
     @Override
     public int rarity() {
         return 1;
+    }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("You start to feel the essence of Luck.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Normal Infusion Upgrade";
     }
 
 }

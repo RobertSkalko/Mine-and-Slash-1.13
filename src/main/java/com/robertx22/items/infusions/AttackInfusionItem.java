@@ -13,6 +13,7 @@ import com.robertx22.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AttackInfusionItem extends BaseInfusionItem {
@@ -47,4 +48,13 @@ public class AttackInfusionItem extends BaseInfusionItem {
         return name;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Infuses an item with Attack Modifiers");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Attack Infusion";
+    }
 }

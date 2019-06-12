@@ -79,4 +79,9 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 
     }
 
+    @Override
+    public String locDescForLangFile() {
+        return "Luck is Etheral and yet affects everything.";
+    }
+
 }

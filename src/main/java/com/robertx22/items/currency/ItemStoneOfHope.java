@@ -79,4 +79,18 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
         return 2;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("When there is hope, there is a way.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Stone Of Hope";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Transform any rarity gear into higher rarity";
+    }
 }

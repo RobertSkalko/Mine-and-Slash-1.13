@@ -61,4 +61,19 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     public int rarity() {
         return 1;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("More power is always good, right?");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Crystal Of Legend";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Add another secondary stat";
+    }
 }

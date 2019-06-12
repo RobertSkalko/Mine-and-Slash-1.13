@@ -56,4 +56,19 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     public int rarity() {
         return 3;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Anything can change.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Orb Of Unique Blessing";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Re-rolls unique stat numbers";
+    }
 }

@@ -5,6 +5,7 @@ import com.robertx22.database.IGUID;
 import com.robertx22.items.ItemDefault;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.ITiered;
 import com.robertx22.uncommon.interfaces.IWeighted;
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered {
+public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc {
 
     public static List<CurrencyItem> ITEMS = new ArrayList<>();
 
@@ -38,6 +39,21 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
 
         ITEMS.add(this);
 
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return this.getRegistryName().toString() + ".desc";
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Currency_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
     }
 
     @OnlyIn(Dist.CLIENT)

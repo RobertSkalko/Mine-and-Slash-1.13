@@ -80,21 +80,16 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<String> loreLines() {
-        return Arrays.asList("test", "works");
-    }
-
-    @Override
-    public AutoLocGroup locNameGroup() {
-        return AutoLocGroup.Currency_Items;
-    }
-
-    @Override
-    public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return Arrays.asList("Don't want it? Transform it!");
     }
 
     @Override
     public String locNameForLangFile() {
         return nameColor + "Gem Of Unique Heaven";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Transform unique (same tier)";
     }
 }

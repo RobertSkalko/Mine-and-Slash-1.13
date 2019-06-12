@@ -59,4 +59,19 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
     public int rarity() {
         return 4;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Unchart your potential.");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Unearth Prefix";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Add a prefix";
+    }
 }

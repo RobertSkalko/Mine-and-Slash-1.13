@@ -58,4 +58,19 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
     public int rarity() {
         return 0;
     }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("There is always a better choice");
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Orb Of Ever-Changing Prefix";
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Re-rolls prefix";
+    }
 }
