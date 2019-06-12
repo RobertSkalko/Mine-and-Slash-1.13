@@ -49,6 +49,7 @@ import com.robertx22.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.database.stats.stat_mods.percent.offense.*;
 import com.robertx22.database.stats.stat_types.BaseTrait;
 import com.robertx22.database.stats.stat_types.UnknownStat;
+import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -236,6 +237,7 @@ public class StatMods {
                 add(new ElementalFocusFlat(Elements.Physical));
                 add(new StatDoublePercent(new UnknownStat()));
                 add(new BlockReflectFlat(Elements.Physical));
+                add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
 
             }
         }

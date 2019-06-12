@@ -40,6 +40,7 @@ import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.db_lists.bases.AllPreGenMapStats;
+import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
@@ -189,6 +190,7 @@ public class Stats {
                 add(new ElementalPene(Elements.Physical));
                 add(new ElementalFocus(Elements.Physical));
                 add(new BlockReflect(Elements.Physical));
+                add(new BonusSpecificSpell(new SpellAcidBolt()));
 
             }
         }

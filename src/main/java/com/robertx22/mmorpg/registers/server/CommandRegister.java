@@ -28,6 +28,7 @@ public class CommandRegister {
         SetEntityRarity.register(dispatcher);
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
+        ClearStats.register(dispatcher);
 
     }
 }

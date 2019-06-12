@@ -1,5 +1,6 @@
 package com.robertx22.spells.bases;
 
+import com.robertx22.database.IGUID;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
@@ -15,7 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
-public abstract class BaseSpell implements IWeighted {
+public abstract class BaseSpell implements IWeighted, IGUID {
 
     public enum SpellType {
         Single_Target_Projectile,
