@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -343,32 +344,24 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
         checkHoming();
 
-        if (this.getDoExpireProc() && this.ticksExisted > this.deathTime) {
-            if (this.onExpireProc(this.getThrower())) {
-                this.remove();
-                return;
-            }
+        if (this.ticksExisted > this.deathTime || this.inGround) {
+            this.onExpireProc(this.getThrower());
+            this.remove();
+            return;
+
         }
 
     }
 
     public void checkIfImpact() {
 
-        Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d vec3d1 = new Vec3d(this.posX + this.getMotion().x, this.posY + this.getMotion().y, this.posZ + this
-                .getMotion().z);
+        AxisAlignedBB axisalignedbb = this.getBoundingBox()
+                .expand(this.getMotion())
+                .grow(1.0D);
 
-        RayTraceContext ctx = new RayTraceContext(vec3d, vec3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, this);
-
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(ctx);
-        vec3d = new Vec3d(this.posX, this.posY, this.posZ);
-        vec3d1 = new Vec3d(this.posX + this.getMotion().x, this.posY + this.getMotion().y, this.posZ + this
-                .getMotion().z);
-
-        if (raytraceresult != null) {
-            vec3d1 = new Vec3d(raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult
-                    .getHitVec().z);
-        }
+        RayTraceResult raytraceresult = ProjectileHelper.func_221267_a(this, axisalignedbb, (entity) -> {
+            return !entity.isSpectator() && entity.canBeCollidedWith() && entity != this.ignoreEntity;
+        }, RayTraceContext.BlockMode.OUTLINE, true);
 
         Entity entity = null;
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
@@ -395,10 +388,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             }
         }
 
-        if (entity != null) {
-            raytraceresult = new EntityRayTraceResult(entity);
-        }
-
         if (raytraceresult instanceof BlockRayTraceResult) {
 
             Block block = this.world.getBlockState(new BlockPos(raytraceresult.getHitVec()))
@@ -410,8 +399,15 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             } else {
                 this.inGround = true;
                 this.onImpact(raytraceresult);
+                this.onExpireProc(this.getThrower());
+                this.remove();
+                return;
             }
 
+        }
+
+        if (entity != null) {
+            raytraceresult = new EntityRayTraceResult(entity);
         }
 
         if (raytraceresult != null) {

@@ -1,7 +1,6 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.registers.client.TestEntity;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
@@ -42,15 +41,13 @@ public class EntityRegister {
 
     }
 
-    public static final EntityType<TestEntity> TESTENTITY;
-
-    public static final EntityType<SpellFireBolt.EntityFireBolt> FIREBOLT;
+    public static final EntityType<? extends Entity> FIREBOLT;
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> ACIDBOLT;
     public static final EntityType<? extends Entity> THUNDERBOLT;
 
     public static final EntityType<? extends Entity> FIREBOMB;
-    public static final EntityType<SpellIceBomb.EntityIceBomb> FROSTBOMB;
+    public static final EntityType<? extends Entity> FROSTBOMB;
     public static final EntityType<? extends Entity> ACIDBOMB;
     public static final EntityType<? extends Entity> THUNDERBOMB;
 
@@ -62,7 +59,6 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
 
     static {
-        TESTENTITY = newType(TestEntity.class, TestEntity::new, TestEntity::new, "testentitysdsd");
 
         FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
         FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
@@ -75,7 +71,7 @@ public class EntityRegister {
         THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class, SpellLightningExplosion.EntityLightningExplosion::new, SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
 
         FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
-        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomd");
+        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomb");
         ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
         THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
 

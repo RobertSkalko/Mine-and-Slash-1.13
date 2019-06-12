@@ -13,7 +13,6 @@ import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
@@ -137,7 +136,6 @@ public class MMORPG {
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
-        RenderRegister.regRenders(event);
 
     }
 

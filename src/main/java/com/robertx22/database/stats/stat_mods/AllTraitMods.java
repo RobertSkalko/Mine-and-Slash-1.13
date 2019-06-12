@@ -8,7 +8,7 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 public class AllTraitMods extends StatMod {
 
     public AllTraitMods(BaseTrait stat) {
-        this.GUID = stat.GUID() + "Flat";
+        this.GUID = stat.formattedGUID() + "flat";
         this.baseStat = stat;
         this.weight = stat.Weight();
     }

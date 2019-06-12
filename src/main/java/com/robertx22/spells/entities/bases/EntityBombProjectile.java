@@ -42,6 +42,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
             this.setPosition(getPosition().getX(), getPosition().getY() + 1.5D, getPosition()
                     .getZ());
             this.setMotion(0, 0, 0);
+            this.setNoGravity(true);
         }
 
     }
