@@ -78,8 +78,8 @@ public class GearItemRegisters {
 
             regRarities(new MyTorch(rarity.Rank()), MyTorch.Items, "torch/torch", rarity.Rank());
 
-            //regRarities(new MagicOrb(orbprop, "orb" + rarity.Rank()), MagicOrb.Items, "magic_orb/orb", rarity
-            //       .Rank());
+            //regRarities(new MagicOrb(orbprop, "orb" + rarity.rarity()), MagicOrb.Items, "magic_orb/orb", rarity
+            //       .rarity());
 
             // weapons
             regRarities(new ItemSword(rarity.Rank()), ItemSword.Items, "sword/sword", rarity

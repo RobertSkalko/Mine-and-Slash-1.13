@@ -42,7 +42,7 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 2;
     }
 

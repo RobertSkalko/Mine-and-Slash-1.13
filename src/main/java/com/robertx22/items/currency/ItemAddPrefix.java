@@ -56,7 +56,7 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 4;
     }
 }

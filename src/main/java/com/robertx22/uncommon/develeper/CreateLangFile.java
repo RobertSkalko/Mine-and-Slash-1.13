@@ -1,11 +1,10 @@
 package com.robertx22.uncommon.develeper;
 
-import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.db_lists.*;
 import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.Words;
-import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
+import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 
 import java.io.File;
@@ -62,6 +61,23 @@ public class CreateLangFile {
 
         }
 
+        for (Map.Entry<String, List<IAutoLocMultiLore>> entry : getMultiLoreMap().entrySet()) {
+            json += CreateLangFileUtils.comment(entry.getKey());
+            for (IAutoLocMultiLore iauto : entry.getValue()) {
+                if (iauto.loreLines().size() > 0) {
+
+                    int i = 0;
+                    for (String line : iauto.loreLines()) {
+                        json += "\t" + "\"" + iauto.getPrefixListForLangFile()
+                                .get(i) + iauto.formattedGUID() + "\": \"" + line + "\",\n";
+                        i++;
+                    }
+                }
+            }
+            json += CreateLangFileUtils.comment(entry.getKey());
+
+        }
+
         json += "";
 
         json = CreateLangFileUtils.replaceLast(json, ",", ""); // removes last , or else json wont work
@@ -78,19 +94,6 @@ public class CreateLangFile {
 
         System.out.println("Wrote [LANG] file to " + CreateLangFileUtils.filepath());
 
-        String ch = "";
-        for (Chats chat : Chats.values()) {
-            ch += chat.name() + "(" + '"' + chat.locNameForLangFile() + '"' + "),";
-        }
-
-        System.out.println(ch);
-        ch = "";
-        for (Words chat : Words.values()) {
-            ch += chat.name() + "(" + '"' + chat.locNameForLangFile() + '"' + "),";
-        }
-
-        System.out.println(ch);
-
     }
 
     public static HashMap<String, List<IAutoLocName>> getMap() {
@@ -106,8 +109,6 @@ public class CreateLangFile {
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.allIncludingUnique());
         list.addAll(Arrays.asList(Chats.values()));
-
-        Object test = Stats.All.get(new ElementalSpellDamage(Elements.Water).GUID());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
@@ -146,6 +147,30 @@ public class CreateLangFile {
         for (Map.Entry<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> entry : map.entrySet()) {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortDesc(sortedlist);
+            if (sortedlist.size() > 0) {
+                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
+            }
+        }
+
+        return sortedMap;
+
+    }
+
+    public static HashMap<String, List<IAutoLocMultiLore>> getMultiLoreMap() {
+        List<IAutoLocMultiLore> list = CreateLangFileUtils.getMultiLoresFromRegistries();
+
+        HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocMultiLore>> map = new HashMap<>();
+
+        for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
+            map.put(autoLocGroup, list.stream()
+                    .filter(x -> x.locNameGroup().equals(autoLocGroup))
+                    .collect(Collectors.toList()));
+        }
+
+        HashMap<String, List<IAutoLocMultiLore>> sortedMap = new HashMap<>();
+        for (Map.Entry<IAutoLocName.AutoLocGroup, List<IAutoLocMultiLore>> entry : map.entrySet()) {
+            List<IAutoLocMultiLore> sortedlist = new ArrayList<>(entry.getValue());
+            CreateLangFileUtils.sortLores(sortedlist);
             if (sortedlist.size() > 0) {
                 sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
             }

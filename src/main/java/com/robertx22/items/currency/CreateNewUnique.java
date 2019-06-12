@@ -6,13 +6,14 @@ import com.robertx22.loot.gens.UniqueGearLootGen;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IRenamed;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore {
 
     private static final String GUID = Ref.MODID + ":currency/create_new_unique";
 
@@ -73,8 +74,27 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 4;
     }
 
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("test", "works");
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Currency_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return nameColor + "Gem Of Unique Heaven";
+    }
 }

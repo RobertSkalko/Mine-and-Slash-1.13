@@ -2,6 +2,7 @@ package com.robertx22.uncommon.develeper;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
+import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -78,6 +79,24 @@ public class CreateLangFileUtils {
 
     }
 
+    public static List<IAutoLocMultiLore> getMultiLoresFromRegistries() {
+
+        List<IAutoLocMultiLore> list = new ArrayList<>();
+
+        for (Item item : ForgeRegistries.ITEMS) {
+            if (matches(item.getRegistryName()) && item instanceof IAutoLocMultiLore) {
+                list.add((IAutoLocMultiLore) item);
+            }
+        }
+        for (Block item : ForgeRegistries.BLOCKS) {
+            if (matches(item.getRegistryName()) && item instanceof IAutoLocMultiLore) {
+                list.add((IAutoLocMultiLore) item);
+            }
+        }
+        return list;
+
+    }
+
     public static void sortName(List<IAutoLocName> list) {
         if (list != null && list.size() > 1) {
             try {
@@ -97,4 +116,15 @@ public class CreateLangFileUtils {
             }
         }
     }
+
+    public static void sortLores(List<IAutoLocMultiLore> list) {
+        if (list != null && list.size() > 1) {
+            try {
+                Collections.sort(list, Comparator.comparing(x -> x.formattedGUID()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

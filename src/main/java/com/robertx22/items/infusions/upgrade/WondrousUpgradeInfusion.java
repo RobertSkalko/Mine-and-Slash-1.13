@@ -41,7 +41,7 @@ public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 3;
     }
 

@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 
-public interface IAutoLocName extends ILocName {
+public interface IAutoLocName extends IBaseAutoLoc {
 
     enum AutoLocGroup {
         Runes,
@@ -24,7 +24,8 @@ public interface IAutoLocName extends ILocName {
         World_Types,
         Lootboxes,
         Chat_Messages,
-        Configs
+        Configs,
+        Currency_Items
 
     }
 

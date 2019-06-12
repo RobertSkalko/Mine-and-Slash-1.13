@@ -1,10 +1,10 @@
 package com.robertx22.items.currency;
 
-import com.robertx22.uncommon.interfaces.IRenamed;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.interfaces.IRenamed;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -55,7 +55,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 0;
     }
 }

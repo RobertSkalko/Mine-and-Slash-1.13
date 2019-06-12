@@ -74,7 +74,7 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public int Rank() {
+    public int rarity() {
         return 4;
 
     }
