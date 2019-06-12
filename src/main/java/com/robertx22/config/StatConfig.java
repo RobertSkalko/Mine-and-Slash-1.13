@@ -27,6 +27,8 @@ public class StatConfig {
     public DoubleValue energy_regen_per_level;
     public DoubleValue critical_damage;
     public DoubleValue critical_damage_per_level;
+    public DoubleValue spell_damage;
+    public DoubleValue spell_damage_per_level;
 
     StatConfig(ForgeConfigSpec.Builder builder) {
         builder.push("PLAYER_BASE_STATS");
@@ -71,6 +73,10 @@ public class StatConfig {
                 .defineInRange("critical_damage", 0F, 0, Integer.MAX_VALUE);
         critical_damage_per_level = builder.translation("mmorpg.stat.critical_damage_per_level")
                 .defineInRange("critical_damage_per_level", 0F, 0, Integer.MAX_VALUE);
+        spell_damage = builder.translation("mmorpg.stat.spell_damage")
+                .defineInRange("spell_damage", 3F, 0, Integer.MAX_VALUE);
+        spell_damage_per_level = builder.translation("mmorpg.stat.spell_damage_per_level")
+                .defineInRange("spell_damage_per_level", 0.25F, 0, Integer.MAX_VALUE);
 
         builder.pop();
 

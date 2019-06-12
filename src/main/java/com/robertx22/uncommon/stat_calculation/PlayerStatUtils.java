@@ -5,6 +5,12 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_types.defense.Armor;
+import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
+import com.robertx22.database.stats.stat_types.offense.CriticalHit;
+import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stats.stat_types.offense.SpellDamage;
+import com.robertx22.database.stats.stat_types.resources.*;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
@@ -30,37 +36,42 @@ public class PlayerStatUtils {
 
         int lvl = data.getLevel();
 
-        unit.MyStats.get("Physical Damage").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
+        unit.MyStats.get(PhysicalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level
                 .get());
 
-        unit.MyStats.get("Mana").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana.get() + data
-                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level.get());
+        unit.MyStats.get(Mana.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana
+                .get() + data.getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level
+                .get());
 
-        unit.MyStats.get("Energy").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy
+        unit.MyStats.get(Energy.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_per_level.get());
 
-        unit.MyStats.get("Mana Regen").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana_regen
+        unit.MyStats.get(ManaRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level.get());
 
-        unit.MyStats.get("Energy Regen").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy_regen
+        unit.MyStats.get(EnergyRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level.get());
 
-        unit.MyStats.get("Health Regen").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health_regen
+        unit.MyStats.get(HealthRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get());
 
-        unit.MyStats.get("Armor").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.armor.get() + data
-                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level.get());
+        unit.MyStats.get(Armor.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.armor
+                .get() + data.getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level
+                .get());
 
-        unit.MyStats.get("Health").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
+        unit.MyStats.get(Health.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_per_level.get());
 
-        unit.MyStats.get("Critical Hit").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
+        unit.MyStats.get(CriticalHit.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());
 
-        unit.MyStats.get("Critical Damage").Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
+        unit.MyStats.get(CriticalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level
                 .get());
+
+        unit.MyStats.get(SpellDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.spell_damage
+                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get());
 
     }
 
