@@ -12,6 +12,7 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseInfusionItem extends CurrencyItem implements ICurrencyItemEffect {
@@ -80,8 +81,8 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public String locDescForLangFile() {
-        return "Luck is Etheral and yet affects everything.";
+    public List<String> loreLines() {
+        return Arrays.asList("Luck is Etheral and yet affects everything.");
     }
 
 }

@@ -42,8 +42,8 @@ public class ResourceInfusionItem extends BaseInfusionItem {
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("Infuses an item with Resource Modifiers");
+    public String locDescForLangFile() {
+        return "Infuses an item with Resource Modifiers";
     }
 
     @Override

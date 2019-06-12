@@ -48,8 +48,8 @@ public class DefenseInfusionItem extends BaseInfusionItem {
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("Infuses an item with Defense Modifiers");
+    public String locDescForLangFile() {
+        return "Infuses an item with Defense Modifiers";
     }
 
     @Override

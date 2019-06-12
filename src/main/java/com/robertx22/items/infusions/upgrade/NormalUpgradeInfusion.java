@@ -50,13 +50,13 @@ public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("You start to feel the essence of Luck.");
+    public String locNameForLangFile() {
+        return nameColor + "Normal Infusion Upgrade";
     }
 
     @Override
-    public String locNameForLangFile() {
-        return nameColor + "Normal Infusion Upgrade";
+    public List<String> loreLines() {
+        return Arrays.asList("You start to feel the essence of Luck.");
     }
 
 }

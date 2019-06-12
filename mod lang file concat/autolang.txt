@@ -198,13 +198,6 @@
 "_comment": " [CATEGORY]: PREFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.create_new_unique": "Â§cGem Of Unique Heaven",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: RUNES - NAMES",
 
 	"item.mmorpg.runes.ano0": "§7ANO - Common Rune",
@@ -466,6 +459,32 @@
 	"mmorpg.suffix.ofvampirism": "Of Vampirism",
 
 "_comment": " [CATEGORY]: SUFFIXES - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
+
+	"item.mmorpg.attack_infusion": "§cAttack Infusion",
+	"item.mmorpg.currency.add_prefix": "§cUnearth Prefix",
+	"item.mmorpg.currency.add_secondary_stat": "§cCrystal Of Legend",
+	"item.mmorpg.currency.add_suffix": "§cUnearth Suffix",
+	"item.mmorpg.currency.chaos_orb": "§cChaos Orb",
+	"item.mmorpg.currency.create_new_unique": "§cGem Of Unique Heaven",
+	"item.mmorpg.currency.item_levelup": "§cCrystal Of Ascension",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_prefix": "§cOrb Of Ever-Changing Prefix",
+	"item.mmorpg.currency.randomize_suffix": "§cOrb Of Ever-Changing Suffix",
+	"item.mmorpg.currency.reroll_prefix_numbers": "§cOrb Of Prefix Blessing",
+	"item.mmorpg.currency.reroll_suffix_numbers": "§cOrb Of Suffix Blessing",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.defense_infusion": "§cDefense Infusion",
+	"item.mmorpg.normal_upgrade_infusion": "§cNormal Infusion Upgrade",
+	"item.mmorpg.resource_infusion": "§cResource Infusion",
+	"item.mmorpg.superior_upgrade_infusion": "§cSuperior Infusion Upgrade",
+	"item.mmorpg.wondrous_upgrade_infusion": "§cWondrous Infusion Upgrade",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
 
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
@@ -894,6 +913,32 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
+
+	"item.mmorpg.attack_infusion.desc": "Luck is Etheral and yet affects everything.",
+	"item.mmorpg.currency.add_prefix.desc": "Add a prefix",
+	"item.mmorpg.currency.add_secondary_stat.desc": "Add another secondary stat",
+	"item.mmorpg.currency.add_suffix.desc": "Add a suffix",
+	"item.mmorpg.currency.chaos_orb.desc": "Permanently adds a Chaos stat",
+	"item.mmorpg.currency.create_new_unique.desc": "Transform unique (same tier)",
+	"item.mmorpg.currency.item_levelup.desc": "Increases item level",
+	"item.mmorpg.currency.number_reroll.desc": "Re-rolls all numbers on a gear",
+	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform Common Item",
+	"item.mmorpg.currency.randomize_prefix.desc": "Re-rolls prefix",
+	"item.mmorpg.currency.randomize_suffix.desc": "Re-rolls suffix",
+	"item.mmorpg.currency.reroll_prefix_numbers.desc": "Re-rolls numbers of a prefix",
+	"item.mmorpg.currency.reroll_suffix_numbers.desc": "Re-rolls numbers of a suffix",
+	"item.mmorpg.currency.reroll_unique_numbers.desc": "Re-rolls unique stat numbers",
+	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity",
+	"item.mmorpg.defense_infusion.desc": "Luck is Etheral and yet affects everything.",
+	"item.mmorpg.normal_upgrade_infusion.desc": "Used when attempting Infusion Upgrading",
+	"item.mmorpg.resource_infusion.desc": "Luck is Etheral and yet affects everything.",
+	"item.mmorpg.superior_upgrade_infusion.desc": "Used when attempting Infusion Upgrading",
+	"item.mmorpg.wondrous_upgrade_infusion.desc": "Used when attempting Infusion Upgrading",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
+
+
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
 
 	"mmorpg.stat_desc.acidbolt_power": "Increases Effect of that spell, whether that's damage, heal etc",
@@ -1048,10 +1093,28 @@
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
 
-	"lore_0_create_new_unique": "test",
-	"lore_1_create_new_unique": "works",
+	"lore_0_add_prefix": "Unchart your potential.",
+	"lore_0_add_suffix": "And soar to the skies.",
+	"lore_0_attack_infusion": "Infuses an item with Attack Modifiers",
+	"lore_0_chaos_orb": "Do not gamble what you are not willing to lose.",
+	"lore_0_create_new_unique": "Don't want it? Transform it!",
+	"lore_0_defense_infusion": "Infuses an item with Defense Modifiers",
+	"lore_0_item_levelup": "Who said your sword can't level with you?",
+	"lore_0_mmorpg.currency.add_secondary_stat": "More power is always good, right?",
+	"lore_0_normal_upgrade_infusion": "You start to feel the essence of Luck.",
+	"lore_0_number_reroll": "Hopefully works better than the last time.",
+	"lore_0_orb_of_transmutation": "Turn trash into treasure!",
+	"lore_0_randomize_prefix": "There is always a better choice",
+	"lore_0_randomize_suffix": "There is always a better choice",
+	"lore_0_reroll_prefix_numbers": "I command you to change!",
+	"lore_0_reroll_suffix_numbers": "I command you to change!",
+	"lore_0_reroll_unique_numbers": "Anything can change.",
+	"lore_0_resource_infusion": "Infuses an item with Resource Modifiers",
+	"lore_0_stone_of_hope": "When there is hope, there is a way.",
+	"lore_0_superior_upgrade_infusion": "Your understanding of luck deepens.",
+	"lore_0_wondrous_upgrade_infusion": "Grasp Luck with your own hands.",
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES"
+"_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS"
 

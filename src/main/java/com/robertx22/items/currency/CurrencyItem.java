@@ -61,16 +61,23 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(Styles.GREENCOMP()
-                .appendSibling(CLOC.tooltip(formattedGUID())), tooltip);
-        Tooltip.add(CLOC.lore(formattedGUID()), tooltip);
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);
-
         if (this instanceof IAutoLocMultiLore) {
             IAutoLocMultiLore auto = (IAutoLocMultiLore) this;
-            tooltip.addAll(auto.getComponents());
+            for (ITextComponent comp : auto.getComponents()) {
+                tooltip.add(Styles.GREENCOMP()
+                        .appendText("'")
+                        .appendSibling(comp)
+                        .appendText("'"));
+            }
         }
+
+        if (this instanceof IAutoLocDesc) {
+            IAutoLocDesc auto = (IAutoLocDesc) this;
+            tooltip.add(Styles.YELLOWCOMP().appendSibling(auto.locDesc()));
+        }
+
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);
 
     }
 
