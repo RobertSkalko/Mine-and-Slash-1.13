@@ -11,8 +11,8 @@ import com.robertx22.uncommon.effectdatas.HealData;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import java.util.HashMap;
 import java.util.UUID;
 
-@EventBusSubscriber(Dist.DEDICATED_SERVER)
+@EventBusSubscriber
 public class OnTickLogic {
 
     static final int TicksToUpdatePlayer = 18;
@@ -33,7 +33,7 @@ public class OnTickLogic {
     @SubscribeEvent
     public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
 
-        if (event.phase == Phase.END) {
+        if (event.side.equals(LogicalSide.SERVER) && event.phase == Phase.END) {
 
             try {
 

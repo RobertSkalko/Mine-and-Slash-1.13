@@ -7,13 +7,12 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(Dist.DEDICATED_SERVER)
+@EventBusSubscriber
 public class OnHurt {
 
     /**
@@ -24,6 +23,10 @@ public class OnHurt {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void OnLivingHurt(LivingHurtEvent event) {
+
+        if (event.getEntity().world.isRemote) {
+            return;
+        }
 
         if (event.getSource() instanceof MyDamageSource) {
             onHurt(event);

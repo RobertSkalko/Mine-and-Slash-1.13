@@ -3,13 +3,12 @@ package com.robertx22.onevent.player;
 import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(Dist.DEDICATED_SERVER)
+@Mod.EventBusSubscriber
 public class GiveExpSub {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

@@ -6,12 +6,11 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(Dist.DEDICATED_SERVER)
+@EventBusSubscriber
 public class OnTrackEntity {
 
     @SubscribeEvent

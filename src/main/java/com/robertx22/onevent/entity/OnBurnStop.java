@@ -1,12 +1,11 @@
 package com.robertx22.onevent.entity;
 
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(Dist.DEDICATED_SERVER)
+@EventBusSubscriber
 public class OnBurnStop {
 
     @SubscribeEvent
