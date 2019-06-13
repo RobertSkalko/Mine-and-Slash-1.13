@@ -27,11 +27,6 @@ public class ManaRegenPotion extends SpellPotionBase {
     }
 
     @Override
-    public boolean canSelfCast() {
-        return true;
-    }
-
-    @Override
     public void doEffect(Entity applier, Entity caster, LivingEntity target,
                          int amplifier) {
 

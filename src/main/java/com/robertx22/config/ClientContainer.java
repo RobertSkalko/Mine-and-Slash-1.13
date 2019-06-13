@@ -20,7 +20,6 @@ public class ClientContainer {
 
     }
 
-    public BooleanValue RENDER_CHAT_COMBAT_LOG;
     public BooleanValue SHOW_AFFIXED_NAME;
     public BooleanValue RENDER_FLOATING_DAMAGE;
     public BooleanValue RENDER_MOB_HEALTH_GUI;
@@ -40,10 +39,6 @@ public class ClientContainer {
         SHOW_VANILLA_HEARTS = builder.comment(".")
                 .translation("mmorpg.config.show_vanilla_hearts")
                 .define("SHOW_VANILLA_HEARTS", true);
-
-        RENDER_CHAT_COMBAT_LOG = builder.comment(".")
-                .translation("mmorpg.config.chat_combat_log")
-                .define("RENDER_CHAT_COMBAT_LOG", false);
 
         RENDER_FLOATING_DAMAGE = builder.comment(".")
                 .translation("mmorpg.config.floating_damage_numbers")

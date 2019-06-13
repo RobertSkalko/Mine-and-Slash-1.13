@@ -1,22 +1,16 @@
 package com.robertx22.uncommon.effectdatas;
 
-import com.robertx22.config.ClientContainer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DmgNumPacket;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.*;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -93,10 +87,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             Heal();
             RestoreMana();
 
-            if (ClientContainer.INSTANCE.RENDER_CHAT_COMBAT_LOG.get()) {
-                LogCombat();
-            }
-
             if ((int) number > 0 && source instanceof ServerPlayerEntity) {
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
@@ -139,40 +129,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
-    private void LogCombat() {
-
-        if (this.getEffectType()
-                .equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
-            return;
-        }
-
-        if (this.source instanceof PlayerEntity) {
-
-            String s = Words.Dealt.translate() + LogDamage() + Words.To.translate() + " " + this.target
-                    .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
-            this.source.sendMessage(new StringTextComponent(s));
-
-        }
-
-        if (this.target instanceof PlayerEntity) {
-
-            String s = Words.Took.translate() + LogDamage() + Words.From.translate() + " " + this.source
-                    .getName() + " " + LogCurrentHP(this.target, this.targetUnit);
-            this.target.sendMessage(new StringTextComponent(s));
-
-        }
-
-    }
-
-    private String LogCurrentHP(LivingEntity entity, Unit unit) {
-
-        String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health()
-                .CurrentValue(entity, unit) + "/" + (int) unit.healthData().Value + "]";
-
-        return str;
-
-    }
-
     public static String FormatNumber(int Number) {
 
         String num = "";
@@ -197,21 +153,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         return num;
-    }
-
-    private String LogDamage() {
-
-        String num = FormatDamageNumber(this);
-
-        String str = " " + num + " " + Words.Damage.translate() + " ";
-
-        if (element != null) {
-            str = element.format + str;
-
-        }
-
-        return str;
-
     }
 
     @Override

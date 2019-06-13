@@ -16,6 +16,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -93,6 +95,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     public ITextComponent NameText(TooltipInfo info, StatModData data) {
         StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
@@ -112,6 +115,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public ITextComponent NameAndValueText(TooltipInfo info, StatModData data) {
 
         float val = data.GetActualVal(info.level);
@@ -121,6 +125,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
         return NameText(info, data).appendText(minusplus + printValue(data, info.level));
     }
 
+    @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();

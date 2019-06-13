@@ -12,6 +12,7 @@ import com.robertx22.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mmorpg.proxy.ClientProxy;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
+import com.robertx22.mmorpg.registers.client.ContainerGuiRegisters;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
@@ -54,7 +55,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    private static boolean RUN_DEV_TOOLS = true;
+    private static boolean RUN_DEV_TOOLS = false;
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -92,17 +93,17 @@ public class MMORPG {
 
         });
 
+        PacketRegister.register();
+
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
 
         System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
-        PacketRegister.register();
-        CapabilityRegister.register();
         OreGenRegister.register();
         WorldGenRegisters.register();
-        ContainerGuiRegisters.reg();
+        CapabilityRegister.register();
 
     }
 
@@ -136,6 +137,7 @@ public class MMORPG {
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
+        ContainerGuiRegisters.reg();
 
     }
 

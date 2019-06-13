@@ -16,6 +16,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     public ITextComponent TraitText(StatModData data) {
         StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
@@ -65,6 +68,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();

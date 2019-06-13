@@ -30,7 +30,6 @@ public class MapManager {
     public static class EventDim {
         @SubscribeEvent
         public static void registerAllModDims(RegisterDimensionsEvent event) {
-
             for (IWP iwp : WorldProviders.All.values()) {
 
                 ResourceLocation res = iwp.getResourceLoc();

@@ -13,11 +13,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@OnlyIn(Dist.CLIENT)
 public class StatGUI extends Screen {
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;

@@ -56,10 +56,6 @@ public abstract class SpellPotionBase extends Effect implements IBaseAutoLoc {
 
     }
 
-    public boolean canSelfCast() {
-        return false;
-    }
-
     protected boolean isServerSideOnly() {
         return true;
     }
@@ -137,34 +133,6 @@ public abstract class SpellPotionBase extends Effect implements IBaseAutoLoc {
 
     public EffectInstance toPotionEffect(int duration, int amplifier) {
         return new EffectInstance(this, duration, amplifier, isAmbient(), shouldShowParticles());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // Only exact class matches work
-        return other != null && other.getClass() == getClass();
-
-        // For subclasses, instead use
-        // return other != null && other.getClass().isAssignableFrom(getClass());
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + getLiquidColor();
-        hash = 31 * hash + (this.isBeneficial() ? 1 : 0);
-        return hash;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void renderInventoryEffect(EffectInstance effect, AbstractGui gui, int x,
-                                      int y, float z) {
-
-        if (gui != null && getIconTexture() != null) {
-            Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
-
-            AbstractGui.blit(x + 6, y + 7, 0, 0, 16, 16, 16, 16);
-        }
     }
 
     @OnlyIn(Dist.CLIENT)

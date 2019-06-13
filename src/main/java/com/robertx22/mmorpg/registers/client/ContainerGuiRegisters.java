@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg.registers.common;
+package com.robertx22.mmorpg.registers.client;
 
 import com.robertx22.blocks.gear_factory_station.ContainerGearFactory;
 import com.robertx22.blocks.gear_factory_station.GuiGearFactory;
@@ -16,6 +16,7 @@ import com.robertx22.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.items.bags.loot_bag.GuiLootBag;
 import com.robertx22.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.items.bags.map_bag.GuiMapBag;
+import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.client.gui.ScreenManager;
 
 public class ContainerGuiRegisters {

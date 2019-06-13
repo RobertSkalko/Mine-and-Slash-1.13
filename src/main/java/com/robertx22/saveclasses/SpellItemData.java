@@ -24,6 +24,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
@@ -195,6 +197,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
         return true;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              EntityData.UnitData data) {
