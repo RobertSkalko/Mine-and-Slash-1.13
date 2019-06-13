@@ -8,6 +8,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -15,8 +16,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class EntityStaffProjectile extends EntityBaseProjectile {
 
     ItemStack staff;
@@ -108,6 +112,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         WorldUtils.spawnEntity(world, this);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public ItemStack getItem() {
         return new ItemStack(Items.ENDER_PEARL);

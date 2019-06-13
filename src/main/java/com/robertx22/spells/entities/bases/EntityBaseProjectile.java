@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public abstract class EntityBaseProjectile extends Entity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
 
     Entity homindTarget = null;

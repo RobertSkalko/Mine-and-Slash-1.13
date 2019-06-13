@@ -15,12 +15,15 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public ItemStack getItem() {
         return new ItemStack(this.element().projectileItem);

@@ -23,7 +23,7 @@ public class LootTypeBonusFlat extends Stat implements IGenerated<Stat> {
     public String locDescLangFileGUID() {
         return Ref.MODID + ".stat_desc." + "loot_drop_bonus";
     }
-    
+
     @Override
     public boolean IsShownOnTooltip() {
         return false;

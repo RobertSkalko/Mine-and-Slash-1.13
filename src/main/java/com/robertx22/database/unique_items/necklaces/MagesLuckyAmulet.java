@@ -1,7 +1,9 @@
 package com.robertx22.database.unique_items.necklaces;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.uncommon.Styles;
@@ -25,7 +27,7 @@ public class MagesLuckyAmulet extends BaseUniqueNecklace {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new HealthFlat(), new ElementalResistFlat(Elements.Elemental)
-                .multi(0.5F));
+                .multi(0.5F), new ArmorFlat(), new ManaFlat().multi(2));
     }
 
     @Override

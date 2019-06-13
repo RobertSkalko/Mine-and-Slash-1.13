@@ -7,7 +7,9 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
+import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +22,7 @@ import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class MapManager {
 
@@ -32,9 +35,16 @@ public class MapManager {
 
                 ResourceLocation res = iwp.getResourceLoc();
 
-                if (DimensionManager.getRegistry().containsKey(res) == false) {
+                if (ForgeRegistries.MOD_DIMENSIONS.containsKey(res) == false) {
+
                     ModDimension moddim = iwp.getModDim();
-                    DimensionManager.registerDimension(res, moddim, null, true);
+
+                    if (moddim.getRegistryName() == null) {
+                        moddim.setRegistryName(iwp.getResourceLoc().toString());
+                    }
+
+                    DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
+                            .buffer()), true);
                 }
             }
 
