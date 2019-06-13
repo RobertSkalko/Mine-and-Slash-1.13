@@ -19,11 +19,12 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
 
         this.mc = Minecraft.getInstance();
 
-        TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
-
-        if (en != null) {
-            if (token.isAssignableFrom(en.getClass())) {
-                this.tile = (Tile) en;
+        if (cont.pos != null) {
+            TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
+            if (en != null) {
+                if (token.isAssignableFrom(en.getClass())) {
+                    this.tile = (Tile) en;
+                }
             }
         }
     }
@@ -31,12 +32,10 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
 
-        if (tile == null) {
-            return;
-        }
-
-        if (mc.player.ticksExisted % 20 == 0) {
-            MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
+        if (tile != null) {
+            if (mc.player.ticksExisted % 20 == 0) {
+                MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
+            }
         }
 
         this.renderBackground();

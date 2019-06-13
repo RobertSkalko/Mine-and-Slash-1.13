@@ -3,6 +3,7 @@ package com.robertx22.blocks.map_device;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
@@ -46,7 +47,7 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        font.drawString(Words.Map_Device.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         final int TIER_XPOS = 35;

@@ -75,7 +75,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int rarity() {
-        return 4;
+        return 5;
     }
 
     @Override

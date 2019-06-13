@@ -328,7 +328,7 @@ public class TileGearFactory extends BaseTile {
 
     @Override
     public ITextComponent getDisplayName() {
-        return CLOC.blank("block.mmorpg.factory_station");
+        return CLOC.blank("block.mmorpg.gear_factory_station");
     }
 
     @Nullable

@@ -3,10 +3,10 @@ package com.robertx22.blocks.item_modify_station;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,18 +42,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
-        TileEntity en = Minecraft.getInstance().world.getTileEntity(this.getContainer().pos);
-
-        if (en instanceof TileGearModify) {
-            this.tile = (TileGearModify) en;
-        }
-
         // Bind the image texture
-        Minecraft.getInstance().
-
-                getTextureManager().
-
-                bindTexture(texture);
+        Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -71,7 +61,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        this.font.drawString(Words.Gear_Modify.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.drawString(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
