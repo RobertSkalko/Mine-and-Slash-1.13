@@ -9,9 +9,7 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.network.play.server.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.management.PlayerList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.ServerWorld;
@@ -135,12 +133,6 @@ public class PlayerUtils {
             net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
             return player;
         }
-    }
-
-    @Nullable
-    public static TileEntity getTileEntityLookedAt(PlayerEntity player) {
-        BlockRayTraceResult ray = (BlockRayTraceResult) player.func_213324_a(20.0D, 0.0F, false);
-        return player.world.getTileEntity(ray.getPos());
     }
 
     public static PlayerEntity findNearest(Entity entity, float radius) {

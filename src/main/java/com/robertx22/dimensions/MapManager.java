@@ -65,8 +65,11 @@ public class MapManager {
 
                 if (isRegistered(iwp.getResourceLoc()) == false) {
 
-                    DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
+                    DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
                             .buffer()), true);
+
+                    DimensionManager.keepLoaded(type, false);
+
                 }
             }
 
