@@ -24,32 +24,35 @@ public class AllowMobSpawnsInMap {
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-        LivingEntity en = event.getEntityLiving();
+        if (RandomUtils.roll(20)) {
 
-        if (EntityTypeUtils.isMob(en)) {
+            LivingEntity en = event.getEntityLiving();
 
-            if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
+            if (EntityTypeUtils.isMob(en)) {
 
-                if (en instanceof SlimeEntity) {
-                    return;
-                    // no
-                } else {
+                if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
-                    if (en.getPosition().getY() > 60) {
+                    if (en instanceof SlimeEntity) {
+                        return;
+                        // no
+                    } else {
 
-                        BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
-                                .down()); // down might be problem
+                        if (en.getPosition().getY() > 60) {
 
-                        if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en.getType())) {
-                            return;
-                        }
+                            BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
+                                    .down()); // down might be problem
 
-                        if (RandomUtils.roll(50)) {
+                            if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en
+                                    .getType())) {
+                                return;
+                            }
+
                             event.setResult(Result.ALLOW);
+
                         }
                     }
-                }
 
+                }
             }
         }
 

@@ -8,7 +8,6 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.testing.Watch;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -56,15 +55,11 @@ public class WorldUtils {
 
     public static BlockPos getPosByLevel(World world, int lvl) {
 
-        Watch watch = new Watch();
-
         DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(world);
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
         pos = getSurface(world, pos);
-
-        watch.print("getting spawn pos took ");
 
         return pos;
 

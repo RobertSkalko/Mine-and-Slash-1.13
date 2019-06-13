@@ -18,37 +18,12 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class MapManager {
-
-    @Mod.EventBusSubscriber
-    public static class EventDim {
-        @SubscribeEvent
-        public static void registerAllModDims(RegisterDimensionsEvent event) {
-            for (IWP iwp : WorldProviders.All.values()) {
-
-                ResourceLocation res = iwp.getResourceLoc();
-
-                if (ForgeRegistries.MOD_DIMENSIONS.containsKey(res) == false) {
-
-                    ModDimension moddim = iwp.getModDim();
-
-                    if (moddim.getRegistryName() == null) {
-                        moddim.setRegistryName(iwp.getResourceLoc().toString());
-                    }
-
-                    DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
-                            .buffer()), true);
-                }
-            }
-
-        }
-    }
 
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
@@ -58,15 +33,26 @@ public class MapManager {
 
             for (IWP iwp : WorldProviders.All.values()) {
 
-                ModDimension moddim = iwp.newModDimension()
-                        .setRegistryName(iwp.getResourceLoc());
+                ModDimension moddim = iwp.newModDimension();
+
+                if (moddim.getRegistryName() == null) {
+                    moddim.setRegistryName(iwp.getResourceLoc());
+                }
 
                 iwp.setModDimension(moddim);
-
                 event.getRegistry().register(moddim);
 
+                ResourceLocation res = iwp.getResourceLoc();
+
+                if (ForgeRegistries.MOD_DIMENSIONS.containsKey(res) == false) {
+
+                    DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
+                            .buffer()), true);
+                }
             }
+
         }
+
     }
 
     public static DimensionType getDimension(ResourceLocation res) {

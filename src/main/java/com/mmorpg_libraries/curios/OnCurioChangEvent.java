@@ -1,8 +1,9 @@
 package com.mmorpg_libraries.curios;
 
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnCurioChangEvent {
 /*
     @SubscribeEvent

@@ -34,6 +34,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     private DimensionType type;
 
     public ResourceLocation res(String str) {
+
         return new ResourceLocation(Ref.MODID, str);
 
     }
