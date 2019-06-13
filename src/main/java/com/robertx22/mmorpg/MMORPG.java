@@ -93,14 +93,13 @@ public class MMORPG {
 
         });
 
-        PacketRegister.register();
-
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
 
         System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
+        PacketRegister.register();
         OreGenRegister.register();
         WorldGenRegisters.register();
         CapabilityRegister.register();
