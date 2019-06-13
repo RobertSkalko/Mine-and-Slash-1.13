@@ -2,6 +2,7 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.TransferMethod;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
@@ -14,6 +15,11 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
     @Override
     public String locDescForLangFile() {
         return "Transfer takes a % from 1 and gives to the other";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "elemental_transfer";
     }
 
     @Override

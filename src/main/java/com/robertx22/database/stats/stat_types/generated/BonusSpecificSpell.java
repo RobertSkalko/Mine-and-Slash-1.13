@@ -4,6 +4,7 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.offense.BonusSpecificSpellEffect;
 import com.robertx22.db_lists.Spells;
 import com.robertx22.items.spells.BaseSpellItem;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -25,6 +26,12 @@ public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated
     @Override
     public String locDescForLangFile() {
         return "Increases Effect of that spell, whether that's damage, heal etc";
+    }
+
+    // to reduce the number of desc
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "bonus_specific_spell";
     }
 
     public BaseSpell spell() {

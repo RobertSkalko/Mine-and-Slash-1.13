@@ -21,9 +21,11 @@ import com.robertx22.database.affixes.prefixes.resource.rare_resource.BraveHeart
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.database.affixes.prefixes.uniques.Heros;
+import com.robertx22.database.affixes.prefixes.uniques.MagesGamble;
 import com.robertx22.db_lists.bases.IRandomDefault;
+import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.interfaces.IElementalGenerated;
+import com.robertx22.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,10 +96,11 @@ public class Prefixes implements IRandomDefault<Prefix> {
 
     public static HashMap<String, Prefix> all = new HashMap<>();
 
-    private static List<IElementalGenerated<Prefix>> allGenerated = new ArrayList<IElementalGenerated<Prefix>>() {
+    private static List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
         {
             {
                 add(new ElementThornsMastery(Elements.Physical));
+                add(new MagesGamble(new SpellAcidBolt()));
 
             }
         }
@@ -111,7 +114,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
             all.put(s.GUID(), s);
         }
 
-        for (IElementalGenerated<Prefix> gen : allGenerated) {
+        for (IGenerated<Prefix> gen : allGenerated) {
             for (Prefix statmod : gen.generateAllPossibleStatVariations()) {
                 all.put(statmod.GUID(), statmod);
             }

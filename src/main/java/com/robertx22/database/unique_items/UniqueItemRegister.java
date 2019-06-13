@@ -48,6 +48,8 @@ public class UniqueItemRegister {
      */
     public static void register() {
 
+        add(new MagesLuckyAmulet());
+
         add(new HelmetWisdom());
         add(new ShieldWisdom());
 

@@ -2,6 +2,7 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.ConversionMethod;
 import com.robertx22.database.stats.Stat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import com.robertx22.uncommon.interfaces.IStatConversion;
@@ -65,6 +66,11 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
     @Override
     public String locDescForLangFile() {
         return "Conversion adds a % of one to the other";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "elemental_conversion";
     }
 
     @Override
