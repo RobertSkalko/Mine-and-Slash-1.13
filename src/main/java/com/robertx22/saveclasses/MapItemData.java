@@ -167,11 +167,12 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         return list;
     }
 
-    public DimensionType initDimension(World ogworld, BlockPos pos, PlayerEntity player) {
+    public DimensionType getDimensionType(World ogworld, BlockPos pos,
+                                          PlayerEntity player) {
 
         UnitData unit = Load.Unit(player);
 
-        return MapManager.initDimension(player, unit, this, pos);
+        return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
     }
 

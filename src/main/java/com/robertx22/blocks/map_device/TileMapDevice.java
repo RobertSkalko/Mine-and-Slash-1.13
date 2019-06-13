@@ -142,7 +142,7 @@ public class TileMapDevice extends BaseTile {
 
                     DimensionType type = null;
                     try {
-                        type = map.initDimension(world, p, player);
+                        type = map.getDimensionType(world, p, player);
 
                         // start map
                         this.MapSlot().shrink(1);

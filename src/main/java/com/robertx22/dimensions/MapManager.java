@@ -18,10 +18,10 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class MapManager {
 
@@ -39,12 +39,31 @@ public class MapManager {
                     moddim.setRegistryName(iwp.getResourceLoc());
                 }
 
-                iwp.setModDimension(moddim);
                 event.getRegistry().register(moddim);
+
+                iwp.setModDimension(moddim);
+
+            }
+
+        }
+
+    }
+
+    @Mod.EventBusSubscriber
+    public static class EventDim {
+        @SubscribeEvent
+        public static void registerAllModDims(RegisterDimensionsEvent event) {
+            for (IWP iwp : WorldProviders.All.values()) {
 
                 ResourceLocation res = iwp.getResourceLoc();
 
-                if (ForgeRegistries.MOD_DIMENSIONS.containsKey(res) == false) {
+                ModDimension moddim = iwp.getModDim();
+
+                if (moddim.getRegistryName() == null) {
+                    moddim.setRegistryName(iwp.getResourceLoc().toString());
+                }
+
+                if (isRegistered(iwp.getResourceLoc()) == false) {
 
                     DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
                             .buffer()), true);
@@ -52,7 +71,6 @@ public class MapManager {
             }
 
         }
-
     }
 
     public static DimensionType getDimension(ResourceLocation res) {
@@ -117,19 +135,12 @@ public class MapManager {
 
         ResourceLocation loc = DimensionType.getKey(type);
 
-        if (loc != null) {
-            String str = loc.toString();
-
-            if (str.contains(Ref.MODID) == false && str.contains("minecraft") == false) {
-                loc = new ResourceLocation(Ref.MODID, loc.toString());
-            }
-        }
-
         return loc;
     }
 
-    public static DimensionType initDimension(PlayerEntity player, UnitData unit,
-                                              MapItemData map, BlockPos pos) {
+    public static DimensionType setupPlayerMapDimension(PlayerEntity player,
+                                                        UnitData unit, MapItemData map,
+                                                        BlockPos pos) {
 
         DimensionType type = getDimension(map.getIWP().getResourceLoc());
 
