@@ -1,6 +1,7 @@
 package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -18,6 +19,11 @@ public class LootTypeBonusFlat extends Stat implements IGenerated<Stat> {
 
     }
 
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "loot_drop_bonus";
+    }
+    
     @Override
     public boolean IsShownOnTooltip() {
         return false;

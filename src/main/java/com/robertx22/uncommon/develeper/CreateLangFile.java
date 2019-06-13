@@ -18,6 +18,9 @@ public class CreateLangFile {
 
         String json = "";
 
+        // dont print duplicates
+        List<String> usedGUIDS = new ArrayList<>();
+
         for (Map.Entry<String, List<IAutoLocName>> entry : getMap().entrySet()) {
 
             json += CreateLangFileUtils.comment(entry.getKey());
@@ -31,6 +34,11 @@ public class CreateLangFile {
                             e.printStackTrace();
                         }
                     }
+
+                    if (usedGUIDS.contains(iauto.formattedLocNameLangFileGUID())) {
+                        continue;
+                    }
+                    usedGUIDS.add(iauto.formattedLocNameLangFileGUID());
 
                     json += "\t" + "\"" + iauto.formattedLocNameLangFileGUID() + "\": \"" + iauto
                             .locNameForLangFile() + "\",\n";
@@ -53,6 +61,11 @@ public class CreateLangFile {
                         }
                     }
 
+                    if (usedGUIDS.contains(iauto.formattedLocDescLangFileGUID())) {
+                        continue;
+                    }
+                    usedGUIDS.add(iauto.formattedLocDescLangFileGUID());
+
                     json += "\t" + "\"" + iauto.formattedLocDescLangFileGUID() + "\": \"" + iauto
                             .locDescForLangFile() + "\",\n";
                 }
@@ -65,9 +78,9 @@ public class CreateLangFile {
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocMultiLore iauto : entry.getValue()) {
                 if (iauto.loreLines().size() > 0) {
-
                     int i = 0;
                     for (String line : iauto.loreLines()) {
+
                         json += "\t" + "\"" + iauto.getPrefixListForLangFile()
                                 .get(i) + iauto.formattedGUID() + "\": \"" + line + "\",\n";
                         i++;
