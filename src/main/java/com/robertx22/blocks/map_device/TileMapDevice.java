@@ -1,6 +1,7 @@
 package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.database.world_providers.IWP;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
@@ -98,6 +99,10 @@ public class TileMapDevice extends BaseTile {
     }
 
     private void doLogic() {
+
+        if (world == null || world.getDimension() == null || world.getDimension() instanceof IWP) {
+            return;
+        }
 
         ItemStack start = this.StartSlot();
 

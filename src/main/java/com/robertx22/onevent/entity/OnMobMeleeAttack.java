@@ -8,12 +8,13 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnMobMeleeAttack {
 
     /**
@@ -24,10 +25,6 @@ public class OnMobMeleeAttack {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onMobMeleeAttack(LivingAttackEvent event) {
-
-        if (event.getEntityLiving().world.isRemote) {
-            return;
-        }
 
         if (event.getSource() instanceof MyDamageSource || event.getSource()
                 .getDamageType()
@@ -42,8 +39,7 @@ public class OnMobMeleeAttack {
                 return;
             }
 
-            LivingEntity source = (LivingEntity) event.getSource()
-                    .getTrueSource();
+            LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
             LivingEntity target = event.getEntityLiving();
 
             if (target.isAlive() == false) {

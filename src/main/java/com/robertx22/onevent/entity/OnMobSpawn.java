@@ -7,11 +7,12 @@ import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnMobSpawn {
 
     @net.minecraftforge.eventbus.api.SubscribeEvent
@@ -26,10 +27,6 @@ public class OnMobSpawn {
         }
 
         LivingEntity entity = (LivingEntity) event.getEntity();
-
-        if (entity.world.isRemote) {
-            return;
-        }
 
         UnitData endata = Load.Unit(entity);
 

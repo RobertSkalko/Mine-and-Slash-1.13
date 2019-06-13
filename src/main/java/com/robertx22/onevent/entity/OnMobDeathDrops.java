@@ -13,19 +13,16 @@ import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnMobDeathDrops {
 
     @SubscribeEvent
     public static void mobOnDeathDrop(LivingDeathEvent event) {
-
-        if (event.getEntityLiving().world.isRemote) {
-            return;
-        }
 
         try {
 
@@ -78,8 +75,8 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(LivingEntity victim, LivingEntity entity,
-                               UnitData player, UnitData mob, float multi) {
+    private static int GiveExp(LivingEntity victim, LivingEntity entity, UnitData player,
+                               UnitData mob, float multi) {
 
         int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
                 .ExpOnKill() * multi);

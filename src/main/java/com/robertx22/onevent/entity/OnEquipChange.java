@@ -4,11 +4,12 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnEquipChange {
 
     // on change, notify my capability so i know stats need to be recalculated

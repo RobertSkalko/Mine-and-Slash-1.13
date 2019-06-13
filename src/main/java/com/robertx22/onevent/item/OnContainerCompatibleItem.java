@@ -9,11 +9,12 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.DEDICATED_SERVER)
 public class OnContainerCompatibleItem {
 
     @SubscribeEvent
@@ -21,10 +22,6 @@ public class OnContainerCompatibleItem {
 
         try {
             if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
-                return;
-            }
-
-            if (event.getEntityPlayer().world.isRemote) {
                 return;
             }
 
