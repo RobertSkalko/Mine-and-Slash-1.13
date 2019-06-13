@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,7 +17,8 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldInfo;
 
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class PlayerUtils {
 
@@ -86,23 +88,14 @@ public class PlayerUtils {
 
     }
 
-    public static PlayerEntity findNearest(Entity entity, float radius) {
+    public static PlayerEntity nearestPlayer(ServerWorld world, LivingEntity entity) {
 
-        List<PlayerEntity> players = entity.world.getEntitiesWithinAABB(PlayerEntity.class, entity
-                .getBoundingBox()
-                .grow(radius));
+        Optional<ServerPlayerEntity> player = world.getPlayers()
+                .stream()
+                .min(Comparator.comparingDouble(entity::getDistanceSq));
 
-        PlayerEntity nearest = null;
+        return player.get();
 
-        for (PlayerEntity player : players) {
-
-            if (nearest == null || nearest.getDistance(entity) > player.getDistance(entity)) {
-                nearest = player;
-            }
-
-        }
-
-        return nearest;
     }
 
     public static CompoundNBT getPersistentNBT(PlayerEntity player) {
