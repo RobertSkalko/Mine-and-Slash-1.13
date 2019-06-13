@@ -8,13 +8,14 @@ import com.robertx22.spells.bases.SpellBuffCheck;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.HealData;
 import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -65,7 +66,12 @@ public class SpellInstantHeal extends BaseSpellHeal {
             if (!world.isRemote) {
 
                 UnitData unit = Load.Unit(caster);
-                unit.heal(caster, data.GetDamage(unit.getUnit()));
+
+                HealData healData = new HealData(caster, unit, data.GetDamage(unit.getUnit()))
+                        .bySpell(this);
+
+                unit.heal(healData);
+
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
                 // spell buffs
                 SpellBuffCheck check = new SpellBuffCheck(this.Type());

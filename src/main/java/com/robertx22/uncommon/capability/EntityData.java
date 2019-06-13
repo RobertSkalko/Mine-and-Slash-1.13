@@ -23,12 +23,10 @@ import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.CustomStats;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.UnitNbt;
-import com.robertx22.uncommon.effectdatas.DamageEffect;
-import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.*;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
-import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -174,7 +172,7 @@ public class EntityData {
 
         void consumeEnergy(float i);
 
-        void heal(LivingEntity entity, int healthrestored);
+        void heal(HealData data);
 
         String getCurrentMapId();
 
@@ -771,12 +769,17 @@ public class EntityData {
         }
 
         @Override
-        public void heal(LivingEntity entity, int healthrestored) {
+        public void heal(HealData data) {
+            if (data.target.isAlive()) {
 
-            if (entity.isAlive()) {
-                entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
-                        .get()
-                        .floatValue(), entity));
+                if (data.spell != null) {
+                    SpellHealEffect effect = new SpellHealEffect(data);
+                    effect.Activate();
+
+                } else {
+                    HealEffect effect = new HealEffect(data);
+                    effect.Activate();
+                }
             }
         }
 

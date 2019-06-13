@@ -123,7 +123,7 @@ public class DamageParticle extends Particle {
     }
 
     @Override
-    public IParticleRenderType func_217558_b() { // custom?
-        return IParticleRenderType.field_217605_e; // TODO WTF IS THIS
+    public IParticleRenderType getRenderType() { // custom?
+        return IParticleRenderType.CUSTOM; // TODO WTF IS THIS
     }
 }

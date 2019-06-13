@@ -51,7 +51,7 @@ And there's too many stats to list them all.. There's at least 50 traits. plus 2
 * bomb spells now have gravity and higher explosion radius, they also detonate faster
 * there's now base spell damage for players, a bit higher early on so low lvl spells are a bit more effective
 * currencies now show tier and rarity on their tooltips
-
+* added config option for starter items
 
 
 

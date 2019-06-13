@@ -7,6 +7,7 @@ import com.robertx22.items.misc.ItemMapBackPortal;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.HealData;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -61,7 +62,7 @@ public class OnTickLogic {
                         unit_capa.restoreEnergy(energyrestored);
 
                         int healthrestored = (int) unit.MyStats.get(new HealthRegen().GUID()).Value;
-                        unit_capa.heal(player, healthrestored);
+                        unit_capa.heal(new HealData(player, unit_capa, healthrestored));
 
                     }
                 }

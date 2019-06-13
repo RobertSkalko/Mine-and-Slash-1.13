@@ -119,7 +119,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     private void Heal() {
         int healed = (int) healthHealed;
         if (healed > 0) {
-            sourceData.heal(source, healed);
+            sourceData.heal(new HealData(source, sourceData, healed));
         }
     }
 
