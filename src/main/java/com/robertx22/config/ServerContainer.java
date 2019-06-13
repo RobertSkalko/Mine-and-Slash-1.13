@@ -11,6 +11,7 @@ public class ServerContainer {
     public BooleanValue GENERATE_ORES;
     public BooleanValue LEVEL_UPS_COST_TOKEN;
     public BooleanValue USE_ATTACK_COOLDOWN;
+    public BooleanValue GET_STARTER_ITEMS;
 
     public IntValue MAXIMUM_WORN_RUNED_ITEMS;
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
@@ -39,6 +40,10 @@ public class ServerContainer {
         USE_ATTACK_COOLDOWN = builder.comment(".")
                 .translation("mmorpg.word")
                 .define("USE_ATTACK_COOLDOWN", true);
+
+        GET_STARTER_ITEMS = builder.comment(".")
+                .translation("mmorpg.word")
+                .define("GET_STARTER_ITEMS", true);
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
                 .translation("mmorpg.word.entities")

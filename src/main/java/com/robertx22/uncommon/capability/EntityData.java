@@ -688,7 +688,9 @@ public class EntityData {
                 // check if newbie
                 if (isNewbie()) {
                     setNewbieStatus(false);
-                    OnLogin.GiveStarterItems(player);
+                    if (ModConfig.INSTANCE.Server.GET_STARTER_ITEMS.get()) {
+                        OnLogin.GiveStarterItems(player);
+                    }
                 }
 
             } catch (Exception e) {
