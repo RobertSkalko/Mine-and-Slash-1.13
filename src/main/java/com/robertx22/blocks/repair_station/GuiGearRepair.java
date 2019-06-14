@@ -106,9 +106,6 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
 
             renderTooltip(hoveringText, mouseX - guiLeft, mouseY - guiTop, font);
         }
-        //		// You must re bind the texture and reset the colour if you still need to use it after drawing a string
-        //		Minecraft.getInstance().getTextureManager().bindTexture(texture);
-        //		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
     }
 

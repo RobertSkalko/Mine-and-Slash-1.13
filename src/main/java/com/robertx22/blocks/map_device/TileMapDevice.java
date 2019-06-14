@@ -79,6 +79,11 @@ public class TileMapDevice extends BaseTile {
     }
 
     @Override
+    public void doActionEveryTime() {
+
+    }
+
+    @Override
     public void tick() {
         if (!this.world.isRemote) {
 

@@ -1,6 +1,7 @@
 package com.robertx22.blocks.map_device;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
+import com.robertx22.blocks.slots.NormalSlot;
 import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,13 +30,15 @@ public class ContainerMapDevice extends BaseTileContainer {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
+    public static final int MAP_DEVICE_SLOTS_COUNT = 4;
+
     public ContainerMapDevice(int i, PlayerInventory playerInventory) {
         this(i, playerInventory, new Inventory(TileMapDevice.size));
     }
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,
                               IInventory inventory) {
-        super(ContainerTypeRegisters.MAP_DEVICE, i);
+        super(MAP_DEVICE_SLOTS_COUNT, ContainerTypeRegisters.MAP_DEVICE, i);
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -87,18 +90,6 @@ public class ContainerMapDevice extends BaseTileContainer {
     @Override
     public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
         return ItemStack.EMPTY;
-    }
-
-    public class NormalSlot extends Slot {
-        public NormalSlot(IInventory inventoryIn, int index, int xPosition,
-                          int yPosition) {
-            super(inventoryIn, index, xPosition, yPosition);
-        }
-
-        @Override
-        public boolean isItemValid(ItemStack stack) {
-            return true;
-        }
     }
 
 }

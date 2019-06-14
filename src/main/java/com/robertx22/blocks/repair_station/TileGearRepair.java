@@ -1,8 +1,8 @@
 package com.robertx22.blocks.repair_station;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.blocks.slots.FuelSlot;
 import com.robertx22.items.misc.ItemCapacitor;
-import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.CLOC;
@@ -49,6 +49,7 @@ public class TileGearRepair extends BaseTile {
         return ItemStack.EMPTY;
 
     }
+
     // IMPORTANT STUFF ABOVE
 
     // Create and initialize the itemStacks variable that will store store the
@@ -129,12 +130,13 @@ public class TileGearRepair extends BaseTile {
         return 10;
     }
 
-    /**
-     * for each fuel slot: decreases the burn time, checks if burnTimeRemaining = 0
-     * and tries to consume a new piece of fuel if one is available
-     *
-     * @return the number of fuel slots which are burning
-     */
+    @Override
+    public void doActionEveryTime() {
+
+        this.burnFuel();
+
+    }
+
     private int burnFuel() {
         int burningCount = 0;
         boolean inventoryChanged = false;
@@ -143,14 +145,12 @@ public class TileGearRepair extends BaseTile {
             int fuelSlotNumber = i + FIRST_FUEL_SLOT;
 
             if (this.fuel < this.MaximumFuel) {
-                if (!itemStacks[fuelSlotNumber].isEmpty() && itemStacks[fuelSlotNumber].getItem() instanceof ItemOre) { // isEmpty()
+                if (!itemStacks[fuelSlotNumber].isEmpty()) { // isEmpty()
                     // If the stack in this slot is not null and is fuel, set burnTimeRemaining &
                     // burnTimeInitialValue to the
                     // item's burn time and decrease the stack size
 
-                    ItemOre ore = (ItemOre) itemStacks[fuelSlotNumber].getItem();
-
-                    fuel += ore.GetFuelValue();
+                    fuel += FuelSlot.FUEL_VALUES.getOrDefault(itemStacks[fuelSlotNumber], 0);
 
                     itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
                     ++burningCount;

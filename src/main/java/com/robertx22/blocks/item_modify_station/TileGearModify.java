@@ -113,6 +113,11 @@ public class TileGearModify extends BaseTile {
         return 10;
     }
 
+    @Override
+    public void doActionEveryTime() {
+
+    }
+
     public double fractionOfCookTimeComplete() {
         double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
         return MathHelper.clamp(fraction, 0.0, 1.0);

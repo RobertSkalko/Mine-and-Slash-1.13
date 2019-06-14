@@ -1,6 +1,7 @@
 package com.robertx22.blocks.gear_factory_station;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.blocks.slots.FuelSlot;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
@@ -16,12 +17,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 
 public class TileGearFactory extends BaseTile {
 
@@ -36,26 +35,6 @@ public class TileGearFactory extends BaseTile {
         return GetFuelGain(stack) > 0;
     }
 
-    public static HashMap<Item, Integer> MaterialValues = new HashMap<Item, Integer>() {
-        {
-            {
-                put(Items.DIAMOND, 500);
-                put(Items.GOLD_INGOT, 250);
-                put(Items.IRON_INGOT, 50);
-                put(Items.EMERALD, 400);
-                put(Items.REDSTONE, 4);
-
-                put(ItemOre.ItemOres.get(0), 50);
-                put(ItemOre.ItemOres.get(1), 100);
-                put(ItemOre.ItemOres.get(2), 150);
-                put(ItemOre.ItemOres.get(3), 250);
-                put(ItemOre.ItemOres.get(4), 500);
-                put(ItemOre.ItemOres.get(5), 1000);
-
-            }
-        }
-    };
-
     private static final int pointsNeeded = 2500;
     private static final int spellChance = 15;
     private static final int maxFuel = 25000;
@@ -65,7 +44,7 @@ public class TileGearFactory extends BaseTile {
 
         ItemOre.ItemOres.get(0);
 
-        return MaterialValues.getOrDefault(item, 0);
+        return FuelSlot.FUEL_VALUES.getOrDefault(item, 0);
 
     }
 
@@ -176,12 +155,11 @@ public class TileGearFactory extends BaseTile {
         return 10;
     }
 
-    /**
-     * for each FuelRemaining slot: decreases the burn time, checks if burnTimeRemaining = 0
-     * and tries to consume a new piece of FuelRemaining if one is available
-     *
-     * @return the number of FuelRemaining slots which are burning
-     */
+    @Override
+    public void doActionEveryTime() {
+        this.burnFuel();
+    }
+
     private int burnFuel() {
         int burningCount = 0;
         boolean inventoryChanged = false;

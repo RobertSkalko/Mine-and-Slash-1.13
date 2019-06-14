@@ -37,6 +37,8 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     public abstract int tickRate();
 
+    public abstract void doActionEveryTime();
+
     @Override
     public void tick() {
         if (!this.world.isRemote) {
@@ -44,6 +46,9 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
             ticks++;
             if (ticks > tickRate()) {
                 ticks = 0;
+
+                doActionEveryTime();
+
                 if (isCooking()) {
 
                     cookTime += tickRate();
@@ -253,6 +258,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
     }
 
     static public boolean isItemValidForInputSlot(ItemStack itemStack) {
+
         return true;
     }
 

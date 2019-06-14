@@ -1,40 +1,42 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
+import com.robertx22.blocks.slots.CapacitorSlot;
+import com.robertx22.blocks.slots.OutputSlot;
+import com.robertx22.blocks.slots.SalvageSlot;
 import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearSalvage extends BaseTileContainer {
 
-    private final int HOTBAR_SLOT_COUNT = 9;
-    private final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private static final int HOTBAR_SLOT_COUNT = 9;
+    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
-    public final int INPUT_SLOTS_COUNT = 5;
-    public final int OUTPUT_SLOTS_COUNT = 5;
-    public final int SALVAGE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
+    public static final int INPUT_SLOTS_COUNT = 5;
+    public static final int OUTPUT_SLOTS_COUNT = 5;
+    public static final int SALVAGE_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 2;
 
     // slot index is the unique index for all slots in this container i.e. 0 - 35
     // for invPlayer then 36 - 49 for tileInventoryFurnace
-    private final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private final int FIRST_INPUT_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
-    private final int FIRST_CAPACITOR_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private static final int FIRST_INPUT_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
+    private static final int FIRST_CAPACITOR_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
 
     // slot number is the slot number within each component; i.e. invPlayer slots 0
     // - 35, and tileInventoryFurnace slots 0 - 14
-    private final int FIRST_INPUT_SLOT_NUMBER = 0;
-    private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
-    private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
+    private static final int FIRST_INPUT_SLOT_NUMBER = 0;
+    private static final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
+    private static final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
     public ContainerGearSalvage(int i, PlayerInventory playerInventory,
                                 PacketBuffer buf) {
@@ -43,7 +45,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
                                 BlockPos pos) {
-        super(ContainerTypeRegisters.GEAR_SALVAGE, num);
+        super(SALVAGE_SLOTS_COUNT, ContainerTypeRegisters.GEAR_SALVAGE, num);
 
         this.pos = pos;
 
@@ -74,7 +76,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile input slots
         for (int y = 0; y < INPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_INPUT_SLOT_NUMBER;
-            addSlot(new SlotSmeltableInput(inventory, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SalvageSlot(inventory, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int OUTPUT_SLOTS_XPOS = 134;
@@ -82,7 +84,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile output slots
         for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
             int slotNumber = y + FIRST_OUTPUT_SLOT_NUMBER;
-            addSlot(new SlotOutput(inventory, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new OutputSlot(inventory, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
         final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
@@ -90,7 +92,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         // Add the tile capacitor slot
         for (int x = 0; x < 1; x++) {
             int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
-            addSlot(new Slot(inventory, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
+            addSlot(new CapacitorSlot(inventory, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x, CAPACITOR_SLOTS_YPOS));
         }
 
     }
@@ -100,81 +102,6 @@ public class ContainerGearSalvage extends BaseTileContainer {
     @Override
     public boolean canInteractWith(PlayerEntity player) {
         return true;
-    }
-
-    private boolean IsCustomContainer(int index) {
-
-        return index > VANILLA_FIRST_SLOT_INDEX + this.VANILLA_SLOT_COUNT;
-    }
-
-    // shift click logic
-    @Override
-    public ItemStack transferStackInSlot(PlayerEntity player, int sourceSlotIndex) {
-        Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
-        if (sourceSlot == null || !sourceSlot.getHasStack())
-            return ItemStack.EMPTY; // EMPTY_ITEM
-        ItemStack sourceStack = sourceSlot.getStack();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        // Check if the slot clicked is one of the vanilla container slots
-        if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // if (!TileInventorySalvage.getSmeltingResultForItem(sourceStack).isEmpty()) {
-            // // isEmptyItem
-            if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT, false)) {
-                return ItemStack.EMPTY; // EMPTY_ITEM;
-                // }
-            } else {
-                return ItemStack.EMPTY; // this is the thing that gave me problems.. without this it crashes without an
-            } // error message
-
-        } else if (sourceSlotIndex >= FIRST_INPUT_SLOT_INDEX && sourceSlotIndex < FIRST_INPUT_SLOT_INDEX + SALVAGE_SLOTS_COUNT) {
-            if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY; // EMPTY_ITEM;
-            }
-        } else {
-            System.err.print("Invalid slotIndex:" + sourceSlotIndex);
-            return ItemStack.EMPTY; // EMPTY_ITEM;
-        }
-
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
-        if (sourceStack.getCount() == 0) { // getStackSize()
-            sourceSlot.putStack(ItemStack.EMPTY); // Empty Item
-        } else {
-            sourceSlot.onSlotChanged();
-        }
-
-        sourceSlot.onTake(player, sourceStack); // onPickupFromSlot()
-        return copyOfSourceStack;
-    }
-
-    // SlotSmeltableInput is a slot for input items
-    public class SlotSmeltableInput extends Slot {
-        public SlotSmeltableInput(IInventory inventoryIn, int index, int xPosition,
-                                  int yPosition) {
-            super(inventoryIn, index, xPosition, yPosition);
-        }
-
-        // if this function returns false, the player won't be able to insert the given
-        // item into this slot
-        @Override
-        public boolean isItemValid(ItemStack stack) {
-            return TileGearSalvage.isItemValidForInputSlot(stack);
-        }
-    }
-
-    // SlotOutput is a slot that will not accept any items
-    public class SlotOutput extends Slot {
-        public SlotOutput(IInventory inventoryIn, int index, int xPosition,
-                          int yPosition) {
-            super(inventoryIn, index, xPosition, yPosition);
-        }
-
-        // if this function returns false, the player won't be able to insert the given
-        // item into this slot
-        @Override
-        public boolean isItemValid(ItemStack stack) {
-            return TileGearSalvage.isItemValidForOutputSlot(stack);
-        }
     }
 
 }
