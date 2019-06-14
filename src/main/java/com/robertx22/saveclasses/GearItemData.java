@@ -446,4 +446,12 @@ public class GearItemData implements ITooltip, ISalvagable {
         return this.isSalvagable;
     }
 
+    public boolean canGetSet() {
+
+        if (this.isUnique() == false && this.isRuned() == false) {
+            return true;
+        }
+
+        return false;
+    }
 }

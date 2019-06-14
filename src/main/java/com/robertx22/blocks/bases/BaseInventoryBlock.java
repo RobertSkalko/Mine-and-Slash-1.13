@@ -20,7 +20,7 @@ import java.util.List;
 public abstract class BaseInventoryBlock extends NonFullBlock {
     protected BaseInventoryBlock(Properties prop) {
         super(prop);
-
+        
     }
 
     @Deprecated

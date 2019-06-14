@@ -45,8 +45,6 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -56,8 +54,6 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     private static boolean RUN_DEV_TOOLS = false;
-
-    public static final Logger LOGGER = LogManager.getLogger();
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
