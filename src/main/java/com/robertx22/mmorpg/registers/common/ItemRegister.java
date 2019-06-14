@@ -104,6 +104,7 @@ public class ItemRegister {
         r.register(new ItemMapBag().setRegistryName(ItemMapBag.ID));
 
         r.register(new ItemAddSet());
+        r.register(new ItemRerollSet());
         r.register(new CreateNewUnique());
         r.register(new ItemAddPrefix());
         r.register(new ItemAddSecondaryStat());

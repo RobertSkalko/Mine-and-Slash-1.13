@@ -10,16 +10,16 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
+public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect {
 
     @Override
     public String GUID() {
-        return "add_set";
+        return "reroll_set";
     }
 
-    private static final String name = Ref.MODID + ":currency/add_set";
+    private static final String name = Ref.MODID + ":currency/reroll_set";
 
-    public ItemAddSet() {
+    public ItemRerollSet() {
 
         super(name);
 
@@ -43,19 +43,12 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-
-        GearBlueprint blueprint = new GearBlueprint(gear.level);
-
-        if (blueprint.GenerateSet(gear) == null) {
-            return false;
-        }
-
-        return gear.canGetSet() && gear.set == null;
+        return gear.set != null;
     }
 
     @Override
     public int Tier() {
-        return 15;
+        return 17;
     }
 
     @Override
@@ -65,16 +58,16 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
 
     @Override
     public List<String> loreLines() {
-        return Arrays.asList("Become one.");
+        return Arrays.asList("Become one again.");
     }
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Key of Unity";
+        return nameColor + "Key of new Dawn";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Adds a set to an item";
+        return "Re-rolls an item's set.";
     }
 }
