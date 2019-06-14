@@ -89,7 +89,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean checkValid) {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(p_206921_1_, 0, p_206921_2_);
         Biome biome = this.world.getBiome(blockpos$mutableblockpos);
-        BlockState iblockstate = biome.getSurfaceBuilderConfig().getTopMaterial();
+        BlockState iblockstate = biome.getSurfaceBuilderConfig().getTop();
         if (checkValid && !iblockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
         } else {
