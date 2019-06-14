@@ -3,6 +3,7 @@ package com.mmorpg_libraries.curios;
 import com.google.common.base.Joiner;
 import com.mmorpg_libraries.curios.interfaces.ICuriosType;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -47,7 +48,7 @@ public class GenerateCurioDataJsons {
         }
         // loop end
 
-        Path dir = Paths.get("C:\\Users\\User\\Desktop\\output\\");
+        Path dir = Paths.get(DirUtils.curiosItemTagsPath());
         try {
             Files.createDirectory(dir);
         } catch (IOException e) {
@@ -58,7 +59,7 @@ public class GenerateCurioDataJsons {
 
             String json = getJson(entry);
 
-            Path path = Paths.get("C:\\Users\\User\\Desktop\\output\\" + entry.getKey() + ".json");
+            Path path = Paths.get(dir.toAbsolutePath() + "/" + entry.getKey() + ".json");
             byte[] strToBytes = json.getBytes();
 
             try {

@@ -6,6 +6,7 @@ import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.utilityclasses.DirUtils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +17,7 @@ public class CreateLangFile {
 
     public static void create() {
 
-        String json = "";
+        String json = "{\n" + ManualJSONString.get;
 
         // dont print duplicates
         List<String> usedGUIDS = new ArrayList<>();
@@ -91,11 +92,11 @@ public class CreateLangFile {
 
         }
 
-        json += "";
+        json += "\n}";
 
         json = CreateLangFileUtils.replaceLast(json, ",", ""); // removes last , or else json wont work
 
-        File file = new File(CreateLangFileUtils.filepath());
+        File file = new File(DirUtils.langFilePath());
 
         try {
             FileWriter fw = new FileWriter(file);
@@ -105,7 +106,7 @@ public class CreateLangFile {
             System.out.println(e);
         }
 
-        System.out.println("Wrote [LANG] file to " + CreateLangFileUtils.filepath());
+        System.out.println("Wrote [LANG] file to " + DirUtils.langFilePath());
 
     }
 

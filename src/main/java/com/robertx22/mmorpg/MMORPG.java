@@ -116,13 +116,6 @@ public class MMORPG {
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
 
-        if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
-            TestManager.RunAllTests();
-            CreateLangFile.create();
-            GenerateCurioDataJsons.generate();
-
-        }
-
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
@@ -139,6 +132,13 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
         CommandRegister.Register(event.getServer());
+
+        if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
+            TestManager.RunAllTests();
+            CreateLangFile.create();
+            GenerateCurioDataJsons.generate();
+
+        }
 
     }
 

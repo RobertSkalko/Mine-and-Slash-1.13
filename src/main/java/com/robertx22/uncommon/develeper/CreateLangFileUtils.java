@@ -7,7 +7,6 @@ import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -26,10 +25,6 @@ public class CreateLangFileUtils {
         } else {
             return string;
         }
-    }
-
-    public static String filepath() {
-        return FMLPaths.GAMEDIR.get().toString() + "/autolang.txt";
     }
 
     public static String comment(String str) {

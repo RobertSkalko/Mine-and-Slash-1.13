@@ -20,6 +20,7 @@ public class OnContainerCompatibleItem {
     public static void onContainerCompatibleItem(PlayerContainerEvent event) {
 
         try {
+
             if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
                 return;
             }
