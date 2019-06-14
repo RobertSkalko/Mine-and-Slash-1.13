@@ -42,6 +42,8 @@ public class TileGearModify extends BaseTile {
 
             ICurrencyItemEffect effect = (ICurrencyItemEffect) craftStack.getItem();
 
+            Boolean bool = effect.canItemBeModified(gearStack, craftStack);
+
             if (effect.canItemBeModified(gearStack, craftStack)) {
                 ItemStack copy = gearStack.copy();
                 copy = effect.ModifyItem(copy, craftStack);
@@ -61,6 +63,14 @@ public class TileGearModify extends BaseTile {
 
     public ItemStack CraftItemSlot() {
         return itemStacks[FIRST_INPUT_SLOT + 1];
+    }
+
+    public ItemStack OutputSot() {
+        return itemStacks[FIRST_INPUT_SLOT + 2];
+    }
+
+    public void setOutputSot(ItemStack stack) {
+        itemStacks[FIRST_INPUT_SLOT + 2] = stack;
     }
 
     // IMPORTANT STUFF ABOVE
@@ -90,12 +100,12 @@ public class TileGearModify extends BaseTile {
 
     @Override
     public void finishCooking() {
-        this.smeltItem();
+        this.modifyItem();
     }
 
     @Override
     public boolean isCooking() {
-        return canSmelt();
+        return canModifyItem();
     }
 
     @Override
@@ -103,111 +113,53 @@ public class TileGearModify extends BaseTile {
         return 10;
     }
 
-    @Override
-    public boolean onTickDoLogicAndUpdateIfTrue() {
-        return false;
-    }
-
-    /**
-     * Returns the amount of cook time completed on the currently cooking item.
-     *
-     * @return fraction remaining, between 0 - 1
-     */
     public double fractionOfCookTimeComplete() {
         double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
-    /**
-     * Check if any of the input items are smeltable and there is sufficient space
-     * in the output slots
-     *
-     * @return true if smelting is possible
-     */
-    private boolean canSmelt() {
-        return smeltItem(false);
+    private ItemStack getResult() {
+
+        return getSmeltingResultForItem(this.GearSlot());
+
     }
 
-    /**
-     * Smelt an input item into an output slot, if possible
-     */
-    private void smeltItem() {
-        smeltItem(true);
-    }
+    private boolean canModifyItem() {
 
-    /**
-     * checks that there is an item to be smelted in one of the input slots and that
-     * there is room for the result in the output slots If desired, performs the
-     * smelt
-     *
-     * @param performSmelt if true, perform the smelt. if false, check whether
-     *                     smelting is possible, but don't change the inventory
-     * @return false if no items can be smelted, true otherwise
-     */
-    private boolean smeltItem(boolean performSmelt) {
-        Integer firstSuitableInputSlot = null;
-        Integer firstSuitableOutputSlot = null;
-        ItemStack result = ItemStack.EMPTY;
+        ItemStack gear = this.GearSlot();
 
-        // finds the first input slot which is smeltable and whose result fits into an
-        // output slot (stacking if possible)
-        for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
-            if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
-
-                result = getSmeltingResultForItem(itemStacks[inputSlot]);
-
-                if (!result.isEmpty()) { // isEmpty()
-                    // find the first suitable output slot- either empty, or with identical item
-                    // that has enough space
-                    for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT; outputSlot++) {
-                        ItemStack outputStack = itemStacks[outputSlot];
-                        if (outputStack.isEmpty()) { // isEmpty()
-                            firstSuitableInputSlot = inputSlot;
-                            firstSuitableOutputSlot = outputSlot;
-                            break;
-                        }
-
-                        if (outputStack.getItem() == result.getItem()
-
-                                && ItemStack.areItemStackTagsEqual(outputStack, result)) {
-                            int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-                            if (combinedSize <= getInventoryStackLimit() && combinedSize <= itemStacks[outputSlot]
-                                    .getMaxStackSize()) {
-                                firstSuitableInputSlot = inputSlot;
-                                firstSuitableOutputSlot = outputSlot;
-                                break;
-                            }
-                        }
-                    }
-                    if (firstSuitableInputSlot != null)
-                        break;
-                }
-            }
-        }
-
-        if (firstSuitableInputSlot == null)
+        if (gear.isEmpty()) {
             return false;
-        if (!performSmelt)
-            return true;
-
-        // alter input and output
-        itemStacks[firstSuitableInputSlot].shrink(1); // decreaseStackSize()
-        if (itemStacks[firstSuitableInputSlot].getCount() <= 0) {
-            itemStacks[firstSuitableInputSlot] = ItemStack.EMPTY; // getStackSize(), EmptyItem
-        }
-        if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
-            itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
-            result = ItemStack.EMPTY;
-
-        } else {
-            int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();
-            itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
-        this.CraftItemSlot().setCount(this.CraftItemSlot().getCount() - 1);
+        if (getSmeltingResultForItem(gear).isEmpty()) {
+            return false;
+        }
 
-        markDirty();
+        if (OutputSot().isEmpty() == false) {
+            return false;
+        }
+
         return true;
+
+    }
+
+    private boolean modifyItem() {
+
+        if (this.canModifyItem()) {
+
+            ItemStack result = this.getResult();
+
+            this.GearSlot().shrink(1);
+            this.setOutputSot(result.copy());
+            result = ItemStack.EMPTY;
+            this.CraftItemSlot().shrink(1);
+
+            markDirty();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Nullable

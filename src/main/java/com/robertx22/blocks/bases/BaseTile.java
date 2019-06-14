@@ -35,17 +35,11 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     public abstract boolean isCooking();
 
-    public abstract boolean onTickDoLogicAndUpdateIfTrue();
-
     public abstract int tickRate();
 
     @Override
     public void tick() {
         if (!this.world.isRemote) {
-
-            if (onTickDoLogicAndUpdateIfTrue()) {
-
-            }
 
             ticks++;
             if (ticks > tickRate()) {

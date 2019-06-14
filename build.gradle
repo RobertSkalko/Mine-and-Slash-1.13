@@ -81,8 +81,6 @@ configurations {
     embed
     compile.extendsFrom(embed)
 
-    mycode.extendsFrom(main)
-
 }
 
 dependencies {

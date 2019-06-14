@@ -67,7 +67,7 @@ public class GearBlueprint extends ItemBlueprint {
         customSetChance = chance;
     }
 
-    public SetData GenerateSet(GearItemData data) {
+    public SetData tryGenerateSet(GearItemData data) {
 
         SetData setdata = null;
 

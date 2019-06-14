@@ -106,11 +106,6 @@ public class TileGearSalvage extends BaseTile {
         return 10;
     }
 
-    @Override
-    public boolean onTickDoLogicAndUpdateIfTrue() {
-        return false;
-    }
-
     /**
      * Check if any of the input items are smeltable and there is sufficient space
      * in the output slots

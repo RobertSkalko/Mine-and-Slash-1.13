@@ -61,7 +61,7 @@ public class RunedGearLootGen extends BaseLootGen {
 
         data.runes.capacity = rarity.runeSlots();
 
-        data.set = blueprint.GenerateSet(data);
+        data.set = blueprint.tryGenerateSet(data);
 
         return data;
     }

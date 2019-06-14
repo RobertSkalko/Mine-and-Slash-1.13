@@ -125,11 +125,6 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public boolean onTickDoLogicAndUpdateIfTrue() {
-        return burnFuel() > 0;
-    }
-
-    @Override
     public int tickRate() {
         return 10;
     }

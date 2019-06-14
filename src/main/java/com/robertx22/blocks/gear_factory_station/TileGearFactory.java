@@ -176,11 +176,6 @@ public class TileGearFactory extends BaseTile {
         return 10;
     }
 
-    @Override
-    public boolean onTickDoLogicAndUpdateIfTrue() {
-        return burnFuel() > 0;
-    }
-
     /**
      * for each FuelRemaining slot: decreases the burn time, checks if burnTimeRemaining = 0
      * and tries to consume a new piece of FuelRemaining if one is available
