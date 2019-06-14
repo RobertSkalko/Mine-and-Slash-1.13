@@ -35,7 +35,7 @@ public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect {
         GearBlueprint blueprint = new GearBlueprint(gear.level);
         blueprint.SetCustomSetChance(100);
 
-        gear.set = blueprint.tryGenerateSet(gear);
+        gear.set = blueprint.generateSet(gear);
 
         Gear.Save(stack, gear);
 

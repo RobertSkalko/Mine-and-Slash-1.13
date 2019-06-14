@@ -73,7 +73,7 @@ public class UniqueGearLootGen extends BaseLootGen {
             data.Rarity = rarity.Rank();
 
             if (unique.canGetSet()) {
-                data.set = blueprint.tryGenerateSet(data);
+                data.set = blueprint.generateSet(data);
             }
 
             if (RandomUtils.roll(rarity.AffixChance())) {

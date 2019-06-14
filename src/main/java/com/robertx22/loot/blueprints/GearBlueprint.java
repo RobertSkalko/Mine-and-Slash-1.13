@@ -67,34 +67,39 @@ public class GearBlueprint extends ItemBlueprint {
         customSetChance = chance;
     }
 
-    public SetData tryGenerateSet(GearItemData data) {
+    public boolean canGetSet(GearItemData data) {
+
+        Set set = Sets.INTANCE.random(new GearRequestedFor(data));
+
+        if (set == null) {
+            return false;
+        } else {
+            if (this.isCustomSetChance) {
+
+                if (RandomUtils.roll(this.customSetChance)) {
+                    return true;
+                }
+
+            } else {
+                if (RandomUtils.roll(data.GetRarity().SetChance())) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public SetData generateSet(GearItemData data) {
 
         SetData setdata = null;
 
-        boolean has = false;
+        Set set = Sets.INTANCE.random(new GearRequestedFor(data));
 
-        if (this.isCustomSetChance) {
+        if (set != null) {
 
-            if (RandomUtils.roll(this.customSetChance)) {
-
-                has = true;
-            }
-
-        } else {
-            if (RandomUtils.roll(data.GetRarity().SetChance())) {
-                has = true;
-            }
-        }
-
-        if (has) {
-
-            Set set = Sets.INTANCE.random(new GearRequestedFor(data));
-
-            if (set != null) {
-
-                setdata = new SetData();
-                setdata.baseSet = set.GUID();
-            }
+            setdata = new SetData();
+            setdata.baseSet = set.GUID();
         }
 
         return setdata;
