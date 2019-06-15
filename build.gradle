@@ -2,7 +2,7 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url 'https://plugins.gradle.org/m2/' }
-		maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
         mavenCentral()
 
@@ -13,8 +13,14 @@ buildscript {
         classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.2.0'
     }
 }
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '4.0.2'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'com.matthewprenger.cursegradle'
+
 
 version = "${version_minecraft}-${mod_version}"
 group = "${mod_group}"
@@ -58,6 +64,7 @@ minecraft {
     }
 }
 
+
 repositories {
     jcenter()
 
@@ -89,22 +96,32 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${version_forge}"
 
-    //compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED	
+
+    //compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
-    compile "info.loenwind.autosave:AutoSave:${version_autosave}" // Auto Nbt Saving, REQUIRED
-    embed "info.loenwind.autosave:AutoSave:${version_autosave}" // Need for nbt saving
-
+    compile fg.deobf(project.dependencies.create("info.loenwind.autosave:AutoSave:${version_autosave}") {
+        transitive = false
+    })  // Auto Nbt Saving, REQUIRED
+    shadow 'info.loenwind.autosave:AutoSave:${version_autosave}'
 }
 
 
-jar {
-
-    from configurations.embed.collect {
-        it.isDirectory() ? it : zipTree(it).matching {
-            exclude 'META-INF', 'META-INF/**'
-        }
+shadowJar {
+    // Only shadow fluent-hc
+    dependencies {
+        include(dependency('info.loenwind.autosave:AutoSave:.*'))
     }
+
+    // Relocate fluent-hc to prevent conflicts with other mods that include it
+    //relocate 'info.loenwind.autosave', 'robertx22.info.loenwind.autosave'
+
+    classifier '' // Replace the default JAR
 }
+
+reobf {
+    shadowJar {} // Reobfuscate the shadowed JAR
+}
+
 
 jar {
     manifest {
@@ -117,20 +134,3 @@ jar {
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }
-
-/*
-curseforge {
-    project {
-        apiKey = findProperty('curseKey') ?: 0
-        id = "${curse_id}"
-        releaseType = "${curse_release}"
-        changelogType = 'markdown'
-        changelog = file('docs/CHANGELOG.md')
-        relations {
-            requiredDependency 'curios'
-        }
-        addArtifact(sourcesJar)
-    }
-}
-*/
-
