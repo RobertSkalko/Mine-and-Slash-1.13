@@ -91,6 +91,7 @@ configurations {
 
 }
 
+
 dependencies {
 
 
@@ -99,31 +100,26 @@ dependencies {
 
     //compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
+  
     compile fg.deobf(project.dependencies.create("info.loenwind.autosave:AutoSave:${version_autosave}") {
         transitive = false
-    })  // Auto Nbt Saving, REQUIRED
-    shadow 'info.loenwind.autosave:AutoSave:${version_autosave}'
+    })
+   
+	embed fg.deobf(project.dependencies.create("info.loenwind.autosave:AutoSave:${version_autosave}") {
+        transitive = false
+    })
+	
+    // embed "info.loenwind.autosave:AutoSave:${version_autosave}"
 }
-
-
-shadowJar {
-    // Only shadow fluent-hc
-    dependencies {
-        include(dependency('info.loenwind.autosave:AutoSave:.*'))
-    }
-
-    // Relocate fluent-hc to prevent conflicts with other mods that include it
-    //relocate 'info.loenwind.autosave', 'robertx22.info.loenwind.autosave'
-
-    classifier '' // Replace the default JAR
-}
-
-reobf {
-    shadowJar {} // Reobfuscate the shadowed JAR
-}
-
 
 jar {
+
+    from configurations.embed.collect {
+        it.isDirectory() ? it : zipTree(it).matching {
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
+
     manifest {
         attributes(["Specification-Title"     : "${mod_name}",
                     "Specification-Vendor"    : "${mod_author}",
@@ -133,4 +129,5 @@ jar {
                     "Implementation-Vendor"   : "${mod_author}",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
+
 }

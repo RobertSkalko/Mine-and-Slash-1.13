@@ -298,7 +298,7 @@ public class Unit {
         ItemStack weapon = entity.getHeldItemMainhand();
         if (weapon != null) {
             GearItemData wep = Gear.Load(weapon);
-            if (wep != null && wep.GetBaseGearType()
+            if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
                     .slotType()
                     .equals(GearSlotType.Weapon)) {
                 gears.add(wep);
@@ -309,7 +309,7 @@ public class Unit {
         ItemStack offhand = entity.getHeldItemOffhand();
         if (offhand != null) {
             GearItemData off = Gear.Load(offhand);
-            if (off != null && off.GetBaseGearType()
+            if (off != null && off.GetBaseGearType() != null && off.GetBaseGearType()
                     .slotType()
                     .equals(GearSlotType.OffHand)) {
                 gears.add(off);

@@ -25,7 +25,9 @@ public class LoadSave {
             nbt.putString(loc + GSONLOC, json);
 
         } else {
-            Writer.write(nbt, obj);
+            CompoundNBT objNbt = new CompoundNBT();
+            Writer.write(objNbt, obj);
+            nbt.put(loc, objNbt);
         }
 
         return nbt;
