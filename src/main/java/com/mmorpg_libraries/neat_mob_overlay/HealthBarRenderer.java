@@ -18,9 +18,9 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -331,56 +331,21 @@ public class HealthBarRenderer {
     public static Entity getEntityLookedAt(Entity e) {
         Entity foundEntity = null;
 
-        final double finalDistance = 32;
-        double distance = finalDistance;
-        RayTraceResult pos = raycast(e, finalDistance);
+        int distance = 150;
 
-        Vec3d positionVector = e.getPositionVector();
-        if (e instanceof PlayerEntity)
-            positionVector = positionVector.add(0, e.getEyeHeight(), 0);
+        Vec3d vec3d = e.getEyePosition(1);
+        Vec3d vec3d1 = e.getLook(1.0F);
+        Vec3d vec3d2 = vec3d.add(vec3d1.x * distance, vec3d1.y * distance, vec3d1.z * distance);
 
-        if (pos != null)
-            distance = pos.getHitVec().distanceTo(positionVector);
+        AxisAlignedBB axisalignedbb = e.getBoundingBox()
+                .expand(vec3d1.scale(distance))
+                .grow(1.0D, 1.0D, 1.0D);
+        EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221273_a(e, vec3d, vec3d2, axisalignedbb, (lookedEntity) -> {
+            return lookedEntity.canBeCollidedWith();
+        }, distance);
 
-        Vec3d lookVector = e.getLookVec();
-        Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
-
-        Entity lookedEntity = null;
-        List<Entity> entitiesInBoundingBox = e.getEntityWorld()
-                .getEntitiesWithinAABBExcludingEntity(e, e.getBoundingBox()
-                        .grow(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
-                        .expand(1F, 1F, 1F));
-        double minDistance = distance;
-
-        for (Entity entity : entitiesInBoundingBox) {
-            if (entity.canBeCollidedWith()) {
-                float collisionBorderSize = entity.getCollisionBorderSize();
-                AxisAlignedBB hitbox = entity.getBoundingBox()
-                        .expand(collisionBorderSize, collisionBorderSize, collisionBorderSize);
-
-                //   RayTraceResult interceptPosition = hitbox.calculateIntercept(positionVector, reachVector);
-                // TODO UNSURE IF THIS WORKS
-                RayTraceResult interceptPosition = VoxelShapes.create(entity.getBoundingBox())
-                        .rayTrace(positionVector, reachVector, entity.getPosition());
-
-                if (hitbox.contains(positionVector)) {
-
-                    if (0.0D < minDistance || minDistance == 0.0D) {
-                        lookedEntity = entity;
-                        minDistance = 0.0D;
-                    }
-                } else if (interceptPosition != null) {
-                    double distanceToEntity = positionVector.distanceTo(interceptPosition.getHitVec());
-
-                    if (distanceToEntity < minDistance || minDistance == 0.0D) {
-                        lookedEntity = entity;
-                        minDistance = distanceToEntity;
-                    }
-                }
-            }
-
-            if (lookedEntity != null && (minDistance < distance || pos == null))
-                foundEntity = lookedEntity;
+        if (entityraytraceresult != null && entityraytraceresult.getEntity() != null) {
+            foundEntity = entityraytraceresult.getEntity();
         }
 
         if (foundEntity == null) {

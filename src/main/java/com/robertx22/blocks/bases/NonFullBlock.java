@@ -18,14 +18,14 @@ public abstract class NonFullBlock extends Block {
     public static final BooleanProperty light = RedstoneTorchBlock.LIT;
 
     public NonFullBlock(Properties properties) {
-        super(properties.lightValue(5));
+        super(properties.lightValue(15));
 
         this.setDefaultState(this.stateContainer.getBaseState()
                 .with(direction, Direction.NORTH)
                 .with(light, Boolean.valueOf(true)));
 
     }
-    
+
     @Override
     public boolean isSolid(BlockState state) {
         return false;

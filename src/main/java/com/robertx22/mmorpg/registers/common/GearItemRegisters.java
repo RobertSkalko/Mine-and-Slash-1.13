@@ -1,7 +1,6 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.gearitems.armor.ItemBoots;
 import com.robertx22.items.gearitems.armor.ItemChest;
@@ -39,8 +38,6 @@ public class GearItemRegisters {
         for (ItemRarity rarity : Rarities.Items.rarities()) {
 
             Item.Properties shieldprop = new Item.Properties().defaultMaxDamage(750);
-            Item.Properties orbprop = new Item.Properties().defaultMaxDamage(750)
-                    .group(CreativeTabs.MyModTab);
 
             DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
                 shieldprop.setTEISR(ShieldRenderer::new);
