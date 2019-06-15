@@ -34,13 +34,7 @@ public class BlockGearModify extends BaseInventoryBlock {
                                           BlockPos pos) {
         return true;
     }
-
-    @Override
-    public boolean causesSuffocation(BlockState state, IBlockReader worldIn,
-                                     BlockPos pos) {
-        return false;
-    }
-
+    
     @Override
     public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return false;
