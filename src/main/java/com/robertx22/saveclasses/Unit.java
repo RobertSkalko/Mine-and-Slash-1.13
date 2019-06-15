@@ -174,6 +174,8 @@ public class Unit {
 
         MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
+        endata.setUnit(mob, entity);
+
         mob.RecalculateStats(entity, endata, endata.getLevel());
 
         return mob;

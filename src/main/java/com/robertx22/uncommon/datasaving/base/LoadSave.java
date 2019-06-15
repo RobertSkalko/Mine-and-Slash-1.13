@@ -54,9 +54,10 @@ public class LoadSave {
             if (nbt.contains(loc)) {
                 CompoundNBT thenbt = (CompoundNBT) nbt.get(loc);
                 Reader.read(thenbt, newobj);
-                System.out.println(thenbt.toString());
+                //System.out.println(thenbt.toString());
+            } else {
+                return null;
             }
-
         }
 
         return newobj;

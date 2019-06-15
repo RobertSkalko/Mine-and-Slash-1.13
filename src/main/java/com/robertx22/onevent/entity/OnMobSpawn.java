@@ -56,7 +56,6 @@ public class OnMobSpawn {
                 Unit unit = Unit.Mob(entity, nearestPlayer);
                 endata.forceSetUnit(unit);
             }
-
         }
 
     }

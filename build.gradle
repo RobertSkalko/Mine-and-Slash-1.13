@@ -100,15 +100,6 @@ dependencies {
 
     //compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
-
-    compile fg.deobf(project.dependencies.create("info.loenwind.autosave:AutoSave:${version_autosave}") {
-        transitive = false
-    })
-
-    embed fg.deobf(project.dependencies.create("info.loenwind.autosave:AutoSave:${version_autosave}") {
-        transitive = false
-    })
-
 }
 
 

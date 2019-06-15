@@ -130,18 +130,19 @@ public class PlayerStatUtils {
 
             Set set = Sets.All.get(entry.getKey());
 
-            for (StatMod mod : set.GetObtainedMods(unit)) {
+            if (set != null) {
+                for (StatMod mod : set.GetObtainedMods(unit)) {
 
-                StatModData data = StatModData.Load(mod, set.StatPercent);
+                    StatModData data = StatModData.Load(mod, set.StatPercent);
 
-                String name = mod.GetBaseStat().GUID();
-                if (unit.MyStats.containsKey(name)) {
+                    String name = mod.GetBaseStat().GUID();
+                    if (unit.MyStats.containsKey(name)) {
 
-                    data.Add(unit.MyStats.get(name), level);
+                        data.Add(unit.MyStats.get(name), level);
 
+                    }
                 }
             }
-
         }
 
     }
