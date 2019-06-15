@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class WorldGenRegisters {
 
     public static final float SMALL_DECO_CHANCE = 1F;
-    public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(100));
+    public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(500));
     // public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new SmallRandomSurfaceDecoration());
 
     public static void register() {

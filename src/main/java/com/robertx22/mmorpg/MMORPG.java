@@ -53,7 +53,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    private static boolean RUN_DEV_TOOLS = true;
+    private static boolean RUN_DEV_TOOLS = false;
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 

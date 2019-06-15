@@ -1,11 +1,11 @@
 {
 	"__comment": "Designed by Matpac with Cubik Studio and Blockbench",
 	"textures": {
-		"0": "mmorpg:blocks/modify_table2",
-		"1": "mmorpg:blocks/modify_rune1",
-		"3": "mmorpg:blocks/modify_rune2",
-		"5": "mmorpg:blocks/modify_table1",
-		"particle": "mmorpg:blocks/table2"
+		"0": "mmorpg:blocks/modify/modify_table2",
+		"1": "mmorpg:blocks/modify/modify_rune1",
+		"3": "mmorpg:blocks/modify/modify_rune2",
+		"5": "mmorpg:blocks/modify/modify_table1",
+		"particle": "mmorpg:blocks/modify/modify_table2"
 	},
 	"elements": [ 	 
 		{
