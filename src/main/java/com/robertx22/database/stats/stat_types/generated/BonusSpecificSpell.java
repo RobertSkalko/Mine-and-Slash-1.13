@@ -77,4 +77,9 @@ public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated
         return list;
 
     }
+
+    public boolean IsShownOnTooltip() {
+        return false;
+    }
+
 }

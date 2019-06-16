@@ -73,4 +73,6 @@ public abstract class BaseTileContainer extends Container {
         return itemstack;
     }
 
+    // detectAndSendChanges is called every tick and can be used to get listeners and update, BUT it would take a huge rewrite and it's not worth it.
+
 }
