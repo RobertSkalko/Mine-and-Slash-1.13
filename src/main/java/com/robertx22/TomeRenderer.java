@@ -33,12 +33,12 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             TomeItem tome = (TomeItem) item;
 
-            float scale = 1.5F;
-            float rotation = 180F;
+            float scale = 2.5F;
+            float rotation = 190F;
 
             Minecraft.getInstance().getTextureManager().bindTexture(tome.texture);
             GlStateManager.pushMatrix();
-            GlStateManager.rotatef(rotation, 0, 0, 0);
+            GlStateManager.rotatef(250, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);
 
             GlStateManager.enableCull();
