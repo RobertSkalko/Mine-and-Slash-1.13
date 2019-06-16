@@ -5,6 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -23,8 +25,6 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
         this.mc = Minecraft.getInstance();
     }
 
-    float openPercent = 0.7F; //(0-1)
-
     @Override
     public void renderByItem(ItemStack stack) {
         Item item = stack.getItem();
@@ -33,14 +33,36 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             TomeItem tome = (TomeItem) item;
 
-            float scale = 2.5F;
-            float rotation = 190F;
+            float scale = 1F;
+            float rotation = 250;
+
+            if (stack.hasTag() == false) {
+                stack.setTag(new CompoundNBT());
+            }
+            
+            float openPercent = stack.getTag().getFloat("openPercent");
+
+            float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack);
+
+            if (mc.player.getActiveItemStack()
+                    .getItem() instanceof TomeItem && mc.player.getActiveItemStack()
+                    .equals(stack)) {
+
+                openPercent += changeOpenPercent;
+            } else {
+                openPercent -= changeOpenPercent;
+            }
+
+            openPercent = MathHelper.clamp(openPercent, 0, 1);
+
+            stack.getTag().putFloat("openPercent", openPercent);
 
             Minecraft.getInstance().getTextureManager().bindTexture(tome.texture);
             GlStateManager.pushMatrix();
-            GlStateManager.rotatef(250, 0.05F, 0.2F, 0);
+            GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);
 
+            GlStateManager.translatef(0, -0.5F, 0.5F);
             GlStateManager.enableCull();
 
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
