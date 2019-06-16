@@ -33,6 +33,7 @@ import com.robertx22.database.unique_items.shields.ShieldEleResist;
 import com.robertx22.database.unique_items.shields.ShieldElemental;
 import com.robertx22.database.unique_items.shields.ShieldWisdom;
 import com.robertx22.database.unique_items.staffs.*;
+import com.robertx22.database.unique_items.swords.ElementalSaber;
 import com.robertx22.database.unique_items.swords.SwordNature;
 import com.robertx22.database.unique_items.swords.SwordPhysical;
 import com.robertx22.database.unique_items.swords.SwordWater;
@@ -53,6 +54,7 @@ public class UniqueItemRegister {
         add(new HelmetWisdom());
         add(new ShieldWisdom());
 
+        add(new ElementalSaber(Elements.Physical));
         add(new ShieldElemental(Elements.Physical));
 
         add(new ShieldEleResist());
