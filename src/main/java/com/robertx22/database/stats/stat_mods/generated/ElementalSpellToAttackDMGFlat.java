@@ -15,7 +15,7 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return "Bonus" + element.name() + "DamageFlat";
+        return "bonus_" + element.name() + "_damage_flat";
     }
 
     @Override
@@ -42,4 +42,5 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
     public StatMod newGeneratedInstance(Elements element) {
         return new ElementalSpellToAttackDMGFlat(element);
     }
+
 }
