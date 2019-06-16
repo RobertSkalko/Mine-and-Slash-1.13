@@ -168,6 +168,8 @@ public class Stats {
                 put(ThunderAtronach.GUID, new ThunderAtronach());
 
                 put(new OnDodgeBuffSpeed().GUID(), new OnDodgeBuffSpeed());
+                put(new HealPower().GUID(), new HealPower());
+
                 // traits
 
             }

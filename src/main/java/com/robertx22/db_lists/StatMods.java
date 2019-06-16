@@ -64,7 +64,7 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
-
+                put(new HealPowerFlat().GUID(), new HealPowerFlat());
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
                 put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
 
