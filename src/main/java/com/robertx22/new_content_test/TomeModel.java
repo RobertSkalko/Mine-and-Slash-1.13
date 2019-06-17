@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.new_content_test;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.Model;

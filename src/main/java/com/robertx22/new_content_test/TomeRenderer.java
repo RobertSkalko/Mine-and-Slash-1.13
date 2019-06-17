@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.new_content_test;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.items.spells.BaseSpellItem;
@@ -46,6 +46,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack) / 3.5F;
 
             Minecraft.getInstance().getTextureManager().bindTexture(tome.texture);
+
             GlStateManager.pushMatrix();
             GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);

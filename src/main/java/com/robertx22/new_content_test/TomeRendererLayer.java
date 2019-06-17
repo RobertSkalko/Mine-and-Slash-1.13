@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.new_content_test;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.items.spells.BaseSpellItem;

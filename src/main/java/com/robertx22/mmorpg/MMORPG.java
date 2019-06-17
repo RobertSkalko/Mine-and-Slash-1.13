@@ -4,7 +4,6 @@ import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.GenerateCurioDataJsons;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
-import com.robertx22.TomeRendererLayer;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.db_lists.Initialization;
@@ -23,7 +22,6 @@ import com.robertx22.uncommon.develeper.CreateLangFile;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -47,8 +45,6 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-
-import java.util.Map;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -120,6 +116,7 @@ public class MMORPG {
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
 
+        /*
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             Map<String, PlayerRenderer> skinMap = Minecraft.getInstance()
                     .getRenderManager()
@@ -132,6 +129,8 @@ public class MMORPG {
             render.addLayer(new TomeRendererLayer(render));
         });
 
+ this only works on 3rd person view
+         */
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
