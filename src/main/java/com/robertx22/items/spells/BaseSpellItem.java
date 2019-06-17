@@ -1,6 +1,7 @@
 package com.robertx22.items.spells;
 
 import com.robertx22.TomeRenderer;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;
@@ -27,7 +28,11 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public abstract BaseSpell Spell();
 
-    public ResourceLocation texture = new ResourceLocation("textures/entity/enchanting_table_book.png");
+    public ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/tomes/" + this
+            .Spell()
+            .Element()
+            .name()
+            .toLowerCase() + ".png");
 
     public BaseSpellItem() {
         super(getSpellItemProp());
