@@ -43,28 +43,28 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             float openPercent = stack.getTag().getFloat("openPercent");
 
-            float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack) / 4;
-
-            if (mc.player.getActiveItemStack()
-                    .getItem() instanceof BaseSpellItem && mc.player.getActiveItemStack()
-                    .equals(stack)) {
-
-                openPercent += changeOpenPercent;
-            } else {
-                openPercent -= changeOpenPercent;
-            }
-
-            openPercent = MathHelper.clamp(openPercent, 0, 1);
-
-            stack.getTag().putFloat("openPercent", openPercent);
+            float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack) / 3.5F;
 
             Minecraft.getInstance().getTextureManager().bindTexture(tome.texture);
             GlStateManager.pushMatrix();
             GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);
-
-            GlStateManager.translatef(0, -0.5F, 0.5F);
+            GlStateManager.translatef(0.15F, -0.63F, 0.6F);
             GlStateManager.enableCull();
+
+            if (isTheOneThatIsCurrentlyInUse(stack)) {
+                openPercent += changeOpenPercent;
+            } else {
+                openPercent -= changeOpenPercent;
+
+                if (ifIsNotTheItemBeingHeld(stack)) {
+                    GlStateManager.rotatef(310, 0.2F, 0.5F, 0); // rotate it so icon is visible in inv gui
+                }
+            }
+
+            openPercent = MathHelper.clamp(openPercent, 0, 1);
+
+            stack.getTag().putFloat("openPercent", openPercent);
 
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
@@ -72,6 +72,26 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             GlStateManager.popMatrix();
 
         }
+
+    }
+
+    private boolean isTheOneThatIsCurrentlyInUse(ItemStack stack) {
+
+        return mc.player.getActiveItemStack()
+                .getItem() instanceof BaseSpellItem && mc.player.getActiveItemStack()
+                .equals(stack);
+
+    }
+
+    private boolean ifIsNotTheItemBeingHeld(ItemStack stack) {
+
+        if (mc.player.getHeldItemMainhand()
+                .getItem() instanceof BaseSpellItem && mc.player.getHeldItemMainhand()
+                .equals(stack)) {
+
+            return false;
+        }
+        return true;
 
     }
 
