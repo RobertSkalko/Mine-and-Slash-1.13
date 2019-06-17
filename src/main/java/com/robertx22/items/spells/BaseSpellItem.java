@@ -1,5 +1,6 @@
 package com.robertx22.items.spells;
 
+import com.robertx22.TomeRenderer;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;
@@ -12,8 +13,11 @@ import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
@@ -23,11 +27,24 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public abstract BaseSpell Spell();
 
+    public ResourceLocation texture = new ResourceLocation("textures/entity/enchanting_table_book.png");
+
     public BaseSpellItem() {
-        super(new Properties().maxStackSize(0).defaultMaxDamage(0));
+        super(getSpellItemProp());
 
         this.setRegistryName(GUID().toLowerCase());
 
+    }
+
+    public static Item.Properties getSpellItemProp() {
+
+        Properties prop = new Properties().maxStackSize(0).defaultMaxDamage(0);
+
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            prop.setTEISR(TomeRenderer::new);
+        });
+
+        return prop;
     }
 
     @Override

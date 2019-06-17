@@ -1,6 +1,7 @@
 package com.robertx22;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.items.spells.BaseSpellItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
@@ -29,9 +30,9 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
     public void renderByItem(ItemStack stack) {
         Item item = stack.getItem();
 
-        if (item instanceof TomeItem) {
+        if (item instanceof BaseSpellItem) {
 
-            TomeItem tome = (TomeItem) item;
+            BaseSpellItem tome = (BaseSpellItem) item;
 
             float scale = 1F;
             float rotation = 250;
@@ -39,13 +40,13 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             if (stack.hasTag() == false) {
                 stack.setTag(new CompoundNBT());
             }
-            
+
             float openPercent = stack.getTag().getFloat("openPercent");
 
-            float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack);
+            float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack) / 4;
 
             if (mc.player.getActiveItemStack()
-                    .getItem() instanceof TomeItem && mc.player.getActiveItemStack()
+                    .getItem() instanceof BaseSpellItem && mc.player.getActiveItemStack()
                     .equals(stack)) {
 
                 openPercent += changeOpenPercent;

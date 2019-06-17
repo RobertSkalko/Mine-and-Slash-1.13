@@ -1,7 +1,5 @@
 package com.robertx22.mmorpg.registers.common;
 
-import com.robertx22.TomeItem;
-import com.robertx22.TomeRenderer;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.database.unique_items.UniqueItemRegister;
@@ -40,10 +38,8 @@ import com.robertx22.items.spells.self.ItemInstantHeal;
 import com.robertx22.items.spells.self.ItemSelfRegen;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -106,12 +102,6 @@ public class ItemRegister {
         r.register(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
         r.register(new ItemLootBag().setRegistryName(ItemLootBag.ID));
         r.register(new ItemMapBag().setRegistryName(ItemMapBag.ID));
-
-        Item.Properties tomeProp = new Item.Properties().defaultMaxDamage(0);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            tomeProp.setTEISR(TomeRenderer::new);
-        });
-        r.register(new TomeItem(tomeProp, 0).setRegistryName("mmorpg:tome"));
 
         r.register(new ItemAddSet());
         r.register(new ItemRerollSet());
