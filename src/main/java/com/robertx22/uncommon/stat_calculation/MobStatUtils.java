@@ -19,6 +19,8 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
+import java.util.stream.Collectors;
+
 public class MobStatUtils {
 
     static int spelldmg = 8;
@@ -26,7 +28,11 @@ public class MobStatUtils {
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
-        for (StatData data : unit.MyStats.values()) {
+        for (StatData data : unit.MyStats.values()
+                .stream()
+                .filter(x -> x.GetStat().IsPercent() == false)
+                .collect(Collectors.toList())) {
+
             data.Flat = data.Flat * mobdata.getStatMultiplierIncreaseByTier();
         }
 

@@ -3,7 +3,6 @@ package com.robertx22.mmorpg.registers.common;
 import com.robertx22.config.ModConfig;
 import com.robertx22.items.ores.ItemOre;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -34,7 +33,7 @@ public class OreGenRegister {
     public static void genOre(Block block, int amount) {
 
         CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
-        OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.STONE
+        OreFeatureConfig minableConfig = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, block
                 .getDefaultState(), 8);
 
         ConfiguredFeature<?> feature = Biome.createDecoratedFeature(Feature.ORE, minableConfig, Placement.COUNT_RANGE, countConfig);
