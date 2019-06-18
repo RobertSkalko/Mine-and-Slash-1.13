@@ -54,6 +54,7 @@ And there's too many stats to list them all.. There's at least 50 traits. plus 2
 * added config option for starter items
 * stations now have shift click functionality! This was actually really hard to do.
 * added more really rare currencies
+* should fix mobs not spawning in maps sometimes
 
 
 

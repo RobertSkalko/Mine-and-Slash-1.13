@@ -40,48 +40,56 @@ public class AllowMobSpawnsInMap {
             return;
         }
 
+        // Watch watch = new Watch().min(100);
+
         if (RandomUtils.roll(80)) {
 
             if (EntityTypeUtils.isMob(en)) {
 
                 if (WorldUtils.isMapWorld(event.getWorld().getWorld())) {
 
-                    //Watch watch = new Watch().min(100);
-
-                    if (en instanceof SlimeEntity) {
+                    if (possibleToSpawnMob(en)) {
+                        event.setResult(Result.DENY);
+                        en.world.addEntity(en); // i spawn it myself cus otherwise minecraft checks again things and sometimes doesnt spawn it..
                         return;
-                        // no
-                    } else {
-
-                        if (isNearSurface(en.getPosition(), en.world, 5)) {
-
-                            BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
-                                    .down()); // down might be problem
-
-                            if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en
-                                    .getType())) {
-                                return;
-                            }
-
-                            if (en.world.getServer()
-                                    .getDifficulty()
-                                    .equals(Difficulty.PEACEFUL) == false) {
-
-                                if (hasLessThanMaximumEntitiesOfType((ServerWorld) en.world, en)) {
-
-                                    event.setResult(Result.DENY);
-                                    en.world.addEntity(en); // i spawn it myself cus otherwise minecraft checks again things and sometimes doesnt spawn it..
-                                }
-                            } else {
-                                System.out.println("stop");
-                            }
-                        }
                     }
 
-                    // watch.print("spawn ");
                 }
             }
         }
+
+        //watch.print("spawn ");
+
+    }
+
+    public static boolean possibleToSpawnMob(Entity en) {
+
+        if (en instanceof SlimeEntity) {
+            return false;
+            // no
+        } else {
+
+            if (isNearSurface(en.getPosition(), en.world, 5)) {
+
+                BlockState iblockstate = en.world.getBlockState((new BlockPos(en)).down()); // down might be problem
+
+                if (!iblockstate.canEntitySpawn(en.world, en.getPosition(), en.getType())) {
+                    return false;
+                }
+
+                if (en.world.getServer()
+                        .getDifficulty()
+                        .equals(Difficulty.PEACEFUL) == false) { // stops nasty bug of mobs trying to be spawned in peaceful and just flashing (being spawned and despawned forever)
+
+                    if (hasLessThanMaximumEntitiesOfType((ServerWorld) en.world, en.getClassification(true))) {
+
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
 
     }
 
@@ -89,11 +97,10 @@ public class AllowMobSpawnsInMap {
         return entity.world.getChunkProvider().isChunkLoaded(entity);
     };
 
-    public static boolean hasLessThanMaximumEntitiesOfType(ServerWorld world, Entity en) {
-
-        EntityClassification entityclassification = en.getClassification(true);
-        int entities = world.getEntities(en.getType(), filter).size();
-        return entities < entityclassification.getMaxNumberOfCreature();
+    public static boolean hasLessThanMaximumEntitiesOfType(ServerWorld world,
+                                                           EntityClassification enclass) {
+        int entities = world.getEntities(null, filter).size();
+        return entities < enclass.getMaxNumberOfCreature();
 
     }
 
