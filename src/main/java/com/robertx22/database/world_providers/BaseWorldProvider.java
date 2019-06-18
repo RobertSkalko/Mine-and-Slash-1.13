@@ -1,9 +1,8 @@
 package com.robertx22.database.world_providers;
 
 import com.robertx22.mmorpg.Ref;
-import net.minecraft.block.Block;
+import com.robertx22.world_gen.types.FeatureType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -28,8 +27,11 @@ import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiFunction;
+
+import static com.robertx22.db_lists.Templates.*;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP {
 
@@ -37,12 +39,13 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     private DimensionType type;
 
     @Override
-    public HashMap<Block, Block> blocksToReplace() {
-        HashMap<Block, Block> map = new HashMap<>();
-        map.put(Blocks.OAK_LOG, Blocks.STONE_BRICKS);
-        map.put(Blocks.OAK_STAIRS, Blocks.COBBLESTONE_STAIRS);
+    public List<FeatureType> smallSurfaceDecorations() {
+        return Arrays.asList(bigWoodPillar, smallWoodPillar);
+    }
 
-        return map;
+    @Override
+    public List<FeatureType> smallTreasures() {
+        return Arrays.asList(smallTreasure0);
     }
 
     public ResourceLocation res(String str) {

@@ -1,4 +1,4 @@
-package com.robertx22.world_gen;
+package com.robertx22.world_gen.processors;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;

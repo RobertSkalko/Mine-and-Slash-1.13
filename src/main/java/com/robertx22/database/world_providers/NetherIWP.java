@@ -3,6 +3,8 @@ package com.robertx22.database.world_providers;
 import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
 import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -10,6 +12,7 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -30,8 +33,12 @@ public class NetherIWP extends BaseWorldProvider {
     }
 
     @Override
-    public List<String> smallSurfaceDecorations() {
-        return Arrays.asList();
+    public HashMap<Block, Block> blocksToReplace() {
+        HashMap<Block, Block> map = new HashMap<>();
+        map.put(Blocks.OAK_LOG, Blocks.NETHER_BRICKS);
+        map.put(Blocks.OAK_STAIRS, Blocks.NETHER_BRICK_STAIRS);
+
+        return map;
     }
 
     @Override

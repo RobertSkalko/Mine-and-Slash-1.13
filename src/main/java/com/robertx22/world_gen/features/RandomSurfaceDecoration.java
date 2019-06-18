@@ -1,8 +1,10 @@
-package com.robertx22.world_gen;
+package com.robertx22.world_gen.features;
 
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.world_gen.processors.BiomeProcessor;
+import com.robertx22.world_gen.types.FeatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -37,7 +39,9 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
 
         if (iwp != null) {
 
-            ResourceLocation res = iwp.randomSmallSurfaceDecoration();
+            FeatureType type = iwp.randomSmallSurfaceDecoration();
+            ResourceLocation res = type.structureResourceLocation;
+            pos = type.modifyPos(pos);
 
             if (res != null) {
 

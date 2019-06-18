@@ -1,17 +1,16 @@
 package com.robertx22.database.world_providers;
 
 import com.robertx22.db_lists.bases.IBonusLootMulti;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.world_gen.types.FeatureType;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,29 +36,23 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
 
     Biome getBiome();
 
-    List<String> smallSurfaceDecorations();
+    List<FeatureType> smallSurfaceDecorations();
 
-    static List<ResourceLocation> listOfSmallSurfaceDecorations = new ArrayList<>();
+    List<FeatureType> smallTreasures();
 
-    default List<ResourceLocation> getSmallSurfaceDecorations() {
-
-        if (listOfSmallSurfaceDecorations.isEmpty()) {
-            for (String str : smallSurfaceDecorations()) {
-                listOfSmallSurfaceDecorations.add(new ResourceLocation(Ref.MODID, str));
-            }
-        }
-
-        return listOfSmallSurfaceDecorations;
-
-    }
-
-    default ResourceLocation randomSmallSurfaceDecoration() {
-        if (getSmallSurfaceDecorations().isEmpty()) {
+    default FeatureType randomSmallTreasure() {
+        if (smallTreasures().isEmpty()) {
             return null;
         }
-        return getSmallSurfaceDecorations().get(RandomUtils.RandomRange(0, getSmallSurfaceDecorations()
-                .size()));
+        
+        return RandomUtils.weightedRandom(smallTreasures());
+    }
 
+    default FeatureType randomSmallSurfaceDecoration() {
+        if (smallSurfaceDecorations().isEmpty()) {
+            return null;
+        }
+        return RandomUtils.weightedRandom(smallSurfaceDecorations());
     }
 
 }

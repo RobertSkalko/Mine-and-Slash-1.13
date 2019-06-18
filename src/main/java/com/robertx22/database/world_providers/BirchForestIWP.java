@@ -2,6 +2,7 @@ package com.robertx22.database.world_providers;
 
 import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusNatureDamageAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -9,11 +10,9 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiFunction;
-
-import static com.robertx22.db_lists.Templates.bigWoodPillar;
-import static com.robertx22.db_lists.Templates.smallWoodPillar;
 
 public class BirchForestIWP extends BaseWorldProvider {
 
@@ -27,6 +26,11 @@ public class BirchForestIWP extends BaseWorldProvider {
     }
 
     @Override
+    public HashMap<Block, Block> blocksToReplace() {
+        return new HashMap<>();
+    }
+
+    @Override
     public List<MapAffixData> getMapAffixes() {
         return Arrays.asList(new MapAffixData(new BonusNatureDamageAffix(), 100));
     }
@@ -34,11 +38,6 @@ public class BirchForestIWP extends BaseWorldProvider {
     @Override
     public Biome getBiome() {
         return Biomes.TALL_BIRCH_FOREST;
-    }
-
-    @Override
-    public List<String> smallSurfaceDecorations() {
-        return Arrays.asList(bigWoodPillar, smallWoodPillar);
     }
 
     @Override

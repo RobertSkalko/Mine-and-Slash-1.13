@@ -1,8 +1,9 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.db_lists.WorldProviders;
-import com.robertx22.world_gen.RandomSurfaceDecoration;
-import com.robertx22.world_gen.RandomSurfaceEggFeature;
+import com.robertx22.world_gen.features.RandomSurfaceDecoration;
+import com.robertx22.world_gen.features.RandomSurfaceEggFeature;
+import com.robertx22.world_gen.features.RandomSurfaceTreasure;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -19,9 +20,10 @@ import java.util.stream.Collectors;
 
 public class WorldGenRegisters {
 
-    public static final int SMALL_DECO_CHANCE = 1;
+    public static final int SMALL_DECO_CHANCE = 50;
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(500));
     public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new RandomSurfaceDecoration(NoFeatureConfig::deserialize));
+    public static final ConfiguredFeature smallRandomSurfaceTreasure = Biome.createDecoratedFeature(new RandomSurfaceTreasure(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(500));
 
     public static void register() {
 
@@ -38,6 +40,7 @@ public class WorldGenRegisters {
 
                 add(biome, randomSurfaceChest);
                 add(biome, smallRandomSurfaceDecoration);
+                add(biome, smallRandomSurfaceTreasure);
 
             }
         }

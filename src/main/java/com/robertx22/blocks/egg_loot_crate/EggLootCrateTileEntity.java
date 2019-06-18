@@ -29,7 +29,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
     public static final String isdroppingloc = "isdroppingloc";
     public static final String droplootticksloc = "droplootticksloc";
     public static final String timestodroploc = "timesToDrop";
-    
+
     PlayerOncePerMapData data = new PlayerOncePerMapData();
     PlayerEntity player;
 
@@ -90,6 +90,10 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
         super.read(nbt);
 
         this.data = PlayerOncePerMap.Load(nbt.getCompound(dataLoc));
+        if (data == null) {
+            data = new PlayerOncePerMapData();
+        }
+
         this.timesToDrop = nbt.getInt(timestodroploc);
         this.isDroppingLoot = nbt.getBoolean(isdroppingloc);
         this.dropLootTicks = nbt.getInt(droplootticksloc);
@@ -100,6 +104,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
         data.add(player);
         this.player = player;
         this.isDroppingLoot = true;
+        this.timesToDrop = this.getTimesToDrop();
 
     }
 
@@ -154,6 +159,10 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
     }
 
     public void tryActivate(PlayerEntity player) {
+
+        if (data == null) {
+            data = new PlayerOncePerMapData();
+        }
 
         if (condition().canOpenCrate(player)) {
 
