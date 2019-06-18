@@ -15,6 +15,11 @@ public class Watch {
         stop.start();
     }
 
+    public Watch min(int min) {
+        this.min = min;
+        return this;
+    }
+
     public Watch(TimeUnit unit, int min) {
 
         this.min = min;
