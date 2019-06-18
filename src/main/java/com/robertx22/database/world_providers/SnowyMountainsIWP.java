@@ -30,6 +30,7 @@ public class SnowyMountainsIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.SPRUCE_LOG);
+        map.put(Blocks.OAK_PLANKS, Blocks.SPRUCE_PLANKS);
         map.put(Blocks.OAK_STAIRS, Blocks.SPRUCE_STAIRS);
 
         return map;

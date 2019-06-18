@@ -36,6 +36,7 @@ public class NetherIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.NETHER_BRICKS);
+        map.put(Blocks.OAK_PLANKS, Blocks.NETHERRACK);
         map.put(Blocks.OAK_STAIRS, Blocks.NETHER_BRICK_STAIRS);
 
         return map;

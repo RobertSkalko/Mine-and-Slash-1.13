@@ -30,6 +30,7 @@ public class RockMountainsIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.STONE_BRICKS);
+        map.put(Blocks.OAK_PLANKS, Blocks.CRACKED_STONE_BRICKS);
         map.put(Blocks.OAK_STAIRS, Blocks.STONE_BRICK_STAIRS);
 
         return map;

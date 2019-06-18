@@ -30,6 +30,7 @@ public class RockDesertIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.RED_SANDSTONE);
+        map.put(Blocks.OAK_PLANKS, Blocks.SMOOTH_RED_SANDSTONE);
         map.put(Blocks.OAK_STAIRS, Blocks.RED_SANDSTONE_STAIRS);
 
         return map;

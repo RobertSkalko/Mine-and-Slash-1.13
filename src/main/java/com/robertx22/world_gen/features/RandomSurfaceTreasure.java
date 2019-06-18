@@ -60,7 +60,6 @@ public class RandomSurfaceTreasure extends Feature<NoFeatureConfig> {
                 if (type.canSpawn(theworld, pos, template)) {
                     template.addBlocksToWorld(iworld, pos, placement);
                 }
-
                 return true;
             }
         }

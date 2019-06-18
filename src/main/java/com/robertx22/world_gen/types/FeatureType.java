@@ -35,11 +35,13 @@ public class FeatureType implements IWeighted {
         return true;
     }
 
+    /*
     int getNonAirBlockPercent(World world, BlockPos pos, Template template) {
 
         template.get
 
     }
+    */
 
     public FeatureType lowerBy(int blocks) {
         this.lowerByXBlocks = blocks;

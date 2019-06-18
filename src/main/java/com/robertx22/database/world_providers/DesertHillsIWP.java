@@ -35,6 +35,7 @@ public class DesertHillsIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.SANDSTONE);
+        map.put(Blocks.OAK_PLANKS, Blocks.SMOOTH_SANDSTONE);
         map.put(Blocks.OAK_STAIRS, Blocks.SANDSTONE_STAIRS);
 
         return map;

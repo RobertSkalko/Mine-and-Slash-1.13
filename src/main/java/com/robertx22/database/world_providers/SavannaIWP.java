@@ -30,6 +30,7 @@ public class SavannaIWP extends BaseWorldProvider {
     public HashMap<Block, Block> blocksToReplace() {
         HashMap<Block, Block> map = new HashMap<>();
         map.put(Blocks.OAK_LOG, Blocks.ACACIA_LOG);
+        map.put(Blocks.OAK_PLANKS, Blocks.ACACIA_PLANKS);
         map.put(Blocks.OAK_STAIRS, Blocks.ACACIA_STAIRS);
 
         return map;
