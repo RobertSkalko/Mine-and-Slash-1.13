@@ -8,6 +8,8 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.testing.Watch;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -59,7 +61,9 @@ public class WorldUtils {
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
+        Watch watch = new Watch();
         pos = getSurface(world, pos);
+        watch.print("get surface ");
 
         return pos;
 
@@ -69,7 +73,8 @@ public class WorldUtils {
 
         pos = pos.add(0, world.getActualHeight() - 1, 0);
 
-        while (world.isAirBlock(pos)) {
+        while (world.isAirBlock(pos) || world.getBlockState(pos)
+                .getBlock() instanceof LeavesBlock) {
 
             pos = pos.down();
 
@@ -104,7 +109,7 @@ public class WorldUtils {
         return null;
     }
 
-    public int getTier(World world, PlayerEntity player) {
+    public static int getTier(World world, PlayerEntity player) {
 
         if (DimensionsContainer.INSTANCE.hasConfig(world)) {
             return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER;

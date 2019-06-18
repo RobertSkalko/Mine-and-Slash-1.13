@@ -33,8 +33,6 @@ public class RandomUtils {
 
     public static boolean roll(int chance) {
 
-        Random ran = new Random();
-
         double ranNum = ran.nextDouble() * 100;
 
         if (chance > ranNum) {
@@ -45,8 +43,6 @@ public class RandomUtils {
     }
 
     public static boolean roll(float chance) {
-
-        Random ran = new Random();
 
         double ranNum = ran.nextDouble() * 100;
 

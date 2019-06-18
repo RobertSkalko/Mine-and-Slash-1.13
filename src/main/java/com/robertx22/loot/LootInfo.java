@@ -55,7 +55,9 @@ public class LootInfo {
         } else {
             if (killer != null) {
                 if (WorldUtils.isMapWorld(killer.world)) {
-                    this.tier = Load.playerMapData(killer).getTier();
+
+                    this.tier = WorldUtils.getTier(killer.world, killer);
+
                 }
             }
         }

@@ -6,7 +6,9 @@ import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.SlimeEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,13 +25,16 @@ public class AllowMobSpawnsInMap {
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-        if (RandomUtils.roll(20)) {
+        LivingEntity en = event.getEntityLiving();
 
-            LivingEntity en = event.getEntityLiving();
+        if (en.world.isRemote) {
+            return;
+        }
+        if (en instanceof PlayerEntity) {
+            return;
+        }
 
-            if (en.world.isRemote) {
-                return;
-            }
+        if (RandomUtils.roll(100)) {
 
             if (EntityTypeUtils.isMob(en)) {
 
@@ -40,7 +45,7 @@ public class AllowMobSpawnsInMap {
                         // no
                     } else {
 
-                        if (en.getPosition().getY() > 60) {
+                        if (isAboveSurface(en.getPosition(), en.world)) {
 
                             BlockState iblockstate = en.world.getBlockState((new BlockPos(en))
                                     .down()); // down might be problem
@@ -50,14 +55,26 @@ public class AllowMobSpawnsInMap {
                                 return;
                             }
 
-                            event.setResult(Result.ALLOW);
+                            event.setResult(Result.DENY);
+
+                            en.world.addEntity(en); // i spawn it myself cus otherwise minecraft checks again things and sometimes doesnt spawn it..
 
                         }
                     }
-
                 }
             }
         }
 
+    }
+
+    public static boolean isAboveSurface(BlockPos pos, World world) {
+
+        BlockPos surface = WorldUtils.getSurface(world, pos);
+
+        if (pos.getY() > surface.getY() - 5) {
+            return true;
+        }
+
+        return false;
     }
 }
