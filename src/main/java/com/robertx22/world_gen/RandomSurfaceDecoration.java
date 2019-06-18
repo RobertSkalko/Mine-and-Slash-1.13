@@ -12,6 +12,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
@@ -30,10 +31,6 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
                          ChunkGenerator<? extends GenerationSettings> generator,
                          Random rand, BlockPos pos, NoFeatureConfig config) {
 
-        if (iworld.isAirBlock(pos)) {
-            pos = pos.up();
-        }
-
         World theworld = iworld.getWorld();
 
         IWP iwp = WorldUtils.getIWP(theworld);
@@ -47,8 +44,11 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
                 TemplateManager templatemanager = ((ServerWorld) iworld.getWorld()).getSaveHandler()
                         .getStructureTemplateManager();
 
-                templatemanager.getTemplate(res)
-                        .addBlocksToWorld(iworld, pos, new PlacementSettings());
+                PlacementSettings placement = new PlacementSettings();
+                placement.addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
+                placement.addProcessor(new BiomeProcessor(iwp));
+
+                templatemanager.getTemplate(res).addBlocksToWorld(iworld, pos, placement);
 
                 return true;
             }

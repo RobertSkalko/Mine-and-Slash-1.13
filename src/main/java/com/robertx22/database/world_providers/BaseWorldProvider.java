@@ -1,7 +1,9 @@
 package com.robertx22.database.world_providers;
 
 import com.robertx22.mmorpg.Ref;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,12 +28,22 @@ import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.function.BiFunction;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     public ModDimension moddim;
     private DimensionType type;
+
+    @Override
+    public HashMap<Block, Block> blocksToReplace() {
+        HashMap<Block, Block> map = new HashMap<>();
+        map.put(Blocks.OAK_LOG, Blocks.STONE_BRICKS);
+        map.put(Blocks.OAK_STAIRS, Blocks.COBBLESTONE_STAIRS);
+
+        return map;
+    }
 
     public ResourceLocation res(String str) {
 
