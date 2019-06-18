@@ -44,7 +44,7 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
         if (smallTreasures().isEmpty()) {
             return null;
         }
-        
+
         return RandomUtils.weightedRandom(smallTreasures());
     }
 

@@ -16,6 +16,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
@@ -52,7 +53,11 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
                 placement.addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
                 placement.addProcessor(new BiomeProcessor(iwp));
 
-                templatemanager.getTemplate(res).addBlocksToWorld(iworld, pos, placement);
+                Template template = templatemanager.getTemplate(res);
+
+                if (type.canSpawn(theworld, pos, template)) {
+                    template.addBlocksToWorld(iworld, pos, placement);
+                }
 
                 return true;
             }

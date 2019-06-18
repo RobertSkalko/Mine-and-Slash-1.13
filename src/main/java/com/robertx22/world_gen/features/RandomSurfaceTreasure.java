@@ -17,6 +17,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
@@ -40,7 +41,7 @@ public class RandomSurfaceTreasure extends Feature<NoFeatureConfig> {
 
         if (iwp != null) {
 
-            FeatureType type = iwp.randomSmallSurfaceDecoration();
+            FeatureType type = iwp.randomSmallTreasure();
             ResourceLocation res = type.structureResourceLocation;
             pos = type.modifyPos(pos);
 
@@ -54,7 +55,11 @@ public class RandomSurfaceTreasure extends Feature<NoFeatureConfig> {
                 placement.addProcessor(new BiomeProcessor(iwp));
                 placement.addProcessor(new ChestProcessor());
 
-                templatemanager.getTemplate(res).addBlocksToWorld(iworld, pos, placement);
+                Template template = templatemanager.getTemplate(res);
+
+                if (type.canSpawn(theworld, pos, template)) {
+                    template.addBlocksToWorld(iworld, pos, placement);
+                }
 
                 return true;
             }
