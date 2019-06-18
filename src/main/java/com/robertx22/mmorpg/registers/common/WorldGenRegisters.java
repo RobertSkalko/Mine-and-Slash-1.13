@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.db_lists.WorldProviders;
+import com.robertx22.world_gen.RandomSurfaceDecoration;
 import com.robertx22.world_gen.RandomSurfaceEggFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 
 public class WorldGenRegisters {
 
-    public static final float SMALL_DECO_CHANCE = 1F;
+    public static final int SMALL_DECO_CHANCE = 100;
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(500));
-    // public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new SmallRandomSurfaceDecoration());
+    public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new RandomSurfaceDecoration(NoFeatureConfig::deserialize));
 
     public static void register() {
 
@@ -36,7 +37,8 @@ public class WorldGenRegisters {
                     .size() > 0) {
 
                 add(biome, randomSurfaceChest);
-                //add(biome, smallRandomSurfaceDecoration);
+                add(biome, smallRandomSurfaceDecoration);
+
             }
         }
 
@@ -48,14 +50,11 @@ public class WorldGenRegisters {
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, comp);
     }
 
-    /*
-        public static ConfiguredFeature createSmallSurfaceDeco(Feature feature) {
+    public static ConfiguredFeature createSmallSurfaceDeco(Feature feature) {
 
-            return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, new AtSurfaceChancePlacement(), new MyChanceConfig(SMALL_DECO_CHANCE));
-        }
+        return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(SMALL_DECO_CHANCE));
+    }
 
-
-     */
     public static <F extends IFeatureConfig, D extends IPlacementConfig> ConfiguredFeature<F> create(
             Feature feature, Placement<D> basePlacementIn, D placementConfig) {
 
