@@ -40,9 +40,11 @@ public class BiomeProcessor extends StructureProcessor {
 
         Block block = blockInfo1.state.getBlock();
 
-        if (iwp.blocksToReplace().containsKey(block)) {
+        if (iwp.biomeTheme().blocksReplaceMap.containsKey(block)) {
 
-            BlockState newstate = iwp.blocksToReplace().get(block).getDefaultState();
+            BlockState newstate = iwp.biomeTheme().blocksReplaceMap.get(block)
+                    .getBlockToReplaceWith(block)
+                    .getDefaultState();
 
             for (IProperty prop : blockInfo1.state.getProperties()) {
                 if (newstate.has(prop)) {

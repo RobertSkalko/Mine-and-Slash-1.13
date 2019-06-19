@@ -2,8 +2,7 @@ package com.robertx22.database.world_providers;
 
 import com.robertx22.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import com.robertx22.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -11,7 +10,6 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -32,13 +30,8 @@ public class DesertHillsIWP extends BaseWorldProvider {
     }
 
     @Override
-    public HashMap<Block, Block> blocksToReplace() {
-        HashMap<Block, Block> map = new HashMap<>();
-        map.put(Blocks.OAK_LOG, Blocks.SANDSTONE);
-        map.put(Blocks.OAK_PLANKS, Blocks.SMOOTH_SANDSTONE);
-        map.put(Blocks.OAK_STAIRS, Blocks.SANDSTONE_STAIRS);
-
-        return map;
+    public BiomeColorTheme biomeTheme() {
+        return BiomeColorTheme.DESERT;
     }
 
     @Override

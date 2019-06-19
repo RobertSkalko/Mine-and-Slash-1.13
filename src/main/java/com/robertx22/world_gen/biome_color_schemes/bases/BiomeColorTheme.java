@@ -1,8 +1,6 @@
 package com.robertx22.world_gen.biome_color_schemes.bases;
 
-import com.robertx22.world_gen.biome_color_schemes.NetherTheme;
-import com.robertx22.world_gen.biome_color_schemes.NormalTheme;
-import com.robertx22.world_gen.biome_color_schemes.WinterSpruceTheme;
+import com.robertx22.world_gen.biome_color_schemes.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
@@ -33,8 +31,12 @@ public abstract class BiomeColorTheme {
 
     public HashMap<Block, BlockReplacement> blocksReplaceMap = new HashMap<>();
 
-    public static final NetherTheme NETHER = new NetherTheme();
-    public static final NormalTheme NORMAL = new NormalTheme();
-    public static final WinterSpruceTheme WINTER_SPRUCE = new WinterSpruceTheme();
+    public static final BiomeColorTheme NETHER = new NetherTheme();
+    public static final BiomeColorTheme NORMAL = new NormalTheme();
+    public static final BiomeColorTheme WINTER_SPRUCE = new WinterSpruceTheme();
+    public static final BiomeColorTheme DESERT = new DesertTheme();
+    public static final BiomeColorTheme RED_DESERT = new RedDesertTheme();
+    public static final BiomeColorTheme STONE = new StoneTheme();
+    public static final BiomeColorTheme ACACIA = new AcaciaTheme();
 
 }

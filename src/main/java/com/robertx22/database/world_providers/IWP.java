@@ -5,13 +5,12 @@ import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import com.robertx22.world_gen.types.FeatureType;
-import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
@@ -21,7 +20,7 @@ public interface IWP extends IWeighted, IAutoLocName, IBonusLootMulti {
 
     ResourceLocation getResourceLoc();
 
-    HashMap<Block, Block> blocksToReplace();
+    BiomeColorTheme biomeTheme();
 
     ModDimension newModDimension();
 
