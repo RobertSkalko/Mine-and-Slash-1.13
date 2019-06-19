@@ -11,7 +11,7 @@ public class WinterSpruceTheme extends BiomeColorTheme {
 
     @Override
     public List<BlockWeight> OAK_LOG() {
-        return Arrays.asList(new BlockWeight(Blocks.SPRUCE_FENCE));
+        return Arrays.asList(new BlockWeight(Blocks.SPRUCE_LOG));
     }
 
     @Override

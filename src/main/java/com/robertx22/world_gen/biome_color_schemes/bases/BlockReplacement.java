@@ -4,25 +4,29 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.block.Block;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlockReplacement {
 
-    private List<BlockWeight> to;
+    private List<BlockWeight> to = new ArrayList<>();
 
     public BlockReplacement(Block to) {
-
-        this.to.add(new BlockWeight(to));
+        if (to != null) {
+            this.to.add(new BlockWeight(to));
+        }
     }
 
     public BlockReplacement(BlockWeight to) {
-
-        this.to.add(to);
+        if (to != null) {
+            this.to.add(to);
+        }
     }
 
     public BlockReplacement(List<BlockWeight> to) {
-
-        this.to.addAll(to);
+        if (to != null) {
+            this.to.addAll(to);
+        }
     }
 
     @Nonnull

@@ -2,6 +2,7 @@ package com.robertx22.world_gen.types;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,6 +22,8 @@ public class FeatureType implements IWeighted {
         return this;
     }
 
+    boolean canSpawnInWater = false;
+
     int weight = 1000;
     int lowerByXBlocks = 0;
     int cantBeMoreThanXPercentNonAirBlocks = 100;
@@ -30,6 +33,12 @@ public class FeatureType implements IWeighted {
 
         if (requiresAirBlocks) {
 
+        }
+
+        if (canSpawnInWater == false) {
+            if (world.getBlockState(pos).equals(Blocks.WATER)) {
+                return false;
+            }
         }
 
         return true;
