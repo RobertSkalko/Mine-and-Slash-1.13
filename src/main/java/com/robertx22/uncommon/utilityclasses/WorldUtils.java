@@ -61,9 +61,7 @@ public class WorldUtils {
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
-        Watch watch = new Watch();
         pos = getSurface(world, pos);
-        watch.print("get surface ");
 
         return pos;
 
@@ -71,14 +69,27 @@ public class WorldUtils {
 
     public static BlockPos getSurface(World world, BlockPos pos) {
 
-        pos = pos.add(0, world.getActualHeight() - 1, 0);
+        Watch watch = new Watch();
+
+        pos = new BlockPos(pos.getX(), world.getSeaLevel() + 20, pos.getZ());
+
+        boolean goingDown = world.isAirBlock(pos);
 
         while (world.isAirBlock(pos) || world.getBlockState(pos)
                 .getBlock() instanceof LeavesBlock) {
 
-            pos = pos.down();
-
+            if (goingDown) {
+                pos = pos.down();
+            } else {
+                pos = pos.up();
+            }
         }
+
+        while (world.isAirBlock(pos.up()) == false) {
+            pos = pos.up();
+        }
+
+        watch.print("getting surface takes ");
 
         return pos.up();
 

@@ -9,7 +9,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.IglooPieces;
 import net.minecraft.world.gen.feature.structure.ScatteredStructure;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
@@ -49,6 +48,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
             super(structure, chunkX, chunkZ, biome, boundingbox, referenceIn, longNum);
         }
 
+        @Override
         public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn,
                          int chunkX, int chunkZ, Biome biomeIn) {
             NoFeatureConfig nofeatureconfig = (NoFeatureConfig) generator.getStructureConfig(biomeIn, Feature.IGLOO);
@@ -56,7 +56,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
             int z = chunkZ * 16;
             BlockPos blockpos = new BlockPos(x, 90, z);
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
-            IglooPieces.func_207617_a(templateManagerIn, blockpos, rotation, this.components, this.rand, nofeatureconfig);
+            TowerPieces.init(templateManagerIn, blockpos, rotation, this.components, this.rand, nofeatureconfig);
             this.recalculateStructureSize();
         }
     }
