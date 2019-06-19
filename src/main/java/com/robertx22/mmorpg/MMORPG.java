@@ -78,6 +78,8 @@ public class MMORPG {
 
         Initialization.initAllDatabases(); // after config init
 
+        StructurePieceRegisters.reg();
+
         bus.addListener(this::commonSetupEvent);
         bus.addListener(this::interModProcessEvent);
         bus.addListener(this::interModEnqueue);
@@ -97,8 +99,8 @@ public class MMORPG {
 
         PacketRegister.register();
         OreGenRegister.register();
-        WorldGenRegisters.register();
         CapabilityRegister.register();
+        WorldGenRegisters.register();
 
     }
 
