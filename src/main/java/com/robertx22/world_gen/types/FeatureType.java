@@ -5,7 +5,7 @@ import com.robertx22.uncommon.interfaces.IWeighted;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.feature.template.Template;
 
 public class FeatureType implements IWeighted {
@@ -29,7 +29,7 @@ public class FeatureType implements IWeighted {
     int cantBeMoreThanXPercentNonAirBlocks = 100;
     boolean requiresAirBlocks = false;
 
-    public boolean canSpawn(World world, BlockPos pos, Template template) {
+    public boolean canSpawn(IWorld world, BlockPos pos, Template template) {
 
         if (requiresAirBlocks) {
 

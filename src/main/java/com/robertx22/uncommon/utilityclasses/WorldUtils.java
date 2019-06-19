@@ -71,7 +71,7 @@ public class WorldUtils {
 
         Watch watch = new Watch();
 
-        pos = new BlockPos(pos.getX(), world.getSeaLevel() + 20, pos.getZ());
+        pos = new BlockPos(pos.getX(), world.getSeaLevel(), pos.getZ());
 
         boolean goingDown = world.isAirBlock(pos);
 
@@ -83,13 +83,14 @@ public class WorldUtils {
             } else {
                 pos = pos.up();
             }
+
         }
 
         while (world.isAirBlock(pos.up()) == false) {
             pos = pos.up();
         }
 
-        watch.print("getting surface takes ");
+        watch.print("surface ");
 
         return pos.up();
 

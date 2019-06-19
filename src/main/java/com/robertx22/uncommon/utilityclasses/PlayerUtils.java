@@ -94,7 +94,11 @@ public class PlayerUtils {
                 .stream()
                 .min(Comparator.comparingDouble(entity::getDistanceSq));
 
-        return player.get();
+        if (player.isPresent()) {
+            return player.get();
+        }
+
+        return null;
 
     }
 

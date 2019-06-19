@@ -55,8 +55,10 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
 
                 Template template = templatemanager.getTemplate(res);
 
-                if (type.canSpawn(theworld, pos, template)) {
+                if (type.canSpawn(iworld, pos, template)) {
                     template.addBlocksToWorld(iworld, pos, placement);
+                } else {
+                    return false;
                 }
 
                 return true;
