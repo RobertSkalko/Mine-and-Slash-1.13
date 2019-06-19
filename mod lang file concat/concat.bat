@@ -1,1 +1,0 @@
-copy start.txt + manual.txt + autolang.txt +  end.txt en_us.json
