@@ -42,16 +42,18 @@ public class TowerPieces {
     public static void init(TemplateManager manager, BlockPos pos, Rotation rotation,
                             List<StructurePiece> pieces, Random ran, Biome biome) {
 
-        int middleAmount = ran.nextInt(3) + 1;
+        int middleAmount = ran.nextInt(2) + 1;
         int height = 0;
 
-        pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome));
-        height += height(manager, FOUNDATION_LOC);
+        for (int i = 0; i < 2; i++) {
+            pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome));
+            height += height(manager, FOUNDATION_LOC);
+        }
 
         pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome));
         height += height(manager, BOTTOM_LOC);
 
-        for (int i = 0; i < middleAmount - 1; ++i) {
+        for (int i = 0; i < middleAmount; ++i) {
             pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, biome));
             height += height(manager, MIDDLE_LOC);
         }
@@ -127,15 +129,13 @@ public class TowerPieces {
                         .addProcessor(new ChestProcessor(30))
                         .addProcessor(new BiomeProcessor(iwp));
 
-                BlockPos pffset = new BlockPos(0, height, 0);
-
-                BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - pffset
-                        .getX(), 0, 0 - pffset.getZ())));
+                BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
 
                 int y = WorldUtils.getSurface(iworld, pos).getY();
 
                 BlockPos templatePosition = this.templatePosition;
-                this.templatePosition = this.templatePosition.add(0, y - 90, 0);
+                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT * 2, 0);
+
                 boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 
                 this.templatePosition = templatePosition;
