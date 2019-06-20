@@ -57,9 +57,10 @@ public class WorldGenRegisters {
                 add(biome, smallRandomSurfaceTreasure);
 
                 biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 
             }
+            
         }
 
     }

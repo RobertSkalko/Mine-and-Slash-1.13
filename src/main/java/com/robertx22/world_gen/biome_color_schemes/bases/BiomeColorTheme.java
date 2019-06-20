@@ -38,5 +38,6 @@ public abstract class BiomeColorTheme {
     public static final BiomeColorTheme RED_DESERT = new RedDesertTheme();
     public static final BiomeColorTheme STONE = new StoneTheme();
     public static final BiomeColorTheme ACACIA = new AcaciaTheme();
+    public static final BiomeColorTheme GREEN = new GreenTheme();
 
 }

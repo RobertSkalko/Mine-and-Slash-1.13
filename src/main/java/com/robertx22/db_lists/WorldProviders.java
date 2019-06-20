@@ -20,6 +20,7 @@ public class WorldProviders {
                 put(new RockMountainsIWP(null, null).GUID(), new RockMountainsIWP(null, null));
                 put(new BirchForestIWP(null, null).GUID(), new BirchForestIWP(null, null));
                 put(new NetherIWP(null, null).GUID(), new NetherIWP(null, null));
+                put(new SwampHillsIWP(null, null).GUID(), new SwampHillsIWP(null, null));
 
             }
 

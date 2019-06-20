@@ -8,7 +8,6 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.testing.Watch;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -70,8 +69,6 @@ public class WorldUtils {
 
     public static BlockPos getSurface(IWorld world, BlockPos pos) {
 
-        Watch watch = new Watch();
-
         pos = new BlockPos(pos.getX(), world.getSeaLevel(), pos.getZ());
 
         boolean goingDown = world.isAirBlock(pos);
@@ -90,8 +87,6 @@ public class WorldUtils {
         while (world.isAirBlock(pos.up()) == false) {
             pos = pos.up();
         }
-
-        watch.print("surface ");
 
         return pos.up();
 
