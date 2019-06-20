@@ -31,6 +31,9 @@ public class TowerPieces {
     private static final ResourceLocation TOP_LOC = new ResourceLocation(Ref.MODID, "tower_roof0");
     private static final ResourceLocation MIDDLE_LOC = new ResourceLocation(Ref.MODID, "tower_middle0");
     private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, "tower_entrance");
+    private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, "tower_foundation");
+
+    static int FOUNDATION_HEIGHT = 3;
 
     public static int height(TemplateManager manager, ResourceLocation loc) {
         return manager.getTemplateDefaulted(loc).getSize().getY();
@@ -42,6 +45,9 @@ public class TowerPieces {
 
         int middleAmount = ran.nextInt(3) + 1;
         int height = 0;
+
+        pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome));
+        height += height(manager, FOUNDATION_LOC);
 
         pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome));
         height += height(manager, BOTTOM_LOC);
@@ -130,7 +136,7 @@ public class TowerPieces {
                 int y = WorldUtils.getSurface(iworld, pos).getY();
 
                 BlockPos templatePosition = this.templatePosition;
-                this.templatePosition = this.templatePosition.add(0, y - 90 - 1, 0);
+                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
                 boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 
                 this.templatePosition = templatePosition;
