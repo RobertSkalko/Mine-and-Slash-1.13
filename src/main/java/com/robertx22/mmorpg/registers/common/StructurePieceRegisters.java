@@ -6,8 +6,10 @@ import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 
 public class StructurePieceRegisters {
 
+    public static IStructurePieceType TOWER;
+
     public static void reg() {
-        IStructurePieceType.register(TowerPieces.Piece::new, Ref.MODID + ":tower_piece");
+        TOWER = IStructurePieceType.register(TowerPieces.Piece::new, Ref.MODID + ":tower_piece");
     }
 
 }

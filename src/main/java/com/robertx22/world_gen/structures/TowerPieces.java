@@ -1,5 +1,6 @@
 package com.robertx22.world_gen.structures;
 
+import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
@@ -65,7 +66,7 @@ public class TowerPieces {
         public Piece(TemplateManager templateManager, ResourceLocation resourceLocation,
                      BlockPos blockPos, Rotation rotation, int heightDifference,
                      int number) {
-            super(IStructurePieceType.IGLU, 0);
+            super(StructurePieceRegisters.TOWER, 0);
             this.resourceLocation = resourceLocation;
             this.number = number;
             BlockPos pos = getPos();

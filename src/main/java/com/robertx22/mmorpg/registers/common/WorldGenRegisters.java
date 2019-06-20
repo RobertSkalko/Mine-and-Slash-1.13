@@ -28,10 +28,10 @@ import java.util.stream.Collectors;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WorldGenRegisters {
 
-    public static final int SMALL_DECO_CHANCE = 25;
+    public static final int SMALL_DECO_CHANCE = 50;
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));
     public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new RandomSurfaceDecoration(NoFeatureConfig::deserialize));
-    public static final ConfiguredFeature smallRandomSurfaceTreasure = Biome.createDecoratedFeature(new RandomSurfaceTreasure(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100));
+    public static final ConfiguredFeature smallRandomSurfaceTreasure = Biome.createDecoratedFeature(new RandomSurfaceTreasure(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(400));
 
     public static Structure<NoFeatureConfig> towerStructure = null;
     private static ConfiguredFeature<?> towerFeature = null;
@@ -40,7 +40,11 @@ public class WorldGenRegisters {
 
         System.out.println("Registering Mine and Slash Map World Gen");
 
+        registerStructure(towerStructure);
+
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
+
+            biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
 
             // only register world gen where it can actually be used
             if (WorldProviders.All.values()
@@ -53,8 +57,6 @@ public class WorldGenRegisters {
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
 
-                add(biome, towerFeature);
-                biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
             }
         }
 
@@ -63,14 +65,20 @@ public class WorldGenRegisters {
     @SubscribeEvent
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
 
-        towerStructure = register(Ref.MODID + ":tower_structure", new TowerStructure(NoFeatureConfig::deserialize));
+        towerStructure = registerStructure(new TowerStructure(NoFeatureConfig::deserialize));
         towerFeature = Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG);
+
+        event.getRegistry().register(towerStructure);
 
     }
 
-    private static <C extends IFeatureConfig, F extends Feature<C>> F register(String key,
-                                                                               F value) {
-        return (F) (Registry.<Feature<?>>register(Registry.FEATURE, key, value));
+    private static <C extends IFeatureConfig, F extends Structure<C>> F registerStructure(
+            F value) {
+
+        Feature.STRUCTURES.put(value.getStructureName(), value);
+
+        return (F) (Registry.<Feature<?>>register(Registry.FEATURE, value.getStructureName(), value));
+
     }
 
     public static void add(Biome biome, ConfiguredFeature comp) {
