@@ -156,17 +156,19 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         this.moddim = this.newModDimension();
     }
 
-    BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeType = BiomeProviderType.FIXED;
-    ChunkGeneratorType chunkType = ChunkGeneratorType.SURFACE;
-
     @Nonnull
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
 
+        BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeType = BiomeProviderType.FIXED;
+        ChunkGeneratorType chunkType = ChunkGeneratorType.SURFACE;
+
         OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 
-        return chunkType.create(this.world, biomeType.create(biomeType.createSettings()
-                .setBiome(this.getBiome())), settings);
+        SingleBiomeProvider biomeProvider = biomeType.create(biomeType.createSettings()
+                .setBiome(this.getBiome()));
+
+        return chunkType.create(this.world, biomeProvider, settings);
     }
 
     @Override
