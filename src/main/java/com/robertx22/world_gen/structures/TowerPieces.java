@@ -136,7 +136,7 @@ public class TowerPieces {
                 int y = WorldUtils.getSurface(iworld, pos).getY();
 
                 BlockPos templatePosition = this.templatePosition;
-                this.templatePosition = this.templatePosition.add(0, y - 90 /*- FOUNDATION_HEIGHT*/, 0);
+                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
                 boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 
                 this.templatePosition = templatePosition;
@@ -145,7 +145,7 @@ public class TowerPieces {
 
             return false;
         }
-        
+
         @Override
         protected void handleDataMarker(String s, BlockPos blockPos, IWorld iWorld,
                                         Random random,
