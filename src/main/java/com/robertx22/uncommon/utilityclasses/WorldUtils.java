@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class WorldUtils {
 
     }
 
-    public static BlockPos getSurface(World world, BlockPos pos) {
+    public static BlockPos getSurface(IWorld world, BlockPos pos) {
 
         Watch watch = new Watch();
 

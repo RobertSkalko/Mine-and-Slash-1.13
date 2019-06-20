@@ -23,6 +23,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -45,6 +46,7 @@ public class WorldGenRegisters {
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
             biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
+            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 
             // only register world gen where it can actually be used
             if (WorldProviders.All.values()
@@ -77,8 +79,14 @@ public class WorldGenRegisters {
 
         Feature.STRUCTURES.put(value.getStructureName(), value);
 
+        registerStruc(value.getStructureName(), value);
+
         return (F) (Registry.<Feature<?>>register(Registry.FEATURE, value.getStructureName(), value));
 
+    }
+
+    private static Structure<?> registerStruc(String id, Structure<?> structure) {
+        return (Structure) Registry.register(Registry.STRUCTURE_FEATURE, id.toLowerCase(Locale.ROOT), structure);
     }
 
     public static void add(Biome biome, ConfiguredFeature comp) {

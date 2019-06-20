@@ -174,7 +174,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
     @Override
     public int Weight() {
         return UncommonWeight;
-
     }
 
     /**

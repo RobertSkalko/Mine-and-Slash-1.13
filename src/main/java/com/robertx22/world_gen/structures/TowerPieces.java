@@ -116,7 +116,7 @@ public class TowerPieces {
             BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - pffset
                     .getX(), 0, 0 - pffset.getZ())));
 
-            int y = WorldUtils.getSurface(iworld.getWorld(), pos).getY();
+            int y = WorldUtils.getSurface(iworld, pos).getY();
 
             BlockPos templatePosition = this.templatePosition;
             this.templatePosition = this.templatePosition.add(0, y - 90 - 1, 0);
