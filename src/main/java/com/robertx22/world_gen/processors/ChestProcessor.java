@@ -21,6 +21,11 @@ public class ChestProcessor extends StructureProcessor {
 
     }
 
+    public ChestProcessor(int chance) {
+        this.treasureChance = chance;
+
+    }
+
     static int treasureChance = 70;
 
     @Nullable

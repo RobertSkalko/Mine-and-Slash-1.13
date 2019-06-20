@@ -51,6 +51,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
         @Override
         public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn,
                          int chunkX, int chunkZ, Biome biomeIn) {
+
             NoFeatureConfig nofeatureconfig = (NoFeatureConfig) generator.getStructureConfig(biomeIn, Feature.IGLOO);
             int x = chunkX * 16;
             int z = chunkZ * 16;

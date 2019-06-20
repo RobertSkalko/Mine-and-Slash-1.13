@@ -45,9 +45,6 @@ public class WorldGenRegisters {
 
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
-            biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
-            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-
             // only register world gen where it can actually be used
             if (WorldProviders.All.values()
                     .stream()
@@ -58,6 +55,9 @@ public class WorldGenRegisters {
                 add(biome, randomSurfaceChest);
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
+
+                biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 
             }
         }

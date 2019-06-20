@@ -1,7 +1,11 @@
 package com.robertx22.world_gen.structures;
 
+import com.robertx22.database.world_providers.IWP;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.world_gen.processors.BiomeProcessor;
+import com.robertx22.world_gen.processors.ChestProcessor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -23,55 +27,47 @@ import java.util.List;
 import java.util.Random;
 
 public class TowerPieces {
-    private static final ResourceLocation TOP_LOC = new ResourceLocation("igloo/top");
-    private static final ResourceLocation MIDDLE_LOC = new ResourceLocation("igloo/middle");
-    private static final ResourceLocation BOTTOM_LOC = new ResourceLocation("igloo/bottom");
+    private static final ResourceLocation TOP_LOC = new ResourceLocation(Ref.MODID, "tower_roof0");
+    private static final ResourceLocation MIDDLE_LOC = new ResourceLocation(Ref.MODID, "tower_middle0");
+    private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, "tower_entrance");
 
-    static int MIDDLE_HEIGHT = 16;
+    public static int height(TemplateManager manager, ResourceLocation loc) {
+        return manager.getTemplateDefaulted(loc).getSize().getY();
+
+    }
 
     public static void init(TemplateManager manager, BlockPos pos, Rotation rotation,
                             List<StructurePiece> pieces, Random ran,
                             NoFeatureConfig config) {
 
-        int middleAmount = ran.nextInt(5);
+        int middleAmount = ran.nextInt(3) + 1;
         int height = 0;
 
-        int num = 0;
-
-        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, num++));
+        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height));
+        height += height(manager, BOTTOM_LOC);
 
         for (int i = 0; i < middleAmount - 1; ++i) {
-            height += MIDDLE_HEIGHT;
-            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, num++));
+            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height));
+            height += height(manager, MIDDLE_LOC);
+
         }
 
-        height += MIDDLE_HEIGHT;
-        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height, num++));
+        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height));
 
     }
 
     public static class Piece extends TemplateStructurePiece {
         private final ResourceLocation resourceLocation;
         private final Rotation rotation;
-        public int number = 0;
-
-        int getHeight() {
-            return number + MIDDLE_HEIGHT;
-        }
-
-        BlockPos getPos() {
-            return new BlockPos(0, getHeight(), 0);
-        }
+        public int height = 0;
 
         public Piece(TemplateManager templateManager, ResourceLocation resourceLocation,
-                     BlockPos blockPos, Rotation rotation, int heightDifference,
-                     int number) {
+                     BlockPos blockPos, Rotation rotation, int height) {
             super(StructurePieceRegisters.TOWER, 0);
             this.resourceLocation = resourceLocation;
-            this.number = number;
-            BlockPos pos = getPos();
-            this.templatePosition = blockPos.add(pos.getX(), pos.getY() - heightDifference, pos
-                    .getZ());
+            this.height = height;
+            BlockPos pos = new BlockPos(0, 0, 0);
+            this.templatePosition = blockPos.add(pos.getX(), pos.getY() + height, pos.getZ());
             this.rotation = rotation;
             this.setupTemplateManager(templateManager);
         }
@@ -80,7 +76,7 @@ public class TowerPieces {
             super(IStructurePieceType.IGLU, compoundNBT);
             this.resourceLocation = new ResourceLocation(compoundNBT.getString("Template"));
             this.rotation = Rotation.valueOf(compoundNBT.getString("Rot"));
-            this.number = compoundNBT.getInt("num");
+            this.height = compoundNBT.getInt("num");
             this.setupTemplateManager(templateManager);
 
         }
@@ -89,8 +85,9 @@ public class TowerPieces {
             Template template = templateManager.getTemplateDefaulted(this.resourceLocation);
             PlacementSettings placementSettings = (new PlacementSettings()).setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
-                    .setCenterOffset(getPos())
+                    .setCenterOffset(new BlockPos(0, height, 0))
                     .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
+
             this.setup(template, this.templatePosition, placementSettings);
         }
 
@@ -99,7 +96,7 @@ public class TowerPieces {
             super.readAdditional(compoundNBT);
             compoundNBT.putString("Template", this.resourceLocation.toString());
             compoundNBT.putString("Rot", this.rotation.name());
-            compoundNBT.putInt("num", this.number);
+            compoundNBT.putInt("num", this.height);
 
         }
 
@@ -107,23 +104,34 @@ public class TowerPieces {
         public boolean addComponentParts(IWorld iworld, Random ran,
                                          MutableBoundingBox boundingbox,
                                          ChunkPos chunkPos) {
-            PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
-                    .setMirror(Mirror.NONE)
-                    .setCenterOffset(getPos())
-                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
 
-            BlockPos pffset = getPos();
-            BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - pffset
-                    .getX(), 0, 0 - pffset.getZ())));
+            IWP iwp = WorldUtils.getIWP(iworld.getWorld());
 
-            int y = WorldUtils.getSurface(iworld, pos).getY();
+            if (iwp != null) {
 
-            BlockPos templatePosition = this.templatePosition;
-            this.templatePosition = this.templatePosition.add(0, y - 90 - 1, 0);
-            boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+                PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
+                        .setMirror(Mirror.NONE)
+                        .setCenterOffset(new BlockPos(0, height, 0))
+                        .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
+                        .addProcessor(new ChestProcessor(20))
+                        .addProcessor(new BiomeProcessor(iwp));
 
-            this.templatePosition = templatePosition;
-            return addedParts;
+                BlockPos pffset = new BlockPos(0, height, 0);
+
+                BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - pffset
+                        .getX(), 0, 0 - pffset.getZ())));
+
+                int y = WorldUtils.getSurface(iworld, pos).getY();
+
+                BlockPos templatePosition = this.templatePosition;
+                this.templatePosition = this.templatePosition.add(0, y - 90 - 1, 0);
+                boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+
+                this.templatePosition = templatePosition;
+                return addedParts;
+            }
+
+            return false;
         }
 
         @Override
