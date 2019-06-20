@@ -2,6 +2,7 @@ package com.robertx22.db_lists;
 
 import com.robertx22.database.world_providers.*;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.world.biome.Biome;
 
 import java.util.HashMap;
 
@@ -25,6 +26,26 @@ public class WorldProviders {
         }
 
     };
+
+    public static IWP byBiome(Biome biome) {
+        IWP first = null;
+
+        try {
+            first = WorldProviders.All.values()
+                    .stream()
+                    .filter(x -> x.getBiome().equals(biome))
+                    .findFirst()
+                    .get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (first != null) {
+            return first;
+        } else {
+            return new BirchForestIWP(null, null);
+        }
+    }
 
     public BaseWorldProvider random(IWPRandomConfig config) {
         return (RandomUtils.weightedRandom(WorldProviders.All.values()));

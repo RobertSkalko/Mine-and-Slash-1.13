@@ -46,6 +46,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
         public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biome,
                      MutableBoundingBox boundingbox, int referenceIn, long longNum) {
             super(structure, chunkX, chunkZ, biome, boundingbox, referenceIn, longNum);
+
         }
 
         @Override
@@ -57,7 +58,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
             int z = chunkZ * 16;
             BlockPos blockpos = new BlockPos(x, 90, z);
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
-            TowerPieces.init(templateManagerIn, blockpos, rotation, this.components, this.rand, nofeatureconfig);
+            TowerPieces.init(templateManagerIn, blockpos, rotation, this.components, this.rand, biomeIn);
             this.recalculateStructureSize();
         }
     }

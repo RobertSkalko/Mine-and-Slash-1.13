@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.state.IProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
@@ -22,6 +23,27 @@ public class BiomeProcessor extends StructureProcessor {
 
     public BiomeProcessor(IWP iwp) {
         this.iwp = iwp;
+    }
+
+    public BiomeProcessor(Biome biome) {
+
+        IWP first = null;
+
+        try {
+            first = WorldProviders.All.values()
+                    .stream()
+                    .filter(x -> x.getBiome().equals(biome))
+                    .findFirst()
+                    .get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (first != null) {
+            this.iwp = first;
+        } else {
+            this.iwp = new BirchForestIWP(null, null);
+        }
     }
 
     public BiomeProcessor(Dynamic<?> dynamic) {

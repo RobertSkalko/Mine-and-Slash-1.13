@@ -1,6 +1,7 @@
 package com.robertx22.world_gen.structures;
 
 import com.robertx22.database.world_providers.IWP;
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
@@ -14,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
@@ -37,22 +38,20 @@ public class TowerPieces {
     }
 
     public static void init(TemplateManager manager, BlockPos pos, Rotation rotation,
-                            List<StructurePiece> pieces, Random ran,
-                            NoFeatureConfig config) {
+                            List<StructurePiece> pieces, Random ran, Biome biome) {
 
         int middleAmount = ran.nextInt(3) + 1;
         int height = 0;
 
-        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height));
+        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome));
         height += height(manager, BOTTOM_LOC);
 
         for (int i = 0; i < middleAmount - 1; ++i) {
-            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height));
+            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, biome));
             height += height(manager, MIDDLE_LOC);
-
         }
 
-        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height));
+        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height, biome));
 
     }
 
@@ -60,16 +59,18 @@ public class TowerPieces {
         private final ResourceLocation resourceLocation;
         private final Rotation rotation;
         public int height = 0;
+        public IWP iwp;
 
         public Piece(TemplateManager templateManager, ResourceLocation resourceLocation,
-                     BlockPos blockPos, Rotation rotation, int height) {
+                     BlockPos blockPos, Rotation rotation, int height, Biome biome) {
             super(StructurePieceRegisters.TOWER, 0);
             this.resourceLocation = resourceLocation;
             this.height = height;
             BlockPos pos = new BlockPos(0, 0, 0);
             this.templatePosition = blockPos.add(pos.getX(), pos.getY() + height, pos.getZ());
             this.rotation = rotation;
-            this.setupTemplateManager(templateManager);
+            this.iwp = WorldProviders.byBiome(biome);
+            this.setupTemplateManager(templateManager, iwp);
         }
 
         public Piece(TemplateManager templateManager, CompoundNBT compoundNBT) {
@@ -77,16 +78,20 @@ public class TowerPieces {
             this.resourceLocation = new ResourceLocation(compoundNBT.getString("Template"));
             this.rotation = Rotation.valueOf(compoundNBT.getString("Rot"));
             this.height = compoundNBT.getInt("num");
-            this.setupTemplateManager(templateManager);
+            this.iwp = WorldProviders.All.get(compoundNBT.getString("iwp"));
+
+            this.setupTemplateManager(templateManager, iwp);
 
         }
 
-        private void setupTemplateManager(TemplateManager templateManager) {
+        private void setupTemplateManager(TemplateManager templateManager, IWP iwp) {
             Template template = templateManager.getTemplateDefaulted(this.resourceLocation);
             PlacementSettings placementSettings = (new PlacementSettings()).setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
                     .setCenterOffset(new BlockPos(0, height, 0))
-                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
+                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
+                    .addProcessor(new ChestProcessor(30))
+                    .addProcessor(new BiomeProcessor(iwp));
 
             this.setup(template, this.templatePosition, placementSettings);
         }
@@ -97,6 +102,7 @@ public class TowerPieces {
             compoundNBT.putString("Template", this.resourceLocation.toString());
             compoundNBT.putString("Rot", this.rotation.name());
             compoundNBT.putInt("num", this.height);
+            compoundNBT.putString("iwp", this.iwp.GUID());
 
         }
 
