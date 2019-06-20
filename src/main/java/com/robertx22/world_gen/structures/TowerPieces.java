@@ -16,7 +16,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -80,7 +79,7 @@ public class TowerPieces {
         }
 
         public Piece(TemplateManager templateManager, CompoundNBT compoundNBT) {
-            super(IStructurePieceType.IGLU, compoundNBT);
+            super(StructurePieceRegisters.TOWER, compoundNBT);
             this.resourceLocation = new ResourceLocation(compoundNBT.getString("Template"));
             this.rotation = Rotation.valueOf(compoundNBT.getString("Rot"));
             this.height = compoundNBT.getInt("num");
@@ -125,7 +124,7 @@ public class TowerPieces {
                         .setMirror(Mirror.NONE)
                         .setCenterOffset(new BlockPos(0, height, 0))
                         .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
-                        .addProcessor(new ChestProcessor(20))
+                        .addProcessor(new ChestProcessor(30))
                         .addProcessor(new BiomeProcessor(iwp));
 
                 BlockPos pffset = new BlockPos(0, height, 0);
@@ -136,7 +135,7 @@ public class TowerPieces {
                 int y = WorldUtils.getSurface(iworld, pos).getY();
 
                 BlockPos templatePosition = this.templatePosition;
-                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
+                this.templatePosition = this.templatePosition.add(0, y - 90, 0);
                 boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 
                 this.templatePosition = templatePosition;

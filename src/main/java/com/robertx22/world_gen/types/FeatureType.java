@@ -36,7 +36,11 @@ public class FeatureType implements IWeighted {
         }
 
         if (canSpawnInWater == false) {
-            if (world.getBlockState(pos).equals(Blocks.WATER)) {
+            if (world.getBlockState(pos)
+                    .equals(Blocks.WATER) || world.getBlockState(pos.up())
+                    .equals(Blocks.WATER) || world.getBlockState(pos.down())
+                    .equals(Blocks.WATER)) {
+
                 return false;
             }
         }
