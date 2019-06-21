@@ -42,7 +42,7 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
             pos = type.modifyPos(pos);
 
             if (res != null) {
-                
+
                 TemplateManager templatemanager = ((ServerWorld) iworld.getWorld()).getSaveHandler()
                         .getStructureTemplateManager();
 

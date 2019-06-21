@@ -8,6 +8,9 @@ import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -32,9 +35,9 @@ public class TowerPieces {
     private static final ResourceLocation TOP_LOC = new ResourceLocation(Ref.MODID, "tower_roof0");
     private static final ResourceLocation MIDDLE_LOC = new ResourceLocation(Ref.MODID, "tower_middle0");
     private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, "tower_entrance");
-    private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, "tower_foundation");
+    //private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, "tower_foundation");
 
-    static int FOUNDATION_HEIGHT = 4;
+    //static int FOUNDATION_HEIGHT = 4;
 
     public static int height(TemplateManager manager, ResourceLocation loc) {
         return manager.getTemplateDefaulted(loc).getSize().getY();
@@ -47,9 +50,6 @@ public class TowerPieces {
 
         int middleAmount = ran.nextInt(3) + 1;
         int height = 0;
-
-        pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome, chunkpos));
-        height += height(manager, FOUNDATION_LOC);
 
         pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome, chunkpos));
         height += height(manager, BOTTOM_LOC);
@@ -150,10 +150,35 @@ public class TowerPieces {
                     int x = clamp(templatePosition.getX(), chunkPos.getXStart(), chunkPos.getXEnd());
                     int z = clamp(templatePosition.getZ(), chunkPos.getZStart(), chunkPos.getZEnd());
 
-                    this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
+                    this.templatePosition = this.templatePosition.add(0, y - 90, 0);
                     this.templatePosition = new BlockPos(x, this.templatePosition.getY(), z);
 
                     boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+
+                    if (this.resourceLocation == BOTTOM_LOC) {
+
+                        BlockState state = iwp.biomeTheme().blocksReplaceMap.get(Blocks.OAK_LOG)
+                                .getBlockToReplaceWith(Blocks.OAK_LOG)
+                                .getDefaultState();
+
+                        for (int xx = chunkPos.getXStart(); xx < chunkpos.getXEnd(); xx++) {
+                            for (int zz = chunkPos.getZStart(); zz < chunkpos.getZEnd(); zz++) {
+                                for (int i = 1; i < 10; i++) {
+                                    int yy = y - i;
+
+                                    BlockPos check = new BlockPos(xx, yy, zz);
+                                    Block block = iworld.getBlockState(check).getBlock();
+
+                                    if (block == Blocks.AIR || block == Blocks.WATER) {
+                                        iworld.setBlockState(check, state, 0);
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                    }
 
                     this.templatePosition = templatePosition;
                     return addedParts;
