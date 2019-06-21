@@ -206,6 +206,17 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         return (float) (d0 * 2.0D + d1) / 3.0F;
     }
 
+    @Override
+    public long getWorldTime() {
+
+        // hm seems to use this time to give to client, so doesnt work
+        if (world != null && world.isRemote) {
+            return getWorld().getWorldInfo().getDayTime();
+        } else {
+            return 18000; // midnight, for mob spawning
+        }
+    }
+
     /**
      * Return Vec3D with biome specific fog color
      */

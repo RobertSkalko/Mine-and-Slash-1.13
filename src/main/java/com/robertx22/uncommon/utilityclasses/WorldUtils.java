@@ -10,14 +10,17 @@ import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class WorldUtils {
 
@@ -25,6 +28,28 @@ public class WorldUtils {
 
         world.addEntity(entity);
 
+    }
+
+    static Predicate<Entity> filter = (entity) -> {
+        return entity.world.getChunkProvider().isChunkLoaded(entity);
+    };
+
+    public static boolean hasLessThanMaximumEntitiesOfType(ServerWorld world,
+                                                           EntityClassification enclass) {
+        int entities = world.getEntities(null, filter).size();
+        return entities < enclass.getMaxNumberOfCreature();
+
+    }
+
+    public static boolean isNearSurface(BlockPos pos, World world, int buffer) {
+
+        BlockPos surface = WorldUtils.getSurface(world, pos);
+
+        if (pos.getY() > surface.getY() - buffer) {
+            return true;
+        }
+
+        return false;
     }
 
     public static List<MapAffixData> getAllAffixesThatAffect(
