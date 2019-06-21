@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
+import com.robertx22.dimensions.MapManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +13,7 @@ import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.ServerWorld;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldInfo;
@@ -21,6 +23,18 @@ import java.util.Comparator;
 import java.util.Optional;
 
 public class PlayerUtils {
+
+    public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos) {
+
+        for (ServerPlayerEntity player : MapManager.getServer()
+                .getPlayerList()
+                .getPlayers()) {
+
+            player.sendMessage(new StringTextComponent("Structure spawned at : " + pos.toString()));
+
+        }
+
+    }
 
     @Nullable
     public static Entity changeDimension(ServerPlayerEntity player,

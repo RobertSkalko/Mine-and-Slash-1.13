@@ -4,6 +4,7 @@ import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
+import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
@@ -13,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
@@ -32,33 +34,32 @@ public class TowerPieces {
     private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, "tower_entrance");
     private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, "tower_foundation");
 
-    static int FOUNDATION_HEIGHT = 3;
+    static int FOUNDATION_HEIGHT = 4;
 
     public static int height(TemplateManager manager, ResourceLocation loc) {
         return manager.getTemplateDefaulted(loc).getSize().getY();
 
     }
-
+    
     public static void init(TemplateManager manager, BlockPos pos, Rotation rotation,
-                            List<StructurePiece> pieces, Random ran, Biome biome) {
+                            List<StructurePiece> pieces, Random ran, Biome biome,
+                            ChunkPos chunkpos) {
 
         int middleAmount = ran.nextInt(2) + 1;
         int height = 0;
 
-        for (int i = 0; i < 2; i++) {
-            pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome));
-            height += height(manager, FOUNDATION_LOC);
-        }
+        pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome, chunkpos));
+        height += height(manager, FOUNDATION_LOC);
 
-        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome));
+        pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome, chunkpos));
         height += height(manager, BOTTOM_LOC);
 
         for (int i = 0; i < middleAmount; ++i) {
-            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, biome));
+            pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, biome, chunkpos));
             height += height(manager, MIDDLE_LOC);
         }
 
-        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height, biome));
+        pieces.add(new Piece(manager, TOP_LOC, pos, rotation, height, biome, chunkpos));
 
     }
 
@@ -67,15 +68,18 @@ public class TowerPieces {
         private final Rotation rotation;
         public int height = 0;
         public IWP iwp;
+        public ChunkPos chunkpos;
 
         public Piece(TemplateManager templateManager, ResourceLocation resourceLocation,
-                     BlockPos blockPos, Rotation rotation, int height, Biome biome) {
+                     BlockPos blockPos, Rotation rotation, int height, Biome biome,
+                     ChunkPos chunkpos) {
             super(StructurePieceRegisters.TOWER, 0);
             this.resourceLocation = resourceLocation;
             this.height = height;
             BlockPos pos = new BlockPos(0, 0, 0);
             this.templatePosition = blockPos.add(pos.getX(), pos.getY() + height, pos.getZ());
             this.rotation = rotation;
+            this.chunkpos = chunkpos;
             this.iwp = WorldProviders.byBiome(biome);
             this.setupTemplateManager(templateManager, iwp);
         }
@@ -86,7 +90,7 @@ public class TowerPieces {
             this.rotation = Rotation.valueOf(compoundNBT.getString("Rot"));
             this.height = compoundNBT.getInt("num");
             this.iwp = WorldProviders.All.get(compoundNBT.getString("iwp"));
-
+            this.chunkpos = new ChunkPos(compoundNBT.getInt("chunkX"), compoundNBT.getInt("chunkZ"));
             this.setupTemplateManager(templateManager, iwp);
 
         }
@@ -110,6 +114,8 @@ public class TowerPieces {
             compoundNBT.putString("Rot", this.rotation.name());
             compoundNBT.putInt("num", this.height);
             compoundNBT.putString("iwp", this.iwp.GUID());
+            compoundNBT.putInt("chunkX", chunkpos.x);
+            compoundNBT.putInt("chunkZ", chunkpos.z);
 
         }
 
@@ -118,31 +124,44 @@ public class TowerPieces {
                                          MutableBoundingBox boundingbox,
                                          ChunkPos chunkPos) {
 
-            IWP iwp = WorldUtils.getIWP(iworld.getWorld());
+            if (chunkPos.x == this.chunkpos.x && chunkPos.z == this.chunkpos.z) {
 
-            if (iwp != null) {
+                IWP iwp = WorldUtils.getIWP(iworld.getWorld());
 
-                PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
-                        .setMirror(Mirror.NONE)
-                        .setCenterOffset(new BlockPos(0, height, 0))
-                        .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
-                        .addProcessor(new ChestProcessor(30))
-                        .addProcessor(new BiomeProcessor(iwp));
+                if (iwp != null) {
 
-                BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
+                    PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
+                            .setMirror(Mirror.NONE)
+                            .setCenterOffset(new BlockPos(0, height, 0))
+                            .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
+                            .addProcessor(new ChestProcessor(30))
+                            .addProcessor(new BiomeProcessor(iwp));
 
-                int y = WorldUtils.getSurface(iworld, pos).getY();
+                    BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
 
-                BlockPos templatePosition = this.templatePosition;
-                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT * 2, 0);
+                    if (this.resourceLocation == BOTTOM_LOC) {
+                        PlayerUtils.sendPlayersMSGofStructureSpawnTEST(pos);
+                    }
 
-                boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+                    int y = WorldUtils.getSurface(iworld, pos).getY();
 
-                this.templatePosition = templatePosition;
-                return addedParts;
+                    BlockPos templatePosition = this.templatePosition;
+
+                    int x = clamp(templatePosition.getX(), chunkPos.getXStart(), chunkPos.getXEnd());
+                    int z = clamp(templatePosition.getZ(), chunkPos.getZStart(), chunkPos.getZEnd());
+
+                    this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
+                    this.templatePosition = new BlockPos(x, this.templatePosition.getY(), z);
+
+                    boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+
+                    this.templatePosition = templatePosition;
+                    return addedParts;
+                }
             }
 
             return false;
+
         }
 
         @Override
@@ -152,4 +171,26 @@ public class TowerPieces {
 
         }
     }
+
+    public static int clamp(int num, int start, int end) {
+
+        if (true) {
+            return num;
+        }
+
+        int min = 0;
+        int max = 1;
+
+        if (start > end) {
+            min = end;
+            max = start;
+        } else {
+            max = end;
+            min = start;
+        }
+
+        return MathHelper.clamp(num, min, max);
+
+    }
+
 }
