@@ -54,12 +54,14 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
 
                 if (type.canSpawn(iworld, pos, template)) {
                     template.addBlocksToWorld(iworld, pos, placement);
+
                 } else {
                     return false;
                 }
 
                 return true;
             }
+
         }
 
         return false;

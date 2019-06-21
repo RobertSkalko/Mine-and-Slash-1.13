@@ -1,5 +1,6 @@
 package com.robertx22.database.world_providers;
 
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.world_gen.types.FeatureType;
 import net.minecraft.block.BlockState;
@@ -168,7 +169,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         SingleBiomeProvider biomeProvider = biomeType.create(biomeType.createSettings()
                 .setBiome(this.getBiome()));
 
-        return chunkType.create(this.world, biomeProvider, settings);
+        ChunkGenerator gen = chunkType.create(this.world, biomeProvider, settings);
+
+        gen.seed = MMORPG.MAP_WORLD_SEED;
+
+        return gen;
     }
 
     @Override

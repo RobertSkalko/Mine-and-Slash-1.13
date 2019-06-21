@@ -156,6 +156,7 @@ public class TowerPieces {
                     boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 
                     this.templatePosition = templatePosition;
+
                     return addedParts;
                 }
             }

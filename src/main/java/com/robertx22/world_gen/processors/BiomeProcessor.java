@@ -27,23 +27,8 @@ public class BiomeProcessor extends StructureProcessor {
 
     public BiomeProcessor(Biome biome) {
 
-        IWP first = null;
+        this.iwp = WorldProviders.byBiome(biome);
 
-        try {
-            first = WorldProviders.All.values()
-                    .stream()
-                    .filter(x -> x.getBiome().equals(biome))
-                    .findFirst()
-                    .get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (first != null) {
-            this.iwp = first;
-        } else {
-            this.iwp = new BirchForestIWP(null, null);
-        }
     }
 
     public BiomeProcessor(Dynamic<?> dynamic) {

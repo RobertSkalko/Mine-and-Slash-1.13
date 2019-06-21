@@ -31,6 +31,10 @@ public class AllowMobSpawnsInMap {
     @SubscribeEvent
     public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
+        if (true) {
+            return;
+        }
+
         LivingEntity en = event.getEntityLiving();
 
         if (en.world.isRemote) {

@@ -45,6 +45,7 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import org.apache.commons.lang3.RandomUtils;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -54,6 +55,8 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     private static boolean RUN_DEV_TOOLS = true;
+
+    public static long MAP_WORLD_SEED = 0;
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
@@ -91,6 +94,10 @@ public class MMORPG {
 
         });
 
+        if (MAP_WORLD_SEED == 0) {
+            MAP_WORLD_SEED = RandomUtils.nextLong();
+        }
+        
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
