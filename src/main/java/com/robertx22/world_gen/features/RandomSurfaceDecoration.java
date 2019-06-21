@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.ServerWorld;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
@@ -34,9 +33,7 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
                          ChunkGenerator<? extends GenerationSettings> generator,
                          Random rand, BlockPos pos, NoFeatureConfig config) {
 
-        World theworld = iworld.getWorld();
-
-        IWP iwp = WorldUtils.getIWP(theworld);
+        IWP iwp = WorldUtils.getIWP(iworld);
 
         if (iwp != null) {
 
@@ -45,7 +42,7 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
             pos = type.modifyPos(pos);
 
             if (res != null) {
-
+                
                 TemplateManager templatemanager = ((ServerWorld) iworld.getWorld()).getSaveHandler()
                         .getStructureTemplateManager();
 

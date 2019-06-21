@@ -1,6 +1,7 @@
 package com.robertx22.config.dimension_configs;
 
 import com.robertx22.config.IConfig;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class DimensionsContainer implements IConfig {
         return false;
     }
 
-    private String getId(World world) {
+    private String getId(IWorld world) {
 
         String id = "";
 
@@ -56,7 +57,7 @@ public class DimensionsContainer implements IConfig {
         return id;
     }
 
-    public DimensionConfig getConfig(World world) {
+    public DimensionConfig getConfig(IWorld world) {
         String id = getId(world);
 
         if (dimensionsList.containsKey(id)) {

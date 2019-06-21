@@ -92,7 +92,7 @@ public class WorldUtils {
 
     }
 
-    public static boolean isMapWorld(World world) {
+    public static boolean isMapWorld(IWorld world) {
 
         if (world.getDimension() instanceof BaseWorldProvider == false) {
             return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER > 0;
@@ -107,7 +107,7 @@ public class WorldUtils {
         return world.getDimension() instanceof BaseWorldProvider;
     }
 
-    public static IWP getIWP(World theworld) {
+    public static IWP getIWP(IWorld theworld) {
 
         if (theworld.getDimension() instanceof IWP) {
 

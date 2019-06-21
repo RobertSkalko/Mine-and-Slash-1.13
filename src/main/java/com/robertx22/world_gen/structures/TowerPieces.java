@@ -40,12 +40,12 @@ public class TowerPieces {
         return manager.getTemplateDefaulted(loc).getSize().getY();
 
     }
-    
+
     public static void init(TemplateManager manager, BlockPos pos, Rotation rotation,
                             List<StructurePiece> pieces, Random ran, Biome biome,
                             ChunkPos chunkpos) {
 
-        int middleAmount = ran.nextInt(2) + 1;
+        int middleAmount = ran.nextInt(3) + 1;
         int height = 0;
 
         pieces.add(new Piece(manager, FOUNDATION_LOC, pos, rotation, height, biome, chunkpos));
@@ -54,7 +54,7 @@ public class TowerPieces {
         pieces.add(new Piece(manager, BOTTOM_LOC, pos, rotation, height, biome, chunkpos));
         height += height(manager, BOTTOM_LOC);
 
-        for (int i = 0; i < middleAmount; ++i) {
+        for (int i = 0; i < middleAmount; i++) {
             pieces.add(new Piece(manager, MIDDLE_LOC, pos, rotation, height, biome, chunkpos));
             height += height(manager, MIDDLE_LOC);
         }
@@ -126,7 +126,7 @@ public class TowerPieces {
 
             if (chunkPos.x == this.chunkpos.x && chunkPos.z == this.chunkpos.z) {
 
-                IWP iwp = WorldUtils.getIWP(iworld.getWorld());
+                IWP iwp = WorldUtils.getIWP(iworld);
 
                 if (iwp != null) {
 
