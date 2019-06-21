@@ -58,9 +58,6 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
 
             ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 
-            x = TowerPieces.clamp(x, chunkPos.getXStart(), chunkPos.getXEnd());
-            z = TowerPieces.clamp(z, chunkPos.getZStart(), chunkPos.getZEnd());
-
             BlockPos blockpos = new BlockPos(x, 90, z);
 
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];

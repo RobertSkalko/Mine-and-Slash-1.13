@@ -124,41 +124,38 @@ public class TowerPieces {
                                          MutableBoundingBox boundingbox,
                                          ChunkPos chunkPos) {
 
-            if (chunkPos.x == this.chunkpos.x && chunkPos.z == this.chunkpos.z) {
+            IWP iwp = WorldUtils.getIWP(iworld);
 
-                IWP iwp = WorldUtils.getIWP(iworld);
+            if (iwp != null) {
 
-                if (iwp != null) {
+                PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
+                        .setMirror(Mirror.NONE)
+                        .setCenterOffset(new BlockPos(0, height, 0))
+                        .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
+                        .addProcessor(new ChestProcessor(30))
+                        .addProcessor(new BiomeProcessor(iwp));
 
-                    PlacementSettings placeSettings = (new PlacementSettings()).setRotation(this.rotation)
-                            .setMirror(Mirror.NONE)
-                            .setCenterOffset(new BlockPos(0, height, 0))
-                            .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
-                            .addProcessor(new ChestProcessor(30))
-                            .addProcessor(new BiomeProcessor(iwp));
+                BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
 
-                    BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
-
-                    if (this.resourceLocation == BOTTOM_LOC) {
-                        PlayerUtils.sendPlayersMSGofStructureSpawnTEST(pos);
-                    }
-
-                    int y = WorldUtils.getSurface(iworld, pos).getY();
-
-                    BlockPos templatePosition = this.templatePosition;
-
-                    int x = clamp(templatePosition.getX(), chunkPos.getXStart(), chunkPos.getXEnd());
-                    int z = clamp(templatePosition.getZ(), chunkPos.getZStart(), chunkPos.getZEnd());
-
-                    this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
-                    this.templatePosition = new BlockPos(x, this.templatePosition.getY(), z);
-
-                    boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
-
-                    this.templatePosition = templatePosition;
-
-                    return addedParts;
+                if (this.resourceLocation == BOTTOM_LOC) {
+                    PlayerUtils.sendPlayersMSGofStructureSpawnTEST(pos);
                 }
+
+                int y = WorldUtils.getSurface(iworld, pos).getY();
+
+                BlockPos templatePosition = this.templatePosition;
+
+                int x = templatePosition.getX();
+                int z = templatePosition.getZ();
+
+                this.templatePosition = this.templatePosition.add(0, y - 90 - FOUNDATION_HEIGHT, 0);
+                this.templatePosition = new BlockPos(x, this.templatePosition.getY(), z);
+
+                boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+
+                this.templatePosition = templatePosition;
+
+                return addedParts;
             }
 
             return false;
