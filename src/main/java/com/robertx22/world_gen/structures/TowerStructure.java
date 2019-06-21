@@ -2,6 +2,7 @@ package com.robertx22.world_gen.structures;
 
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -59,6 +60,8 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
             ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 
             BlockPos blockpos = new BlockPos(x, 90, z);
+
+            PlayerUtils.sendPlayersMSGofStructureSpawnTEST(blockpos);
 
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
             TowerPieces.init(templateManagerIn, blockpos, rotation, this.components, this.rand, biomeIn, chunkPos);

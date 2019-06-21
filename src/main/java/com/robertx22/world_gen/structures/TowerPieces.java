@@ -4,7 +4,6 @@ import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
-import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
@@ -136,10 +135,6 @@ public class TowerPieces {
                         .addProcessor(new BiomeProcessor(iwp));
 
                 BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
-
-                if (this.resourceLocation == BOTTOM_LOC) {
-                    PlayerUtils.sendPlayersMSGofStructureSpawnTEST(pos);
-                }
 
                 int y = WorldUtils.getSurface(iworld, pos).getY();
 
