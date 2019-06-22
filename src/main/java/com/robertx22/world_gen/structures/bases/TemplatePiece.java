@@ -1,4 +1,4 @@
-package com.robertx22.world_gen.structures;
+package com.robertx22.world_gen.structures.bases;
 
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.WorldProviders;
@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.ServerWorld;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.*;
@@ -76,8 +75,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         this.setupTemplateManager(data.templateManager);
     }
 
-    public PlacementSettings setupTemplateManager(TemplateManager templateManager) {
-        Template template = templateManager.getTemplateDefaulted(this.resourceLocation);
+    public PlacementSettings setupPlacementSettings() {
+
         PlacementSettings placementSettings = (new PlacementSettings()).setRotation(this.rotation)
                 .setMirror(Mirror.NONE)
                 .setCenterOffset(new BlockPos(0, height, 0))
@@ -87,9 +86,14 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
             placementSettings.addProcessor(proc);
         }
 
+        return placementSettings;
+    }
+
+    public void setupTemplateManager(TemplateManager templateManager) {
+        Template template = templateManager.getTemplateDefaulted(this.resourceLocation);
+        PlacementSettings placementSettings = setupPlacementSettings();
         this.setup(template, this.templatePosition, placementSettings);
 
-        return placementSettings;
     }
 
     @Override
@@ -114,10 +118,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
         if (iwp != null) {
 
-            TemplateManager templatemanager = ((ServerWorld) iworld.getWorld()).getSaveHandler()
-                    .getStructureTemplateManager();
-
-            PlacementSettings placeSettings = this.setupTemplateManager(templatemanager);
+            PlacementSettings placeSettings = this.setupPlacementSettings();
 
             BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
 

@@ -4,6 +4,7 @@ import com.mojang.datafixers.Dynamic;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.world_gen.structures.bases.StructurePieceData;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;

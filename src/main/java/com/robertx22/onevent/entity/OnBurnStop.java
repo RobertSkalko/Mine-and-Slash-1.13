@@ -16,6 +16,7 @@ public class OnBurnStop {
             if (event.getEntityLiving().isBurning()) {
                 event.getEntityLiving().extinguish();
             }
+
         }
     }
 

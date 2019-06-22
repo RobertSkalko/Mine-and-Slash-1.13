@@ -258,20 +258,24 @@ public class PlayerMapData {
         public void teleportPlayerBack(PlayerEntity player) {
 
             if (WorldUtils.isMapWorld(player.world)) {
-                if (this.originalDimension != null) {
-                    if (player.isAlive()) {
-                        BlockPos pos = player.getBedLocation();
-                        if (getMapDevicePos() != null) {
-                            pos = getMapDevicePos();
-                            pos = pos.north(2);
-                            PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO test if works
 
-                        }
-
-                    }
-                } else {
+                if (this.originalDimension == null) {
+                    this.originalDimension = DimensionType.OVERWORLD;
 
                 }
+
+                BlockPos pos = getMapDevicePos();
+
+                if (pos == null) {
+                    pos = player.getBedLocation();
+                }
+                if (pos == null) {
+                    pos = player.world.getSpawnPoint();
+                }
+
+                pos = pos.north(2);
+                PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO test if works
+
             }
         }
 

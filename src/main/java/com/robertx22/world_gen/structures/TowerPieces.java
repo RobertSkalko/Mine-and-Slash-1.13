@@ -4,6 +4,8 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
+import com.robertx22.world_gen.structures.bases.StructurePieceData;
+import com.robertx22.world_gen.structures.bases.TemplatePiece;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
@@ -37,6 +39,8 @@ public class TowerPieces {
 
         int middleAmount = ran.nextInt(3) + 1;
 
+        data.height = 0;
+
         data.lowerIntoGroundBy = FOUNDATION_HEIGHT;
 
         data.resource(FOUNDATION_LOC);
@@ -55,7 +59,7 @@ public class TowerPieces {
 
         data.resource(TOP_LOC);
         pieces.add(new TowerPiece(data).last());
-
+        
     }
 
     public static class TowerPiece extends TemplatePiece {

@@ -1,4 +1,4 @@
-package com.robertx22.world_gen.structures;
+package com.robertx22.world_gen.structures.bases;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -11,15 +11,16 @@ import java.util.UUID;
 
 public class StructurePieceData {
 
-    IStructurePieceType type;
-    TemplateManager templateManager;
-    ResourceLocation resourceLocation;
-    BlockPos blockPos;
-    Rotation rotation;
-    int height;
-    Biome biome;
-    int lowerIntoGroundBy = 0;
-    String guid = "";
+    public BlockPos initialPos;
+    public IStructurePieceType type;
+    public TemplateManager templateManager;
+    public ResourceLocation resourceLocation;
+    public BlockPos blockPos;
+    public Rotation rotation;
+    public int height;
+    public Biome biome;
+    public int lowerIntoGroundBy = 0;
+    public String guid = "";
 
     private StructurePieceData generateGUID() {
         this.guid = UUID.randomUUID().toString();
@@ -34,6 +35,7 @@ public class StructurePieceData {
         this.blockPos = blockPos;
         this.rotation = rotation;
         this.biome = biome;
+        this.initialPos = new BlockPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
         generateGUID();
 

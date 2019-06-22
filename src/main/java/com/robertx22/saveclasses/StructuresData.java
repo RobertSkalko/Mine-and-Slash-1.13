@@ -1,6 +1,6 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.world_gen.structures.TemplatePiece;
+import com.robertx22.world_gen.structures.bases.TemplatePiece;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
