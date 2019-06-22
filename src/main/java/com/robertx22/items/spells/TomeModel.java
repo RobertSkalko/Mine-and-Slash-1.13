@@ -1,4 +1,4 @@
-package com.robertx22.new_content_test;
+package com.robertx22.items.spells;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.Model;

@@ -2,6 +2,7 @@ package com.robertx22.uncommon.datasaving;
 
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.MapData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -14,6 +15,16 @@ public class Load {
             return provider.getCapability(EntityData.Data).isPresent();
         }
         return false;
+    }
+
+    public static MapData.IMapData mapData(ICapabilityProvider provider) {
+
+        if (provider != null) {
+
+            return provider.getCapability(MapData.Data).orElse(new MapData.DefaultImpl());
+
+        }
+        return null;
     }
 
     public static UnitData Unit(ICapabilityProvider provider) {

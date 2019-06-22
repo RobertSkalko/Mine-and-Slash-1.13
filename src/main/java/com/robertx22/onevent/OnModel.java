@@ -1,5 +1,6 @@
 package com.robertx22.onevent;
 
+import com.robertx22.items.spells.InGame3DWhile2DInvModel;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.SimpleBakedModel;
@@ -18,7 +19,7 @@ public class OnModel {
     @SubscribeEvent
     public static void bake(ModelBakeEvent event) {
 
-        List<ResourceLocation> test = event.getModelRegistry()
+        List<ResourceLocation> locations = event.getModelRegistry()
                 .keySet()
                 .stream()
                 .filter(x -> x.getNamespace().equals(Ref.MODID) && x.getPath()
@@ -26,14 +27,16 @@ public class OnModel {
                 .collect(Collectors.toList());
 
         List<IBakedModel> models = new ArrayList<>();
-        test.stream().forEach(x -> models.add(event.getModelRegistry().get(x)));
+        locations.stream().forEach(x -> models.add(event.getModelRegistry().get(x)));
 
-        for (ResourceLocation loc : test) {
+        for (ResourceLocation loc : locations) {
 
-            SimpleBakedModel model = (SimpleBakedModel) event.getModelRegistry().get(loc);
-            InGame3DWhile2DInvModel mymodel = new InGame3DWhile2DInvModel(model);
-            event.getModelRegistry().put(loc, mymodel);
-
+            if (event.getModelRegistry().get(loc) instanceof SimpleBakedModel) {
+                SimpleBakedModel model = (SimpleBakedModel) event.getModelRegistry()
+                        .get(loc);
+                InGame3DWhile2DInvModel mymodel = new InGame3DWhile2DInvModel(model);
+                event.getModelRegistry().put(loc, mymodel);
+            }
         }
 
         System.out.println(" it works !");

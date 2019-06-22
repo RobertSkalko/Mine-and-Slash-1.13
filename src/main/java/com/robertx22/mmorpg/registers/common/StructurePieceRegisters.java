@@ -9,7 +9,7 @@ public class StructurePieceRegisters {
     public static IStructurePieceType TOWER;
 
     public static void reg() {
-        TOWER = IStructurePieceType.register(TowerPieces.Piece::new, Ref.MODID + ":tower_piece");
+        TOWER = IStructurePieceType.register(TowerPieces.TowerPiece::new, Ref.MODID + ":tower_piece");
     }
 
 }

@@ -1,7 +1,6 @@
-package com.robertx22.new_content_test;
+package com.robertx22.items.spells;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.robertx22.items.spells.BaseSpellItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
@@ -35,7 +34,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             BaseSpellItem tome = (BaseSpellItem) item;
 
             float scale = 1.2F;
-            float rotation = 280;
+            float rotation = 290;
 
             if (stack.hasTag() == false) {
                 stack.setTag(new CompoundNBT());
@@ -50,7 +49,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             GlStateManager.pushMatrix();
             GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);
-            GlStateManager.translatef(0.15F, -0.45F, 0.01F);
+            GlStateManager.translatef(0.15F, -0.45F, -0.2F);
             GlStateManager.enableCull();
 
             if (isTheOneThatIsCurrentlyInUse(stack)) {

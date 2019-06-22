@@ -1,4 +1,4 @@
-package com.robertx22.onevent;
+package com.robertx22.items.spells;
 
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
