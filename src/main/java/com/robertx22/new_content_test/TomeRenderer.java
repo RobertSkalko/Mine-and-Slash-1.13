@@ -34,8 +34,8 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             BaseSpellItem tome = (BaseSpellItem) item;
 
-            float scale = 1F;
-            float rotation = 250;
+            float scale = 1.2F;
+            float rotation = 280;
 
             if (stack.hasTag() == false) {
                 stack.setTag(new CompoundNBT());
@@ -50,7 +50,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             GlStateManager.pushMatrix();
             GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
             GlStateManager.scaled(scale, -scale, -scale);
-            GlStateManager.translatef(0.15F, -0.63F, 0.6F);
+            GlStateManager.translatef(0.15F, -0.45F, 0.01F);
             GlStateManager.enableCull();
 
             if (isTheOneThatIsCurrentlyInUse(stack)) {

@@ -38,7 +38,7 @@ public class InGame3DWhile2DInvModel extends SimpleBakedModel {
     public org.apache.commons.lang3.tuple.Pair<? extends IBakedModel, javax.vecmath.Matrix4f> handlePerspective(
             ItemCameraTransforms.TransformType cameraTransformType) {
 
-        if (cameraTransformType == ItemCameraTransforms.TransformType.GUI) {
+        if (cameraTransformType == ItemCameraTransforms.TransformType.GUI || cameraTransformType == ItemCameraTransforms.TransformType.GROUND) {
             return net.minecraftforge.client.ForgeHooksClient.handlePerspective(getBakedModel(), cameraTransformType);
         } else {
             return net.minecraftforge.client.ForgeHooksClient.handlePerspective(renderModel
