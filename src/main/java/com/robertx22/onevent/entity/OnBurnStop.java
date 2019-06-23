@@ -3,9 +3,9 @@ package com.robertx22.onevent.entity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class OnBurnStop {
 
     @SubscribeEvent

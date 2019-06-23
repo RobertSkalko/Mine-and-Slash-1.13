@@ -20,6 +20,7 @@ public class ConfigRegister {
 
     // MUST BE CALLED IN MAIN CLASS
     public static void register() {
+
         ModLoadingContext ctx = ModLoadingContext.get();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {

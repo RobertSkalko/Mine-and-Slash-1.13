@@ -59,7 +59,7 @@ public class TowerPieces {
 
         data.resource(TOP_LOC);
         pieces.add(new TowerPiece(data).last());
-        
+
     }
 
     public static class TowerPiece extends TemplatePiece {
