@@ -26,13 +26,9 @@ public class FloatingIslandPieces {
 
     private static final ResourceLocation CENTER = new ResourceLocation(Ref.MODID, FOLDER + "/center");
     private static final ResourceLocation SIDE = new ResourceLocation(Ref.MODID, FOLDER + "/side");
-    private static final ResourceLocation EDGE = new ResourceLocation(Ref.MODID, FOLDER + "/edge");
     private static final ResourceLocation BOTTOM_SMALL = new ResourceLocation(Ref.MODID, FOLDER + "/small_bottom");
     private static final ResourceLocation BOTTOM_BIG = new ResourceLocation(Ref.MODID, FOLDER + "/big_bottom");
     private static final ResourceLocation STAIRS = new ResourceLocation(Ref.MODID, FOLDER + "/staircase");
-
-    static List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 16), Rotation.NONE), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.COUNTERCLOCKWISE_90));
-    static List<PosRot> edgePosRots = Arrays.asList(new PosRot(new BlockPos(-16, 0, 16), Rotation.NONE), new PosRot(new BlockPos(-16, 0, -16), Rotation.COUNTERCLOCKWISE_90), new PosRot(new BlockPos(16, 0, 16), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(16, 0, -16), Rotation.CLOCKWISE_180));
 
     static class PosRot {
         public PosRot(BlockPos pos, Rotation rota) {
@@ -47,7 +43,7 @@ public class FloatingIslandPieces {
 
     public static void init(StructurePieceData data, List<StructurePiece> pieces,
                             Random ran) {
-        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 16), Rotation.NONE), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 16), Rotation.COUNTERCLOCKWISE_90));
+        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(16, 0, 0), Rotation.NONE)/*, new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90)*/);
 
         data.lowerIntoGroundBy = -30;
         data.height = 0;
@@ -76,40 +72,17 @@ public class FloatingIslandPieces {
         pieces.add(new FloatingIslandPiece(data));
         data.height -= bigBottomHeight;
 
-
-
-/*
         for (PosRot posrot : sidePosRots) {
 
-            data.height = 0;
+            data.height = -centerHeight + 8;
             data.blockPos = data.initialPos.add(posrot.posOffset);
-            data.rotation = posrot.rotation;
+            data.rotation = data.rotation.add(posrot.rotation);
 
-            data.resource(BOTTOM_SMALL);
-            pieces.add(new FloatingIslandPiece(data));
-            data.height += 16;
             data.resource(SIDE);
             pieces.add(new FloatingIslandPiece(data));
-            data.height += 16;
+            data.height -= 16;
 
         }
-/*
-        for (PosRot posrot : edgePosRots) {
-
-            data.height = 0;
-            data.blockPos = data.initialPos.add(posrot.posOffset);
-            data.rotation = posrot.rotation;
-
-            data.resource(BOTTOM_SMALL);
-            pieces.add(new FloatingIslandPiece(data));
-            data.height += 16;
-            data.resource(EDGE);
-            pieces.add(new FloatingIslandPiece(data));
-            data.height += 16;
-
-        }
-
- */
 
     }
 
@@ -122,7 +95,7 @@ public class FloatingIslandPieces {
 
         @Override
         public List<StructureProcessor> processors() {
-            return Arrays.asList(new ChestProcessor(100), new BiomeProcessor(iwp), BlockIgnoreStructureProcessor.AIR);
+            return Arrays.asList(new ChestProcessor(15), new BiomeProcessor(iwp), BlockIgnoreStructureProcessor.AIR);
         }
 
         public FloatingIslandPiece(TemplateManager templateManager, CompoundNBT nbt) {
