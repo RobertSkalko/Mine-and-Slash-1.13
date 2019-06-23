@@ -90,9 +90,7 @@ public class MMORPG {
         bus.addListener(this::loadComplete);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
             bus.addListener(this::clientSetup);
-
         });
 
         if (MAP_WORLD_SEED == 0) {

@@ -4,6 +4,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
+import com.robertx22.world_gen.structures.bases.BasePieces;
 import com.robertx22.world_gen.structures.bases.StructurePieceData;
 import com.robertx22.world_gen.structures.bases.TemplatePiece;
 import net.minecraft.nbt.CompoundNBT;
@@ -11,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
+import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
@@ -27,6 +29,7 @@ public class FloatingIslandPieces {
     private static final ResourceLocation EDGE = new ResourceLocation(Ref.MODID, FOLDER + "/edge");
     private static final ResourceLocation BOTTOM_SMALL = new ResourceLocation(Ref.MODID, FOLDER + "/small_bottom");
     private static final ResourceLocation BOTTOM_BIG = new ResourceLocation(Ref.MODID, FOLDER + "/big_bottom");
+    private static final ResourceLocation STAIRS = new ResourceLocation(Ref.MODID, FOLDER + "/staircase");
 
     static List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 16), Rotation.NONE), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.COUNTERCLOCKWISE_90));
     static List<PosRot> edgePosRots = Arrays.asList(new PosRot(new BlockPos(-16, 0, 16), Rotation.NONE), new PosRot(new BlockPos(-16, 0, -16), Rotation.COUNTERCLOCKWISE_90), new PosRot(new BlockPos(16, 0, 16), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(16, 0, -16), Rotation.CLOCKWISE_180));
@@ -44,17 +47,38 @@ public class FloatingIslandPieces {
 
     public static void init(StructurePieceData data, List<StructurePiece> pieces,
                             Random ran) {
-        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 16), Rotation.NONE), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.COUNTERCLOCKWISE_90));
+        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 16), Rotation.NONE), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 16), Rotation.COUNTERCLOCKWISE_90));
 
         data.lowerIntoGroundBy = -30;
+        data.height = 0;
 
-        data.resource(BOTTOM_BIG);
-        pieces.add(new FloatingIslandPiece(data));
-        data.height += 16;
+        int centerHeight = BasePieces.height(data.templateManager, CENTER);
+        int bigBottomHeight = BasePieces.height(data.templateManager, BOTTOM_BIG);
+
+        int totalStairsHeight = Math.abs(data.lowerIntoGroundBy) + bigBottomHeight;
+        int stairsHeight = BasePieces.height(data.templateManager, STAIRS);
+        int stairs = totalStairsHeight / stairsHeight;
+
+        data.height -= stairsHeight;
+        for (int i = 0; i < stairs; i++) {
+
+            data.resource(STAIRS);
+            pieces.add(new FloatingIslandPiece(data));
+            data.height -= stairsHeight;
+        }
+
+        data.height = 0;
+
         data.resource(CENTER);
         pieces.add(new FloatingIslandPiece(data));
-        data.height += 16;
+        data.height -= centerHeight;
+        data.resource(BOTTOM_BIG);
+        pieces.add(new FloatingIslandPiece(data));
+        data.height -= bigBottomHeight;
 
+
+
+/*
         for (PosRot posrot : sidePosRots) {
 
             data.height = 0;
@@ -98,7 +122,7 @@ public class FloatingIslandPieces {
 
         @Override
         public List<StructureProcessor> processors() {
-            return Arrays.asList(new ChestProcessor(30), new BiomeProcessor(iwp));
+            return Arrays.asList(new ChestProcessor(100), new BiomeProcessor(iwp), BlockIgnoreStructureProcessor.AIR);
         }
 
         public FloatingIslandPiece(TemplateManager templateManager, CompoundNBT nbt) {
