@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.registers.client;
 
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
@@ -18,17 +19,15 @@ import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class RenderRegister {
 
-    @SubscribeEvent
-    public static void regRenders(ModelRegistryEvent evt) {
+    //@SubscribeEvent
+    public static void regRenders(/*ModelRegistryEvent evt*/) {
 
         RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class, newRenFac());
         RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class, newRenFac());

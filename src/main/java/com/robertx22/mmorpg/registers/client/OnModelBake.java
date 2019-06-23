@@ -1,10 +1,11 @@
-package com.robertx22.onevent;
+package com.robertx22.mmorpg.registers.client;
 
 import com.robertx22.items.spells.InGame3DWhile2DInvModel;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.SimpleBakedModel;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Mod.EventBusSubscriber
-public class OnModel {
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class OnModelBake {
 
     @SubscribeEvent
     public static void bake(ModelBakeEvent event) {

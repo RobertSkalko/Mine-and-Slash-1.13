@@ -24,13 +24,14 @@ import java.util.Optional;
 
 public class PlayerUtils {
 
-    public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos) {
+    public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
 
         for (ServerPlayerEntity player : MapManager.getServer()
                 .getPlayerList()
                 .getPlayers()) {
 
-            player.sendMessage(new StringTextComponent("Structure spawned at : " + pos.toString()));
+            player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos
+                    .toString()));
 
         }
 

@@ -18,15 +18,16 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.function.Function;
 
-public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
+public class FloatingIslandStructure extends ScatteredStructure<NoFeatureConfig> {
 
-    public TowerStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
+    public FloatingIslandStructure(
+            Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
         super(dynamic);
     }
 
     @Override
     public String getStructureName() {
-        return Ref.MODID + ":tower";
+        return Ref.MODID + ":floating_island";
     }
 
     @Override
@@ -41,7 +42,7 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
 
     @Override
     protected int getSeedModifier() {
-        return 1;
+        return 2;
     }
 
     public static class Start extends StructureStart {
@@ -60,13 +61,13 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
 
             BlockPos blockpos = new BlockPos(x, 90, z);
 
-            PlayerUtils.sendPlayersMSGofStructureSpawnTEST(blockpos, "tower");
+            PlayerUtils.sendPlayersMSGofStructureSpawnTEST(blockpos, "floating island");
 
-            Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
+            Rotation rotation = Rotation.NONE;
 
-            StructurePieceData data = new StructurePieceData(StructurePieceRegisters.TOWER, templateManagerIn, blockpos, rotation, biomeIn);
+            StructurePieceData data = new StructurePieceData(StructurePieceRegisters.FLOATING_ISLAND, templateManagerIn, blockpos, rotation, biomeIn);
 
-            TowerPieces.init(data, this.components, this.rand);
+            FloatingIslandPieces.init(data, this.components, this.rand);
             this.recalculateStructureSize();
 
         }

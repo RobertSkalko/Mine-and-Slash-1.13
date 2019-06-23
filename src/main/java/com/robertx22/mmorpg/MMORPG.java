@@ -14,6 +14,7 @@ import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.proxy.ServerProxy;
 import com.robertx22.mmorpg.registers.client.ContainerGuiRegisters;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
@@ -97,7 +98,11 @@ public class MMORPG {
         if (MAP_WORLD_SEED == 0) {
             MAP_WORLD_SEED = RandomUtils.nextLong();
         }
-        
+
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            RenderRegister.regRenders();
+        });
+
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
@@ -125,21 +130,6 @@ public class MMORPG {
 
     public void loadComplete(final FMLLoadCompleteEvent event) {
 
-        /*
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            Map<String, PlayerRenderer> skinMap = Minecraft.getInstance()
-                    .getRenderManager()
-                    .getSkinMap();
-
-            PlayerRenderer render = skinMap.get("default");
-            render.addLayer(new TomeRendererLayer<>(render));
-
-            render = skinMap.get("slim");
-            render.addLayer(new TomeRendererLayer(render));
-        });
-
- this only works on 3rd person view
-         */
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
