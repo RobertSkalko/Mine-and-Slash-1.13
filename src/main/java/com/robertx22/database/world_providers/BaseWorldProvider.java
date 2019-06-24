@@ -41,12 +41,12 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     @Override
     public List<FeatureType> smallSurfaceDecorations() {
-        return Arrays.asList(bigWoodPillar, smallWoodPillar);
+        return Arrays.asList(bigWoodPillar, smallWoodPillar, lampPillar);
     }
 
     @Override
     public List<FeatureType> smallTreasures() {
-        return Arrays.asList(smallTreasure0);
+        return Arrays.asList(smallTreasure0, smallTreasure1, smallTreasure2);
     }
 
     public ResourceLocation res(String str) {

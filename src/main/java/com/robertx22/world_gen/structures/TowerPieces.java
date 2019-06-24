@@ -18,10 +18,12 @@ import java.util.List;
 import java.util.Random;
 
 public class TowerPieces extends BasePieces {
-    private static final ResourceLocation TOP_LOC = new ResourceLocation(Ref.MODID, "tower_roof0");
-    private static final ResourceLocation MIDDLE_LOC = new ResourceLocation(Ref.MODID, "tower_middle0");
-    private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, "tower_entrance");
-    private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, "tower_foundation");
+
+    static final String tower = "tower/";
+    private static final ResourceLocation TOP_LOC = new ResourceLocation(Ref.MODID, tower + "tower_roof0");
+    private static final ResourceLocation MIDDLE_LOC = new ResourceLocation(Ref.MODID, tower + "tower_middle0");
+    private static final ResourceLocation BOTTOM_LOC = new ResourceLocation(Ref.MODID, tower + "tower_entrance");
+    private static final ResourceLocation FOUNDATION_LOC = new ResourceLocation(Ref.MODID, tower + "tower_foundation");
 
     static int FOUNDATION_HEIGHT = 4;
 
