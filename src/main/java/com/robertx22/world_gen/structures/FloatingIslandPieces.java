@@ -43,7 +43,7 @@ public class FloatingIslandPieces {
 
     public static void init(StructurePieceData data, List<StructurePiece> pieces,
                             Random ran) {
-        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(16, 0, 0), Rotation.NONE)/*, new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90)*/);
+        List<PosRot> sidePosRots = Arrays.asList(new PosRot(new BlockPos(15, 0, 0), Rotation.NONE), new PosRot(new BlockPos(0, 0, 15), Rotation.CLOCKWISE_180), new PosRot(new BlockPos(0, 0, 0), Rotation.CLOCKWISE_90), new PosRot(new BlockPos(15, 0, 15), Rotation.CLOCKWISE_180));
 
         data.lowerIntoGroundBy = -30;
         data.height = 0;
