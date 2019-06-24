@@ -48,6 +48,7 @@ public class RandomSurfaceDecoration extends Feature<NoFeatureConfig> {
 
                 PlacementSettings placement = new PlacementSettings();
                 placement.addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
+                placement.addProcessor(BlockIgnoreStructureProcessor.AIR);
                 placement.addProcessor(new BiomeProcessor(iwp));
 
                 Template template = templatemanager.getTemplate(res);

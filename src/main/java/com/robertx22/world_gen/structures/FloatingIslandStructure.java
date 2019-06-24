@@ -56,20 +56,21 @@ public class FloatingIslandStructure extends ScatteredStructure<NoFeatureConfig>
         public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn,
                          int chunkX, int chunkZ, Biome biomeIn) {
 
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
+            if (rand.nextInt(100) > 80) {
+                int x = chunkX * 16;
+                int z = chunkZ * 16;
 
-            BlockPos blockpos = new BlockPos(x, 90, z);
+                BlockPos blockpos = new BlockPos(x, 90, z);
 
-            PlayerUtils.sendPlayersMSGofStructureSpawnTEST(blockpos, "floating island");
+                PlayerUtils.sendPlayersMSGofStructureSpawnTEST(blockpos, "floating island");
 
-            Rotation rotation = Rotation.NONE;
+                Rotation rotation = Rotation.NONE;
 
-            StructurePieceData data = new StructurePieceData(StructurePieceRegisters.FLOATING_ISLAND, templateManagerIn, blockpos, rotation, biomeIn);
+                StructurePieceData data = new StructurePieceData(StructurePieceRegisters.FLOATING_ISLAND, templateManagerIn, blockpos, rotation, biomeIn);
 
-            FloatingIslandPieces.init(data, this.components, this.rand);
-            this.recalculateStructureSize();
-
+                FloatingIslandPieces.init(data, this.components, this.rand);
+                this.recalculateStructureSize();
+            }
         }
     }
 
