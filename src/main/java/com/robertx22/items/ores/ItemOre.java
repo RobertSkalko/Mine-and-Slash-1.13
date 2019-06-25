@@ -4,10 +4,10 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemOre extends Item implements IWeighted {
+public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore {
     public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
     public static HashMap<Integer, BlockItem> ItemBlocks = new HashMap<Integer, BlockItem>();
     public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
@@ -60,7 +60,9 @@ public class ItemOre extends Item implements IWeighted {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip("ore"), tooltip);
+        for (ITextComponent lore : this.getComponents()) {
+            tooltip.add(Styles.GREENCOMP().appendSibling(lore));
+        }
 
     }
 
@@ -92,4 +94,29 @@ public class ItemOre extends Item implements IWeighted {
 
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return Rarities.Items.get(rarity).textFormatColor() + Rarities.Items.get(rarity)
+                .locNameForLangFile() + " Ore";
+    }
+
+    @Override
+    public String GUID() {
+        return "ore" + this.rarity;
+    }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Precious Ingredient that can be used in many ways:", " * Crafting Currency Items", " * Repairing Gear", " * Crafting new Gear");
+    }
 }

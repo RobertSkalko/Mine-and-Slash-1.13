@@ -1,14 +1,7 @@
 {
 
-    "_comment": "# ORES",
-    "item.mmorpg.ore0": "Common Ore",
-    "item.mmorpg.ore1": "Uncommon Ore",
-    "item.mmorpg.ore2": "Rare Ore",
-    "item.mmorpg.ore3": "Epic Ore",
-    "item.mmorpg.ore4": "Legendary Ore",
-    "item.mmorpg.ore5": "Mythical Ore",
-	
-	"item.mmorpg.hearthstone.0": "Common Hearthstone",
+
+    "item.mmorpg.hearthstone.0": "Common Hearthstone",
     "item.mmorpg.hearthstone.1": "Uncommon Hearthstone",
     "item.mmorpg.hearthstone.2": "Rare Hearthstone",
     "item.mmorpg.hearthstone.3": "Epic Hearthstone",
@@ -40,7 +33,6 @@
     "_comment": "ITEM TOOLTIPS",
 	"mmorpg.tooltip.item_modifiable_in_station": "Can be used inside Gear Modify Station",
 	"mmorpg.tooltip.lootbox": "What could be inside?",   
-    "mmorpg.tooltip.ore": "Precious Ore that can be used in many ways",
     "mmorpg.tooltip.player_levelup": "If your experience bar is full, use this item to levelup!",
     "mmorpg.tooltip.newbie_gear_bag": "Creates a pack of level one gear.",
     "mmorpg.lore.newbie_gear_bag1": "Three Furnaces below, five iron wills above,",
@@ -52,12 +44,12 @@
     "_comment": "RARITY ITEM NAMES",
 	
 
-    "item.mmorpg.map.map0": "§7Adventure Map",
-    "item.mmorpg.map.map1": "§aAdventure Map",
-    "item.mmorpg.map.map2": "§eAdventure Map",
-    "item.mmorpg.map.map3": "§9Adventure Map",
-    "item.mmorpg.map.map4": "§6Adventure Map",
-    "item.mmorpg.map.map5": "§dAdventure Map",
+    "item.mmorpg.map.map0": "Â§7Adventure Map",
+    "item.mmorpg.map.map1": "Â§aAdventure Map",
+    "item.mmorpg.map.map2": "Â§eAdventure Map",
+    "item.mmorpg.map.map3": "Â§9Adventure Map",
+    "item.mmorpg.map.map4": "Â§6Adventure Map",
+    "item.mmorpg.map.map5": "Â§dAdventure Map",
 
     "_comment": "MISC ITEMS",
     "item.mmorpg.player_levelup": "Player Level Up Token",
@@ -69,7 +61,7 @@
     "item.mmorpg.map_back_portal": "Map Leave Pearl",
     "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
     "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
-    "item.mmorpg.awaken_runeword": "§cAwaken RuneWord",
+    "item.mmorpg.awaken_runeword": "Â§cAwaken RuneWord",
 
     "_comment": "STATUS EFFECTS",
     "effect.mmorpg.self_regen": "Regen Health",
@@ -100,69 +92,16 @@
     "mmorpg.name.map": "Adventure Map",
     "mmorpg.tooltip.put_in_mapdevice": "Put in Map Device to Use",
 
-    "_comment": "CONFIG",
-    "mmorpg.config.client": "Client",
-    "mmorpg.config.server": "Server",
-    "mmorpg.config.droprates": "Droprates",
-    "mmorpg.config.title": "Mine and Slash",
-    "mmorpg.config.lenghty_gear_tooltips": "Lenghty Gear Tooltips",
-    "mmorpg.config.non_mod_heal_multi": "Non Mod Heal Multiplier",
-    "mmorpg.config.other_entity": "Other Entities",
-    "mmorpg.config.maps_start_drop": "Maps Start To Drop at Lvl",
-    "mmorpg.config.unarmed_energy_cost": "Unarmed Energy Cost",
-    "mmorpg.config.currency_start_drop": "Currency Start To Drop at Lvl",
-    "mmorpg.config.rarity_weights": "Rarity Weights",
-    "mmorpg.config.map_id_start": "Map ID Start",
-    "mmorpg.config.map_id_reserved": "Map IDs Reserved",
-    "mmorpg.config.map_dimensions_config": "Map Dimensions Config",
-
-    "_comment": "CONFIG ENTITIES",
-
-    "mmorpg.config.loot_multi": "Loot Multiplier",
-    "mmorpg.config.exp_multi": "Experience Multiplier",
-
-    "_comment": "CONFIG DROPRATES",
-    "mmorpg.config.currency_droprate": "Currency Droprate",
-    "mmorpg.config.spell_droprate": "Spell Droprate",
-    "mmorpg.config.map_droprate": "Map Droprate",
-    "mmorpg.config.unique_droprate": "Unique Droprate",
-    "mmorpg.config.gear_droprate": "Gear Droprate",
-
-    "_comment": "CONFIG CLIENT",
-    "mmorpg.config.item_on_ground_particles": "Item on Ground Rarity Particles",
-    "mmorpg.config.chat_combat_log": "Show Chat Combat Log",
-    "mmorpg.config.floating_damage_numbers": "Show Floating Damage",
-    "mmorpg.config.mob_health_bag": "Show Mob Health Bar",
-    "mmorpg.config.low_resource_warnings": "Show low Resource (mana, energy) Warnings",
-    "mmorpg.config.floating_exp": "Show floating exp",
-    "mmorpg.config.player_gui_overlay_type": "Player GUI overlay type",
-
-    "_comment": "CONFIG SERVER",
-    "mmorpg.config.mob_lvl_per_distance": "Mob Lvl Per Distance",
-    "mmorpg.config.mob_lvl_one_area": "Mob Lvl 1 Area",
-    "mmorpg.config.player_level_cap": "Player Lvl Cap",
-    "mmorpg.config.normal_world_max_lvl_cap": "Normal World Mob Lvl Cap",
-    "mmorpg.config.exp_multiplier": "Exp Multiplier",
-    "mmorpg.config.levelup_cost_token": "Level ups cost tokens",
-    "mmorpg.config.max_players_in_map": "Max Players in Map",
-    "mmorpg.config.entities_under_system": "Entities under System",
-    "mmorpg.config.non_mod_damage_multiplier": "Non Mod Damage Multiplier",
-    "mmorpg.config.maximum_mob_level": "Maximum Mob Level",
-    "mmorpg.config.minimum_mob_level": "Minimum Mob Level",
-    "mmorpg.config.dimension_id": "Dimension ID",
-    "mmorpg.config.items_under_system": "Items Under System",
-    "mmorpg.config.crafted_items_are_under_system": "Crafted Items are Under System",
-
     "mmorpg.tooltip.press_shift_more_info": "[Shift]: Info, [Ctrl]: Show Enchants",
     "mmorpg.tooltip.affix_rarity_lootbonus": "Affix Rarity Loot Bonus",
 
     "_comment": "Auto Salvage Bags",
-    "item.mmorpg.auto_salvage_bag0": "§7Auto Salvage Bag",
-    "item.mmorpg.auto_salvage_bag1": "§aAuto Salvage Bag",
-    "item.mmorpg.auto_salvage_bag2": "§eAuto Salvage Bag",
-    "item.mmorpg.auto_salvage_bag3": "§9Auto Salvage Bag",
-    "item.mmorpg.auto_salvage_bag4": "§6Auto Salvage Bag",
-    "item.mmorpg.auto_salvage_bag5": "§dAuto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag0": "Â§7Auto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag1": "Â§aAuto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag2": "Â§eAuto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag3": "Â§9Auto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag4": "Â§6Auto Salvage Bag",
+    "item.mmorpg.auto_salvage_bag5": "Â§dAuto Salvage Bag",
       
     "_comment": "rune tooltip",
 
@@ -184,6 +123,18 @@
 	"item.mmorpg.consumable.restore_energy_item": "Energy potion",
 	"item.mmorpg.consumable.restore_mana_item": "Mana potion",
 	
+
+"_comment": " [CATEGORY]: MISC - NAMES",
+
+	"item.mmorpg.ore0": "§7Common Ore",
+	"item.mmorpg.ore1": "§aUncommon Ore",
+	"item.mmorpg.ore2": "§eRare Ore",
+	"item.mmorpg.ore3": "§9Epic Ore",
+	"item.mmorpg.ore4": "§6Legendary Ore",
+	"item.mmorpg.ore5": "§dMythical Ore",
+
+"_comment": " [CATEGORY]: MISC - NAMES",
+
 
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
@@ -1011,6 +962,7 @@
 	"mmorpg.chat.a_piece_of_gear_is_too_high_level_for_you": "A Piece of gear is too high level for you",
 	"mmorpg.chat.can_not_go_over_maximum_level": "Can not go over maximum level",
 	"mmorpg.chat.cooldown_not_met": "Cooldown not met",
+	"mmorpg.chat.dev_tools_enabled_contact_the_author": "Devs tools enabled, if you see this please contact the author, he forgot to disable them!",
 	"mmorpg.chat.distance_too_high_to_teleport": "Distance too high to teleport",
 	"mmorpg.chat.has_died_by_the_hands_of": "has died by the hands of",
 	"mmorpg.chat.infusion_failed": "Infusion Failed",
@@ -1246,6 +1198,36 @@
 	"mmorpg.stat_desc.zephyr's_speed": "Your Self Heal Spells now boost your speed temporarily.",
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
+
+
+"_comment": " [CATEGORY]: MISC - NAMES",
+
+	"lore_0_ore0": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore0": " * Crafting Currency Items",
+	"lore_2_ore0": " * Repairing Gear",
+	"lore_3_ore0": " * Crafting new Gear",
+	"lore_0_ore1": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore1": " * Crafting Currency Items",
+	"lore_2_ore1": " * Repairing Gear",
+	"lore_3_ore1": " * Crafting new Gear",
+	"lore_0_ore2": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore2": " * Crafting Currency Items",
+	"lore_2_ore2": " * Repairing Gear",
+	"lore_3_ore2": " * Crafting new Gear",
+	"lore_0_ore3": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore3": " * Crafting Currency Items",
+	"lore_2_ore3": " * Repairing Gear",
+	"lore_3_ore3": " * Crafting new Gear",
+	"lore_0_ore4": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore4": " * Crafting Currency Items",
+	"lore_2_ore4": " * Repairing Gear",
+	"lore_3_ore4": " * Crafting new Gear",
+	"lore_0_ore5": "Precious Ingredient that can be used in many ways:",
+	"lore_1_ore5": " * Crafting Currency Items",
+	"lore_2_ore5": " * Repairing Gear",
+	"lore_3_ore5": " * Crafting new Gear",
+
+"_comment": " [CATEGORY]: MISC - NAMES",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
