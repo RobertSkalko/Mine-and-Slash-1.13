@@ -6,13 +6,11 @@ import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.Tooltip;
-import com.robertx22.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.uncommon.utilityclasses.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -149,7 +147,8 @@ public class Hearthstone extends Item {
             DimensionType type = MapManager.getDimension(res);
 
             if (player.dimension != type) {
-                player.changeDimension(type);
+                PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos);
+
             }
 
             player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());

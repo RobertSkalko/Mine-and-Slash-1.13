@@ -5,6 +5,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.PlayerGUIs;
+import com.robertx22.uncommon.gui.NewOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -19,6 +20,7 @@ public class BarsGUI extends AbstractGui {
     BottomMiddleCornersOverlay bottomMiddleCorners = new BottomMiddleCornersOverlay();
     TopLeftOverlay topleft = new TopLeftOverlay();
     MiddleOverlay middle = new MiddleOverlay();
+    NewOverlay neww = new NewOverlay();
 
     public BarsGUI(Minecraft mc) {
         super();
@@ -90,7 +92,11 @@ public class BarsGUI extends AbstractGui {
             } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
                     .equals(PlayerGUIs.Middle)) {
                 middle.Draw(this, mc, mc.player, event, unit, data);
+            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+                    .equals(PlayerGUIs.WIP_TEST)) {
+                neww.Draw(this, mc, mc.player, event, unit, data);
             }
+
         } catch (Exception e) {
             // e.printStackTrace();
         }

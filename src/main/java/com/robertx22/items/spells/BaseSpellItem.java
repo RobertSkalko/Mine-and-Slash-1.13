@@ -1,5 +1,6 @@
 package com.robertx22.items.spells;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
@@ -68,7 +69,11 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     @Override
     final public int getUseDuration(ItemStack stack) {
-        return Spell().useTimeTicks();
+        if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
+            return Spell().useTimeTicks();
+        } else {
+            return 1;
+        }
     }
 
     @Override

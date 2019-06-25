@@ -40,8 +40,6 @@ public class OnModelBake {
             }
         }
 
-        System.out.println(" it works !");
-
     }
 
 }
