@@ -120,7 +120,7 @@ public class MapManager {
             return null;
         }
 
-        if (type == DimensionType.OVERWORLD) {
+        if (type == DimensionType.field_223227_a_) {
             return getServer().getWorld(type);
         } else {
 

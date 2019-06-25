@@ -188,7 +188,7 @@ public class Unit {
 
         int minRarity = 0;
 
-        if (entity.dimension.equals(DimensionType.OVERWORLD)) {
+        if (entity.dimension.equals(DimensionType.field_223227_a_)) {
 
             if (y < 50) {
                 minRarity = 1;

@@ -260,7 +260,7 @@ public class PlayerMapData {
             if (WorldUtils.isMapWorld(player.world)) {
 
                 if (this.originalDimension == null) {
-                    this.originalDimension = DimensionType.OVERWORLD;
+                    this.originalDimension = DimensionType.field_223227_a_;
 
                 }
 

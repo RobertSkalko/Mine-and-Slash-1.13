@@ -28,6 +28,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -168,10 +169,13 @@ public class MMORPG {
     public static void onServerStarted(FMLServerStartedEvent event) {
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
-            ServerLifecycleHooks.getCurrentServer()
+
+            GameRules.BooleanValue value = (GameRules.BooleanValue) ServerLifecycleHooks.getCurrentServer()
                     .getGameRules()
-                    .setOrCreateGameRule("naturalRegeneration", "false", ServerLifecycleHooks
-                            .getCurrentServer());
+                    .func_223585_a(new GameRules.RuleKey("naturalRegeneration"));
+
+            value.func_223570_a(false, ServerLifecycleHooks.getCurrentServer());
+
         }
 
         Stats.allPreGenMapStatLists = new AllPreGenMapStats(); // in case stat lists are made before all stats are added up by other mods?
