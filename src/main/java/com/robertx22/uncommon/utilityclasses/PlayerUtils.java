@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.dimensions.MapManager;
+import com.robertx22.mmorpg.MMORPG;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,15 +27,16 @@ public class PlayerUtils {
 
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
 
-        for (ServerPlayerEntity player : MapManager.getServer()
-                .getPlayerList()
-                .getPlayers()) {
+        if (MMORPG.RUN_DEV_TOOLS) {
+            for (ServerPlayerEntity player : MapManager.getServer()
+                    .func_184103_al()
+                    .getPlayers()) {
 
-            player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos
-                    .toString()));
+                player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos
+                        .toString()));
 
+            }
         }
-
     }
 
     @Nullable
@@ -54,7 +56,7 @@ public class PlayerUtils {
                 .getGameType()));
         player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
                 .isDifficultyLocked()));
-        PlayerList playerlist = player.server.getPlayerList();
+        PlayerList playerlist = player.server.func_184103_al();
         playerlist.updatePermissionLevel(player);
         serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         player.revive();

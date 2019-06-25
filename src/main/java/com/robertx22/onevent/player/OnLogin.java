@@ -8,9 +8,11 @@ import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.spells.self.SpellInstantHeal;
+import com.robertx22.uncommon.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,6 +36,10 @@ public class OnLogin {
         try {
 
             PlayerEntity player = event.getPlayer();
+
+            if (MMORPG.RUN_DEV_TOOLS) {
+                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName());
+            }
 
             if (Load.hasUnit(player)) {
 
@@ -89,23 +95,24 @@ public class OnLogin {
 
         player.inventory.addItemStackToInventory(SpellLootGen.Create(spell));
 
-        // TESTING MAPS
-        MapBlueprint map = new MapBlueprint(1, 1);
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-        player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+        if (MMORPG.RUN_DEV_TOOLS) {
+            // TESTING MAPS
+            MapBlueprint map = new MapBlueprint(1, 1);
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
 
-        ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
-        seeds.setCount(64);
-        player.inventory.addItemStackToInventory(seeds);
+            ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
+            seeds.setCount(64);
+            player.inventory.addItemStackToInventory(seeds);
 
-        ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
-        mapdevice.setCount(64);
-        player.inventory.addItemStackToInventory(mapdevice);
-
+            ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
+            mapdevice.setCount(64);
+            player.inventory.addItemStackToInventory(mapdevice);
+        }
     }
 
 }

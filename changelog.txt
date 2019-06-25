@@ -55,7 +55,10 @@ And there's too many stats to list them all.. There's at least 50 traits. plus 2
 * stations now have shift click functionality! This was actually really hard to do.
 * added more really rare currencies
 * should fix mobs not spawning in maps sometimes
-
+* maps now have structures! For now there's not much but there's small decorations, treasures and 2 bigger structures, a tower house and a floating island which is more rare. If nothing goes wrong i should be adding more and more world gen to maps, hopefully making it more interesting.
+* the structures in maps automatically transform into the biome of the map they're in. So the nether biome the structures are made of nether bricks while in the swamp they're made of prismarine. You'll see.
+* maps are now night only and there's no special mob spawning rules, so it's same as vanilla for now. ( i want to add special events later on but that idea is still wip)
+* mobs are no longer immune to sunlight as maps are now always night. (there's mods that configure this if u want to keep the sunlight resistance)
 
 
 

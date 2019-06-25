@@ -21,9 +21,9 @@ public class RandomSurfaceEggFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean place(IWorld iworld,
-                         ChunkGenerator<? extends GenerationSettings> generator,
-                         Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean func_212245_a(IWorld iworld,
+                                 ChunkGenerator<? extends GenerationSettings> generator,
+                                 Random rand, BlockPos pos, NoFeatureConfig config) {
 
         if (iworld.isAirBlock(pos)) {
 

@@ -56,7 +56,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    private static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static long MAP_WORLD_SEED = 0;
 
@@ -170,11 +170,11 @@ public class MMORPG {
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
 
-            GameRules.BooleanValue value = (GameRules.BooleanValue) ServerLifecycleHooks.getCurrentServer()
+            GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()
                     .getGameRules()
-                    .func_223585_a(new GameRules.RuleKey("naturalRegeneration"));
+                    .get(GameRules.NATURAL_REGENERATION);
 
-            value.func_223570_a(false, ServerLifecycleHooks.getCurrentServer());
+            value.set(false, ServerLifecycleHooks.getCurrentServer());
 
         }
 

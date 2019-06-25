@@ -27,8 +27,8 @@ public class MapPortalRenderer extends TileEntityRenderer<TileMapPortal> {
     private final FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
     @Override
-    public void render(TileMapPortal tileEntityIn, double x, double y, double z,
-                       float partialTicks, int destroyStage) {
+    public void func_199341_a(TileMapPortal tileEntityIn, double x, double y, double z,
+                              float partialTicks, int destroyStage) {
         GlStateManager.disableLighting();
         RANDOM.setSeed(31100L);
         GlStateManager.getMatrix(2982, MODELVIEW);

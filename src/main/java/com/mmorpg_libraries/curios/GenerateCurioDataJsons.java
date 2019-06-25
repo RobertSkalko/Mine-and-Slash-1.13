@@ -50,7 +50,9 @@ public class GenerateCurioDataJsons {
 
         Path dir = Paths.get(DirUtils.curiosItemTagsPath());
         try {
-            Files.createDirectory(dir);
+            if (Files.exists(dir) == false) {
+                Files.createDirectory(dir);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -101,30 +101,31 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         return null;
     }
 
+    @Override
     @Nullable
-    public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean checkValid) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(p_206921_1_, 0, p_206921_2_);
+    public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
         Biome biome = this.world.getBiome(blockpos$mutableblockpos);
-        BlockState iblockstate = biome.getSurfaceBuilderConfig().getTop();
-        if (checkValid && !iblockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+        BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
+        if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
         } else {
-            Chunk chunk = this.world.getChunk(p_206921_1_ >> 4, p_206921_2_ >> 4);
-            int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, p_206921_1_ & 15, p_206921_2_ & 15);
+            Chunk chunk = this.world.func_212866_a_(posX >> 4, posZ >> 4);
+            int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, posX & 15, posZ & 15);
             if (i < 0) {
                 return null;
-            } else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, p_206921_1_ & 15, p_206921_2_ & 15) > chunk
-                    .getTopBlockY(Heightmap.Type.OCEAN_FLOOR, p_206921_1_ & 15, p_206921_2_ & 15)) {
+            } else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk
+                    .getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15)) {
                 return null;
             } else {
                 for (int j = i + 1; j >= 0; --j) {
-                    blockpos$mutableblockpos.setPos(p_206921_1_, j, p_206921_2_);
-                    BlockState iblockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
-                    if (!iblockstate1.getFluidState().isEmpty()) {
+                    blockpos$mutableblockpos.func_181079_c(posX, j, posZ);
+                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+                    if (!blockstate1.getFluidState().isEmpty()) {
                         break;
                     }
 
-                    if (iblockstate1.equals(iblockstate)) {
+                    if (blockstate1.equals(blockstate)) {
                         return blockpos$mutableblockpos.up().toImmutable();
                     }
                 }
