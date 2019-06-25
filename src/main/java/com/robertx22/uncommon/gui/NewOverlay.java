@@ -19,7 +19,7 @@ public class NewOverlay extends BasePlayerOverlay {
         yPos = 20;
         xPos = 40;
 
-        DrawNewBar(mc, gui, unit, newhealthbar, unit.health()
+        drawHealthBar(mc, gui, unit, newhealthbar, unit.health()
                 .CurrentValue(mc.player, unit), unit.healthData().Value, false, data, xPos, yPos);
         yPos += 12;
 

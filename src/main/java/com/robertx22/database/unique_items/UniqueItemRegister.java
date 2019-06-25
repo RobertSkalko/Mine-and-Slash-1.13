@@ -49,6 +49,7 @@ public class UniqueItemRegister {
      */
     public static void register() {
 
+        add(new EleSpellDmgStaff(Elements.Physical));
         add(new MagesLuckyAmulet());
 
         add(new HelmetWisdom());

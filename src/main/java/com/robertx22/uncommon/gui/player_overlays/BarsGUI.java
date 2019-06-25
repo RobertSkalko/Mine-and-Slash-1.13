@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
 import com.robertx22.config.ClientContainer;
+import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -92,8 +93,9 @@ public class BarsGUI extends AbstractGui {
             } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
                     .equals(PlayerGUIs.Middle)) {
                 middle.Draw(this, mc, mc.player, event, unit, data);
-            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(PlayerGUIs.WIP_TEST)) {
+            }
+
+            if (MMORPG.RUN_DEV_TOOLS) {
                 neww.Draw(this, mc, mc.player, event, unit, data);
             }
 

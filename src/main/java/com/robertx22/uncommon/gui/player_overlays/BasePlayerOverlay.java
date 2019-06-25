@@ -27,9 +27,9 @@ public abstract class BasePlayerOverlay {
     public int NEW_TEXTURE_WIDTH = 92;
     public int NEW_TEXTURE_HEIGHT = 5;
 
-    public void DrawNewBar(Minecraft mc, AbstractGui gui, Unit unit, ResourceLocation res,
-                           float current, float max, boolean isExp, UnitData data, int x,
-                           int y) {
+    public void drawHealthBar(Minecraft mc, AbstractGui gui, Unit unit,
+                              ResourceLocation res, float current, float max,
+                              boolean isExp, UnitData data, int x, int y) {
 
         GlStateManager.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
