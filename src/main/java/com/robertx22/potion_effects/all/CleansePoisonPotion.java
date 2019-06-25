@@ -55,4 +55,9 @@ public class CleansePoisonPotion extends SpellPotionBase {
     public int performEachXTicks() {
         return 20;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Cleanse Poison";
+    }
 }

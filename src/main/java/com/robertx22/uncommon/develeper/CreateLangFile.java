@@ -6,6 +6,7 @@ import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IBaseAutoLoc;
 import com.robertx22.uncommon.utilityclasses.DirUtils;
 
 import java.io.File;
@@ -78,12 +79,19 @@ public class CreateLangFile {
         for (Map.Entry<String, List<IAutoLocMultiLore>> entry : getMultiLoreMap().entrySet()) {
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocMultiLore iauto : entry.getValue()) {
+
+                if (usedGUIDS.contains(iauto.formattedLocLoresLangFileGUID())) {
+                    continue;
+                }
+                usedGUIDS.add(iauto.formattedLocLoresLangFileGUID());
+
                 if (iauto.loreLines().size() > 0) {
                     int i = 0;
+
                     for (String line : iauto.loreLines()) {
 
                         json += "\t" + "\"" + iauto.getPrefixListForLangFile()
-                                .get(i) + iauto.formattedGUID() + "\": \"" + line + "\",\n";
+                                .get(i) + iauto.formattedLocLoresLangFileGUID() + "\": \"" + line + "\",\n";
                         i++;
                     }
                 }
@@ -111,7 +119,7 @@ public class CreateLangFile {
     }
 
     public static HashMap<String, List<IAutoLocName>> getMap() {
-        List<IAutoLocName> list = CreateLangFileUtils.getNamesFromRegistries();
+        List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
         list.addAll(Sets.All.values());
         list.addAll(RuneWords.All.values());
@@ -146,7 +154,7 @@ public class CreateLangFile {
     }
 
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
-        List<IAutoLocDesc> list = CreateLangFileUtils.getDescsFromRegistries();
+        List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
         list.addAll(Stats.All.values());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
@@ -162,7 +170,7 @@ public class CreateLangFile {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortDesc(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
+                sortedMap.put(entry.getValue().get(0).getDescGroupName(), sortedlist);
             }
         }
 
@@ -171,13 +179,13 @@ public class CreateLangFile {
     }
 
     public static HashMap<String, List<IAutoLocMultiLore>> getMultiLoreMap() {
-        List<IAutoLocMultiLore> list = CreateLangFileUtils.getMultiLoresFromRegistries();
+        List<IAutoLocMultiLore> list = CreateLangFileUtils.getFromRegistries(IAutoLocMultiLore.class);
 
-        HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocMultiLore>> map = new HashMap<>();
+        HashMap<IBaseAutoLoc.AutoLocGroup, List<IAutoLocMultiLore>> map = new HashMap<>();
 
-        for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
+        for (IBaseAutoLoc.AutoLocGroup autoLocGroup : IBaseAutoLoc.AutoLocGroup.values()) {
             map.put(autoLocGroup, list.stream()
-                    .filter(x -> x.locNameGroup().equals(autoLocGroup))
+                    .filter(x -> x.locLoresGroup().equals(autoLocGroup))
                     .collect(Collectors.toList()));
         }
 
@@ -186,7 +194,7 @@ public class CreateLangFile {
             List<IAutoLocMultiLore> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortLores(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
+                sortedMap.put(entry.getValue().get(0).getMultiGroupName(), sortedlist);
             }
         }
 

@@ -6,6 +6,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.block.Block;
@@ -25,7 +26,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore {
+public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAutoLocName {
     public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
     public static HashMap<Integer, BlockItem> ItemBlocks = new HashMap<Integer, BlockItem>();
     public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
@@ -111,8 +112,18 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore {
     }
 
     @Override
+    public String locMultiLoreLangFileGUID() {
+        return Ref.MODID + ".ores";
+    }
+
+    @Override
     public String GUID() {
         return "ore" + this.rarity;
+    }
+
+    @Override
+    public AutoLocGroup locLoresGroup() {
+        return AutoLocGroup.Misc;
     }
 
     @Override

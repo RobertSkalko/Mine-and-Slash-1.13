@@ -98,10 +98,6 @@ public class MMORPG {
             MAP_WORLD_SEED = RandomUtils.nextLong();
         }
 
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            RenderRegister.regRenders();
-        });
-
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
@@ -139,6 +135,7 @@ public class MMORPG {
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
         ContainerGuiRegisters.reg();
+        RenderRegister.regRenders();
 
     }
 

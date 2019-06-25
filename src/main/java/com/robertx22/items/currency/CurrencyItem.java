@@ -6,10 +6,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.ItemDefault;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
-import com.robertx22.uncommon.interfaces.IAutoLocDesc;
-import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
-import com.robertx22.uncommon.interfaces.ITiered;
-import com.robertx22.uncommon.interfaces.IWeighted;
+import com.robertx22.uncommon.interfaces.*;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -26,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc {
+public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public static List<CurrencyItem> ITEMS = new ArrayList<>();
 
@@ -44,8 +41,18 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
     }
 
     @Override
+    public AutoLocGroup locDescGroup() {
+        return AutoLocGroup.Currency_Items;
+    }
+
+    @Override
     public String locDescLangFileGUID() {
         return this.getRegistryName().toString() + ".desc";
+    }
+
+    @Override
+    public AutoLocGroup locLoresGroup() {
+        return AutoLocGroup.Currency_Items;
     }
 
     @Override

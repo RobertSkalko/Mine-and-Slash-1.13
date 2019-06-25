@@ -2,6 +2,7 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.offense.WeaponDamageEffect;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
@@ -53,6 +54,11 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat>
     @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new WeaponDamageEffect());
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "weapon_damage";
     }
 
     @Override

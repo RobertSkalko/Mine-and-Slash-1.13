@@ -3,17 +3,15 @@ package com.robertx22.uncommon.interfaces;
 import com.robertx22.uncommon.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
-public interface IAutoLocDesc extends IAutoLocName {
+public interface IAutoLocDesc extends IBaseAutoLoc {
 
-    public default String getGroupName() {
+    public default String getDescGroupName() {
         return locDescGroup().name()
                 .toUpperCase()
                 .replaceAll("_", " ") + " - DESCRIPTIONS";
     }
 
-    public default AutoLocGroup locDescGroup() {
-        return this.locNameGroup();
-    }
+    public AutoLocGroup locDescGroup();
 
     String locDescLangFileGUID();
 

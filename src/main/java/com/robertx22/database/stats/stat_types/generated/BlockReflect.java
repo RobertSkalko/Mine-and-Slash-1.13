@@ -3,6 +3,7 @@ package com.robertx22.database.stats.stat_types.generated;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.BlockReflectEffect;
 import com.robertx22.database.stats.stat_types.ElementalStat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
@@ -35,6 +36,11 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     @Override
     public String locDescForLangFile() {
         return "When blocking an attack, damage the enemy";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "block_reflect";
     }
 
     @Override

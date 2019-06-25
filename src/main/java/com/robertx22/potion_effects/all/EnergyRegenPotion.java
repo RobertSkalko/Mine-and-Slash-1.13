@@ -22,6 +22,11 @@ public class EnergyRegenPotion extends SpellPotionBase {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Regen Energy";
+    }
+
+    @Override
     public String GUID() {
         return "energy_regen";
     }

@@ -6,6 +6,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_types.ElementalStat;
 import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.capability.EntityData;
@@ -58,6 +59,11 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     @Override
     public String locDescForLangFile() {
         return "Increases Resist and Spell Damage of that element.";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "elemental_affinity";
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.offense.ElementalFocusEffect;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IElementalGenerated;
 import com.robertx22.uncommon.interfaces.IStatEffect;
@@ -51,6 +52,11 @@ public class ElementalFocus extends Stat implements IElementalGenerated<Stat>, I
     @Override
     public String locDescForLangFile() {
         return "Increases Dmg for that element by a % but decreases dmg from all other elements.";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "elemental_focus";
     }
 
     @Override

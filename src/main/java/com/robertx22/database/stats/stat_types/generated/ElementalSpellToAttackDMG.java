@@ -3,6 +3,7 @@ package com.robertx22.database.stats.stat_types.generated;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.offense.SpellToBasicDamageEffect;
 import com.robertx22.database.stats.stat_types.ElementalStat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
@@ -44,6 +45,11 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     @Override
     public boolean IsPercent() {
         return true;
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "ele_spell_to_attack_dmg";
     }
 
     public Stat StatThatGiveDamage() {

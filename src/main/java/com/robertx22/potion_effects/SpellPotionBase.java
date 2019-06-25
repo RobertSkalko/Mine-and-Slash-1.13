@@ -2,7 +2,7 @@ package com.robertx22.potion_effects;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.interfaces.IBaseAutoLoc;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -19,11 +19,21 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class SpellPotionBase extends Effect implements IBaseAutoLoc {
+public abstract class SpellPotionBase extends Effect implements IAutoLocName {
 
     public abstract void performEffectEverySetTime(LivingEntity entityLivingBaseIn,
 
                                                    int amplifier);
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
 
     public abstract String GUID();
 

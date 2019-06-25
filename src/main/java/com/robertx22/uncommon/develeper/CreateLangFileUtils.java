@@ -4,8 +4,10 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.interfaces.IBaseAutoLoc;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -38,56 +40,26 @@ public class CreateLangFileUtils {
         return true;
     }
 
-    public static List<IAutoLocName> getNamesFromRegistries() {
+    public static <T extends IBaseAutoLoc> List<T> getFromRegistries(Class<T> theclass) {
 
-        List<IAutoLocName> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
 
         for (Item item : ForgeRegistries.ITEMS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocName) {
-                list.add((IAutoLocName) item);
+            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+                list.add((T) item);
             }
         }
         for (Block item : ForgeRegistries.BLOCKS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocName) {
-                list.add((IAutoLocName) item);
+            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+                list.add((T) item);
             }
         }
-        return list;
-
-    }
-
-    public static List<IAutoLocDesc> getDescsFromRegistries() {
-
-        List<IAutoLocDesc> list = new ArrayList<>();
-
-        for (Item item : ForgeRegistries.ITEMS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocDesc) {
-                list.add((IAutoLocDesc) item);
+        for (Effect item : ForgeRegistries.POTIONS) {
+            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+                list.add((T) item);
             }
         }
-        for (Block item : ForgeRegistries.BLOCKS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocDesc) {
-                list.add((IAutoLocDesc) item);
-            }
-        }
-        return list;
 
-    }
-
-    public static List<IAutoLocMultiLore> getMultiLoresFromRegistries() {
-
-        List<IAutoLocMultiLore> list = new ArrayList<>();
-
-        for (Item item : ForgeRegistries.ITEMS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocMultiLore) {
-                list.add((IAutoLocMultiLore) item);
-            }
-        }
-        for (Block item : ForgeRegistries.BLOCKS) {
-            if (matches(item.getRegistryName()) && item instanceof IAutoLocMultiLore) {
-                list.add((IAutoLocMultiLore) item);
-            }
-        }
         return list;
 
     }

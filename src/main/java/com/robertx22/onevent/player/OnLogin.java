@@ -13,12 +13,14 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -38,7 +40,8 @@ public class OnLogin {
             PlayerEntity player = event.getPlayer();
 
             if (MMORPG.RUN_DEV_TOOLS) {
-                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName());
+                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
+                        .setStyle(new Style().setColor(Styles.RED)));
             }
 
             if (Load.hasUnit(player)) {

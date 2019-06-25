@@ -22,6 +22,11 @@ public class ManaRegenPotion extends SpellPotionBase {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Regen Mana";
+    }
+
+    @Override
     public String GUID() {
         return "mana_regen";
     }

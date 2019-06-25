@@ -4,18 +4,20 @@ import com.mmorpg_libraries.curios.interfaces.ISalvageBag;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.rune.RuneItemData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
@@ -41,7 +43,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class AutoSalvageBag extends Item implements ISalvageBag {
+public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, IAutoLocMultiLore {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -61,7 +63,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
         RegisterItemUtils.RegisterItemName(this, "auto_salvage_bag" + rarity);
     }
 
-    private List<Float> BonusSalvageValues = Arrays.asList(5F, 10F, 20F, 30F, 40F, 50F, 100F);
+    private List<Float> BonusSalvageValues = Arrays.asList(5F, 10F, 15F, 20F, 30F, 40F, 50F);
 
     public float getBonusSalvageChance() {
         return BonusSalvageValues.get(rarity);
@@ -165,7 +167,8 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
             nbt = new CompoundNBT();
         }
 
-        Tooltip.add(Words.Automatically_salvages_items.locName()
+        Tooltip.add(Styles.GREENCOMP()
+                .appendSibling(Words.Automatically_salvages_items.locName())
                 .appendText("!"), tooltip);
 
         Tooltip.add("", tooltip);
@@ -192,25 +195,27 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(Words.Bonus_Salvage_Chance.locName()
+        Tooltip.add(Styles.LIGHT_PURPLECOMP()
+                .appendSibling(Words.Bonus_Salvage_Chance.locName())
                 .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(Words.Works_when_equipped.locName(), tooltip);
+        Tooltip.add(Styles.GREENCOMP()
+                .appendSibling(Words.Works_when_equipped.locName()), tooltip);
         Tooltip.add("", tooltip);
 
         if (Screen.hasShiftDown() == false) {
 
             Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(CLOC.tooltip("sal_info")), tooltip);
+                    .appendSibling(Words.Press_Shift_For_Setup_Info.locName()), tooltip);
 
         } else {
-            Tooltip.add(CLOC.tooltip("sal1"), tooltip);
-            Tooltip.add(CLOC.tooltip("sal2"), tooltip);
-            Tooltip.add(CLOC.tooltip("sal3"), tooltip);
-            Tooltip.add(CLOC.tooltip("sal4"), tooltip);
-            Tooltip.add(CLOC.tooltip("sal5"), tooltip);
+
+            for (ITextComponent lore : this.getComponents()) {
+                tooltip.add(Styles.GREENCOMP().appendSibling(lore));
+            }
+
         }
 
     }
@@ -307,4 +312,38 @@ public class AutoSalvageBag extends Item implements ISalvageBag {
 
     }
 
+    @Override
+    public AutoLocGroup locLoresGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public List<String> loreLines() {
+        return Arrays.asList("Place An Item Of Maximum Rarity You want to", "salvage in your off-hand.", "Then right click with this bag.", "To Not Salvage Any Items, clear the config by", "Right Clicking the bag while shield slot is empty.");
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return Rarities.Items.get(this.rarity).Color() + "Auto Salvage Bag";
+    }
+
+    @Override
+    public String GUID() {
+        return "auto_salvage_bag";
+    }
+
+    @Override
+    public String locMultiLoreLangFileGUID() {
+        return Ref.MODID + ".auto_salvage_bag";
+    }
 }

@@ -49,6 +49,12 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
     }
 
     @Override
+    public AutoLocGroup locDescGroup() {
+        return AutoLocGroup.Stats;
+
+    }
+
+    @Override
     public String locNameLangFileGUID() {
         return Ref.MODID + ".stat." + formattedGUID();
     }

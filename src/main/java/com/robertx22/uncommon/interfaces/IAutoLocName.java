@@ -1,33 +1,9 @@
 package com.robertx22.uncommon.interfaces;
 
 import com.robertx22.uncommon.CLOC;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocName extends IBaseAutoLoc {
-
-    enum AutoLocGroup {
-        Runes,
-        Unique_Items,
-        Spells,
-        Gear_Items,
-        Words,
-        Rarities,
-        Prefixes,
-        Suffixes,
-        Rune_Words,
-        Item_Sets,
-        Stats,
-        Misc,
-        Gear_Slots,
-        World_Types,
-        Lootboxes,
-        Chat_Messages,
-        Configs,
-        Currency_Items
-
-    }
 
     public default String getGroupName() {
         return locNameGroup().name().toUpperCase().replaceAll("_", " ") + " - NAMES";
@@ -49,18 +25,6 @@ public interface IAutoLocName extends IBaseAutoLoc {
 
     public default ITextComponent locName() {
         return CLOC.blank(formatString(locNameLangFileGUID()));
-    }
-
-    default String getPrefix() {
-
-        if (this instanceof Item) {
-            return "item.";
-        } else if (this instanceof Block) {
-            return "block.";
-        } else {
-            return "";
-        }
-
     }
 
 }

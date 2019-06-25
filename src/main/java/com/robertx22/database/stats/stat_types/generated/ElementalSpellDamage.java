@@ -2,6 +2,7 @@ package com.robertx22.database.stats.stat_types.generated;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.ElementalStat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ElementalSpellDamage extends ElementalStat {
@@ -23,6 +24,11 @@ public class ElementalSpellDamage extends ElementalStat {
     @Override
     public String GUID() {
         return "Spell " + this.Element().name() + " Damage";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "ele_spell_damage";
     }
 
     @Override

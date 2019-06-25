@@ -4,6 +4,7 @@ import com.robertx22.database.stats.IUsableStat;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_effects.defense.ElementalResistEffect;
 import com.robertx22.database.stats.stat_types.ElementalStat;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
 import com.robertx22.uncommon.interfaces.IStatEffects;
@@ -40,6 +41,11 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     @Override
     public List<IStatEffect> GetEffects() {
         return Arrays.asList(new ElementalResistEffect());
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "ele_resist";
     }
 
     @Override

@@ -59,4 +59,9 @@ public class AoeRegenPotion extends SpellPotionBase {
     public int performEachXTicks() {
         return 40;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Aoe Regen";
+    }
 }

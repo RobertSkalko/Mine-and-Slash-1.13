@@ -4,7 +4,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 
 public enum Chats implements IAutoLocName {
-    Dev_tools_enabled_contact_the_author("Devs tools enabled, if you see this please contact the author, he forgot to disable them!"),
+    Dev_tools_enabled_contact_the_author("Devs tools enabled, if you see this please contact the author of Mine and Slash [robertx22], he forgot to disable them!"),
     Ran_Out_Of_Time("Ran Out Of Time"),
     You_have_attuned_to_this_Altar("You have attuned to this Altar"),
     Infusion_Failed_Horribly("Infusion Failed Horribly"),
