@@ -28,48 +28,44 @@ public class Sets implements IRandomDefault<Set> {
 
     public static final Sets INTANCE = new Sets();
 
-    public static HashMap<String, Set> All = new HashMap<String, Set>() {
-        {
-            {
-                put(new Eliminator().GUID(), new Eliminator());
-                put(new TreasureFinder().GUID(), new TreasureFinder());
-                //high lvl
-                put(new MysticalOrnaments().GUID(), new MysticalOrnaments());
-                put(new ElementalEssence().GUID(), new ElementalEssence());
-                put(new SeersGuidance().GUID(), new SeersGuidance());
-                put(new GodKingsPlate().GUID(), new GodKingsPlate());
-                put(new TheAscended().GUID(), new TheAscended());
+    public static HashMap<String, Set> All = new HashMap<String, Set>();
 
-                // mid lvl
-                put(new ArmorOfTheElements().GUID(), new ArmorOfTheElements());
-                put(new TheProtector().GUID(), new TheProtector());
-                put(new SpiritOfTheArcane().GUID(), new SpiritOfTheArcane());
-                put(new ArtifactArmor().GUID(), new ArtifactArmor());
-
-                // low lvl
-                put(new BarbarianArmor().GUID(), new BarbarianArmor());
-                put(new MagesRobes().GUID(), new MagesRobes());
-                put(new RockmanChains().GUID(), new RockmanChains());
-                put(new RangerArmor().GUID(), new RangerArmor());
-
-                put(new IceLord().GUID(), new IceLord());
-                put(new FlamingDevil().GUID(), new FlamingDevil());
-                put(new ForestGuardian().GUID(), new ForestGuardian());
-                put(new WillOfLightning().GUID(), new WillOfLightning());
-
-                put(new TreeOfLife().GUID(), new TreeOfLife());
-                put(new Limitless().GUID(), new Limitless());
-                put(new ScholarRobes().GUID(), new ScholarRobes());
-
-                put(new WisdomOfTheElders().GUID(), new WisdomOfTheElders());
-
-            }
-        }
-    };
-    private static List<IGenerated<Set>> generated = new ArrayList<IGenerated<Set>>() {
+    private static List<Set> generated = new ArrayList<Set>() {
         {
             {
                 add(new AscensionOfElement(Elements.Physical));
+
+                add(new Eliminator());
+                add(new TreasureFinder());
+                //high lvl
+                add(new MysticalOrnaments());
+                add(new ElementalEssence());
+                add(new SeersGuidance());
+                add(new GodKingsPlate());
+                add(new TheAscended());
+
+                // mid lvl
+                add(new ArmorOfTheElements());
+                add(new TheProtector());
+                add(new SpiritOfTheArcane());
+                add(new ArtifactArmor());
+
+                // low lvl
+                add(new BarbarianArmor());
+                add(new MagesRobes());
+                add(new RockmanChains());
+                add(new RangerArmor());
+
+                add(new IceLord());
+                add(new FlamingDevil());
+                add(new ForestGuardian());
+                add(new WillOfLightning());
+
+                add(new TreeOfLife());
+                add(new Limitless());
+                add(new ScholarRobes());
+
+                add(new WisdomOfTheElders());
 
             }
         }
@@ -81,9 +77,14 @@ public class Sets implements IRandomDefault<Set> {
     }
 
     public static void init() {
-        for (IGenerated<Set> gen : generated) {
-            for (Set statmod : gen.generateAllPossibleStatVariations()) {
-                All.put(statmod.GUID(), statmod);
+
+        for (Set set : generated) {
+            if (set instanceof IGenerated) {
+                for (Set statmod : ((IGenerated<Set>) set).generateAllPossibleStatVariations()) {
+                    All.put(statmod.GUID(), statmod);
+                }
+            } else {
+                All.put(set.GUID(), set);
             }
 
         }
