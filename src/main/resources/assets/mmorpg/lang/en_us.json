@@ -41,14 +41,6 @@
 
     "_comment": "RARITY ITEM NAMES",
 	
-
-    "item.mmorpg.map.map0": "Ãƒâ€šÃ‚Â§7Adventure Map",
-    "item.mmorpg.map.map1": "Ãƒâ€šÃ‚Â§aAdventure Map",
-    "item.mmorpg.map.map2": "Ãƒâ€šÃ‚Â§eAdventure Map",
-    "item.mmorpg.map.map3": "Ãƒâ€šÃ‚Â§9Adventure Map",
-    "item.mmorpg.map.map4": "Ãƒâ€šÃ‚Â§6Adventure Map",
-    "item.mmorpg.map.map5": "Ãƒâ€šÃ‚Â§dAdventure Map",
-
     "_comment": "MISC ITEMS",
     "item.mmorpg.player_levelup": "Player Level Up Token",
     "item.mmorpg.loot_bag": "Gear Loot Bag",
@@ -59,8 +51,7 @@
     "item.mmorpg.map_back_portal": "Map Leave Pearl",
     "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
     "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
-    "item.mmorpg.awaken_runeword": "Ãƒâ€šÃ‚Â§cAwaken RuneWord",
-   
+    "item.mmorpg.awaken_runeword": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§cAwaken RuneWord",   
 
     "_comment": "SPELL TOOLTIPS",
     "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
@@ -728,27 +719,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Chest",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Helmet",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Pants",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -827,6 +797,27 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Chest",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Helmet",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Pants",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -895,6 +886,12 @@
 	"item.mmorpg.helmet.helmet3": "§9Helmet",
 	"item.mmorpg.helmet.helmet4": "§6Helmet",
 	"item.mmorpg.helmet.helmet5": "§dHelmet",
+	"item.mmorpg.map.map0": "§7Adventure Map",
+	"item.mmorpg.map.map1": "§aAdventure Map",
+	"item.mmorpg.map.map2": "§eAdventure Map",
+	"item.mmorpg.map.map3": "§9Adventure Map",
+	"item.mmorpg.map.map4": "§6Adventure Map",
+	"item.mmorpg.map.map5": "§dAdventure Map",
 	"item.mmorpg.pants.pants0": "§7Pants",
 	"item.mmorpg.pants.pants1": "§aPants",
 	"item.mmorpg.pants.pants2": "§ePants",

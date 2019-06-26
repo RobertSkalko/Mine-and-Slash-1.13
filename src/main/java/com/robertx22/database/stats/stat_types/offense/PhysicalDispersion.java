@@ -11,6 +11,10 @@ import java.util.List;
 
 public class PhysicalDispersion extends Stat implements IStatEffects {
 
+    public PhysicalDispersion() {
+        this.maximumValue = 100;
+    }
+
     public static String GUID = "physical_dispersion";
 
     @Override

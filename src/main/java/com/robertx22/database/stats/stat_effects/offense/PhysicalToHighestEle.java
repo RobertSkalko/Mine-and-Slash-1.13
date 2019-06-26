@@ -7,7 +7,6 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
-import net.minecraft.util.math.MathHelper;
 
 public class PhysicalToHighestEle implements IStatEffect {
 
@@ -35,7 +34,7 @@ public class PhysicalToHighestEle implements IStatEffect {
 
                     Elements ele = dmg.getHighestBonusElementalDamageElement();
 
-                    float multi = MathHelper.clamp(data.getMultiplier(), 0, 2);
+                    float multi = data.getMultiplier();
 
                     float given = (val * multi) - val;
 
