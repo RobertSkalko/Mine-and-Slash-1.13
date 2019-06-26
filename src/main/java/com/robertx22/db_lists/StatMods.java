@@ -58,164 +58,9 @@ import java.util.List;
 
 public class StatMods {
 
-    public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
-        {
-            {
+    public static HashMap<String, StatMod> All = new HashMap<String, StatMod>();
 
-                put(new CompletePhysDispersionFlat().GUID(), new CompletePhysDispersionFlat());
-                put(new HealPowerFlat().GUID(), new HealPowerFlat());
-                put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
-                put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
-
-                put(new BlockStrengthPercent().GUID(), new BlockStrengthPercent());
-                put(new SpellDamageFlat().GUID(), new SpellDamageFlat());
-                put(new SpellDamagePercent().GUID(), new SpellDamagePercent());
-
-                put(new BonusExpFlat().GUID(), new BonusExpFlat());
-
-                // spell buffs
-
-                put(new ManaMulti().GUID(), new ManaMulti());
-                put(new LessManaMulti().GUID(), new LessManaMulti());
-                put(new LessHealthRegenMulti().GUID(), new LessHealthRegenMulti());
-
-                put(new PhysicalDamageMulti().GUID(), new PhysicalDamageMulti());
-                put(new LessPhysicalDamageMulti().GUID(), new LessPhysicalDamageMulti());
-
-                put(new LessArmorMulti().GUID(), new LessArmorMulti());
-                put(new HealthMulti().GUID(), new HealthMulti());
-                put(new DodgeMulti().GUID(), new DodgeMulti());
-                put(new CriticalHitMulti().GUID(), new CriticalHitMulti());
-                put(new ArmorMulti().GUID(), new ArmorMulti());
-
-                //
-
-                put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
-                put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
-
-                // weapon damages
-
-                // less stats
-
-                put(new LessHealthRegenFlat().GUID(), new LessHealthRegenFlat());
-                put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());
-                put(new LessCriticalHitPercent().GUID(), new LessCriticalHitPercent());
-                put(new LessDodgePercent().GUID(), new LessDodgePercent());
-                put(new LessHealthRegenPercent().GUID(), new LessHealthRegenPercent());
-                put(new LessManaRegenPercent().GUID(), new LessManaRegenPercent());
-                put(new LessManaOnHitPercent().GUID(), new LessManaOnHitPercent());
-                put(new LessLifestealPercent().GUID(), new LessLifestealPercent());
-                put(new LessLifeOnHitPercent().GUID(), new LessLifeOnHitPercent());
-                // less stats
-
-                // cripple stats (much less)
-                put(new CrippleCriticalDamagePercent().GUID(), new CrippleCriticalDamagePercent());
-                put(new CrippleCriticalHitPercent().GUID(), new CrippleCriticalHitPercent());
-                put(new CrippleDodgePercent().GUID(), new CrippleDodgePercent());
-                put(new CrippleHealthRegenPercent().GUID(), new CrippleHealthRegenPercent());
-                put(new CrippleManaRegenPercent().GUID(), new CrippleManaRegenPercent());
-                put(new CrippleManaOnHitPercent().GUID(), new CrippleManaOnHitPercent());
-                put(new CrippleLifestealPercent().GUID(), new CrippleLifestealPercent());
-                put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
-                // cripple
-
-                put(new MajorCriticalHitPercent().GUID(), new MajorCriticalHitPercent());
-                put(new MajorCriticalDamagePercent().GUID(), new MajorCriticalDamagePercent());
-
-                put(new MajorDodgeFlat().GUID(), new MajorDodgeFlat());
-                put(new MajorArmorFlat().GUID(), new MajorArmorFlat());
-                put(new ArmorFlat().GUID(), new ArmorFlat());
-                put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());
-                put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
-                put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
-                put(new PhysicalDamageFlat().GUID(), new PhysicalDamageFlat());
-                put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
-                put(new PhysicalDamagePercent().GUID(), new PhysicalDamagePercent());
-                put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
-                put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
-                put(new DodgePercent().GUID(), new DodgePercent());
-                put(new BlockStrengthFlat().GUID(), new BlockStrengthFlat());
-
-                // Resources
-                put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());
-                put(new HealthFlat().GUID(), new HealthFlat());
-                put(new HealthPercent().GUID(), new HealthPercent());
-                put(new HealthRegenPercent().GUID(), new HealthRegenPercent());
-                put(new HealthRegenFlat().GUID(), new HealthRegenFlat());
-                put(new ManaRegenFlat().GUID(), new ManaRegenFlat());
-                put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
-                put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
-                put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
-                put(new EnergyFlat().GUID(), new EnergyFlat());
-
-                put(new LifestealFlat().GUID(), new LifestealFlat());
-                put(new LifestealPercent().GUID(), new LifestealPercent());
-                put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
-                put(new LifeOnHitPercent().GUID(), new LifeOnHitPercent());
-                put(new ManaFlat().GUID(), new ManaFlat());
-                put(new ManaOnHitFlat().GUID(), new ManaOnHitFlat());
-                // Resources
-
-                put(new ArmorPercent().GUID(), new ArmorPercent());
-                put(new DodgeFlat().GUID(), new DodgeFlat());
-
-                // bonus dmg
-
-                // Map mods
-
-                put(new BonusHealthMap().GUID(), new BonusHealthMap());
-                put(new BonusLifestealMap().GUID(), new BonusLifestealMap());
-
-                put(new LessCriticalHitMap().GUID(), new LessCriticalHitMap());
-                put(new LessDodgeMap().GUID(), new LessDodgeMap());
-
-                put(new BonusFireDamageMap().GUID(), new BonusFireDamageMap());
-                put(new BonusNatureDamageMap().GUID(), new BonusNatureDamageMap());
-                put(new BonusThunderDamageMap().GUID(), new BonusThunderDamageMap());
-                put(new BonusWaterDamageMap().GUID(), new BonusWaterDamageMap());
-
-                put(new BonusFireResistMap().GUID(), new BonusFireResistMap());
-                put(new BonusNatureResistMap().GUID(), new BonusNatureResistMap());
-                put(new BonusThunderResistMap().GUID(), new BonusThunderResistMap());
-                put(new BonusWaterResistMap().GUID(), new BonusWaterResistMap());
-
-                put(new LessAllFireDamageMap().GUID(), new LessAllFireDamageMap());
-                put(new LessAllNatureDamageMap().GUID(), new LessAllNatureDamageMap());
-                put(new LessAllThunderDamageMap().GUID(), new LessAllThunderDamageMap());
-                put(new LessAllWaterDamageMap().GUID(), new LessAllWaterDamageMap());
-
-                put(new LessEnergyRegenMap().GUID(), new LessEnergyRegenMap());
-                put(new LessManaRegenMap().GUID(), new LessManaRegenMap());
-                put(new LessHealthRegenMap().GUID(), new LessHealthRegenMap());
-                put(new LessLifeOnHitMap().GUID(), new LessLifeOnHitMap());
-                put(new LessLifestealMap().GUID(), new LessLifestealMap());
-                put(new LessHealthMap().GUID(), new LessHealthMap());
-                put(new LessManaOnHitMap().GUID(), new LessManaOnHitMap());
-                // Map mods
-                put(new MajorMinusFireResistMulti().GUID(), new MajorMinusFireResistMulti());
-                put(new MajorMinusWaterResistMulti().GUID(), new MajorMinusWaterResistMulti());
-                put(new MajorMinusThunderResistMulti().GUID(), new MajorMinusThunderResistMulti());
-                put(new MajorMinusNatureResistMulti().GUID(), new MajorMinusNatureResistMulti());
-
-            }
-        }
-    };
-
-    private static List<StatMod> nonGenerated = new ArrayList<StatMod>() {
-        {
-            add(new AllAttributesFlat());
-            add(new StrengthFlat());
-            add(new DexterityFlat());
-            add(new WisdomFlat());
-            add(new IntelligenceFlat());
-            add(new StaminaFlat());
-            add(new VitalityFlat());
-
-        }
-
-    };
-
-    private static List<IGenerated<StatMod>> generated = new ArrayList<IGenerated<StatMod>>() {
+    private static List<StatMod> list = new ArrayList<StatMod>() {
         {
             {
                 add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
@@ -238,19 +83,163 @@ public class StatMods {
                 add(new BlockReflectFlat(Elements.Physical));
                 add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
 
+                add(new CompletePhysDispersionFlat());
+                add(new HealPowerFlat());
+                add(new AllEleDmgFlat());
+                add(new AllEleSpellDmgFlat());
+
+                add(new BlockStrengthPercent());
+                add(new SpellDamageFlat());
+                add(new SpellDamagePercent());
+
+                add(new BonusExpFlat());
+
+                // spell buffs
+
+                add(new ManaMulti());
+                add(new LessManaMulti());
+                add(new LessHealthRegenMulti());
+
+                add(new PhysicalDamageMulti());
+                add(new LessPhysicalDamageMulti());
+
+                add(new LessArmorMulti());
+                add(new HealthMulti());
+                add(new DodgeMulti());
+                add(new CriticalHitMulti());
+                add(new ArmorMulti());
+
+                //
+
+                add(new EnergyToManaConvFlat());
+                add(new ManaToEnergyConvFlat());
+
+                // weapon damages
+
+                // less stats
+
+                add(new LessHealthRegenFlat());
+                add(new LessCriticalDamagePercent());
+                add(new LessCriticalHitPercent());
+                add(new LessDodgePercent());
+                add(new LessHealthRegenPercent());
+                add(new LessManaRegenPercent());
+                add(new LessManaOnHitPercent());
+                add(new LessLifestealPercent());
+                add(new LessLifeOnHitPercent());
+                // less stats
+
+                // cripple stats (much less)
+                add(new CrippleCriticalDamagePercent());
+                add(new CrippleCriticalHitPercent());
+                add(new CrippleDodgePercent());
+                add(new CrippleHealthRegenPercent());
+                add(new CrippleManaRegenPercent());
+                add(new CrippleManaOnHitPercent());
+                add(new CrippleLifestealPercent());
+                add(new CrippleLifeOnHitPercent());
+                // cripple
+
+                add(new MajorCriticalHitPercent());
+                add(new MajorCriticalDamagePercent());
+
+                add(new MajorDodgeFlat());
+                add(new MajorArmorFlat());
+                add(new ArmorFlat());
+                add(new ArmorPeneFlat());
+                add(new CriticalHitFlat());
+                add(new CriticalDamageFlat());
+                add(new PhysicalDamageFlat());
+                add(new CriticalHitPercent());
+                add(new PhysicalDamagePercent());
+                add(new CriticalDamagePercent());
+                add(new ArmorPenePercent());
+                add(new DodgePercent());
+                add(new BlockStrengthFlat());
+
+                // Resources
+                add(new MajorManaRegenFlat());
+                add(new HealthFlat());
+                add(new HealthPercent());
+                add(new HealthRegenPercent());
+                add(new HealthRegenFlat());
+                add(new ManaRegenFlat());
+                add(new EnergyRegenFlat());
+                add(new EnergyRegenPercent());
+                add(new ManaRegenPercent());
+                add(new EnergyFlat());
+
+                add(new LifestealFlat());
+                add(new LifestealPercent());
+                add(new LifeOnHitFlat());
+                add(new LifeOnHitPercent());
+                add(new ManaFlat());
+                add(new ManaOnHitFlat());
+                // Resources
+
+                add(new ArmorPercent());
+                add(new DodgeFlat());
+
+                // bonus dmg
+
+                // Map mods
+
+                add(new BonusHealthMap());
+                add(new BonusLifestealMap());
+
+                add(new LessCriticalHitMap());
+                add(new LessDodgeMap());
+
+                add(new BonusFireDamageMap());
+                add(new BonusNatureDamageMap());
+                add(new BonusThunderDamageMap());
+                add(new BonusWaterDamageMap());
+
+                add(new BonusFireResistMap());
+                add(new BonusNatureResistMap());
+                add(new BonusThunderResistMap());
+                add(new BonusWaterResistMap());
+
+                add(new LessAllFireDamageMap());
+                add(new LessAllNatureDamageMap());
+                add(new LessAllThunderDamageMap());
+                add(new LessAllWaterDamageMap());
+
+                add(new LessEnergyRegenMap());
+                add(new LessManaRegenMap());
+                add(new LessHealthRegenMap());
+                add(new LessLifeOnHitMap());
+                add(new LessLifestealMap());
+                add(new LessHealthMap());
+                add(new LessManaOnHitMap());
+                // Map mods
+                add(new MajorMinusFireResistMulti());
+                add(new MajorMinusWaterResistMulti());
+                add(new MajorMinusThunderResistMulti());
+                add(new MajorMinusNatureResistMulti());
+
+                add(new AllAttributesFlat());
+                add(new StrengthFlat());
+                add(new DexterityFlat());
+                add(new WisdomFlat());
+                add(new IntelligenceFlat());
+                add(new StaminaFlat());
+                add(new VitalityFlat());
+
             }
         }
     };
 
     public static void init() {
 
-        for (StatMod mod : nonGenerated) {
-            All.put(mod.GUID(), mod);
-        }
-
-        for (IGenerated<StatMod> gen : generated) {
-            for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
-                All.put(statmod.GUID(), statmod);
+        for (StatMod stat : list) {
+            if (stat instanceof IGenerated) {
+                IGenerated<StatMod> gen = (IGenerated<StatMod>) stat;
+                for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
+                    All.put(statmod.GUID(), statmod);
+                }
+            } else {
+                All.put(stat.GUID(), stat);
             }
         }
 
@@ -259,7 +248,7 @@ public class StatMods {
             if (stat instanceof BaseTrait) {
                 BaseTrait trait = (BaseTrait) stat;
                 AllTraitMods traitMod = new AllTraitMods(trait);
-                StatMods.All.put(traitMod.GUID(), traitMod);
+                All.put(traitMod.GUID(), traitMod);
             }
         }
         // how didnt i think of this before.

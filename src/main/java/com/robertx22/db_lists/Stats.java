@@ -52,132 +52,9 @@ import java.util.List;
 
 public class Stats {
 
-    public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
-        {
-            {
-                put(new PhysicalDispersion().GUID(), new PhysicalDispersion());
-                put(new AllAttributes().GUID(), new AllAttributes());
-                put(new AllEleDmg().GUID(), new AllEleDmg());
-                put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());
-                put(new SpellDamage().GUID(), new SpellDamage());
-                // major arcana tarot
-                put(new Judgement().GUID(), new Judgement());
-                put(new StrengthArcana().GUID(), new StrengthArcana());
-                put(new Hermit().GUID(), new Hermit());
-                put(new Chariot().GUID(), new Chariot());
-                put(new Death().GUID(), new Death());
-                put(new HangedMan().GUID(), new HangedMan());
-                put(new Justice().GUID(), new Justice());
-                put(new HighPriestess().GUID(), new HighPriestess());
-                put(new Temperance().GUID(), new Temperance());
-                put(new TheEmperor().GUID(), new TheEmperor());
-                put(new TheDevil().GUID(), new TheDevil());
-                put(new TheEmpress().GUID(), new TheEmpress());
-                put(new TheFool().GUID(), new TheFool());
-                put(new TheHierophant().GUID(), new TheHierophant());
-                put(new TheMagician().GUID(), new TheMagician());
-                put(new TheMoon().GUID(), new TheMoon());
-                put(new TheSun().GUID(), new TheSun());
-                put(new TheWorld().GUID(), new TheWorld());
-                put(new Tower().GUID(), new Tower());
-                put(new WheelOfFortune().GUID(), new WheelOfFortune());
-                put(new TheStar().GUID(), new TheStar());
-                // major arcana tarot
+    public static HashMap<String, Stat> All = new HashMap<String, Stat>();
 
-                put(new Strength().GUID(), new Strength());
-                put(new Dexterity().GUID(), new Dexterity());
-                put(new Wisdom().GUID(), new Wisdom());
-                put(new Intelligence().GUID(), new Intelligence());
-                put(new Stamina().GUID(), new Stamina());
-                put(new Vitality().GUID(), new Vitality());
-
-                put(new BonusExp().GUID(), new BonusExp());
-
-                // spell buffs
-                put(new HomingTrait().GUID(), new HomingTrait());
-                put(new GhostProjectileTrait().GUID(), new GhostProjectileTrait());
-                put(new ZephyrTrait().GUID(), new ZephyrTrait());
-                put(new LightTrait().GUID(), new LightTrait());
-                put(new PurityTrait().GUID(), new PurityTrait());
-                put(new BuffEnergyRegenTrait().GUID(), new BuffEnergyRegenTrait());
-                put(new BuffManaRegenTrait().GUID(), new BuffManaRegenTrait());
-
-                // spell buffs
-
-                put(new EnergyToManaConversion().GUID(), new EnergyToManaConversion());
-                put(new ManaToEnergyConversion().GUID(), new ManaToEnergyConversion());
-
-                // conditional traits
-                put(new HighCritAddArmor().GUID(), new HighCritAddArmor());
-                put(new HighCritAddLifesteal().GUID(), new HighCritAddLifesteal());
-                put(new HighDodgeAddCritDamage().GUID(), new HighDodgeAddCritDamage());
-                put(new HighDodgeAddPhysDamage().GUID(), new HighDodgeAddPhysDamage());
-
-                put(new LowDodgeAddArmor().GUID(), new LowDodgeAddArmor());
-                put(new LowDodgeAddCritHit().GUID(), new LowDodgeAddCritHit());
-                put(new LowCritHitAddDodge().GUID(), new LowCritHitAddDodge());
-                put(new LowCritHitAddHealth().GUID(), new LowCritHitAddHealth());
-
-                // lord traits
-                put(new LordOfVolcanoesTrait().GUID(), new LordOfVolcanoesTrait());
-                put(new LordOfBlizzardsTrait().GUID(), new LordOfBlizzardsTrait());
-                put(new LordOfThunderstormsTrait().GUID(), new LordOfThunderstormsTrait());
-                put(new LordOfEarthquakesTrait().GUID(), new LordOfEarthquakesTrait());
-
-                // weapon damages
-
-                put(UnknownStat.GUID, new UnknownStat());
-                // Resources
-                put(Health.GUID, new Health());
-                put(HealthRegen.GUID, new HealthRegen());
-                put(Lifesteal.GUID, new Lifesteal());
-                put(LifeOnHit.GUID, new LifeOnHit());
-
-                put(Mana.GUID, new Mana());
-                put(ManaRegen.GUID, new ManaRegen());
-                put(ManaOnHit.GUID, new ManaOnHit());
-
-                put(Energy.GUID, new Energy());
-                put(EnergyRegen.GUID, new EnergyRegen());
-                // Resources
-
-                put(BlockStrength.GUID, new BlockStrength());
-
-                put(Armor.GUID, new Armor());
-                put(ArmorPenetration.GUID, new ArmorPenetration());
-                put(CriticalDamage.GUID, new CriticalDamage());
-                put(CriticalHit.GUID, new CriticalHit());
-                put(PhysicalDamage.GUID, new PhysicalDamage());
-
-                put(Dodge.GUID, new Dodge());
-                put(SpellDodge.GUID, new SpellDodge());
-
-                // traits
-                put(Golem.GUID, new Golem());
-                put(Elemental.GUID, new Elemental());
-                put(Lucky.GUID, new Lucky());
-                put(Barbarian.GUID, new Barbarian());
-                put(Stealthy.GUID, new Stealthy());
-                put(ClumsyScholar.GUID, new ClumsyScholar());
-                put(Crippled.GUID, new Crippled());
-                put(Diseased.GUID, new Diseased());
-                put(Armored.GUID, new Armored());
-
-                put(EarthAtronach.GUID, new EarthAtronach());
-                put(FrostAtronach.GUID, new FrostAtronach());
-                put(FireAtronach.GUID, new FireAtronach());
-                put(ThunderAtronach.GUID, new ThunderAtronach());
-
-                put(new OnDodgeBuffSpeed().GUID(), new OnDodgeBuffSpeed());
-                put(new HealPower().GUID(), new HealPower());
-
-                // traits
-
-            }
-        }
-    };
-
-    private static List<IGenerated<Stat>> generated = new ArrayList<IGenerated<Stat>>() {
+    private static List<Stat> generated = new ArrayList<Stat>() {
         {
             {
                 add(new ElementalConversion(Elements.Physical, Elements.Physical));
@@ -195,6 +72,118 @@ public class Stats {
                 add(new BlockReflect(Elements.Physical));
                 add(new BonusSpecificSpell(new SpellAcidBolt()));
 
+                // generated
+
+                add(new PhysicalDispersion());
+                add(new AllAttributes());
+                add(new AllEleDmg());
+                add(new AllEleSpellDmg());
+                add(new SpellDamage());
+                // major arcana tarot
+                add(new Judgement());
+                add(new StrengthArcana());
+                add(new Hermit());
+                add(new Chariot());
+                add(new Death());
+                add(new HangedMan());
+                add(new Justice());
+                add(new HighPriestess());
+                add(new Temperance());
+                add(new TheEmperor());
+                add(new TheDevil());
+                add(new TheEmpress());
+                add(new TheFool());
+                add(new TheHierophant());
+                add(new TheMagician());
+                add(new TheMoon());
+                add(new TheSun());
+                add(new TheWorld());
+                add(new Tower());
+                add(new WheelOfFortune());
+                add(new TheStar());
+                // major arcana tarot
+
+                add(new Strength());
+                add(new Dexterity());
+                add(new Wisdom());
+                add(new Intelligence());
+                add(new Stamina());
+                add(new Vitality());
+                add(new BonusExp());
+
+                // spell buffs
+                add(new HomingTrait());
+                add(new GhostProjectileTrait());
+                add(new ZephyrTrait());
+                add(new LightTrait());
+                add(new PurityTrait());
+                add(new BuffEnergyRegenTrait());
+                add(new BuffManaRegenTrait());
+
+                // spell buffs
+
+                add(new EnergyToManaConversion());
+
+                add(new ManaToEnergyConversion());
+
+                // conditional traits
+                add(new HighCritAddArmor());
+                add(new HighCritAddLifesteal());
+                add(new HighDodgeAddCritDamage());
+                add(new HighDodgeAddPhysDamage());
+                add(new LowDodgeAddArmor());
+                add(new LowDodgeAddCritHit());
+                add(new LowCritHitAddDodge());
+                add(new LowCritHitAddHealth());
+
+                // lord traits
+                add(new LordOfVolcanoesTrait());
+                add(new LordOfBlizzardsTrait());
+                add(new LordOfThunderstormsTrait());
+                add(new LordOfEarthquakesTrait());
+                // weapon damages
+
+                add(new UnknownStat());
+
+                // Resources
+                add(new Health());
+                add(new HealthRegen());
+                add(new Lifesteal());
+                add(new LifeOnHit());
+                add(new Mana());
+                add(new ManaRegen());
+                add(new ManaOnHit());
+                add(new Energy());
+                add(new EnergyRegen());
+                // Resources
+
+                add(new BlockStrength());
+                add(new Armor());
+                add(new ArmorPenetration());
+                add(new CriticalDamage());
+                add(new CriticalHit());
+                add(new PhysicalDamage());
+                add(new Dodge());
+                add(new SpellDodge());
+
+                // traits
+                add(new Golem());
+                add(new Elemental());
+                add(new Lucky());
+                add(new Barbarian());
+                add(new Stealthy());
+                add(new ClumsyScholar());
+                add(new Crippled());
+                add(new Diseased());
+                add(new Armored());
+                add(new EarthAtronach());
+                add(new FrostAtronach());
+                add(new FireAtronach());
+                add(new ThunderAtronach());
+                add(new OnDodgeBuffSpeed());
+                add(new HealPower());
+                // traits
+
             }
         }
     };
@@ -202,10 +191,16 @@ public class Stats {
     public static AllPreGenMapStats allPreGenMapStatLists = new AllPreGenMapStats();
 
     public static void init() {
-        for (IGenerated<Stat> gen : generated) {
-            for (Stat stat : gen.generateAllPossibleStatVariations()) {
+
+        for (Stat stat : generated) {
+            if (stat instanceof IGenerated) {
+                for (Stat gen : ((IGenerated<Stat>) stat).generateAllPossibleStatVariations()) {
+                    All.put(gen.GUID(), gen);
+                }
+            } else {
                 All.put(stat.GUID(), stat);
             }
+
         }
 
     }
