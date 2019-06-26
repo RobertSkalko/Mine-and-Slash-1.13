@@ -26,7 +26,30 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.number = dmg;
     }
 
-    public HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
+    private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
+
+    public Elements getHighestBonusElementalDamageElement() {
+
+        int highest = 0;
+        Elements ele = null;
+        for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
+            if (entry.getValue() > highest) {
+                ele = entry.getKey();
+                highest = entry.getValue();
+            }
+        }
+        return ele;
+
+    }
+
+    public void addBonusEleDmg(Elements element, float dmg) {
+        if (bonusElementDamageMap.containsKey(element)) {
+            bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.get(element) + dmg));
+
+        } else {
+            bonusElementDamageMap.put(element, (int) dmg);
+        }
+    }
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;
@@ -83,7 +106,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             target.hurtResistantTime = hurtResistantTime;
             //
 
-            addBonusElementDamage();
+            activateBonusElementDamage();
             Heal();
             RestoreMana();
 
@@ -118,7 +141,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return this;
     }
 
-    private void addBonusElementDamage() {
+    private void activateBonusElementDamage() {
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(source, target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);

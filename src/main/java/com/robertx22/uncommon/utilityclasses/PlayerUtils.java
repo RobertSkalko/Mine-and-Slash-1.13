@@ -29,7 +29,7 @@ public class PlayerUtils {
 
         if (MMORPG.RUN_DEV_TOOLS) {
             for (ServerPlayerEntity player : MapManager.getServer()
-                    .func_184103_al()
+                    .getPlayerList()
                     .getPlayers()) {
 
                 player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos
@@ -56,7 +56,7 @@ public class PlayerUtils {
                 .getGameType()));
         player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
                 .isDifficultyLocked()));
-        PlayerList playerlist = player.server.func_184103_al();
+        PlayerList playerlist = player.server.getPlayerList();
         playerlist.updatePermissionLevel(player);
         serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         player.revive();

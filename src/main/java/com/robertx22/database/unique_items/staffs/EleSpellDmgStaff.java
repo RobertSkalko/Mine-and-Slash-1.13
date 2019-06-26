@@ -1,6 +1,7 @@
 package com.robertx22.database.unique_items.staffs;
 
 import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.stat_mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
@@ -25,7 +26,7 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUni
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F), new ElementalSpellDamagePercent(element)
-                .multi(2), new ElementalSpellDamageFlat(element).multi(3.5F));
+                .multi(2), new ElementalSpellDamageFlat(element).multi(3.5F), new CompletePhysDispersionFlat());
     }
 
     @Override

@@ -39,12 +39,7 @@ public class SpellToBasicDamageEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.bonusElementDamageMap.containsKey(stat.Element())) {
-                    dmgeffect.bonusElementDamageMap.put(stat.Element(), dmgeffect.bonusElementDamageMap
-                            .get(stat.Element()) + dmg);
-                } else {
-                    dmgeffect.bonusElementDamageMap.put(stat.Element(), dmg);
-                }
+                dmgeffect.addBonusEleDmg(stat.Element(), dmg);
 
             }
 

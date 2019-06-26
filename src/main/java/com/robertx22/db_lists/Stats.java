@@ -55,6 +55,7 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
         {
             {
+                put(new PhysicalDispersion().GUID(), new PhysicalDispersion());
                 put(new AllAttributes().GUID(), new AllAttributes());
                 put(new AllEleDmg().GUID(), new AllEleDmg());
                 put(new AllEleSpellDmg().GUID(), new AllEleSpellDmg());

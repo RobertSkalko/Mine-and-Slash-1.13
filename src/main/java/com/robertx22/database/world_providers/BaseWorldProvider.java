@@ -110,7 +110,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
         if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
         } else {
-            Chunk chunk = this.world.func_212866_a_(posX >> 4, posZ >> 4);
+            Chunk chunk = this.world.getChunk(posX >> 4, posZ >> 4);
             int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, posX & 15, posZ & 15);
             if (i < 0) {
                 return null;
@@ -119,7 +119,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
                 return null;
             } else {
                 for (int j = i + 1; j >= 0; --j) {
-                    blockpos$mutableblockpos.func_181079_c(posX, j, posZ);
+                    blockpos$mutableblockpos.setPos(posX, j, posZ);
                     BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
                     if (!blockstate1.getFluidState().isEmpty()) {
                         break;

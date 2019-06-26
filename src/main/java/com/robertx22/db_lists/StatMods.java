@@ -25,10 +25,7 @@ import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.stat_mods.flat.misc.BonusExpFlat;
-import com.robertx22.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.flat.offense.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.*;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
@@ -64,6 +61,8 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
         {
             {
+
+                put(new CompletePhysDispersionFlat().GUID(), new CompletePhysDispersionFlat());
                 put(new HealPowerFlat().GUID(), new HealPowerFlat());
                 put(new AllEleDmgFlat().GUID(), new AllEleDmgFlat());
                 put(new AllEleSpellDmgFlat().GUID(), new AllEleSpellDmgFlat());
