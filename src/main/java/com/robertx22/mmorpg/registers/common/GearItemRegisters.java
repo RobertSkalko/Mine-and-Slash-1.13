@@ -104,7 +104,7 @@ public class GearItemRegisters {
             regRarities(new ItemPants(rank), ItemPants.Items, "pants/pants", rarity.Rank());
 
             // misc
-            regRarities(new ItemMap(), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
+            regRarities(new ItemMap(rank), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
 
         }
 

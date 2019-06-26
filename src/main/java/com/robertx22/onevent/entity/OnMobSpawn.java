@@ -33,11 +33,6 @@ public class OnMobSpawn {
 
         UnitData endata = Load.Unit(entity);
 
-        if (endata.needsToBeGivenStats() == false) {
-            endata.getUnit().InitMobStats(); // give new stats to mob on spawn
-            endata.forceRecalculateStats(entity);
-        }
-
         if (endata != null) {
 
             PlayerEntity nearestPlayer = null;
@@ -55,6 +50,13 @@ public class OnMobSpawn {
             if (endata.needsToBeGivenStats()) {
                 Unit unit = Unit.Mob(entity, nearestPlayer);
                 endata.forceSetUnit(unit);
+            } else {
+                if (endata.getUnit() == null) {
+                    endata.setUnit(new Unit(), entity);
+                }
+
+                endata.getUnit().InitMobStats(); // give new stats to mob on spawn
+                endata.forceRecalculateStats(entity);
             }
         }
 

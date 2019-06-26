@@ -1,8 +1,10 @@
 package com.robertx22.items.misc;
 
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,12 +15,14 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 
-public class ItemMap extends Item {
+public class ItemMap extends Item implements IAutoLocName {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemMap() {
-        super(new Properties());
+    int rarity = 0;
 
+    public ItemMap(int rarity) {
+        super(new Properties());
+        this.rarity = rarity;
     }
 
     public static void createMapPortal(DimensionType type, BlockPos pos, World world,
@@ -74,4 +78,23 @@ public class ItemMap extends Item {
         }
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return Rarities.Maps.get(this.rarity).Color() + "Adventure Map";
+    }
+
+    @Override
+    public String GUID() {
+        return "adventure_map";
+    }
 }
