@@ -24,59 +24,61 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MapAffixes {
-    public static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>() {
+    public static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
+
+    private static List<BaseMapAffix> list = new ArrayList<BaseMapAffix>() {
         {
             {
 
-                put(new BonusHealthAffix().GUID(), new BonusHealthAffix());
-                put(new BonusLifestealAffix().GUID(), new BonusLifestealAffix());
+                add(new LessWeaponDamageMapAffix(WeaponTypes.None));
 
-                put(new BonusFireDamageAffix().GUID(), new BonusFireDamageAffix());
-                put(new BonusNatureDamageAffix().GUID(), new BonusNatureDamageAffix());
-                put(new BonusThunderDamageAffix().GUID(), new BonusThunderDamageAffix());
-                put(new BonusWaterDamageAffix().GUID(), new BonusWaterDamageAffix());
+                add(new BonusHealthAffix());
+                add(new BonusLifestealAffix());
 
-                put(new BonusFireResistAffix().GUID(), new BonusFireResistAffix());
-                put(new BonusNatureResistAffix().GUID(), new BonusNatureResistAffix());
-                put(new BonusThunderResistAffix().GUID(), new BonusThunderResistAffix());
-                put(new BonusWaterResistAffix().GUID(), new BonusWaterResistAffix());
+                add(new BonusFireDamageAffix());
+                add(new BonusNatureDamageAffix());
+                add(new BonusThunderDamageAffix());
+                add(new BonusWaterDamageAffix());
 
-                put(new LessAllFireDmgAffix().GUID(), new LessAllFireDmgAffix());
-                put(new LessAllNatureDmgAffix().GUID(), new LessAllNatureDmgAffix());
-                put(new LessAllThunderDmgAffix().GUID(), new LessAllThunderDmgAffix());
-                put(new LessAllWaterDmgAffix().GUID(), new LessAllWaterDmgAffix());
+                add(new BonusFireResistAffix());
+                add(new BonusNatureResistAffix());
+                add(new BonusThunderResistAffix());
+                add(new BonusWaterResistAffix());
 
-                put(new LessDodgeAffix().GUID(), new LessDodgeAffix());
-                put(new LessCriticalHitAffix().GUID(), new LessCriticalHitAffix());
+                add(new LessAllFireDmgAffix());
+                add(new LessAllNatureDmgAffix());
+                add(new LessAllThunderDmgAffix());
+                add(new LessAllWaterDmgAffix());
+
+                add(new LessDodgeAffix());
+                add(new LessCriticalHitAffix());
 
                 // resources
-                put(new LessEnergyRegenAffix().GUID(), new LessEnergyRegenAffix());
-                put(new LessManaRegenAffix().GUID(), new LessManaRegenAffix());
-                put(new LessHealthRegenAffix().GUID(), new LessHealthRegenAffix());
-                put(new LessLifeOnHitAffix().GUID(), new LessLifeOnHitAffix());
-                put(new LessLifestealAffix().GUID(), new LessLifestealAffix());
-                put(new LessHealthAffix().GUID(), new LessHealthAffix());
-                put(new LessManaOnHitAffix().GUID(), new LessManaOnHitAffix());
-
-            }
-        }
-    };
-
-    private static List<IGenerated<BaseMapAffix>> generated = new ArrayList<IGenerated<BaseMapAffix>>() {
-        {
-            {
-                add(new LessWeaponDamageMapAffix(WeaponTypes.None));
+                add(new LessEnergyRegenAffix());
+                add(new LessManaRegenAffix());
+                add(new LessHealthRegenAffix());
+                add(new LessLifeOnHitAffix());
+                add(new LessLifestealAffix());
+                add(new LessHealthAffix());
+                add(new LessManaOnHitAffix());
 
             }
         }
     };
 
     static {
-        for (IGenerated<BaseMapAffix> gen : generated) {
-            for (BaseMapAffix statmod : gen.generateAllPossibleStatVariations()) {
-                All.put(statmod.GUID(), statmod);
-            }
 
+        for (BaseMapAffix affix : list) {
+
+            if (affix instanceof IGenerated) {
+                IGenerated<BaseMapAffix> gen = (IGenerated<BaseMapAffix>) affix;
+                for (BaseMapAffix statmod : gen.generateAllPossibleStatVariations()) {
+                    All.put(statmod.GUID(), statmod);
+                }
+            } else {
+
+                All.put(affix.GUID(), affix);
+            }
         }
     }
 
