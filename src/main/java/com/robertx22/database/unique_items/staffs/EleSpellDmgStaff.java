@@ -30,7 +30,7 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUni
 
     @Override
     public String locDescForLangFile() {
-        return "Let " + element.name() + " guide you.";
+        return "Do not be fooled from a glance.";
     }
 
     @Override

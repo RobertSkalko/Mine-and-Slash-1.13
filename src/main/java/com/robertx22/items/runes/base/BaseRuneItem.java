@@ -13,6 +13,7 @@ import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -156,6 +157,11 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             }
 
             Tooltip.add(TooltipUtils.rarity(rune.GetRarity()), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            Tooltip.add(Styles.BLUECOMP()
+                    .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
 
         }
 

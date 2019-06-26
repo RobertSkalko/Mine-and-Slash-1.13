@@ -45,6 +45,9 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
                 .appendSibling(Words.Major_Failure_Chance.locName()
                         .appendText(": " + this.majorFailureChance() + "%")), tooltip);
 
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
+
     }
 
     public void TryUpgradeInfusion(InfusionData infusion) {

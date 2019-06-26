@@ -4,8 +4,8 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.ItemDefault;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.interfaces.*;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
@@ -96,7 +96,7 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.tooltip("item_modifiable_in_station")), tooltip);
+                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
 
     }
 

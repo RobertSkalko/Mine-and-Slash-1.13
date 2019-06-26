@@ -29,12 +29,14 @@ public class ConfigItem implements IWeighted {
     public transient String registryName = "";
 
     public enum creationTypes {
-        NORMAL, RUNED, UNIQUE
+        NORMAL,
+        RUNED,
+        UNIQUE
     }
 
     public String itemType = "Sword";
 
-    public boolean isSalvagable = true;
+    public boolean isSalvagable = false;
 
     public int dropWeight = 1000;
     public int uniqueItemWeight = 0;
