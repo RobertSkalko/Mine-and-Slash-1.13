@@ -34,11 +34,6 @@ public class ContainerCurrencyBag extends BaseContainer {
             return ItemFilterGroup.ANY_CURRENCY.anyMatchesFilter(stack);
         }
 
-        @Override
-        public BaseSlot newObject(IItemHandler inv, int index, int x, int y) {
-            return new SlotCurrency(inv, index, x, y);
-        }
-
     }
 
     @Override
