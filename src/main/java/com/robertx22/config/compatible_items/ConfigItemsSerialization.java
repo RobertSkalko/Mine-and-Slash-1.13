@@ -20,8 +20,9 @@ import java.util.Objects;
 
 public class ConfigItemsSerialization implements ISerializedConfig {
 
-    public static final ConfigItemsSerialization INSTANCE = new ConfigItemsSerialization();
+    public static ConfigItemsSerialization INSTANCE = new ConfigItemsSerialization();
 
+    @Override
     public void generateIfEmpty() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -31,6 +32,7 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
     }
 
+    @Override
     public String fileName() {
         return "CompatibleItems.txt";
     }
@@ -40,6 +42,7 @@ public class ConfigItemsSerialization implements ISerializedConfig {
         return SerializationUtils.CONFIG_PATH + "compatible_items/";
     }
 
+    @Override
     public void load() {
 
         JsonReader reader;

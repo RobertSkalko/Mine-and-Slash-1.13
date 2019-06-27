@@ -1,6 +1,7 @@
 package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -36,19 +37,33 @@ public class OnHurt {
         // mobs take much less damage from any source other than my mods. This is
         // required or else there's no point in getting legendary weapons if a diamond
         // sword more damage
-        if (event.getSource() != null && event.getSource()
-                .getTrueSource() instanceof LivingEntity && Load.hasUnit(event.getEntityLiving())) {
-            if (event.getSource().isExplosion()) {
-                event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
-                        .get()
-                        .floatValue());
-                return;
+        if (event.getSource() != null) {
+            if (event.getSource().getTrueSource() instanceof LivingEntity == false) {
+                if (event.getEntity() instanceof PlayerEntity == false) {
+                    event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
+                            .get()
+                            .floatValue());
+                    return;
+                }
             } else {
+
+                // dont decrease dmg if its from whitelist item
+                LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+
+                ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(en
+                        .getHeldItemMainhand());
+
+                if (mod != null) {
+                    event.setAmount(event.getAmount() * mod.dmgMultiplier);
+                    return;
+                }
+
                 event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
                         .get()
                         .floatValue());
                 return;
             }
+
         }
 
     }

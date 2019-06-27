@@ -1,6 +1,7 @@
 package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -8,13 +9,14 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public class OnMobMeleeAttack {
+public class OnMeleeAttack {
 
     /**
      * On attack, cancel and spawn the real attack with my damage source, mobs don't
@@ -26,20 +28,17 @@ public class OnMobMeleeAttack {
     public static void onMobMeleeAttack(LivingAttackEvent event) {
 
         try {
+
             if (event.getEntity().world.isRemote) {
                 return;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        if (event.getSource() instanceof MyDamageSource || event.getSource()
-                .getDamageType()
-                .equals(DamageEffect.dmgSourceName)) {
-            return;
-        }
+            if (event.getSource() instanceof MyDamageSource || event.getSource()
+                    .getDamageType()
+                    .equals(DamageEffect.dmgSourceName)) {
+                return;
+            }
 
-        try {
             if (event.getEntityLiving() == null || event.getSource()
                     .getTrueSource() == null || !(event.getSource()
                     .getTrueSource() instanceof LivingEntity)) {
@@ -72,6 +71,15 @@ public class OnMobMeleeAttack {
             if (source instanceof PlayerEntity) {
 
                 GearItemData weapondata = sourceData.getWeaponData(source);
+
+                if (weapondata == null) {
+                    ItemStack weapon = source.getHeldItemMainhand();
+                    ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer
+                            .getModDmgWhitelist(weapon);
+                    if (mod != null) {
+                        return;
+                    }
+                }
 
                 if (sourceData.isWeapon(weapondata)) {
                     if (sourceData.tryUseWeapon(weapondata, source)) {

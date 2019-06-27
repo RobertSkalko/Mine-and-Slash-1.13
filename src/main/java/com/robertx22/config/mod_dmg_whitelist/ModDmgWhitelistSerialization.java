@@ -1,32 +1,31 @@
-package com.robertx22.config.dimension_configs;
+package com.robertx22.config.mod_dmg_whitelist;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.config.base.ISerializedConfig;
-import com.robertx22.config.compatible_items.ConfigItems;
 import com.robertx22.uncommon.utilityclasses.SerializationUtils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class ConfigDimensionsSerialization implements ISerializedConfig {
+public class ModDmgWhitelistSerialization implements ISerializedConfig {
 
-    public static ConfigDimensionsSerialization INSTANCE = new ConfigDimensionsSerialization();
+    public static ModDmgWhitelistSerialization INSTANCE = new ModDmgWhitelistSerialization();
 
     public String folder() {
         return SerializationUtils.CONFIG_PATH;
     }
 
     public String fileName() {
-        return "DimensionConfigs.txt";
+        return "ModDamageWhitelist.txt";
     }
 
+    @Override
     public void generateIfEmpty() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(new DimensionsContainer());
-
+        String json = gson.toJson(new ModDmgWhitelistContainer());
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
 
     }
@@ -38,9 +37,10 @@ public class ConfigDimensionsSerialization implements ISerializedConfig {
         try {
             reader = new JsonReader(new FileReader(this.getPath()));
 
-            DimensionsContainer.INSTANCE = new Gson().fromJson(reader, DimensionsContainer.class);
+            ModDmgWhitelistContainer.INSTANCE = new Gson().fromJson(reader, ModDmgWhitelistContainer.class);
 
-            System.out.println("Dimensions added to config: " + ConfigItems.INSTANCE.map.size());
+            System.out.println("Mod Damage whitelists added : " + ModDmgWhitelistContainer.INSTANCE.modList
+                    .size());
         } catch (FileNotFoundException e) {
 
             e.printStackTrace();
