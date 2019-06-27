@@ -11,7 +11,6 @@ import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.Styles;
 import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -128,8 +127,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
             if (rune.armor != null) {
                 Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(CLOC.tooltip("stats_on_armor")
-                                .appendText(":")), tooltip);
+                        .appendSibling(Words.Armor.locName().appendText(":")), tooltip);
                 for (ITextComponent str : rune.armor.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -138,8 +136,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
             if (rune.weapon != null) {
 
                 Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(CLOC.tooltip("stats_on_weapon")
-                                .appendText(":")), tooltip);
+                        .appendSibling(Words.Weapon.locName().appendText(":")), tooltip);
                 for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }
@@ -148,8 +145,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
                 Tooltip.add("", tooltip);
                 Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(CLOC.tooltip("stats_on_jewerly")
-                                .appendText(":")), tooltip);
+                        .appendSibling(Words.Jewerly.locName().appendText(":")), tooltip);
                 for (ITextComponent str : rune.jewerly.GetTooltipString(info)) {
                     Tooltip.add(str, tooltip);
                 }

@@ -5,6 +5,11 @@ import com.robertx22.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
 
+    Armor("Armor"),
+    Weapon("Weapon"),
+    Jewerly("Jewerly"),
+    Offhand("Offhand"),
+
     Item_modifiable_in_station("Can be used inside Gear Modify Station"),
 
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),
