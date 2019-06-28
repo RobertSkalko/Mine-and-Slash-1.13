@@ -16,6 +16,13 @@ public abstract class BaseBagGui<T extends Container> extends ContainerScreen<T>
         this.ySize = BaseBagGui.bagYSize;
     }
 
+    public BaseBagGui(PlayerInventory inv, T inventorySlotsIn, int sizex, int sizey) {
+        super(inventorySlotsIn, inv, new StringTextComponent(""));
+
+        this.xSize = sizex;
+        this.ySize = sizey;
+    }
+
     public static final int bagXSize = 176;
     public static final int bagYSize = 207;
 

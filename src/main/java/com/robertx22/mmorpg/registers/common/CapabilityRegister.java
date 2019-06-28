@@ -2,6 +2,7 @@ package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.MapData;
+import com.robertx22.uncommon.capability.MasterLootBagCap;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
@@ -13,6 +14,8 @@ public class CapabilityRegister {
         CapabilityManager.INSTANCE.register(PlayerMapData.IPlayerMapData.class, new PlayerMapData.Storage(), PlayerMapData.DefaultImpl::new);
 
         CapabilityManager.INSTANCE.register(MapData.IMapData.class, new MapData.Storage(), MapData.DefaultImpl::new);
+
+        CapabilityManager.INSTANCE.register(MasterLootBagCap.IMasterLootBagData.class, new MasterLootBagCap.Storage(), MasterLootBagCap.DefaultImpl::new);
 
     }
 }

@@ -9,6 +9,7 @@ import com.robertx22.items.bags.AutoSalvageBag;
 import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
+import com.robertx22.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.items.currency.*;
 import com.robertx22.items.infusions.AttackInfusionItem;
 import com.robertx22.items.infusions.DefenseInfusionItem;
@@ -102,6 +103,7 @@ public class ItemRegister {
         r.register(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
         r.register(new ItemLootBag().setRegistryName(ItemLootBag.ID));
         r.register(new ItemMapBag().setRegistryName(ItemMapBag.ID));
+        r.register(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
 
         r.register(new ItemAddSet());
         r.register(new ItemRerollSet());

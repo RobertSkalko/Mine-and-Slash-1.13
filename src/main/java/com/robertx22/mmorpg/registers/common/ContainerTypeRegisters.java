@@ -8,6 +8,7 @@ import com.robertx22.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.items.bags.currency_bag.ContainerCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.items.bags.map_bag.ContainerMapBag;
+import com.robertx22.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -23,6 +24,7 @@ public class ContainerTypeRegisters {
     static final String LOOT_BAG_ID = Ref.MODID + ":" + "loot_bag";
     static final String MAP_BAG_ID = Ref.MODID + ":" + "map_bag";
     static final String CURRENCY_BAG_ID = Ref.MODID + ":" + "currency_bag";
+    static final String MASTER_BAG_ID = Ref.MODID + ":" + "master_bag";
 
     @ObjectHolder(BlockRegister.GEAR_FACTORY_ID)
     public static final ContainerType<ContainerGearFactory> GEAR_FACTORY = null;
@@ -40,6 +42,8 @@ public class ContainerTypeRegisters {
     public static final ContainerType<ContainerMapBag> MAP_BAG = null;
     @ObjectHolder(CURRENCY_BAG_ID)
     public static final ContainerType<ContainerCurrencyBag> CURRENCY_BAG = null;
+    @ObjectHolder(MASTER_BAG_ID)
+    public static final ContainerType<ContainerMasterBag> MASTER_BAG = null;
 
     @SubscribeEvent
     public static void registerContainers(
@@ -61,6 +65,7 @@ public class ContainerTypeRegisters {
         r.register(new ContainerType<>(ContainerMapBag::new).setRegistryName(MAP_BAG_ID));
         r.register(new ContainerType<>(ContainerLootBag::new).setRegistryName(LOOT_BAG_ID));
         r.register(new ContainerType<>(ContainerCurrencyBag::new).setRegistryName(CURRENCY_BAG_ID));
+        r.register(new ContainerType<>(ContainerMasterBag::new).setRegistryName(MASTER_BAG_ID));
 
     }
 

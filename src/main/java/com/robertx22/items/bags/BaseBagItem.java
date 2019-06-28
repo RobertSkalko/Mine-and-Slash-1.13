@@ -30,7 +30,7 @@ public abstract class BaseBagItem extends Item {
 
     public abstract INamedContainerProvider getNamedContainer(ItemStack stack);
 
-    public static int size = 9 * 6;
+    public int size = 9 * 6;
 
     public BaseBagItem(String name) {
 
@@ -51,13 +51,21 @@ public abstract class BaseBagItem extends Item {
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
-        return new InvProvider();
+        return new InvProvider(size);
     }
 
     private static class InvProvider implements ICapabilitySerializable<INBT> {
 
-        private final IItemHandler inv = new ItemStackHandler(size);
-        private final LazyOptional<IItemHandler> opt = LazyOptional.of(() -> inv);
+        int size;
+
+        public InvProvider(int size) {
+            this.size = size;
+            inv = new ItemStackHandler(size);
+            opt = LazyOptional.of(() -> inv);
+        }
+
+        private final IItemHandler inv;
+        private final LazyOptional<IItemHandler> opt;
 
         @Nonnull
         @Override

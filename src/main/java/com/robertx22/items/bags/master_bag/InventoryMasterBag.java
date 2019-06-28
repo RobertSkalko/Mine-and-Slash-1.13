@@ -1,20 +1,30 @@
-package com.robertx22.items.bags;
+package com.robertx22.items.bags.master_bag;
 
+import com.robertx22.uncommon.capability.MasterLootBagCap;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-public class BaseInventory implements IItemHandlerModifiable {
+public class InventoryMasterBag implements IItemHandlerModifiable {
 
-    public final IItemHandlerModifiable bagInv;
     final public ItemStack bag;
+    public ItemStackHandler bagInv;
 
-    public BaseInventory(ItemStack bag) {
+    public InventoryMasterBag(ItemStack bag, ContainerMasterBag.ItemType type) {
         this.bag = bag;
-        bagInv = (IItemHandlerModifiable) bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+
+        MasterLootBagCap.IMasterLootBagData fullInv = bag.getCapability(MasterLootBagCap.Data)
                 .orElse(null);
+
+        this.bagInv = new ItemStackHandler(6 * 9);
+
+        if (fullInv != null) {
+
+            this.bagInv = fullInv.getInventory(type);
+
+        }
 
     }
 

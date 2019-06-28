@@ -13,4 +13,5 @@ public class NormalSlot extends Slot {
     public boolean isItemValid(ItemStack stack) {
         return true;
     }
+
 }
