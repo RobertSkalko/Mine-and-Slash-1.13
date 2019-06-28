@@ -2,7 +2,6 @@ package com.robertx22.items.bags.master_bag;
 
 import com.robertx22.blocks.slots.handlerslots.SlotHandler;
 import com.robertx22.items.bags.BaseSlot;
-import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +9,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
@@ -35,13 +35,14 @@ public class ContainerMasterBag extends Container {
 
     }
 
-    public ContainerMasterBag(int i, PlayerInventory playerInventory) {
+    public ContainerMasterBag(int i, PlayerInventory playerInventory, PacketBuffer pkt) {
 
-        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemCurrencyBag.ITEM), ItemType.GEAR), ItemType.GEAR);
+        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR), ItemType
+                .valueOf(pkt.readString()));
 
     }
 
-    ItemType type = ItemType.GEAR;
+    public ItemType type = ItemType.GEAR;
 
     public ContainerMasterBag(int num, PlayerInventory playerInv,
                               InventoryMasterBag basebag, ItemType type) {
