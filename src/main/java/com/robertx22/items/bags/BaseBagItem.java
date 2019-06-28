@@ -48,6 +48,16 @@ public abstract class BaseBagItem extends Item {
         return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }
 
+    public IItemHandler getInventory(ItemStack bag, ItemStack stack) {
+
+        if (stack.getCount() > 0 && filterGroup().anyMatchesFilter(stack)) {
+            return bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+                    .orElseGet(null);
+        }
+        return null;
+
+    }
+
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {

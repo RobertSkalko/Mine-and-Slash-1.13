@@ -71,7 +71,7 @@ public class ServerContainer {
 
         MAPS_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("MAPS_DROP_AFTER_LEVEL", 15, 0, Integer.MAX_VALUE);
+                .defineInRange("MAPS_DROP_AFTER_LEVEL", 10, 0, Integer.MAX_VALUE);
 
         CURRENCY_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")

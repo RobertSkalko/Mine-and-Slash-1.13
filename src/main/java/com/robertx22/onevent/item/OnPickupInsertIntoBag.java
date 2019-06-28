@@ -9,7 +9,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 @Mod.EventBusSubscriber
@@ -26,41 +25,37 @@ public class OnPickupInsertIntoBag {
 
             ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
             if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
-                IItemHandler bagInv = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
-                        .orElseGet(null);
+                BaseBagItem basebag = (BaseBagItem) bag.getItem();
+                IItemHandler bagInv = basebag.getInventory(bag, stack);
+
                 if (bagInv == null) {
                     return;
                 }
 
-                BaseBagItem bagitem = (BaseBagItem) bag.getItem();
+                for (int x = 0; x < bagInv.getSlots(); x++) {
+                    ItemStack result = bagInv.insertItem(x, stack, false);
+                    int numPickedUp = stack.getCount() - result.getCount();
 
-                if (stack.getCount() > 0 && bagitem.filterGroup()
-                        .anyMatchesFilter(stack)) {
+                    event.getItem().setItem(result);
 
-                    for (int x = 0; x < bagInv.getSlots(); x++) {
-                        ItemStack result = bagInv.insertItem(x, stack, false);
-                        int numPickedUp = stack.getCount() - result.getCount();
-
-                        event.getItem().setItem(result);
-
-                        if (numPickedUp > 0) {
-                            event.setCanceled(true);
-                            if (!event.getItem().isSilent()) {
-                                event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
-                                        .getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
-                                        .getItem().world.rand.nextFloat() - event.getItem().world.rand
-                                        .nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                            }
-                            ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
-                                    .getItem()
-                                    .getEntityId(), event.getEntityPlayer()
-                                    .getEntityId(), numPickedUp));
-                            event.getEntityPlayer().openContainer.detectAndSendChanges();
-
-                            return;
+                    if (numPickedUp > 0) {
+                        event.setCanceled(true);
+                        if (!event.getItem().isSilent()) {
+                            event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
+                                    .getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
+                                    .getItem().world.rand.nextFloat() - event.getItem().world.rand
+                                    .nextFloat()) * 0.7F + 1.0F) * 2.0F);
                         }
+                        ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
+                                .getItem()
+                                .getEntityId(), event.getEntityPlayer()
+                                .getEntityId(), numPickedUp));
+                        event.getEntityPlayer().openContainer.detectAndSendChanges();
+
+                        return;
                     }
                 }
+
             }
         }
     }

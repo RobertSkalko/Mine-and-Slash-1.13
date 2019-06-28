@@ -45,12 +45,8 @@ public class MasterBagPacket {
             try {
 
                 ServerPlayerEntity player = ctx.get().getSender();
-                // player.closeContainer();
-
-                // player.openContainer(new NamedMasterBag(player.getHeldItemMainhand(), pkt.type));
 
                 NetworkHooks.openGui(player, new NamedMasterBag(player.getHeldItemMainhand(), pkt.type), extraData -> {
-                    extraData.writeString(pkt.type.toString());
                     extraData.writeString(pkt.type.toString());
                 });
 

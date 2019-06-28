@@ -2,6 +2,7 @@ package com.robertx22.items.bags.master_bag;
 
 import com.robertx22.items.bags.BaseBagItem;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.capability.MasterLootBagCap;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -13,6 +14,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
@@ -31,6 +33,34 @@ public class ItemMasterBag extends BaseBagItem {
 
     }
 
+    @Override
+    public IItemHandler getInventory(ItemStack bag, ItemStack stack) {
+
+        if (stack.getCount() > 0 && filterGroup().anyMatchesFilter(stack)) {
+            MasterLootBagCap.IMasterLootBagData capa = bag.getCapability(MasterLootBagCap.Data)
+                    .orElse(null);
+
+            if (capa != null) {
+                ContainerMasterBag.ItemType type = getItemType(stack);
+
+                return capa.getInventory(type);
+            }
+        }
+        return null;
+
+    }
+
+    public static ContainerMasterBag.ItemType getItemType(ItemStack stack) {
+
+        for (ContainerMasterBag.ItemType type : ContainerMasterBag.ItemType.values()) {
+            if (type.filter.anyMatchesFilter(stack)) {
+                return type;
+            }
+        }
+        return ContainerMasterBag.ItemType.GEAR;
+
+    }
+
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
@@ -38,7 +68,6 @@ public class ItemMasterBag extends BaseBagItem {
         if (!world.isRemote) {
 
             NetworkHooks.openGui((ServerPlayerEntity) player, getNamedContainer(player.getHeldItem(hand)), extraData -> {
-                extraData.writeString(ContainerMasterBag.ItemType.GEAR.toString());
                 extraData.writeString(ContainerMasterBag.ItemType.GEAR.toString());
             });
 

@@ -37,7 +37,7 @@ public class MasterLootBagCap {
     public static class EventHandler {
 
         @SubscribeEvent
-        public static void onEntityConstruct(AttachCapabilitiesEvent<ItemStack> event) {
+        public static void onMasterBagCreate(AttachCapabilitiesEvent<ItemStack> event) {
 
             if (event.getObject().getItem() instanceof ItemMasterBag) {
                 event.addCapability(RESOURCE, new Provider());
