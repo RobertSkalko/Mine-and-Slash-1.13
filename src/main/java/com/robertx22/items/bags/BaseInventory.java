@@ -6,7 +6,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nonnull;
 
-public abstract class BaseInventory implements IItemHandlerModifiable {
+public class BaseInventory implements IItemHandlerModifiable {
 
     public final IItemHandlerModifiable bagInv;
     final public ItemStack bag;

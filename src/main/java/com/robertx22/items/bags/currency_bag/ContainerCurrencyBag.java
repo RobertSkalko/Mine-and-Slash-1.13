@@ -13,7 +13,7 @@ public class ContainerCurrencyBag extends BaseContainer {
 
     public ContainerCurrencyBag(int i, PlayerInventory playerInventory) {
 
-        this(i, playerInventory, new InventoryCurrencyBag(new ItemStack(ItemCurrencyBag.ITEM)));
+        this(i, playerInventory, new BaseInventory(new ItemStack(ItemCurrencyBag.ITEM)));
 
     }
 

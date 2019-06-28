@@ -13,8 +13,6 @@ public class GuiLootBag extends BaseBagGui<ContainerLootBag> {
     public GuiLootBag(ContainerLootBag bag, PlayerInventory inv, ITextComponent comp) {
         super(inv, bag);
 
-        this.xSize = BaseBagGui.bagXSize;
-        this.ySize = BaseBagGui.bagYSize;
     }
 
     @Override

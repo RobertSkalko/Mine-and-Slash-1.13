@@ -399,6 +399,7 @@
 	"mmorpg.word.activation_time": "Activation Time",
 	"mmorpg.word.affixes_affecting_all": "Affixes Affecting All",
 	"mmorpg.word.animal": "Animal",
+	"mmorpg.word.armor": "Armor",
 	"mmorpg.word.attack": "Attack",
 	"mmorpg.word.automatically_salvages_items": "Automatically salvages items",
 	"mmorpg.word.basevalue": "Base Value",
@@ -426,6 +427,7 @@
 	"mmorpg.word.infusion": "Infusion",
 	"mmorpg.word.item": "Item",
 	"mmorpg.word.item_modifiable_in_station": "Can be used inside Gear Modify Station",
+	"mmorpg.word.jewerly": "Jewerly",
 	"mmorpg.word.left": "Left",
 	"mmorpg.word.level": "Level",
 	"mmorpg.word.main": "Main",
@@ -446,6 +448,7 @@
 	"mmorpg.word.none": "None",
 	"mmorpg.word.not_a_map_world": "Not a Map World",
 	"mmorpg.word.npc": "Npc",
+	"mmorpg.word.offhand": "Offhand",
 	"mmorpg.word.penetration": "Penetration",
 	"mmorpg.word.percent": "Percent",
 	"mmorpg.word.permadeath": "Permadeath",
@@ -485,6 +488,7 @@
 	"mmorpg.word.unsalvagable": "Unsalvagable",
 	"mmorpg.word.use_time": "Use Time",
 	"mmorpg.word.uses": "Uses",
+	"mmorpg.word.weapon": "Weapon",
 	"mmorpg.word.works_when_equipped": "Works when equipped",
 	"mmorpg.word.world_type": "World Type",
 
@@ -719,27 +723,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Chest",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Helmet",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Pants",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -777,7 +760,7 @@
 	"item.mmorpg.uniques.helmet.helmetthunder0": "§eThunder Atronach Helmet",
 	"item.mmorpg.uniques.helmet.helmetwater0": "§eIce Seer Eyes",
 	"item.mmorpg.uniques.helmet.helmetwisdom0": "§eHelmet of Wisdom",
-	"item.mmorpg.uniques.necklace.necklaceenergy0": "§eeInner Spirit Amulet",
+	"item.mmorpg.uniques.necklace.necklaceenergy0": "§eInner Spirit Amulet",
 	"item.mmorpg.uniques.necklace.necklacefire0": "§eBurning Man Amulet",
 	"item.mmorpg.uniques.necklace.necklacegambler0": "§eMage's Lucky Amulet",
 	"item.mmorpg.uniques.necklace.necklacenature0": "§eAmulet of the Oak",
@@ -816,6 +799,27 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Chest",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Helmet",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Pants",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",

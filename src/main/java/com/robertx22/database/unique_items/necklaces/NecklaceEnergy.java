@@ -36,7 +36,7 @@ public class NecklaceEnergy extends BaseUniqueNecklace {
 
     @Override
     public String locNameForLangFile() {
-        return Styles.YELLOW + "eInner Spirit Amulet";
+        return Styles.YELLOW + "Inner Spirit Amulet";
     }
 
     @Override

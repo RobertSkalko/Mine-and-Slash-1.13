@@ -14,8 +14,6 @@ public class GuiCurrencyBag extends BaseBagGui<ContainerCurrencyBag> {
                           ITextComponent comp) {
         super(inv, bag);
 
-        this.xSize = BaseBagGui.bagXSize;
-        this.ySize = BaseBagGui.bagYSize;
     }
 
     @Override
