@@ -12,8 +12,8 @@ public class CurioClientSetup {
 
     public static void setup(final FMLClientSetupEvent event) {
 
-        send(CuriosAPI.IMC.REGISTER_ICON, new Tuple<>(RefCurio.BRACELET, new ResourceLocation(Ref.MODID, "textures/items/slots/bracelet")));
-        send(CuriosAPI.IMC.REGISTER_ICON, new Tuple<>(RefCurio.SALVAGE_BAG, new ResourceLocation(Ref.MODID, "textures/items/slots/salvage_bag")));
+        send(CuriosAPI.IMC.REGISTER_ICON, new Tuple<>(RefCurio.BRACELET, new ResourceLocation(Ref.MODID, "textures/items/slots/bracelet.png")));
+        send(CuriosAPI.IMC.REGISTER_ICON, new Tuple<>(RefCurio.SALVAGE_BAG, new ResourceLocation(Ref.MODID, "textures/items/slots/salvage_bag.png")));
 
     }
 

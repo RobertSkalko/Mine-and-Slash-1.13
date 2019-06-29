@@ -94,7 +94,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${version_forge}"
 
 
-    compile ("top.theillusivec4.curios:curios:${version_curios}:deobf") // Trinkets, REQUIRED
+    compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 }
 

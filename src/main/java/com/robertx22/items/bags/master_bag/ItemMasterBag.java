@@ -91,7 +91,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Misc;
     }
-    
+
     @Override
     public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
