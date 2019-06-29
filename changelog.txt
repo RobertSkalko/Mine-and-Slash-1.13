@@ -61,7 +61,8 @@ And there's too many stats to list them all.. There's at least 50 traits. plus 2
 * mobs are no longer immune to sunlight as maps are now always night. (there's mods that configure this if u want to keep the sunlight resistance)
 * nerfed bonus salvage chance for auto salvage bags
 * you can't die in maps anymore. Deaths in maps are prevented and you're teleported out with a time penalty. in perma death maps it's game over for that map though.
-
+* maps now drop from lvl 10 (old was 15)
+* added master bag! crafted by all the other bags combined, has storage of all types of items for my mod (or most at least) could be buggy, especially on servers so be careful
 
 
 

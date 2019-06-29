@@ -3,6 +3,7 @@ package com.robertx22.items.bags.master_bag;
 import com.robertx22.items.bags.BaseBagItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.MasterLootBagCap;
+import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandler;
@@ -19,7 +21,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-public class ItemMasterBag extends BaseBagItem {
+public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
     public static final String ID = Ref.MODID + ":master_bag";
 
@@ -85,4 +87,23 @@ public class ItemMasterBag extends BaseBagItem {
         return new NamedMasterBag(stack, ContainerMasterBag.ItemType.GEAR);
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+    
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return TextFormatting.YELLOW + "Master Bag";
+    }
+
+    @Override
+    public String GUID() {
+        return "master_bag";
+    }
 }
