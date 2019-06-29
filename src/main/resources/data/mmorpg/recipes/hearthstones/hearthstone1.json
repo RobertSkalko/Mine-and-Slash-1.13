@@ -7,7 +7,7 @@
   ],
   "key": {  
 	"S": {
-      "item": "minecraft:furnace"
+      "item": "mmorpg:hearthstone/0"
     },	
 	"E": {
       "item": "minecraft:ender_pearl"
