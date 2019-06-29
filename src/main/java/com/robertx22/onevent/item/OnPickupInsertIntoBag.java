@@ -29,7 +29,7 @@ public class OnPickupInsertIntoBag {
                 IItemHandler bagInv = basebag.getInventory(bag, stack);
 
                 if (bagInv == null) {
-                    return;
+                    continue;
                 }
 
                 for (int x = 0; x < bagInv.getSlots(); x++) {

@@ -5,9 +5,11 @@ import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -50,6 +52,11 @@ public class TileGearSalvage extends BaseTile {
         MapItemData map = Map.Load(st);
         if (map != null) {
             return map.getSalvageResult(0);
+        }
+
+        RuneItemData rune = Rune.Load(st);
+        if (rune != null) {
+            return rune.getSalvageResult(0);
         }
 
         return ItemStack.EMPTY;
