@@ -150,20 +150,25 @@ public class TileGearRepair extends BaseTile {
                     // burnTimeInitialValue to the
                     // item's burn time and decrease the stack size
 
-                    fuel += FuelSlot.FUEL_VALUES.getOrDefault(itemStacks[fuelSlotNumber], 0);
+                    int fuelgained = FuelSlot.FUEL_VALUES.getOrDefault(itemStacks[fuelSlotNumber]
+                            .getItem(), 0);
 
-                    itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
-                    ++burningCount;
-                    inventoryChanged = true;
-                    // If the stack size now equals 0 set the slot contents to the items container
-                    // item. This is for fuel
-                    // items such as lava buckets so that the bucket is not consumed. If the item
-                    // dose not have
-                    // a container item getContainerItem returns null which sets the slot contents
-                    // to null
-                    if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
-                        itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
-                                .getContainerItem(itemStacks[fuelSlotNumber]);
+                    if (fuelgained > 0) {
+                        fuel += fuelgained;
+
+                        itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
+                        ++burningCount;
+                        inventoryChanged = true;
+                        // If the stack size now equals 0 set the slot contents to the items container
+                        // item. This is for fuel
+                        // items such as lava buckets so that the bucket is not consumed. If the item
+                        // dose not have
+                        // a container item getContainerItem returns null which sets the slot contents
+                        // to null
+                        if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
+                            itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
+                                    .getContainerItem(itemStacks[fuelSlotNumber]);
+                        }
                     }
                 }
             }

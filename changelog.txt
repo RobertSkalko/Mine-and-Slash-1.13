@@ -1,6 +1,6 @@
-1.13 UPDATE!
+1.14.3 UPDATE!
 
-This update contains more than a month of changes, improvements and additions because i started updating to 1.13 and then kept working on it. I couldn't release it as my dependancies didn't update so i had to wait.
+This update contains more than a month of changes, improvements and additions because i started updating to 1.13/1.14 and then kept working on it. I couldn't release it as my dependancies didn't update so i had to wait.
 
 * dimension configs are now in config/Mine_And_Slash folder. That means they are infinite and not stuck at 10 dimensions.
 * fixed gear factory eating capacitors
