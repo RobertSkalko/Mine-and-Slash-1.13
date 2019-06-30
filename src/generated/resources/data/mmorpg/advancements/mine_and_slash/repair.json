@@ -2,13 +2,13 @@
   "parent": "mmorpg:mine_and_slash/root",
   "display": {
     "icon": {
-      "item": "mmorpg:salvage_station"
+      "item": "mmorpg:repair_station"
     },
     "title": {
-      "translate": "mmorpg.advancements.salvage.title"
+      "translate": "mmorpg.advancements.repair.title"
     },
     "description": {
-      "translate": "mmorpg.advancements.salvage.description"
+      "translate": "mmorpg.advancements.repair.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "placed_salvage": {
+    "placed_repair": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mmorpg:salvage_station"
+            "item": "mmorpg:repair_station"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "placed_salvage"
+      "placed_repair"
     ]
   ]
 }

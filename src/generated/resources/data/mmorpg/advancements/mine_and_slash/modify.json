@@ -2,13 +2,13 @@
   "parent": "mmorpg:mine_and_slash/root",
   "display": {
     "icon": {
-      "item": "mmorpg:salvage_station"
+      "item": "mmorpg:modify_station"
     },
     "title": {
-      "translate": "mmorpg.advancements.salvage.title"
+      "translate": "mmorpg.advancements.modify.title"
     },
     "description": {
-      "translate": "mmorpg.advancements.salvage.description"
+      "translate": "mmorpg.advancements.modify.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "placed_salvage": {
+    "placed_modify": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mmorpg:salvage_station"
+            "item": "mmorpg:modify_station"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "placed_salvage"
+      "placed_modify"
     ]
   ]
 }

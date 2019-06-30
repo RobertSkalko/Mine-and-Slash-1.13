@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "item": "mmorpg:repair_station"
+      "item": "mmorpg:map_device"
     },
     "title": {
       "translate": "mmorpg.advancements.root.title"
     },
     "description": {
-      "translate": "mmorpg.advancements.repair.description"
+      "translate": "mmorpg.advancements.root.description"
     },
     "frame": "task",
     "show_toast": false,
@@ -16,16 +16,20 @@
     "background": "minecraft:textures/gui/advancements/backgrounds/end.png"
   },
   "criteria": {
-    "placed_repair": {
-      "trigger": "minecraft:placed_block",
+    "crafting_table": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "block": "mmorpg:repair_station"
+        "items": [
+          {
+            "item": "minecraft:crafting_table"
+          }
+        ]
       }
     }
   },
   "requirements": [
     [
-      "placed_repair"
+      "crafting_table"
     ]
   ]
 }
