@@ -42,6 +42,7 @@ public class OnLogin {
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
                         .setStyle(new Style().setColor(Styles.RED)));
+
             }
 
             if (Load.hasUnit(player)) {

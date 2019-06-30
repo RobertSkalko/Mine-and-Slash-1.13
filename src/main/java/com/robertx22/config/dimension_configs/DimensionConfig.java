@@ -35,7 +35,7 @@ public class DimensionConfig {
 
     }
 
-    public int MOB_LEVEL_PER_DISTANCE = 250;
+    public int MOB_LEVEL_PER_DISTANCE = 125;
 
     public int MOB_LEVEL_ONE_AREA = 50;
 

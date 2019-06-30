@@ -161,9 +161,11 @@ public class PlayerMapData {
                 announceTimeLeft(player);
             }
 
-            player.setHealth(player.getMaxHealth() / 4); // needs to have more hp to actually teleport lol and not die
+            player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
 
             teleportPlayerBack(player);
+
+            player.setHealth(player.getMaxHealth() / 4); // needs to have more hp to actually teleport lol and not die
 
         }
 
