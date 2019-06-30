@@ -1,14 +1,14 @@
 {
-  "parent": "minecraft:/repair",
+  "parent": "minecraft:mine_and_slash/root",
   "display": {
     "icon": {
       "item": "mmorpg:salvage_station"
     },
     "title": {
-      "translate": ".advancements."
+      "translate": "mmorpg.advancements.salvage.title"
     },
     "description": {
-      "translate": ".advancements."
+      "translate": "mmorpg.advancements.salvage.description"
     },
     "frame": "task",
     "show_toast": true,

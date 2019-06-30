@@ -4,10 +4,10 @@
       "item": "mmorpg:repair_station"
     },
     "title": {
-      "translate": ".advancements."
+      "translate": "mmorpg.advancements.root.title"
     },
     "description": {
-      "translate": ".advancements."
+      "translate": "mmorpg.advancements.repair.description"
     },
     "frame": "task",
     "show_toast": false,
