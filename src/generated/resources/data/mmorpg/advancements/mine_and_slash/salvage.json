@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:mine_and_slash/root",
+  "parent": "mmorpg:mine_and_slash/root",
   "display": {
     "icon": {
       "item": "mmorpg:salvage_station"
