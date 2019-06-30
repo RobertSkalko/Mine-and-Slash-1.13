@@ -325,7 +325,7 @@ public class EntityData {
 
             float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getStatMultiplierIncreaseByTier();
 
-            float num = 1.2F * vanilla * rar.DamageMultiplier();
+            float num = 1.1F * vanilla * rar.DamageMultiplier();
 
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 

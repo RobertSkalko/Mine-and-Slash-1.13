@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 public class ContainerMasterBag extends Container {
 
     public enum ItemType {
-        GEAR(0, ItemFilterGroup.ANY_GEAR),
+        GEAR(0, ItemFilterGroup.ANY_GEAR_EXCEPT_UNIQUE),
         SPELL(1, ItemFilterGroup.ANY_SPELL),
         CURRENCY(2, ItemFilterGroup.ANY_CURRENCY),
         UNIQUE(3, ItemFilterGroup.ANY_UNIQUE),
