@@ -8,7 +8,7 @@ import com.robertx22.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ITrait;
 import com.robertx22.uncommon.interfaces.IWeighted;

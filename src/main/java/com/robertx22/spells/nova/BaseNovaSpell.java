@@ -6,7 +6,7 @@ import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;

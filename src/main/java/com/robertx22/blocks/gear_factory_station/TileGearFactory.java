@@ -9,7 +9,7 @@ import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;

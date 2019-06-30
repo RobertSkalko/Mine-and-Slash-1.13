@@ -3,7 +3,7 @@ package com.robertx22.blocks.map_device;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.Words;
+import com.robertx22.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;

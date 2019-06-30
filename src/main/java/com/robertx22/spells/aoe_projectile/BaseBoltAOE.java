@@ -2,7 +2,7 @@ package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.projectile.BaseBolt;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BaseBoltAOE extends BaseBolt {

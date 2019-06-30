@@ -6,7 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;

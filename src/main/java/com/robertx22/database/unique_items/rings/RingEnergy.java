@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;

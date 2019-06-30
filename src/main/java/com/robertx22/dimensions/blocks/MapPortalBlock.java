@@ -1,7 +1,7 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;

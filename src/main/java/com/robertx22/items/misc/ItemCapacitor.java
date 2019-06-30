@@ -1,7 +1,7 @@
 package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;

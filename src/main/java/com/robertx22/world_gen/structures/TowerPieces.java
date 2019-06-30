@@ -64,7 +64,7 @@ public class TowerPieces extends BasePieces {
 
         @Override
         public List<StructureProcessor> processors() {
-            return Arrays.asList(new ChestProcessor(30), new BiomeProcessor(iwp));
+            return Arrays.asList(new ChestProcessor(20), new BiomeProcessor(iwp));
         }
 
         public TowerPiece(TemplateManager templateManager, CompoundNBT nbt) {

@@ -7,7 +7,7 @@ import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellEffectDamage;
 import com.robertx22.spells.entities.bases.EntityElementalBolt;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;

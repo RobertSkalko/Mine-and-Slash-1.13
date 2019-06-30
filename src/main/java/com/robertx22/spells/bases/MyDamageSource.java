@@ -1,6 +1,6 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

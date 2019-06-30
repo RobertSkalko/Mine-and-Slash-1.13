@@ -2,7 +2,7 @@ package com.robertx22.items.consumables.bases;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabs;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.util.ITooltipFlag;

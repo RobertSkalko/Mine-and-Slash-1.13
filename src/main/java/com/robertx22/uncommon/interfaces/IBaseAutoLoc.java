@@ -24,7 +24,9 @@ public interface IBaseAutoLoc extends IGUID {
         Lootboxes,
         Chat_Messages,
         Configs,
-        Currency_Items
+        Currency_Items,
+        Advancement_titles,
+        Advancement_descriptions,
 
     }
 

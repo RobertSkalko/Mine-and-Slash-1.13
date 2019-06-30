@@ -9,7 +9,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat
 import com.robertx22.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

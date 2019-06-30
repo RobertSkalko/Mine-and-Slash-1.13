@@ -4,7 +4,7 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.LootType;
 
 import java.util.Arrays;

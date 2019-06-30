@@ -5,7 +5,7 @@ import com.robertx22.blocks.slots.FuelSlot;
 import com.robertx22.items.misc.ItemCapacitor;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

@@ -3,7 +3,7 @@ package com.robertx22.items.misc;
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.items.BaseItem;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;

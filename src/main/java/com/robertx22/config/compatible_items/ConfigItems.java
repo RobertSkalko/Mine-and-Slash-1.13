@@ -22,6 +22,8 @@ public class ConfigItems implements IConfig {
 
     String version = "1.3";
 
+    boolean enabled = true;
+
     public HashMap<String, ConfigItem> map = new HashMap();
 
     private List<ConfigItem> list = new ArrayList();
@@ -38,14 +40,17 @@ public class ConfigItems implements IConfig {
     }
 
     public void addAll(ConfigItems items) {
-        if (items != null && items.map != null) {
-            for (String regname : items.map.keySet()) {
-                System.out.println(Ref.MODID + ":Added Compatible Item: " + regname);
+
+        if (items.enabled) {
+            if (items != null && items.map != null) {
+                for (String regname : items.map.keySet()) {
+                    System.out.println(Ref.MODID + ":Added Compatible Item: " + regname);
+                }
+                this.map.putAll(items.map);
+                this.refreshList();
+            } else {
+                System.out.println("File in compatible items folder is not a correct one");
             }
-            this.map.putAll(items.map);
-            this.refreshList();
-        } else {
-            System.out.println("File in compatible items folder is not a correct one");
         }
     }
 

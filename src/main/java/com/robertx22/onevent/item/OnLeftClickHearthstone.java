@@ -2,7 +2,7 @@ package com.robertx22.onevent.item;
 
 import com.robertx22.items.level_incentives.Hearthstone;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.localization.Chats;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;

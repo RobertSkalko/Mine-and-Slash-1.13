@@ -1,12 +1,14 @@
 package com.robertx22.uncommon.develeper;
 
 import com.robertx22.db_lists.*;
-import com.robertx22.uncommon.Chats;
-import com.robertx22.uncommon.Words;
 import com.robertx22.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IBaseAutoLoc;
+import com.robertx22.uncommon.localization.AdvDescs;
+import com.robertx22.uncommon.localization.AdvTitles;
+import com.robertx22.uncommon.localization.Chats;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.DirUtils;
 
 import java.io.File;
@@ -131,6 +133,8 @@ public class CreateLangFile {
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.allIncludingUnique());
         list.addAll(Arrays.asList(Chats.values()));
+        list.addAll(Arrays.asList(AdvDescs.values()));
+        list.addAll(Arrays.asList(AdvTitles.values()));
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 

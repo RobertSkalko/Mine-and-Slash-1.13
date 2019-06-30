@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "item": "mmorpg:map_device"
+      "item": "mmorpg:sword/sword5"
     },
     "title": {
-      "translate": "mmorpg.advancements.root.title"
+      "translate": "mmorpg.advancement.title.welcomemineandslash"
     },
     "description": {
-      "translate": "mmorpg.advancements.root.description"
+      "translate": "mmorpg.advancement.desc.welcomemineandslash"
     },
     "frame": "task",
     "show_toast": false,

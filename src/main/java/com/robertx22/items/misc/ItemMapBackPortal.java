@@ -2,7 +2,7 @@ package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;

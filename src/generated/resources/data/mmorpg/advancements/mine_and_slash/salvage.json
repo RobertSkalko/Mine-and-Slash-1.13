@@ -5,10 +5,10 @@
       "item": "mmorpg:salvage_station"
     },
     "title": {
-      "translate": "mmorpg.advancements.salvage.title"
+      "translate": "mmorpg.advancement.title.salvagestation"
     },
     "description": {
-      "translate": "mmorpg.advancements.salvage.description"
+      "translate": "mmorpg.advancement.desc.salvagestation"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "placed_salvage": {
+    "gained_salvage": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "placed_salvage"
+      "gained_salvage"
     ]
   ]
 }

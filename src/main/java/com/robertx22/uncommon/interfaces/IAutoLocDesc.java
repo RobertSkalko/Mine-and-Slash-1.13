@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.interfaces;
 
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
 public interface IAutoLocDesc extends IBaseAutoLoc {

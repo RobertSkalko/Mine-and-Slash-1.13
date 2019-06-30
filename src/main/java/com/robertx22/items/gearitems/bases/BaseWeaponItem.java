@@ -1,7 +1,7 @@
 package com.robertx22.items.gearitems.bases;
 
 import com.google.common.collect.Sets;
-import com.robertx22.uncommon.Chats;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
 import net.minecraft.block.Block;

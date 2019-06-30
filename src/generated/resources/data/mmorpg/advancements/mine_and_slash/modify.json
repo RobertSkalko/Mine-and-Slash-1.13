@@ -5,10 +5,10 @@
       "item": "mmorpg:modify_station"
     },
     "title": {
-      "translate": "mmorpg.advancements.modify.title"
+      "translate": "mmorpg.advancement.title.modifystation"
     },
     "description": {
-      "translate": "mmorpg.advancements.modify.description"
+      "translate": "mmorpg.advancement.desc.modifystation"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "placed_modify": {
+    "gained_modify": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "placed_modify"
+      "gained_modify"
     ]
   ]
 }

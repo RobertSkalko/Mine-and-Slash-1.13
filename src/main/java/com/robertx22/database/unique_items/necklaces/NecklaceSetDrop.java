@@ -3,7 +3,7 @@ package com.robertx22.database.unique_items.necklaces;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.AllAttributesFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueNecklace;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;

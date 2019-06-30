@@ -6,7 +6,7 @@ import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;

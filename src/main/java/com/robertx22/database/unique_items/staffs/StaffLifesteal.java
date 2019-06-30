@@ -8,7 +8,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stats.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;

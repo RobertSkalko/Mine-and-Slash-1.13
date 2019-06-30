@@ -6,7 +6,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFla
 import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.database.stats.stat_mods.multi.defense.CriticalHitMulti;
 import com.robertx22.database.unique_items.bases.BaseUniqueBow;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

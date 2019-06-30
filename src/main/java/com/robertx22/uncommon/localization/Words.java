@@ -1,4 +1,4 @@
-package com.robertx22.uncommon;
+package com.robertx22.uncommon.localization;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.interfaces.IAutoLocName;

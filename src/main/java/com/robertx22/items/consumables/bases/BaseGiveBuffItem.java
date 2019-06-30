@@ -1,7 +1,7 @@
 package com.robertx22.items.consumables.bases;
 
 import com.robertx22.potion_effects.SpellPotionBase;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

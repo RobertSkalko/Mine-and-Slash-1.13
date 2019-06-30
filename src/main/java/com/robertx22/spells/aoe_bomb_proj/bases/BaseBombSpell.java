@@ -4,7 +4,7 @@ import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.projectile.BaseSpellProjectile;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BaseBombSpell extends BaseSpellProjectile {

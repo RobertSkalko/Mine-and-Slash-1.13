@@ -4,7 +4,7 @@ import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.generated.ElementalConversionFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

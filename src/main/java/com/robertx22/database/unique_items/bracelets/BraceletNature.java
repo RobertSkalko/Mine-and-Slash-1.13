@@ -7,7 +7,7 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat
 import com.robertx22.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBracelet;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

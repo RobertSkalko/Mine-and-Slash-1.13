@@ -1,7 +1,7 @@
 package com.robertx22.potion_effects;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;

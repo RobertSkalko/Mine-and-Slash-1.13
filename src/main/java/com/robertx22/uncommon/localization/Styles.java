@@ -1,4 +1,4 @@
-package com.robertx22.uncommon;
+package com.robertx22.uncommon.localization;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;

@@ -186,6 +186,6 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
 
     @Override
     public LootCrateCondition condition() {
-        return new NoMobAroundCondition(7);
+        return new NoMobAroundCondition(4);
     }
 }

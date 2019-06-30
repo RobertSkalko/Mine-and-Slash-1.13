@@ -9,7 +9,7 @@ import com.robertx22.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueHelmet;
-import com.robertx22.uncommon.Styles;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.Arrays;

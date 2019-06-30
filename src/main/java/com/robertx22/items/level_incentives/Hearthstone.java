@@ -2,9 +2,9 @@ package com.robertx22.items.level_incentives;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.Chats;
-import com.robertx22.uncommon.Styles;
-import com.robertx22.uncommon.Words;
+import com.robertx22.uncommon.localization.Chats;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.*;
 import net.minecraft.client.util.ITooltipFlag;
