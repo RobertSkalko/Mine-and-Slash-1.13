@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.mmorpg.Ref;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
@@ -59,8 +60,7 @@ public class MyAdvProvider implements IDataProvider {
     }
 
     private static Path resolve(Path path, Advancement advancement) {
-        return path.resolve("data/" + advancement.getId()
-                .getNamespace() + "/advancements/" + advancement.getId()
+        return path.resolve("data/" + Ref.MODID + "/advancements/" + advancement.getId()
                 .getPath() + ".json");
     }
 

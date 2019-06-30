@@ -58,7 +58,10 @@ minecraft {
             }
         }
 		
-		data {
+		mmorpg_data {		
+
+            taskName 'mmorpg_data'
+		
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
