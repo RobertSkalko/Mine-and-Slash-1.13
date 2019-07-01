@@ -9,6 +9,10 @@ public class Gear {
 
     private static final String LOC = "GEAR_ITEM_DATA";
 
+    public static boolean hasTag(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().contains(LOC);
+    }
+
     public static GearItemData Load(ItemStack stack) {
 
         if (stack == null) {

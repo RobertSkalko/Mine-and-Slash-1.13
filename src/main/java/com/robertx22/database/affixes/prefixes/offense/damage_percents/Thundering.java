@@ -1,7 +1,7 @@
 package com.robertx22.database.affixes.prefixes.offense.damage_percents;
 
 import com.robertx22.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class Thundering extends BaseDamagePercentPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Thunder));
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder));
     }
 
     @Override

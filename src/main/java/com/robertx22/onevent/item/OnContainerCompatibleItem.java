@@ -3,7 +3,6 @@ package com.robertx22.onevent.item;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItem;
 import com.robertx22.config.compatible_items.ConfigItems;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
@@ -36,9 +35,7 @@ public class OnContainerCompatibleItem {
                     continue;
                 }
 
-                GearItemData test = Gear.Load(stack);
-
-                if (test == null) {
+                if (Gear.hasTag(stack) == false) {
 
                     String reg = stack.getItem().getRegistryName().toString();
                     if (ConfigItems.INSTANCE.map.containsKey(reg)) {

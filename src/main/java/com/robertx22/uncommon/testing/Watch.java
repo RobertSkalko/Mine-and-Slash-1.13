@@ -6,9 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Watch {
 
-    StopWatch stop = new StopWatch();
+    public StopWatch stop = new StopWatch();
     int min = 0;
-    TimeUnit unit = TimeUnit.MICROSECONDS;
+    public TimeUnit unit = TimeUnit.MICROSECONDS;
 
     public Watch() {
         stop = new StopWatch();

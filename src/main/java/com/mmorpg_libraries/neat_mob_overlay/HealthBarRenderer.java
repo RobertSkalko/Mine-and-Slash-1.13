@@ -74,6 +74,7 @@ public class HealthBarRenderer {
                         .isEmpty())
                     renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
         }
+
     }
 
     public static void renderHealthBar(LivingEntity passedEntity, float partialTicks,
@@ -329,29 +330,28 @@ public class HealthBarRenderer {
     }
 
     public static Entity getEntityLookedAt(Entity e) {
-        Entity foundEntity = null;
-
-        int distance = 150;
-
-        Vec3d vec3d = e.getEyePosition(1);
-        Vec3d vec3d1 = e.getLook(1.0F);
-        Vec3d vec3d2 = vec3d.add(vec3d1.x * distance, vec3d1.y * distance, vec3d1.z * distance);
-
-        AxisAlignedBB axisalignedbb = e.getBoundingBox()
-                .expand(vec3d1.scale(distance))
-                .grow(1.0D, 1.0D, 1.0D);
-        EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221273_a(e, vec3d, vec3d2, axisalignedbb, (lookedEntity) -> {
-            return lookedEntity.canBeCollidedWith();
-        }, distance);
-
-        if (entityraytraceresult != null && entityraytraceresult.getEntity() != null) {
-            foundEntity = entityraytraceresult.getEntity();
-        }
+        Entity foundEntity = Minecraft.getInstance().pointedEntity;
 
         if (foundEntity == null) {
-            foundEntity = Minecraft.getInstance().pointedEntity;
-        }
 
+            int distance = NeatConfig.maxDistance;
+
+            Vec3d vec3d = e.getEyePosition(1);
+            Vec3d vec3d1 = e.getLook(1.0F);
+            Vec3d vec3d2 = vec3d.add(vec3d1.x * distance, vec3d1.y * distance, vec3d1.z * distance);
+
+            AxisAlignedBB axisalignedbb = e.getBoundingBox()
+                    .expand(vec3d1.scale(distance))
+                    .grow(1.0D, 1.0D, 1.0D);
+            EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221273_a(e, vec3d, vec3d2, axisalignedbb, (lookedEntity) -> {
+                return lookedEntity.canBeCollidedWith();
+            }, distance);
+
+            if (entityraytraceresult != null && entityraytraceresult.getEntity() != null) {
+                foundEntity = entityraytraceresult.getEntity();
+            }
+
+        }
         return foundEntity;
     }
 
