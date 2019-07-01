@@ -44,7 +44,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public int BaseValue() {
-        return 6;
+        return 8;
     }
 
     @Override

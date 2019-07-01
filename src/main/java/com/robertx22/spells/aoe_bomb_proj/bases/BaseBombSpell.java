@@ -10,6 +10,11 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
+    public int BaseValue() {
+        return 6;
+    }
+
+    @Override
     public int useTimeTicks() {
         return 20;
     }
