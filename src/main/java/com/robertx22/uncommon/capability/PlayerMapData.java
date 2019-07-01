@@ -3,12 +3,12 @@ package com.robertx22.uncommon.capability;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.localization.Chats;
-import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.localization.Chats;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
@@ -37,6 +37,7 @@ public class PlayerMapData {
     static final String POS_OBJ = "POS_OBJ";
     static final String ORIGINAL_DIM = "original_dimension";
     static final String MAP_GUID = "MAP_GUID";
+    static final String MIN_PASSED = "MIN_PASSED";
 
     public interface IPlayerMapData extends ICommonCapability {
 
@@ -113,6 +114,7 @@ public class PlayerMapData {
 
             nbt.putString(MAP_GUID, mapGUID);
             nbt.putLong(POS_OBJ, mapDevicePos);
+            nbt.putInt(MIN_PASSED, minutesPassed);
 
             if (this.originalDimension != null) {
                 nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
@@ -130,6 +132,7 @@ public class PlayerMapData {
             mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);
             this.mapGUID = nbt.getString(MAP_GUID);
+            this.minutesPassed = nbt.getInt(MIN_PASSED);
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
             }
@@ -164,8 +167,6 @@ public class PlayerMapData {
             player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
 
             teleportPlayerBack(player);
-
-            player.setHealth(player.getMaxHealth() / 4); // needs to have more hp to actually teleport lol and not die
 
         }
 

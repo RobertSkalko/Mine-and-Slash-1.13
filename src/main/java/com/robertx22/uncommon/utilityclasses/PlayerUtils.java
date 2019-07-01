@@ -46,6 +46,8 @@ public class PlayerUtils {
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
             return null;
 
+        player.setInvulnerable(true);
+
         DimensionType dimensiontype = player.dimension;
 
         ServerWorld serverworld = player.server.getWorld(dimensiontype);
@@ -99,6 +101,8 @@ public class PlayerUtils {
         }
 
         player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
+
+        player.setInvulnerable(false); // MUST CALL
 
         net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
         return player;
