@@ -1,3 +1,9 @@
+2.0.6
+
+2.0.5
+fixed tower structure ladders
+fixed some tooltip errors
+new icons made by Matpac added!
 2.0.4
 fixed server crash
 added a few basic advancements to serve as a guide
