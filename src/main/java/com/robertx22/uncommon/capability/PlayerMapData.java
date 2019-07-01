@@ -41,6 +41,8 @@ public class PlayerMapData {
 
     public interface IPlayerMapData extends ICommonCapability {
 
+        void onTickIfDead(ServerPlayerEntity player);
+
         float getLootMultiplier(PlayerEntity player);
 
         String getLastMapGUID();
@@ -104,6 +106,7 @@ public class PlayerMapData {
         DimensionType originalDimension = null;
         int minutesPassed = 0;
         String mapGUID = ""; // used to check if same map for chests
+        boolean isDead = false;
 
         @Override
         public CompoundNBT getNBT() {
@@ -115,6 +118,7 @@ public class PlayerMapData {
             nbt.putString(MAP_GUID, mapGUID);
             nbt.putLong(POS_OBJ, mapDevicePos);
             nbt.putInt(MIN_PASSED, minutesPassed);
+            nbt.putBoolean("isdead", isDead);
 
             if (this.originalDimension != null) {
                 nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
@@ -133,6 +137,7 @@ public class PlayerMapData {
             this.mapDevicePos = nbt.getLong(POS_OBJ);
             this.mapGUID = nbt.getString(MAP_GUID);
             this.minutesPassed = nbt.getInt(MIN_PASSED);
+            this.isDead = nbt.getBoolean("isdead");
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
             }
@@ -141,6 +146,8 @@ public class PlayerMapData {
 
         @Override
         public void onPlayerDeath(PlayerEntity player) {
+
+            this.isDead = true;
 
             if (this.isPermaDeath()) {
 
@@ -165,8 +172,6 @@ public class PlayerMapData {
             }
 
             player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
-
-            teleportPlayerBack(player);
 
         }
 
@@ -210,6 +215,14 @@ public class PlayerMapData {
                 if (minutesLeft < 5 || minutesLeft % 5 == 0) {
                     announceTimeLeft(player);
                 }
+            }
+        }
+
+        @Override
+        public void onTickIfDead(ServerPlayerEntity player) {
+            if (isDead) {
+                this.isDead = false;
+                teleportPlayerBack(player);
             }
         }
 

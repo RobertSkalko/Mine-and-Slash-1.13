@@ -5,15 +5,31 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 @EventBusSubscriber
 public class OnDeathInMap {
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    // this is needed cus otherwise it crashes with removing ticking entity
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void ontick(TickEvent.PlayerTickEvent evt) {
+
+        try {
+            if (evt.player.world.isRemote == false) {
+                Load.playerMapData(evt.player)
+                        .onTickIfDead((ServerPlayerEntity) evt.player);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDeath(LivingDeathEvent evt) {
 
         try {
@@ -28,10 +44,14 @@ public class OnDeathInMap {
                 PlayerEntity player = (PlayerEntity) living;
 
                 if (WorldUtils.isMapWorld(living.world)) {
+
                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
-                    data.onPlayerDeath(player);
+                    player.setLocationAndAngles(player.posX, player.world.getHeight() - 1, player.posZ, 0, 0);
+
                     evt.setCanceled(true);
+
+                    data.onPlayerDeath(player);
 
                 }
 
