@@ -20,7 +20,7 @@ public class CreateLangFile {
 
     public static void create() {
 
-        String json = "{\n" + ManualJSONString.get;
+        String json = "{\n" + DirUtils.getManualString();
 
         // dont print duplicates
         List<String> usedGUIDS = new ArrayList<>();

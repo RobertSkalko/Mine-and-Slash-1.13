@@ -1,23 +1,23 @@
 package com.robertx22.mmorpg.registers.client;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
-import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
-import com.robertx22.spells.aoe_projectile.SpellFlameExplosion;
-import com.robertx22.spells.aoe_projectile.SpellFrostExplosion;
-import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
 import com.robertx22.spells.entities.bases.EntityStaffProjectile;
-import com.robertx22.spells.projectile.SpellAcidBolt;
-import com.robertx22.spells.projectile.SpellFireBolt;
-import com.robertx22.spells.projectile.SpellFrostBolt;
-import com.robertx22.spells.projectile.SpellThunderBolt;
+import com.robertx22.spells.entities.bases.IMyRenderAsItem;
+import com.robertx22.spells.entities.bases.MySpriteRenderer;
+import com.robertx22.spells.entities.bases.aoe.EntityAcidExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityFlameExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityFrostExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityLightningExplosion;
+import com.robertx22.spells.entities.bases.bomb.EntityAcidBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityFireBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityIceBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityThunderBomb;
+import com.robertx22.spells.entities.bases.proj.EntityAcidBolt;
+import com.robertx22.spells.entities.bases.proj.EntityFireBolt;
+import com.robertx22.spells.entities.bases.proj.EntityFrostBolt;
+import com.robertx22.spells.entities.bases.proj.EntityThunderBolt;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -29,28 +29,28 @@ public class RenderRegister {
     //@SubscribeEvent
     public static void regRenders(/*ModelRegistryEvent evt*/) {
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellFireBolt.EntityFireBolt.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellFireBomb.EntityFireBomb.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellFlameExplosion.EntityFlameExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFireBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFlameExplosion.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellFrostBolt.EntityFrostBolt.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellIceBomb.EntityIceBomb.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellFrostExplosion.EntityFrostExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFrostBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityIceBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFrostExplosion.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBolt.EntityThunderBolt.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellLightningExplosion.EntityLightningExplosion.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellThunderBomb.EntityThunderBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityThunderBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityLightningExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityThunderBomb.class, newRenFac());
 
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBolt.EntityAcidBolt.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidExplosion.EntityAcidExplosion.class, newRenFac());
-        RenderingRegistry.registerEntityRenderingHandler(SpellAcidBomb.EntityAcidBomb.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityAcidBolt.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityAcidExplosion.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityAcidBomb.class, newRenFac());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac());
 
     }
 
-    private static <T extends Entity & IRendersAsItem> IRenderFactory<T> newRenFac() {
-        return manager -> new SpriteRenderer<>(manager, Minecraft.getInstance()
+    private static <T extends Entity & IMyRenderAsItem> IRenderFactory<T> newRenFac() {
+        return manager -> new MySpriteRenderer<>(manager, Minecraft.getInstance()
                 .getItemRenderer());
     }
 }

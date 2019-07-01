@@ -41,7 +41,9 @@ public class ParticleUtils {
                     .nextFloat());
             double d2 = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
 
-            en.world.addParticle(particle, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+            if (en.world.isRemote) {
+                en.world.addParticle(particle, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+            }
         }
     }
 

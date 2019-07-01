@@ -6,7 +6,10 @@ import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -26,8 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public abstract class EntityBaseProjectile extends Entity implements IProjectile, IRendersAsItem, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends Entity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
 
     Entity homindTarget = null;
     boolean setHomingTarget = false;
@@ -326,7 +328,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         float f1 = 0.99F;
         float f2 = this.getGravityVelocity();
 
-        if (this.isInWater()) {
+        if (world.isRemote && this.isInWater()) {
             for (int j = 0; j < 4; ++j) {
                 this.world.addParticle(ParticleTypes.BUBBLE, true, this.posX - this.getMotion().x * 0.25D, this.posY - this
                         .getMotion().y * 0.25D, this.posZ - this.getMotion().z * 0.25D, this

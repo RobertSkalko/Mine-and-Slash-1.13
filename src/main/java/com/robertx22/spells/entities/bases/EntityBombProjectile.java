@@ -8,19 +8,15 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     @Override
@@ -72,7 +68,9 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
         }
 
-        this.world.addParticle(ParticleTypes.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
+        if (world.isRemote) {
+            this.world.addParticle(ParticleTypes.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
+        }
 
         if (!this.world.isRemote && caster != null && effect != null) {
 

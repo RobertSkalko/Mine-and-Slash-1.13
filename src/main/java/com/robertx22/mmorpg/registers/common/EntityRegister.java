@@ -1,19 +1,19 @@
 package com.robertx22.mmorpg.registers.common;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
-import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
-import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
-import com.robertx22.spells.aoe_projectile.SpellFlameExplosion;
-import com.robertx22.spells.aoe_projectile.SpellFrostExplosion;
-import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
 import com.robertx22.spells.entities.bases.EntityStaffProjectile;
-import com.robertx22.spells.projectile.SpellAcidBolt;
-import com.robertx22.spells.projectile.SpellFireBolt;
-import com.robertx22.spells.projectile.SpellFrostBolt;
-import com.robertx22.spells.projectile.SpellThunderBolt;
+import com.robertx22.spells.entities.bases.aoe.EntityAcidExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityFlameExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityFrostExplosion;
+import com.robertx22.spells.entities.bases.aoe.EntityLightningExplosion;
+import com.robertx22.spells.entities.bases.bomb.EntityAcidBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityFireBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityIceBomb;
+import com.robertx22.spells.entities.bases.bomb.EntityThunderBomb;
+import com.robertx22.spells.entities.bases.proj.EntityAcidBolt;
+import com.robertx22.spells.entities.bases.proj.EntityFireBolt;
+import com.robertx22.spells.entities.bases.proj.EntityFrostBolt;
+import com.robertx22.spells.entities.bases.proj.EntityThunderBolt;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -60,20 +60,20 @@ public class EntityRegister {
 
     static {
 
-        FIREBOLT = newType(SpellFireBolt.EntityFireBolt.class, SpellFireBolt.EntityFireBolt::new, SpellFireBolt.EntityFireBolt::new, "entity_fire_bolt");
-        FROSTBOLT = newType(SpellFrostBolt.EntityFrostBolt.class, SpellFrostBolt.EntityFrostBolt::new, SpellFrostBolt.EntityFrostBolt::new, "entity_frost_bolt");
-        ACIDBOLT = newType(SpellAcidBolt.EntityAcidBolt.class, SpellAcidBolt.EntityAcidBolt::new, SpellAcidBolt.EntityAcidBolt::new, "entity_acid_bolt");
-        THUNDERBOLT = newType(SpellThunderBolt.EntityThunderBolt.class, SpellThunderBolt.EntityThunderBolt::new, SpellThunderBolt.EntityThunderBolt::new, "entity_thunder_bolt");
+        FIREBOLT = newType(EntityFireBolt.class, EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
+        FROSTBOLT = newType(EntityFrostBolt.class, EntityFrostBolt::new, EntityFrostBolt::new, "entity_frost_bolt");
+        ACIDBOLT = newType(EntityAcidBolt.class, EntityAcidBolt::new, EntityAcidBolt::new, "entity_acid_bolt");
+        THUNDERBOLT = newType(EntityThunderBolt.class, EntityThunderBolt::new, EntityThunderBolt::new, "entity_thunder_bolt");
 
-        FIREEXPLOSION = newType(SpellFlameExplosion.EntityFlameExplosion.class, SpellFlameExplosion.EntityFlameExplosion::new, SpellFlameExplosion.EntityFlameExplosion::new, "entity_flame_explosion");
-        FROSTEXPLOSION = newType(SpellFrostExplosion.EntityFrostExplosion.class, SpellFrostExplosion.EntityFrostExplosion::new, SpellFrostExplosion.EntityFrostExplosion::new, "entity_frost_explosion");
-        ACIDEXPLOSION = newType(SpellAcidExplosion.EntityAcidExplosion.class, SpellAcidExplosion.EntityAcidExplosion::new, SpellAcidExplosion.EntityAcidExplosion::new, "entity_acid_explosion");
-        THUNDEREXPLOSION = newType(SpellLightningExplosion.EntityLightningExplosion.class, SpellLightningExplosion.EntityLightningExplosion::new, SpellLightningExplosion.EntityLightningExplosion::new, "entity_lightning_explosion");
+        FIREEXPLOSION = newType(EntityFlameExplosion.class, EntityFlameExplosion::new, EntityFlameExplosion::new, "entity_flame_explosion");
+        FROSTEXPLOSION = newType(EntityFrostExplosion.class, EntityFrostExplosion::new, EntityFrostExplosion::new, "entity_frost_explosion");
+        ACIDEXPLOSION = newType(EntityAcidExplosion.class, EntityAcidExplosion::new, EntityAcidExplosion::new, "entity_acid_explosion");
+        THUNDEREXPLOSION = newType(EntityLightningExplosion.class, EntityLightningExplosion::new, EntityLightningExplosion::new, "entity_lightning_explosion");
 
-        FIREBOMB = newType(SpellFireBomb.EntityFireBomb.class, SpellFireBomb.EntityFireBomb::new, SpellFireBomb.EntityFireBomb::new, "entity_fire_bomb");
-        FROSTBOMB = newType(SpellIceBomb.EntityIceBomb.class, SpellIceBomb.EntityIceBomb::new, SpellIceBomb.EntityIceBomb::new, "entity_ice_bomb");
-        ACIDBOMB = newType(SpellAcidBomb.EntityAcidBomb.class, SpellAcidBomb.EntityAcidBomb::new, SpellAcidBomb.EntityAcidBomb::new, "entity_acid_bomb");
-        THUNDERBOMB = newType(SpellThunderBomb.EntityThunderBomb.class, SpellThunderBomb.EntityThunderBomb::new, SpellThunderBomb.EntityThunderBomb::new, "entity_thunder_bomb");
+        FIREBOMB = newType(EntityFireBomb.class, EntityFireBomb::new, EntityFireBomb::new, "entity_fire_bomb");
+        FROSTBOMB = newType(EntityIceBomb.class, EntityIceBomb::new, EntityIceBomb::new, "entity_ice_bomb");
+        ACIDBOMB = newType(EntityAcidBomb.class, EntityAcidBomb::new, EntityAcidBomb::new, "entity_acid_bomb");
+        THUNDERBOMB = newType(EntityThunderBomb.class, EntityThunderBomb::new, EntityThunderBomb::new, "entity_thunder_bomb");
 
         STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
 
