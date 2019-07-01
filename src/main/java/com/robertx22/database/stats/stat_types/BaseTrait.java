@@ -8,10 +8,10 @@ import com.robertx22.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ITrait;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -81,9 +81,10 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
         list.add(text);
 
         if (Screen.hasAltDown()) {
-
-            list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
-                    .locDesc()).appendText("]"));
+            if (locDescForLangFile().isEmpty() == false) {
+                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
+                        .locDesc()).appendText("]"));
+            }
 
             if (basestat instanceof Trait) {
                 Trait trait = (Trait) basestat;

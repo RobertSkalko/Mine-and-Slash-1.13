@@ -18,12 +18,12 @@ public class MythicalMob extends BaseMythical implements MobRarity {
 
     @Override
     public float HealthMultiplier() {
-        return 15;
+        return 10;
     }
 
     @Override
     public float LootMultiplier() {
-        return 10F;
+        return 9F;
     }
 
     @Override
