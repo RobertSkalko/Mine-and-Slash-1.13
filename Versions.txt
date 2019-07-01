@@ -1,6 +1,7 @@
 2.0.6
 fix runes not being inserable into modify station
 increased base spell dmg a bit
+fixed runed gear tooltips
 2.0.5
 fixed tower structure ladders
 fixed some tooltip errors

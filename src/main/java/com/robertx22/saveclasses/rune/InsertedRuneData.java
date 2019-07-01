@@ -82,8 +82,9 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         RuneRarity rar = this.getRarity();
 
         for (ITextComponent s : list) {
-            list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [" + s + rar
-                    .Color() + " ]"));
+            list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [")
+                    .appendSibling(s)
+                    .appendText(rar.Color() + " ]"));
         }
 
         return list2;
