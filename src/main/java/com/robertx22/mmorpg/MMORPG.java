@@ -75,12 +75,12 @@ public class MMORPG {
 
         System.out.println("Starting Mine and Slash");
 
-        OnStartResetMaps.OnStartResetMaps();
-
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ConfigRegister.register(); // MUST BE IN MAIN CLASS
         ConfigRegister.load();  // MUST BE IN MAIN CLASS
+
+        OnStartResetMaps.OnStartResetMaps();
 
         Initialization.initAllDatabases(); // after config init
 

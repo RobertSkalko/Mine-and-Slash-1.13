@@ -8,6 +8,6 @@ public class RuneItemFilter extends ItemFilter {
 
     @Override
     public boolean IsValidItem(ItemStack stack) {
-        return Rune.Load(stack) != null;
+        return Rune.has(stack);
     }
 }

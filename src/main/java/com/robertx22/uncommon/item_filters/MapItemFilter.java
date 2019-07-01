@@ -8,6 +8,6 @@ public class MapItemFilter extends ItemFilter {
 
     @Override
     public boolean IsValidItem(ItemStack stack) {
-        return Map.Load(stack) != null;
+        return Map.has(stack);
     }
 }

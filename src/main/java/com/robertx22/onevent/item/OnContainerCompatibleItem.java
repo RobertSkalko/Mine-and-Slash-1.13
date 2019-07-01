@@ -37,7 +37,7 @@ public class OnContainerCompatibleItem {
                 }
 
                 // fast check for every item
-                if (Gear.hasTag(stack) == false) {
+                if (Gear.has(stack) == false) {
 
                     String reg = stack.getItem().getRegistryName().toString();
                     if (ConfigItems.INSTANCE.map.containsKey(reg)) {

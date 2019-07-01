@@ -8,6 +8,6 @@ public class SpellItemFilter extends ItemFilter {
 
     @Override
     public boolean IsValidItem(ItemStack stack) {
-        return Spell.Load(stack) != null;
+        return Spell.has(stack);
     }
 }

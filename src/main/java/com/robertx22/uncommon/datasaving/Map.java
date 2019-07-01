@@ -9,6 +9,10 @@ public class Map {
     private static final String LOC = "MAP_ITEM_DATA";
     private static final String NBT_LOC = "mapObject";
 
+    public static boolean has(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().contains(LOC);
+    }
+
     public static MapItemData Load(ItemStack stack) {
 
         if (stack == null) {

@@ -9,6 +9,10 @@ public class Spell {
 
     private static final String LOC = "SPELL_ITEM_DATA";
 
+    public static boolean has(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().contains(LOC);
+    }
+
     public static SpellItemData Load(ItemStack stack) {
 
         if (stack == null) {

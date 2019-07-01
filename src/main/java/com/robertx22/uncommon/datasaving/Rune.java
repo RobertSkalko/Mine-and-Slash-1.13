@@ -9,6 +9,10 @@ public class Rune {
 
     private static final String LOC = "RUNE_ITEM_DATA";
 
+    public static boolean has(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().contains(LOC);
+    }
+
     public static RuneItemData Load(ItemStack stack) {
 
         if (stack == null) {

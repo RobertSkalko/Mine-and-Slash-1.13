@@ -8,6 +8,6 @@ public class GearItemFilter extends ItemFilter {
 
     @Override
     public boolean IsValidItem(ItemStack stack) {
-        return Gear.Load(stack) != null;
+        return Gear.has(stack);
     }
 }
