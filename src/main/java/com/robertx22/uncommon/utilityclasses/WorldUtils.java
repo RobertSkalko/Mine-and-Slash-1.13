@@ -72,7 +72,7 @@ public class WorldUtils {
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
-        pos = getSurface(world, pos);
+        pos = getSurface(world, pos).up();
 
         return pos;
 
