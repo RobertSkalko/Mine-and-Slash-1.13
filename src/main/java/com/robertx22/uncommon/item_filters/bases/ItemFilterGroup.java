@@ -12,6 +12,7 @@ public class ItemFilterGroup {
     public static final ItemFilterGroup LOOT_BAG_FILTER = new ItemFilterGroup(Arrays.asList(new GearItemFilter(), new RuneItemFilter(), new SpellItemFilter()));
     public static final ItemFilterGroup ANY_MAP = new ItemFilterGroup(new MapItemFilter());
     public static final ItemFilterGroup ANY_CURRENCY = new ItemFilterGroup(new CurrencyItemFilter());
+    public static final ItemFilterGroup ANY_MODIFY = new ItemFilterGroup(new ModifyItemFilter());
     public static final ItemFilterGroup ANY_UNIQUE = new ItemFilterGroup(new UniqueItemFilter());
     public static final ItemFilterGroup ANY_GEAR = new ItemFilterGroup(new GearItemFilter());
     public static final ItemFilterGroup ANY_GEAR_EXCEPT_UNIQUE = new ItemFilterGroup(new GearExceptUniqueFilter());

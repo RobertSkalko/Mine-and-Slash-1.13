@@ -1,7 +1,7 @@
 package com.robertx22.blocks.item_modify_station;
 
 import com.robertx22.blocks.bases.BaseTileContainer;
-import com.robertx22.blocks.slots.CurrencySlot;
+import com.robertx22.blocks.slots.AnyModifySlot;
 import com.robertx22.blocks.slots.ModifySlot;
 import com.robertx22.blocks.slots.OutputSlot;
 import com.robertx22.mmorpg.registers.common.ContainerTypeRegisters;
@@ -69,7 +69,7 @@ public class ContainerGearModify extends BaseTileContainer {
 
         addSlot(new ModifySlot(inventory, count++, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
-        addSlot(new CurrencySlot(inventory, count++, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+        addSlot(new AnyModifySlot(inventory, count++, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
         final int OUTPUT_SLOTS_XPOS = 134;
         final int OUTPUT_SLOTS_YPOS = 24;
