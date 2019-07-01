@@ -1,5 +1,6 @@
 package com.robertx22.onevent.world;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.world_providers.BaseWorldProvider;
 import com.robertx22.mmorpg.Ref;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -18,19 +19,22 @@ public class OnStartResetMaps {
 
     public static void OnStartResetMaps() {
 
-        File file = new File(FMLPaths.GAMEDIR.get().toAbsolutePath().toString());
-        for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
+        if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
 
-            try {
+            File file = new File(FMLPaths.GAMEDIR.get().toAbsolutePath().toString());
+            for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
 
-                if (dirMatches(dir)) {
-                    System.out.println("Deleting Resettable Map Folder from Mine and Slash");
-                    deleteDirectoryRecursion(dir.toPath());
+                try {
+
+                    if (dirMatches(dir)) {
+                        System.out.println("Deleting Resettable Map Folder from Mine and Slash");
+                        deleteDirectoryRecursion(dir.toPath());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.robertx22.onevent.item;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItem;
 import com.robertx22.config.compatible_items.ConfigItems;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
@@ -35,6 +36,7 @@ public class OnContainerCompatibleItem {
                     continue;
                 }
 
+                // fast check for every item
                 if (Gear.hasTag(stack) == false) {
 
                     String reg = stack.getItem().getRegistryName().toString();
@@ -49,10 +51,12 @@ public class OnContainerCompatibleItem {
                                 data = Load.Unit(player);
                             }
 
-                            stack = config.create(stack, data.getLevel());
-
-                            event.getEntityPlayer().inventory.markDirty();
-
+                            // slow check to make absolutely sure it doesnt have stats
+                            GearItemData gear = Gear.Load(stack);
+                            if (gear == null) {
+                                stack = config.create(stack, data.getLevel());
+                                event.getEntityPlayer().inventory.markDirty();
+                            }
                         }
                     }
 

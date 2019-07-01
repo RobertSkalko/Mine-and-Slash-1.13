@@ -1,5 +1,6 @@
 package com.robertx22.database.world_providers;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.world_gen.types.FeatureType;
@@ -172,7 +173,9 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
         ChunkGenerator gen = chunkType.create(this.world, biomeProvider, settings);
 
-        gen.seed = MMORPG.MAP_WORLD_SEED;
+        if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
+            gen.seed = MMORPG.MAP_WORLD_SEED;
+        }
 
         return gen;
     }

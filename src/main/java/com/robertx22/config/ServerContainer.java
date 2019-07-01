@@ -12,6 +12,7 @@ public class ServerContainer {
     public BooleanValue LEVEL_UPS_COST_TOKEN;
     public BooleanValue USE_ATTACK_COOLDOWN;
     public BooleanValue GET_STARTER_ITEMS;
+    public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
 
     public IntValue MAXIMUM_WORN_RUNED_ITEMS;
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
@@ -40,6 +41,10 @@ public class ServerContainer {
         USE_ATTACK_COOLDOWN = builder.comment(".")
                 .translation("mmorpg.word")
                 .define("USE_ATTACK_COOLDOWN", true);
+
+        RESET_MAP_DIMENSIONS_ON_LOAD = builder.comment(".")
+                .translation("mmorpg.word")
+                .define("RESET_MAP_DIMENSIONS_ON_LOAD", true);
 
         GET_STARTER_ITEMS = builder.comment(".")
                 .translation("mmorpg.word")

@@ -1,7 +1,6 @@
 package com.robertx22.onevent.item;
 
 import com.robertx22.items.bags.BaseBagItem;
-import com.robertx22.uncommon.testing.Watch;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SCollectItemPacket;
@@ -17,8 +16,6 @@ public class OnPickupInsertIntoBag {
 
     @SubscribeEvent
     public static void onPickupItem(EntityItemPickupEvent event) {
-
-        Watch watch = new Watch().min(100);
 
         ItemStack stack = event.getItem().getItem();
 
@@ -39,9 +36,9 @@ public class OnPickupInsertIntoBag {
                     ItemStack result = bagInv.insertItem(x, stack, false);
                     int numPickedUp = stack.getCount() - result.getCount();
 
-                    event.getItem().setItem(result);
-
                     if (numPickedUp > 0) {
+                        event.getItem().setItem(result);
+
                         event.setCanceled(true);
                         if (!event.getItem().isSilent()) {
                             event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
@@ -55,7 +52,6 @@ public class OnPickupInsertIntoBag {
                                 .getEntityId(), numPickedUp));
                         event.getEntityPlayer().openContainer.detectAndSendChanges();
 
-                        watch.print("pickup item ");
                         return;
                     }
                 }
@@ -63,8 +59,6 @@ public class OnPickupInsertIntoBag {
             }
 
         }
-
-        watch.print("pickup item ");
 
     }
 }
