@@ -5,13 +5,17 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
     public EntityElementalBoltAOE(EntityType<? extends Entity> type, World worldIn) {

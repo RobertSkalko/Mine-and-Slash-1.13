@@ -3,6 +3,7 @@ package com.robertx22.uncommon.interfaces;
 import com.robertx22.database.IGUID;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effect;
 
 public interface IBaseAutoLoc extends IGUID {
 
@@ -31,11 +32,12 @@ public interface IBaseAutoLoc extends IGUID {
     }
 
     default String getPrefix() {
-
         if (this instanceof Item) {
             return "item.";
         } else if (this instanceof Block) {
             return "block.";
+        } else if (this instanceof Effect) {
+            return "effect.";
         } else {
             return "";
         }

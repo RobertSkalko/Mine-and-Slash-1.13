@@ -7,8 +7,11 @@ import com.robertx22.spells.entities.bases.EntityBombProjectile;
 import com.robertx22.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpellFireBomb extends BaseBombSpell {
@@ -17,6 +20,7 @@ public class SpellFireBomb extends BaseBombSpell {
         super();
     }
 
+    @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
     static public class EntityFireBomb extends EntityBombProjectile {
         public EntityFireBomb(EntityType<? extends EntityFireBomb> type, World world) {
             super(type, world);

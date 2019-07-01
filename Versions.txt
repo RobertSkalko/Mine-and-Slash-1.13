@@ -1,0 +1,4 @@
+2.0.4
+fixed server crash
+added a few basic advancements to serve as a guide
+swords and hammers got a graphic overhaul, also ores
