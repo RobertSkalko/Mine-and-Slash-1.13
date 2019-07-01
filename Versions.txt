@@ -1,3 +1,6 @@
+2.0.8
+try fix server crash on player death in map
+
 2.0.7
 fixed thundering affix giving flat dmg instead of percent
 fixed render bar performance being slow

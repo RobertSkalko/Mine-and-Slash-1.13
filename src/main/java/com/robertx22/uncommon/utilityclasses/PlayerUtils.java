@@ -43,68 +43,81 @@ public class PlayerUtils {
     public static Entity changeDimension(ServerPlayerEntity player,
                                          DimensionType destination, BlockPos pos) {
 
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
-            return null;
+        try {
+            if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
+                return null;
 
-        player.setInvulnerable(true);
+            player.setInvulnerable(true);
 
-        DimensionType dimensiontype = player.dimension;
+            DimensionType dimensiontype = player.dimension;
 
-        ServerWorld serverworld = player.server.getWorld(dimensiontype);
-        player.dimension = destination;
-        ServerWorld serverworld1 = player.server.getWorld(destination);
-        WorldInfo worldinfo = player.world.getWorldInfo();
-        player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager
-                .getGameType()));
-        player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
-                .isDifficultyLocked()));
-        PlayerList playerlist = player.server.getPlayerList();
-        playerlist.updatePermissionLevel(player);
-        serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
-        player.revive();
-        double d0 = player.posX;
-        double d1 = player.posY;
-        double d2 = player.posZ;
-        float f = player.rotationPitch;
-        float f1 = player.rotationYaw;
+            ServerWorld serverworld = player.server.getWorld(dimensiontype);
+            player.dimension = destination;
+            ServerWorld serverworld1 = player.server.getWorld(destination);
+            WorldInfo worldinfo = player.world.getWorldInfo();
+            player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager
+                    .getGameType()));
+            player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
+                    .isDifficultyLocked()));
+            PlayerList playerlist = player.server.getPlayerList();
+            playerlist.updatePermissionLevel(player);
+            serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
+            player.revive();
+            double d0 = player.posX;
+            double d1 = player.posY;
+            double d2 = player.posZ;
+            float f = player.rotationPitch;
+            float f1 = player.rotationYaw;
 
-        double moveFactor = serverworld.getDimension()
-                .getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-        d0 *= moveFactor;
-        d2 *= moveFactor;
+            double moveFactor = serverworld.getDimension()
+                    .getMovementFactor() / serverworld1.getDimension()
+                    .getMovementFactor();
+            d0 *= moveFactor;
+            d2 *= moveFactor;
 
-        player.setLocationAndAngles(d0, d1, d2, f1, f);
-        player.setMotion(Vec3d.ZERO);
+            player.setLocationAndAngles(d0, d1, d2, f1, f);
+            player.setMotion(Vec3d.ZERO);
 
-        double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-        double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-        double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-        double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-        d0 = MathHelper.clamp(d0, d7, d5);
-        d2 = MathHelper.clamp(d2, d4, d6);
-        player.setLocationAndAngles(d0, d1, d2, f1, f);
-        player.setMotion(Vec3d.ZERO);
+            double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder()
+                    .minX() + 16.0D);
+            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder()
+                    .minZ() + 16.0D);
+            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder()
+                    .maxX() - 16.0D);
+            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder()
+                    .maxZ() - 16.0D);
+            d0 = MathHelper.clamp(d0, d7, d5);
+            d2 = MathHelper.clamp(d2, d4, d6);
+            player.setLocationAndAngles(d0, d1, d2, f1, f);
+            player.setMotion(Vec3d.ZERO);
 
-        player.setWorld(serverworld1);
-        serverworld1.func_217447_b(player);
-        player.func_213846_b(serverworld);
-        player.connection.setPlayerLocation(pos.getX(), pos.getY(), pos.getZ(), f1, f);
-        player.setMotion(Vec3d.ZERO);
+            player.setWorld(serverworld1);
+            serverworld1.func_217447_b(player);
+            player.func_213846_b(serverworld);
+            player.connection.setPlayerLocation(pos.getX(), pos.getY(), pos.getZ(), f1, f);
+            player.setMotion(Vec3d.ZERO);
 
-        player.interactionManager.setWorld(serverworld1);
-        player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
-        playerlist.sendWorldInfo(player, serverworld1);
-        playerlist.sendInventory(player);
+            player.interactionManager.setWorld(serverworld1);
+            player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
+            playerlist.sendWorldInfo(player, serverworld1);
+            playerlist.sendInventory(player);
 
-        for (EffectInstance effectinstance : player.getActivePotionEffects()) {
-            player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
+            for (EffectInstance effectinstance : player.getActivePotionEffects()) {
+                player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
+            }
+
+            player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
+
+            player.setInvulnerable(false); // MUST CALL
+
+            net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            player.setInvulnerable(false); // MUST CALL
+            return player;
         }
 
-        player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-
-        player.setInvulnerable(false); // MUST CALL
-
-        net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
         return player;
 
     }

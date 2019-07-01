@@ -16,24 +16,28 @@ public class OnDeathInMap {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingDeath(LivingDeathEvent evt) {
 
-        LivingEntity living = evt.getEntityLiving();
+        try {
+            LivingEntity living = evt.getEntityLiving();
 
-        if (living.world.isRemote) {
-            return;
-        }
-
-        if (living instanceof PlayerEntity) {
-
-            PlayerEntity player = (PlayerEntity) living;
-
-            if (WorldUtils.isMapWorld(living.world)) {
-                PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
-
-                data.onPlayerDeath(player);
-                evt.setCanceled(true);
-
+            if (living.world.isRemote) {
+                return;
             }
 
+            if (living instanceof PlayerEntity) {
+
+                PlayerEntity player = (PlayerEntity) living;
+
+                if (WorldUtils.isMapWorld(living.world)) {
+                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+
+                    data.onPlayerDeath(player);
+                    evt.setCanceled(true);
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
