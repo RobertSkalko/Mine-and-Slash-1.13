@@ -5,10 +5,9 @@ import com.robertx22.db_lists.RuneWords;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.localization.CLOC;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.localization.Words;
-import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
@@ -63,9 +62,9 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
         }
         Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.tooltip("place_in_modify")), tooltip);
+                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
         Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.tooltip("unlocks_runeword_combo")), tooltip);
+                .appendSibling(Words.unlocks_runeword_combo.locName()), tooltip);
     }
 
     @Override

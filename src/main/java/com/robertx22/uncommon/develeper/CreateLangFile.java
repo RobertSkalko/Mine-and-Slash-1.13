@@ -51,6 +51,8 @@ public class CreateLangFile {
             json += CreateLangFileUtils.comment(entry.getKey());
 
         }
+        usedGUIDS.clear();
+
         for (Map.Entry<String, List<IAutoLocDesc>> entry : getDescMap().entrySet()) {
 
             json += CreateLangFileUtils.comment(entry.getKey());
@@ -77,6 +79,8 @@ public class CreateLangFile {
             json += CreateLangFileUtils.comment(entry.getKey());
 
         }
+
+        usedGUIDS.clear();
 
         for (Map.Entry<String, List<IAutoLocMultiLore>> entry : getMultiLoreMap().entrySet()) {
             json += CreateLangFileUtils.comment(entry.getKey());

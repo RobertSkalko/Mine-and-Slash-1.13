@@ -11,6 +11,7 @@ public enum Words implements IAutoLocName {
     Offhand("Offhand"),
 
     Item_modifiable_in_station("Can be used inside Gear Modify Station"),
+    unlocks_runeword_combo("Unlocks RuneWord combination."),
 
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),
 
