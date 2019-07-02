@@ -46,7 +46,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.25F);
+        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.4F);
     }
 
 }
