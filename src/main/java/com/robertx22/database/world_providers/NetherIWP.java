@@ -37,7 +37,7 @@ public class NetherIWP extends BaseWorldProvider {
 
     @Override
     public float getBonusLootMulti() {
-        return 1.2F;
+        return 0.9F;
     }
 
     @Override

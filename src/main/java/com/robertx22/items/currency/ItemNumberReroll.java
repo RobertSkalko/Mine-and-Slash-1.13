@@ -56,7 +56,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public int rarity() {
-        return 0;
+        return 2;
     }
 
     @Override

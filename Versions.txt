@@ -1,8 +1,17 @@
+2.0.10
+buffed spells more
+staff now casts faster projectiles
+nerfed auto salvage bag
+stat reroll currency now rarer
+nether map drops nerfed
 2.0.9
 buffed spell dmg
 nerfed mob hp in some maps
 nerfed leg and mythic mob hp
 fix chaos stats tooltip
+fix map stats dont applying to players
+tweak loot egg drop location
+fix ghost runeword duplicate rune
 2.0.8
 try fix server crash on player death in map
 2.0.7

@@ -10,8 +10,6 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.rune.RuneItemData;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;
@@ -19,6 +17,8 @@ import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.ISalvagable;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.gui.screen.Screen;
@@ -63,7 +63,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
         RegisterItemUtils.RegisterItemName(this, "auto_salvage_bag" + rarity);
     }
 
-    private List<Float> BonusSalvageValues = Arrays.asList(5F, 10F, 15F, 20F, 30F, 40F, 50F);
+    private List<Float> BonusSalvageValues = Arrays.asList(0F, 2.5F, 5F, 10F, 15F, 20F, 25F);
 
     public float getBonusSalvageChance() {
         return BonusSalvageValues.get(rarity);

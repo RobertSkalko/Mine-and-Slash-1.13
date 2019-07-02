@@ -14,7 +14,7 @@ public abstract class BaseBoltAOE extends BaseBolt {
 
     @Override
     public int BaseValue() {
-        return 5;
+        return 7;
     }
 
     @Override
