@@ -322,6 +322,10 @@ public class Unit {
 
         PlayerMapData.IPlayerMapData mapdata = null;
 
+        if (entity instanceof PlayerEntity) {
+            mapdata = Load.playerMapData((PlayerEntity) entity);
+        }
+
         ClearStats();
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());

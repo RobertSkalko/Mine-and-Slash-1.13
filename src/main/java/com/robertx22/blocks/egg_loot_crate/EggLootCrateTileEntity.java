@@ -61,7 +61,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
             List<ItemStack> loot = MasterLootGen.generateLoot(new LootInfo(player).setMinimum(1));
 
             for (ItemStack stack : loot) {
-                WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 2, pos
+                WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 1, pos
                         .getZ(), stack));
             }
             if (loot.size() > 0) {
