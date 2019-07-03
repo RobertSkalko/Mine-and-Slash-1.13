@@ -1,5 +1,6 @@
 package com.robertx22.spells.entities.bases;
 
+import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.BaseSpellEffect;
@@ -67,6 +68,17 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
                     e.printStackTrace();
 
                 }
+            }
+        } else {
+            if (world.isRemote == false) {
+
+                try {
+                    Load.Unit(this.thrower)
+                            .restoreEnergy(new StaffWeaponMechanic().GetEnergyCost() / 2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }
 

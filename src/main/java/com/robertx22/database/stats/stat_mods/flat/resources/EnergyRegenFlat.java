@@ -12,27 +12,27 @@ public class EnergyRegenFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "EnergyRegenFlat";
+        return "EnergyRegenFlat";
     }
 
     @Override
     public float Min() {
-	return 1;
+        return 1.25F;
     }
 
     @Override
     public float Max() {
-	return 3;
+        return 3;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new EnergyRegen();
+        return new EnergyRegen();
     }
 
 }

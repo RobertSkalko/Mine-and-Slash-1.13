@@ -2,7 +2,6 @@ package com.robertx22.database.unique_items.rings;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
@@ -30,7 +29,7 @@ public class RingEnergy extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent(), new ManaRegenFlat(), new HealthFlat(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent().multi(3), new ManaRegenFlat(), new CrippleCriticalDamagePercent());
     }
 
     @Override

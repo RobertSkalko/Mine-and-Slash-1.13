@@ -7,9 +7,9 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueRing;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +33,11 @@ public class RingDodge extends BaseUniqueRing {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new DodgeFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature), new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Bow));
+    }
+
+    @Override
+    public int Weight() {
+        return this.LegendaryWeight;
     }
 
     @Override

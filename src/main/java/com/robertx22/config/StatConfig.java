@@ -66,7 +66,7 @@ public class StatConfig {
         critical_hit_per_level = builder.translation("mmorpg.stat.critical_hit_per_level")
                 .defineInRange("critical_hit_per_level", 0F, 0, Integer.MAX_VALUE);
         energy_regen = builder.translation("mmorpg.stat.energy_regen")
-                .defineInRange("energy_regen", 6F, 0, Integer.MAX_VALUE);
+                .defineInRange("energy_regen", 7.5F, 0, Integer.MAX_VALUE);
         energy_regen_per_level = builder.translation("mmorpg.stat.energy_regen_per_level")
                 .defineInRange("energy_regen_per_level", 0F, 0, Integer.MAX_VALUE);
         critical_damage = builder.translation("mmorpg.stat.critical_damage")

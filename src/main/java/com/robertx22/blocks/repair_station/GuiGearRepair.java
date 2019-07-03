@@ -2,7 +2,7 @@ package com.robertx22.blocks.repair_station;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.blocks.bases.TileGui;
-import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.Res;
 import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ import java.util.List;
 public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
+    private static final ResourceLocation texture = Res.loc("textures/gui/repair_station.png");
 
     public GuiGearRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
                          ITextComponent comp) {

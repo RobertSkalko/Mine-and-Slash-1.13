@@ -1,3 +1,10 @@
+2.0.11
+buffed torches regen and changed their secondary stats
+buff base ene regen
+staffs now refund half the energy on miss
+min ene regen on items buffed
+nerfed leg and mythic mobs a bit more
+reduced map droprate
 2.0.10
 buffed spells more
 staff now casts faster projectiles
@@ -11,7 +18,7 @@ a forge bug made hp/mana/energy regen happen 2 TIMES FASTER, so players were a b
 (these require server config file reset/adjust)
 bolt spells cast speed is twice faster now
 nerfed salvaging a bit (i ended up having way too many ores in my playthrough)
-
+fix stone of hope not working
 2.0.9
 buffed spell dmg
 nerfed mob hp in some maps
