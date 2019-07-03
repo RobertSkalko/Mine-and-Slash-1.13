@@ -12,27 +12,27 @@ public class BlockStrengthFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "BlockStrengthFlat";
+        return "BlockStrengthFlat";
     }
 
     @Override
     public float Min() {
-	return 1;
+        return 2;
     }
 
     @Override
     public float Max() {
-	return 5;
+        return 7.5F;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new BlockStrength();
+        return new BlockStrength();
     }
 
 }

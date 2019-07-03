@@ -53,7 +53,7 @@ public class DropRatesContainer {
 
         AWAKEN_RUNEWORD_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.awaken_runeword_droprate")
-                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.2F, 0, Integer.MAX_VALUE);
+                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.15F, 0, Integer.MAX_VALUE);
 
         COMPATIBLE_ITEMS_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.compatible_items_droprate")

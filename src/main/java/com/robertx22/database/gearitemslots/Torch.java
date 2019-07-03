@@ -28,9 +28,11 @@ public class Torch extends BaseOffHand {
         return MyTorch.Items;
     }
 
+    float multi = 2.5F;
+
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new ManaRegenFlat().multi(3), new EnergyRegenFlat().multi(3));
+        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi));
     }
 
     @Override

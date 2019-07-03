@@ -2,6 +2,7 @@ package com.robertx22.items.misc;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.RuneWords;
+import com.robertx22.items.ItemDefault;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
@@ -32,7 +33,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     public ItemAwakenRuneWord() {
 
-        super(new Properties().maxStackSize(64).defaultMaxDamage(0));
+        super(new ItemDefault());
 
         RegisterItemUtils.RegisterItemName(this, "awaken_runeword");
 

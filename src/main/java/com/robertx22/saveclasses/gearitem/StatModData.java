@@ -33,6 +33,7 @@ public class StatModData implements ITooltipString {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = StatGen.GenPercent(rar);
+        data.multiplier = mod.multiplier;
 
         return data;
     }

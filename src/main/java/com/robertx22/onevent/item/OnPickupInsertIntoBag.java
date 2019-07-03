@@ -10,6 +10,7 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 @Mod.EventBusSubscriber
 public class OnPickupInsertIntoBag {
@@ -32,33 +33,54 @@ public class OnPickupInsertIntoBag {
                     continue;
                 }
 
-                for (int x = 0; x < bagInv.getSlots(); x++) {
-                    ItemStack result = bagInv.insertItem(x, stack, false);
-                    int numPickedUp = stack.getCount() - result.getCount();
-
-                    if (numPickedUp > 0) {
-                        event.getItem().setItem(result);
-
-                        event.setCanceled(true);
-                        if (!event.getItem().isSilent()) {
-                            event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
-                                    .getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
-                                    .getItem().world.rand.nextFloat() - event.getItem().world.rand
-                                    .nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                        }
-                        ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
-                                .getItem()
-                                .getEntityId(), event.getEntityPlayer()
-                                .getEntityId(), numPickedUp));
-                        event.getEntityPlayer().openContainer.detectAndSendChanges();
-
-                        return;
-                    }
-                }
+                stack = loopItems(bagInv, event, stack, true); // once try merge into existing
+                stack = loopItems(bagInv, event, stack, false); // second merge even into empty
 
             }
 
         }
 
     }
+
+    private static ItemStack loopItems(IItemHandler bagInv, EntityItemPickupEvent event,
+                                       ItemStack stack, boolean searchSame) {
+
+        if (stack.isEmpty()) {
+            return stack;
+        }
+
+        for (int x = 0; x < bagInv.getSlots(); x++) {
+
+            if (searchSame) {
+                if (ItemHandlerHelper.canItemStacksStack(stack, bagInv.getStackInSlot(x)) == false) {
+                    continue;
+                }
+            }
+
+            ItemStack result = bagInv.insertItem(x, stack, false);
+            int numPickedUp = stack.getCount() - result.getCount();
+
+            if (numPickedUp > 0) {
+                event.getItem().setItem(result);
+
+                event.setCanceled(true);
+                if (!event.getItem().isSilent()) {
+                    event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
+                            .getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
+                            .getItem().world.rand.nextFloat() - event.getItem().world.rand
+                            .nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                }
+                ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
+                        .getItem()
+                        .getEntityId(), event.getEntityPlayer()
+                        .getEntityId(), numPickedUp));
+                event.getEntityPlayer().openContainer.detectAndSendChanges();
+
+                return result;
+            }
+        }
+
+        return stack;
+    }
+
 }

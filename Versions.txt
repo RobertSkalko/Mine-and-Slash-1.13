@@ -5,6 +5,9 @@ staffs now refund half the energy on miss
 min ene regen on items buffed
 nerfed leg and mythic mobs a bit more
 reduced map droprate
+buffed block strength
+items now properly stack in bags
+awakening items now actually stack!
 2.0.10
 buffed spells more
 staff now casts faster projectiles
