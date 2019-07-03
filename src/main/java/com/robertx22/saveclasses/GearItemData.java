@@ -17,10 +17,10 @@ import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.rune.RunesData;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -397,7 +397,7 @@ public class GearItemData implements ITooltip, ISalvagable {
             int tier = 0;
 
             int min = 1;
-            int max = 3;
+            int max = 2;
 
             min = tryIncreaseAmount(salvageBonus, min);
             max = tryIncreaseAmount(salvageBonus, max);

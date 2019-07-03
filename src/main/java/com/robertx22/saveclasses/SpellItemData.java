@@ -8,10 +8,10 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.interfaces.ISalvagable;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
@@ -170,7 +170,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
     public ItemStack getSalvageResult(float salvageBonus) {
 
         int min = tryIncreaseAmount(salvageBonus, 1);
-        int max = tryIncreaseAmount(salvageBonus, 3);
+        int max = tryIncreaseAmount(salvageBonus, 2);
 
         ItemStack stack = ItemStack.EMPTY;
 

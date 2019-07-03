@@ -4,6 +4,14 @@ staff now casts faster projectiles
 nerfed auto salvage bag
 stat reroll currency now rarer
 nether map drops nerfed
+a forge bug made hp/mana/energy regen happen 2 TIMES FASTER, so players were a bit overpowered. I feel 2 times slower would be too much so..
+* total ene from 100 to 150
+* total mana from 50 to 75
+* base ene regen 5 to 6
+(these require server config file reset/adjust)
+bolt spells cast speed is twice faster now
+nerfed salvaging a bit (i ended up having way too many ores in my playthrough)
+
 2.0.9
 buffed spell dmg
 nerfed mob hp in some maps

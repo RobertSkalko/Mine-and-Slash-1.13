@@ -52,7 +52,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 10;
+        return 12;
     }
 
     @Override

@@ -24,6 +24,6 @@ public class OfIceStorms extends BaseLegendaryPeneSuffix {
 
     @Override
     public String locNameForLangFile() {
-        return "Of IceStorms";
+        return "Of Ice Storms";
     }
 }
