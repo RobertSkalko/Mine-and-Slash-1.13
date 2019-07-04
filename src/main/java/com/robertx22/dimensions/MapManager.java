@@ -91,20 +91,6 @@ public class MapManager {
         return DimensionType.byName(res);
     }
 
-    public static DimensionType register(ResourceLocation res, IWP IWPType) {
-
-        DimensionType type = getDimensionType(res);
-
-        if (type != null) {
-            return type;
-        } else {
-
-            ModDimension moddim = IWPType.getModDim();
-
-            return DimensionManager.registerDimension(res, moddim, null, true);
-        }
-    }
-
     public static DimensionType fromResource(ResourceLocation res) {
         return DimensionType.byName(res);
     }

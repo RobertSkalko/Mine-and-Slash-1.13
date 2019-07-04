@@ -16,13 +16,19 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class OnDeathInMap {
 
     // this is needed cus otherwise it crashes with removing ticking entity
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void ontick(TickEvent.PlayerTickEvent evt) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onTickTeleportPlayerBackIfDead(TickEvent.PlayerTickEvent evt) {
 
         try {
-            if (evt.player.world.isRemote == false) {
-                Load.playerMapData(evt.player)
-                        .onTickIfDead((ServerPlayerEntity) evt.player);
+            if (evt.player != null && evt.player.world != null) {
+                if (evt.player.world.isRemote == false) {
+                    PlayerMapData.IPlayerMapData data = Load.playerMapData(evt.player);
+                    if (data != null) {
+
+                        data.onTickIfDead((ServerPlayerEntity) evt.player);
+
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,7 +36,7 @@ public class OnDeathInMap {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onLivingDeath(LivingDeathEvent evt) {
+    public static void onPlayerDeathSetTeleportBack(LivingDeathEvent evt) {
 
         try {
             LivingEntity living = evt.getEntityLiving();
@@ -47,7 +53,7 @@ public class OnDeathInMap {
 
                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
-                    player.setLocationAndAngles(player.posX, player.world.getHeight() - 1, player.posZ, 0, 0);
+                    player.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);
 
                     evt.setCanceled(true);
 

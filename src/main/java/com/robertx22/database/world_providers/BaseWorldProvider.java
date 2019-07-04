@@ -212,13 +212,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP {
 
     @Override
     public long getWorldTime() {
-
-        // hm seems to use this time to give to client, so doesnt work
-        if (false) {
-            return getWorld().getWorldInfo().getDayTime();
-        } else {
-            return 18000; // midnight, for mob spawning
-        }
+        return 18000; // midnight, for mob spawning
     }
 
     /**
