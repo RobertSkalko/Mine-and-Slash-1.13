@@ -39,6 +39,10 @@ public class ConfigItems implements IConfig {
         }
     }
 
+    public void add(String id, ConfigItem item) {
+        map.put(id, item);
+    }
+
     public void addAll(ConfigItems items) {
 
         if (items.enabled) {

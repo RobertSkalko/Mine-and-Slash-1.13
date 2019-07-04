@@ -1,3 +1,6 @@
+2.0.12
+all mine and slash items are now compatible items, meaning you can take them out of creative and they will get stats
+
 2.0.11
 buffed torches regen and changed their secondary stats
 buff base ene regen

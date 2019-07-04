@@ -37,7 +37,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -89,7 +92,6 @@ public class MMORPG {
         bus.addListener(this::commonSetupEvent);
         bus.addListener(this::interModProcessEvent);
         bus.addListener(this::interModEnqueue);
-        bus.addListener(this::loadComplete);
         bus.addListener(new OnGatherData()::onGatherData);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -125,10 +127,6 @@ public class MMORPG {
 
     }
 
-    public void loadComplete(final FMLLoadCompleteEvent event) {
-
-    }
-
     public void clientSetup(final FMLClientSetupEvent event) {
 
         SpecialRenderRegister.register(event);
@@ -144,6 +142,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
         CommandRegister.Register(event.getServer());
+        ConfigRegister.regAndLoadNonForgeConfigs();
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();

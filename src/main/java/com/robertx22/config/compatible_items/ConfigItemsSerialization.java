@@ -26,7 +26,7 @@ public class ConfigItemsSerialization implements ISerializedConfig {
     public void generateIfEmpty() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(new ConfigItems());
+        String json = gson.toJson(GenCompItemJsons.generate());
 
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
 

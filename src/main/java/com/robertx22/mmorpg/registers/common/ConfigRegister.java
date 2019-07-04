@@ -19,6 +19,18 @@ import java.nio.file.Path;
 
 public class ConfigRegister {
 
+    public static void regAndLoadNonForgeConfigs() {
+
+        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
+        ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
+        ModDmgWhitelistSerialization.INSTANCE.generateIfEmpty();
+
+        ConfigItemsSerialization.INSTANCE.load();
+        ConfigDimensionsSerialization.INSTANCE.load();
+        ModDmgWhitelistSerialization.INSTANCE.load();
+
+    }
+
     // MUST BE CALLED IN MAIN CLASS
     public static void register() {
 
@@ -29,10 +41,6 @@ public class ConfigRegister {
         });
 
         ctx.registerConfig(Type.COMMON, ModConfig.spec);
-
-        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
-        ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
-        ModDmgWhitelistSerialization.INSTANCE.generateIfEmpty();
 
     }
 
@@ -46,10 +54,6 @@ public class ConfigRegister {
 
         loadConfig(ModConfig.spec, FMLPaths.CONFIGDIR.get()
                 .resolve(Ref.MODID + "-" + "common" + ".toml"));
-
-        ConfigItemsSerialization.INSTANCE.load();
-        ConfigDimensionsSerialization.INSTANCE.load();
-        ModDmgWhitelistSerialization.INSTANCE.load();
 
     }
 

@@ -118,6 +118,11 @@ public class ConfigItem implements IWeighted {
         return this;
     }
 
+    public ConfigItem setSalvagable(boolean bool) {
+        this.isSalvagable = bool;
+        return this;
+    }
+
     public ConfigItem setMaxRarity(int rar) {
         this.maxRarity = rar;
         return this;
@@ -220,12 +225,12 @@ public class ConfigItem implements IWeighted {
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
-        if (gear.uniqueGUID != null || !UniqueItems.ITEMS.containsKey(gear.uniqueGUID)) {
+        if (gear.uniqueGUID == null || !UniqueItems.ITEMS.containsKey(gear.uniqueGUID)) {
             return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);
         }
-
+        
         return stack;
 
     }
