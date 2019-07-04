@@ -21,6 +21,8 @@ public class GenCompItemJsons {
                         .setSalvagable(true)
                         .setType(uniq.slot());
                 Item theitem = (Item) uniq;
+                item.dropsAsLoot = false;
+
                 items.add(theitem.getRegistryName().toString(), item);
             }
 
@@ -32,6 +34,7 @@ public class GenCompItemJsons {
                             .setMinRarity(i)
                             .setSalvagable(true)
                             .setType(slot);
+                    config.dropsAsLoot = false;
 
                     items.add(item.getRegistryName().toString(), config);
                 }

@@ -289,7 +289,13 @@ public class PlayerMapData {
                     pos = player.getBedLocation();
                 }
                 if (pos == null) {
-                    pos = player.world.getSpawnPoint();
+                    try {
+                        pos = MapManager.getWorld(DimensionType.OVERWORLD)
+                                .getSpawnPoint();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        pos = new BlockPos(0, 90, 0);
+                    }
                 }
 
                 pos = pos.north(2);

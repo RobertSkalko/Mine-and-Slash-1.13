@@ -1,5 +1,8 @@
+2.0.14
+fix default comp items config. added config for the item to be loot or not
 2.0.13 
 attempt to fix on death crash
+added config for disabling death in maps (disable it if you crash)
 2.0.12
 all mine and slash items are now compatible items, meaning you can take them out of creative and they will get stats
 (requires deletition of compatible items config file so it's recreated with all the values)

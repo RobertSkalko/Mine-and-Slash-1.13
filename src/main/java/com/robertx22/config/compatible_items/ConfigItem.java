@@ -57,6 +57,7 @@ public class ConfigItem implements IWeighted {
     public int maxLevel = 100;
 
     public boolean statsAddedOnlyOnDrop = false;
+    public boolean dropsAsLoot = true;
 
     public ConfigItem setUniqueId(IUnique uniq) {
         this.uniqueId = uniq.GUID();

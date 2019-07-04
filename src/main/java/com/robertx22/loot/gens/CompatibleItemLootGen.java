@@ -48,20 +48,24 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
     public static ItemStack gen(int level) {
 
-        ConfigItem config = RandomUtils.weightedRandom(ConfigItems.INSTANCE.getAll()
-                .stream()
-                .filter(x -> x.statsAddedOnlyOnDrop == false)
-                .collect(Collectors.toList()));
+        try {
+            ConfigItem config = RandomUtils.weightedRandom(ConfigItems.INSTANCE.getAll()
+                    .stream()
+                    .filter(x -> x.statsAddedOnlyOnDrop == false && x.dropsAsLoot)
+                    .collect(Collectors.toList()));
 
-        if (config != null) {
-            ResourceLocation res = new ResourceLocation(config.registryName);
+            if (config != null) {
+                ResourceLocation res = new ResourceLocation(config.registryName);
 
-            if (ForgeRegistries.ITEMS.containsKey(res)) {
+                if (ForgeRegistries.ITEMS.containsKey(res)) {
 
-                ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+                    ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
 
-                return config.create(stack, level);
+                    return config.create(stack, level);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return ItemStack.EMPTY;
