@@ -6,13 +6,13 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.localization.CLOC;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.localization.CLOC;
+import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
@@ -103,7 +103,7 @@ public class OnTooltip {
             event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
         }
 
-        if (stack.getItem().getRegistryName() != null) {
+        if (gear != null && stack.getItem().getRegistryName() != null) {
             if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
                     .getRegistryName()
                     .toString())) {

@@ -80,12 +80,7 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
 
         list.add(text);
 
-        if (Screen.hasAltDown()) {
-            if (locDescForLangFile().isEmpty() == false) {
-                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
-                        .locDesc()).appendText("]"));
-            }
-
+        if (Screen.hasShiftDown()) {
             if (basestat instanceof Trait) {
                 Trait trait = (Trait) basestat;
 
@@ -95,6 +90,14 @@ public abstract class BaseTrait extends Stat implements ITrait, IWeighted {
                     list.addAll(motdata.GetTooltipString(info));
                 }
             }
+        }
+
+        if (Screen.hasAltDown()) {
+            if (locDescForLangFile().isEmpty() == false) {
+                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
+                        .locDesc()).appendText("]"));
+            }
+
         }
 
         return list;
