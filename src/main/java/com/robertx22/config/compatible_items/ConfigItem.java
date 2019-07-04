@@ -230,7 +230,7 @@ public class ConfigItem implements IWeighted {
         } else {
             Gear.Save(stack, gear);
         }
-        
+
         return stack;
 
     }

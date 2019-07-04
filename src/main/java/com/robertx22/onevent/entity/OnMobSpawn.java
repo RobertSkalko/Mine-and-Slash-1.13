@@ -9,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
@@ -38,13 +37,7 @@ public class OnMobSpawn {
             PlayerEntity nearestPlayer = null;
 
             if (WorldUtils.isMapWorld(entity.world)) {
-
                 nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
-
-                if (nearestPlayer == null) {
-                    event.setResult(Event.Result.DENY);
-                    return;
-                }
             }
 
             if (endata.needsToBeGivenStats()) {

@@ -14,26 +14,30 @@ public class GenCompItemJsons {
 
         items.map.clear();
 
-        for (IUnique uniq : UniqueItems.getAll()) {
-            ConfigItem item = new ConfigItem().setAlwaysUnique()
-                    .setUniqueId(uniq)
-                    .setSalvagable(true)
-                    .setType(uniq.slot());
-            Item theitem = (Item) uniq;
-            items.add(theitem.getRegistryName().toString(), item);
-        }
-
-        for (GearItemSlot slot : GearTypes.All.values())
-            for (int i = 0; i < 5; i++) {
-                Item item = slot.GetItemForRarity(i);
-                ConfigItem config = new ConfigItem().setGenerationWeights(1, 1, 0)
-                        .setMaxRarity(i)
-                        .setMinRarity(i)
+        try {
+            for (IUnique uniq : UniqueItems.getAll()) {
+                ConfigItem item = new ConfigItem().setAlwaysUnique()
+                        .setUniqueId(uniq)
                         .setSalvagable(true)
-                        .setType(slot);
-
-                items.add(item.getRegistryName().toString(), config);
+                        .setType(uniq.slot());
+                Item theitem = (Item) uniq;
+                items.add(theitem.getRegistryName().toString(), item);
             }
+
+            for (GearItemSlot slot : GearTypes.All.values())
+                for (int i = 0; i < 5; i++) {
+                    Item item = slot.GetItemForRarity(i);
+                    ConfigItem config = new ConfigItem().setGenerationWeights(1000, 200, 0)
+                            .setMaxRarity(i)
+                            .setMinRarity(i)
+                            .setSalvagable(true)
+                            .setType(slot);
+
+                    items.add(item.getRegistryName().toString(), config);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return items;
     }
