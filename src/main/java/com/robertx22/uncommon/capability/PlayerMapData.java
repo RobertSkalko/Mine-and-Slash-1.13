@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.capability;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
@@ -171,7 +172,9 @@ public class PlayerMapData {
                 announceTimeLeft(player);
             }
 
-            player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
+            if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
+                player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
+            }
 
         }
 

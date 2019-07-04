@@ -1,5 +1,6 @@
 package com.robertx22.onevent.player;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
@@ -25,7 +26,9 @@ public class OnDeathInMap {
                     PlayerMapData.IPlayerMapData data = Load.playerMapData(evt.player);
                     if (data != null) {
 
-                        data.onTickIfDead((ServerPlayerEntity) evt.player);
+                        if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
+                            data.onTickIfDead((ServerPlayerEntity) evt.player);
+                        }
 
                     }
                 }
@@ -53,9 +56,10 @@ public class OnDeathInMap {
 
                     PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
-                    player.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);
-
-                    evt.setCanceled(true);
+                    if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
+                        player.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);
+                        evt.setCanceled(true);
+                    }
 
                     data.onPlayerDeath(player);
 
