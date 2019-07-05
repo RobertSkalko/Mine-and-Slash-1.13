@@ -2,6 +2,7 @@ package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -32,6 +33,9 @@ public class OnMeleeAttack {
             if (event.getEntity().world.isRemote) {
                 return;
             }
+
+            event.getEntity().world.getProfiler()
+                    .startSection(Ref.MODID + ":on_mob_attack");
 
             if (event.getSource() instanceof MyDamageSource || event.getSource()
                     .getDamageType()
@@ -95,6 +99,8 @@ public class OnMeleeAttack {
                 sourceData.mobBasicAttack(source, target, sourceData, targetData, event.getAmount());
 
             }
+
+            event.getEntity().world.getProfiler().endSection();
 
         } catch (Exception e) {
             e.printStackTrace();

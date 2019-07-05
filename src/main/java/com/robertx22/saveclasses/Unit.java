@@ -12,6 +12,7 @@ import com.robertx22.database.stats.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.MMORPG;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -285,6 +286,8 @@ public class Unit {
 
     public void RecalculateStats(LivingEntity entity, UnitData data, int level) {
 
+        entity.world.getProfiler().startSection(Ref.MODID + ":stat_calculation");
+
         data.setEquipsChanged(false);
 
         if (data.getUnit() == null) {
@@ -374,6 +377,7 @@ public class Unit {
             MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
         }
 
+        entity.world.getProfiler().endSection();
     }
 
     // gear check works on everything but the weapon.

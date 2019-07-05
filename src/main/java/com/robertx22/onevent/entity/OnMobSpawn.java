@@ -1,5 +1,6 @@
 package com.robertx22.onevent.entity;
 
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -30,6 +31,8 @@ public class OnMobSpawn {
 
         LivingEntity entity = (LivingEntity) event.getEntity();
 
+        entity.world.getProfiler().startSection(Ref.MODID + ":on_mob_spawn");
+
         UnitData endata = Load.Unit(entity);
 
         if (endata != null) {
@@ -52,6 +55,8 @@ public class OnMobSpawn {
                 endata.forceRecalculateStats(entity);
             }
         }
+
+        entity.world.getProfiler().endSection();
 
     }
 
