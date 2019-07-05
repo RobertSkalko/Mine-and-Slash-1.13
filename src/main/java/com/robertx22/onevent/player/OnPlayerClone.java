@@ -19,14 +19,38 @@ public class OnPlayerClone {
     public static void onSave(PlayerEvent.SaveToFile event) {
         PlayerEntity player = event.getEntityPlayer();
 
-        CompoundNBT unitdatanbt = Load.Unit(player).getNBT();
-        CompoundNBT playermapdatanbt = Load.playerMapData(player).getNBT();
+        CompoundNBT unitdatanbt = null;
+        try {
+            unitdatanbt = Load.Unit(player).getNBT();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CompoundNBT playermapdatanbt = null;
+        try {
+            playermapdatanbt = Load.playerMapData(player).getNBT();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        CompoundNBT pesrsistentNBT = PlayerUtils.getPersistentNBT(player);
+        CompoundNBT pesrsistentNBT = null;
+        try {
+            pesrsistentNBT = PlayerUtils.getPersistentNBT(player);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        pesrsistentNBT.put(ENTITY_DATA_BACKUP, unitdatanbt);
-        pesrsistentNBT.put(PLAYER_MAP_DATA_BACKUP, playermapdatanbt);
-        PlayerUtils.setPestistentNBT(player, pesrsistentNBT);
+        if (pesrsistentNBT != null) {
+
+            if (unitdatanbt != null) {
+                pesrsistentNBT.put(ENTITY_DATA_BACKUP, unitdatanbt);
+            }
+            if (playermapdatanbt != null) {
+                pesrsistentNBT.put(PLAYER_MAP_DATA_BACKUP, playermapdatanbt);
+            }
+
+            PlayerUtils.setPestistentNBT(player, pesrsistentNBT);
+
+        }
 
     }
 
@@ -38,11 +62,19 @@ public class OnPlayerClone {
 
         CompoundNBT backupNBT = PlayerUtils.getPersistentNBT(original);
 
-        CompoundNBT unitdataNBT = backupNBT.getCompound(ENTITY_DATA_BACKUP);
-        CompoundNBT playermapdataNBT = backupNBT.getCompound(PLAYER_MAP_DATA_BACKUP);
+        try {
+            CompoundNBT unitdataNBT = backupNBT.getCompound(ENTITY_DATA_BACKUP);
+            Load.Unit(event.getEntityPlayer()).setNBT(unitdataNBT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        Load.Unit(event.getEntityPlayer()).setNBT(unitdataNBT);
-        Load.playerMapData(event.getEntityPlayer()).setNBT(playermapdataNBT);
+        try {
+            CompoundNBT playermapdataNBT = backupNBT.getCompound(PLAYER_MAP_DATA_BACKUP);
+            Load.playerMapData(event.getEntityPlayer()).setNBT(playermapdataNBT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

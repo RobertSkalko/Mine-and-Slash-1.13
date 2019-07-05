@@ -106,18 +106,8 @@ public class MapManager {
             return null;
         }
 
-        if (type == DimensionType.OVERWORLD) {
-            return getServer().getWorld(type);
-        } else {
+        return getServer().getWorld(type);
 
-            World world = DimensionManager.getWorld(getServer(), type, false, true);
-
-            if (world != null) {
-                return world;
-            }
-
-            return null;
-        }
     }
 
     public static ResourceLocation getResourceLocation(DimensionType type) {

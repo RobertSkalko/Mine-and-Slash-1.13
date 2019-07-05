@@ -41,7 +41,8 @@ public class Load {
     public static PlayerMapData.IPlayerMapData playerMapData(PlayerEntity provider) {
 
         if (provider != null) {
-            return provider.getCapability(PlayerMapData.Data).orElse(null);
+            return provider.getCapability(PlayerMapData.Data)
+                    .orElse(new PlayerMapData.DefaultImpl());
         }
         return null;
     }
