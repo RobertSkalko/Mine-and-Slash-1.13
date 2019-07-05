@@ -3,6 +3,7 @@ fix bomb spells going up
 fix comp item tooltip, doesnt show when item has stats now
 traits now show stats on shift click
 added more safety to player capability saving
+should fix weird tooltip bug on items on some servers
 
 2.0.14
 fix default comp items config. added config for the item to be loot or not

@@ -4,8 +4,8 @@ import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class CLOC {
 
@@ -14,7 +14,11 @@ public class CLOC {
     }
 
     private static ITextComponent base(String s) {
-        return new TranslationTextComponent(s);
+        if (s.isEmpty()) {
+            return new StringTextComponent("");
+        } else {
+            return new TranslationTextComponent(s);
+        }
     }
 
     public static ITextComponent tooltip(String str) {
