@@ -12,17 +12,19 @@ public class EntityTypeUtils {
     public static float getLootMulti(Entity en) {
 
         try {
-            String key = en.getType().getRegistryName().toString();
+            String monster_id = en.getType().getRegistryName().toString();
+            String mod_id = en.getType().getRegistryName().getNamespace();
+
             float val = -1;
 
             boolean has = false;
 
-            if (ModEntityConfigs.INSTANCE.allMobsInAMod.containsKey(key)) {
-                val = (float) ModEntityConfigs.INSTANCE.allMobsInAMod.get(key).LOOT_MULTI;
+            if (ModEntityConfigs.INSTANCE.allMobsInAMod.containsKey(mod_id)) {
+                val = (float) ModEntityConfigs.INSTANCE.allMobsInAMod.get(mod_id).LOOT_MULTI;
                 has = true;
             }
-            if (ModEntityConfigs.INSTANCE.specificMobs.containsKey(key)) {
-                val = (float) ModEntityConfigs.INSTANCE.specificMobs.get(key).LOOT_MULTI;
+            if (ModEntityConfigs.INSTANCE.specificMobs.containsKey(monster_id)) {
+                val = (float) ModEntityConfigs.INSTANCE.specificMobs.get(monster_id).LOOT_MULTI;
                 has = true;
             }
             if (has) {
@@ -51,17 +53,19 @@ public class EntityTypeUtils {
     public static float getExpMulti(Entity en) {
 
         try {
-            String key = en.getType().getRegistryName().toString();
+            String monster_id = en.getType().getRegistryName().toString();
+            String mod_id = en.getType().getRegistryName().getNamespace();
+
             float val = -1;
 
             boolean has = false;
 
-            if (ModEntityConfigs.INSTANCE.allMobsInAMod.containsKey(key)) {
-                val = (float) ModEntityConfigs.INSTANCE.allMobsInAMod.get(key).EXP_MULTI;
+            if (ModEntityConfigs.INSTANCE.allMobsInAMod.containsKey(mod_id)) {
+                val = (float) ModEntityConfigs.INSTANCE.allMobsInAMod.get(mod_id).EXP_MULTI;
                 has = true;
             }
-            if (ModEntityConfigs.INSTANCE.specificMobs.containsKey(key)) {
-                val = (float) ModEntityConfigs.INSTANCE.specificMobs.get(key).EXP_MULTI;
+            if (ModEntityConfigs.INSTANCE.specificMobs.containsKey(monster_id)) {
+                val = (float) ModEntityConfigs.INSTANCE.specificMobs.get(monster_id).EXP_MULTI;
                 has = true;
             }
             if (has) {

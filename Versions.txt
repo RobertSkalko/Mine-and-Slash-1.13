@@ -5,7 +5,8 @@ traits now show stats on shift click
 added more safety to player capability saving
 should fix weird tooltip bug on items on some servers
 added reload config command
-added entity configs, for whole mods and for specific entities. For now its just for exp and loot multiplier,
+added entity configs, for whole mods and for specific entities. For now its just for exp and loot multiplier. First it checks if a mod's id is in the config and uses that, but if there's an entity id in the other map, it will use the entity config instead.
+that means you can set say every lycanite mob to have x config, but make only 2 of their mobs have specific configs.
 you can use if some mobs from other mods are really hard and deserve higher loot drops or if they seem to drop too little loot etc.
 fixed dimension configs to work
 2.0.14
