@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.commands.ReloadConfigs;
 import com.robertx22.commands.entity.*;
 import com.robertx22.commands.giveitems.*;
 import net.minecraft.command.CommandSource;
@@ -29,6 +30,7 @@ public class CommandRegister {
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
+        ReloadConfigs.register(dispatcher);
 
     }
 }

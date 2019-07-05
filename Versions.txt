@@ -4,7 +4,10 @@ fix comp item tooltip, doesnt show when item has stats now
 traits now show stats on shift click
 added more safety to player capability saving
 should fix weird tooltip bug on items on some servers
-
+added reload config command
+added entity configs, for whole mods and for specific entities. For now its just for exp and loot multiplier,
+you can use if some mobs from other mods are really hard and deserve higher loot drops or if they seem to drop too little loot etc.
+fixed dimension configs to work
 2.0.14
 fix default comp items config. added config for the item to be loot or not
 2.0.13 

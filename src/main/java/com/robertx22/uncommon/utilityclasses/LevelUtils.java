@@ -25,7 +25,7 @@ public class LevelUtils {
             }
 
         } else {
-            lvl = determineLevelPerDistanceFromSpawn(world, pos, config) + config.MINIMUM_MOB_LEVEL - 1;
+            lvl = determineLevelPerDistanceFromSpawn(world, pos, config);
         }
 
         lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
@@ -43,7 +43,7 @@ public class LevelUtils {
         if (distance < config.MOB_LEVEL_ONE_AREA) {
             lvl = config.MINIMUM_MOB_LEVEL;
         } else {
-            lvl = (int) (1 + (distance / config.MOB_LEVEL_PER_DISTANCE));
+            lvl = (int) (1 + ((distance - config.MOB_LEVEL_ONE_AREA) / config.MOB_LEVEL_PER_DISTANCE));
         }
 
         return MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);

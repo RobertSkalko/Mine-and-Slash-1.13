@@ -11,7 +11,7 @@ public class DimensionConfig {
     }
 
     public static DimensionConfig Nether() {
-        return new DimensionConfig(10, 100);
+        return new DimensionConfig(75, 100, 10, 100);
     }
 
     public static DimensionConfig End() {

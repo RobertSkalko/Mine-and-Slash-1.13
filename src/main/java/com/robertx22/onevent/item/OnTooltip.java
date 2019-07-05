@@ -103,7 +103,7 @@ public class OnTooltip {
             event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
         }
 
-        if (gear != null && stack.getItem().getRegistryName() != null) {
+        if (gear == null && stack.getItem().getRegistryName() != null) {
             if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
                     .getRegistryName()
                     .toString())) {

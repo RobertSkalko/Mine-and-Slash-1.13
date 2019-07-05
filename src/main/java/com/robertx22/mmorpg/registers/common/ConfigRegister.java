@@ -7,6 +7,7 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.config.dimension_configs.ConfigDimensionsSerialization;
 import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistSerialization;
+import com.robertx22.config.whole_mod_entity_configs.ModEntityConfigsSerialization;
 import com.robertx22.mmorpg.Ref;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -24,10 +25,12 @@ public class ConfigRegister {
         ConfigItemsSerialization.INSTANCE.generateIfEmpty();
         ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
         ModDmgWhitelistSerialization.INSTANCE.generateIfEmpty();
+        ModEntityConfigsSerialization.INSTANCE.generateIfEmpty();
 
         ConfigItemsSerialization.INSTANCE.load();
         ConfigDimensionsSerialization.INSTANCE.load();
         ModDmgWhitelistSerialization.INSTANCE.load();
+        ModEntityConfigsSerialization.INSTANCE.load();
 
     }
 

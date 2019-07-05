@@ -1,8 +1,10 @@
 package com.robertx22.config.dimension_configs;
 
 import com.robertx22.config.IConfig;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 
@@ -51,8 +53,13 @@ public class DimensionsContainer implements IConfig {
         String id = "";
 
         if (world != null && world.getDimension() != null) {
-            if (world.getDimension().getType().getRegistryName() != null)
-                id = world.getDimension().getType().getRegistryName().toString();
+
+            ResourceLocation loc = DimensionType.getKey(world.getDimension().getType());
+
+            if (loc != null) {
+                id = loc.toString();
+            }
+
         }
         return id;
     }
