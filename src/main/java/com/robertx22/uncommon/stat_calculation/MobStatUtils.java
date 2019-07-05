@@ -3,8 +3,10 @@ package com.robertx22.uncommon.stat_calculation;
 import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.defense.Armor;
+import com.robertx22.database.stats.stat_types.generated.ElementalPene;
 import com.robertx22.database.stats.stat_types.generated.ElementalResist;
 import com.robertx22.database.stats.stat_types.generated.ElementalSpellDamage;
+import com.robertx22.database.stats.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.database.status_effects.bases.BaseStatusEffect;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 public class MobStatUtils {
 
     static int spelldmg = 8;
+    static int elePene = 8;
     static int spellresist = 4;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
@@ -53,13 +56,16 @@ public class MobStatUtils {
 
         unit.MyStats.get(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
         unit.MyStats.get(CriticalHit.GUID).Flat += 5 * rar.StatMultiplier();
-        unit.MyStats.get(CriticalDamage.GUID).Flat += 5 * rar.StatMultiplier();
+        unit.MyStats.get(CriticalDamage.GUID).Flat += 10 * rar.StatMultiplier();
+        unit.MyStats.get(ArmorPenetration.GUID).Flat += 8 * level * rar.StatMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 
             unit.MyStats.get(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
                     .StatMultiplier();
             unit.MyStats.get(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
+                    .StatMultiplier();
+            unit.MyStats.get(new ElementalPene(element).GUID()).Flat += elePene * level * rar
                     .StatMultiplier();
 
         }

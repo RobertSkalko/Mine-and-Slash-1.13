@@ -8,6 +8,7 @@ import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.math.MathHelper;
 
 public class ArmorEffect implements IStatEffect {
 
@@ -39,11 +40,7 @@ public class ArmorEffect implements IStatEffect {
 
                 float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));
 
-                if (EffectiveArmor < 0) {
-                    EffectiveArmor = 0;
-                }
-
-                float old = Effect.number;
+                EffectiveArmor = MathHelper.clamp(EffectiveArmor, 0, 1);
 
                 Effect.number -= EffectiveArmor * Effect.number;
 

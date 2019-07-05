@@ -1,3 +1,7 @@
+2.0.16
+mobs now have armor and elemental penetration, should make them hit a bit harder
+fix some harmless model log errors hopefully
+
 2.0.15
 fix bomb spells going up
 fix comp item tooltip, doesnt show when item has stats now
