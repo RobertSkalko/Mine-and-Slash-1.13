@@ -5,7 +5,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
@@ -26,6 +26,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -368,28 +369,26 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         }, RayTraceContext.BlockMode.OUTLINE, true);
 
         Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
+        List<LivingEntity> list = new ArrayList<>();
+
+        for (Entity e : this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
                 .expand(this.getMotion().x, this.getMotion().y, this.getMotion().z)
-                .grow(0.4F));
-
-        boolean flag = false;
-
-        for (int i = 0; i < list.size(); ++i) {
-            Entity entity1 = list.get(i);
-
-            if (Load.hasUnit(entity1)) {
-                if (entity1 == this.ignoreEntity) {
-                    flag = true;
-                } else if (this.thrower != null && this.ignoreEntity == null) {
-                    this.ignoreEntity = entity1;
-                    flag = true;
-                } else {
-                    flag = false;
-
-                    entity = entity1;
-
-                }
+                .grow(0.4F))) {
+            if (e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity) {
+                list.add((LivingEntity) e);
             }
+        }
+
+        float distance = Float.MAX_VALUE;
+
+        for (LivingEntity en : list) {
+            float dist = en.getDistance(this);
+
+            if (distance > dist) {
+                distance = dist;
+                entity = en;
+            }
+
         }
 
         if (raytraceresult instanceof BlockRayTraceResult) {
@@ -397,17 +396,23 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             Block block = this.world.getBlockState(new BlockPos(raytraceresult.getHitVec()))
                     .getBlock();
 
-            if (block.equals(Blocks.AIR) || block.equals(Blocks.GRASS) || block.equals(Blocks.TALL_GRASS) || block
-                    .equals(Blocks.TALL_SEAGRASS)) {
-                // ignore grass
-            } else {
-                this.inGround = true;
-                this.onImpact(raytraceresult);
-                if (this.onExpireProc(this.getThrower())) {
-                    this.onExpireProc(this.getThrower());
-                    this.remove();
-                    return;
-                }
+            Material mat = block.getMaterial(block.getDefaultState());
+
+            if (mat.blocksMovement() == false) {
+                return;
+            }
+
+            if (block.isAir(block.getDefaultState(), this.world, ((BlockRayTraceResult) raytraceresult)
+                    .getPos())) {
+                return;
+            }
+
+            this.inGround = true;
+            this.onImpact(raytraceresult);
+            if (this.onExpireProc(this.getThrower())) {
+                this.onExpireProc(this.getThrower());
+                this.remove();
+                return;
             }
 
         }
@@ -420,12 +425,15 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
             if (raytraceresult instanceof EntityRayTraceResult) {
                 if (((EntityRayTraceResult) raytraceresult).getEntity() != this.getThrower()) {
+
                     this.onImpact(raytraceresult);
                 }
             }
         }
 
     }
+
+    public static final List<Material> materialToIngore = Arrays.asList(Material.AIR, Material.PLANTS, Material.LEAVES, Material.SNOW, Material.WATER, Material.TALL_PLANTS);
 
     public void checkHoming() {
 
