@@ -362,34 +362,13 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
         AxisAlignedBB axisalignedbb = this.getBoundingBox()
                 .expand(this.getMotion())
-                .grow(1.0D);
+                .grow(1.5D);
 
-        RayTraceResult raytraceresult = ProjectileHelper.func_221267_a(this, axisalignedbb, (entity) -> {
-            return !entity.isSpectator() && entity.canBeCollidedWith() && entity != this.ignoreEntity;
+        RayTraceResult raytraceresult = ProjectileHelper.func_221267_a(this, axisalignedbb, (e) -> {
+            return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
         }, RayTraceContext.BlockMode.OUTLINE, true);
 
         Entity entity = null;
-        List<LivingEntity> list = new ArrayList<>();
-
-        for (Entity e : this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox()
-                .expand(this.getMotion().x, this.getMotion().y, this.getMotion().z)
-                .grow(0.4F))) {
-            if (e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity) {
-                list.add((LivingEntity) e);
-            }
-        }
-
-        float distance = Float.MAX_VALUE;
-
-        for (LivingEntity en : list) {
-            float dist = en.getDistance(this);
-
-            if (distance > dist) {
-                distance = dist;
-                entity = en;
-            }
-
-        }
 
         if (raytraceresult instanceof BlockRayTraceResult) {
 

@@ -2,7 +2,8 @@
 mobs now have armor and elemental penetration, should make them hit a bit harder
 fix some harmless model log errors hopefully
 try fix spells destroying themselves on cave air and similar blocks
-fix spells not hitting closest enemy correclty
+fix spells not hitting closest enemy correctly
+fix spells not hitting enemy if they are too close at start of cast
 2.0.15
 fix bomb spells going up
 fix comp item tooltip, doesnt show when item has stats now

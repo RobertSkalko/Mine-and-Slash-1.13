@@ -125,7 +125,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
         Vec3d look = caster.getLookVec();
 
         SetReady(effect, data);
-        setPosition(caster.posX, caster.posY + look.y + 1.3, caster.posZ);
+        setPosition(caster.posX - look.x, caster.posY + look.y + 1.3, caster.posZ - look.z);
         shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.3F, 0.5F); // start velocity
 
         WorldUtils.spawnEntity(world, this);
