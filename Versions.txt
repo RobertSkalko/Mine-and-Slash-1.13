@@ -1,5 +1,5 @@
 2.0.18
-added player level up advacements
+added more advacements
 
 2.0.17
 try fix players falling into void, if it still happens please tell me a bit more how it happens and what happens. (are you teleported into ground and slowly fall into void?)

@@ -17,7 +17,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
         return "orb_of_transmutation";
     }
 
-    private static final String name = Ref.MODID + ":currency/orb_of_transmutation";
+    public static final String ID = Ref.MODID + ":currency/orb_of_transmutation";
 
     @Override
     public List<String> oldNames() {
@@ -26,7 +26,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 
     public ItemOrbOfTransmutation() {
 
-        super(name);
+        super(ID);
 
     }
 

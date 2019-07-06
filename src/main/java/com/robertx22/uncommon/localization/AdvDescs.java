@@ -15,9 +15,14 @@ public enum AdvDescs implements IAutoLocName {
     LootBag("Loot Bag automatically picks up gears, spells, runes etc"),
     LevelUp10("Starting at lvl 10, mobs will start dropping currencies and adventure maps (per default config)."),
     LevelUp("Every level milestone allows items to spawn with new and better affixes, sets and so on. Loot new gear to find out and power up!"),
+    OrbOfTransmutation("Completely re-creates an item, giving it a chance to attain a higher rarity. One of the most common currency items."),
+
+    AutoSalvageBag("These bags when equipped will automatically salvage items! This means all those bad common, uncommon and other useless items can be automatically salvaged! Higher rarity bag gives more bonus item chance."),
 
     ChaosOrb("Gives Chaos Stats. These Stats can be good or bad. They either can't be removed or the removal is extremely rare and expensive."),
+
     Stoneofhope("Recreates the item completely, giving you a higher rarity. Very useful if you have a legendary item with bad/unwanted stats."),
+
     AddAffix("Unique items have lower chance to gain affixes, that's why these currencies are so important"),
 
     MapDevice("This device allows you to sacrifice an adventure map and a seed, to gain time that allows you to enter adventure maps, gain special rewards like unique items and currencies, progress through tiers for better rewards!"),

@@ -1,11 +1,12 @@
 package com.robertx22.advacements;
 
+import com.robertx22.items.bags.AutoSalvageBag;
 import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
 import com.robertx22.items.bags.master_bag.ItemMasterBag;
-import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ItemChaosOrb;
+import com.robertx22.items.currency.ItemOrbOfTransmutation;
 import com.robertx22.items.currency.ItemStoneOfHope;
 import com.robertx22.items.gearitems.weapons.ItemHammer;
 import com.robertx22.items.gearitems.weapons.ItemSword;
@@ -19,6 +20,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -35,16 +37,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
                 .withCriterion("crafting_table", InventoryChangeTrigger.Instance.forItems(Blocks.CRAFTING_TABLE))
                 .register(consu, id("root"));
 
-        Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu, BlockRegister.BLOCK_GEAR_REPAIR);
-        Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", parent, consu, BlockRegister.BLOCK_GEAR_MODIFY);
-        Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu, BlockRegister.BLOCK_GEAR_SALVAGE);
-        Advancement factory = itemAdv(AdvTitles.FactoryStation, AdvDescs.FactoryStation, "factory", parent, consu, BlockRegister.BLOCK_GEAR_FACTORY);
-
-        Advancement currency_bag = itemAdv(AdvTitles.CurrencyBag, AdvDescs.CurrencyBag, "currency_bag", repair, consu, ItemCurrencyBag.ITEM);
-        Advancement map_bag = itemAdv(AdvTitles.MapBag, AdvDescs.MapBag, "map_bag", repair, consu, ItemMapBag.ITEM);
-        Advancement loot_bag = itemAdv(AdvTitles.LootBag, AdvDescs.LootBag, "loot_bag", repair, consu, ItemLootBag.ITEM);
-        Advancement master_bag = itemAdv(AdvTitles.MasterBag, AdvDescs.MasterBag, "master_bag", repair, consu, ItemMasterBag.ITEM);
-
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items
                 .get(0));
         Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items
@@ -58,14 +50,51 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items
                 .get(5));
 
+        Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu, BlockRegister.BLOCK_GEAR_REPAIR);
+        Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", lvl_10, consu, BlockRegister.BLOCK_GEAR_MODIFY);
+        Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu, BlockRegister.BLOCK_GEAR_SALVAGE);
+        Advancement factory = itemAdv(AdvTitles.FactoryStation, AdvDescs.FactoryStation, "factory", parent, consu, BlockRegister.BLOCK_GEAR_FACTORY);
+
+        Advancement currency_bag = itemAdv(AdvTitles.CurrencyBag, AdvDescs.CurrencyBag, "currency_bag", repair, consu, ItemCurrencyBag.ITEM);
+        Advancement map_bag = itemAdv(AdvTitles.MapBag, AdvDescs.MapBag, "map_bag", repair, consu, ItemMapBag.ITEM);
+        Advancement loot_bag = itemAdv(AdvTitles.LootBag, AdvDescs.LootBag, "loot_bag", repair, consu, ItemLootBag.ITEM);
+        Advancement master_bag = itemAdv(AdvTitles.MasterBag, AdvDescs.MasterBag, "master_bag", repair, consu, ItemMasterBag.ITEM);
+
         Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", lvl_10, consu, BlockRegister.BLOCK_MAP_DEVICE);
 
-        Advancement chaosOrb = currency(ItemRegister.CHAOS_ORB, new StringTextComponent(new ItemChaosOrb()
-                .locNameForLangFile()), "chaos_orb", AdvDescs.ChaosOrb, lvl_10, consu, ItemRegister.CHAOS_ORB);
-        Advancement addaffix = currency(ItemRegister.ADD_PREFIX, AdvTitles.AddAffix.locName(), "add_affix", AdvDescs.AddAffix, lvl_10, consu, ItemRegister.ADD_PREFIX);
-        Advancement stoneofhope = currency(ItemRegister.STONE_OF_HOPE, new StringTextComponent(new ItemStoneOfHope()
-                .locNameForLangFile()), "stone_of_hope", AdvDescs.Stoneofhope, lvl_10, consu, ItemRegister.STONE_OF_HOPE);
+        Advancement orbOfTrans = byItemName(ItemRegister.ORB_OF_TRANSMUTATION, new StringTextComponent(new ItemOrbOfTransmutation()
+                .locNameForLangFile()), "orb_of_transmutation", AdvDescs.OrbOfTransmutation, lvl_10, consu, ItemRegister.ORB_OF_TRANSMUTATION);
 
+        Advancement chaosOrb = byItemName(ItemRegister.CHAOS_ORB, new StringTextComponent(new ItemChaosOrb()
+                .locNameForLangFile()), "chaos_orb", AdvDescs.ChaosOrb, orbOfTrans, consu, ItemRegister.CHAOS_ORB);
+        Advancement addaffix = byItemName(ItemRegister.ADD_PREFIX, AdvTitles.AddAffix.locName(), "add_affix", AdvDescs.AddAffix, orbOfTrans, consu, ItemRegister.ADD_PREFIX);
+        Advancement stoneofhope = byItemName(ItemRegister.STONE_OF_HOPE, new StringTextComponent(new ItemStoneOfHope()
+                .locNameForLangFile()), "stone_of_hope", AdvDescs.Stoneofhope, orbOfTrans, consu, ItemRegister.STONE_OF_HOPE);
+
+        Advancement sal0 = salvageBag(AutoSalvageBag.Items.get(0), salvage, consu);
+        Advancement sal1 = salvageBag(AutoSalvageBag.Items.get(1), sal0, consu);
+        Advancement sal2 = salvageBag(AutoSalvageBag.Items.get(2), sal1, consu);
+        Advancement sal3 = salvageBag(AutoSalvageBag.Items.get(3), sal2, consu);
+        Advancement sal4 = salvageBag(AutoSalvageBag.Items.get(4), sal3, consu);
+        Advancement sal5 = salvageBag(AutoSalvageBag.Items.get(5), sal4, consu);
+
+    }
+
+    private Advancement salvageBag(Item bag, Advancement parent,
+                                   Consumer<Advancement> consumerAdv) {
+
+        AutoSalvageBag bagitem = (AutoSalvageBag) bag;
+
+        String id = "auto_salvage_bag" + bagitem.rarity;
+
+        Advancement adv = Advancement.Builder.builder()
+                .withParent(parent)
+                .withDisplay(bag, new StringTextComponent(bagitem.locNameForLangFile()), AdvDescs.AutoSalvageBag
+                        .locName(), null, FrameType.GOAL, true, true, false)
+                .withCriterion(id, InventoryChangeTrigger.Instance.forItems(bag))
+                .register(consumerAdv, id(id));
+
+        return adv;
     }
 
     private Advancement levelAdv(int lvl, AdvDescs desc, Advancement parent,
@@ -82,10 +111,9 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         return adv;
     }
 
-    private Advancement currency(CurrencyItem display, ITextComponent title, String id,
-                                 AdvDescs desc, Advancement parent,
-                                 Consumer<Advancement> consumerAdv,
-                                 CurrencyItem... item) {
+    private Advancement byItemName(Item display, ITextComponent title, String id,
+                                   AdvDescs desc, Advancement parent,
+                                   Consumer<Advancement> consumerAdv, Item... item) {
 
         Advancement adv = Advancement.Builder.builder()
                 .withParent(parent)

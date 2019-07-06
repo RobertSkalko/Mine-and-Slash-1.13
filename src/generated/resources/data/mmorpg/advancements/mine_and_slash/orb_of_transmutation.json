@@ -1,14 +1,14 @@
 {
-  "parent": "mmorpg:mine_and_slash/orb_of_transmutation",
+  "parent": "mmorpg:mine_and_slash/player_level_10",
   "display": {
     "icon": {
-      "item": "mmorpg:currency/chaos_orb"
+      "item": "mmorpg:currency/orb_of_transmutation"
     },
     "title": {
-      "text": "§cChaos Orb"
+      "text": "§cOrb Of Transmutation"
     },
     "description": {
-      "translate": "mmorpg.advancement.desc.chaosorb"
+      "translate": "mmorpg.advancement.desc.orboftransmutation"
     },
     "frame": "goal",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "chaos_orb": {
+    "orb_of_transmutation": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mmorpg:currency/chaos_orb"
+            "item": "mmorpg:currency/orb_of_transmutation"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "chaos_orb"
+      "orb_of_transmutation"
     ]
   ]
 }

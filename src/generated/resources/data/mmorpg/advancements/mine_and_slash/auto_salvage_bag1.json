@@ -1,14 +1,14 @@
 {
-  "parent": "mmorpg:mine_and_slash/orb_of_transmutation",
+  "parent": "mmorpg:mine_and_slash/auto_salvage_bag0",
   "display": {
     "icon": {
-      "item": "mmorpg:currency/chaos_orb"
+      "item": "mmorpg:auto_salvage_bag1"
     },
     "title": {
-      "text": "§cChaos Orb"
+      "text": "§aAuto Salvage Bag"
     },
     "description": {
-      "translate": "mmorpg.advancement.desc.chaosorb"
+      "translate": "mmorpg.advancement.desc.autosalvagebag"
     },
     "frame": "goal",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "chaos_orb": {
+    "auto_salvage_bag1": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mmorpg:currency/chaos_orb"
+            "item": "mmorpg:auto_salvage_bag1"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "chaos_orb"
+      "auto_salvage_bag1"
     ]
   ]
 }

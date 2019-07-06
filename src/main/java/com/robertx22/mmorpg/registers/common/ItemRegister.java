@@ -48,6 +48,8 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
 
+    @ObjectHolder(ItemOrbOfTransmutation.ID)
+    public static CurrencyItem ORB_OF_TRANSMUTATION;
     @ObjectHolder(ItemChaosOrb.ID)
     public static CurrencyItem CHAOS_ORB;
     @ObjectHolder(ItemAddPrefix.ID)
