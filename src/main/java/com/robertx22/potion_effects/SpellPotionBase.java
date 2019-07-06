@@ -1,8 +1,8 @@
 package com.robertx22.potion_effects;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -27,7 +27,7 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
 
     @Override
     public AutoLocGroup locNameGroup() {
-        return AutoLocGroup.Misc;
+        return AutoLocGroup.Potions;
     }
 
     @Override

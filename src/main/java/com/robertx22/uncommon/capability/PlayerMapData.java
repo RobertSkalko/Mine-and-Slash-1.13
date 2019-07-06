@@ -299,7 +299,7 @@ public class PlayerMapData {
                 }
 
                 pos = pos.north(2);
-                PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO test if works
+                PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO conditionIsMet if works
 
             }
         }

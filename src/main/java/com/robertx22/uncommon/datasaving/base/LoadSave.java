@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class LoadSave {
 
-    //Use this if AutoSave ever stops working and you need to test the mod
+    //Use this if AutoSave ever stops working and you need to conditionIsMet the mod
     private static final boolean useGSON = false;
     private static final String GSONLOC = "_GSON";
 

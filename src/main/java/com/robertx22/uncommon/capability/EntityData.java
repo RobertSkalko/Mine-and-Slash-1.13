@@ -10,13 +10,12 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.network.PlayerUnitPacket;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.CustomStatsData;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.localization.Chats;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
@@ -26,6 +25,8 @@ import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.*;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
+import com.robertx22.uncommon.localization.Chats;
+import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
@@ -477,6 +478,8 @@ public class EntityData {
                 setExp(getRemainingExp());
 
                 player.sendMessage(Chats.You_have_leveled_up.locName());
+
+                CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
 
                 return true;
             }
