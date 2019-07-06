@@ -501,6 +501,8 @@ public class EntityData {
 
             this.equipsChanged = true;
 
+            CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) entity, this);
+
         }
 
         @Override

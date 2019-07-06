@@ -10,6 +10,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.uncommon.localization.AdvDescs;
 import com.robertx22.uncommon.localization.AdvTitles;
+import com.robertx22.uncommon.localization.Words;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -38,31 +39,31 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement loot_bag = itemAdv(AdvTitles.LootBag, AdvDescs.LootBag, "loot_bag", repair, consu, ItemLootBag.ITEM);
         Advancement master_bag = itemAdv(AdvTitles.MasterBag, AdvDescs.MasterBag, "master_bag", repair, consu, ItemMasterBag.ITEM);
 
-        Advancement lvl_10 = levelAdv(10, AdvTitles.LevelUp, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items
+        Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items
                 .get(0));
-        Advancement lvl_25 = levelAdv(25, AdvTitles.LevelUp, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items
+        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items
                 .get(1));
-        Advancement lvl_50 = levelAdv(50, AdvTitles.LevelUp, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items
+        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items
                 .get(2));
-        Advancement lvl_75 = levelAdv(75, AdvTitles.LevelUp, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items
+        Advancement lvl_75 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items
                 .get(3));
-        Advancement lvl_90 = levelAdv(90, AdvTitles.LevelUp, AdvDescs.LevelUp, lvl_75, consu, ItemHammer.Items
+        Advancement lvl_90 = levelAdv(90, AdvDescs.LevelUp, lvl_75, consu, ItemHammer.Items
                 .get(4));
-        Advancement lvl_100 = levelAdv(100, AdvTitles.LevelUp, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items
+        Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items
                 .get(5));
 
         Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", lvl_10, consu, BlockRegister.BLOCK_MAP_DEVICE);
 
     }
 
-    private Advancement levelAdv(int lvl, AdvTitles title, AdvDescs desc,
-                                 Advancement parent, Consumer<Advancement> consumerAdv,
-                                 IItemProvider item) {
+    private Advancement levelAdv(int lvl, AdvDescs desc, Advancement parent,
+                                 Consumer<Advancement> consumerAdv, IItemProvider item) {
         String id = "player_level_" + lvl;
 
         Advancement adv = Advancement.Builder.builder()
                 .withParent(parent)
-                .withDisplay(item, title.locName(), desc.locName(), null, FrameType.CHALLENGE, true, true, false)
+                .withDisplay(item, Words.Level.locName()
+                        .appendText(": " + lvl), desc.locName(), null, FrameType.CHALLENGE, true, true, false)
                 .withCriterion(id, new PlayerLevelTrigger.Instance(lvl))
                 .register(consumerAdv, id(id));
 

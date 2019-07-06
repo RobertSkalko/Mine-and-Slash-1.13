@@ -14,7 +14,7 @@ public enum AdvDescs implements IAutoLocName {
     MapBag("Map Bag automatically picks up adventure maps"),
     LootBag("Loot Bag automatically picks up gears, spells, runes etc"),
     LevelUp10("Starting at lvl 10, mobs will start dropping currencies and adventure maps (per default config)."),
-    LevelUp("Nearly Every level milestone allows items to spawn with new and better affixes, sets and so on."),
+    LevelUp("Every level milestone allows items to spawn with new and better affixes, sets and so on. Loot new gear to find out and power up!"),
     MapDevice("This device allows you to sacrifice an adventure map and a seed, to gain time that allows you to enter adventure maps, gain special rewards like unique items and currencies, progress through tiers for better rewards!"),
     MasterBag("Master Bag automatically picks up almost all Mine and Slash loot drops and each is separated into a different container for easy sorting.");
 

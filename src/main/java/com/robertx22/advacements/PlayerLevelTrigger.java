@@ -114,12 +114,13 @@ public class PlayerLevelTrigger implements ICriterionTrigger<PlayerLevelTrigger.
             List<Listener<PlayerLevelTrigger.Instance>> list = null;
 
             for (ICriterionTrigger.Listener<PlayerLevelTrigger.Instance> listener : this.listeners) {
-                if (listener.getCriterionInstance().conditionIsMet(player))
+                if (listener.getCriterionInstance().conditionIsMet(player)) {
                     if (list == null) {
                         list = Lists.newArrayList();
                     }
 
-                list.add(listener);
+                    list.add(listener);
+                }
 
             }
 
