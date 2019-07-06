@@ -76,19 +76,21 @@ public class MapManager {
         }
     }
 
-    public static DimensionType getDimension(ResourceLocation res) {
+    public static DimensionType getDimensionType(ResourceLocation res) {
 
         return DimensionType.byName(res);
+
+    }
+
+    public static DimensionType getDimensionType(PlayerMapData.IPlayerMapData data) {
+
+        return DimensionType.byName(data.getMap().getIWP().getResourceLoc());
 
     }
 
     public static boolean isRegistered(ResourceLocation res) {
 
         return DimensionType.byName(res) != null;
-    }
-
-    public static DimensionType getDimensionType(ResourceLocation res) {
-        return DimensionType.byName(res);
     }
 
     public static DimensionType fromResource(ResourceLocation res) {
@@ -121,7 +123,7 @@ public class MapManager {
                                                         UnitData unit, MapItemData map,
                                                         BlockPos pos) {
 
-        DimensionType type = getDimension(map.getIWP().getResourceLoc());
+        DimensionType type = getDimensionType(map.getIWP().getResourceLoc());
 
         ResourceLocation res = getResourceLocation(type);
 

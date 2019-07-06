@@ -12,6 +12,10 @@ public class RandomUtils {
     private static Random ran = new Random();
 
     public static int RandomRange(int min, int max) {
+        // prevents trying to nextin on 0
+        if (min == max) {
+            return min;
+        }
 
         int result = ran.nextInt(max - min);
 

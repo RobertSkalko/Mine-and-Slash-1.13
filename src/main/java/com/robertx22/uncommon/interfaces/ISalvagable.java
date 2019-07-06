@@ -13,7 +13,7 @@ public interface ISalvagable {
 
     public default int tryIncreaseAmount(float salvageBonus, int amount) {
 
-        if (RandomUtils.roll((salvageBonus - 1) * 100)) {
+        if (RandomUtils.roll(salvageBonus)) {
             return amount + 1;
         }
 

@@ -1,24 +1,25 @@
 package com.robertx22.items.gearitems.bases;
 
 import com.google.common.collect.Sets;
-import com.robertx22.uncommon.localization.Chats;
+import com.robertx22.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
+import com.robertx22.uncommon.localization.Chats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
 
 import java.util.Random;
 import java.util.Set;
 
-public abstract class BaseWeaponItem extends Item implements IWeapon, IAutoLocName, IGearItem {
+public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAutoLocName, IGearItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 
     public BaseWeaponItem(int rar) {
 
-        super(new Properties().defaultMaxDamage(1000));
+        super(new RarityItemTier(rar), new Properties().defaultMaxDamage(1000));
         this.rarity = rar;
     }
 

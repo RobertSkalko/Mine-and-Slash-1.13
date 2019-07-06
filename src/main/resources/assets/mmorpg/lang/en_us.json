@@ -100,6 +100,7 @@
 	"item.mmorpg.ore4": "§6Legendary Ore",
 	"item.mmorpg.ore5": "§dMythical Ore",
 	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
 
 "_comment": " [CATEGORY]: MISC - NAMES",
 
@@ -160,22 +161,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -234,6 +219,22 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -527,7 +528,7 @@
 	"mmorpg.suffix.of_firestorms": "Of Firestorms",
 	"mmorpg.suffix.of_godhood": "Of Staff Flurry",
 	"mmorpg.suffix.of_guidance": "Of Guidance",
-	"mmorpg.suffix.of_icestorms": "Of IceStorms",
+	"mmorpg.suffix.of_icestorms": "Of Ice Storms",
 	"mmorpg.suffix.of_immortality": "Of Immortality",
 	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
 	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",

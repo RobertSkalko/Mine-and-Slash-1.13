@@ -21,6 +21,7 @@ public class PotionRegister {
         reg.register(EnergyRegenPotion.INSTANCE);
         reg.register(HealthRegenPotion.INSTANCE);
         reg.register(ManaRegenPotion.INSTANCE);
+        reg.register(TeleportProtection.INSTANCE);
     }
 
 }

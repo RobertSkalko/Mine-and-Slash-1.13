@@ -1,3 +1,12 @@
+2.0.17
+try fix players falling into void, if it still happens please tell me a bit more how it happens and what happens. (are you teleported into ground and slowly fall into void?)
+salvage station now uses capacitor for bonus
+fix salvaging bags always giving a bonus
+portals teleport a bit faster now
+map device now teleports correctly to the map you sacrificed, instead of the last map someone sacrificed.
+weapons should now be enchatable
+teleporting to and from maps now gives you a teleport guard buff. This buff should check if player is in a bad situation like suffocating or falling into the void and help that not happen.
+
 2.0.16
 mobs now have armor and elemental penetration, should make them hit a bit harder
 fix some harmless model log errors hopefully

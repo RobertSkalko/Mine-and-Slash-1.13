@@ -2,6 +2,7 @@ package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.uncommon.localization.CLOC;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
@@ -34,6 +35,14 @@ public class ItemCapacitor extends Item {
 
     public List<Float> RepairValues = Arrays.asList(0.95F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F);
 
+    public List<Float> bonusSalvageChance = Arrays.asList(1F, 2.5F, 5F, 10F, 15F, 25F);
+
+    public Float getSalvageBonusChance() {
+
+        return bonusSalvageChance.get(rarity);
+
+    }
+
     public Float GetFuelMultiplier() {
 
         return RepairValues.get(rarity);
@@ -49,6 +58,9 @@ public class ItemCapacitor extends Item {
 
         Tooltip.add(CLOC.tooltip("capacitor2")
                 .appendText(": " + this.GetFuelMultiplier() + "x"), tooltip);
+
+        Tooltip.add(Words.Bonus_Salvage_Chance.locName()
+                .appendText(": " + this.getSalvageBonusChance() + "%"), tooltip);
 
     }
 

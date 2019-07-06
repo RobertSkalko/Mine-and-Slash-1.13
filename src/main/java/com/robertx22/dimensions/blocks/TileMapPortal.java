@@ -1,6 +1,5 @@
 package com.robertx22.dimensions.blocks;
 
-import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
@@ -11,11 +10,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TileMapPortal extends TileEntity {
 
-    public String id;
-
     public TileMapPortal(DimensionType type) {
         super(BlockRegister.TILE_PORTAL_BLOCK);
-        this.id = MapManager.getResourceLocation(type).toString();
+        //this.id = MapManager.getResourceLocation(type).toString();
     }
 
     public TileMapPortal() {
@@ -30,7 +27,7 @@ public class TileMapPortal extends TileEntity {
 
     public boolean readyToTeleport() {
 
-        if (ticks > 80) {
+        if (ticks > 60) {
             ticks = 0;
             return true;
         }
@@ -47,7 +44,6 @@ public class TileMapPortal extends TileEntity {
     public void read(CompoundNBT nbt) {
         super.read(nbt);
 
-        id = nbt.getString("dim_Id_string");
         ticks = nbt.getInt("ticks");
     }
 
@@ -55,7 +51,6 @@ public class TileMapPortal extends TileEntity {
     public CompoundNBT write(CompoundNBT nbt) {
         super.write(nbt); // The super call is required to save and load the tile loc
 
-        nbt.putString("dim_Id_string", id);
         nbt.putInt("ticks", ticks);
 
         return nbt;

@@ -1,16 +1,17 @@
 package com.robertx22.blocks.salvage_station;
 
 import com.robertx22.blocks.bases.BaseTile;
+import com.robertx22.items.misc.ItemCapacitor;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.rune.RuneItemData;
-import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -37,26 +38,42 @@ public class TileGearSalvage extends BaseTile {
         return true;
     }
 
+    private float getCapacitorBonus() {
+
+        ItemStack stack = itemStacks[FIRST_CAPACITOR_SLOT];
+
+        if (stack.getItem() instanceof ItemCapacitor) {
+            ItemCapacitor cap = (ItemCapacitor) stack.getItem();
+
+            return cap.getSalvageBonusChance();
+        }
+
+        return 0;
+
+    }
+
     public ItemStack getSmeltingResultForItem(ItemStack st) {
+
+        float bonus = getCapacitorBonus();
 
         GearItemData gear = Gear.Load(st);
         if (gear != null) {
-            return gear.getSalvageResult(0);
+            return gear.getSalvageResult(bonus);
         }
 
         SpellItemData spell = Spell.Load(st);
         if (spell != null) {
-            return spell.getSalvageResult(0);
+            return spell.getSalvageResult(bonus);
         }
 
         MapItemData map = Map.Load(st);
         if (map != null) {
-            return map.getSalvageResult(0);
+            return map.getSalvageResult(bonus);
         }
 
         RuneItemData rune = Rune.Load(st);
         if (rune != null) {
-            return rune.getSalvageResult(0);
+            return rune.getSalvageResult(bonus);
         }
 
         return ItemStack.EMPTY;

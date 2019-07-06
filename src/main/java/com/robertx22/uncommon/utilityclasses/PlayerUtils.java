@@ -2,6 +2,7 @@ package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.MMORPG;
+import com.robertx22.potion_effects.all.TeleportProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -48,6 +49,9 @@ public class PlayerUtils {
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
             return null;
         player.invulnerableDimensionChange = true;
+        player.setNoGravity(true);
+        player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
+
         DimensionType dimensiontype = player.dimension;
         if (dimensiontype == DimensionType.THE_END && destination == DimensionType.OVERWORLD) {
             player.detach();
@@ -99,6 +103,7 @@ public class PlayerUtils {
             player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), f1, 0.0F);
             player.setMotion(Vec3d.ZERO);
             player.setNoGravity(true);
+            player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
             player.setWorld(serverworld1);
             serverworld1.func_217447_b(player);

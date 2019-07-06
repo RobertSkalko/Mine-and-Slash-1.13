@@ -1,9 +1,9 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
@@ -50,21 +50,24 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
+                            PlayerEntity player = (PlayerEntity) entity;
+
+                            PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+
                             ResourceLocation loc = MapManager.getResourceLocation(entity.world
                                     .getDimension()
                                     .getType());
 
+                            DimensionType mapType = MapManager.getDimensionType(data);
+                            ResourceLocation mapRes = MapManager.getResourceLocation(mapType);
+
                             // prevents infinite teleport loop xD makes sure you dont teleport to the same
                             // dimension, forever
-                            if (portal.id != loc.toString()) {
+                            if (mapRes.toString() != loc.toString()) {
 
-                                World mapworld = MapManager.getWorld(portal.id);
+                                World mapworld = MapManager.getWorld(mapType);
 
                                 if (WorldUtils.isMapWorld(mapworld)) {
-
-                                    PlayerEntity player = (PlayerEntity) entity;
-
-                                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
                                     if (data.hasTimeForMap()) {
                                         entity.sendMessage(Chats.Teleport_started.locName());

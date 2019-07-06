@@ -2,10 +2,10 @@ package com.robertx22.items.level_incentives;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.dimensions.MapManager;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.localization.Words;
-import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -144,7 +144,7 @@ public class Hearthstone extends Item {
             pos = pos.up();
             String dim = stack.getTag().getString("dim");
             ResourceLocation res = new ResourceLocation(dim);
-            DimensionType type = MapManager.getDimension(res);
+            DimensionType type = MapManager.getDimensionType(res);
 
             if (player.dimension != type) {
                 PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos);
