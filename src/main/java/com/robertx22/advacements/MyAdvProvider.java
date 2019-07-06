@@ -1,4 +1,4 @@
-package com.robertx22.new_content_test;
+package com.robertx22.advacements;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;

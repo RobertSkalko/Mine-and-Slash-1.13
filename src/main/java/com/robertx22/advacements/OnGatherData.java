@@ -1,4 +1,4 @@
-package com.robertx22.new_content_test;
+package com.robertx22.advacements;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;

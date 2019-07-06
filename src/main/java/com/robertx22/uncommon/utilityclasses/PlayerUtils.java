@@ -39,6 +39,12 @@ public class PlayerUtils {
 
     public static Entity changeDimension(ServerPlayerEntity player,
                                          DimensionType destination, BlockPos pos) {
+
+        // should fix falling directly into the void
+        if (pos.getY() < 2) {
+            pos = new BlockPos(pos.getX(), 90, pos.getZ());
+        }
+
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
             return null;
         player.invulnerableDimensionChange = true;
@@ -92,6 +98,7 @@ public class PlayerUtils {
 
             player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), f1, 0.0F);
             player.setMotion(Vec3d.ZERO);
+            player.setNoGravity(true);
 
             player.setWorld(serverworld1);
             serverworld1.func_217447_b(player);
@@ -109,6 +116,7 @@ public class PlayerUtils {
             player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
             player.invulnerableDimensionChange = false;
             player.setInvulnerable(false);
+            player.setNoGravity(false);
             net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
             return player;
         }

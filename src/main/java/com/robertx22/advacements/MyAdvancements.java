@@ -1,4 +1,4 @@
-package com.robertx22.new_content_test;
+package com.robertx22.advacements;
 
 import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ItemLootBag;
