@@ -16,7 +16,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
         return "chaos_orb";
     }
 
-    private static final String name = Ref.MODID + ":currency/chaos_orb";
+    public static final String ID = Ref.MODID + ":currency/chaos_orb";
 
     @Override
     public List<String> oldNames() {
@@ -25,7 +25,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
 
     public ItemChaosOrb() {
 
-        super(name);
+        super(ID);
 
     }
 

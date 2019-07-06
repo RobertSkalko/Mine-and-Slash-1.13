@@ -4,10 +4,14 @@ import com.robertx22.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
 import com.robertx22.items.bags.master_bag.ItemMasterBag;
+import com.robertx22.items.currency.CurrencyItem;
+import com.robertx22.items.currency.ItemChaosOrb;
+import com.robertx22.items.currency.ItemStoneOfHope;
 import com.robertx22.items.gearitems.weapons.ItemHammer;
 import com.robertx22.items.gearitems.weapons.ItemSword;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mmorpg.registers.common.ItemRegister;
 import com.robertx22.uncommon.localization.AdvDescs;
 import com.robertx22.uncommon.localization.AdvTitles;
 import com.robertx22.uncommon.localization.Words;
@@ -17,6 +21,8 @@ import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.function.Consumer;
 
@@ -54,6 +60,12 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
 
         Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", lvl_10, consu, BlockRegister.BLOCK_MAP_DEVICE);
 
+        Advancement chaosOrb = currency(ItemRegister.CHAOS_ORB, new StringTextComponent(new ItemChaosOrb()
+                .locNameForLangFile()), "chaos_orb", AdvDescs.ChaosOrb, lvl_10, consu, ItemRegister.CHAOS_ORB);
+        Advancement addaffix = currency(ItemRegister.ADD_PREFIX, AdvTitles.AddAffix.locName(), "add_affix", AdvDescs.AddAffix, lvl_10, consu, ItemRegister.ADD_PREFIX);
+        Advancement stoneofhope = currency(ItemRegister.STONE_OF_HOPE, new StringTextComponent(new ItemStoneOfHope()
+                .locNameForLangFile()), "stone_of_hope", AdvDescs.Stoneofhope, lvl_10, consu, ItemRegister.STONE_OF_HOPE);
+
     }
 
     private Advancement levelAdv(int lvl, AdvDescs desc, Advancement parent,
@@ -65,6 +77,20 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
                 .withDisplay(item, Words.Level.locName()
                         .appendText(": " + lvl), desc.locName(), null, FrameType.CHALLENGE, true, true, false)
                 .withCriterion(id, new PlayerLevelTrigger.Instance(lvl))
+                .register(consumerAdv, id(id));
+
+        return adv;
+    }
+
+    private Advancement currency(CurrencyItem display, ITextComponent title, String id,
+                                 AdvDescs desc, Advancement parent,
+                                 Consumer<Advancement> consumerAdv,
+                                 CurrencyItem... item) {
+
+        Advancement adv = Advancement.Builder.builder()
+                .withParent(parent)
+                .withDisplay(display, title, desc.locName(), null, FrameType.GOAL, true, true, false)
+                .withCriterion(id, InventoryChangeTrigger.Instance.forItems(item))
                 .register(consumerAdv, id(id));
 
         return adv;

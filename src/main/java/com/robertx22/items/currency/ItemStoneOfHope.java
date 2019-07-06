@@ -18,7 +18,7 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
         return "stone_of_hope";
     }
 
-    private static final String name = Ref.MODID + ":currency/stone_of_hope";
+    public static final String ID = Ref.MODID + ":currency/stone_of_hope";
 
     @Override
     public List<String> oldNames() {
@@ -27,7 +27,7 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 
     public ItemStoneOfHope() {
 
-        super(name);
+        super(ID);
 
     }
 

@@ -15,6 +15,7 @@ public enum AdvTitles implements IAutoLocName {
     LootBag("Loot Bag"),
     MapDevice("Map Device"),
     Level("Level"),
+    AddAffix("Add Affix"),
     MasterBag("Master Bag");
 
     private String localization = "";

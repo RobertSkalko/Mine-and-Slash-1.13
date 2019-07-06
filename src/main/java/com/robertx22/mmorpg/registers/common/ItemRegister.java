@@ -43,9 +43,19 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
+
+    @ObjectHolder(ItemChaosOrb.ID)
+    public static CurrencyItem CHAOS_ORB;
+    @ObjectHolder(ItemAddPrefix.ID)
+    public static CurrencyItem ADD_PREFIX;
+    @ObjectHolder(ItemAddSuffix.ID)
+    public static CurrencyItem ADD_SUFFIX;
+    @ObjectHolder(ItemStoneOfHope.ID)
+    public static CurrencyItem STONE_OF_HOPE;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {

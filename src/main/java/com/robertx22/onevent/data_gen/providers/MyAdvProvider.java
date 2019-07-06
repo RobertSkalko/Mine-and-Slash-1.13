@@ -1,9 +1,10 @@
-package com.robertx22.advacements;
+package com.robertx22.onevent.data_gen.providers;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.advacements.MyAdvancements;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.DataGenerator;
@@ -33,6 +34,7 @@ public class MyAdvProvider implements IDataProvider {
     /**
      * Performs this provider's action.
      */
+    @Override
     public void act(DirectoryCache cache) throws IOException {
         Path path = this.generator.getOutputFolder();
         Set<ResourceLocation> set = Sets.newHashSet();
@@ -67,6 +69,7 @@ public class MyAdvProvider implements IDataProvider {
     /**
      * Gets a name for this provider, to use in logging.
      */
+    @Override
     public String getName() {
         return "Advancements";
     }

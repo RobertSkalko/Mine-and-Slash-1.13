@@ -1,5 +1,6 @@
-package com.robertx22.advacements;
+package com.robertx22.onevent.data_gen;
 
+import com.robertx22.onevent.data_gen.providers.MyAdvProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 

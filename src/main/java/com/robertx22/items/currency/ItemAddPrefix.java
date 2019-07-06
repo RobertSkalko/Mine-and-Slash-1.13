@@ -22,11 +22,11 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
         return "add_prefix";
     }
 
-    private static final String name = Ref.MODID + ":currency/add_prefix";
+    public static final String ID = Ref.MODID + ":currency/add_prefix";
 
     public ItemAddPrefix() {
 
-        super(name);
+        super(ID);
 
     }
 

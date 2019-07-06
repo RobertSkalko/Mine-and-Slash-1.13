@@ -13,6 +13,8 @@ import com.robertx22.uncommon.utilityclasses.DirUtils;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -110,17 +112,23 @@ public class CreateLangFile {
 
         json = CreateLangFileUtils.replaceLast(json, ",", ""); // removes last , or else json wont work
 
-        File file = new File(DirUtils.langFilePath());
-
         try {
+            System.out.println("Starting to create lang file");
+
+            if (Files.exists(Paths.get(DirUtils.langFilePath())) == false) {
+                Files.createFile(Paths.get(DirUtils.langFilePath()));
+            }
+
+            File file = new File(DirUtils.langFilePath());
+
             FileWriter fw = new FileWriter(file);
             fw.write(json);
             fw.close();
+            System.out.println("Saved lang file to " + file.toPath().toString());
+
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        System.out.println("Wrote [LANG] file to " + DirUtils.langFilePath());
 
     }
 

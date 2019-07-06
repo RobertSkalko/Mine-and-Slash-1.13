@@ -4,7 +4,6 @@ import com.mmorpg_libraries.curios.CurioClientSetup;
 import com.mmorpg_libraries.curios.GenerateCurioDataJsons;
 import com.mmorpg_libraries.curios.RegisterCurioSlots;
 import com.mmorpg_libraries.neat_mob_overlay.HealthBarRenderer;
-import com.robertx22.advacements.OnGatherData;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.db_lists.Initialization;
@@ -19,6 +18,7 @@ import com.robertx22.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mmorpg.registers.common.*;
 import com.robertx22.mmorpg.registers.server.CommandRegister;
+import com.robertx22.onevent.data_gen.OnGatherData;
 import com.robertx22.onevent.world.OnStartResetMaps;
 import com.robertx22.uncommon.develeper.CreateLangFile;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
@@ -60,7 +60,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static long MAP_WORLD_SEED = 0;
 

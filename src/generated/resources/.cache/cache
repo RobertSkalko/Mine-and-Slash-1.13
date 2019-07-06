@@ -1,3 +1,5 @@
+b7dbfce86ca4bd62dd84c563482f505e58150ddd data\mmorpg\advancements\mine_and_slash\add_affix.json
+0b732c3478242a1ea8c91fd8e423faa066d420d2 data\mmorpg\advancements\mine_and_slash\chaos_orb.json
 d3407d97c16aff0f823dcd0013b3ef7d58000325 data\mmorpg\advancements\mine_and_slash\currency_bag.json
 bc4e0e603df7d22863f7598e3fd685fab318c518 data\mmorpg\advancements\mine_and_slash\factory.json
 08effef70e3af40a24ee5263330c6cd0db2eefe3 data\mmorpg\advancements\mine_and_slash\loot_bag.json
@@ -14,3 +16,4 @@ aa4706f9d10d7a41bcb8e7d2fb1ffc3f660e77d9 data\mmorpg\advancements\mine_and_slash
 b6fb3cbd6b78712a9573aa6b9ebf3299ee6baa53 data\mmorpg\advancements\mine_and_slash\repair.json
 e59a3518a471369802423a35f0fa3b29651a5717 data\mmorpg\advancements\mine_and_slash\root.json
 959c9e78bbf075aafa2bb4ebfca71eedaf4c4620 data\mmorpg\advancements\mine_and_slash\salvage.json
+3fab8b945f88732c6327e14aa224f9e49425fc69 data\mmorpg\advancements\mine_and_slash\stone_of_hope.json
