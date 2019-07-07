@@ -1,7 +1,6 @@
 package com.robertx22.world_gen.structures;
 
 import com.robertx22.db_lists.Templates;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.world_gen.processors.BiomeProcessor;
 import com.robertx22.world_gen.processors.ChestProcessor;
@@ -10,7 +9,6 @@ import com.robertx22.world_gen.structures.bases.StructurePieceData;
 import com.robertx22.world_gen.structures.bases.TemplatePiece;
 import com.robertx22.world_gen.types.FeatureType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.TemplateManager;
@@ -20,10 +18,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Random1ChunkDunPieces {
-
-    static final String FOLDER = "one_chunk";
-
-    private static final ResourceLocation DUNGEON = new ResourceLocation(Ref.MODID, FOLDER + "/dungeon0");
 
     private static final List<FeatureType> LIST = Arrays.asList(Templates.dun0, Templates.dun1);
 
