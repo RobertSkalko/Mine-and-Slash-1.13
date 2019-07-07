@@ -1,5 +1,4 @@
 2.0.21
-now shouldnt recieve map penalty if you die under teleport guard (extra safety measure)
 fix struc register
 2.0.20 
 more work on fixing teleport deaths

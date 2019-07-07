@@ -3,7 +3,6 @@ package com.robertx22.uncommon.capability;
 import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MapManager;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.potion_effects.all.TeleportProtection;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
@@ -151,28 +150,26 @@ public class PlayerMapData {
 
             this.isDead = true;
 
-            if (player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) { // if not under tp protection
-                if (this.isPermaDeath()) {
+            if (this.isPermaDeath()) {
 
-                    this.minutesPassed += 555555;
+                this.minutesPassed += 555555;
 
-                    player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                            .appendText(" " + player.getDisplayName()
-                                    .getFormattedText() + " ")
-                            .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
+                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
+                        .appendText(" " + player.getDisplayName()
+                                .getFormattedText() + " ")
+                        .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
 
-                } else {
-                    int punishment = 5;
+            } else {
+                int punishment = 5;
 
-                    player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                            .appendText(" " + player.getDisplayName()
-                                    .getFormattedText() + " ")
-                            .appendSibling(Chats.Map_time_penalty_activated.locName()));
+                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
+                        .appendText(" " + player.getDisplayName()
+                                .getFormattedText() + " ")
+                        .appendSibling(Chats.Map_time_penalty_activated.locName()));
 
-                    this.minutesPassed += punishment;
+                this.minutesPassed += punishment;
 
-                    announceTimeLeft(player);
-                }
+                announceTimeLeft(player);
             }
 
             if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {

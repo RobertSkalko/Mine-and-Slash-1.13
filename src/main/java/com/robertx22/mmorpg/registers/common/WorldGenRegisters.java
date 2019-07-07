@@ -93,7 +93,7 @@ public class WorldGenRegisters {
         Feature.STRUCTURES.put(value.getStructureName(), value);
 
         registerStruc(value.getStructureName(), value);
-        
+
         return (F) (Registry.<Feature<?>>register(Registry.FEATURE, value.getStructureName(), value));
 
     }
