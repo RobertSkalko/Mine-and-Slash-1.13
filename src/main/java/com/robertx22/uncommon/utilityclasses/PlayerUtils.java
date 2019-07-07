@@ -41,11 +41,6 @@ public class PlayerUtils {
     public static Entity changeDimension(ServerPlayerEntity player,
                                          DimensionType destination, BlockPos pos) {
 
-        // should fix falling directly into the void
-        if (pos.getY() < 2) {
-            pos = new BlockPos(pos.getX(), 90, pos.getZ());
-        }
-
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
             return null;
         player.invulnerableDimensionChange = true;

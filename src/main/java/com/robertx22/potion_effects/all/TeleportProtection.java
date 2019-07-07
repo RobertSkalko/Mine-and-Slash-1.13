@@ -52,7 +52,7 @@ public class TeleportProtection extends SpellPotionBase {
                         break;
                     }
 
-                    if (tries > 500) {
+                    if (tries > 5) {
                         break;
                     }
 
@@ -79,6 +79,6 @@ public class TeleportProtection extends SpellPotionBase {
 
     @Override
     public int performEachXTicks() {
-        return 1;
+        return 5;
     }
 }

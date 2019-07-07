@@ -101,9 +101,9 @@
 
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
-	"item.mmorpg.spell_acid_bomb": "§cPoison Bomb",
-	"item.mmorpg.spell_acidbolt": "§cPoison Bolt",
-	"item.mmorpg.spell_acidexplosion": "§cPoison Explosion",
+	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
+	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
+	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
 	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
 	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
 	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
@@ -114,7 +114,7 @@
 	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
 	"item.mmorpg.spell_instantheal": "§cInstant Heal",
 	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-	"item.mmorpg.spell_poison_nova": "§cPoison Nova",
+	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
 	"item.mmorpg.spell_self_regen": "§cRegenerate",
 	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
 	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
@@ -153,6 +153,24 @@
 	"mmorpg.set.wisdom_of_the_elders": "Wisdom of the Elders",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
@@ -215,24 +233,6 @@
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 	"mmorpg.word.bloom": "Bloom",
@@ -274,7 +274,7 @@
 	"mmorpg.prefix.arcanists": "Arcanist's",
 	"mmorpg.prefix.archaeologists": "Archaeologist's",
 	"mmorpg.prefix.bonusfirereflectprefix": "Flame Thorns Mastery",
-	"mmorpg.prefix.bonusnaturereflectprefix": "Poison Thorns Mastery",
+	"mmorpg.prefix.bonusnaturereflectprefix": "Venom Thorns Mastery",
 	"mmorpg.prefix.bonusthunderreflectprefix": "Lightning Thorns Mastery",
 	"mmorpg.prefix.bonuswaterreflectprefix": "Frost Thorns Mastery",
 	"mmorpg.prefix.brave_heart": "Brave Heart",
@@ -513,44 +513,11 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
-
-	"mmorpg.suffix.of_balance": "Of Balance",
-	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
-	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
-	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
-	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
-	"mmorpg.suffix.of_element_resist": "Of Element Resist",
-	"mmorpg.suffix.of_firestorms": "Of Firestorms",
-	"mmorpg.suffix.of_godhood": "Of Staff Flurry",
-	"mmorpg.suffix.of_guidance": "Of Guidance",
-	"mmorpg.suffix.of_icestorms": "Of Ice Storms",
-	"mmorpg.suffix.of_immortality": "Of Immortality",
-	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
-	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
-	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
-	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
-	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
-	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
-	"mmorpg.suffix.of_swiftness": "Of Swiftness",
-	"mmorpg.suffix.of_the_hydra": "Of the Hydra",
-	"mmorpg.suffix.of_the_sage": "Of The Sage",
-	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
-	"mmorpg.suffix.of_vitality": "Of Vitality",
-	"mmorpg.suffix.offorce": "Of Force",
-	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
-	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
-	"mmorpg.suffix.ofthedepths": "Of The Depths",
-	"mmorpg.suffix.ofvampirism": "Of Vampirism",
-
-"_comment": " [CATEGORY]: SUFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: STATS - NAMES",
 
-	"mmorpg.stat.acidbolt_power": "§cPoison Bolt Power",
-	"mmorpg.stat.acidbomb_power": "§cPoison Bomb Power",
-	"mmorpg.stat.acidexplosion_power": "§cPoison Explosion Power",
+	"mmorpg.stat.acidbolt_power": "§cVenom Bolt Power",
+	"mmorpg.stat.acidbomb_power": "§cVenom Bomb Power",
+	"mmorpg.stat.acidexplosion_power": "§cVenom Explosion Power",
 	"mmorpg.stat.all_attributes": "All Attributes",
 	"mmorpg.stat.all_elemental_damage": "All Elemental Damage",
 	"mmorpg.stat.all_fire_damage": "All Fire Damage",
@@ -665,7 +632,7 @@
 	"mmorpg.stat.nature_penetration": "Nature Penetration",
 	"mmorpg.stat.nature_resist": "Nature Resist",
 	"mmorpg.stat.nature_spell_to_attack_dmg": "Nature Spell to Atk Dmg",
-	"mmorpg.stat.nature_thorns_reflect": "Poison Thorns",
+	"mmorpg.stat.nature_thorns_reflect": "Venom Thorns",
 	"mmorpg.stat.nature_to_fire_conversion": "Boost Nature to Fire",
 	"mmorpg.stat.nature_to_fire_transfer": "Transfer Nature to Fire",
 	"mmorpg.stat.nature_to_thunder_conversion": "Boost Nature to Thunder",
@@ -685,7 +652,7 @@
 	"mmorpg.stat.spell_fire_nova_power": "§cFlame Nova Power",
 	"mmorpg.stat.spell_frost_nova_power": "§cFrost Nova Power",
 	"mmorpg.stat.spell_nature_damage": "Spell Nature Damage",
-	"mmorpg.stat.spell_poison_nova_power": "§cPoison Nova Power",
+	"mmorpg.stat.spell_poison_nova_power": "§cVenom Nova Power",
 	"mmorpg.stat.spell_self_regen_power": "§cRegenerate Power",
 	"mmorpg.stat.spell_thunder_damage": "Spell Thunder Damage",
 	"mmorpg.stat.spell_thunder_nova_power": "§cLightning Nova Power",
@@ -739,6 +706,39 @@
 	"mmorpg.stat.zephyr's_speed": "Zephyr",
 
 "_comment": " [CATEGORY]: STATS - NAMES",
+
+
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
+
+	"mmorpg.suffix.of_balance": "Of Balance",
+	"mmorpg.suffix.of_critical_damage": "Of Critical Damage",
+	"mmorpg.suffix.of_critical_hits": "Of Critical Hits",
+	"mmorpg.suffix.of_critical_unity": "Of Critical Unity",
+	"mmorpg.suffix.of_earthquakes": "Of Earthquakes",
+	"mmorpg.suffix.of_element_resist": "Of Element Resist",
+	"mmorpg.suffix.of_firestorms": "Of Firestorms",
+	"mmorpg.suffix.of_godhood": "Of Staff Flurry",
+	"mmorpg.suffix.of_guidance": "Of Guidance",
+	"mmorpg.suffix.of_icestorms": "Of Ice Storms",
+	"mmorpg.suffix.of_immortality": "Of Immortality",
+	"mmorpg.suffix.of_major_affinity_fire": "Of Major Fire Affinity",
+	"mmorpg.suffix.of_major_affinity_nature": "Of Major Nature Affinity",
+	"mmorpg.suffix.of_major_affinity_thunder": "Of Major Thunder Affinity",
+	"mmorpg.suffix.of_major_affinity_water": "Of Major Water Affinity",
+	"mmorpg.suffix.of_mana_regen": "Of Mana Regen",
+	"mmorpg.suffix.of_rock_skin": "Of Rock Skin",
+	"mmorpg.suffix.of_swiftness": "Of Swiftness",
+	"mmorpg.suffix.of_the_hydra": "Of the Hydra",
+	"mmorpg.suffix.of_the_sage": "Of The Sage",
+	"mmorpg.suffix.of_thunderstorms": "Of Thunderstorms",
+	"mmorpg.suffix.of_vitality": "Of Vitality",
+	"mmorpg.suffix.offorce": "Of Force",
+	"mmorpg.suffix.ofhiddensense": "Of Hidden Sense",
+	"mmorpg.suffix.ofrockpiercing": "Of Rock Piercing",
+	"mmorpg.suffix.ofthedepths": "Of The Depths",
+	"mmorpg.suffix.ofvampirism": "Of Vampirism",
+
+"_comment": " [CATEGORY]: SUFFIXES - NAMES",
 
 
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
@@ -817,13 +817,13 @@
 	"item.mmorpg.uniques.ring.ringenergy0": "§eRing of Unlimited Endurance",
 	"item.mmorpg.uniques.ring.ringwaterfire0": "§eFrostFire Ring",
 	"item.mmorpg.uniques.shield.fire_ele_shield0": "§eShield of Flame Thorns",
-	"item.mmorpg.uniques.shield.nature_ele_shield0": "§eShield of Poison Thorns",
+	"item.mmorpg.uniques.shield.nature_ele_shield0": "§eShield of Venom Thorns",
 	"item.mmorpg.uniques.shield.shield_wisdom0": "§eWisdom Shield",
 	"item.mmorpg.uniques.shield.shieldresist0": "§eShield of Resistance",
 	"item.mmorpg.uniques.shield.thunder_ele_shield0": "§eShield of Lightning Thorns",
 	"item.mmorpg.uniques.shield.water_ele_shield0": "§eShield of Frost Thorns",
 	"item.mmorpg.uniques.staff.fire_ele_staff0": "§eRod of Flame's Requiem",
-	"item.mmorpg.uniques.staff.nature_ele_staff0": "§eRod of Poison's Requiem",
+	"item.mmorpg.uniques.staff.nature_ele_staff0": "§eRod of Venom's Requiem",
 	"item.mmorpg.uniques.staff.thunder_ele_staff0": "§eRod of Lightning's Requiem",
 	"item.mmorpg.uniques.staff.uniquestafffire0": "§eStaff of Volcanoes",
 	"item.mmorpg.uniques.staff.uniquestafflifesteal0": "§eVampire Staff",
@@ -832,7 +832,7 @@
 	"item.mmorpg.uniques.staff.uniquestaffwater0": "§eStaff of Permafrost",
 	"item.mmorpg.uniques.staff.water_ele_staff0": "§eRod of Frost's Requiem",
 	"item.mmorpg.uniques.sword.fire_ele_saber0": "§eSaber of Flame madness",
-	"item.mmorpg.uniques.sword.nature_ele_saber0": "§eSaber of Poison madness",
+	"item.mmorpg.uniques.sword.nature_ele_saber0": "§eSaber of Venom madness",
 	"item.mmorpg.uniques.sword.swordnature0": "§eSword of the Nature Spirit",
 	"item.mmorpg.uniques.sword.swordphysical0": "§eBlade of Doom",
 	"item.mmorpg.uniques.sword.swordwater0": "§eIce Elemental Sword",
@@ -861,6 +861,18 @@
 	"mmorpg.gear_type.torch": "Torch",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.aoe_regen": "Aoe Regen",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.energy_regen": "Regen Energy",
+	"effect.mmorpg.mana_regen": "Regen Mana",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -965,18 +977,6 @@
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.aoe_regen": "Aoe Regen",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.energy_regen": "Regen Energy",
-	"effect.mmorpg.mana_regen": "Regen Mana",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
 
 	"mmorpg.world_type.birch_forest": "Birch Forest",
@@ -1079,7 +1079,7 @@
 	"item.mmorpg.uniques.ring.ringenergy0.desc": "I will pay any price to continue!",
 	"item.mmorpg.uniques.ring.ringwaterfire0.desc": "I will attain perfect control.",
 	"item.mmorpg.uniques.shield.fire_ele_shield0.desc": "Fear no Flame",
-	"item.mmorpg.uniques.shield.nature_ele_shield0.desc": "Fear no Poison",
+	"item.mmorpg.uniques.shield.nature_ele_shield0.desc": "Fear no Venom",
 	"item.mmorpg.uniques.shield.shield_wisdom0.desc": "Let your wounds become wisdom.",
 	"item.mmorpg.uniques.shield.shieldresist0.desc": "Fear no elements.",
 	"item.mmorpg.uniques.shield.thunder_ele_shield0.desc": "Fear no Lightning",
