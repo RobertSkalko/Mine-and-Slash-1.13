@@ -1,6 +1,7 @@
 package com.robertx22.items.gearitems.bases.itemtiers;
 
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 
 public class RarityItemTier implements IItemTier {
@@ -42,6 +43,6 @@ public class RarityItemTier implements IItemTier {
 
     @Override
     public Ingredient getRepairMaterial() {
-        return null;
+        return Ingredient.fromItems(Items.STRUCTURE_BLOCK);
     }
 }
