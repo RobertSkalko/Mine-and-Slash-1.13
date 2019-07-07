@@ -9,6 +9,7 @@ import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +18,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WorldUtils {
@@ -114,6 +116,21 @@ public class WorldUtils {
         pos = new BlockPos(x, pos.getY(), z);
 
         return pos;
+
+    }
+
+    public static boolean surfaceIsWater(IWorld world, BlockPos pos) {
+
+        BlockPos surface = getSurface(world, pos);
+
+        for (BlockPos x : Arrays.asList(surface.up(), surface.up(2), surface.down(), surface
+                .down(2), surface)) {
+            if (world.getBlockState(x).getMaterial() == Material.WATER) {
+                return true;
+            }
+        }
+
+        return false;
 
     }
 

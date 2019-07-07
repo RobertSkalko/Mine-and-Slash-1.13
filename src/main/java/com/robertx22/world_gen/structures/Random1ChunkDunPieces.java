@@ -46,7 +46,7 @@ public class Random1ChunkDunPieces {
 
         public Dungeon0Piece(StructurePieceData data) {
             super(data);
-
+            this.canBeInWater = false;
         }
 
         @Override

@@ -28,6 +28,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     public boolean isFirst = false;
     public boolean isLast = false;
     public String guid = "";
+    public boolean canBeInWater = true;
 
     int lowerIntoGroundBy = 0;
 
@@ -60,6 +61,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         this.isLast = nbt.getBoolean("islast");
         this.lowerIntoGroundBy = nbt.getInt("lowerby");
         this.guid = nbt.getString("guid");
+        this.canBeInWater = nbt.getBoolean("canInWater");
 
     }
 
@@ -73,6 +75,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         this.guid = data.guid;
         this.lowerIntoGroundBy = data.lowerIntoGroundBy;
         this.setupTemplateManager(data.templateManager);
+
     }
 
     public PlacementSettings setupPlacementSettings() {
@@ -107,6 +110,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         nbt.putBoolean("islast", isLast);
         nbt.putInt("lowerby", lowerIntoGroundBy);
         nbt.putString("guid", guid);
+        nbt.putBoolean("canInWater", canBeInWater);
 
     }
 
@@ -121,6 +125,12 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
             PlacementSettings placeSettings = this.setupPlacementSettings();
 
             BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
+
+            if (canBeInWater == false) {
+                if (WorldUtils.surfaceIsWater(iworld, pos)) {
+                    return false; // TODO ALSO SOMEHOW DISABLE OTHER COMPONENTS
+                }
+            }
 
             StructureData data = Load.mapData(iworld.getWorld())
                     .getStructuresData()
