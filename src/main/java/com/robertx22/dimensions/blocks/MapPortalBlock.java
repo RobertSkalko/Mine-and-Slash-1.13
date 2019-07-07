@@ -50,24 +50,21 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
-                            PlayerEntity player = (PlayerEntity) entity;
-
-                            PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
-
                             ResourceLocation loc = MapManager.getResourceLocation(entity.world
                                     .getDimension()
                                     .getType());
 
-                            DimensionType mapType = MapManager.getDimensionType(data);
-                            ResourceLocation mapRes = MapManager.getResourceLocation(mapType);
-
                             // prevents infinite teleport loop xD makes sure you dont teleport to the same
                             // dimension, forever
-                            if (mapRes.toString() != loc.toString()) {
+                            if (portal.id != loc.toString()) {
 
-                                World mapworld = MapManager.getWorld(mapType);
+                                World mapworld = MapManager.getWorld(portal.id);
 
                                 if (WorldUtils.isMapWorld(mapworld)) {
+
+                                    PlayerEntity player = (PlayerEntity) entity;
+
+                                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
 
                                     if (data.hasTimeForMap()) {
                                         entity.sendMessage(Chats.Teleport_started.locName());

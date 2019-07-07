@@ -1,6 +1,7 @@
 2.0.18
 added more advacements
 try fix dying in map portals again
+reverted portals to once again easily allow grouping
 
 2.0.17
 try fix players falling into void, if it still happens please tell me a bit more how it happens and what happens. (are you teleported into ground and slowly fall into void?)
