@@ -41,6 +41,8 @@ public class TeleportProtection extends SpellPotionBase {
         try {
             if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
 
+                entity.setInvulnerable(true);
+
                 int tries = 0;
                 while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
 
@@ -66,7 +68,7 @@ public class TeleportProtection extends SpellPotionBase {
 
     private void goUpward(ServerPlayerEntity en) {
 
-        int y = en.getPosition().getY() + 1;
+        int y = en.getPosition().getY() + 2;
         // idk which one of these set pos things work
         en.setLocationAndAngles(en.posX, y, en.posZ, en.rotationYaw, en.rotationPitch);
         en.setPosition(en.posX, y, en.posZ);

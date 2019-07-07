@@ -1,6 +1,7 @@
 package com.robertx22.onevent.player;
 
 import com.robertx22.config.ModConfig;
+import com.robertx22.potion_effects.all.TeleportProtection;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
@@ -21,6 +22,7 @@ public class OnDeathInMap {
     public static void onTickTeleportPlayerBackIfDead(TickEvent.PlayerTickEvent evt) {
 
         try {
+
             if (evt.player != null && evt.player.world != null) {
                 if (evt.player.world.isRemote == false) {
                     PlayerMapData.IPlayerMapData data = Load.playerMapData(evt.player);
@@ -33,6 +35,11 @@ public class OnDeathInMap {
                     }
                 }
             }
+            
+            if (evt.player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) {
+                evt.player.setInvulnerable(false);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
