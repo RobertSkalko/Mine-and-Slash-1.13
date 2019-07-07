@@ -37,7 +37,7 @@ public class Random1ChunkDunStructure extends ScatteredStructure<NoFeatureConfig
 
     @Override
     public Structure.IStartFactory getStartFactory() {
-        return Random1ChunkDunStructure.Start::new;
+        return Start::new;
     }
 
     @Override

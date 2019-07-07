@@ -44,6 +44,7 @@ public class TeleportProtection extends SpellPotionBase {
                 entity.setInvulnerable(true);
 
                 int tries = 0;
+
                 while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
 
                     tries++;
