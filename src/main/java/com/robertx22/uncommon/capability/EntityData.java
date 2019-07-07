@@ -343,20 +343,8 @@ public class EntityData {
 
             System.out.println("Old Formula");
             for (int i = 1; i < 101; i++) {
+                //System.out.println("level: " + i + " exp: " + oldlevelToExp(i));
 
-                int exp = 0;
-
-                int tens = i / 10;
-
-                if (i < 5) {
-                    exp = 150 * i;
-                } else if (i < 8) {
-                    exp = 200 * i;
-                } else {
-                    exp = i * 500 + (tens * 2000);
-                }
-
-                System.out.println("level: " + i + " exp: " + exp);
             }
 
             System.out.println("New Formula");
@@ -367,7 +355,7 @@ public class EntityData {
         }
 
         public static int equateXp(double xp) {
-            return (int) Math.floor(xp + 350 * Math.pow(2, xp / 10));
+            return (int) Math.floor(xp + 340 * Math.pow(2, xp / 9));
         }
 
         public static int levelToExp(int level) {

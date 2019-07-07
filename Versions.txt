@@ -1,7 +1,10 @@
 2.0.19
 all spells now got a visual upgrade by matpac!
-added a new small dungeon to adventure maps
+added 2 new small dungeons to adventure maps 
 added group map affix. these map affixes are rare and spawn usually on high rarity maps. they allow a group to easily get teleported to the same location
+added particles to show who the sacrificed map affected.
+increased exp required for higher lvls
+made aoe projectile spells cast faster
 2.0.18
 added more advacements
 map portals now spawn you in the air as a bandaid fix

@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
 
 public class ParticleUtils {
@@ -43,7 +44,10 @@ public class ParticleUtils {
 
             if (en.world.isRemote) {
                 en.world.addParticle(particle, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
+            } else {
+                ((ServerWorld) en.world).spawnParticle(ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 10, 0.0D, 0.0D, 0.0D, (double) 1F);
             }
+
         }
     }
 

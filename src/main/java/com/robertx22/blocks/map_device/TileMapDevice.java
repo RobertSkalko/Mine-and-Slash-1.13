@@ -194,8 +194,10 @@ public class TileMapDevice extends BaseTile {
 
                 if (dist <= distance && added < map.maxPlayersInGroup) {
                     map.setupPlayerMapData(world, this.pos, p);
+
                     distance = dist;
                     added++;
+
                 }
             }
 

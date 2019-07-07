@@ -16,7 +16,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public int useTimeTicks() {
-        return 20;
+        return 15;
     }
 
     public BaseAoeSpellProjectile() {

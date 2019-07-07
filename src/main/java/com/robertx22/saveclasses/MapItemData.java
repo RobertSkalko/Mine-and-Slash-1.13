@@ -177,6 +177,8 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
         UnitData unit = Load.Unit(player);
 
+        ParticleUtils.spawnEnergyRestoreParticles(player, 10);
+
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
     }
@@ -279,7 +281,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
                                 .appendSibling(Words.PartySize.locName())
                                 .appendText(": " + this.maxPlayersInGroup)), tooltip);
             }
-            
+
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
