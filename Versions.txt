@@ -1,3 +1,5 @@
+2.0.20 
+more work on fixing teleport deaths
 2.0.19
 all spells now got a visual upgrade by matpac!
 added 2 new small dungeons to adventure maps 

@@ -32,6 +32,13 @@ public class TeleportProtection extends SpellPotionBase {
     @Override
     public void doEffect(Entity applier, Entity caster, LivingEntity target,
                          int amplifier) {
+    }
+
+    @Override
+    public void performEffect(LivingEntity en, int amplifier) {
+
+        en.setInvulnerable(true);
+        super.performEffect(en, amplifier);
 
     }
 
@@ -40,8 +47,6 @@ public class TeleportProtection extends SpellPotionBase {
 
         try {
             if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
-
-                entity.setInvulnerable(true);
 
                 int tries = 0;
 
