@@ -1,7 +1,9 @@
 package com.robertx22.loot.blueprints;
 
+import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.rarities.RaritiesContainer;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
@@ -41,6 +43,16 @@ public class MapBlueprint extends ItemBlueprint {
     public boolean getIsPermaDeath() {
 
         return RandomUtils.roll(PERMADEATH_CHANCE);
+
+    }
+
+    public void rollSetupGrouPlay(MapItemData data, MapRarity rarity) {
+
+        if (RandomUtils.roll(rarity.groupPlayChance())) {
+            data.groupPlay = true;
+            data.maxPlayersInGroup = RandomUtils.RandomRange(3, 8);
+
+        }
 
     }
 

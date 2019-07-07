@@ -72,6 +72,8 @@ public class MapLootGen extends BaseLootGen {
 
         data.isPermaDeath = blueprint.getIsPermaDeath();
 
+        blueprint.rollSetupGrouPlay(data, rarity);
+
         data.level = blueprint.GetLevel();
 
         data = genAffixes(data, rarity);

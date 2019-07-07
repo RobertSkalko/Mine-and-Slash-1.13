@@ -23,6 +23,11 @@ public class MythicalMap extends BaseMythical implements MapRarity {
     }
 
     @Override
+    public float groupPlayChance() {
+        return 50;
+    }
+
+    @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.MYTHICAL_WEIGHT.get();
     }

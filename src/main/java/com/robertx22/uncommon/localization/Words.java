@@ -110,7 +110,8 @@ public enum Words implements IAutoLocName {
     Npc("Npc"),
 
     Percent("Percent"),
-
+    GroupPlay("Group Play"),
+    PartySize("Party Size"),
     Permadeath("Permadeath"),
 
     Player_Affixes("Player Affixes"),

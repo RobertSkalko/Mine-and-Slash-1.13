@@ -5,10 +5,11 @@ import com.robertx22.database.world_providers.IWP;
 import com.robertx22.items.misc.ItemMap;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,6 +21,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class TileMapDevice extends BaseTile {
 
@@ -142,7 +144,10 @@ public class TileMapDevice extends BaseTile {
 
                     DimensionType type = null;
                     try {
-                        type = map.getDimensionType(world, p, player);
+
+                        type = map.setupPlayerMapData(world, p, player);
+
+                        trySetupMapForGroup(map, player);
 
                         // start map
                         this.MapSlot().shrink(1);
@@ -169,6 +174,31 @@ public class TileMapDevice extends BaseTile {
             }
 
             markDirty();
+        }
+
+    }
+
+    private void trySetupMapForGroup(MapItemData map, PlayerEntity player) {
+
+        if (map.groupPlay) {
+            List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, this
+                    .getRenderBoundingBox()
+                    .grow(15));
+
+            double distance = Double.MAX_VALUE;
+
+            int added = 0;
+
+            for (ServerPlayerEntity p : players) {
+                double dist = p.getDistance(player);
+
+                if (dist <= distance && added < map.maxPlayersInGroup) {
+                    map.setupPlayerMapData(world, this.pos, p);
+                    distance = dist;
+                    added++;
+                }
+            }
+
         }
 
     }

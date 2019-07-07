@@ -14,13 +14,13 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.uncommon.localization.CLOC;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.uncommon.interfaces.ISalvagable;
+import com.robertx22.uncommon.localization.CLOC;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.*;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -54,6 +54,11 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
     @Store
     public int rarity = 0;
+
+    @Store
+    public int maxPlayersInGroup = 0;
+    @Store
+    public boolean groupPlay = false;
 
     @Store
     public boolean isPermaDeath = false;
@@ -167,8 +172,8 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
         return list;
     }
 
-    public DimensionType getDimensionType(World ogworld, BlockPos pos,
-                                          PlayerEntity player) {
+    public DimensionType setupPlayerMapData(World ogworld, BlockPos pos,
+                                            PlayerEntity player) {
 
         UnitData unit = Load.Unit(player);
 
@@ -266,6 +271,15 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
                         .appendSibling(Words.Permadeath.locName()), tooltip);
             }
 
+            if (this.groupPlay) {
+                Tooltip.add("", tooltip);
+                Tooltip.add(Styles.GREENCOMP()
+                        .appendSibling(Words.GroupPlay.locName()
+                                .appendText(", ")
+                                .appendSibling(Words.PartySize.locName())
+                                .appendText(": " + this.maxPlayersInGroup)), tooltip);
+            }
+            
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);

@@ -23,6 +23,11 @@ public class CommonMap extends BaseCommon implements MapRarity {
     }
 
     @Override
+    public float groupPlayChance() {
+        return 0;
+    }
+
+    @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.COMMON_WEIGHT.get();
     }

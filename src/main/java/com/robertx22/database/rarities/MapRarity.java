@@ -9,4 +9,6 @@ public interface MapRarity extends Rarity, SalvagableItem {
 
     MinMax StatPercents();
 
+    float groupPlayChance();
+
 }

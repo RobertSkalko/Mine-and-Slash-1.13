@@ -1,6 +1,7 @@
 2.0.19
 all spells now got a visual upgrade by matpac!
 added a new small dungeon to adventure maps
+added group map affix. these map affixes are rare and spawn usually on high rarity maps. they allow a group to easily get teleported to the same location
 2.0.18
 added more advacements
 map portals now spawn you in the air as a bandaid fix
