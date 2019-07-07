@@ -15,7 +15,7 @@ public class StructureData {
     public int getY(IWorld iworld, BlockPos pos) {
 
         if (Y == -1) {
-            Y = WorldUtils.getSurface(iworld, pos).getY();
+            Y = WorldUtils.getSurfaceCenterOfChunk(iworld, pos).getY();
         }
 
         return Y;

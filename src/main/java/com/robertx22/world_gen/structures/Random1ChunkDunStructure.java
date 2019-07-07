@@ -18,9 +18,10 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.function.Function;
 
-public class Dungeon0Structure extends ScatteredStructure<NoFeatureConfig> {
+public class Random1ChunkDunStructure extends ScatteredStructure<NoFeatureConfig> {
 
-    public Dungeon0Structure(Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
+    public Random1ChunkDunStructure(
+            Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
         super(dynamic);
     }
 
@@ -36,7 +37,7 @@ public class Dungeon0Structure extends ScatteredStructure<NoFeatureConfig> {
 
     @Override
     public Structure.IStartFactory getStartFactory() {
-        return Dungeon0Structure.Start::new;
+        return Random1ChunkDunStructure.Start::new;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class Dungeon0Structure extends ScatteredStructure<NoFeatureConfig> {
 
                 StructurePieceData data = new StructurePieceData(StructurePieceRegisters.FLOATING_ISLAND, templateManagerIn, blockpos, rotation, biomeIn);
 
-                Dungeon0Pieces.init(data, this.components, this.rand);
+                Random1ChunkDunPieces.init(data, this.components, this.rand);
                 this.recalculateStructureSize();
             }
         }

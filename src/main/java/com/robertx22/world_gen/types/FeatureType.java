@@ -24,10 +24,10 @@ public class FeatureType implements IWeighted {
 
     boolean canSpawnInWater = false;
 
-    int weight = 1000;
-    int lowerByXBlocks = 0;
-    int cantBeMoreThanXPercentNonAirBlocks = 100;
-    boolean requiresAirBlocks = false;
+    public int weight = 1000;
+    public int lowerByXBlocks = 0;
+    public int cantBeMoreThanXPercentNonAirBlocks = 100;
+    public boolean requiresAirBlocks = false;
 
     public boolean canSpawn(IWorld world, BlockPos pos, Template template) {
 

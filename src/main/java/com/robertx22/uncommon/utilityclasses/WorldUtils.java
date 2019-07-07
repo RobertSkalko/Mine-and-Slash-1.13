@@ -82,6 +82,41 @@ public class WorldUtils {
 
     }
 
+    public static BlockPos getSurfaceCenterOfChunk(IWorld world, BlockPos pos) {
+
+        int x = world.getChunk(pos).getPos().x + 8;
+        int z = world.getChunk(pos).getPos().z + 8;
+
+        pos = furtherby8(pos);
+
+        pos = getSurface(world, pos);
+
+        return pos;
+    }
+
+    public static BlockPos furtherby8(BlockPos pos) {
+
+        int x = 0;
+        int z = 0;
+
+        if (pos.getX() > 0) {
+            x = pos.getX() + 8;
+        } else {
+            x = pos.getX() - 8;
+        }
+
+        if (pos.getZ() > 0) {
+            z = pos.getZ() + 8;
+        } else {
+            z = pos.getZ() - 8;
+        }
+
+        pos = new BlockPos(x, pos.getY(), z);
+
+        return pos;
+
+    }
+
     public static BlockPos getSurface(IWorld world, BlockPos pos) {
 
         pos = new BlockPos(pos.getX(), world.getSeaLevel(), pos.getZ());
