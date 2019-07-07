@@ -1,3 +1,6 @@
+2.0.19
+all spells now got a visual upgrade by matpac!
+added a new small dungeon to adventure maps
 2.0.18
 added more advacements
 map portals now spawn you in the air as a bandaid fix
