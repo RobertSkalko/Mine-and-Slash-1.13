@@ -161,6 +161,10 @@ public class WorldUtils {
 
     public static boolean isMapWorld(IWorld world) {
 
+        if (world == null) {
+            return false;
+        }
+
         if (world.getDimension() instanceof BaseWorldProvider == false) {
             return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER > 0;
         }

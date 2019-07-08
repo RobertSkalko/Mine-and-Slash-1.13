@@ -60,6 +60,10 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                 World mapworld = MapManager.getWorld(portal.id);
 
+                                if (mapworld == null) {
+                                    return;
+                                }
+
                                 if (WorldUtils.isMapWorld(mapworld)) {
 
                                     PlayerEntity player = (PlayerEntity) entity;
