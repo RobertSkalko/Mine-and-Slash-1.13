@@ -36,8 +36,13 @@ public class NetherIWP extends BaseWorldProvider {
     }
 
     @Override
+    public int Weight() {
+        return EpicWeight;
+    }
+
+    @Override
     public float getBonusLootMulti() {
-        return 0.9F;
+        return 0.8F;
     }
 
     @Override

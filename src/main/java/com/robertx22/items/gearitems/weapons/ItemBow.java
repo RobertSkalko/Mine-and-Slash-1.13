@@ -9,7 +9,6 @@ import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 
@@ -47,15 +46,6 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
     @Override
     public String GUID() {
         return "";
-    }
-    // faster loading
-
-    /**
-     * How long it takes to use or consume an item
-     */
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        return 40000;//// 72000;
     }
 
 }

@@ -94,7 +94,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
     }
 
     public float getPermaDeathMultiplier() {
-        return this.isPermaDeath ? 1.3F : 1;
+        return this.isPermaDeath ? 1.2F : 1;
     }
 
     public boolean increaseLevel(int i) {

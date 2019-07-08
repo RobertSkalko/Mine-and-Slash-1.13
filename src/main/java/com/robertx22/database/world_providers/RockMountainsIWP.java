@@ -32,7 +32,7 @@ public class RockMountainsIWP extends BaseWorldProvider {
 
     @Override
     public List<MapAffixData> getMapAffixes() {
-        return Arrays.asList(new MapAffixData(new BonusHealthAffix(), 25), new MapAffixData(new BonusNatureDamageAffix(), 75));
+        return Arrays.asList(new MapAffixData(new BonusHealthAffix(), 15), new MapAffixData(new BonusNatureDamageAffix(), 85));
     }
 
     @Override
