@@ -161,9 +161,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         }
 
         if (enres != null && enres.getEntity() instanceof LivingEntity) {
-            if (enres.getEntity() == this.getThrower()) {
-                return null;
-            } else {
+            if (enres.getEntity() != this.getThrower()) {
                 return (LivingEntity) enres.getEntity();
             }
         }

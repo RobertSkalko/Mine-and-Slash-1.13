@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public enum Elements implements IColor {
     Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GRAY, Items.COAL),
     Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.MAGMA_CREAM),
-    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.AQUA, Items.SNOWBALL),
+    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.BLUE, Items.SNOWBALL),
     Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW, Items.GLOWSTONE_DUST),
     Nature(4, new RGB(0, 204, 0), true, "Venom", TextFormatting.GREEN, Items.SLIME_BALL),
     Elemental(5, new RGB(0, 0, 0), false, "All", TextFormatting.GOLD, Items.EMERALD);

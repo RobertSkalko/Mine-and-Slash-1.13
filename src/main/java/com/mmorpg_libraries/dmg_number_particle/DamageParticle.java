@@ -82,11 +82,9 @@ public class DamageParticle extends Particle {
             GL11.glEnable(3008);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            int color = this.ChooseColor(element);
-
             final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
             fontRenderer.drawStringWithShadow(this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1, -MathHelper
-                    .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, color);
+                    .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor());
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glDepthFunc(515);
@@ -103,23 +101,6 @@ public class DamageParticle extends Particle {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private int ChooseColor(Elements element) {
-
-        if (element.equals(Elements.Water)) {
-            return 296935;
-        }
-        if (element.equals(Elements.Fire)) {
-            return 9777215;
-        }
-        if (element.equals(Elements.Thunder)) {
-            return -100;
-        }
-        if (element.equals(Elements.Nature)) {
-            return 444444;
-        }
-        return -1;
     }
 
     @Override
