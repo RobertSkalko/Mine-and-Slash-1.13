@@ -23,7 +23,7 @@ public class FuelSlot extends Slot {
         {
             {
                 put(Items.DIAMOND, 500);
-                put(Items.GOLD_INGOT, 250);
+                put(Items.GOLD_INGOT, 200);
                 put(Items.IRON_INGOT, 50);
                 put(Items.EMERALD, 400);
                 put(Items.REDSTONE, 4);

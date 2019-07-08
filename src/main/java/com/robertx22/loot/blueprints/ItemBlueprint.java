@@ -52,20 +52,15 @@ public abstract class ItemBlueprint {
 
         if (RandomRarity) {
 
-            if (minRarity > -1 || maxRarity < 5) {
-                Rarity rar = rarities.random();
+            int rank = MathHelper.clamp(rarities.random().Rank(), minRarity, maxRarity);
 
-                while (rar.Rank() < minRarity || rar.Rank() > maxRarity) {
-                    rar = rarities.random();
-                }
-                return rar.Rank();
+            Rarity rarity = rarities.get(rank);
 
-            } else {
-                return rarities.random().Rank();
-            }
-        } else {
-            return rarity;
+            this.rarity = rarity.Rank();
+
         }
+
+        return rarity;
 
     }
 

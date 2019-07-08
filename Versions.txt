@@ -1,5 +1,6 @@
 2.0.23
 buffed some uniques
+factory station now can craft spells and runes too. no longer has random chance to craft a spell on gear. But now has a max rarity of crafted result, (inserted item + 3)
 2.0.22 
 fix repairable null
 2.0.21

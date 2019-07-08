@@ -4,13 +4,19 @@ import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.blocks.slots.FuelSlot;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.loot.blueprints.GearBlueprint;
+import com.robertx22.loot.blueprints.RuneBlueprint;
 import com.robertx22.loot.blueprints.SpellBlueprint;
 import com.robertx22.loot.gens.GearLootGen;
+import com.robertx22.loot.gens.RuneLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.localization.CLOC;
+import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Rune;
+import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.localization.CLOC;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,7 +42,6 @@ public class TileGearFactory extends BaseTile {
     }
 
     private static final int pointsNeeded = 2500;
-    private static final int spellChance = 15;
     private static final int maxFuel = 25000;
 
     public static int GetFuelGain(ItemStack stack) {
@@ -50,33 +55,73 @@ public class TileGearFactory extends BaseTile {
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
 
+        ItemStack result = ItemStack.EMPTY;
+
         if (fuel > pointsNeeded) {
 
-            GearItemData gear = Gear.Load(stack);
+            result = getGearResult(stack);
 
-            if (gear != null) {
-
-                if (RandomUtils.roll(spellChance)) {
-                    SpellBlueprint spellprint = new SpellBlueprint(gear.level);
-                    spellprint.LevelRange = false;
-                    return SpellLootGen.Create(spellprint);
-                } else {
-                    GearBlueprint print = new GearBlueprint(gear.level);
-                    print.LevelRange = false;
-                    if (RandomUtils.roll(50)) {
-                        print.SetSpecificType(gear.gearTypeName);
-                    }
-
-                    return GearLootGen.CreateStack(print);
-                }
-
+            if (result.isEmpty()) {
+                result = getSpellResult(stack);
+            }
+            if (result.isEmpty()) {
+                result = getRuneResult(stack);
             }
 
         }
 
-        return ItemStack.EMPTY;
+        return result;
 
     }
+
+    private ItemStack getGearResult(ItemStack stack) {
+        GearItemData data = Gear.Load(stack);
+        if (data != null) {
+            GearBlueprint print = new GearBlueprint(data.level);
+            print.LevelRange = false;
+            print.maxRarity = getMaxRarity(data.Rarity);
+            if (RandomUtils.roll(50)) {
+                print.SetSpecificType(data.gearTypeName);
+            }
+            return GearLootGen.CreateStack(print);
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    private ItemStack getSpellResult(ItemStack stack) {
+
+        SpellItemData spell = Spell.Load(stack);
+        if (spell != null) {
+            SpellBlueprint print = new SpellBlueprint(spell.level);
+            print.LevelRange = false;
+            print.maxRarity = getMaxRarity(spell.rarity);
+            if (RandomUtils.roll(50)) {
+                print.SetSpecificType(spell.spellGUID);
+            }
+            return SpellLootGen.Create(print);
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private ItemStack getRuneResult(ItemStack stack) {
+        RuneItemData rune = Rune.Load(stack);
+        if (rune != null) {
+            RuneBlueprint print = new RuneBlueprint(rune.level);
+            print.LevelRange = false;
+            print.maxRarity = getMaxRarity(rune.rarity);
+            if (RandomUtils.roll(50)) {
+                print.SetSpecificType(rune.name);
+            }
+            return RuneLootGen.Create(print);
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private int getMaxRarity(int rar) {
+        return rar + 3;
+    }
+
     // IMPORTANT STUFF ABOVE
 
     // Create and initialize the itemStacks variable that will store store the
