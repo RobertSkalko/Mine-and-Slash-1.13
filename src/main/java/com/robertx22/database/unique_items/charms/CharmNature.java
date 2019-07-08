@@ -8,8 +8,8 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePerc
 import com.robertx22.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessCriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueCharm;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +32,7 @@ public class CharmNature extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature).multi(2), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
     }
 
     @Override

@@ -5,11 +5,10 @@ import com.robertx22.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
-import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueChest;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +31,8 @@ public class ChestWater extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalPeneFlat(Elements.Water), new MajorArmorFlat(), new ArmorPercent(), new ElementalTransferFlat(Elements.Nature, Elements.Water), new LessDodgePercent());
+        return Arrays.asList(new HealthFlat(), new ElementalPeneFlat(Elements.Water).multi(2), new MajorArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Water)
+                .multi(2), new LessDodgePercent());
     }
 
     @Override

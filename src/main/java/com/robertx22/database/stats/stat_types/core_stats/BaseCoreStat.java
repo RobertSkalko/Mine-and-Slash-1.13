@@ -6,6 +6,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
+import net.minecraft.util.math.MathHelper;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
@@ -38,6 +39,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     public void addToOtherStats(UnitData unitdata, StatData data) {
 
         float percent = data.Value / (this.amountToReach100Percent() * unitdata.getLevel()) * 100;
+
+        percent = MathHelper.clamp(percent, 0, 10000);
 
         for (StatMod statmod : this.statsThatBenefit()) {
             StatModData.Load(statmod, (int) percent).useOnPlayer(unitdata);

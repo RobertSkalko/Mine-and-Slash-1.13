@@ -58,7 +58,7 @@ public class WorldUtils {
 
         List<MapAffixData> list = new ArrayList<>();
 
-        if (WorldUtils.isMapWorldClass(world) && world.getDimension() instanceof IWP) {
+        if (WorldUtils.isMapWorldClass(world)) {
             IWP iwp = (IWP) world.getDimension();
 
             list.addAll(iwp.getMapAffixes());
@@ -174,6 +174,10 @@ public class WorldUtils {
     }
 
     public static boolean isMapWorldClass(World world) {
+
+        if (world == null) {
+            return false;
+        }
 
         return world.getDimension() instanceof BaseWorldProvider;
     }
