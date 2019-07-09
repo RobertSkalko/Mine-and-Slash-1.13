@@ -1,3 +1,5 @@
+2.0.24 
+bomb spells no longer attack twice (did no1 seriously notice? o_o)
 2.0.23
 buffed some uniques
 factory station now can craft spells and runes too. no longer has random chance to craft a spell on gear. But now has a max rarity of crafted result, (inserted item + 3)

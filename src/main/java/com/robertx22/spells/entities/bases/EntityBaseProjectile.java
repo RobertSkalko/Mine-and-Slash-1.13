@@ -346,14 +346,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
         checkHoming();
 
-        if (this.ticksExisted > this.deathTime || this.inGround) {
-            if (this.onExpireProc(this.getThrower())) {
-                this.remove();
-                return;
-            }
-
-        }
-
     }
 
     public void checkIfImpact() {
@@ -387,7 +379,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
             this.inGround = true;
             this.onImpact(raytraceresult);
             if (this.onExpireProc(this.getThrower())) {
-                this.onExpireProc(this.getThrower());
                 this.remove();
                 return;
             }

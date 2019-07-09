@@ -13,7 +13,7 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float DamageMultiplier() {
-        return 1.25F;
+        return 1.4F;
     }
 
     @Override
