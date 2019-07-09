@@ -6,6 +6,7 @@ hellscape dropchance nerfed a bit and map is rarer
 permadeath drophcance bonus is lower now
 map affixes bonus dropchance is higher now
 attempt to fix dmg number particle color being off
+increased mob dmg per map tier
 2.0.22 
 fix repairable null
 2.0.21

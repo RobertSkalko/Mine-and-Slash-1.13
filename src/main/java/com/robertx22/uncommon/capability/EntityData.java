@@ -195,6 +195,8 @@ public class EntityData {
 
         float getStatMultiplierIncreaseByTier();
 
+        float getDMGMultiplierIncreaseByTier();
+
         CustomStatsData getCustomStats();
     }
 
@@ -324,7 +326,7 @@ public class EntityData {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
-            float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getStatMultiplierIncreaseByTier();
+            float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
 
@@ -892,7 +894,12 @@ public class EntityData {
 
         @Override
         public float getStatMultiplierIncreaseByTier() {
-            return 1 + tier * 0.15F;
+            return 1 + tier * 0.13F;
+        }
+
+        @Override
+        public float getDMGMultiplierIncreaseByTier() {
+            return 1 + tier * 0.2F;
         }
 
         @Override

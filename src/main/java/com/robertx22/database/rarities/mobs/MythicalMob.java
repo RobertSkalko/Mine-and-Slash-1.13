@@ -13,12 +13,12 @@ public class MythicalMob extends BaseMythical implements MobRarity {
 
     @Override
     public float DamageMultiplier() {
-        return 2.5F;
+        return 2.4F;
     }
 
     @Override
     public float HealthMultiplier() {
-        return 7.5F;
+        return 7F;
     }
 
     @Override
