@@ -13,7 +13,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -66,7 +65,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
         LivingEntity entityHit = getEntityHit(result, 0.3D);
 
-        if (entityHit instanceof LivingEntity && effect != null && data != null) {
+        if (entityHit != null && effect != null && data != null) {
             if (world.isRemote) {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
@@ -122,10 +121,9 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
         this.ignoreEntity = caster;
         this.thrower = caster;
-        Vec3d look = caster.getLookVec();
 
         SetReady(effect, data);
-        setPosition(caster.posX - look.x, caster.posY + look.y + 1.3, caster.posZ - look.z);
+        this.setPos(caster);
         shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.3F, 0.5F); // start velocity
 
         WorldUtils.spawnEntity(world, this);

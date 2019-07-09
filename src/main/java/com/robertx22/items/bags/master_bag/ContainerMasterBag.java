@@ -22,7 +22,9 @@ public class ContainerMasterBag extends Container {
         CURRENCY(2, ItemFilterGroup.ANY_CURRENCY),
         UNIQUE(3, ItemFilterGroup.ANY_UNIQUE),
         RUNE(4, ItemFilterGroup.ANY_RUNE),
-        MAP(5, ItemFilterGroup.ANY_MAP);
+        MAP(5, ItemFilterGroup.ANY_MAP),
+        AWAKEN(6, ItemFilterGroup.ANY_AWAKEN),
+        ORES(7, ItemFilterGroup.ANY_ORE);
 
         ItemType(int place, ItemFilterGroup filter) {
             this.place = place;

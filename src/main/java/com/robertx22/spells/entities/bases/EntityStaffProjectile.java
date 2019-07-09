@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -51,6 +50,10 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     protected void onImpact(RayTraceResult result) {
 
         LivingEntity entity = getEntityHit(result, 0.5D);
+
+        if (!world.isRemote && entity != null && staff == null) {
+            System.out.println("TEST");
+        }
 
         if (entity != null && staff != null) {
 
@@ -112,11 +115,10 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
                               LivingEntity caster) {
 
         this.ignoreEntity = caster;
-        Vec3d look = caster.getLookVec();
         this.thrower = caster;
 
         SetReady(caster.getHeldItemMainhand());
-        setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
+        this.setPos(caster);
         shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
         WorldUtils.spawnEntity(world, this);

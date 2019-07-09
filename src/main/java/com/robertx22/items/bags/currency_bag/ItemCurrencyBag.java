@@ -21,7 +21,7 @@ public class ItemCurrencyBag extends BaseBagItem {
 
     @Override
     public ItemFilterGroup filterGroup() {
-        return ItemFilterGroup.ANY_CURRENCY;
+        return ItemFilterGroup.CURRENCY_BAG;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ItemLootBag extends BaseBagItem {
 
     @Override
     public ItemFilterGroup filterGroup() {
-        return ItemFilterGroup.LOOT_BAG_FILTER;
+        return ItemFilterGroup.LOOT_BAG;
     }
 
 }

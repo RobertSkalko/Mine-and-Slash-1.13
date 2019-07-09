@@ -15,7 +15,7 @@ public class LootBagSlot extends BaseSlot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return ItemFilterGroup.LOOT_BAG_FILTER.anyMatchesFilter(stack);
+        return ItemFilterGroup.LOOT_BAG.anyMatchesFilter(stack);
     }
 
 }

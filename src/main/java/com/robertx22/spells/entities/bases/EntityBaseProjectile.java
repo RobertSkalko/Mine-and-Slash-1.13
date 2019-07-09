@@ -541,4 +541,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
         return this.thrower;
     }
 
+    protected void setPos(LivingEntity caster) {
+        Vec3d look = caster.getLookVec();
+        setPosition(caster.posX - look.x, caster.posY + look.y + 1.3, caster.posZ - look.z);
+    }
 }

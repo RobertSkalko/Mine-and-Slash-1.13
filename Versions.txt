@@ -7,6 +7,9 @@ permadeath drophcance bonus is lower now
 map affixes bonus dropchance is higher now
 attempt to fix dmg number particle color being off
 increased mob dmg per map tier
+master bag has awaken runeword bag space now
+added ore space to master bag too
+fixed staffs not hiting when too close to enemy
 2.0.22 
 fix repairable null
 2.0.21
