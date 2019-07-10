@@ -1,25 +1,19 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.items.bags.master_bag.ContainerMasterBag;
-import com.robertx22.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
 public class MasterLootBagCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "master_loot_bag_data");
@@ -30,19 +24,6 @@ public class MasterLootBagCap {
     public interface IMasterLootBagData extends ICommonCapability {
 
         ItemStackHandler getInventory(ContainerMasterBag.ItemType type);
-
-    }
-
-    @Mod.EventBusSubscriber
-    public static class EventHandler {
-
-        @SubscribeEvent
-        public static void onMasterBagCreate(AttachCapabilitiesEvent<ItemStack> event) {
-
-            if (event.getObject().getItem() instanceof ItemMasterBag) {
-                event.addCapability(RESOURCE, new Provider());
-            }
-        }
 
     }
 

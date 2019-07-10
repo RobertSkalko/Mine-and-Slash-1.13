@@ -66,7 +66,7 @@ public abstract class BaseBagItem extends Item {
         return new InvProvider(size);
     }
 
-    private static class InvProvider implements ICapabilitySerializable<INBT> {
+    public static class InvProvider implements ICapabilitySerializable<INBT> {
 
         int size;
 
