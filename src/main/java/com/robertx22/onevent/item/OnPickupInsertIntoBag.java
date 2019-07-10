@@ -1,6 +1,6 @@
 package com.robertx22.onevent.item;
 
-import com.robertx22.items.bags.BaseBagItem;
+import com.robertx22.items.bags.SingleContainerBagItem;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SCollectItemPacket;
@@ -25,8 +25,8 @@ public class OnPickupInsertIntoBag {
                 continue; // prevent item deletion
 
             ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
-            if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
-                BaseBagItem basebag = (BaseBagItem) bag.getItem();
+            if (!bag.isEmpty() && bag.getItem() instanceof SingleContainerBagItem) {
+                SingleContainerBagItem basebag = (SingleContainerBagItem) bag.getItem();
                 IItemHandler bagInv = basebag.getInventory(bag, stack);
 
                 if (bagInv == null) {

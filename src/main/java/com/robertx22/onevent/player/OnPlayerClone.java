@@ -1,5 +1,6 @@
 package com.robertx22.onevent.player;
 
+import com.robertx22.uncommon.capability.MasterLootBagCap;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +15,7 @@ public class OnPlayerClone {
 
     public static final String ENTITY_DATA_BACKUP = "mmorpg:entity_data_backup";
     public static final String PLAYER_MAP_DATA_BACKUP = "mmorpg:player_map_data_backup";
+    public static final String MASTER_LOOT_BAG_BACKUP = "mmorpg:master_loot_bag_backup";
 
     @SubscribeEvent
     public static void onSave(PlayerEvent.SaveToFile event) {
@@ -28,6 +30,16 @@ public class OnPlayerClone {
         CompoundNBT playermapdatanbt = null;
         try {
             playermapdatanbt = Load.playerMapData(player).getNBT();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        CompoundNBT masterbagnbt = null;
+        try {
+            masterbagnbt = (player).getCapability(MasterLootBagCap.Data)
+                    .orElse(new MasterLootBagCap.DefaultImpl())
+                    .getNBT();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,6 +59,9 @@ public class OnPlayerClone {
             if (playermapdatanbt != null) {
                 pesrsistentNBT.put(PLAYER_MAP_DATA_BACKUP, playermapdatanbt);
             }
+            if (masterbagnbt != null) {
+                pesrsistentNBT.put(MASTER_LOOT_BAG_BACKUP, masterbagnbt);
+            }
 
             PlayerUtils.setPestistentNBT(player, pesrsistentNBT);
 
@@ -63,15 +78,26 @@ public class OnPlayerClone {
         CompoundNBT backupNBT = PlayerUtils.getPersistentNBT(original);
 
         try {
-            CompoundNBT unitdataNBT = backupNBT.getCompound(ENTITY_DATA_BACKUP);
-            Load.Unit(event.getEntityPlayer()).setNBT(unitdataNBT);
+            CompoundNBT nbt = backupNBT.getCompound(ENTITY_DATA_BACKUP);
+            Load.Unit(event.getEntityPlayer()).setNBT(nbt);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            CompoundNBT playermapdataNBT = backupNBT.getCompound(PLAYER_MAP_DATA_BACKUP);
-            Load.playerMapData(event.getEntityPlayer()).setNBT(playermapdataNBT);
+            CompoundNBT nbt = backupNBT.getCompound(PLAYER_MAP_DATA_BACKUP);
+            Load.playerMapData(event.getEntityPlayer()).setNBT(nbt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            CompoundNBT nbt = backupNBT.getCompound(MASTER_LOOT_BAG_BACKUP);
+            event.getEntityPlayer()
+                    .getCapability(MasterLootBagCap.Data)
+                    .orElse(new MasterLootBagCap.DefaultImpl())
+                    .setNBT(nbt);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

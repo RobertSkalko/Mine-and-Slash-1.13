@@ -1,6 +1,6 @@
 package com.robertx22.items.bags.map_bag;
 
-import com.robertx22.items.bags.BaseBagItem;
+import com.robertx22.items.bags.SingleContainerBagItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemMapBag extends BaseBagItem {
+public class ItemMapBag extends SingleContainerBagItem {
 
     public static final String ID = Ref.MODID + ":map_bag";
 
@@ -16,7 +16,7 @@ public class ItemMapBag extends BaseBagItem {
     public static final Item ITEM = null;
 
     public ItemMapBag() {
-        super(ID);
+        super();
 
     }
 

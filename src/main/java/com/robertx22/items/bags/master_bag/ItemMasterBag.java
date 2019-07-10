@@ -1,6 +1,6 @@
 package com.robertx22.items.bags.master_bag;
 
-import com.robertx22.items.bags.BaseBagItem;
+import com.robertx22.items.bags.ItemBaseBag;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.MasterLootBagCap;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
@@ -17,11 +17,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
+public class ItemMasterBag extends ItemBaseBag implements IAutoLocName {
 
     public static final String ID = Ref.MODID + ":master_bag";
 
@@ -29,9 +30,24 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     public static final Item ITEM = null;
 
     public ItemMasterBag() {
-        super(ID);
+        super();
 
         this.size *= ContainerMasterBag.ItemType.values().length;
+
+    }
+
+    public ItemStackHandler getInventory(ItemStack bag,
+                                         ContainerMasterBag.ItemType type) {
+
+        MasterLootBagCap.IMasterLootBagData capa = bag.getCapability(MasterLootBagCap.Data)
+                .orElse(null);
+
+        if (capa != null) {
+
+            return capa.getInventory(type);
+        }
+
+        return null;
 
     }
 

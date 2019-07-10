@@ -1,12 +1,12 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.items.bags.master_bag.ContainerMasterBag;
-import com.robertx22.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.bases.BaseProvider;
 import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -37,9 +37,9 @@ public class MasterLootBagCap {
     public static class EventHandler {
 
         @SubscribeEvent
-        public static void onMasterBagCreate(AttachCapabilitiesEvent<ItemStack> event) {
+        public static void onMasterBagCreate(AttachCapabilitiesEvent<Entity> event) {
 
-            if (event.getObject().getItem() instanceof ItemMasterBag) {
+            if (event.getObject() instanceof PlayerEntity) {
                 event.addCapability(RESOURCE, new Provider());
             }
         }
