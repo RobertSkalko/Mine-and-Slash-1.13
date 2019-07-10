@@ -43,7 +43,9 @@ public abstract class BaseBagItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
                                                     @Nonnull Hand hand) {
         if (!world.isRemote) {
-            player.openContainer(getNamedContainer(player.getHeldItem(hand)));
+            if (player.getHeldItemMainhand().getItem() instanceof BaseBagItem) {
+                player.openContainer(getNamedContainer(player.getHeldItemMainhand()));
+            }
         }
         return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }

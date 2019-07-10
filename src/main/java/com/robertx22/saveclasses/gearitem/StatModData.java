@@ -57,6 +57,13 @@ public class StatModData implements ITooltipString {
         }
     }
 
+    public void useOnPlayer(UnitData unit, int level) {
+        String guid = this.getStatMod().GetBaseStat().GUID();
+        if (unit.getUnit().MyStats.containsKey(guid)) {
+            Add(unit.getUnit().MyStats.get(guid), level);
+        }
+    }
+
     public int getPercent() {
         return percent;
     }

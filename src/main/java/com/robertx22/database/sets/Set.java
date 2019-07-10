@@ -6,7 +6,7 @@ import com.robertx22.database.requirements.GearRequestedFor;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.bases.IhasRequirements;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.WornSetData;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
 
@@ -47,13 +47,15 @@ public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLo
 
     }
 
-    public List<StatMod> GetObtainedMods(Unit unit) {
+    public List<StatMod> getObtainedMods(WornSetData data) {
 
         List<StatMod> mods = new ArrayList();
 
-        for (Entry<Integer, StatMod> mod : this.AllMods().entrySet()) {
-            if (unit.WornSets.get(this.GUID()) >= mod.getKey()) {
-                mods.add(mod.getValue());
+        if (data.setGUID == this.GUID()) {
+            for (Entry<Integer, StatMod> mod : this.AllMods().entrySet()) {
+                if (data.count >= mod.getKey()) {
+                    mods.add(mod.getValue());
+                }
             }
         }
 

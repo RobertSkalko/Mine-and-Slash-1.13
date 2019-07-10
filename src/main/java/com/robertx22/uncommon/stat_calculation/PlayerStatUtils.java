@@ -2,7 +2,6 @@ package com.robertx22.uncommon.stat_calculation;
 
 import com.mmorpg_libraries.curios.MyCurioUtils;
 import com.robertx22.config.ModConfig;
-import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_types.defense.Armor;
@@ -11,24 +10,22 @@ import com.robertx22.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.database.stats.stat_types.offense.SpellDamage;
 import com.robertx22.database.stats.stat_types.resources.*;
-import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.WornSetsContainerData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.localization.Chats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 public class PlayerStatUtils {
 
@@ -106,44 +103,18 @@ public class PlayerStatUtils {
 
     public static void CountWornSets(Entity entity, List<GearItemData> gears, Unit unit) {
 
-        unit.WornSets = new HashMap<String, Integer>();
+        unit.wornSets = new WornSetsContainerData();
 
         for (GearItemData gear : gears) {
-            if (gear.set != null) {
-                String set = gear.set.baseSet;
-
-                if (unit.WornSets.containsKey(set)) {
-                    unit.WornSets.put(set, unit.WornSets.get(set) + 1);
-                } else {
-                    unit.WornSets.put(set, 1);
-                }
-
-            }
-
+            unit.wornSets.addSet(gear);
         }
 
     }
 
-    public static void AddAllSetStats(Entity entity, Unit unit, int level) {
+    public static void AddAllSetStats(Entity entity, UnitData data, Unit unit,
+                                      int level) {
 
-        for (Entry<String, Integer> entry : unit.WornSets.entrySet()) {
-
-            Set set = Sets.All.get(entry.getKey());
-
-            if (set != null) {
-                for (StatMod mod : set.GetObtainedMods(unit)) {
-
-                    StatModData data = StatModData.Load(mod, set.StatPercent);
-
-                    String name = mod.GetBaseStat().GUID();
-                    if (unit.MyStats.containsKey(name)) {
-
-                        data.Add(unit.MyStats.get(name), level);
-
-                    }
-                }
-            }
-        }
+        unit.wornSets.AddAllSetStats(data);
 
     }
 

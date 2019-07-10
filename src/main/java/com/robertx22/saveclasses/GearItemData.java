@@ -333,7 +333,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     private void BuildSetTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
 
-        if (this.set != null) {
+        if (this.set != null && this.set.baseSet != null) {
             event.getToolTip()
                     .add(Styles.GREENCOMP()
                             .appendSibling(new StringTextComponent("[Set]: ").appendSibling(set
@@ -345,16 +345,16 @@ public class GearItemData implements ITooltip, ISalvagable {
                 boolean has = false;
 
                 TextFormatting color = null;
-                if (unit.WornSets.containsKey(set.baseSet) && unit.WornSets.get(set.baseSet) >= entry
-                        .getKey()) {
+                if (unit.wornSets.get(set.baseSet).count >= entry.getKey()) {
                     color = TextFormatting.GREEN;
                     has = true;
                 } else {
                     color = TextFormatting.DARK_GREEN;
                 }
 
-                TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), data.getLevel())
-                        .setIsSet();
+                int avgLvl = unit.wornSets.get(set.baseSet).getAverageLevel();
+
+                TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), avgLvl).setIsSet();
 
                 for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
                         .GetTooltipString(info)) {
@@ -405,21 +405,22 @@ public class GearItemData implements ITooltip, ISalvagable {
             if (isUnique) {
                 try {
                     tier = this.uniqueStats.getUniqueItem().Tier();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-            if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+            if (isUnique || RandomUtils.roll(this.GetRarity().specialItemChance())) {
 
-                Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, tier));
+                Item item = RandomUtils.weightedRandom(ListUtils.minMaxTier(CurrencyItem.ITEMS, tier - 5, tier + 2));
 
-                if (isUnique) {
-                    int amount = RandomUtils.RandomRange(min, max + (tier / 5));
-                    stack.setCount(amount);
-                }
-
+                int amount = RandomUtils.RandomRange(min, max + (tier / 4));
                 stack = new ItemStack(item);
+                stack.setCount(amount);
+
+                return stack;
+
             } else {
 
                 int amount = RandomUtils.RandomRange(min, max);

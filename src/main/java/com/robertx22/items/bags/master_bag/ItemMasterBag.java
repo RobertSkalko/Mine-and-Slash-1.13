@@ -67,12 +67,14 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
                                                     @Nonnull Hand hand) {
+
         if (!world.isRemote) {
-
-            NetworkHooks.openGui((ServerPlayerEntity) player, getNamedContainer(player.getHeldItemMainhand()), extraData -> {
-                extraData.writeString(ContainerMasterBag.ItemType.GEAR.toString());
-            });
-
+            if (player.getHeldItemMainhand().getItem() instanceof ItemMasterBag) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, getNamedContainer(player
+                        .getHeldItemMainhand()), extraData -> {
+                    extraData.writeString(ContainerMasterBag.ItemType.GEAR.toString());
+                });
+            }
         }
         return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }

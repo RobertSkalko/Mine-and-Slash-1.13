@@ -20,6 +20,19 @@ public class ListUtils {
 
     }
 
+    public static <T extends ITiered> List<T> minMaxTier(Iterable<T> coll, int min,
+                                                         int max) {
+        List<T> list = new ArrayList<T>();
+        for (ITiered tiered : coll) {
+            if (tiered.Tier() <= max && tiered.Tier() >= min) {
+                list.add((T) tiered);
+            }
+        }
+
+        return list;
+
+    }
+
     public static <T> List<T> newList(List<T> list, T t) {
         list.add(t);
         return list;

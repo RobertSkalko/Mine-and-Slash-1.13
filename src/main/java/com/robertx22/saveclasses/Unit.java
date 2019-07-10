@@ -49,7 +49,7 @@ public class Unit {
     public HashMap<String, StatData> MyStats = null;
 
     @Store
-    public HashMap<String, Integer> WornSets = new HashMap<String, Integer>();
+    public WornSetsContainerData wornSets = new WornSetsContainerData();
 
     @Store
     public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
@@ -355,7 +355,7 @@ public class Unit {
         if (gearIsValid) {
             PlayerStatUtils.CountWornSets(entity, gears, this);
             PlayerStatUtils.AddAllGearStats(entity, gears, this, level);
-            PlayerStatUtils.AddAllSetStats(entity, this, level);
+            PlayerStatUtils.AddAllSetStats(entity, data, this, level);
 
         }
 
