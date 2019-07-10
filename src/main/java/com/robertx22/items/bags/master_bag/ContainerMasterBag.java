@@ -45,10 +45,13 @@ public class ContainerMasterBag extends Container {
     }
 
     public ItemType type = ItemType.GEAR;
+    public int bagHash;
 
     public ContainerMasterBag(int num, PlayerInventory playerInv,
                               InventoryMasterBag basebag, ItemType type) {
         super(ContainerTypeRegisters.MASTER_BAG, num);
+
+        bagHash = basebag.bag.hashCode();
 
         this.numRows = 6;
         this.size *= ItemType.values().length;
@@ -88,7 +91,10 @@ public class ContainerMasterBag extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity player) {
-        return player.getHeldItemMainhand() == this.inventory.bag || player.getHeldItemOffhand() == this.inventory.bag;
+        ItemStack held = player.getHeldItemMainhand();
+
+        return held == this.inventory.bag && this.inventory.bag.isEmpty() == false && held
+                .hashCode() == this.bagHash && held.getItem() instanceof ItemMasterBag;
     }
 
     @Nonnull
