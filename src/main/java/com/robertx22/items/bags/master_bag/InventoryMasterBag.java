@@ -1,5 +1,6 @@
 package com.robertx22.items.bags.master_bag;
 
+import com.robertx22.uncommon.capability.MasterLootBagCap;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -14,11 +15,15 @@ public class InventoryMasterBag implements IItemHandlerModifiable {
     public InventoryMasterBag(ItemStack bag, ContainerMasterBag.ItemType type) {
         this.bag = bag;
 
+        MasterLootBagCap.IMasterLootBagData fullInv = bag.getCapability(MasterLootBagCap.Data)
+                .orElse(null);
+
         this.bagInv = new ItemStackHandler(6 * 9);
 
-        if (bag.getItem() instanceof ItemMasterBag) {
-            ItemMasterBag masterBag = (ItemMasterBag) bag.getItem();
-            this.bagInv = masterBag.getInventory(bag, type);
+        if (fullInv != null) {
+
+            this.bagInv = fullInv.getInventory(type);
+
         }
 
     }

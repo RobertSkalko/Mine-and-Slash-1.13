@@ -1,6 +1,11 @@
 package com.robertx22.items.bags;
 
+import com.robertx22.db_lists.CreativeTabs;
+import com.robertx22.items.ItemSingle;
+import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -19,10 +24,18 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-public abstract class SingleContainerBagItem extends ItemBaseBag {
+public abstract class BaseBagItem extends Item {
 
-    public SingleContainerBagItem() {
-        super();
+    public abstract ItemFilterGroup filterGroup();
+
+    public abstract INamedContainerProvider getNamedContainer(ItemStack stack);
+
+    public int size = 9 * 6;
+
+    public BaseBagItem(String name) {
+
+        super(new ItemSingle().group(CreativeTabs.MyModTab));
+
     }
 
     @Nonnull
@@ -30,15 +43,13 @@ public abstract class SingleContainerBagItem extends ItemBaseBag {
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
                                                     @Nonnull Hand hand) {
         if (!world.isRemote) {
-            if (player.getHeldItemMainhand()
-                    .getItem() instanceof SingleContainerBagItem) {
+            if (player.getHeldItemMainhand().getItem() instanceof BaseBagItem) {
                 player.openContainer(getNamedContainer(player.getHeldItemMainhand()));
             }
         }
         return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }
 
-    @Override
     public IItemHandler getInventory(ItemStack bag, ItemStack stack) {
 
         if (stack.getCount() > 0 && filterGroup().anyMatchesFilter(stack)) {

@@ -1,6 +1,6 @@
 package com.robertx22.items.bags.currency_bag;
 
-import com.robertx22.items.bags.SingleContainerBagItem;
+import com.robertx22.items.bags.BaseBagItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.ObjectHolder;
 
-public class ItemCurrencyBag extends SingleContainerBagItem {
+public class ItemCurrencyBag extends BaseBagItem {
 
     public static final String ID = Ref.MODID + ":currency_bag";
 
@@ -16,7 +16,7 @@ public class ItemCurrencyBag extends SingleContainerBagItem {
     public static final Item ITEM = null;
 
     public ItemCurrencyBag() {
-        super();
+        super(ID);
     }
 
     @Override

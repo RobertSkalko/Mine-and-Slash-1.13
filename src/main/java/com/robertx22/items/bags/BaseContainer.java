@@ -54,7 +54,7 @@ public abstract class BaseContainer extends Container {
         ItemStack held = player.getHeldItemMainhand();
 
         return held == this.inventory.bag && this.inventory.bag.isEmpty() == false && held
-                .hashCode() == this.bagHash && held.getItem() instanceof SingleContainerBagItem;
+                .hashCode() == this.bagHash && held.getItem() instanceof BaseBagItem;
     }
 
     @Nonnull
