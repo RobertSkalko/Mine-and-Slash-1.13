@@ -339,6 +339,8 @@ public class Unit {
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 
+        CommonStatUtils.addCustomStats(data, this, level);
+
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
 
@@ -366,8 +368,7 @@ public class Unit {
         }
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
-        CommonStatUtils.CalcTraitsAndCoreStats(data);
-        CommonStatUtils.addCustomStats(data, this, level);
+        CommonStatUtils.CalcTraitsAndCoreStats(data); // has to be at end for the conditionals like if crit higher than x
 
         CalcStats(data);
 

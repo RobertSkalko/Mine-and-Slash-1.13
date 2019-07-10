@@ -28,7 +28,8 @@ public class SwordPhysical extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new PhysicalDamageFlat(), new MajorCriticalHitPercent(), new MajorCriticalDamagePercent(), new LessHealthRegenFlat());
+        return Arrays.asList(new PhysicalDamageFlat(), new MajorCriticalHitPercent().multi(2), new MajorCriticalDamagePercent()
+                .multi(2), new LessHealthRegenFlat());
     }
 
     @Override

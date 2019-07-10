@@ -11,13 +11,14 @@ import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.saveclasses.rune.RunesData;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.localization.Words;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import com.robertx22.uncommon.localization.Styles;
+import com.robertx22.uncommon.localization.Words;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -123,7 +124,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
             RuneRarity rar = rune.GetRarity();
 
-            TooltipInfo info = new TooltipInfo(rar.StatPercents(), rune.level);
+            TooltipInfo info = new TooltipInfo(new EntityData.DefaultImpl(), rar.StatPercents(), rune.level);
 
             if (rune.armor != null) {
                 Tooltip.add(Styles.GRAYCOMP()

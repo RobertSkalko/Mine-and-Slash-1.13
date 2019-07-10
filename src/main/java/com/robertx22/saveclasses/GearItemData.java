@@ -220,7 +220,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         List<ITextComponent> tip = event.getToolTip();
 
-        TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), this.level);
+        TooltipInfo info = new TooltipInfo(data, GetRarity().StatPercents(), this.level);
 
         tip.clear();
 
@@ -354,7 +354,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 
                 int avgLvl = unit.wornSets.get(set.baseSet).getAverageLevel();
 
-                TooltipInfo info = new TooltipInfo(GetRarity().StatPercents(), avgLvl).setIsSet();
+                TooltipInfo info = new TooltipInfo(data, GetRarity().StatPercents(), avgLvl)
+                        .setIsSet();
 
                 for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
                         .GetTooltipString(info)) {
@@ -415,7 +416,9 @@ public class GearItemData implements ITooltip, ISalvagable {
 
                 Item item = RandomUtils.weightedRandom(ListUtils.minMaxTier(CurrencyItem.ITEMS, tier - 5, tier + 2));
 
-                int amount = RandomUtils.RandomRange(min, max + (tier / 4));
+                int tierAmountBonus = (tier / 4);
+
+                int amount = RandomUtils.RandomRange(min + tierAmountBonus, max + tierAmountBonus);
                 stack = new ItemStack(item);
                 stack.setCount(amount);
 

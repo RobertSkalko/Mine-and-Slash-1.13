@@ -14,6 +14,7 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
@@ -332,7 +333,7 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
 
             for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-                TooltipInfo info = new TooltipInfo(data.GetRarity()
+                TooltipInfo info = new TooltipInfo(new EntityData.DefaultImpl(), data.GetRarity()
                         .StatPercents(), data.level);
 
                 for (ITextComponent statstring : statmod.GetTooltipString(info)) {

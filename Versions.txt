@@ -2,6 +2,8 @@
 bags now cant be opened in offhand
 buffed unique salvaging
 sets now use average level of all set items instead of player level.
+nerfed hp regen a bit more
+chaos stat traits now correctly display that the stats scale to player level
 2.0.24 
 bomb spells no longer attack twice (did no1 seriously notice? o_o)
 nerfed hp regen a bit

@@ -67,7 +67,7 @@ public class CommonStatUtils {
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
             StatData statdata = theunit.MyStats.get(trait.GUID());
             if (statdata.Value > 0) {
-                trait.TryAffectOtherStats(unit);
+                trait.TryAffectOtherStats(unit, statdata);
             }
         }
 

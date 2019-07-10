@@ -27,6 +27,9 @@ public class WornSetData {
     @Store
     private List<Integer> lvls = new ArrayList<>();
 
+    @Store // make sure 2 same ring uniques don't add set bonus
+    private List<String> uniqueIds = new ArrayList<>();
+
     public Set getSet() {
 
         if (Sets.All.containsKey(setGUID)) {
@@ -49,10 +52,19 @@ public class WornSetData {
         if (gear.set == null || gear.set.baseSet == null) {
             return;
         }
-
         if (gear.set.baseSet.equals(setGUID)) {
+
+            if (gear.isUnique()) {
+                if (this.uniqueIds.contains(gear.uniqueGUID)) {
+                    return; // don't add set count if same unique (like 2 same rings)
+                }
+
+                this.uniqueIds.add(gear.uniqueGUID);
+            }
+
             lvls.add(gear.level);
             count++;
+
         }
     }
 
