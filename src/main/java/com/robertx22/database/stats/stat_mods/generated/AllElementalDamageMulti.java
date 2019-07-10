@@ -35,7 +35,7 @@ public class AllElementalDamageMulti extends ElementalStatMod {
 
     @Override
     public StatTypes Type() {
-        return StatTypes.Multi;
+        return StatTypes.Flat;
     }
 
     @Override
