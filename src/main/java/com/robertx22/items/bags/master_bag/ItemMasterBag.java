@@ -10,11 +10,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ObjectHolder;
@@ -110,6 +112,12 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     @Override
     public String GUID() {
         return "master_bag";
+    }
+
+    @Nonnull
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
+        return new MasterLootBagCap.Provider();
     }
 
 }

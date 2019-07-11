@@ -60,12 +60,12 @@ public class MasterLootBagCap {
 
     public static class DefaultImpl implements IMasterLootBagData {
 
-        private CompoundNBT nbt = new CompoundNBT();
-
         HashMap<String, ItemStackHandler> items = new HashMap<>();
 
         @Override
         public CompoundNBT getNBT() {
+
+            CompoundNBT nbt = new CompoundNBT();
 
             if (items != null) {
 
@@ -81,7 +81,10 @@ public class MasterLootBagCap {
 
         @Override
         public void setNBT(CompoundNBT value) {
-            this.nbt = value;
+
+            this.items.clear();
+
+            CompoundNBT nbt = value;
 
             for (ContainerMasterBag.ItemType type : ContainerMasterBag.ItemType.values()) {
 
