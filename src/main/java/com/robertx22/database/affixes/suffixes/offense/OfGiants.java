@@ -1,4 +1,4 @@
-package com.robertx22.database.affixes.suffixes.offense.pene;
+package com.robertx22.database.affixes.suffixes.offense;
 
 import com.robertx22.database.affixes.Suffix;
 import com.robertx22.database.requirements.LevelRequirement;

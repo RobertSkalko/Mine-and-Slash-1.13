@@ -1,5 +1,5 @@
 2.1.0
-added new affixes!
+added new affixes! 
 nerfed sword energy cost
 
 2.0.27
