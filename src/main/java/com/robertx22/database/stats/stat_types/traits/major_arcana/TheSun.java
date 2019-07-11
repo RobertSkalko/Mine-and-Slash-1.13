@@ -2,8 +2,8 @@ package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.resources.EnergyFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthPercent;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

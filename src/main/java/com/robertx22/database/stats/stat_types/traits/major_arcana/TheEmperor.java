@@ -2,9 +2,9 @@ package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthPercent;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
+import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 

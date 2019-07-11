@@ -34,7 +34,7 @@ public class PhysicalDispersion extends Stat implements IStatEffects {
 
     @Override
     public boolean ScalesToLevel() {
-        return true;
+        return false;
     }
 
     @Override
