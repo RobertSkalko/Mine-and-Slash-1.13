@@ -1,16 +1,10 @@
 package com.robertx22.db_lists;
 
 import com.robertx22.database.affixes.Suffix;
-import com.robertx22.database.affixes.suffixes.OfBalance;
-import com.robertx22.database.affixes.suffixes.OfGuidance;
-import com.robertx22.database.affixes.suffixes.OfMajorAffinity;
-import com.robertx22.database.affixes.suffixes.OfSwiftness;
+import com.robertx22.database.affixes.suffixes.*;
 import com.robertx22.database.affixes.suffixes.defense.*;
 import com.robertx22.database.affixes.suffixes.offense.*;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfEarthquakes;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfFirestorms;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfIceStorms;
-import com.robertx22.database.affixes.suffixes.offense.pene.OfThunderstorms;
+import com.robertx22.database.affixes.suffixes.offense.pene.*;
 import com.robertx22.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.database.affixes.suffixes.resource.OfTheSage;
@@ -35,6 +29,8 @@ public class Suffixes implements IRandomDefault<Suffix> {
         {
             {
                 add(new OfTheHydra());
+                add(new OfGiants());
+                add(new OfBehemoths());
 
                 add(new OfBalance());
                 add(new OfGuidance());
@@ -73,7 +69,7 @@ public class Suffixes implements IRandomDefault<Suffix> {
     private static List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
         {
             {
-
+                add(new OfDissonance(Elements.Physical));
                 add(new OfMajorAffinity(Elements.Physical));
                 add(new OfWeaponFlurry(WeaponTypes.None));
 

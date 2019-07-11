@@ -99,6 +99,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
     private static List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
         {
             {
+                add(new Heretics(Elements.Physical));
                 add(new ElementThornsMastery(Elements.Physical));
                 add(new MagesGamble(new SpellAcidBolt()));
 

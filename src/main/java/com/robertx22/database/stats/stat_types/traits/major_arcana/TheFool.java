@@ -3,8 +3,8 @@ package com.robertx22.database.stats.stat_types.traits.major_arcana;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.DexterityFlat;
 import com.robertx22.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class TheFool extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new DexterityFlat(), new CriticalHitFlat(), new HealthFlat(), new ElementalSpellDamageFlat(Elements.Thunder));
+        return Arrays.asList(new DexterityFlat(), new CriticalHitFlat(), new HealthPercent(), new ElementalSpellDamageFlat(Elements.Thunder));
     }
 
     @Override

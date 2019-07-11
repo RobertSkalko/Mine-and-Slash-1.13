@@ -1,3 +1,7 @@
+2.1.0
+added new affixes!
+nerfed sword energy cost
+
 2.0.27
 fix lycanite mobs and probably some other mods mobs not dropping loot or exp
 (fault was they didn't call onDropsEvent, so i switched to onentitydeath)

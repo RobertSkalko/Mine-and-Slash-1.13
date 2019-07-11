@@ -2,7 +2,7 @@ package com.robertx22.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stats.stat_mods.flat.resources.HealthPercent;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -22,7 +22,7 @@ public class TheEmperor extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WisdomFlat(), new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Staff), new ElementalSpellToAttackDMGFlat(Elements.Fire));
+        return Arrays.asList(new WisdomFlat(), new HealthPercent(), new WeaponDamageFlat(WeaponTypes.Staff), new ElementalSpellToAttackDMGFlat(Elements.Fire));
     }
 
     @Override

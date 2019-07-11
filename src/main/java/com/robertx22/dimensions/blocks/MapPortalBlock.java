@@ -30,8 +30,6 @@ public class MapPortalBlock extends EndPortalBlock {
                 .lightValue(15)
                 .hardnessAndResistance(2, 2));
 
-        ;
-
     }
 
     @Override
