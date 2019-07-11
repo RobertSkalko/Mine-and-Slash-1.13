@@ -139,8 +139,11 @@ public class PlayerMapData {
             this.mapGUID = nbt.getString(MAP_GUID);
             this.minutesPassed = nbt.getInt(MIN_PASSED);
             this.isDead = nbt.getBoolean("isdead");
+
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
+            } else {
+                this.originalDimension = DimensionType.OVERWORLD;
             }
 
         }

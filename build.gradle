@@ -59,9 +59,9 @@ minecraft {
                 }
             }
         }
-    
-	
-	data {
+
+
+        data {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
@@ -75,10 +75,10 @@ minecraft {
             mods {
                 mmorpg {
                     source sourceSets.main
+                }
             }
         }
     }
-		}
 }
 
 
@@ -121,7 +121,6 @@ dependencies {
 
 
     minecraft "net.minecraftforge:forge:${version_forge}"
-
 
     compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED

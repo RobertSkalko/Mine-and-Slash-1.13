@@ -1,5 +1,10 @@
+2.0.27
+fix lycanite mobs and probably some other mods mobs not dropping loot or exp
+(fault was they didn't call onDropsEvent, so i switched to onentitydeath)
 2.0.26
+BACKUP YOUR WORLD JUST IN CASE!
 fix all ele dmg stat
+probably fixed the bag dupe, please check and report!
 2.0.25 
 bags now cant be opened in offhand
 buffed unique salvaging

@@ -310,13 +310,17 @@ public class EntityData {
             CustomStatsData newstats = CustomStats.Load(nbt);
             if (newstats != null) {
                 this.customStats = newstats;
+            } else {
+                this.customStats = new CustomStatsData();
             }
 
             Unit newunit = UnitNbt.Load(this.nbt);
             if (newunit != null) {
                 this.unit = newunit;
+            } else {
+                this.unit = new Unit();
             }
-
+            
         }
 
         @Override
