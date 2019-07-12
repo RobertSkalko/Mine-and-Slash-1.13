@@ -15,4 +15,15 @@ public class ItemRarities extends RaritiesContainer<ItemRarity> {
         return Items;
     }
 
+    @Override
+    public ItemRarity get(int i) {
+
+        if (i == -1) {
+            return new UniqueItem();
+        }
+
+        return super.get(i);
+
+    }
+
 }
