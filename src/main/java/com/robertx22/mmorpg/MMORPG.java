@@ -93,6 +93,8 @@ public class MMORPG {
         bus.addListener(this::interModEnqueue);
         bus.addListener(new OnGatherData()::onGatherData);
 
+        EnchantRegisters.register();
+
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             bus.addListener(this::clientSetup);
         });
