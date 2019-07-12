@@ -57,6 +57,7 @@ public class Stats {
     private static List<Stat> generated = new ArrayList<Stat>() {
         {
             {
+                add(new ElementalBonusDmgOnBasic(Elements.Physical));
                 add(new ElementalConversion(Elements.Physical, Elements.Physical));
                 add(new ElementalTransfer(Elements.Physical, Elements.Physical));
                 add(new ElementalAffinity(Elements.Physical));

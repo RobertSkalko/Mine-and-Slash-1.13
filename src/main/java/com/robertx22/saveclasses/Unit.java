@@ -339,6 +339,7 @@ public class Unit {
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 
+        CommonStatUtils.addPotionStats(entity, data);
         CommonStatUtils.addCustomStats(data, this, level);
 
         if (entity instanceof PlayerEntity) {

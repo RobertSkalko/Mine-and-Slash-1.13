@@ -19,6 +19,7 @@ import com.robertx22.items.infusions.upgrade.SuperiorUpgradeInfusion;
 import com.robertx22.items.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.items.level_incentives.Hearthstone;
 import com.robertx22.items.misc.*;
+import com.robertx22.items.spells.ItemBonusEleAtkDmg;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemAcidBomb;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemFireBomb;
 import com.robertx22.items.spells.aoe_bomb_proj.ItemIceBomb;
@@ -38,12 +39,17 @@ import com.robertx22.items.spells.projectile.ItemThunderBolt;
 import com.robertx22.items.spells.self.ItemInstantHeal;
 import com.robertx22.items.spells.self.ItemSelfRegen;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
@@ -108,68 +114,84 @@ public class ItemRegister {
 
     }
 
+    private static List<Item> list = new ArrayList<>();
+
     private static void registerSingles(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> r = event.getRegistry();
 
-        r.register(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
-        r.register(new ItemLootBag().setRegistryName(ItemLootBag.ID));
-        r.register(new ItemMapBag().setRegistryName(ItemMapBag.ID));
-        r.register(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
+        list.add(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
+        list.add(new ItemLootBag().setRegistryName(ItemLootBag.ID));
+        list.add(new ItemMapBag().setRegistryName(ItemMapBag.ID));
+        list.add(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
 
-        r.register(new ItemAddSet());
-        r.register(new ItemRerollSet());
-        r.register(new CreateNewUnique());
-        r.register(new ItemAddPrefix());
-        r.register(new ItemAddSecondaryStat());
-        r.register(new ItemAddSuffix());
-        r.register(new ItemChaosOrb());
-        r.register(new ItemLevelUpGear());
-        r.register(new ItemNumberReroll());
-        r.register(new ItemOrbOfTransmutation());
-        r.register(new ItemRandomizePrefix());
-        r.register(new ItemRandomizeSuffix());
-        r.register(new ItemStoneOfHope());
-        r.register(new RerollPrefixNumbers());
-        r.register(new RerollSuffixNumbers());
-        r.register(new RerollUniqueNumbers());
+        list.add(new ItemAddSet());
+        list.add(new ItemRerollSet());
+        list.add(new CreateNewUnique());
+        list.add(new ItemAddPrefix());
+        list.add(new ItemAddSecondaryStat());
+        list.add(new ItemAddSuffix());
+        list.add(new ItemChaosOrb());
+        list.add(new ItemLevelUpGear());
+        list.add(new ItemNumberReroll());
+        list.add(new ItemOrbOfTransmutation());
+        list.add(new ItemRandomizePrefix());
+        list.add(new ItemRandomizeSuffix());
+        list.add(new ItemStoneOfHope());
+        list.add(new RerollPrefixNumbers());
+        list.add(new RerollSuffixNumbers());
+        list.add(new RerollUniqueNumbers());
 
-        r.register(new NormalUpgradeInfusion());
-        r.register(new SuperiorUpgradeInfusion());
-        r.register(new WondrousUpgradeInfusion());
-        r.register(new AttackInfusionItem());
-        r.register(new DefenseInfusionItem());
-        r.register(new ResourceInfusionItem());
+        list.add(new NormalUpgradeInfusion());
+        list.add(new SuperiorUpgradeInfusion());
+        list.add(new WondrousUpgradeInfusion());
+        list.add(new AttackInfusionItem());
+        list.add(new DefenseInfusionItem());
+        list.add(new ResourceInfusionItem());
 
-        r.register(new ItemAwakenRuneWord());
-        r.register(new ItemIncreaseRarityNearestEntity());
-        r.register(new ItemLevelNearestEntity());
-        r.register(new ItemMapBackPortal());
-        r.register(new ItemNewbieGearBag());
-        r.register(new ItemPlayerLevelUp());
+        list.add(new ItemAwakenRuneWord());
+        list.add(new ItemIncreaseRarityNearestEntity());
+        list.add(new ItemLevelNearestEntity());
+        list.add(new ItemMapBackPortal());
+        list.add(new ItemNewbieGearBag());
+        list.add(new ItemPlayerLevelUp());
 
-        r.register(new ItemAcidBolt());
-        r.register(new ItemFireBolt());
-        r.register(new ItemFrostBolt());
-        r.register(new ItemThunderBolt());
+        list.add(new ItemAcidBolt());
+        list.add(new ItemFireBolt());
+        list.add(new ItemFrostBolt());
+        list.add(new ItemThunderBolt());
 
-        r.register(new ItemAcidBomb());
-        r.register(new ItemFireBomb());
-        r.register(new ItemIceBomb());
-        r.register(new ItemThunderBomb());
+        list.add(new ItemAcidBomb());
+        list.add(new ItemFireBomb());
+        list.add(new ItemIceBomb());
+        list.add(new ItemThunderBomb());
 
-        r.register(new ItemFireNova());
-        r.register(new ItemFrostNova());
-        r.register(new ItemThunderNova());
-        r.register(new ItemPoisonNova());
+        list.add(new ItemFireNova());
+        list.add(new ItemFrostNova());
+        list.add(new ItemThunderNova());
+        list.add(new ItemPoisonNova());
 
-        r.register(new ItemAcidExplosion());
-        r.register(new ItemFrostExplosion());
-        r.register(new ItemLightningExplosion());
-        r.register(new ItemFlameExplosion());
+        list.add(new ItemAcidExplosion());
+        list.add(new ItemFrostExplosion());
+        list.add(new ItemLightningExplosion());
+        list.add(new ItemFlameExplosion());
 
-        r.register(new ItemInstantHeal());
-        r.register(new ItemSelfRegen());
+        list.add(new ItemInstantHeal());
+        list.add(new ItemSelfRegen());
+
+        list.add(new ItemBonusEleAtkDmg(Elements.Physical));
+
+        for (Item item : list) {
+            if (item instanceof IGenerated) {
+                IGenerated gen = (IGenerated) item;
+                gen.generateAllPossibleStatVariations()
+                        .forEach(x -> r.register((Item) x));
+
+            } else {
+                r.register(item);
+            }
+
+        }
 
     }
 

@@ -1,7 +1,10 @@
 package com.robertx22.potion_effects.all;
 
+import com.robertx22.database.stats.stat_mods.PotionBonusDmgAmountFlat;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.potion_effects.IStatGivingPotion;
 import com.robertx22.potion_effects.SpellPotionBase;
+import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IGenerated;
 import net.minecraft.entity.Entity;
@@ -10,10 +13,12 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BonusDmgPotion extends SpellPotionBase implements IGenerated<SpellPotionBase> {
+public class BonusDmgPotion extends SpellPotionBase implements IGenerated<BonusDmgPotion>, IStatGivingPotion {
 
     public static final BonusDmgPotion INSTANCE = new BonusDmgPotion(Elements.Physical);
 
@@ -22,8 +27,8 @@ public class BonusDmgPotion extends SpellPotionBase implements IGenerated<SpellP
     private BonusDmgPotion(Elements element) {
         // boolean isBadEffectIn, int liquidColorIn
         super(EffectType.BENEFICIAL, 4393423);
-        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
         this.element = element;
+        this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
     }
 
@@ -67,8 +72,14 @@ public class BonusDmgPotion extends SpellPotionBase implements IGenerated<SpellP
     }
 
     @Override
-    public List<SpellPotionBase> generateAllPossibleStatVariations() {
+    public List<BonusDmgPotion> generateAllPossibleStatVariations() {
         Elements.getAllSingleElements().forEach(x -> MAP.put(x, new BonusDmgPotion(x)));
-        return null;
+        return new ArrayList<>(MAP.values());
+    }
+
+    @Override
+    public List<StatModData> getStats(EffectInstance instance) {
+        return Arrays.asList(StatModData.Load(new PotionBonusDmgAmountFlat(element), instance
+                .getAmplifier()));
     }
 }

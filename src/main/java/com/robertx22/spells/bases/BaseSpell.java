@@ -4,11 +4,11 @@ import com.robertx22.database.IGUID;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;
+import com.robertx22.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -24,7 +24,8 @@ public abstract class BaseSpell implements IWeighted, IGUID {
         Self_Heal,
         Aoe_Bomb_Projectile,
         Restore_Energy,
-        Aoe_Damage_Nova
+        Aoe_Damage_Nova,
+        Self_Buff,
     }
 
     public String typeString() {

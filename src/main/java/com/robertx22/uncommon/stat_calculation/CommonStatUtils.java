@@ -4,6 +4,7 @@ import com.robertx22.database.stats.Trait;
 import com.robertx22.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.database.stats.stat_types.core_stats.IPreCoreStat;
 import com.robertx22.db_lists.Stats;
+import com.robertx22.potion_effects.IStatGivingPotion;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
@@ -16,6 +17,7 @@ import com.robertx22.uncommon.interfaces.IStatConversion;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.EffectInstance;
 
 import java.util.List;
 
@@ -24,6 +26,16 @@ public class CommonStatUtils {
     public static void addCustomStats(UnitData data, Unit unit, int level) {
         for (StatModData stat : data.getCustomStats().stats.values()) {
             stat.useOnPlayer(data);
+        }
+    }
+
+    public static void addPotionStats(LivingEntity entity, UnitData data) {
+
+        for (EffectInstance instance : entity.getActivePotionEffects()) {
+            if (instance.getPotion() instanceof IStatGivingPotion) {
+                IStatGivingPotion pot = (IStatGivingPotion) instance.getPotion();
+                pot.getStats(instance).forEach(x -> x.useOnPlayer(data));
+            }
         }
     }
 

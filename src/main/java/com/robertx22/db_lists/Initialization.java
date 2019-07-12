@@ -11,6 +11,7 @@ public class Initialization {
 
         Suffixes.init();
         Sets.init();
+        Spells.init();
 
     }
 

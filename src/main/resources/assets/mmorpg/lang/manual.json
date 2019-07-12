@@ -59,6 +59,7 @@
     "mmorpg.tooltip.aoe_bomb_spell": "Leaves out a bomb that explodes later for Aoe Damage.",
     "mmorpg.tooltip.spell_self_regen": "Heals the caster over time.",
     "mmorpg.tooltip.aoe_spell_nova": "Damages everyone around you.",
+	"mmorpg.tooltip.ele_bonus_atk_dmg_spell": "Gives buff, deal bonus dmg at cost of mana.",	
 
     "_comment": "REPAIR CAPACITORS",
     "item.mmorpg.capacitor0": "Common Capacitor",

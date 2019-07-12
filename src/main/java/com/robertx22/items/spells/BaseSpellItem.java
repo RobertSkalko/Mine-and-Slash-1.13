@@ -5,6 +5,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;
+import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,17 +29,29 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public abstract BaseSpell Spell();
 
-    public ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/tomes/" + this
-            .Spell()
-            .Element()
-            .name()
-            .toLowerCase() + ".png");
+    public Elements element;
+
+    public ResourceLocation texture = null;
+
+    public BaseSpellItem(Elements element) {
+        super(getSpellItemProp());
+        this.element = element;
+        setupTexture();
+        this.setRegistryName(GUID().toLowerCase());
+    }
 
     public BaseSpellItem() {
         super(getSpellItemProp());
-
+        setupTexture();
         this.setRegistryName(GUID().toLowerCase());
 
+    }
+
+    private void setupTexture() {
+        texture = new ResourceLocation(Ref.MODID, "textures/tomes/" + this.Spell()
+                .Element()
+                .name()
+                .toLowerCase() + ".png");
     }
 
     public static Item.Properties getSpellItemProp() {

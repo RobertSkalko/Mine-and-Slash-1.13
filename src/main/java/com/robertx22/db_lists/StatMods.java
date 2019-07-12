@@ -19,6 +19,7 @@ import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.AllTraitMods;
+import com.robertx22.database.stats.stat_mods.PotionBonusDmgAmountFlat;
 import com.robertx22.database.stats.stat_mods.flat.*;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.database.stats.stat_mods.flat.elemental.AllEleDmgFlat;
@@ -63,6 +64,7 @@ public class StatMods {
     private static List<StatMod> list = new ArrayList<StatMod>() {
         {
             {
+                add(new PotionBonusDmgAmountFlat(Elements.Physical));
                 add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
                 add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));
                 add(new ElementalAffinityFlat(Elements.Physical));
