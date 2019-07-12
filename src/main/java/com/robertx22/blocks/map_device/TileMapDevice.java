@@ -16,6 +16,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
@@ -180,10 +181,10 @@ public class TileMapDevice extends BaseTile {
 
     private void trySetupMapForGroup(MapItemData map, PlayerEntity player) {
 
+        AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(15);
+
         if (map.groupPlay) {
-            List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, this
-                    .getRenderBoundingBox()
-                    .grow(15));
+            List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab);
 
             double distance = Double.MAX_VALUE;
 
