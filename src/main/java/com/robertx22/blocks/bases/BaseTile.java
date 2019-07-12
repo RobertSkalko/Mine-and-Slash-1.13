@@ -1,5 +1,6 @@
 package com.robertx22.blocks.bases;
 
+import com.robertx22.items.misc.ItemCapacitor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -126,7 +127,14 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
         if (this.isAutomatable()) {
             // don't extract stuff that's being processed
-            return this.isItemValidInput(stack) == false;
+
+            if (stack.getItem() instanceof ItemCapacitor) {
+                return false; // temp fix
+            }
+
+            Boolean isValidInput = this.isItemValidInput(stack);
+
+            return isValidInput == false;
         }
         return false;
     }

@@ -241,7 +241,9 @@ public class TileGearSalvage extends BaseTile {
 
     @Override
     public boolean isItemValidInput(ItemStack stack) {
-        return this.getSmeltingResultForItem(stack).isEmpty() == false;
+        ItemStack result = this.getSmeltingResultForItem(stack);
+
+        return result.isEmpty() == false;
     }
 
     @Override

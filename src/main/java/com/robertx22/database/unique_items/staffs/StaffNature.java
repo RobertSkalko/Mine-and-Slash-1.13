@@ -6,8 +6,8 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFla
 import com.robertx22.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalPenePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ public class StaffNature extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new ElementalPeneFlat(Elements.Nature), new ElementalPenePercent(Elements.Nature), new HealthRegenFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Nature), new ElementalPeneFlat(Elements.Nature), new ElementalPenePercent(Elements.Nature), new HealthRegenFlat());
     }
 
     @Override
