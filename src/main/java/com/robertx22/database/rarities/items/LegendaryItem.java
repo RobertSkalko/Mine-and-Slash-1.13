@@ -47,4 +47,9 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
         return new MinMax(75, 85);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 2.5F;
+    }
+
 }

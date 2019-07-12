@@ -47,4 +47,9 @@ public class CommonItem extends BaseCommon implements ItemRarity {
         return new MinMax(30, 50);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 1;
+    }
+
 }

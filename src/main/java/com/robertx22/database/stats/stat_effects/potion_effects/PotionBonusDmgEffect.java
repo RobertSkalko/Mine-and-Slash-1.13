@@ -7,6 +7,7 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffect;
+import com.robertx22.uncommon.utilityclasses.ElementalParticleUtils;
 
 public class PotionBonusDmgEffect implements IStatEffect {
 
@@ -43,6 +44,8 @@ public class PotionBonusDmgEffect implements IStatEffect {
                     float dmgNum = data.Value / dmg.damageMultiplier;
                     Elements element = stat.Element();
                     dmg.addBonusEleDmg(element, dmgNum);
+
+                    ElementalParticleUtils.SpawnNovaParticle(element, dmg.target, 0.5F, 50);
 
                 }
 

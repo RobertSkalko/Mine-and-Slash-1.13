@@ -46,4 +46,9 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
         return new MinMax(70, 90);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 3.5F;
+    }
+
 }

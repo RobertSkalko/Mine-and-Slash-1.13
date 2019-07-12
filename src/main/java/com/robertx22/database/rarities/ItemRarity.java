@@ -16,4 +16,6 @@ public interface ItemRarity extends Rarity, SalvagableItem {
 
     MinMax SpawnDurabilityHit();
 
+    float itemTierPower();
+
 }

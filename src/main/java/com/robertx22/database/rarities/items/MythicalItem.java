@@ -47,4 +47,9 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
         return new MinMax(80, 90);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 3;
+    }
+
 }

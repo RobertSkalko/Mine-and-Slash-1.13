@@ -47,6 +47,11 @@ public class RareItem extends BaseRare implements ItemRarity {
         return new MinMax(60, 70);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 1.5F;
+    }
+
 }
 
 

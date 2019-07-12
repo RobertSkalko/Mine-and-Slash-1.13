@@ -1,5 +1,7 @@
 package com.robertx22.items.gearitems.bases.itemtiers;
 
+import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -7,38 +9,38 @@ import net.minecraft.item.crafting.Ingredient;
 public class RarityItemTier implements IItemTier {
 
     public RarityItemTier(int rar) {
-        this.rarity = rar;
+        this.rar = Rarities.Items.get(rar);
     }
 
-    int rarity = 0;
+    ItemRarity rar;
 
     @Override
     public int getMaxUses() {
-        return net.minecraft.item.ItemTier.IRON.getMaxUses() + (net.minecraft.item.ItemTier.WOOD
-                .getMaxUses() * 200);
+        return (int) (net.minecraft.item.ItemTier.IRON.getMaxUses() + (net.minecraft.item.ItemTier.WOOD
+                .getMaxUses() * rar.itemTierPower()));
     }
 
     @Override
     public float getEfficiency() {
         return net.minecraft.item.ItemTier.IRON.getEfficiency() + net.minecraft.item.ItemTier.WOOD
-                .getEfficiency() * rarity;
+                .getEfficiency() * rar.itemTierPower();
     }
 
     @Override
     public float getAttackDamage() {
         return net.minecraft.item.ItemTier.IRON.getAttackDamage() + net.minecraft.item.ItemTier.WOOD
-                .getAttackDamage() * rarity;
+                .getAttackDamage() * rar.itemTierPower();
     }
 
     @Override
     public int getHarvestLevel() {
-        return net.minecraft.item.ItemTier.IRON.getHarvestLevel() + 1 * rarity;
+        return (int) (net.minecraft.item.ItemTier.IRON.getHarvestLevel() + 1 * rar.itemTierPower());
     }
 
     @Override
     public int getEnchantability() {
-        return net.minecraft.item.ItemTier.IRON.getEnchantability() + (net.minecraft.item.ItemTier.IRON
-                .getEnchantability() * rarity / 3);
+        return (int) (net.minecraft.item.ItemTier.IRON.getEnchantability() + (net.minecraft.item.ItemTier.IRON
+                .getEnchantability() * rar.itemTierPower()));
     }
 
     @Override

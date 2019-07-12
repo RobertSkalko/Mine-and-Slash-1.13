@@ -47,4 +47,9 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
         return new MinMax(55, 65);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 1.2F;
+    }
+
 }

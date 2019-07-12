@@ -49,4 +49,9 @@ public class EpicItem extends BaseEpic implements ItemRarity {
         return new MinMax(70, 80);
     }
 
+    @Override
+    public float itemTierPower() {
+        return 2;
+    }
+
 }
