@@ -41,9 +41,8 @@ public class PotionBonusDmgEffect implements IStatEffect {
                         return Effect;
                     }
 
-                    float dmgNum = data.Value / dmg.damageMultiplier;
                     Elements element = stat.Element();
-                    dmg.addBonusEleDmg(element, dmgNum);
+                    dmg.addBonusEleDmgDivideByMulti(element, data.Value);
 
                     ElementalParticleUtils.SpawnNovaParticle(element, dmg.target, 0.5F, 50);
 

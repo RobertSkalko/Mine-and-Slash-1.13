@@ -31,6 +31,7 @@ import com.robertx22.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -77,7 +78,8 @@ public class EntityData {
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
 
-        boolean attackCooldownAllowsAttack(LivingEntity attacker, LivingEntity victim);
+        boolean attackCooldownAllowsAttack(LivingEntity attacker, LivingEntity victim,
+                                           GearItemData gear);
 
         void syncToClient(PlayerEntity player);
 
@@ -320,7 +322,7 @@ public class EntityData {
             } else {
                 this.unit = new Unit();
             }
-            
+
         }
 
         @Override
@@ -330,6 +332,8 @@ public class EntityData {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
+            event_damage = nullifyVanillaArmor(target, event_damage);
+
             float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
@@ -338,6 +342,17 @@ public class EntityData {
 
             dmg.Activate();
 
+        }
+
+        public static float nullifyVanillaArmor(LivingEntity target, float damage) {
+
+            float armorValue = (float) target.getTotalArmorValue();
+            float armorToughness = (float) target.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS)
+                    .getValue();
+
+            float lvt_3_1_ = 2.0F + armorToughness / 4.0F;
+            float lvt_4_1_ = MathHelper.clamp(armorValue - damage / lvt_3_1_, armorValue * 0.2F, 20.0F);
+            return damage / (1.0F - lvt_4_1_ / 25.0F);
         }
 
         @Override
@@ -521,8 +536,11 @@ public class EntityData {
         // makes sure hammers the aoe weapons arent machine guns
         @Override
         public boolean attackCooldownAllowsAttack(LivingEntity attacker,
-                                                  LivingEntity victim) {
+                                                  LivingEntity victim,
+                                                  GearItemData gear) {
 
+            return true;
+            /*
             if (this.lastAttackTick < ATTACK_COOLDOWN) {
                 return true;
             }
@@ -530,13 +548,22 @@ public class EntityData {
                 return true;
             }
 
-            int timeSinceLastAttack = attacker.ticksExisted - this.lastAttackTick;
+            if (attacker instanceof PlayerEntity) {
 
-            if (timeSinceLastAttack < ATTACK_COOLDOWN) {
-                return false;
+            }
+
+            float test = attacker.getCooledAttackStrength();
+
+            if (gear.GetBaseGearType() instanceof Hammer) {
+                int timeSinceLastAttack = attacker.ticksExisted - this.lastAttackTick;
+                if (timeSinceLastAttack < ATTACK_COOLDOWN) {
+                    return false;
+                }
             }
 
             return true;
+
+             */
         }
 
         @Override

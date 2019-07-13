@@ -2,7 +2,6 @@ package com.robertx22.onevent.entity;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -11,7 +10,7 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -26,16 +25,13 @@ public class OnMeleeAttack {
      * @param event
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onMobMeleeAttack(LivingAttackEvent event) {
+    public static void onMobMeleeAttack(LivingDamageEvent event) {
 
         try {
 
             if (event.getEntity().world.isRemote) {
                 return;
             }
-
-            event.getEntity().world.getProfiler()
-                    .startSection(Ref.MODID + ":on_mob_attack");
 
             if (event.getSource() instanceof MyDamageSource || event.getSource()
                     .getDamageType()
@@ -58,14 +54,21 @@ public class OnMeleeAttack {
 
             UnitData sourceData = Load.Unit(source);
 
+            if (sourceData == null) {
+                return;
+            }
+
+            GearItemData weapondata = sourceData.getWeaponData(source);
+
             if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                if (sourceData.attackCooldownAllowsAttack(source, target) == false) {
+                if (sourceData.attackCooldownAllowsAttack(source, target, weapondata) == false) {
                     return;
                 }
             }
+
             UnitData targetData = Load.Unit(target);
 
-            if (targetData == null || sourceData == null) {
+            if (targetData == null) {
                 return;
             }
 
@@ -73,8 +76,6 @@ public class OnMeleeAttack {
             sourceData.recalculateStats(source);
 
             if (source instanceof PlayerEntity) {
-
-                GearItemData weapondata = sourceData.getWeaponData(source);
 
                 if (weapondata == null) {
                     ItemStack weapon = source.getHeldItemMainhand();
@@ -99,8 +100,6 @@ public class OnMeleeAttack {
                 sourceData.mobBasicAttack(source, target, sourceData, targetData, event.getAmount());
 
             }
-
-            event.getEntity().world.getProfiler().endSection();
 
         } catch (Exception e) {
             e.printStackTrace();

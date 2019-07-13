@@ -60,13 +60,13 @@ public class StatConfig {
         health = builder.translation("mmorpg.stat.health")
                 .defineInRange("health", 100F, 0, Integer.MAX_VALUE);
         health_per_level = builder.translation("mmorpg.stat.health_per_level")
-                .defineInRange("health_per_level", 10F, 0, Integer.MAX_VALUE);
+                .defineInRange("health_per_level", 5F, 0, Integer.MAX_VALUE);
         critical_hit = builder.translation("mmorpg.stat.critical_hit")
                 .defineInRange("critical_hit", 1F, 0, Integer.MAX_VALUE);
         critical_hit_per_level = builder.translation("mmorpg.stat.critical_hit_per_level")
                 .defineInRange("critical_hit_per_level", 0F, 0, Integer.MAX_VALUE);
         energy_regen = builder.translation("mmorpg.stat.energy_regen")
-                .defineInRange("energy_regen", 7.5F, 0, Integer.MAX_VALUE);
+                .defineInRange("energy_regen", 7F, 0, Integer.MAX_VALUE);
         energy_regen_per_level = builder.translation("mmorpg.stat.energy_regen_per_level")
                 .defineInRange("energy_regen_per_level", 0F, 0, Integer.MAX_VALUE);
         critical_damage = builder.translation("mmorpg.stat.critical_damage")

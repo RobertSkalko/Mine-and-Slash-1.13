@@ -4,36 +4,35 @@ import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Arrays;
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EnchantRegisters {
 
-    public static EnchantmentType WEAPON_ENCHANT = EnchantmentType.create(Ref.MODID + ":weapon", x -> x instanceof IWeapon);
+    public static EnchantmentType WEAPON_ENCHANT = EnchantmentType.create(Ref.MODID + ":weapon", x -> x instanceof IWeapon || EnchantmentType.WEAPON
+            .canEnchantItem(x));
 
-    public static void register() {
+    public static List<Enchantment> blacklist = Arrays.asList(Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
+
+    @SubscribeEvent
+    public static void register(RegistryEvent.Register<Enchantment> event) {
 
         for (Enchantment enchant : ForgeRegistries.ENCHANTMENTS) {
 
-            if (enchant.type.equals(EnchantmentType.WEAPON)) {
-                EnchantOverride override = new EnchantOverride(enchant, WEAPON_ENCHANT);
-                register(override.getRegistryName().toString(), override);
+            if (blacklist.contains(enchant) == false) {
+                if (enchant.type.equals(EnchantmentType.WEAPON)) {
+                    enchant.type = WEAPON_ENCHANT;
+                    event.getRegistry().register(enchant);
+                }
             }
         }
-    }
-
-    private static Enchantment register(String key, Enchantment ench) {
-        return Registry.register(Registry.ENCHANTMENT, key, ench);
-    }
-
-    private static class EnchantOverride extends Enchantment {
-
-        public EnchantOverride(Enchantment e, EnchantmentType type) {
-            super(e.getRarity(), type, e.applicableEquipmentTypes);
-            this.setRegistryName(Ref.MODID, e.getRegistryName().getPath());
-
-        }
-
     }
 
 }

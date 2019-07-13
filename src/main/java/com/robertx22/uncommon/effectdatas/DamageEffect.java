@@ -42,6 +42,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
+    public void addBonusEleDmgDivideByMulti(Elements element, float dmg) {
+        addBonusEleDmg(element, dmg / damageMultiplier);
+    }
+
     public void addBonusEleDmg(Elements element, float dmg) {
         if (bonusElementDamageMap.containsKey(element)) {
             bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.get(element) + dmg));
