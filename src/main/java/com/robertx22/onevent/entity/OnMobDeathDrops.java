@@ -27,6 +27,10 @@ public class OnMobDeathDrops {
 
             LivingEntity entity = event.getEntityLiving();
 
+            if (entity.world.isRemote) {
+                return;
+            }
+
             if (!(entity instanceof PlayerEntity)) {
                 if (event.getSource().getTrueSource() instanceof PlayerEntity) {
                     if (Load.hasUnit(entity)) {

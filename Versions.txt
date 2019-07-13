@@ -5,9 +5,8 @@ unique items should now be enchantable
 weapons should now be able to get weapon enchants
 nerfed hp per lvl a bit (needs config delete/adjust)
 swords are now faster (i think?)
-changed combat mechanic to use different event, this one happens on damage event instead of attack event, pro: attack speed should work perfectly. con: i have to reverse engineer armor dmg reduction or else player takes literally 0 damage. See if it's balanced. 
-This could make it more compatible with other damage reductions, or could make them too op and make my gear useless. Try break it! If it's horribly hard to balance or my gear becomes useless, i'll revert and try to fix attack speed with the old event.
-
+made rare maps less rare
+trying to fix atk speed to be more fluid
 2.1.0
 added new affixes! 
 nerfed sword energy cost

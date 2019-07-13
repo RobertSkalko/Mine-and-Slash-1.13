@@ -10,7 +10,7 @@ import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -25,7 +25,7 @@ public class OnMeleeAttack {
      * @param event
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onMobMeleeAttack(LivingDamageEvent event) {
+    public static void onMobMeleeAttack(LivingAttackEvent event) {
 
         try {
 
@@ -61,7 +61,7 @@ public class OnMeleeAttack {
             GearItemData weapondata = sourceData.getWeaponData(source);
 
             if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                if (sourceData.attackCooldownAllowsAttack(source, target, weapondata) == false) {
+                if (sourceData.attackCooldownAllowsAttack(event.getAmount(), source, target, weapondata) == false) {
                     return;
                 }
             }

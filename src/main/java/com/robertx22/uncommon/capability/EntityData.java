@@ -78,8 +78,8 @@ public class EntityData {
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
 
-        boolean attackCooldownAllowsAttack(LivingEntity attacker, LivingEntity victim,
-                                           GearItemData gear);
+        boolean attackCooldownAllowsAttack(float amount, LivingEntity attacker,
+                                           LivingEntity victim, GearItemData gear);
 
         void syncToClient(PlayerEntity player);
 
@@ -332,8 +332,6 @@ public class EntityData {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
-            event_damage = nullifyVanillaArmor(target, event_damage);
-
             float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
@@ -531,39 +529,42 @@ public class EntityData {
 
         }
 
-        static int ATTACK_COOLDOWN = 15;
+        public static float getCooldownPeriod(LivingEntity entity) {
+            return (float) (1.0D / entity.getAttribute(SharedMonsterAttributes.ATTACK_SPEED)
+                    .getValue() * 20.0D);
+        }
+
+        /**
+         * Returns the percentage of attack power available based on the cooldown (zero to one).
+         */
+        public static float getCooledAttackStrength(LivingEntity entity,
+                                                    float adjustTicks) {
+            return MathHelper.clamp(((float) entity.ticksSinceLastSwing + adjustTicks) / getCooldownPeriod(entity), 0.0F, 1.0F);
+        }
 
         // makes sure hammers the aoe weapons arent machine guns
         @Override
-        public boolean attackCooldownAllowsAttack(LivingEntity attacker,
+        public boolean attackCooldownAllowsAttack(float amount, LivingEntity attacker,
                                                   LivingEntity victim,
                                                   GearItemData gear) {
 
-            return true;
-            /*
-            if (this.lastAttackTick < ATTACK_COOLDOWN) {
-                return true;
-            }
-            if (this.lastAttackTick > attacker.ticksExisted) {
-                return true;
+            if ((float) victim.hurtResistantTime > 10.0F) {
+                if (amount <= victim.lastDamage) {
+                    return false;
+                }
+
             }
 
             if (attacker instanceof PlayerEntity) {
+                float cooldown = getCooledAttackStrength(attacker, 0.5F);
 
-            }
-
-            float test = attacker.getCooledAttackStrength();
-
-            if (gear.GetBaseGearType() instanceof Hammer) {
-                int timeSinceLastAttack = attacker.ticksExisted - this.lastAttackTick;
-                if (timeSinceLastAttack < ATTACK_COOLDOWN) {
+                if (cooldown < 0.2F) {
                     return false;
                 }
+
             }
 
             return true;
-
-             */
         }
 
         @Override
