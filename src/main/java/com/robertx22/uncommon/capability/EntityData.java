@@ -572,11 +572,17 @@ public class EntityData {
 
             if (attacker instanceof PlayerEntity) {
                 float cooled = getCooledAttackStrength(true, this, attacker, 0.5F);
+                float base = getCooledAttackStrength(false, this, attacker, 0.5F);
 
-                System.out.println(cooled);
+                boolean canAtk = false;
 
-                if ((int) cooled == 1) {
+                if ((int) cooled >= 1) {
+                    canAtk = true;
+                } else if (Float.compare(cooled, base) == 0) {
+                    canAtk = true; // this never seems to happen?
+                }
 
+                if (canAtk) {
                     if ((float) victim.hurtResistantTime > 10.0F) {
                         if (amount <= victim.lastDamage) {
                             return false;
@@ -585,6 +591,12 @@ public class EntityData {
 
                 } else {
                     return false;
+                }
+            } else {
+                if ((float) victim.hurtResistantTime > 10.0F) {
+                    if (amount <= victim.lastDamage) {
+                        return false;
+                    }
                 }
             }
 
