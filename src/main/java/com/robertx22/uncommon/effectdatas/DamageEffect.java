@@ -79,6 +79,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     @Override
     protected void activate() {
 
+        if (target.isAlive() == false) {
+            return;
+        }
+
         if (this.canceled) {
             return;
         }

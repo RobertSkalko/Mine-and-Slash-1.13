@@ -18,20 +18,20 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class OnMeleeAttack {
 
-    /**
-     * On attack, cancel and spawn the real attack with my damage source, mobs don't
-     * use energy but players do
-     *
-     * @param event
-     */
+    // AttackEntityEvent doesnt work with things like bow..
+
+    // damageevent could work, maybe dmg event for players but livingattack event for mobs?
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onMobMeleeAttack(LivingAttackEvent event) {
 
-        try {
+        LivingEntity target = event.getEntityLiving();
 
-            if (event.getEntity().world.isRemote) {
-                return;
-            }
+        if (target.world.isRemote) {
+            return;
+        }
+
+        if (event.getSource() != null) {
 
             if (event.getSource() instanceof MyDamageSource || event.getSource()
                     .getDamageType()
@@ -39,14 +39,20 @@ public class OnMeleeAttack {
                 return;
             }
 
-            if (event.getEntityLiving() == null || event.getSource()
-                    .getTrueSource() == null || !(event.getSource()
-                    .getTrueSource() instanceof LivingEntity)) {
-                return;
+            if (event.getSource().getTrueSource() instanceof LivingEntity) {
+                LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
+
+                onAttack(true, source, target, event.getAmount());
             }
 
-            LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
-            LivingEntity target = event.getEntityLiving();
+        }
+
+    }
+
+    public static void onAttack(boolean useCooldown, LivingEntity source,
+                                LivingEntity target, float amount) {
+
+        try {
 
             if (target.isAlive() == false) {
                 return; // stops attacking dead mobs
@@ -60,9 +66,11 @@ public class OnMeleeAttack {
 
             GearItemData weapondata = sourceData.getWeaponData(source);
 
-            if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                if (sourceData.attackCooldownAllowsAttack(event.getAmount(), source, target, weapondata) == false) {
-                    return;
+            if (useCooldown) {
+                if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
+                    if (sourceData.attackCooldownAllowsAttack(amount, source, target, weapondata) == false) {
+                        return;
+                    }
                 }
             }
 
@@ -97,7 +105,7 @@ public class OnMeleeAttack {
 
             } else { // if its a mob
 
-                sourceData.mobBasicAttack(source, target, sourceData, targetData, event.getAmount());
+                sourceData.mobBasicAttack(source, target, sourceData, targetData, amount);
 
             }
 

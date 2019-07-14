@@ -75,6 +75,7 @@ public class EntityData {
     private static final String LAST_ATTACK_TICK = "LAST_ATTACK_TICK";
 
     public interface UnitData extends ICommonCapability {
+        int getTicksSinceLastAttack(LivingEntity entity);
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
 
@@ -524,22 +525,43 @@ public class EntityData {
 
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
-
             this.lastAttackTick = attacker.ticksExisted;
+        }
+
+        @Override
+        public int getTicksSinceLastAttack(LivingEntity entity) {
+            if (this.lastAttackTick == 0) {
+                return 1000;
+            }
+
+            return MathHelper.clamp(entity.ticksExisted - this.lastAttackTick, 0, 1000);
 
         }
 
         public static float getCooldownPeriod(LivingEntity entity) {
-            return (float) (1.0D / entity.getAttribute(SharedMonsterAttributes.ATTACK_SPEED)
-                    .getValue() * 20.0D);
+
+            double atkSpeed = entity.getAttribute(SharedMonsterAttributes.ATTACK_SPEED)
+                    .getValue();
+
+            return (float) (1.0D / atkSpeed * 20.0D);
         }
 
         /**
          * Returns the percentage of attack power available based on the cooldown (zero to one).
          */
-        public static float getCooledAttackStrength(LivingEntity entity,
+        public static float getCooledAttackStrength(boolean useTicks, UnitData data,
+                                                    LivingEntity entity,
                                                     float adjustTicks) {
-            return MathHelper.clamp(((float) entity.ticksSinceLastSwing + adjustTicks) / getCooldownPeriod(entity), 0.0F, 1.0F);
+
+            int lastAtk = 0;
+
+            if (useTicks) {
+                lastAtk = data.getTicksSinceLastAttack(entity);
+            }
+
+            float cooldownPeriod = getCooldownPeriod(entity);
+
+            return MathHelper.clamp(((float) lastAtk + adjustTicks) / cooldownPeriod, 0.0F, 1.0F);
         }
 
         // makes sure hammers the aoe weapons arent machine guns
@@ -548,20 +570,22 @@ public class EntityData {
                                                   LivingEntity victim,
                                                   GearItemData gear) {
 
-            if ((float) victim.hurtResistantTime > 10.0F) {
-                if (amount <= victim.lastDamage) {
-                    return false;
-                }
-
-            }
-
             if (attacker instanceof PlayerEntity) {
-                float cooldown = getCooledAttackStrength(attacker, 0.5F);
+                float cooled = getCooledAttackStrength(true, this, attacker, 0.5F);
 
-                if (cooldown < 0.2F) {
+                System.out.println(cooled);
+
+                if ((int) cooled == 1) {
+
+                    if ((float) victim.hurtResistantTime > 10.0F) {
+                        if (amount <= victim.lastDamage) {
+                            return false;
+                        }
+                    }
+
+                } else {
                     return false;
                 }
-
             }
 
             return true;
