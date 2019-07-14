@@ -25,9 +25,7 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
     public static final String ID = Ref.MODID + ":currency/add_prefix";
 
     public ItemAddPrefix() {
-
         super(ID);
-
     }
 
     @Override

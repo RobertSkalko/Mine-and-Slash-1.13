@@ -515,6 +515,7 @@
 	"mmorpg.word.unique_stats": "Unique Stats",
 	"mmorpg.word.unlocks_runeword_combo": "Unlocks RuneWord combination.",
 	"mmorpg.word.unsalvagable": "Unsalvagable",
+	"mmorpg.word.usableon": "Usable on",
 	"mmorpg.word.use_time": "Use Time",
 	"mmorpg.word.uses": "Uses",
 	"mmorpg.word.weapon": "Weapon",
@@ -884,22 +885,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.aoe_regen": "Aoe Regen",
-	"effect.mmorpg.bonus_flame_dmg": "Bonus Flame Dmg",
-	"effect.mmorpg.bonus_frost_dmg": "Bonus Frost Dmg",
-	"effect.mmorpg.bonus_lightning_dmg": "Bonus Lightning Dmg",
-	"effect.mmorpg.bonus_venom_dmg": "Bonus Venom Dmg",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.energy_regen": "Regen Energy",
-	"effect.mmorpg.mana_regen": "Regen Mana",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1000,6 +985,22 @@
 	"item.mmorpg.torch.torch5": "§dTorch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.aoe_regen": "Aoe Regen",
+	"effect.mmorpg.bonus_flame_dmg": "Bonus Flame Dmg",
+	"effect.mmorpg.bonus_frost_dmg": "Bonus Frost Dmg",
+	"effect.mmorpg.bonus_lightning_dmg": "Bonus Lightning Dmg",
+	"effect.mmorpg.bonus_venom_dmg": "Bonus Venom Dmg",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.energy_regen": "Regen Energy",
+	"effect.mmorpg.mana_regen": "Regen Mana",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

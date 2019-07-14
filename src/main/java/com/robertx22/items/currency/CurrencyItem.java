@@ -4,9 +4,10 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.ItemDefault;
+import com.robertx22.uncommon.datasaving.ItemType;
+import com.robertx22.uncommon.interfaces.*;
 import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.localization.Words;
-import com.robertx22.uncommon.interfaces.*;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import com.robertx22.uncommon.utilityclasses.TooltipUtils;
@@ -21,11 +22,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public static List<CurrencyItem> ITEMS = new ArrayList<>();
+
+    public List<ItemType> itemTypesUsableOn = Arrays.asList(ItemType.GEAR);
 
     public static TextFormatting nameColor = TextFormatting.RED;
 
@@ -80,13 +84,12 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
             }
         }
 
-        //Tooltip.add("", tooltip);
-
         if (this instanceof IAutoLocDesc) {
             IAutoLocDesc auto = (IAutoLocDesc) this;
             tooltip.add(Styles.YELLOWCOMP().appendSibling(auto.locDesc()));
         }
-        //Tooltip.add("", tooltip);
+
+        tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
 
         Tooltip.add("", tooltip);
 

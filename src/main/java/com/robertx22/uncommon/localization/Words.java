@@ -177,7 +177,7 @@ public enum Words implements IAutoLocName {
     Unique_Stats("Unique Stats"),
 
     Unsalvagable("Unsalvagable"),
-
+    UsableOn("Usable on"),
     Use_Time("Use Time"),
 
     Uses("Uses"),
