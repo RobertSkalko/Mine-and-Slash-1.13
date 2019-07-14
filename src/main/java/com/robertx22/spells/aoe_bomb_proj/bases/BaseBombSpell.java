@@ -16,7 +16,7 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public int useTimeTicks() {
-        return 20;
+        return 18;
     }
 
     @Override

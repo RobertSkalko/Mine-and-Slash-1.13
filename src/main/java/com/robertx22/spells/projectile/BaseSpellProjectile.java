@@ -20,7 +20,7 @@ public abstract class BaseSpellProjectile extends BaseBolt {
 
     @Override
     public int useTimeTicks() {
-        return 10;
+        return 8;
     }
 
     public BaseSpellProjectile() {
