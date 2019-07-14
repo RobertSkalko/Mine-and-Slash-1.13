@@ -20,9 +20,6 @@ import java.util.List;
 public class RunesData implements ITooltipList, IStatsContainer {
 
     @Store
-    public int level = 1;
-
-    @Store
     public List<InsertedRuneData> runes = new ArrayList<InsertedRuneData>();
 
     @Store
@@ -167,6 +164,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
     public void clearRunes() {
         this.runes.clear();
+        this.runewords.clear();
     }
 
     @Override

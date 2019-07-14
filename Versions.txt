@@ -5,9 +5,11 @@ unique items should now be enchantable
 weapons should now be able to get weapon enchants
 nerfed hp per lvl a bit (needs config delete/adjust)
 swords are now faster (i think?)
+fixed rune tooltips wrong numbers
 made rare maps less rare
 trying to fix atk speed to be more fluid
 improved projectile targeting a bit
+added item for clearing runes and runewords from an item
 2.1.0
 added new affixes! 
 nerfed sword energy cost

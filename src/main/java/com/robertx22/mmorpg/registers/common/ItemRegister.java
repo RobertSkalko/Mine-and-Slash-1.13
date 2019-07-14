@@ -126,6 +126,7 @@ public class ItemRegister {
         list.add(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
 
         list.add(new ItemAddSet());
+        list.add(new ItemClearRunes());
         list.add(new ItemRerollSet());
         list.add(new CreateNewUnique());
         list.add(new ItemAddPrefix());
