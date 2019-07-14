@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 public class ContainerMasterBag extends Container {
 
     public enum ItemType {
-        GEAR_EXCEPT_UNIQUE(0, ItemFilterGroup.ANY_GEAR_EXCEPT_UNIQUE),
+        GEAR(0, ItemFilterGroup.ANY_GEAR_EXCEPT_UNIQUE),
         SPELL(1, ItemFilterGroup.ANY_SPELL),
         CURRENCY(2, ItemFilterGroup.ANY_CURRENCY),
         UNIQUE(3, ItemFilterGroup.ANY_UNIQUE),
@@ -31,15 +31,7 @@ public class ContainerMasterBag extends Container {
             this.filter = filter;
         }
 
-        ItemType(int place, ItemFilterGroup filter, boolean isInMasterBag) {
-            this.place = place;
-            this.filter = filter;
-            this.isInMasterBag = isInMasterBag;
-        }
-
         int place = 0;
-
-        public boolean isInMasterBag = true;
 
         ItemFilterGroup filter;
 
@@ -47,12 +39,12 @@ public class ContainerMasterBag extends Container {
 
     public ContainerMasterBag(int i, PlayerInventory playerInventory, PacketBuffer pkt) {
 
-        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR_EXCEPT_UNIQUE), ItemType
+        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR), ItemType
                 .valueOf(pkt.readString()));
 
     }
 
-    public ItemType type = ItemType.GEAR_EXCEPT_UNIQUE;
+    public ItemType type = ItemType.GEAR;
     public int bagHash;
 
     public ContainerMasterBag(int num, PlayerInventory playerInv,

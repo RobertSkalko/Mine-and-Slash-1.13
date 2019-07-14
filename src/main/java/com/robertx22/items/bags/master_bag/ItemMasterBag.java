@@ -59,7 +59,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
                 return type;
             }
         }
-        return ContainerMasterBag.ItemType.GEAR_EXCEPT_UNIQUE;
+        return ContainerMasterBag.ItemType.GEAR;
 
     }
 
@@ -74,7 +74,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
             if (bag.getItem() instanceof ItemMasterBag) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, getNamedContainer(bag), extraData -> {
-                    extraData.writeString(ContainerMasterBag.ItemType.GEAR_EXCEPT_UNIQUE.toString());
+                    extraData.writeString(ContainerMasterBag.ItemType.GEAR.toString());
                 });
             }
         }
@@ -89,7 +89,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
     @Override
     public INamedContainerProvider getNamedContainer(ItemStack stack) {
-        return new NamedMasterBag(stack, ContainerMasterBag.ItemType.GEAR_EXCEPT_UNIQUE);
+        return new NamedMasterBag(stack, ContainerMasterBag.ItemType.GEAR);
     }
 
     @Override
