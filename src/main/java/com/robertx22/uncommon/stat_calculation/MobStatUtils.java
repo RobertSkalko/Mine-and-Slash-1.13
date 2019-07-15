@@ -31,7 +31,8 @@ public class MobStatUtils {
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
-        for (StatData data : unit.MyStats.values()
+        for (StatData data : unit.getStats()
+                .values()
                 .stream()
                 .filter(x -> x.GetStat().IsPercent() == false)
                 .collect(Collectors.toList())) {
@@ -43,7 +44,7 @@ public class MobStatUtils {
 
     public static void worldMultiplierStats(World world, Unit unit) {
 
-        for (StatData stat : unit.MyStats.values()) {
+        for (StatData stat : unit.getStats().values()) {
             stat.Flat *= DimensionsContainer.INSTANCE.getConfig(world).MOB_STRENGTH_MULTIPLIER;
         }
 
@@ -54,19 +55,18 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.MyStats.get(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
-        unit.MyStats.get(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
-        unit.MyStats.get(CriticalDamage.GUID).Flat += 10 * rar.DamageMultiplier();
-        unit.MyStats.get(ArmorPenetration.GUID).Flat += 8 * level * rar.StatMultiplier();
+        unit.getStat(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
+        unit.getStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
+        unit.getStat(CriticalDamage.GUID).Flat += 10 * rar.DamageMultiplier();
+        unit.getStat(ArmorPenetration.GUID).Flat += 8 * level * rar.StatMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 
-            unit.MyStats.get(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
+            unit.getStat(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
                     .StatMultiplier();
-            unit.MyStats.get(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
+            unit.getStat(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
                     .DamageMultiplier();
-            unit.MyStats.get(new ElementalPene(element).GUID()).Flat += elePene * level * rar
-                    .DamageMultiplier();
+            unit.getStat(new ElementalPene(element).GUID()).Flat += elePene * level * rar.DamageMultiplier();
 
         }
 

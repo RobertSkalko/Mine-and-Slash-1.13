@@ -101,11 +101,13 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit().MyStats.get(new LootTypeBonusFlat(gen.lootType())
-                    .GUID()).getMultiplier();
+            chance *= this.playerData.getUnit()
+                    .getStat(new LootTypeBonusFlat(gen.lootType()))
+                    .getMultiplier();
 
-            chance *= this.playerData.getUnit().MyStats.get(new LootTypeBonusFlat(LootType.All)
-                    .GUID()).getMultiplier();
+            chance *= this.playerData.getUnit()
+                    .getStat(new LootTypeBonusFlat(LootType.All))
+                    .getMultiplier();
 
         }
 

@@ -80,9 +80,6 @@ public class HealthBarRenderer {
         if (unit == null) {
             return;
         }
-        if (unit.MyStats == null) {
-            return;
-        }
 
         // MY CODE
 

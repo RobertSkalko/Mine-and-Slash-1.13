@@ -32,8 +32,7 @@ public class SpellToBasicDamageEffect implements IStatEffect {
                 ElementalSpellToAttackDMG basebonus = (ElementalSpellToAttackDMG) stat;
 
                 float percent = data.Value;
-                float derivedvalue = (float) source.MyStats.get(basebonus.StatThatGiveDamage()
-                        .GUID()).Value;
+                float derivedvalue = (float) source.getStat(basebonus.StatThatGiveDamage()).Value;
 
                 int dmg = (int) (percent * derivedvalue / 100);
 

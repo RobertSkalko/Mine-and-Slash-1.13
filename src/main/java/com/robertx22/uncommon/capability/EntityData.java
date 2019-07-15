@@ -423,7 +423,7 @@ public class EntityData {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
-            i *= (double) this.getUnit().MyStats.get(new BonusExp().GUID()).Value / 100 + 1;
+            i *= (double) this.getUnit().getStat(new BonusExp()).Value / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 
@@ -927,7 +927,7 @@ public class EntityData {
             if (this.hasEnoughEnergy(cost)) {
 
                 this.consumeEnergy(cost);
-                int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
+                int num = (int) unit.getStat(PhysicalDamage.GUID).Value;
                 DamageEffect dmg = new DamageEffect(source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();

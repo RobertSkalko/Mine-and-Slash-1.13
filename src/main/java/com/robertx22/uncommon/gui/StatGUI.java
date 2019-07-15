@@ -88,7 +88,8 @@ public class StatGUI extends Screen {
 
     private String getStatString(Stat stat, EntityData.UnitData data) {
 
-        String str = stat.translate() + ": " + data.getUnit().MyStats.get(stat.GUID())
+        String str = stat.translate() + ": " + data.getUnit()
+                .getStat(stat)
                 .formattedValue();
 
         if (stat.IsPercent()) {
@@ -99,7 +100,8 @@ public class StatGUI extends Screen {
             IUsableStat usable = (IUsableStat) stat;
 
             String value = formattedValue(usable.GetUsableValue(data.getLevel(), (int) data
-                    .getUnit().MyStats.get(stat.GUID()).Value) * 100);
+                    .getUnit()
+                    .getStat(stat).Value) * 100);
 
             str += " (" + value + "%)";
 

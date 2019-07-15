@@ -6,6 +6,7 @@ import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.database.stats.stat_types.resources.Energy;
 import com.robertx22.database.stats.stat_types.resources.Health;
 import com.robertx22.database.stats.stat_types.resources.Mana;
@@ -33,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +48,44 @@ import java.util.UUID;
 public class Unit {
 
     @Store
-    public HashMap<String, StatData> MyStats = null;
+    private HashMap<String, StatData> MyStats = null;
+
+    @Nonnull
+    public HashMap<String, StatData> getStats() {
+
+        if (MyStats == null) {
+            this.InitMobStats();
+        }
+
+        return MyStats;
+    }
+
+    @Nonnull
+    public StatData getStat(Stat stat) {
+        return getStat(stat.GUID());
+    }
+
+    @Nonnull
+    public StatData getStat(String guid) {
+
+        if (MyStats == null) {
+            this.InitMobStats();
+        }
+
+        StatData data = MyStats.get(guid);
+
+        if (data == null) {
+            Stat stat = Stats.All.get(guid);
+            if (stat != null) {
+                MyStats.put(stat.GUID(), new StatData(stat));
+                return MyStats.get(stat.GUID());
+            } else {
+                return new StatData(new UnknownStat());
+            }
+        } else {
+            return data;
+        }
+    }
 
     @Store
     public WornSetsContainerData wornSets = new WornSetsContainerData();
@@ -119,20 +158,20 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-        return (Health) MyStats.get(new Health().GUID()).GetStat();
+        return (Health) getStat(new Health()).GetStat();
     }
 
     public Mana mana() {
-        return (Mana) MyStats.get(new Mana().GUID()).GetStat();
+        return (Mana) getStat(new Mana()).GetStat();
     }
 
     public Energy energy() {
-        return (Energy) MyStats.get(new Energy().GUID()).GetStat();
+        return (Energy) getStat(new Energy()).GetStat();
     }
 
     public StatData healthData() {
         try {
-            return MyStats.get(new Health().GUID());
+            return getStat(new Health());
         } catch (Exception e) {
         }
         return null;
@@ -140,7 +179,7 @@ public class Unit {
 
     public StatData manaData() {
         try {
-            return MyStats.get(new Mana().GUID());
+            return getStat(new Mana());
         } catch (Exception e) {
 
         }
@@ -149,7 +188,7 @@ public class Unit {
 
     public StatData energyData() {
         try {
-            return MyStats.get(new Energy().GUID());
+            return getStat(new Energy());
         } catch (Exception e) {
 
         }

@@ -108,7 +108,7 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
 
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
         if (unit != null) {
-            for (StatData stat : unit.MyStats.values()) {
+            for (StatData stat : unit.getStats().values()) {
                 if (stat.GetStat() instanceof IStatEffects) {
                     for (IStatEffect effect : ((IStatEffects) stat.GetStat()).GetEffects()) {
                         effects.add(new EffectUnitStat(effect, unit, stat));

@@ -2,11 +2,11 @@ package com.robertx22.items.gearitems.weapon_mechanics;
 
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -36,8 +36,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     float radius = 1.5F;
 
     @Override
-    public boolean Attack(LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
         List<LivingEntity> entities = new ArrayList<LivingEntity>();
 
@@ -46,7 +46,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
                 entities.add((LivingEntity) en);
             }
         }
-        int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
 
         for (LivingEntity entity : entities) {
 

@@ -33,41 +33,39 @@ public class PlayerStatUtils {
 
         int lvl = data.getLevel();
 
-        unit.MyStats.get(PhysicalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
+        unit.getStat(PhysicalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level
                 .get());
 
-        unit.MyStats.get(Mana.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana
-                .get() + data.getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level
-                .get());
+        unit.getStat(Mana.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana.get() + data
+                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level.get());
 
-        unit.MyStats.get(Energy.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy
+        unit.getStat(Energy.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_per_level.get());
 
-        unit.MyStats.get(ManaRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana_regen
+        unit.getStat(ManaRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level.get());
 
-        unit.MyStats.get(EnergyRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy_regen
+        unit.getStat(EnergyRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level.get());
 
-        unit.MyStats.get(HealthRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health_regen
+        unit.getStat(HealthRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health_regen
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get());
 
-        unit.MyStats.get(Armor.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.armor
-                .get() + data.getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level
-                .get());
+        unit.getStat(Armor.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.armor.get() + data
+                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level.get());
 
-        unit.MyStats.get(Health.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
+        unit.getStat(Health.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_per_level.get());
 
-        unit.MyStats.get(CriticalHit.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
+        unit.getStat(CriticalHit.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());
 
-        unit.MyStats.get(CriticalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
+        unit.getStat(CriticalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level
                 .get());
 
-        unit.MyStats.get(SpellDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.spell_damage
+        unit.getStat(SpellDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.spell_damage
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get());
 
     }
@@ -141,7 +139,7 @@ public class PlayerStatUtils {
                             Stat stat = data.getStatMod().GetBaseStat();
 
                             if (stat != null) {
-                                StatData statdata = unit.MyStats.get(stat.GUID());
+                                StatData statdata = unit.getStat(stat);
                                 if (statdata != null) {
                                     data.Add(statdata, datas.level);
                                 }

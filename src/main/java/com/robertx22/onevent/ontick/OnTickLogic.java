@@ -53,13 +53,13 @@ public class OnTickLogic {
                         unit_capa.forceRecalculateStats(player); // has to do this cus curios doesnt call equipsChanged event
                         Unit unit = unit_capa.getUnit();
 
-                        int manarestored = (int) unit.MyStats.get(new ManaRegen().GUID()).Value;
+                        int manarestored = (int) unit.getStat(new ManaRegen()).Value;
                         unit_capa.restoreMana(manarestored);
 
-                        int energyrestored = (int) unit.MyStats.get(new EnergyRegen().GUID()).Value;
+                        int energyrestored = (int) unit.getStat(new EnergyRegen()).Value;
                         unit_capa.restoreEnergy(energyrestored);
 
-                        int healthrestored = (int) unit.MyStats.get(new HealthRegen().GUID()).Value;
+                        int healthrestored = (int) unit.getStat(new HealthRegen()).Value;
                         unit_capa.heal(new HealData(player, unit_capa, healthrestored));
 
                     }

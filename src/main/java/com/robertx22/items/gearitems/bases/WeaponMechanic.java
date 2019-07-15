@@ -16,10 +16,10 @@ public abstract class WeaponMechanic {
 
     public abstract WeaponTypes weaponType();
 
-    public boolean Attack(LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
-        int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
         DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
 
         dmg.Activate();
@@ -31,7 +31,7 @@ public abstract class WeaponMechanic {
                                   UnitData unitsource, UnitData targetUnit,
                                   float multiplier) {
 
-        int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
         DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
 
         dmg.setMultiplier(multiplier);

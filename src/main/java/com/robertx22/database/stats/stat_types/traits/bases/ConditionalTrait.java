@@ -22,9 +22,9 @@ public abstract class ConditionalTrait extends Trait {
     @Override
     public boolean condition(EntityData.UnitData unit) {
         if (moreOrLess().equals(MoreOrLess.More)) {
-            return unit.getUnit().MyStats.get(stat().GUID()).Flat > amount();
+            return unit.getUnit().getStat(stat()).Flat > amount();
         } else {
-            return unit.getUnit().MyStats.get(stat().GUID()).Flat < amount();
+            return unit.getUnit().getStat(stat()).Flat < amount();
         }
     }
 

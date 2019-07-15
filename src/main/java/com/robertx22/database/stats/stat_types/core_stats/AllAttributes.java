@@ -36,8 +36,7 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     public void addToCoreStats(EntityData.UnitData unitdata, StatData data) {
 
         for (StatMod statmod : this.coreStatsThatBenefit()) {
-            unitdata.getUnit().MyStats.get(statmod.GetBaseStat()
-                    .GUID()).Flat += data.Value;
+            unitdata.getUnit().getStat(statmod.GetBaseStat().GUID()).Flat += data.Value;
         }
 
     }

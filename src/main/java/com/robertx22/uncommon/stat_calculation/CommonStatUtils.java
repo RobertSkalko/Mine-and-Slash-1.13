@@ -46,9 +46,7 @@ public class CommonStatUtils {
             for (LevelAndStats levelstat : levelsandstats) {
                 for (StatModData data : levelstat.mods) {
 
-                    StatData stat = unit.MyStats.get(data.getStatMod()
-                            .GetBaseStat()
-                            .GUID());
+                    StatData stat = unit.getStat(data.getStatMod().GetBaseStat());
                     if (stat == null) {
 
                     } else {
@@ -65,19 +63,19 @@ public class CommonStatUtils {
         Unit theunit = unit.getUnit();
 
         for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
-            StatData statdata = theunit.MyStats.get(core.GUID());
+            StatData statdata = theunit.getStat(core.GUID());
             if (statdata.Value > 0) {
                 core.addToCoreStats(unit, statdata);
             }
         }
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
-            StatData statdata = theunit.MyStats.get(core.GUID());
+            StatData statdata = theunit.getStat(core.GUID());
             if (statdata.Value > 0) {
                 core.addToOtherStats(unit, statdata);
             }
         }
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
-            StatData statdata = theunit.MyStats.get(trait.GUID());
+            StatData statdata = theunit.getStat(trait.GUID());
             if (statdata.Value > 0) {
                 trait.TryAffectOtherStats(unit, statdata);
             }
@@ -93,15 +91,15 @@ public class CommonStatUtils {
     public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
 
         for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
-            StatData statdata = copy.MyStats.get(core.GUID());
+            StatData statdata = copy.getStat(core.GUID());
             if (statdata.Value > 0) {
-                core.convertStats(copy, unit, copy.MyStats.get(core.GUID()));
+                core.convertStats(copy, unit, copy.getStat(core.GUID()));
             }
         }
         for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
-            StatData statdata = copy.MyStats.get(core.GUID());
+            StatData statdata = copy.getStat(core.GUID());
             if (statdata.Value > 0) {
-                core.transferStats(copy, unit, copy.MyStats.get(core.GUID()));
+                core.transferStats(copy, unit, copy.getStat(core.GUID()));
             }
         }
 
@@ -113,7 +111,7 @@ public class CommonStatUtils {
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();
             for (StatModData data : datas) {
-                StatData stat = unit.MyStats.get(data.getStatMod().GetBaseStat().GUID());
+                StatData stat = unit.getStat(data.getStatMod().GetBaseStat());
                 if (stat == null) {
                 } else {
 
