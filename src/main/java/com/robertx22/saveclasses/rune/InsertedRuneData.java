@@ -73,11 +73,8 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList();
 
-        TooltipInfo runeinfo = info;
-        runeinfo.level = this.level;
-
         for (StatModData mod : this.Mods) {
-            list.addAll(mod.GetTooltipString(runeinfo));
+            list.addAll(mod.GetTooltipString(info.withLevel(this.level)));
         }
 
         List<ITextComponent> list2 = new ArrayList();

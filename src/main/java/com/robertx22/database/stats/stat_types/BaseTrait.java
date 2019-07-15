@@ -85,10 +85,9 @@ public abstract class BaseTrait extends Stat implements IGUID, IWeighted {
                 Trait trait = (Trait) basestat;
 
                 for (StatModData motdata : trait.getStatsMods()) {
-                    TooltipInfo traitinfo = info;
-                    traitinfo.level = info.unitdata.getLevel();
-                    traitinfo.minmax = new MinMax(trait.percent(), trait.percent());
-                    list.addAll(motdata.GetTooltipString(info));
+                    TooltipInfo newinfo = info.withLevel(info.unitdata.getLevel());
+                    newinfo.minmax = new MinMax(trait.percent(), trait.percent());
+                    list.addAll(motdata.GetTooltipString(newinfo));
                 }
             }
         }

@@ -21,4 +21,19 @@ public class TooltipInfo {
     public int level;
     public boolean isSet = false;
 
+    public TooltipInfo withLevel(int level) {
+
+        TooltipInfo info = null;
+        try {
+            info = (TooltipInfo) this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        info.level = level;
+
+        return info;
+
+    }
+
 }
