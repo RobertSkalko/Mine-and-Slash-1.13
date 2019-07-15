@@ -36,7 +36,7 @@ public class PlayersCapBackup {
             player.sendMessage(new StringTextComponent("Level Restored. If you have an error in your log file relating to the level loss, send to robertx22 (Mine and Slash)."));
 
         } else {
-            player.sendMessage(new StringTextComponent("No need to restore level, your level is higher than the backed-up level."));
+            player.sendMessage(new StringTextComponent("No need to restore level, your level is higher or equal to the backed-up level."));
         }
     }
 

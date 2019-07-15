@@ -48,78 +48,58 @@ public class PlayerUtils {
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
         DimensionType dimensiontype = player.dimension;
-        if (dimensiontype == DimensionType.THE_END && destination == DimensionType.OVERWORLD) {
-            player.detach();
-            player.getServerWorld().removePlayer(player);
-            if (!player.queuedEndExit) {
-                player.queuedEndExit = true;
-            }
 
-            return player;
-        } else {
-            ServerWorld serverworld = player.server.getWorld(dimensiontype);
-            player.dimension = destination;
-            ServerWorld serverworld1 = player.server.getWorld(destination);
-            WorldInfo worldinfo = player.world.getWorldInfo();
-            player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager
-                    .getGameType()));
-            player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
-                    .isDifficultyLocked()));
-            PlayerList playerlist = player.server.getPlayerList();
-            playerlist.updatePermissionLevel(player);
-            serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
-            player.revive();
-            double d0 = player.posX;
-            double d1 = player.posY;
-            double d2 = player.posZ;
-            float f = player.rotationPitch;
-            float f1 = player.rotationYaw;
-            double d3 = 8.0D;
-            float f2 = f1;
-            serverworld.getProfiler().startSection("moving");
-            double moveFactor = serverworld.getDimension()
-                    .getMovementFactor() / serverworld1.getDimension()
-                    .getMovementFactor();
-            d0 *= moveFactor;
-            d2 *= moveFactor;
-            if (dimensiontype == DimensionType.OVERWORLD && destination == DimensionType.THE_NETHER) {
-                player.enteredNetherPosition = new Vec3d(player.posX, player.posY, player.posZ);
-            } else if (dimensiontype == DimensionType.OVERWORLD && destination == DimensionType.THE_END) {
-                BlockPos blockpos = serverworld1.getSpawnCoordinate();
-                d0 = (double) blockpos.getX();
-                d1 = (double) blockpos.getY();
-                d2 = (double) blockpos.getZ();
-                f1 = 90.0F;
-                f = 0.0F;
-            }
+        ServerWorld serverworld = player.server.getWorld(dimensiontype);
+        player.dimension = destination;
+        ServerWorld serverworld1 = player.server.getWorld(destination);
+        WorldInfo worldinfo = player.world.getWorldInfo();
+        player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager
+                .getGameType()));
+        player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
+                .isDifficultyLocked()));
+        PlayerList playerlist = player.server.getPlayerList();
+        playerlist.updatePermissionLevel(player);
+        serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
+        player.revive();
+        double d0 = player.posX;
+        double d1 = player.posY;
+        double d2 = player.posZ;
+        float f = player.rotationPitch;
+        float f1 = player.rotationYaw;
+        double d3 = 8.0D;
+        float f2 = f1;
+        serverworld.getProfiler().startSection("moving");
+        double moveFactor = serverworld.getDimension()
+                .getMovementFactor() / serverworld1.getDimension().getMovementFactor();
+        d0 *= moveFactor;
+        d2 *= moveFactor;
 
-            serverworld.getProfiler().endSection();
+        serverworld.getProfiler().endSection();
 
-            player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), f1, 0.0F);
-            player.setMotion(Vec3d.ZERO);
-            player.setNoGravity(true);
-            player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
+        player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), f1, 0.0F);
+        player.setMotion(Vec3d.ZERO);
+        player.setNoGravity(true);
+        player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
-            player.setWorld(serverworld1);
-            serverworld1.func_217447_b(player);
-            player.func_213846_b(serverworld);
-            player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, f1, f);
-            player.interactionManager.setWorld(serverworld1);
-            player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
-            playerlist.sendWorldInfo(player, serverworld1);
-            playerlist.sendInventory(player);
+        player.setWorld(serverworld1);
+        serverworld1.func_217447_b(player);
+        player.func_213846_b(serverworld);
+        player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, f1, f);
+        player.interactionManager.setWorld(serverworld1);
+        player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
+        playerlist.sendWorldInfo(player, serverworld1);
+        playerlist.sendInventory(player);
 
-            for (EffectInstance effectinstance : player.getActivePotionEffects()) {
-                player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
-            }
-
-            player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-            player.invulnerableDimensionChange = false;
-            player.setInvulnerable(false);
-            player.setNoGravity(false);
-            net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
-            return player;
+        for (EffectInstance effectinstance : player.getActivePotionEffects()) {
+            player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
         }
+
+        player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
+        player.invulnerableDimensionChange = false;
+        player.setInvulnerable(false);
+        player.setNoGravity(false);
+        net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
+        return player;
 
     }
 
