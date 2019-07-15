@@ -3,7 +3,7 @@ package com.robertx22.saveclasses.gearitem.gear_bases;
 import com.robertx22.database.MinMax;
 import com.robertx22.uncommon.capability.EntityData;
 
-public class TooltipInfo {
+public class TooltipInfo implements Cloneable {
 
     public TooltipInfo(EntityData.UnitData unitdata, MinMax minmax, int level) {
         this.minmax = minmax;

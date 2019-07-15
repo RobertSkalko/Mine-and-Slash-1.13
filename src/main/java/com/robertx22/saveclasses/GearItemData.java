@@ -302,26 +302,24 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         List<ITextComponent> newt = new ArrayList();
 
-        String s = "";
+        boolean lastIsEmpty = false;
+
+        boolean alwaysRemoveEmpty = list.size() > MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES;
+
         for (int i = 0; i < list.size(); i++) {
 
-            if (i > 0) {
+            if (list.get(i).getFormattedText().isEmpty() == false) {
+                lastIsEmpty = false;
+                newt.add(list.get(i));
+            } else {
 
-                if (list.get(i)
-                        .getSiblings()
-                        .size() == 0 && list.size() > MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES) {
-                    continue;
-                }
-
-                if (s.equals(list.get(i).toString()) && s.isEmpty()) {
-
-                } else {
+                if (lastIsEmpty == false || alwaysRemoveEmpty) {
                     newt.add(list.get(i));
                 }
-            } else {
-                newt.add(list.get(i));
+
+                lastIsEmpty = true;
+
             }
-            s = list.get(i).toString();
         }
 
         return newt;
