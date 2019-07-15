@@ -16,18 +16,25 @@ public class PlayersCapBackup {
     private HashMap<String, Integer> map = new HashMap<>();
 
     public void backup(ServerPlayerEntity player, EntityData.UnitData data) {
-        map.put(getKey(player), data.getLevel());
+
+        int currentLvl = data.getLevel();
+        int backedUpLvl = map.getOrDefault(getKey(player), currentLvl);
+
+        if (backedUpLvl < currentLvl) {
+            map.put(getKey(player), data.getLevel());
+        }
     }
 
     public void restoreFromBackup(ServerPlayerEntity player) {
 
         int currentLvl = Load.Unit(player).getLevel();
-
         int backedUpLvl = map.getOrDefault(getKey(player), currentLvl);
 
         if (currentLvl < backedUpLvl) {
             Load.Unit(player)
                     .freelySetLevel(map.getOrDefault(getKey(player), currentLvl));
+            player.sendMessage(new StringTextComponent("Level Restored. If you have an error in your log file relating to the level loss, send to robertx22 (Mine and Slash)."));
+
         } else {
             player.sendMessage(new StringTextComponent("No need to restore level, your level is higher than the backed-up level."));
         }
