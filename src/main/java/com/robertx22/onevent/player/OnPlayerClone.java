@@ -7,9 +7,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
 public class OnPlayerClone {
 
     public static final String ENTITY_DATA_BACKUP = "mmorpg:entity_data_backup";

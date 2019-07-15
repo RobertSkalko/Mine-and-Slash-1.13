@@ -1,5 +1,6 @@
 package com.robertx22.uncommon.effectdatas;
 
+import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
@@ -68,8 +69,8 @@ public abstract class EffectData {
 
     }
 
-    public EffectData(LivingEntity source, LivingEntity target,
-                      UnitData sourceData, UnitData targetData) {
+    public EffectData(LivingEntity source, LivingEntity target, UnitData sourceData,
+                      UnitData targetData) {
 
         this.source = source;
         this.target = target;
@@ -172,8 +173,12 @@ public abstract class EffectData {
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
         if (unit != null) {
 
+            if (unit.MyStats == null) {
+                unit.InitMobStats();
+            }
+
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
-                StatData stat = unit.MyStats.get(stateffects.GUID());
+                StatData stat = unit.MyStats.getOrDefault(stateffects.GUID(), new StatData(new UnknownStat()));
                 if (stat.Value != 0) {
                     for (IStatEffect stateffect : stateffects.GetEffects()) {
                         effects.add(new EffectUnitStat(stateffect, unit, stat));

@@ -59,7 +59,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static long MAP_WORLD_SEED = 0;
 
@@ -78,6 +78,8 @@ public class MMORPG {
         System.out.println("Starting Mine and Slash");
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        RegisterEvents.register();
 
         ConfigRegister.register(); // MUST BE IN MAIN CLASS
         ConfigRegister.load();  // MUST BE IN MAIN CLASS

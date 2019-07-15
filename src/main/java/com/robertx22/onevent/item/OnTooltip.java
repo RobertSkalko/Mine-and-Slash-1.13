@@ -22,10 +22,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
-@OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(Dist.CLIENT)
 public class OnTooltip {
 
     @OnlyIn(Dist.CLIENT)

@@ -4,9 +4,7 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class OnPotionChange {
 
     @SubscribeEvent

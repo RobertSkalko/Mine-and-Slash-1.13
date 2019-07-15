@@ -11,10 +11,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@EventBusSubscriber
 public class OnDeathInMap {
 
     // this is needed cus otherwise it crashes with removing ticking entity
@@ -35,7 +33,7 @@ public class OnDeathInMap {
                     }
                 }
             }
-            
+
             if (evt.player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) {
                 evt.player.setInvulnerable(false);
             }

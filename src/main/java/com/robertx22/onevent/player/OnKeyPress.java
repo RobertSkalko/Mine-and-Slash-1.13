@@ -3,12 +3,9 @@ package com.robertx22.onevent.player;
 import com.robertx22.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.uncommon.gui.StatGUI;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(Dist.CLIENT)
 public class OnKeyPress {
 
     // they said i should use clienttickevent but idk how

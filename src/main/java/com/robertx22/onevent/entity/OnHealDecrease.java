@@ -3,9 +3,7 @@ package com.robertx22.onevent.entity;
 import com.robertx22.config.ModConfig;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
 public class OnHealDecrease {
 
     @SubscribeEvent

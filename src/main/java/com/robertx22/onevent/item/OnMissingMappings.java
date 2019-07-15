@@ -5,12 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 
-@Mod.EventBusSubscriber
 public class OnMissingMappings {
 
     static final HashMap<String, Item> map = new HashMap<>();

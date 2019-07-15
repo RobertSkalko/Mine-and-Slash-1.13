@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,51 +27,38 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class HealthBarRenderer {
 
-    static List<LivingEntity> renderedEntities = new ArrayList<>();
-
     @SubscribeEvent
     public static void onRenderWorldLast(RenderWorldLastEvent event) {
-        Minecraft mc = Minecraft.getInstance();
+        try {
+            Minecraft mc = Minecraft.getInstance();
 
-        if ((!NeatConfig.renderInF1 && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)
-            return;
+            if ((!NeatConfig.renderInF1 && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)
+                return;
 
-        Entity cameraEntity = mc.getRenderViewEntity();
-        BlockPos renderingVector = cameraEntity.getPosition();
-        Frustum frustum = new Frustum();
+            Entity cameraEntity = mc.getRenderViewEntity();
+            Frustum frustum = new Frustum();
 
-        float partialTicks = event.getPartialTicks();
-        double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;
-        double viewY = cameraEntity.lastTickPosY + (cameraEntity.posY - cameraEntity.lastTickPosY) * partialTicks;
-        double viewZ = cameraEntity.lastTickPosZ + (cameraEntity.posZ - cameraEntity.lastTickPosZ) * partialTicks;
-        frustum.setPosition(viewX, viewY, viewZ);
+            float partialTicks = event.getPartialTicks();
+            double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;
+            double viewY = cameraEntity.lastTickPosY + (cameraEntity.posY - cameraEntity.lastTickPosY) * partialTicks;
+            double viewZ = cameraEntity.lastTickPosZ + (cameraEntity.posZ - cameraEntity.lastTickPosZ) * partialTicks;
+            frustum.setPosition(viewX, viewY, viewZ);
 
-        if (NeatConfig.showOnlyFocused) {
-            Entity focused = getEntityLookedAt(mc.player);
-            if (focused != null && focused instanceof LivingEntity && focused.isAlive())
-                renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
-        } else {
-            ClientWorld client = mc.world;
-            Set<Entity> entities = ObfuscationReflectionHelper.getPrivateValue(ClientWorld.class, client, "entityList");
-            for (Entity entity : entities)
-                if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity
-                        .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector
-                                .getZ()) && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity
-                        .getBoundingBox())) && entity.isAlive() && entity.getRecursivePassengers()
-                        .isEmpty())
-                    renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
+            if (NeatConfig.showOnlyFocused) {
+                Entity focused = getEntityLookedAt(mc.player);
+                if (focused != null && focused instanceof LivingEntity && focused.isAlive())
+                    renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -94,6 +80,10 @@ public class HealthBarRenderer {
         if (unit == null) {
             return;
         }
+        if (unit.MyStats == null) {
+            return;
+        }
+
         // MY CODE
 
         while (entity.getRidingEntity() != null && entity.getRidingEntity() instanceof LivingEntity) {
