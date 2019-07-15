@@ -63,7 +63,10 @@ public class StatMods {
 
     private static List<StatMod> list = new ArrayList<StatMod>() {
         {
+
             {
+
+                add(new ElementalSpellToAttackDMGPercent(Elements.Physical));
                 add(new PotionBonusDmgAmountFlat(Elements.Physical));
                 add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
                 add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));

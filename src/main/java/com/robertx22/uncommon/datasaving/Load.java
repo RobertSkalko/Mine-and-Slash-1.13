@@ -3,8 +3,10 @@ package com.robertx22.uncommon.datasaving;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.MapData;
+import com.robertx22.uncommon.capability.PlayerCapBackupData;
 import com.robertx22.uncommon.capability.PlayerMapData;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Load {
@@ -22,6 +24,17 @@ public class Load {
         if (provider != null) {
 
             return provider.getCapability(MapData.Data).orElse(new MapData.DefaultImpl());
+
+        }
+        return null;
+    }
+
+    public static PlayerCapBackupData.IPlayerCapBackupData playersCapBackup(World world) {
+
+        if (world != null) {
+
+            return world.getCapability(PlayerCapBackupData.Data)
+                    .orElse(new PlayerCapBackupData.DefaultImpl());
 
         }
         return null;

@@ -11,6 +11,7 @@ trying to fix atk speed to be more fluid
 improved projectile targeting a bit
 added item for clearing runes and runewords from an item
 most spells have their cast speed increased
+tweaked some code to be cleaner, could cause weird bugs
 2.1.0
 added new affixes! 
 nerfed sword energy cost

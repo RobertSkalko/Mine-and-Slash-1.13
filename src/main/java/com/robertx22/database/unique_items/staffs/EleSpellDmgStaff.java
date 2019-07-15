@@ -3,8 +3,8 @@ package com.robertx22.database.unique_items.staffs;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.database.stats.stat_mods.percent.ElementalSpellToAttackDMGPercent;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -25,8 +25,8 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUni
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F), new ElementalSpellDamagePercent(element)
-                .multi(2), new ElementalSpellDamageFlat(element).multi(3.5F), new CompletePhysDispersionFlat());
+        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F), new ElementalSpellToAttackDMGFlat(element)
+                .multi(2), new ElementalSpellToAttackDMGPercent(element).multi(5F), new CompletePhysDispersionFlat());
     }
 
     @Override

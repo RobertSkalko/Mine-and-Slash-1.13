@@ -2,6 +2,7 @@ package com.robertx22.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.commands.ReloadConfigs;
+import com.robertx22.commands.RestoreLevel;
 import com.robertx22.commands.entity.*;
 import com.robertx22.commands.giveitems.*;
 import net.minecraft.command.CommandSource;
@@ -16,6 +17,7 @@ public class CommandRegister {
                 .getDispatcher();
 
         SetLevel.register(dispatcher);
+        RestoreLevel.register(dispatcher);
         GiveExp.register(dispatcher);
         GiveAwakenRuneword.register(dispatcher);
         GiveExactUnique.register(dispatcher);

@@ -6,6 +6,7 @@ import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.dimensions.MapManager;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.MMORPG;
@@ -21,6 +22,7 @@ import com.robertx22.uncommon.capability.bases.BaseStorage;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.CustomStats;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.UnitNbt;
 import com.robertx22.uncommon.effectdatas.*;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -41,6 +43,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -482,12 +485,17 @@ public class EntityData {
             if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
                 this.setLevel(level + 1, player);
-
                 setExp(getRemainingExp());
-
                 player.sendMessage(Chats.You_have_leveled_up.locName());
-
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
+
+                try {
+                    Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
+                            .getBackup()
+                            .backup((ServerPlayerEntity) player, this);
+                } catch (Exception e) {
+                    //  e.printStackTrace();
+                }
 
                 return true;
             }
