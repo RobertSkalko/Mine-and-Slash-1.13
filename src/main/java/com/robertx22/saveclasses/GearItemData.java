@@ -4,7 +4,6 @@ import com.robertx22.config.ClientContainer;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
-import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_types.resources.Energy;
 import com.robertx22.database.unique_items.IUnique;
 import com.robertx22.db_lists.GearTypes;
@@ -31,12 +30,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 @Storable
 public class GearItemData implements ITooltip, ISalvagable {
@@ -250,6 +247,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
         list.add(chaosStats);
         list.add(infusion);
+        list.add(set);
 
         for (ITooltipList part : list) {
 
@@ -259,8 +257,6 @@ public class GearItemData implements ITooltip, ISalvagable {
             }
 
         }
-
-        this.BuildSetTooltip(event, unit, data);
 
         if (isUnique) {
             IUnique unique = this.uniqueStats.getUniqueItem();
@@ -329,48 +325,6 @@ public class GearItemData implements ITooltip, ISalvagable {
         }
 
         return newt;
-    }
-
-    private void BuildSetTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
-
-        if (this.set != null && this.set.baseSet != null) {
-            event.getToolTip()
-                    .add(Styles.GREENCOMP()
-                            .appendSibling(new StringTextComponent("[Set]: ").appendSibling(set
-                                    .GetSet()
-                                    .locName())));
-
-            for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
-
-                boolean has = false;
-
-                TextFormatting color = null;
-                if (unit.wornSets.get(set.baseSet).count >= entry.getKey()) {
-                    color = TextFormatting.GREEN;
-                    has = true;
-                } else {
-                    color = TextFormatting.DARK_GREEN;
-                }
-
-                int avgLvl = unit.wornSets.get(set.baseSet).getAverageLevel();
-
-                TooltipInfo info = new TooltipInfo(data, GetRarity().StatPercents(), avgLvl)
-                        .setIsSet();
-
-                for (ITextComponent str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-                        .GetTooltipString(info)) {
-
-                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent(entry
-                            .getKey() + " ").appendSibling(Words.Set.locName()
-                            .appendText(": ")
-                            .appendSibling(str)));
-
-                    event.getToolTip().add(comp);
-                }
-
-            }
-            event.getToolTip().add(new StringTextComponent(""));
-        }
     }
 
     public List<IRerollable> GetAllRerollable() {
