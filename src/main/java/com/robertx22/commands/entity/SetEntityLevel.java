@@ -2,7 +2,7 @@ package com.robertx22.commands.entity;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -27,7 +27,7 @@ public class SetEntityLevel {
 
         LivingEntity living = (LivingEntity) entity;
 
-        EntityData.UnitData data = Load.Unit(living);
+        EntityCap.UnitData data = Load.Unit(living);
 
         data.setLevel(lvl, living);
         data.setExp(0);

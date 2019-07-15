@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.stat_types.spell_buff_traits.base;
 
 import com.robertx22.database.stats.stat_types.BaseTrait;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IStatEffects;
 

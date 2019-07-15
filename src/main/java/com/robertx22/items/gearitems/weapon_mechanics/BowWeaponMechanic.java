@@ -1,7 +1,7 @@
 package com.robertx22.items.gearitems.weapon_mechanics;
 
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.entity.LivingEntity;
@@ -27,8 +27,7 @@ public class BowWeaponMechanic extends WeaponMechanic {
 
     @Override
     public boolean Attack(LivingEntity source, LivingEntity target,
-                          EntityData.UnitData unitsource,
-                          EntityData.UnitData targetUnit) {
+                          EntityCap.UnitData unitsource, EntityCap.UnitData targetUnit) {
 
         super.multiplyDamage(source, target, unitsource, targetUnit, 4);
 

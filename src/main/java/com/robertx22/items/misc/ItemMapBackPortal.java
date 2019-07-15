@@ -2,9 +2,9 @@ package com.robertx22.items.misc;
 
 import com.robertx22.db_lists.CreativeTabs;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.localization.Chats;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
@@ -68,7 +68,7 @@ public class ItemMapBackPortal extends Item {
                                 nbt.putInt("ticks", 0);
                                 nbt.putBoolean("porting", false);
 
-                                PlayerMapData.IPlayerMapData data = Load.playerMapData((PlayerEntity) entityIn);
+                                PlayerMapCap.IPlayerMapData data = Load.playerMapData((PlayerEntity) entityIn);
                                 data.teleportPlayerBack((PlayerEntity) entityIn);
 
                                 stack.setCount(stack.getCount() - 1);

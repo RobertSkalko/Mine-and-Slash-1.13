@@ -4,7 +4,7 @@ import com.robertx22.config.dimension_configs.DimensionsContainer;
 import com.robertx22.database.stats.stat_types.generated.LootTypeBonusFlat;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.loot.gens.BaseLootGen;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.LootType;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;

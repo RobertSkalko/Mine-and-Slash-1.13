@@ -16,7 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class MapData {
+public class MapCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "mapdata");
 

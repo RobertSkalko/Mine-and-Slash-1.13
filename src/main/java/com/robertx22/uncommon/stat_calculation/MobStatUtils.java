@@ -15,7 +15,7 @@ import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;

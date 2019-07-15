@@ -2,7 +2,7 @@ package com.robertx22.database.stats.stat_types.traits.bases;
 
 import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.Trait;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 
 public abstract class ConditionalTrait extends Trait {
 
@@ -20,7 +20,7 @@ public abstract class ConditionalTrait extends Trait {
     public abstract MoreOrLess moreOrLess();
 
     @Override
-    public boolean condition(EntityData.UnitData unit) {
+    public boolean condition(EntityCap.UnitData unit) {
         if (moreOrLess().equals(MoreOrLess.More)) {
             return unit.getUnit().getStat(stat()).Flat > amount();
         } else {

@@ -5,7 +5,7 @@ import com.robertx22.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mmorpg.registers.common.EntityRegister;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;

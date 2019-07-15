@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.gui;
 
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.gui.player_overlays.BasePlayerOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
@@ -15,7 +15,7 @@ public class NewOverlay extends BasePlayerOverlay {
 
     @Override
     public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, Unit unit, EntityData.UnitData data) {
+                     RenderGameOverlayEvent event, Unit unit, EntityCap.UnitData data) {
         yPos = 20;
         xPos = 40;
 

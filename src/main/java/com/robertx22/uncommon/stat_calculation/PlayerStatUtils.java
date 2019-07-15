@@ -16,7 +16,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.WornSetsContainerData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.localization.Chats;
 import net.minecraft.entity.Entity;

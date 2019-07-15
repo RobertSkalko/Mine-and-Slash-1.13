@@ -1,11 +1,11 @@
 package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.database.MinMax;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 
 public class TooltipInfo implements Cloneable {
 
-    public TooltipInfo(EntityData.UnitData unitdata, MinMax minmax, int level) {
+    public TooltipInfo(EntityCap.UnitData unitdata, MinMax minmax, int level) {
         this.minmax = minmax;
         this.level = level;
         this.unitdata = unitdata;
@@ -16,7 +16,7 @@ public class TooltipInfo implements Cloneable {
         return this;
     }
 
-    public EntityData.UnitData unitdata;
+    public EntityCap.UnitData unitdata;
     public MinMax minmax;
     public int level;
     public boolean isSet = false;

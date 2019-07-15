@@ -4,7 +4,7 @@ import com.robertx22.database.IGUID;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.network.NoEnergyPacket;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.interfaces.IWeighted;

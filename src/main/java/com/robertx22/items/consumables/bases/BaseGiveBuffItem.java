@@ -1,8 +1,8 @@
 package com.robertx22.items.consumables.bases;
 
 import com.robertx22.potion_effects.SpellPotionBase;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.capability.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
@@ -25,7 +25,7 @@ public abstract class BaseGiveBuffItem extends BaseConsumabletem {
 
     @Override
     public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityData.UnitData unitdata) {
+                         EntityCap.UnitData unitdata) {
 
         player.addPotionEffect(new EffectInstance(potion(), seconds() * 20));
 

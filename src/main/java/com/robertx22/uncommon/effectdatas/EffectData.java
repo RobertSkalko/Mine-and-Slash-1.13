@@ -4,7 +4,7 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.interfaces.IStatEffect;

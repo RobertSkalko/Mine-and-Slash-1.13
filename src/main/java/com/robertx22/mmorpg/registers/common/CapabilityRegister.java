@@ -6,15 +6,15 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 public class CapabilityRegister {
     public static void register() {
 
-        CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(), EntityData.DefaultImpl::new);
+        CapabilityManager.INSTANCE.register(EntityCap.UnitData.class, new EntityCap.Storage(), EntityCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(PlayerMapData.IPlayerMapData.class, new PlayerMapData.Storage(), PlayerMapData.DefaultImpl::new);
+        CapabilityManager.INSTANCE.register(PlayerMapCap.IPlayerMapData.class, new PlayerMapCap.Storage(), PlayerMapCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(MapData.IMapData.class, new MapData.Storage(), MapData.DefaultImpl::new);
+        CapabilityManager.INSTANCE.register(MapCap.IMapData.class, new MapCap.Storage(), MapCap.DefaultImpl::new);
 
         CapabilityManager.INSTANCE.register(MasterLootBagCap.IMasterLootBagData.class, new MasterLootBagCap.Storage(), MasterLootBagCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(PlayerCapBackupData.IPlayerCapBackupData.class, new PlayerCapBackupData.Storage(), PlayerCapBackupData.DefaultImpl::new);
+        CapabilityManager.INSTANCE.register(PlayerCapBackupCap.IPlayerCapBackupData.class, new PlayerCapBackupCap.Storage(), PlayerCapBackupCap.DefaultImpl::new);
 
     }
 }

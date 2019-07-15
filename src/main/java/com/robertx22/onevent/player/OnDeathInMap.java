@@ -2,7 +2,7 @@ package com.robertx22.onevent.player;
 
 import com.robertx22.config.ModConfig;
 import com.robertx22.potion_effects.all.TeleportProtection;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
@@ -23,7 +23,7 @@ public class OnDeathInMap {
 
             if (evt.player != null && evt.player.world != null) {
                 if (evt.player.world.isRemote == false) {
-                    PlayerMapData.IPlayerMapData data = Load.playerMapData(evt.player);
+                    PlayerMapCap.IPlayerMapData data = Load.playerMapData(evt.player);
                     if (data != null) {
 
                         if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
@@ -59,7 +59,7 @@ public class OnDeathInMap {
 
                 if (WorldUtils.isMapWorld(living.world)) {
 
-                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+                    PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
                     if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
                         player.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);

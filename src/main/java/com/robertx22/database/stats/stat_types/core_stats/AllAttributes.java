@@ -4,7 +4,7 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.saveclasses.StatData;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     }
 
     @Override
-    public void addToCoreStats(EntityData.UnitData unitdata, StatData data) {
+    public void addToCoreStats(EntityCap.UnitData unitdata, StatData data) {
 
         for (StatMod statmod : this.coreStatsThatBenefit()) {
             unitdata.getUnit().getStat(statmod.GetBaseStat().GUID()).Flat += data.Value;

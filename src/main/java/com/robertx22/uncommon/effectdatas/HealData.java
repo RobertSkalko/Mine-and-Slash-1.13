@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.effectdatas;
 
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;
 
 public class HealData {

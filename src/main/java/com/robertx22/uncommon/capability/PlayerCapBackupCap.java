@@ -17,7 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class PlayerCapBackupData {
+public class PlayerCapBackupCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "player_cap_backup_data");
 

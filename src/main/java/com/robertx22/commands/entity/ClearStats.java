@@ -1,7 +1,7 @@
 package com.robertx22.commands.entity;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -26,7 +26,7 @@ public class ClearStats {
         try {
 
             if (en instanceof LivingEntity) {
-                EntityData.UnitData data = Load.Unit(en);
+                EntityCap.UnitData data = Load.Unit(en);
                 data.getCustomStats().stats.clear();
 
             }

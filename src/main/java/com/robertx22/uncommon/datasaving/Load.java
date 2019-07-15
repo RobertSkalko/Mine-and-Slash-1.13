@@ -1,10 +1,10 @@
 package com.robertx22.uncommon.datasaving;
 
-import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.MapData;
-import com.robertx22.uncommon.capability.PlayerCapBackupData;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.EntityCap;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.uncommon.capability.MapCap;
+import com.robertx22.uncommon.capability.PlayerCapBackupCap;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -14,27 +14,27 @@ public class Load {
     public static boolean hasUnit(
             ICapabilityProvider provider) { // tterag said this is correct
         if (provider != null) {
-            return provider.getCapability(EntityData.Data).isPresent();
+            return provider.getCapability(EntityCap.Data).isPresent();
         }
         return false;
     }
 
-    public static MapData.IMapData mapData(ICapabilityProvider provider) {
+    public static MapCap.IMapData mapData(ICapabilityProvider provider) {
 
         if (provider != null) {
 
-            return provider.getCapability(MapData.Data).orElse(new MapData.DefaultImpl());
+            return provider.getCapability(MapCap.Data).orElse(new MapCap.DefaultImpl());
 
         }
         return null;
     }
 
-    public static PlayerCapBackupData.IPlayerCapBackupData playersCapBackup(World world) {
+    public static PlayerCapBackupCap.IPlayerCapBackupData playersCapBackup(World world) {
 
         if (world != null) {
 
-            return world.getCapability(PlayerCapBackupData.Data)
-                    .orElse(new PlayerCapBackupData.DefaultImpl());
+            return world.getCapability(PlayerCapBackupCap.Data)
+                    .orElse(new PlayerCapBackupCap.DefaultImpl());
 
         }
         return null;
@@ -44,18 +44,18 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(EntityData.Data)
-                    .orElse(new EntityData.DefaultImpl());
+            return provider.getCapability(EntityCap.Data)
+                    .orElse(new EntityCap.DefaultImpl());
 
         }
         return null;
     }
 
-    public static PlayerMapData.IPlayerMapData playerMapData(PlayerEntity provider) {
+    public static PlayerMapCap.IPlayerMapData playerMapData(PlayerEntity provider) {
 
         if (provider != null) {
-            return provider.getCapability(PlayerMapData.Data)
-                    .orElse(new PlayerMapData.DefaultImpl());
+            return provider.getCapability(PlayerMapCap.Data)
+                    .orElse(new PlayerMapCap.DefaultImpl());
         }
         return null;
     }

@@ -1,7 +1,7 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MapManager;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.localization.Chats;
 import com.robertx22.uncommon.utilityclasses.PlayerUtils;
@@ -66,7 +66,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                     PlayerEntity player = (PlayerEntity) entity;
 
-                                    PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+                                    PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
                                     if (data.hasTimeForMap()) {
                                         entity.sendMessage(Chats.Teleport_started.locName());

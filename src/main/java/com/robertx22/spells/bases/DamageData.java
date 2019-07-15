@@ -1,7 +1,7 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
@@ -15,7 +15,7 @@ public class DamageData {
 
     }
 
-    public EntityData.UnitData casterUnit;
+    public EntityCap.UnitData casterUnit;
     // public BaseSpellEffect effect;
     public LivingEntity caster;
     public SpellItemData spellItem;

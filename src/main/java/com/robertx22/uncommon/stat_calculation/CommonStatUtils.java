@@ -11,8 +11,8 @@ import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.interfaces.IStatConversion;
 import com.robertx22.uncommon.interfaces.IStatTransfer;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;
@@ -105,7 +105,7 @@ public class CommonStatUtils {
 
     }
 
-    public static void AddMapAffixStats(PlayerMapData.IPlayerMapData mapdata, Unit unit,
+    public static void AddMapAffixStats(PlayerMapCap.IPlayerMapData mapdata, Unit unit,
                                         int level, LivingEntity entity) {
 
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {

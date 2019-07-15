@@ -2,7 +2,7 @@ package com.robertx22.uncommon.gui.player_overlays;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;

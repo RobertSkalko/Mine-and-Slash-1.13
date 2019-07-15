@@ -16,8 +16,8 @@ import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.EntityUnitPacket;
 import com.robertx22.saveclasses.effects.StatusEffectData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.stat_calculation.CommonStatUtils;
@@ -204,7 +204,7 @@ public class Unit {
 
         if (nearestPlayer != null) {
             if (WorldUtils.isMapWorld(entity.world)) {
-                PlayerMapData.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+                PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
                 endata.setTier(mapdata.getTier());
             }
         }
@@ -362,7 +362,7 @@ public class Unit {
 
         Unit copy = this.Clone();
 
-        PlayerMapData.IPlayerMapData mapdata = null;
+        PlayerMapCap.IPlayerMapData mapdata = null;
 
         if (entity instanceof PlayerEntity) {
             mapdata = Load.playerMapData((PlayerEntity) entity);

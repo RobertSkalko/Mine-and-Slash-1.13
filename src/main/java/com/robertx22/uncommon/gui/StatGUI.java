@@ -6,7 +6,7 @@ import com.robertx22.database.stats.Stat;
 import com.robertx22.database.stats.stat_types.UnknownStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
@@ -86,7 +86,7 @@ public class StatGUI extends Screen {
         return (int) (minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
-    private String getStatString(Stat stat, EntityData.UnitData data) {
+    private String getStatString(Stat stat, EntityCap.UnitData data) {
 
         String str = stat.translate() + ": " + data.getUnit()
                 .getStat(stat)
@@ -149,7 +149,7 @@ public class StatGUI extends Screen {
         added += this.drawTitleAndIncreaseSpacing(x - 22, y + added, this.statgroup.word.translate() + ": ");
         added += this.getHeightSpacing() / 3;
 
-        EntityData.UnitData data = Load.Unit(minecraft.player);
+        EntityCap.UnitData data = Load.Unit(minecraft.player);
 
         for (int i = currentElement; i < list.size(); i++) {
             if (i > -1) { // or scrolling crashes

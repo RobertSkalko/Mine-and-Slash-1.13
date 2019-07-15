@@ -4,8 +4,8 @@ import com.robertx22.database.world_providers.IWP;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Load;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
@@ -82,7 +82,7 @@ public class MapManager {
 
     }
 
-    public static DimensionType getDimensionType(PlayerMapData.IPlayerMapData data) {
+    public static DimensionType getDimensionType(PlayerMapCap.IPlayerMapData data) {
 
         return DimensionType.byName(data.getMap().getIWP().getResourceLoc());
 
@@ -129,7 +129,7 @@ public class MapManager {
 
         unit.setCurrentMapId(res.toString());
 
-        PlayerMapData.IPlayerMapData data = Load.playerMapData(player);
+        PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
         data.init(pos, map, type, player);
 

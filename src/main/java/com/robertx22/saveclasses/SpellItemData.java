@@ -8,7 +8,7 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.interfaces.ISalvagable;
 import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.localization.Words;
@@ -200,7 +200,7 @@ public class SpellItemData implements ISalvagable, ITooltip {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
-                             EntityData.UnitData data) {
+                             EntityCap.UnitData data) {
 
         List<ITextComponent> tooltip = event.getToolTip();
 

@@ -9,7 +9,7 @@ import com.robertx22.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.interfaces.IWeighted;
 import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
@@ -40,7 +40,7 @@ public abstract class BaseTrait extends Stat implements IGUID, IWeighted {
     }
 
     @Override
-    public void CalcVal(StatData data, EntityData.UnitData Source) {
+    public void CalcVal(StatData data, EntityCap.UnitData Source) {
 
         if (data.Flat > 0) {
             data.Value = 1;

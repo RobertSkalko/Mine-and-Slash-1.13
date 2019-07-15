@@ -3,7 +3,7 @@ package com.robertx22.uncommon.gui.player_overlays;
 import com.robertx22.config.ClientContainer;
 import com.robertx22.mmorpg.MMORPG;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.PlayerGUIs;
 import com.robertx22.uncommon.gui.NewOverlay;

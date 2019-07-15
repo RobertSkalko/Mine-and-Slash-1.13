@@ -1,7 +1,7 @@
 package com.robertx22.loot;
 
 import com.robertx22.loot.gens.*;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -64,8 +64,7 @@ public class MasterLootGen {
     }
 
     public static List<ItemStack> generateLoot(UnitData mob, UnitData player,
-                                               LivingEntity victim,
-                                               PlayerEntity killer) {
+                                               LivingEntity victim, PlayerEntity killer) {
 
         LootInfo info = new LootInfo(mob, player, victim, killer);
         List<ItemStack> items = generateLoot(info);

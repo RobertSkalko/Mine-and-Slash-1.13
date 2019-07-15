@@ -3,7 +3,7 @@ package com.robertx22.onevent.entity;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

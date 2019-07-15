@@ -4,7 +4,7 @@ import com.robertx22.config.ModConfig;
 import com.robertx22.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;

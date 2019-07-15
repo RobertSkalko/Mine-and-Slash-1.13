@@ -8,7 +8,7 @@ import com.robertx22.loot.StatGen;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

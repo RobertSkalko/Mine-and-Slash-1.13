@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber
-public class PlayerMapData {
+public class PlayerMapCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "playermapdata");
 

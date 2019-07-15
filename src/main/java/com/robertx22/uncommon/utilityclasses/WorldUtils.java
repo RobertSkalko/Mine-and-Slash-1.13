@@ -6,7 +6,7 @@ import com.robertx22.database.world_providers.BaseWorldProvider;
 import com.robertx22.database.world_providers.IWP;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
-import com.robertx22.uncommon.capability.PlayerMapData;
+import com.robertx22.uncommon.capability.PlayerMapCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
@@ -41,7 +41,7 @@ public class WorldUtils {
     }
 
     public static List<MapAffixData> getAllAffixesThatAffect(
-            PlayerMapData.IPlayerMapData mapdata, LivingEntity entity) {
+            PlayerMapCap.IPlayerMapData mapdata, LivingEntity entity) {
 
         List<MapAffixData> list = new ArrayList<>();
 

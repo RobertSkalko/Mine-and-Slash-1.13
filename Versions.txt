@@ -12,6 +12,7 @@ improved projectile targeting a bit
 added item for clearing runes and runewords from an item
 most spells have their cast speed increased
 tweaked some code to be cleaner, could cause weird bugs
+created a level backup system. there's a command /restorelevel that any1 can use. it restores the highest level gotten by that player
 2.1.0
 added new affixes! 
 nerfed sword energy cost

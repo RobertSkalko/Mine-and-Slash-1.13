@@ -55,7 +55,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @EventBusSubscriber
-public class EntityData {
+public class EntityCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "entitydata");
 

@@ -2,7 +2,7 @@ package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.database.stats.stat_types.resources.Health;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 

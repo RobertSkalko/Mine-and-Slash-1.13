@@ -5,7 +5,7 @@ import com.robertx22.database.stats.stat_types.resources.HealthRegen;
 import com.robertx22.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.items.misc.ItemMapBackPortal;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.HealData;
 import com.robertx22.uncommon.utilityclasses.WorldUtils;

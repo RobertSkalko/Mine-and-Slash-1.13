@@ -9,7 +9,7 @@ import com.robertx22.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.spells.entities.bases.EntityStaffProjectile;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;

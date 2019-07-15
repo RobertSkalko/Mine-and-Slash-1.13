@@ -8,7 +8,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.advancements.criterion.CriterionInstance;
@@ -60,7 +60,7 @@ public class PlayerLevelTrigger implements ICriterionTrigger<PlayerLevelTrigger.
         return new PlayerLevelTrigger.Instance(level);
     }
 
-    public void trigger(ServerPlayerEntity player, EntityData.UnitData data) {
+    public void trigger(ServerPlayerEntity player, EntityCap.UnitData data) {
         PlayerLevelTrigger.Listeners LevelTrigger$listeners = this.listeners.get(player.getAdvancements());
         if (LevelTrigger$listeners != null) {
             LevelTrigger$listeners.trigger(data);
@@ -77,7 +77,7 @@ public class PlayerLevelTrigger implements ICriterionTrigger<PlayerLevelTrigger.
             this.level = level;
         }
 
-        public boolean conditionIsMet(EntityData.UnitData player) {
+        public boolean conditionIsMet(EntityCap.UnitData player) {
             return player.getLevel() >= level;
         }
 
@@ -110,7 +110,7 @@ public class PlayerLevelTrigger implements ICriterionTrigger<PlayerLevelTrigger.
             this.listeners.remove(listener);
         }
 
-        public void trigger(EntityData.UnitData player) {
+        public void trigger(EntityCap.UnitData player) {
             List<Listener<PlayerLevelTrigger.Instance>> list = null;
 
             for (ICriterionTrigger.Listener<PlayerLevelTrigger.Instance> listener : this.listeners) {

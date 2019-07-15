@@ -2,7 +2,7 @@ package com.robertx22.potion_effects.all;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.potion_effects.SpellPotionBase;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.HealData;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;

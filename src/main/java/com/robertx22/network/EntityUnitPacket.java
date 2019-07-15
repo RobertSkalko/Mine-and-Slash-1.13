@@ -1,7 +1,7 @@
 package com.robertx22.network;
 
 import com.robertx22.mmorpg.MMORPG;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

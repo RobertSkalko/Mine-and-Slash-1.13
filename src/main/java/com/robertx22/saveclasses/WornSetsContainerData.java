@@ -4,7 +4,7 @@ import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.gearitem.StatModData;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -53,7 +53,7 @@ public class WornSetsContainerData {
 
     }
 
-    public void AddAllSetStats(EntityData.UnitData unitdata) {
+    public void AddAllSetStats(EntityCap.UnitData unitdata) {
 
         for (Map.Entry<String, WornSetData> entry : this.map.entrySet()) {
 

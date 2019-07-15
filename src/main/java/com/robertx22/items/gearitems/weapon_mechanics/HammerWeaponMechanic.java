@@ -2,7 +2,7 @@ package com.robertx22.items.gearitems.weapon_mechanics;
 
 import com.robertx22.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;

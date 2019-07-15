@@ -1,6 +1,6 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -15,7 +15,7 @@ public class PlayersCapBackup {
     @Store
     private HashMap<String, Integer> map = new HashMap<>();
 
-    public void backup(ServerPlayerEntity player, EntityData.UnitData data) {
+    public void backup(ServerPlayerEntity player, EntityCap.UnitData data) {
 
         int currentLvl = data.getLevel();
         int backedUpLvl = map.getOrDefault(getKey(player), currentLvl);

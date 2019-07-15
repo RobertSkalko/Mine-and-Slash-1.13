@@ -2,18 +2,19 @@ package com.robertx22.items.consumables.bases;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabs;
-import com.robertx22.uncommon.localization.Styles;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.localization.Styles;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.UseAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,7 +37,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
     }
 
     public abstract void onFinish(ItemStack stack, World world, LivingEntity player,
-                                  EntityData.UnitData unitdata);
+                                  EntityCap.UnitData unitdata);
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -58,8 +59,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world,
-                                     LivingEntity player) {
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity player) {
 
         onFinish(stack, world, player, Load.Unit(player));
         stack.shrink(1);

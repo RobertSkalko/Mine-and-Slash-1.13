@@ -3,7 +3,7 @@ package com.robertx22.items.gearitems.offhands;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.items.spells.BaseSpellItem;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.interfaces.IAutoLocName;
 import com.robertx22.uncommon.interfaces.IGearItem;
@@ -93,7 +93,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
         if (worldIn.isRemote == false) {
 
-            EntityData.UnitData data = Load.Unit(player);
+            EntityCap.UnitData data = Load.Unit(player);
 
             float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data.getUnit()
                     .manaData().Value);
