@@ -61,6 +61,19 @@ public final class Utilities {
         return entityList;
     }
 
+    public static <T extends Entity> List<T> getEntitiesWithinRadius(double horizontal,
+                                                                     double vertical,
+                                                                     Entity entity,
+                                                                     Class<T> entityType) {
+        double x = entity.posX;
+        double y = entity.posY;
+        double z = entity.posZ;
+        AxisAlignedBB aabb = new AxisAlignedBB(x - horizontal, y - vertical, z - horizontal, x + horizontal, y + vertical, z + horizontal);
+        List<T> entityList = entity.world.getEntitiesWithinAABB(entityType, aabb);
+
+        return entityList;
+    }
+
     public static <T extends Entity> List<T> getEntitiesWithinRadius(double radius,
                                                                      Entity entity,
                                                                      Class<T> entityType) {

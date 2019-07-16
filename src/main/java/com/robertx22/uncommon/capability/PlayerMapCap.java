@@ -133,8 +133,6 @@ public class PlayerMapCap {
         @Override
         public void setNBT(CompoundNBT nbt) {
 
-            nbt = new CompoundNBT();
-
             mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);
             this.mapGUID = nbt.getString(MAP_GUID);
@@ -264,7 +262,11 @@ public class PlayerMapCap {
 
         @Override
         public MapItemData getMap() {
-            return this.mapdata;
+            if (mapdata != null) {
+                return this.mapdata;
+            } else {
+                return new MapItemData();
+            }
         }
 
         @Override
@@ -323,7 +325,7 @@ public class PlayerMapCap {
         }
 
         private int getMinutesLeft() {
-            return this.mapdata.minutes - this.minutesPassed;
+            return this.getMap().minutes - this.minutesPassed;
 
         }
     }

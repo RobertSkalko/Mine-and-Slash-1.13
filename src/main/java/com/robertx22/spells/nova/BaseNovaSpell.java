@@ -64,7 +64,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
             ElementalParticleUtils.SpawnNovaParticle(this.Element(), caster, radius, 200);
 
-            List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius, caster, LivingEntity.class);
+            List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius, 2, caster, LivingEntity.class);
 
             for (int i = 0; i < list.size(); ++i) {
                 LivingEntity entity1 = list.get(i);
