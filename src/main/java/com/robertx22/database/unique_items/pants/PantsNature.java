@@ -8,8 +8,8 @@ import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +32,8 @@ public class PantsNature extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new HealthFlat(), new ElementalResistFlat(Elements.Nature)
+                .multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new CrippleLifeOnHitPercent());
     }
 
     @Override

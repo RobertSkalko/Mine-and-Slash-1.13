@@ -6,11 +6,10 @@ import com.robertx22.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.database.stats.stat_mods.generated.ElementalTransferFlat;
-import com.robertx22.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stats.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.unique_items.bases.BaseUniquePants;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +32,8 @@ public class PantsWater extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalSpellDamagePercent(Elements.Water), new LessDodgePercent());
+        return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Water)
+                .multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalSpellDamagePercent(Elements.Water), new LessDodgePercent());
 
     }
 
