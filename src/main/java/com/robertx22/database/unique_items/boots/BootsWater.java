@@ -8,9 +8,9 @@ import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
 import com.robertx22.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.database.unique_items.bases.BaseUniqueBoots;
-import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,8 @@ public class BootsWater extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Sword), new ElementalSpellToAttackDMGFlat(Elements.Water), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Water), new CrippleLifestealPercent());
+        return Arrays.asList(new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Sword), new ElementalSpellToAttackDMGFlat(Elements.Water)
+                .multi(2), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Water), new CrippleLifestealPercent());
 
     }
 
