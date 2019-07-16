@@ -20,7 +20,7 @@ public class ItemClearRunes extends CurrencyItem implements ICurrencyItemEffect 
     public ItemClearRunes() {
         super(name);
     }
-    
+
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
@@ -32,7 +32,7 @@ public class ItemClearRunes extends CurrencyItem implements ICurrencyItemEffect 
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
         if (gear.isRuned()) {

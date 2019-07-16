@@ -11,6 +11,7 @@ import com.robertx22.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.items.bags.map_bag.ItemMapBag;
 import com.robertx22.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.items.currency.*;
+import com.robertx22.items.currency.map.ItemAddGroupMap;
 import com.robertx22.items.infusions.AttackInfusionItem;
 import com.robertx22.items.infusions.DefenseInfusionItem;
 import com.robertx22.items.infusions.ResourceInfusionItem;
@@ -126,6 +127,7 @@ public class ItemRegister {
         list.add(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
 
         list.add(new ItemAddSet());
+        list.add(new ItemAddGroupMap());
         list.add(new ItemClearRunes());
         list.add(new ItemRerollSet());
         list.add(new CreateNewUnique());

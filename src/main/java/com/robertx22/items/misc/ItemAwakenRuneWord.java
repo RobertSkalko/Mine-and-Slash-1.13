@@ -103,7 +103,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack item, ItemStack currency) {
+    public boolean canItemBeModifiedPROTECTED(ItemStack item, ItemStack currency) {
 
         if (currency.getItem() instanceof ItemAwakenRuneWord) {
             GearItemData gear = Gear.Load(item);

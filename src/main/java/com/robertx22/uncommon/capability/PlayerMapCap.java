@@ -100,8 +100,6 @@ public class PlayerMapCap {
 
     public static class DefaultImpl implements IPlayerMapData {
 
-        private CompoundNBT nbt = new CompoundNBT();
-
         long mapDevicePos;
         MapItemData mapdata = new MapItemData();
         DimensionType originalDimension = null;
@@ -111,6 +109,8 @@ public class PlayerMapCap {
 
         @Override
         public CompoundNBT getNBT() {
+
+            CompoundNBT nbt = new CompoundNBT();
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
@@ -131,8 +131,9 @@ public class PlayerMapCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT value) {
-            this.nbt = value;
+        public void setNBT(CompoundNBT nbt) {
+
+            nbt = new CompoundNBT();
 
             mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);

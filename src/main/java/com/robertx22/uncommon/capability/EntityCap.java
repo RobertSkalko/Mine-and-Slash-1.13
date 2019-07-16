@@ -246,7 +246,6 @@ public class EntityCap {
     }
 
     public static class DefaultImpl implements UnitData {
-        private CompoundNBT nbt = new CompoundNBT();
 
         boolean setMobStats = false;
         Unit unit = null;
@@ -269,6 +268,8 @@ public class EntityCap {
 
         @Override
         public CompoundNBT getNBT() {
+            CompoundNBT nbt = new CompoundNBT();
+
             nbt.putFloat(MANA, mana);
             nbt.putFloat(ENERGY, energy);
             nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
@@ -289,7 +290,7 @@ public class EntityCap {
             }
 
             if (unit != null) {
-                UnitNbt.Save(this.nbt, unit);
+                UnitNbt.Save(nbt, unit);
             }
 
             return nbt;
@@ -297,21 +298,21 @@ public class EntityCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT value) {
-            this.nbt = value;
-            this.level = value.getInt(LEVEL);
-            this.exp = value.getInt(EXP);
-            this.rarity = value.getInt(RARITY);
-            this.tier = value.getInt(TIER);
-            this.lastAttackTick = value.getInt(LAST_ATTACK_TICK);
-            this.uuid = value.getString(UUID);
-            this.energy = value.getFloat(ENERGY);
-            this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
-            this.mana = value.getFloat(MANA);
-            this.currentMapResourceLoc = value.getString(CURRENT_MAP_ID);
-            this.setMobStats = value.getBoolean(SET_MOB_STATS);
-            this.isNewbie = value.getBoolean(NEWBIE_STATUS);
-            this.equipsChanged = value.getBoolean(EQUIPS_CHANGED);
+        public void setNBT(CompoundNBT nbt) {
+
+            this.level = nbt.getInt(LEVEL);
+            this.exp = nbt.getInt(EXP);
+            this.rarity = nbt.getInt(RARITY);
+            this.tier = nbt.getInt(TIER);
+            this.lastAttackTick = nbt.getInt(LAST_ATTACK_TICK);
+            this.uuid = nbt.getString(UUID);
+            this.energy = nbt.getFloat(ENERGY);
+            this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
+            this.mana = nbt.getFloat(MANA);
+            this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
+            this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
+            this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
+            this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
 
             CustomStatsData newstats = CustomStats.Load(nbt);
             if (newstats != null) {
@@ -320,7 +321,7 @@ public class EntityCap {
                 this.customStats = new CustomStatsData();
             }
 
-            Unit newunit = UnitNbt.Load(this.nbt);
+            Unit newunit = UnitNbt.Load(nbt);
             if (newunit != null) {
                 this.unit = newunit;
             } else {

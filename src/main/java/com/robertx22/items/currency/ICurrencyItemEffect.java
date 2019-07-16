@@ -6,6 +6,10 @@ public interface ICurrencyItemEffect {
 
     public abstract ItemStack ModifyItem(ItemStack stack, ItemStack currency);
 
-    boolean canItemBeModified(ItemStack item, ItemStack currency);
+    boolean canItemBeModifiedPROTECTED(ItemStack item, ItemStack currency);
+
+    default boolean canItemBeModified(ItemStack item, ItemStack currency) {
+        return this.canItemBeModifiedPROTECTED(item, currency);
+    }
 
 }

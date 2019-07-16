@@ -82,16 +82,16 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
         RuneItemData rune = Rune.Load(currency);
 
-        gear.runes.insert(rune, gear);
-
-        Gear.Save(stack, gear);
-
+        if (gear != null && rune != null) {
+            gear.runes.insert(rune, gear);
+            Gear.Save(stack, gear);
+        }
         return stack;
 
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack currency) {
+    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack currency) {
 
         GearItemData gear = Gear.Load(stack);
 

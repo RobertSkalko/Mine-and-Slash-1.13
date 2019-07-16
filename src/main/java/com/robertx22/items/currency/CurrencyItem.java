@@ -22,14 +22,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
+public abstract class CurrencyItem extends Item implements IGUID, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public static List<CurrencyItem> ITEMS = new ArrayList<>();
 
-    public List<ItemType> itemTypesUsableOn = Arrays.asList(ItemType.GEAR);
+    public ItemType itemTypesUsableOn = ItemType.GEAR;
 
     public static TextFormatting nameColor = TextFormatting.RED;
 
@@ -42,6 +41,15 @@ public abstract class CurrencyItem extends Item implements IGUID, IWeighted, ITi
 
         ITEMS.add(this);
 
+    }
+
+    @Override
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+
+        if (this.itemTypesUsableOn.isType(stack)) {
+            return this.canItemBeModifiedPROTECTED(stack, Currency);
+        }
+        return false;
     }
 
     @Override

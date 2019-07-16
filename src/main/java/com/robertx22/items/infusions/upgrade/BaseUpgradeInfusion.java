@@ -4,9 +4,9 @@ import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.localization.Styles;
 import com.robertx22.uncommon.localization.Words;
-import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
@@ -86,10 +86,10 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear.infusion != null && gear.infusion.canUpgrade();
+        return gear != null && gear.infusion != null && gear.infusion.canUpgrade();
 
     }
 

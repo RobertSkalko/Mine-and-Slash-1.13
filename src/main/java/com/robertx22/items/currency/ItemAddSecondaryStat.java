@@ -41,7 +41,7 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
         if (gear.secondaryStats != null && gear.secondaryStats.AddedStat == false && !gear

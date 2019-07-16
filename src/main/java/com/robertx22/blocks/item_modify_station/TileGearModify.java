@@ -3,9 +3,7 @@ package com.robertx22.blocks.item_modify_station;
 import com.robertx22.blocks.bases.BaseTile;
 import com.robertx22.items.currency.ICurrencyItemEffect;
 import com.robertx22.mmorpg.registers.common.BlockRegister;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.localization.CLOC;
-import com.robertx22.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -36,13 +34,9 @@ public class TileGearModify extends BaseTile {
             return ItemStack.EMPTY;
         }
 
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null && craftStack.getItem() instanceof ICurrencyItemEffect) {
+        if (craftStack.getItem() instanceof ICurrencyItemEffect) {
 
             ICurrencyItemEffect effect = (ICurrencyItemEffect) craftStack.getItem();
-
-            Boolean bool = effect.canItemBeModified(gearStack, craftStack);
 
             if (effect.canItemBeModified(gearStack, craftStack)) {
                 ItemStack copy = gearStack.copy();

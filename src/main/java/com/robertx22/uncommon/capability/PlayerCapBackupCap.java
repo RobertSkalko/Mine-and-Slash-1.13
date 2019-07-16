@@ -24,8 +24,6 @@ public class PlayerCapBackupCap {
     @CapabilityInject(IPlayerCapBackupData.class)
     public static final Capability<IPlayerCapBackupData> Data = null;
 
-    static final String BACKUP = "players_capa_backup";
-
     public interface IPlayerCapBackupData extends ICommonCapability {
 
         PlayersCapBackup getBackup();
