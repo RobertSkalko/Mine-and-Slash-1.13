@@ -112,8 +112,8 @@ public class MMORPG {
         PacketRegister.register();
         OreGenRegister.register();
         CapabilityRegister.register();
-        WorldGenRegisters.register();
         CriteriaRegisters.register();
+        WorldGenerationRegisters.register();
 
     }
 

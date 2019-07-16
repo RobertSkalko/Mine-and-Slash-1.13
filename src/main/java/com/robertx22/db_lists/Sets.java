@@ -2,6 +2,7 @@ package com.robertx22.db_lists;
 
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.sets.endgame_lvl.AscensionOfElement;
+import com.robertx22.database.sets.endgame_lvl.RingsOfImpossibility;
 import com.robertx22.database.sets.from_lvl_50.*;
 import com.robertx22.database.sets.low_lvl.armors.*;
 import com.robertx22.database.sets.low_lvl.elemental_jewerly.FlamingDevil;
@@ -33,7 +34,10 @@ public class Sets implements IRandomDefault<Set> {
     private static List<Set> generated = new ArrayList<Set>() {
         {
             {
+
                 add(new AscensionOfElement(Elements.Physical));
+                add(new RoyalThiefAdornments());
+                add(new RingsOfImpossibility());
 
                 add(new Eliminator());
                 add(new TreasureFinder());

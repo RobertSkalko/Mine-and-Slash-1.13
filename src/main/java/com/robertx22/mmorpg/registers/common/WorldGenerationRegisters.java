@@ -29,7 +29,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class WorldGenRegisters {
+public class WorldGenerationRegisters {
 
     public static final int SMALL_DECO_CHANCE = 50;
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));

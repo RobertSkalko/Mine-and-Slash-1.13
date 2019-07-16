@@ -6,7 +6,9 @@ import com.robertx22.database.requirements.SlotRequirement;
 import com.robertx22.database.sets.Set;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.database.stats.stat_mods.flat.MajorDodgeFlat;
+import com.robertx22.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.database.stats.stat_mods.percent.DodgePercent;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import java.util.HashMap;
 
@@ -25,6 +27,7 @@ public class RoyalThiefAdornments extends Set {
                 {
                     put(2, new DodgePercent());
                     put(3, new MajorDodgeFlat());
+                    put(4, new WeaponDamageFlat(WeaponTypes.Bow).multi(1.5F));
 
                 }
             }
@@ -33,7 +36,7 @@ public class RoyalThiefAdornments extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL50());
     }
 
     @Override

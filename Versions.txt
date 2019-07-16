@@ -15,6 +15,7 @@ tweaked some code to be cleaner, could cause weird bugs
 created a level backup system. there's a command /restorelevel that any1 can use. it restores the highest level gotten by that player
 added an item that adds group affix to map
 made nova hit more consistently i hope
+added 2 high lvl sets
 2.1.0
 added new affixes! 
 nerfed sword energy cost

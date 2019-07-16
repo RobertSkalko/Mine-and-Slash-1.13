@@ -26,8 +26,8 @@ public class TheAscended extends Set {
             {
                 {
                     put(2, new HealthFlat());
-                    put(3, new HealthPercent());
-                    put(4, new HealthMulti());
+                    put(3, new HealthPercent().multi(2));
+                    put(4, new HealthMulti().multi(2));
                 }
             }
         };
