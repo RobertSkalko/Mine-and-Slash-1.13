@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.db_lists;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.sets.endgame_lvl.AscensionOfElement;
 import com.robertx22.mine_and_slash.database.sets.endgame_lvl.RingsOfImpossibility;
-import com.robertx22.database.sets.from_lvl_50.*;
-import com.robertx22.database.sets.low_lvl.armors.*;
 import com.robertx22.mine_and_slash.database.sets.from_lvl_50.*;
 import com.robertx22.mine_and_slash.database.sets.low_lvl.armors.*;
 import com.robertx22.mine_and_slash.database.sets.low_lvl.elemental_jewerly.FlamingDevil;

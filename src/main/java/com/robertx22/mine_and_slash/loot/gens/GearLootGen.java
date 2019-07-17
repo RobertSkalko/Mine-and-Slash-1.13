@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
-import com.robertx22.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

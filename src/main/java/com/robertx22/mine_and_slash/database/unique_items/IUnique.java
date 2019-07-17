@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.unique_items;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.uncommon.interfaces.*;
-import com.robertx22.uncommon.interfaces.*;
 
 import java.util.List;
 

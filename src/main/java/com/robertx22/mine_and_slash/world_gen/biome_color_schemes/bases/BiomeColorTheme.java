@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases;
 
 import com.robertx22.mine_and_slash.world_gen.biome_color_schemes.*;
-import com.robertx22.world_gen.biome_color_schemes.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 

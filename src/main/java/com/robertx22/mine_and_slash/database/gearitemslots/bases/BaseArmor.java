@@ -2,9 +2,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 
 import java.util.Arrays;
 import java.util.List;

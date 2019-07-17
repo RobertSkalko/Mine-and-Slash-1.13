@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.rarities.containers;
 
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
-import com.robertx22.database.rarities.maps.*;
 import com.robertx22.mine_and_slash.database.rarities.maps.*;
 
 import java.util.Arrays;

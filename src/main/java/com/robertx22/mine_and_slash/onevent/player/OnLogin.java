@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.database.gearitemslots.*;
+import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -8,14 +8,13 @@ import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.MapLootGen;
 import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
-import com.robertx22.mine_and_slash.database.gearitemslots.*;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

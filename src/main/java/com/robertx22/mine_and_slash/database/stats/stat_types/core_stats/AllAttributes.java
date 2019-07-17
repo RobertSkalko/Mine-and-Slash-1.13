@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;

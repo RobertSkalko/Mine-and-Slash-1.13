@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.network.*;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.network.*;
+import com.robertx22.mine_and_slash.network.*;
 
 public class PacketRegister {
     public static void register() {

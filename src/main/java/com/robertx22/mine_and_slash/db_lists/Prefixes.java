@@ -1,15 +1,11 @@
 package com.robertx22.mine_and_slash.db_lists;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.database.affixes.prefixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixFireRes;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixNatureRes;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixThunderRes;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixWaterRes;
-import com.robertx22.database.affixes.prefixes.misc.*;
-import com.robertx22.database.affixes.prefixes.offense.*;
-import com.robertx22.database.affixes.prefixes.offense.damage_percents.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;

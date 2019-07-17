@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.item_filters.bases;
 
 import com.robertx22.mine_and_slash.uncommon.item_filters.*;
-import com.robertx22.uncommon.item_filters.*;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists;
 
-import com.robertx22.items.runes.*;
 import com.robertx22.mine_and_slash.items.runes.*;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
@@ -22,7 +21,7 @@ public class Runes {
                 put(new AnoItem(0).name(), new AnoItem(0));
 
             }
-	    
+
         }
     };
 

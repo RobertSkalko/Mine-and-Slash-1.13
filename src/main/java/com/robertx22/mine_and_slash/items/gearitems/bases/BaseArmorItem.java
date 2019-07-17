@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
-import com.robertx22.items.gearitems.bases.armor_materials.*;
 import com.robertx22.mine_and_slash.items.gearitems.bases.armor_materials.*;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;

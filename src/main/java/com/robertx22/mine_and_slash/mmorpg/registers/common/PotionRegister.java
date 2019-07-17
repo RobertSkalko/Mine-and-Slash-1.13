@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.potion_effects.all.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.potion_effects.all.*;
+import com.robertx22.mine_and_slash.potion_effects.all.*;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

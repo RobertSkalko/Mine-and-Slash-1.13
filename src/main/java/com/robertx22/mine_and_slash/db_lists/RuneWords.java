@@ -1,12 +1,9 @@
 package com.robertx22.mine_and_slash.db_lists;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.database.runewords.slots_2.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_2.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordThief;
-import com.robertx22.database.runewords.slots_4.*;
-import com.robertx22.database.runewords.slots_5.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_4.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_5.*;
 

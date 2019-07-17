@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists;
 
-import com.robertx22.database.status_effects.*;
 import com.robertx22.mine_and_slash.database.status_effects.*;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 

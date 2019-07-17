@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.Bonu
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusNatureResistAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusThunderResistAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusWaterResistAffix;
-import com.robertx22.database.map_affixes.detrimental.*;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.*;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;

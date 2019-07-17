@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.server;
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.commands.ReloadConfigs;
 import com.robertx22.mine_and_slash.commands.RestoreLevel;
-import com.robertx22.commands.entity.*;
-import com.robertx22.commands.giveitems.*;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
 import net.minecraft.command.CommandSource;

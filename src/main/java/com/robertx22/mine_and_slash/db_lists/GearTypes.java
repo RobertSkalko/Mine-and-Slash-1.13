@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists;
 
-import com.robertx22.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 

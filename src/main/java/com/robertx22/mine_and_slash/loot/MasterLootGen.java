@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.loot.gens.*;
 import com.robertx22.mine_and_slash.loot.gens.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;

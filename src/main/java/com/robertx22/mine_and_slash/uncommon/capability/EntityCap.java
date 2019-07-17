@@ -31,7 +31,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.uncommon.effectdatas.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;

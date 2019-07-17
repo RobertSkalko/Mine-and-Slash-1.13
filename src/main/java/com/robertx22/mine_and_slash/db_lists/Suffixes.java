@@ -1,10 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists;
 
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.database.affixes.suffixes.*;
-import com.robertx22.database.affixes.suffixes.defense.*;
-import com.robertx22.database.affixes.suffixes.offense.*;
-import com.robertx22.database.affixes.suffixes.offense.pene.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;

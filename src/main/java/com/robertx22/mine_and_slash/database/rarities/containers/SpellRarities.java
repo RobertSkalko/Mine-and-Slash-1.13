@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.rarities.containers;
 
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
-import com.robertx22.database.rarities.spells.*;
 import com.robertx22.mine_and_slash.database.rarities.spells.*;
 
 import java.util.Arrays;

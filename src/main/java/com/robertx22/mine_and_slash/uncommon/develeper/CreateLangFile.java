@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
-import com.robertx22.db_lists.*;
 import com.robertx22.mine_and_slash.db_lists.*;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;

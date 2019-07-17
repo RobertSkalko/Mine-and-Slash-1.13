@@ -7,9 +7,8 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.PurityTrait;
-import com.robertx22.items.runes.*;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.items.runes.*;
+import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

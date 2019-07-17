@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.items.runes.base;
 import com.robertx22.mine_and_slash.database.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
