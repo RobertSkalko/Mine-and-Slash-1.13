@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.db_lists.WorldProviders;
-import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
-import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
-import com.robertx22.mine_and_slash.world_gen.structures.TowerStructure;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceTreasure;
 import com.robertx22.mine_and_slash.world_gen.structures.FloatingIslandStructure;
+import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
+import com.robertx22.mine_and_slash.world_gen.structures.TowerStructure;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -29,7 +29,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class WorldGenerationRegisters {
+public class WorldGenRegisters {
 
     public static final int SMALL_DECO_CHANCE = 50;
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));

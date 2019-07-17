@@ -25,10 +25,7 @@ import com.robertx22.mine_and_slash.database.unique_items.pants.PantsFire;
 import com.robertx22.mine_and_slash.database.unique_items.pants.PantsNature;
 import com.robertx22.mine_and_slash.database.unique_items.pants.PantsThunder;
 import com.robertx22.mine_and_slash.database.unique_items.pants.PantsWater;
-import com.robertx22.mine_and_slash.database.unique_items.rings.RingCrit;
-import com.robertx22.mine_and_slash.database.unique_items.rings.RingDodge;
-import com.robertx22.mine_and_slash.database.unique_items.rings.RingEnergy;
-import com.robertx22.mine_and_slash.database.unique_items.rings.RingWaterFire;
+import com.robertx22.mine_and_slash.database.unique_items.rings.*;
 import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldEleResist;
 import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldElemental;
 import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldWisdom;
@@ -49,6 +46,7 @@ public class UniqueItemRegister {
      */
     public static void register() {
 
+        add(new RingHermitsInsanity());
         add(new EleSpellDmgStaff(Elements.Physical));
         add(new MagesLuckyAmulet());
 

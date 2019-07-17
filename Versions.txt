@@ -1,5 +1,6 @@
 2.2.1
 renamed my code packages to include both my curseforge name and my mod name
+added a super rare ring unique
 2.2.0
 fix capacitors being extracted
 added 4 new spells. bonus dmg on weapon hits! For all those who don't like the spell system much and prefer to use weapons.
