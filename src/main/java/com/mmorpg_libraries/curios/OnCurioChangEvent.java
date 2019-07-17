@@ -3,7 +3,7 @@ package com.mmorpg_libraries.curios;
 import com.robertx22.uncommon.capability.EntityCap;
 import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.event.LivingCurioChangeEvent;
@@ -20,8 +20,8 @@ public class OnCurioChangEvent {
             data.setEquipsChanged(true);
             data.recalculateStats(entity);
 
-            if (entity instanceof PlayerEntity) {
-                data.syncToClient((PlayerEntity) entity);
+            if (entity instanceof ServerPlayerEntity) {
+                data.syncToClient((ServerPlayerEntity) entity);
             }
         }
     }

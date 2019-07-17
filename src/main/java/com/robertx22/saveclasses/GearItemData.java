@@ -290,39 +290,10 @@ public class GearItemData implements ITooltip, ISalvagable {
                     .tooltipDesc()));
         }
 
-        List<ITextComponent> tool = removeDoubleBlankLines(tip);
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 25);
         tip.clear();
         tip.addAll(tool);
 
-    }
-
-    static final int MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES = 33;
-
-    private List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {
-
-        List<ITextComponent> newt = new ArrayList();
-
-        boolean lastIsEmpty = false;
-
-        boolean alwaysRemoveEmpty = list.size() > MAX_TOOLTIP_SIZE_BEFORE_CUTTING_EMPTY_LINES;
-
-        for (int i = 0; i < list.size(); i++) {
-
-            if (list.get(i).getFormattedText().isEmpty() == false) {
-                lastIsEmpty = false;
-                newt.add(list.get(i));
-            } else {
-
-                if (lastIsEmpty == false || alwaysRemoveEmpty) {
-                    newt.add(list.get(i));
-                }
-
-                lastIsEmpty = true;
-
-            }
-        }
-
-        return newt;
     }
 
     public List<IRerollable> GetAllRerollable() {

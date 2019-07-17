@@ -294,6 +294,8 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             tooltip.add(new StringTextComponent(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
                     .locName()));
 
+            TooltipUtils.removeDoubleBlankLines(tooltip, 20);
+
         }
 
     }
