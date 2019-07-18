@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.StatMods;
+import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
 
 import java.util.ArrayList;
 import java.util.List;

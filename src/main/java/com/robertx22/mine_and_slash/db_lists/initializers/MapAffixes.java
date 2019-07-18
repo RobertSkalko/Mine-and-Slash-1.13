@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusHealthAffix;
@@ -16,6 +16,9 @@ import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAll
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -23,8 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MapAffixes {
-    public static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
+public class MapAffixes implements ISlashRegistryInit {
+    private static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
 
     private static List<BaseMapAffix> list = new ArrayList<BaseMapAffix>() {
         {
@@ -65,6 +68,14 @@ public class MapAffixes {
             }
         }
     };
+
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
+                        .register(x));
+
+    }
 
     static {
 

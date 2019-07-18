@@ -6,8 +6,8 @@ import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.GearTypes;
-import com.robertx22.mine_and_slash.db_lists.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.item.Item;
 

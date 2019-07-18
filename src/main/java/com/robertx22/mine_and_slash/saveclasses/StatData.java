@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
-import com.robertx22.mine_and_slash.db_lists.Stats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 

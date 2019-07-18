@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;

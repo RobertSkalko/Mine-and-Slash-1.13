@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.Runes;
+import com.robertx22.mine_and_slash.db_lists.initializers.Runes;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
 import java.io.IOException;

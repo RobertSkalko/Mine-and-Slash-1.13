@@ -1,12 +1,15 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.runes.*;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
 import java.util.HashMap;
 
-public class Runes {
-    public static HashMap<String, BaseRuneItem> All = new HashMap<String, BaseRuneItem>() {
+public class Runes implements ISlashRegistryInit {
+    private static HashMap<String, BaseRuneItem> All = new HashMap<String, BaseRuneItem>() {
         {
             {
                 put(new CenItem(0).name(), new CenItem(0));
@@ -25,4 +28,11 @@ public class Runes {
         }
     };
 
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.RUNE)
+                        .register(x));
+
+    }
 }

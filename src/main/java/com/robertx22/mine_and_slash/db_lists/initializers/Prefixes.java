@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
@@ -23,6 +23,9 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_reso
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.MagesGamble;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -31,7 +34,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Prefixes implements IRandomDefault<Prefix> {
+public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
+
+    @Override
+    public void registerAll() {
+        All().values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX)
+                        .register(x));
+
+    }
 
     public static final Prefixes INSTANCE = new Prefixes();
 
@@ -94,7 +105,7 @@ public class Prefixes implements IRandomDefault<Prefix> {
         }
     };
 
-    public static HashMap<String, Prefix> all = new HashMap<>();
+    private static HashMap<String, Prefix> all = new HashMap<>();
 
     private static List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
         {

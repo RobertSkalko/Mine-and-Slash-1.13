@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRender
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.mine_and_slash.db_lists.Initialization;
-import com.robertx22.mine_and_slash.db_lists.Stats;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -86,7 +86,7 @@ public class MMORPG {
 
         OnStartResetMaps.OnStartResetMaps();
 
-        Initialization.initAllDatabases(); // after config init
+        Initialization.initAllDatabases(); // after config registerAll
 
         StructurePieceRegisters.reg();
 

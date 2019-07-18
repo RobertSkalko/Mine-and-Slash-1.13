@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.map_mods.bases.LessWeaponDamageFlat;
 import com.robertx22.mine_and_slash.database.map_mods.bonus.BonusHealthMap;
@@ -47,6 +47,9 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.*
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -57,9 +60,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class StatMods {
+public class StatMods implements ISlashRegistryInit {
 
-    public static HashMap<String, StatMod> All = new HashMap<String, StatMod>();
+    private static HashMap<String, StatMod> All = new HashMap<String, StatMod>();
 
     private static List<StatMod> list = new ArrayList<StatMod>() {
         {
@@ -257,6 +260,14 @@ public class StatMods {
             }
         }
         // how didnt i think of this before.
+
+    }
+
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATMOD)
+                        .register(x));
 
     }
 

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
-import com.robertx22.mine_and_slash.db_lists.Stats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

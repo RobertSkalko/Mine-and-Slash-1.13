@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.BonusSpecificSpellFlat;
 import com.robertx22.mine_and_slash.database.unique_items.necklaces.MagesLuckyAmulet;
-import com.robertx22.mine_and_slash.db_lists.Spells;
+import com.robertx22.mine_and_slash.db_lists.initializers.Spells;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;

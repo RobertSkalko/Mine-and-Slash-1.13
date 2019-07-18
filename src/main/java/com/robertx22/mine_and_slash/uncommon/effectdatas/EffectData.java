@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.Stats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;

@@ -1,6 +1,9 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-public class UniqueItems {
+public class UniqueItems implements ISlashRegistryInit {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 
@@ -69,4 +72,10 @@ public class UniqueItems {
         return list;
     }
 
+    @Override
+    public void registerAll() {
+        getAll().forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_ITEM)
+                .register(x));
+
+    }
 }

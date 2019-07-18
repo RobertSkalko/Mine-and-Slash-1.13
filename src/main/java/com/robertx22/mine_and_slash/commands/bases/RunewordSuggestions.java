@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.db_lists.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 
 import java.util.ArrayList;
 import java.util.List;

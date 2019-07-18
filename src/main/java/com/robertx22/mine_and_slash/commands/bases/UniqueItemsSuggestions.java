@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;

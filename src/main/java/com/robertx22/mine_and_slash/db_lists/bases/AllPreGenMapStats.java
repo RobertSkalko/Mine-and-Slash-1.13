@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.bases;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.Stats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 
 import java.util.ArrayList;
 import java.util.HashMap;

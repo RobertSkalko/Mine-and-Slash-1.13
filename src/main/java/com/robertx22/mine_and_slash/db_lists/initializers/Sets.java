@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.sets.endgame_lvl.AscensionOfElement;
@@ -18,6 +18,9 @@ import com.robertx22.mine_and_slash.database.sets.mid_lvl.TheProtector;
 import com.robertx22.mine_and_slash.database.sets.uniques.TreasureFinder;
 import com.robertx22.mine_and_slash.database.sets.uniques.WisdomOfTheElders;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -25,11 +28,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Sets implements IRandomDefault<Set> {
+public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
     public static final Sets INTANCE = new Sets();
 
-    public static HashMap<String, Set> All = new HashMap<String, Set>();
+    private static HashMap<String, Set> All = new HashMap<String, Set>();
 
     private static List<Set> generated = new ArrayList<Set>() {
         {
@@ -92,6 +95,14 @@ public class Sets implements IRandomDefault<Set> {
             }
 
         }
+    }
+
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SET)
+                        .register(x));
+
     }
 
 }

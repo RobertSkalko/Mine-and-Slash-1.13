@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalTransfer;
-import com.robertx22.mine_and_slash.db_lists.Stats;
+import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;

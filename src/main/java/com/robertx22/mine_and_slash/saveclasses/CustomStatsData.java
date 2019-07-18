@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
-import com.robertx22.mine_and_slash.db_lists.StatMods;
+import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

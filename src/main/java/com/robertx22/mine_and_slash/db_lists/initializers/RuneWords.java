@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.runewords.slots_2.*;
@@ -6,11 +6,14 @@ import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordThief;
 import com.robertx22.mine_and_slash.database.runewords.slots_4.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_5.*;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 
 import java.util.HashMap;
 
-public class RuneWords {
-    public static HashMap<String, RuneWord> All = new HashMap<String, RuneWord>() {
+public class RuneWords implements ISlashRegistryInit {
+    private static HashMap<String, RuneWord> All = new HashMap<String, RuneWord>() {
         {
             {
 
@@ -39,4 +42,11 @@ public class RuneWords {
         }
     };
 
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.RUNEWORD)
+                        .register(x));
+
+    }
 }

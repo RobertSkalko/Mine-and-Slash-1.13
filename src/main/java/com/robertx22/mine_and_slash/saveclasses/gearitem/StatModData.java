@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
-import com.robertx22.mine_and_slash.db_lists.StatMods;
+import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
 import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipString;

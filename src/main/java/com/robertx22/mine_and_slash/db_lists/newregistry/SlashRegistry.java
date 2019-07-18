@@ -12,12 +12,41 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
+import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 
 import java.util.HashMap;
 
 public class SlashRegistry {
+
+    public static SlashRegistryContainer<GearItemSlot> GearTypes() {
+        return getRegistry(SlashRegistryType.GEAR_TYPE);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> Spells() {
+        return getRegistry(SlashRegistryType.SPELL);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> Runes() {
+        return getRegistry(SlashRegistryType.RUNE);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> RuneWords() {
+        return getRegistry(SlashRegistryType.RUNEWORD);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> WorldProviders() {
+        return getRegistry(SlashRegistryType.WORLD_PROVIDER);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> Stats() {
+        return getRegistry(SlashRegistryType.STAT);
+    }
+
+    public static SlashRegistryContainer<GearItemSlot> StatMods() {
+        return getRegistry(SlashRegistryType.STATMOD);
+    }
 
     private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
 
@@ -33,6 +62,19 @@ public class SlashRegistry {
 
     public static void init() {
         createRegistries();
+        initAllDatabases();
+
+    }
+
+    private static void initAllDatabases() {
+        Stats.init(); // STATS MUST BE INIT FIRST CUS STATMODS ARE DERIVED FROM STATS, or should be at least
+
+        StatMods.init();
+        Prefixes.init();
+
+        Suffixes.init();
+        Sets.init();
+        Spells.init();
 
     }
 

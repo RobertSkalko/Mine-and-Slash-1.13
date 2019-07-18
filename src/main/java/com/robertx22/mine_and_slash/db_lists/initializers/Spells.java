@@ -1,5 +1,8 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.SpellBonusEleBasicDmg;
 import com.robertx22.mine_and_slash.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.mine_and_slash.spells.aoe_bomb_proj.SpellFireBomb;
@@ -27,8 +30,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Spells {
-    public static HashMap<String, BaseSpell> All = new HashMap<String, BaseSpell>() {
+public class Spells implements ISlashRegistryInit {
+    private static HashMap<String, BaseSpell> All = new HashMap<String, BaseSpell>() {
         {
             {
                 put(new SpellFrostBolt().GUID(), new SpellFrostBolt());
@@ -76,4 +79,11 @@ public class Spells {
 
     }
 
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SPELL)
+                        .register(x));
+
+    }
 }

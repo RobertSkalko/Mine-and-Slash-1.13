@@ -34,7 +34,7 @@ import com.robertx22.mine_and_slash.database.unique_items.swords.ElementalSaber;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordNature;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordPhysical;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordWater;
-import com.robertx22.mine_and_slash.db_lists.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;

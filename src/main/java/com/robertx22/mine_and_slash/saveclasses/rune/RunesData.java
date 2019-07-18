@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;

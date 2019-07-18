@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.network;
 
 import com.robertx22.mine_and_slash.database.particle_gens.ParticleGen;
-import com.robertx22.mine_and_slash.db_lists.ParticleGens;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
+import com.robertx22.mine_and_slash.db_lists.initializers.ParticleGens;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 

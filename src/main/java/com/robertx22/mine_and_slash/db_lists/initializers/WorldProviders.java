@@ -1,16 +1,19 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.world_providers.*;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.world.biome.Biome;
 
 import java.util.HashMap;
 
-public class WorldProviders {
+public class WorldProviders implements ISlashRegistryInit {
 
     public static WorldProviders INSTANCE = new WorldProviders();
 
-    public static HashMap<String, BaseWorldProvider> All = new HashMap<String, BaseWorldProvider>() {
+    private static HashMap<String, BaseWorldProvider> All = new HashMap<String, BaseWorldProvider>() {
         {
             {
                 put(new DesertHillsIWP(null, null).GUID(), new DesertHillsIWP(null, null));
@@ -57,6 +60,14 @@ public class WorldProviders {
     }
 
     public static class IWPRandomConfig {
+    }
+
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.WORLD_PROVIDER)
+                        .register(x));
+
     }
 
 }

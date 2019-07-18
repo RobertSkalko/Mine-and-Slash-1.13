@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.mine_and_slash.db_lists.StatMods;
+import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
 import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

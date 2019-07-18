@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
-import com.robertx22.mine_and_slash.db_lists.GearTypes;
-import com.robertx22.mine_and_slash.db_lists.Prefixes;
-import com.robertx22.mine_and_slash.db_lists.Suffixes;
+import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
+import com.robertx22.mine_and_slash.db_lists.initializers.Suffixes;
 
 public class CheckAllGearsHaveAffix {
 

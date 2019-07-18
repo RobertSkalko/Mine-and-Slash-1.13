@@ -5,7 +5,7 @@ import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.db_lists.WorldProviders;
+import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IProperty;

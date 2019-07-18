@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
@@ -16,6 +16,9 @@ import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfGodhood;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfTheHydra;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfWeaponFlurry;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -24,9 +27,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Suffixes implements IRandomDefault<Suffix> {
+public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
 
-    public static final Suffixes INSTANCE = new Suffixes();
+    private static final Suffixes INSTANCE = new Suffixes();
 
     private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
         {
@@ -102,4 +105,11 @@ public class Suffixes implements IRandomDefault<Suffix> {
         return all;
     }
 
+    @Override
+    public void registerAll() {
+        All().values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SUFFIX)
+                        .register(x));
+
+    }
 }

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.List;

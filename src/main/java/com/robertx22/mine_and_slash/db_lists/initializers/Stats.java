@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
@@ -40,6 +40,9 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.L
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -50,9 +53,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Stats {
+public class Stats implements ISlashRegistryInit {
 
-    public static HashMap<String, Stat> All = new HashMap<String, Stat>();
+    private static HashMap<String, Stat> All = new HashMap<String, Stat>();
 
     private static List<Stat> generated = new ArrayList<Stat>() {
         {
@@ -203,6 +206,14 @@ public class Stats {
             }
 
         }
+
+    }
+
+    @Override
+    public void registerAll() {
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STAT)
+                        .register(x));
 
     }
 

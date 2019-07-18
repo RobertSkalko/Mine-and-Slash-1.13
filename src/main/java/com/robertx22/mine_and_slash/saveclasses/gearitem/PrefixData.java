@@ -4,14 +4,14 @@ import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.Prefixes;
+import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
 import com.robertx22.mine_and_slash.loot.StatGen;
+import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
 
