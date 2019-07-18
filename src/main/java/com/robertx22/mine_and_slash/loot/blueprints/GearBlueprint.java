@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.containers.ItemRarities;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -39,7 +39,7 @@ public class GearBlueprint extends ItemBlueprint {
         RandomGearType = false;
 
         try {
-            GearTypes.All.get(type);
+            SlashRegistry.GearTypes().get(type);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -49,12 +49,11 @@ public class GearBlueprint extends ItemBlueprint {
     public GearItemSlot GetGearType() {
 
         if (RandomGearType) {
-
-            return RandomUtils.weightedRandom(GearTypes.All.values());
+            return RandomUtils.weightedRandom(SlashRegistry.GearTypes().getList());
 
         } else {
 
-            return GearTypes.All.get(gearType);
+            return SlashRegistry.GearTypes().get(gearType);
         }
 
     }

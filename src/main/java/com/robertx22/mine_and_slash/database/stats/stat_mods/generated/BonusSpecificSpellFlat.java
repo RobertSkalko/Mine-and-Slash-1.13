@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.BonusSpecificSpell;
-import com.robertx22.mine_and_slash.db_lists.initializers.Spells;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -47,7 +47,10 @@ public class BonusSpecificSpellFlat extends StatMod implements IGenerated<StatMo
     @Override
     public List<StatMod> generateAllPossibleStatVariations() {
         List<StatMod> list = new ArrayList<>();
-        Spells.All.values().forEach(x -> list.add(new BonusSpecificSpellFlat(x)));
+        SlashRegistry.Spells()
+                .getAll()
+                .values()
+                .forEach(x -> list.add(new BonusSpecificSpellFlat(x)));
         return list;
     }
 

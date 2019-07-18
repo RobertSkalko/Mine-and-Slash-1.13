@@ -6,6 +6,7 @@ import com.mojang.datafixers.types.DynamicOps;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IProperty;
@@ -32,8 +33,8 @@ public class BiomeProcessor extends StructureProcessor {
     }
 
     public BiomeProcessor(Dynamic<?> dynamic) {
-        iwp = WorldProviders.All.get(dynamic.get("iwp")
-                .asString(new BirchForestIWP(null, null).GUID()));
+        iwp = SlashRegistry.WorldProviders()
+                .get(dynamic.get("iwp").asString(new BirchForestIWP(null, null).GUID()));
     }
 
     IWP iwp;

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.WornSetData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -27,7 +27,7 @@ public class SetData implements ITooltipList {
 
     public Set GetSet() {
 
-        return Sets.All.get(baseSet);
+        return SlashRegistry.Sets().get(baseSet);
     }
 
     public List<StatModData> GetAllStats(int level, Unit unit) {

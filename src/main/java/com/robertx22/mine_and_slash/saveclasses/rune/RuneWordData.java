@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -61,7 +61,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
     }
 
     public RuneWord getRuneWord() {
-        return RuneWords.All.get(name);
+        return SlashRegistry.RuneWords().get(name);
     }
 
     public RuneRarity getRarity() {

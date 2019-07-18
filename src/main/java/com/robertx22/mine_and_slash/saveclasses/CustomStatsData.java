@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
-import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -16,7 +16,8 @@ public class CustomStatsData {
     public void add(String hashmapGUID, String statModGUID, int percent, float multi) {
 
         try {
-            stats.put(hashmapGUID, StatModData.Load(StatMods.All.get(statModGUID)
+            stats.put(hashmapGUID, StatModData.Load(SlashRegistry.StatMods()
+                    .get(statModGUID)
                     .multi(multi), percent));
         } catch (Exception e) {
             e.printStackTrace();

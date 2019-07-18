@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
@@ -49,7 +49,9 @@ public class WorldGenRegisters {
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
             // only register world gen where it can actually be used
-            if (WorldProviders.All.values()
+            if (SlashRegistry.WorldProviders()
+                    .getAll()
+                    .values()
                     .stream()
                     .filter(iwp -> iwp.getBiome().equals(biome))
                     .collect(Collectors.toList())

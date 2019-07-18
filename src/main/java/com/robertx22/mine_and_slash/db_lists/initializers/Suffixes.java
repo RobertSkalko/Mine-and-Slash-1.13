@@ -29,6 +29,8 @@ import java.util.List;
 
 public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
 
+    public static Suffixes INSTANCE = new Suffixes();
+
     @Override
     public HashMap<String, Suffix> All() {
         return SlashRegistry.Suffixes().getAll();
@@ -36,8 +38,6 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-
-        final Suffixes INSTANCE = new Suffixes();
 
         List<Suffix> allSuffixes = new ArrayList<Suffix>() {
             {

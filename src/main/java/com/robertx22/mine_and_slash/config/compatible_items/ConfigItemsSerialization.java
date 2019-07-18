@@ -6,8 +6,8 @@ import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.item.Item;
 
@@ -91,7 +91,7 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
         List<String> list = new ArrayList();
 
-        for (GearItemSlot item : GearTypes.All.values()) {
+        for (GearItemSlot item : SlashRegistry.GearTypes().getAll().values()) {
             list.add(item.GUID());
         }
 

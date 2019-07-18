@@ -43,6 +43,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return map.containsKey(c.GUID());
     }
 
+    public boolean isRegistered(String guid) {
+        return map.containsKey(guid);
+    }
+
     public void register(C c) {
 
         if (isRegistered(c)) {

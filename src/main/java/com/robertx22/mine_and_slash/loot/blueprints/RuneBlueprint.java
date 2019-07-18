@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.Runes;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -27,7 +27,7 @@ public class RuneBlueprint extends ItemBlueprint {
             return rune;
         } else {
 
-            rune = RandomUtils.weightedRandom(Runes.All.values());
+            rune = RandomUtils.weightedRandom(SlashRegistry.Runes().getList());
 
             return rune;
 

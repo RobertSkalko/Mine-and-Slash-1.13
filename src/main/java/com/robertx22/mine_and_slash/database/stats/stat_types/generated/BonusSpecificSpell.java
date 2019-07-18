@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_effects.offense.BonusSpecificSpellEffect;
-import com.robertx22.mine_and_slash.db_lists.initializers.Spells;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.spells.BaseSpellItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
@@ -73,7 +73,10 @@ public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Spells.All.values().forEach(x -> list.add(new BonusSpecificSpell(x)));
+        SlashRegistry.Spells()
+                .getAll()
+                .values()
+                .forEach(x -> list.add(new BonusSpecificSpell(x)));
         return list;
 
     }

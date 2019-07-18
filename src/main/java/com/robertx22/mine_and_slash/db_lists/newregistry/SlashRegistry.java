@@ -20,6 +20,13 @@ import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import java.util.HashMap;
 
 public class SlashRegistry {
+    public static SlashRegistryContainer<BaseStatusEffect> StatusEffects() {
+        return getRegistry(SlashRegistryType.STATUS_EFFECT);
+    }
+
+    public static SlashRegistryContainer<BaseMapAffix> MapAffixes() {
+        return getRegistry(SlashRegistryType.MAP_AFFIX);
+    }
 
     public static SlashRegistryContainer<IUnique> Uniques() {
         return getRegistry(SlashRegistryType.UNIQUE_ITEM);

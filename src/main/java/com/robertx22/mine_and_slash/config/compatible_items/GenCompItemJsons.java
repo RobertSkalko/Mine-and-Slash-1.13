@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import net.minecraft.item.Item;
 
 public class GenCompItemJsons {
@@ -26,7 +26,7 @@ public class GenCompItemJsons {
                 items.add(theitem.getRegistryName().toString(), item);
             }
 
-            for (GearItemSlot slot : GearTypes.All.values())
+            for (GearItemSlot slot : SlashRegistry.GearTypes().getAll().values())
                 for (int i = 0; i < 5; i++) {
                     Item item = slot.GetItemForRarity(i);
                     ConfigItem config = new ConfigItem().setGenerationWeights(1000, 200, 0)

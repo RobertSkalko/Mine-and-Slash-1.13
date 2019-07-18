@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.Runes;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class CreateJsonsOfRunes {
 
         String lang = "";
 
-        for (BaseRuneItem rune : Runes.All.values()) {
+        for (BaseRuneItem rune : SlashRegistry.Runes().getAll().values()) {
 
             for (int i = 0; i < 6; i++) {
 

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,9 @@ public class SlotRequirement extends BaseRequirement {
 
     static List<GearItemSlot> weaponSlots() {
 
-        return GearTypes.All.values()
+        return SlashRegistry.GearTypes()
+                .getAll()
+                .values()
                 .stream()
                 .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))
                 .collect(Collectors.toList());
@@ -61,7 +63,9 @@ public class SlotRequirement extends BaseRequirement {
 
     static List<GearItemSlot> armorSlots() {
 
-        return GearTypes.All.values()
+        return SlashRegistry.GearTypes()
+                .getAll()
+                .values()
                 .stream()
                 .filter(x -> x.slotType()
                         .equals(GearItemSlot.GearSlotType.Armor) || x.slotType()
@@ -72,7 +76,9 @@ public class SlotRequirement extends BaseRequirement {
 
     static List<GearItemSlot> armorSlotsNoOffHand() {
 
-        return GearTypes.All.values()
+        return SlashRegistry.GearTypes()
+                .getAll()
+                .values()
                 .stream()
                 .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
                 .collect(Collectors.toList());
@@ -81,7 +87,9 @@ public class SlotRequirement extends BaseRequirement {
 
     static List<GearItemSlot> jewerlySlots() {
 
-        return GearTypes.All.values()
+        return SlashRegistry.GearTypes()
+                .getAll()
+                .values()
                 .stream()
                 .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Jewerly))
                 .collect(Collectors.toList());

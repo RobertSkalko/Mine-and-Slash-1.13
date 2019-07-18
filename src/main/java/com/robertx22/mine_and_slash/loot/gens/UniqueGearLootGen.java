@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
@@ -60,7 +60,7 @@ public class UniqueGearLootGen extends BaseLootGen {
 
         if (unique != null) {
             ItemRarity rarity = new UniqueItem();
-            GearItemSlot gearslot = GearTypes.All.get(unique.slot());
+            GearItemSlot gearslot = SlashRegistry.GearTypes().get(unique.slot());
 
             data.isUnique = true;
 

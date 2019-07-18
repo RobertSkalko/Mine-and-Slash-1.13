@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.bases;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class AllPreGenMapStats {
 
             List<T> list = new ArrayList<>();
 
-            for (Stat stat : Stats.All.values()) {
+            for (Stat stat : SlashRegistry.Stats().getAll().values()) {
                 if (theclass.isInstance(stat) || stat.getClass().isInstance(theclass)) {
                     list.add((T) stat);
                 }

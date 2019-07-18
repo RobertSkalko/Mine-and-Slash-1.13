@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.dimensions;
 
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -31,7 +31,7 @@ public class MapManager {
         public static void registerModDimensions(
                 RegistryEvent.Register<ModDimension> event) {
 
-            for (IWP iwp : WorldProviders.All.values()) {
+            for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
 
                 ModDimension moddim = iwp.newModDimension();
 
@@ -53,7 +53,7 @@ public class MapManager {
     public static class EventDim {
         @SubscribeEvent
         public static void registerAllModDims(RegisterDimensionsEvent event) {
-            for (IWP iwp : WorldProviders.All.values()) {
+            for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
 
                 ResourceLocation res = iwp.getResourceLoc();
 

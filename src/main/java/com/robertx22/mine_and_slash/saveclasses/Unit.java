@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
@@ -75,7 +75,7 @@ public class Unit {
         StatData data = MyStats.get(guid);
 
         if (data == null) {
-            Stat stat = Stats.All.get(guid);
+            Stat stat = SlashRegistry.Stats().get(guid);
             if (stat != null) {
                 MyStats.put(stat.GUID(), new StatData(stat));
                 return MyStats.get(stat.GUID());
@@ -104,7 +104,7 @@ public class Unit {
 
         MyStats = new HashMap<String, StatData>();
         // adds all stats
-        for (Stat stat : Stats.All.values()) {
+        for (Stat stat : SlashRegistry.Stats().getAll().values()) {
             MyStats.put(stat.GUID(), new StatData(stat));
         }
 
@@ -116,13 +116,13 @@ public class Unit {
             MyStats = new HashMap<String, StatData>();
 
             // adds all stats
-            for (Stat stat : Stats.All.values()) {
+            for (Stat stat : SlashRegistry.Stats().getAll().values()) {
                 MyStats.put(stat.GUID(), new StatData(stat));
             }
 
         } else {
             // adds new stats
-            for (Stat stat : Stats.All.values()) {
+            for (Stat stat : SlashRegistry.Stats().getAll().values()) {
                 if (!MyStats.containsKey(stat.GUID())) {
                     MyStats.put(stat.GUID(), new StatData(stat));
                 }
@@ -130,7 +130,7 @@ public class Unit {
             // removes stats that were deleted or renamed
             HashMap<String, StatData> stats = new HashMap<String, StatData>(MyStats);
             for (Entry<String, StatData> entry : stats.entrySet()) {
-                if (!Stats.All.containsKey(entry.getKey())) {
+                if (!SlashRegistry.Stats().isRegistered(entry.getKey())) {
                     MyStats.remove(entry.getKey());
                 }
             }

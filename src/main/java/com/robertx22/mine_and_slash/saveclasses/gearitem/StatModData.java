@@ -3,8 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
-import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipString;
@@ -17,7 +16,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,46 +78,10 @@ public class StatModData implements ITooltipString {
     @Store
     private String baseModName;
 
-    public static List<String> statmodsAlerted = new ArrayList<>();
-
     public StatMod getStatMod() {
 
-        if (baseModName == null) {
-            return new UnknownStatMod();
-        }
-        if (StatMods.All.containsKey(baseModName)) {
-            return StatMods.All.get(baseModName).multi(multiplier);
-        } else {
-            if (statmodsAlerted.contains(baseModName) == false) {
-                System.out.println("Mine and Slash: " + baseModName + " stat mod doesn't exist. This is either a removed mod, or robertx22 forgot to include it in the list.");
-                statmodsAlerted.add(baseModName);
-            }
-            return new UnknownStatMod();
-        }
+        return SlashRegistry.StatMods().get(baseModName).multi(multiplier);
 
-    }
-
-    static class UnknownStatMod extends StatMod {
-
-        @Override
-        public Stat GetBaseStat() {
-            return new UnknownStat();
-        }
-
-        @Override
-        public float Min() {
-            return 0;
-        }
-
-        @Override
-        public float Max() {
-            return 0;
-        }
-
-        @Override
-        public StatTypes Type() {
-            return StatTypes.Flat;
-        }
     }
 
     public float GetActualVal(int level) {

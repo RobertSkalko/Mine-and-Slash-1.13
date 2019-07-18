@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -31,20 +31,13 @@ public class WornSetData {
     private List<String> uniqueIds = new ArrayList<>();
 
     public Set getSet() {
-
-        if (Sets.All.containsKey(setGUID)) {
-            return Sets.All.get(setGUID);
-        }
-        return null;
-
+        return SlashRegistry.Sets().get(setGUID);
     }
 
     public List<StatMod> getSetStats() {
-        if (Sets.All.containsKey(setGUID)) {
-            return Sets.All.get(setGUID).getObtainedMods(this);
-        } else {
-            return new ArrayList<>();
-        }
+
+        return getSet().getObtainedMods(this);
+
     }
 
     public void addSet(GearItemData gear) {

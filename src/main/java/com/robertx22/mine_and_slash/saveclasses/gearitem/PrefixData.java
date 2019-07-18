@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -60,7 +61,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
     @Override
     public BaseAffix BaseAffix() {
-        return Prefixes.all.get(baseAffix);
+        return SlashRegistry.Prefixes().get(baseAffix);
     }
 
     @Override

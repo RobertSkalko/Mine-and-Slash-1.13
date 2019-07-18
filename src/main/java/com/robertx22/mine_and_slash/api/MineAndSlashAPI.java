@@ -11,7 +11,8 @@ import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.*;
+import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import net.minecraft.item.Item;
@@ -25,39 +26,39 @@ public class MineAndSlashAPI {
 
     public static void addAffix(BaseAffix affix) {
         if (affix instanceof Prefix) {
-            Prefixes.all.put(affix.GUID(), (Prefix) affix);
+            SlashRegistry.Prefixes().register((Prefix) affix);
         } else {
-            Suffixes.all.put(affix.GUID(), (Suffix) affix);
+            SlashRegistry.Suffixes().register((Suffix) affix);
         }
     }
 
     public static void addMapAffix(BaseMapAffix affix) {
-        MapAffixes.All.put(affix.GUID(), affix);
+        SlashRegistry.MapAffixes().register(affix);
     }
 
     public static void addRuneWord(RuneWord word) {
-
-        RuneWords.All.put(word.GUID(), word);
+        SlashRegistry.RuneWords().register(word);
     }
 
     public static void addSet(Set set) {
-        Sets.All.put(set.GUID(), set);
+        SlashRegistry.Sets().register(set);
     }
 
     public static void addSpell(BaseSpell spell) {
-        Spells.All.put(spell.GUID(), spell);
+        SlashRegistry.Spells().register(spell);
+
     }
 
     public static void addMobEffect(BaseStatusEffect effect) {
-        StatusEffects.All.put(effect.GUID(), effect);
+        SlashRegistry.StatusEffects().register(effect);
     }
 
     public static void addGearItemType(GearItemSlot type) {
-        GearTypes.All.put(type.GUID(), type);
+        SlashRegistry.GearTypes().register(type);
     }
 
     public static void addRune(BaseRuneItem rune) {
-        Runes.All.put(rune.name(), rune);
+        SlashRegistry.Runes().register(rune);
     }
 
     public static <T extends Item & IUnique> void addUnique(T unique) {

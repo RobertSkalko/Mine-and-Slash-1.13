@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.testing.tests;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class CountRuneUsageInRuneWords {
 
         HashMap<String, Integer> all = new HashMap();
 
-        for (RuneWord word : RuneWords.All.values()) {
+        for (RuneWord word : SlashRegistry.RuneWords().getAll().values()) {
 
             for (BaseRuneItem rune : word.runes()) {
 

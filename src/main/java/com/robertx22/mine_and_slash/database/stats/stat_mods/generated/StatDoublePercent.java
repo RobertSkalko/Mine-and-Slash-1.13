@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -48,7 +48,7 @@ public class StatDoublePercent extends StatMod implements IGenerated<StatMod> {
 
         List<StatMod> list = new ArrayList<>();
 
-        for (Stat stat : Stats.All.values()) {
+        for (Stat stat : SlashRegistry.Stats().getAll().values()) {
             if (stat instanceof BaseTrait == false) {
                 list.add(new StatDoublePercent(stat));
             }

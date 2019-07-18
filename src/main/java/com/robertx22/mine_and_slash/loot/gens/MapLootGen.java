@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.MapAffixes;
 import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -94,10 +94,14 @@ public class MapLootGen extends BaseLootGen {
 
         for (int i = 0; i < amount; i++) {
 
-            BaseMapAffix affix = RandomUtils.weightedRandom(MapAffixes.All.values());
+            BaseMapAffix affix = RandomUtils.weightedRandom(SlashRegistry.MapAffixes()
+                    .getAll()
+                    .values());
 
             while (affixes.contains(affix.GUID()) || affix.isBeneficial()) { // can't have moba affixes arndom anymore. only on dimension types
-                affix = RandomUtils.weightedRandom(MapAffixes.All.values());
+                affix = RandomUtils.weightedRandom(SlashRegistry.MapAffixes()
+                        .getAll()
+                        .values());
             }
 
             int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);

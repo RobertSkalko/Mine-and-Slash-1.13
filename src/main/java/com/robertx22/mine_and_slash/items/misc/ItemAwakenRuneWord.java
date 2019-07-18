@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -44,13 +44,13 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
+        if (stack != null && SlashRegistry.RuneWords().isRegistered(getWord(stack))) {
             Tooltip.add("", tooltip);
             Tooltip.add(Styles.GOLDCOMP()
                     .appendSibling(Words.Runeword.locName().appendText(": ")), tooltip);
             String word = this.getWord(stack);
 
-            RuneWord runeword = RuneWords.All.get(word);
+            RuneWord runeword = SlashRegistry.RuneWords().get(word);
 
             Tooltip.add(new StringTextComponent(TextFormatting.GOLD + "").appendSibling(runeword
                     .locName()), tooltip);
@@ -112,9 +112,9 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
                 String wordtext = this.getWord(currency);
 
-                if (RuneWords.All.containsKey(wordtext)) {
-
-                    if (gear.isRuned() && gear.runes.canAwakenRuneWord(RuneWords.All.get(wordtext))) {
+                if (SlashRegistry.RuneWords().isRegistered(wordtext)) {
+                    if (gear.isRuned() && gear.runes.canAwakenRuneWord(SlashRegistry.RuneWords()
+                            .get(wordtext))) {
                         return true;
                     }
                 }

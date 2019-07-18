@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -83,7 +83,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
     }
 
     public boolean AwakenRuneWord(String word) {
-        RuneWord runeword = RuneWords.All.get(word);
+        RuneWord runeword = SlashRegistry.RuneWords().get(word);
 
         if (runeword != null) {
 

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.*;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -136,13 +136,13 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(Sets.All.values());
-        list.addAll(RuneWords.All.values());
-        list.addAll(Prefixes.all.values());
-        list.addAll(Suffixes.all.values());
-        list.addAll(Stats.All.values());
-        list.addAll(GearTypes.All.values());
-        list.addAll(WorldProviders.All.values());
+        list.addAll(SlashRegistry.Sets().getAll().values());
+        list.addAll(SlashRegistry.RuneWords().getAll().values());
+        list.addAll(SlashRegistry.Prefixes().getAll().values());
+        list.addAll(SlashRegistry.Suffixes().getAll().values());
+        list.addAll(SlashRegistry.Stats().getAll().values());
+        list.addAll(SlashRegistry.GearTypes().getAll().values());
+        list.addAll(SlashRegistry.WorldProviders().getAll().values());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.allIncludingUnique());
         list.addAll(Arrays.asList(Chats.values()));
@@ -172,7 +172,7 @@ public class CreateLangFile {
 
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
-        list.addAll(Stats.All.values());
+        list.addAll(SlashRegistry.Stats().getAll().values());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
 

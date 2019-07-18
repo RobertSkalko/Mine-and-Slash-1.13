@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.GearTypes;
 import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -111,7 +111,8 @@ public class GearItemData implements ITooltip, ISalvagable {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;
             } else {
-                return GearTypes.All.get(gearTypeName)
+                return SlashRegistry.GearTypes()
+                        .get(gearTypeName)
                         .GetItemForRarity(GetRarity().Rank());
             }
         }
@@ -127,7 +128,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     public GearItemSlot GetBaseGearType() {
 
-        return GearTypes.All.get(gearTypeName);
+        return SlashRegistry.GearTypes().get(gearTypeName);
     }
 
     public int getPowerLevel() {

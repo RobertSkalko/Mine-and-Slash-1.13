@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.initializers.RuneWords;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -12,6 +12,6 @@ public class AwakenRuneWordData {
     public String runeword;
 
     public RuneWord getWord() {
-        return RuneWords.All.get(runeword);
+        return SlashRegistry.RuneWords().get(runeword);
     }
 }

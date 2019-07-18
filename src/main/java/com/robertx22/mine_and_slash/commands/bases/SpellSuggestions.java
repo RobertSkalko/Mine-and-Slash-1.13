@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
-import com.robertx22.mine_and_slash.db_lists.initializers.Spells;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class SpellSuggestions extends CommandSuggestions {
     public List<String> suggestions() {
 
         List<String> list = new ArrayList();
-        for (BaseSpell spell : Spells.All.values()) {
+        for (BaseSpell spell : SlashRegistry.Spells().getAll().values()) {
             list.add(spell.GUID());
         }
         list.add("random");
