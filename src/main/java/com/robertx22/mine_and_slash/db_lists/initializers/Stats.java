@@ -55,146 +55,147 @@ import java.util.List;
 
 public class Stats implements ISlashRegistryInit {
 
-    private static HashMap<String, Stat> All = new HashMap<String, Stat>();
-
-    private static List<Stat> generated = new ArrayList<Stat>() {
-        {
-            {
-                add(new ElementalBonusDmgOnBasic(Elements.Physical));
-                add(new ElementalConversion(Elements.Physical, Elements.Physical));
-                add(new ElementalTransfer(Elements.Physical, Elements.Physical));
-                add(new ElementalAffinity(Elements.Physical));
-                add(new LootTypeBonusFlat(LootType.NormalItem));
-                add(new WeaponDamage(WeaponTypes.None));
-                add(new ElementalAttackDamage(Elements.Physical));
-                add(new ElementalSpellToAttackDMG(Elements.Physical));
-                add(new AllElementalDamage(Elements.Physical));
-                add(new ElementalSpellDamage(Elements.Physical));
-                add(new ElementalResist(Elements.Physical));
-                add(new ElementalPene(Elements.Physical));
-                add(new ElementalFocus(Elements.Physical));
-                add(new BlockReflect(Elements.Physical));
-                add(new BonusSpecificSpell(new SpellAcidBolt()));
-
-                // generated
-
-                add(new PhysicalDispersion());
-                add(new AllAttributes());
-                add(new AllEleDmg());
-                add(new AllEleSpellDmg());
-                add(new SpellDamage());
-                // major arcana tarot
-                add(new Judgement());
-                add(new StrengthArcana());
-                add(new Hermit());
-                add(new Chariot());
-                add(new Death());
-                add(new HangedMan());
-                add(new Justice());
-                add(new HighPriestess());
-                add(new Temperance());
-                add(new TheEmperor());
-                add(new TheDevil());
-                add(new TheEmpress());
-                add(new TheFool());
-                add(new TheHierophant());
-                add(new TheMagician());
-                add(new TheMoon());
-                add(new TheSun());
-                add(new TheWorld());
-                add(new Tower());
-                add(new WheelOfFortune());
-                add(new TheStar());
-                // major arcana tarot
-
-                add(new Strength());
-                add(new Dexterity());
-                add(new Wisdom());
-                add(new Intelligence());
-                add(new Stamina());
-                add(new Vitality());
-                add(new BonusExp());
-
-                // spell buffs
-                add(new HomingTrait());
-                add(new GhostProjectileTrait());
-                add(new ZephyrTrait());
-                add(new LightTrait());
-                add(new PurityTrait());
-                add(new BuffEnergyRegenTrait());
-                add(new BuffManaRegenTrait());
-
-                // spell buffs
-
-                add(new EnergyToManaConversion());
-
-                add(new ManaToEnergyConversion());
-
-                // conditional traits
-                add(new HighCritAddArmor());
-                add(new HighCritAddLifesteal());
-                add(new HighDodgeAddCritDamage());
-                add(new HighDodgeAddPhysDamage());
-                add(new LowDodgeAddArmor());
-                add(new LowDodgeAddCritHit());
-                add(new LowCritHitAddDodge());
-                add(new LowCritHitAddHealth());
-
-                // lord traits
-                add(new LordOfVolcanoesTrait());
-                add(new LordOfBlizzardsTrait());
-                add(new LordOfThunderstormsTrait());
-                add(new LordOfEarthquakesTrait());
-                // weapon damages
-
-                add(new UnknownStat());
-
-                // Resources
-                add(new Health());
-                add(new HealthRegen());
-                add(new Lifesteal());
-                add(new LifeOnHit());
-                add(new Mana());
-                add(new ManaRegen());
-                add(new ManaOnHit());
-                add(new Energy());
-                add(new EnergyRegen());
-                // Resources
-
-                add(new BlockStrength());
-                add(new Armor());
-                add(new ArmorPenetration());
-                add(new CriticalDamage());
-                add(new CriticalHit());
-                add(new PhysicalDamage());
-                add(new Dodge());
-                add(new SpellDodge());
-
-                // traits
-                add(new Golem());
-                add(new Elemental());
-                add(new Lucky());
-                add(new Barbarian());
-                add(new Stealthy());
-                add(new ClumsyScholar());
-                add(new Crippled());
-                add(new Diseased());
-                add(new Armored());
-                add(new EarthAtronach());
-                add(new FrostAtronach());
-                add(new FireAtronach());
-                add(new ThunderAtronach());
-                add(new OnDodgeBuffSpeed());
-                add(new HealPower());
-                // traits
-
-            }
-        }
-    };
-
     public static AllPreGenMapStats allPreGenMapStatLists = new AllPreGenMapStats();
 
-    public static void init() {
+    @Override
+    public void registerAll() {
+
+        HashMap<String, Stat> All = new HashMap<String, Stat>();
+
+        List<Stat> generated = new ArrayList<Stat>() {
+            {
+                {
+                    add(new ElementalBonusDmgOnBasic(Elements.Physical));
+                    add(new ElementalConversion(Elements.Physical, Elements.Physical));
+                    add(new ElementalTransfer(Elements.Physical, Elements.Physical));
+                    add(new ElementalAffinity(Elements.Physical));
+                    add(new LootTypeBonusFlat(LootType.NormalItem));
+                    add(new WeaponDamage(WeaponTypes.None));
+                    add(new ElementalAttackDamage(Elements.Physical));
+                    add(new ElementalSpellToAttackDMG(Elements.Physical));
+                    add(new AllElementalDamage(Elements.Physical));
+                    add(new ElementalSpellDamage(Elements.Physical));
+                    add(new ElementalResist(Elements.Physical));
+                    add(new ElementalPene(Elements.Physical));
+                    add(new ElementalFocus(Elements.Physical));
+                    add(new BlockReflect(Elements.Physical));
+                    add(new BonusSpecificSpell(new SpellAcidBolt()));
+
+                    // generated
+
+                    add(new PhysicalDispersion());
+                    add(new AllAttributes());
+                    add(new AllEleDmg());
+                    add(new AllEleSpellDmg());
+                    add(new SpellDamage());
+                    // major arcana tarot
+                    add(new Judgement());
+                    add(new StrengthArcana());
+                    add(new Hermit());
+                    add(new Chariot());
+                    add(new Death());
+                    add(new HangedMan());
+                    add(new Justice());
+                    add(new HighPriestess());
+                    add(new Temperance());
+                    add(new TheEmperor());
+                    add(new TheDevil());
+                    add(new TheEmpress());
+                    add(new TheFool());
+                    add(new TheHierophant());
+                    add(new TheMagician());
+                    add(new TheMoon());
+                    add(new TheSun());
+                    add(new TheWorld());
+                    add(new Tower());
+                    add(new WheelOfFortune());
+                    add(new TheStar());
+                    // major arcana tarot
+
+                    add(new Strength());
+                    add(new Dexterity());
+                    add(new Wisdom());
+                    add(new Intelligence());
+                    add(new Stamina());
+                    add(new Vitality());
+                    add(new BonusExp());
+
+                    // spell buffs
+                    add(new HomingTrait());
+                    add(new GhostProjectileTrait());
+                    add(new ZephyrTrait());
+                    add(new LightTrait());
+                    add(new PurityTrait());
+                    add(new BuffEnergyRegenTrait());
+                    add(new BuffManaRegenTrait());
+
+                    // spell buffs
+
+                    add(new EnergyToManaConversion());
+
+                    add(new ManaToEnergyConversion());
+
+                    // conditional traits
+                    add(new HighCritAddArmor());
+                    add(new HighCritAddLifesteal());
+                    add(new HighDodgeAddCritDamage());
+                    add(new HighDodgeAddPhysDamage());
+                    add(new LowDodgeAddArmor());
+                    add(new LowDodgeAddCritHit());
+                    add(new LowCritHitAddDodge());
+                    add(new LowCritHitAddHealth());
+
+                    // lord traits
+                    add(new LordOfVolcanoesTrait());
+                    add(new LordOfBlizzardsTrait());
+                    add(new LordOfThunderstormsTrait());
+                    add(new LordOfEarthquakesTrait());
+                    // weapon damages
+
+                    add(new UnknownStat());
+
+                    // Resources
+                    add(new Health());
+                    add(new HealthRegen());
+                    add(new Lifesteal());
+                    add(new LifeOnHit());
+                    add(new Mana());
+                    add(new ManaRegen());
+                    add(new ManaOnHit());
+                    add(new Energy());
+                    add(new EnergyRegen());
+                    // Resources
+
+                    add(new BlockStrength());
+                    add(new Armor());
+                    add(new ArmorPenetration());
+                    add(new CriticalDamage());
+                    add(new CriticalHit());
+                    add(new PhysicalDamage());
+                    add(new Dodge());
+                    add(new SpellDodge());
+
+                    // traits
+                    add(new Golem());
+                    add(new Elemental());
+                    add(new Lucky());
+                    add(new Barbarian());
+                    add(new Stealthy());
+                    add(new ClumsyScholar());
+                    add(new Crippled());
+                    add(new Diseased());
+                    add(new Armored());
+                    add(new EarthAtronach());
+                    add(new FrostAtronach());
+                    add(new FireAtronach());
+                    add(new ThunderAtronach());
+                    add(new OnDodgeBuffSpeed());
+                    add(new HealPower());
+                    // traits
+
+                }
+            }
+        };
 
         for (Stat stat : generated) {
             if (stat instanceof IGenerated) {
@@ -207,10 +208,6 @@ public class Stats implements ISlashRegistryInit {
 
         }
 
-    }
-
-    @Override
-    public void registerAll() {
         All.values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STAT)
                         .register(x));

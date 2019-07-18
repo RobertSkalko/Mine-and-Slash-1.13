@@ -6,31 +6,33 @@ import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatusEffects implements ISlashRegistryInit {
-    private static HashMap<String, BaseStatusEffect> All = new HashMap<String, BaseStatusEffect>() {
-        {
-            {
-                put(new MobHealthSE().GUID(), new MobHealthSE());
-                put(new MobElementResistSE().GUID(), new MobElementResistSE());
-                put(new MobArmorSE().GUID(), new MobArmorSE());
-
-                put(new MobNatureDMGSE().GUID(), new MobNatureDMGSE());
-                put(new MobWaterDMGSE().GUID(), new MobWaterDMGSE());
-                put(new MobThunderDMGSE().GUID(), new MobThunderDMGSE());
-                put(new MobFireDMGSE().GUID(), new MobFireDMGSE());
-                put(new MobLifestealSE().GUID(), new MobLifestealSE());
-
-            }
-        }
-    };
 
     @Override
     public void registerAll() {
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATUS_EFFECT)
-                        .register(x));
+
+        List<BaseStatusEffect> All = new ArrayList<BaseStatusEffect>() {
+            {
+                {
+                    add(new MobHealthSE());
+                    add(new MobElementResistSE());
+                    add(new MobArmorSE());
+
+                    add(new MobNatureDMGSE());
+                    add(new MobWaterDMGSE());
+                    add(new MobThunderDMGSE());
+                    add(new MobFireDMGSE());
+                    add(new MobLifestealSE());
+
+                }
+            }
+        };
+
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATUS_EFFECT)
+                .register(x));
 
     }
 }

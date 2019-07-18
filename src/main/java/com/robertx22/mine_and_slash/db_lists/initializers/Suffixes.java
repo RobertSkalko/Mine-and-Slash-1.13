@@ -29,61 +29,67 @@ import java.util.List;
 
 public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
 
-    private static final Suffixes INSTANCE = new Suffixes();
+    @Override
+    public HashMap<String, Suffix> All() {
+        return SlashRegistry.Suffixes().getAll();
+    }
 
-    private static List<Suffix> allSuffixes = new ArrayList<Suffix>() {
-        {
+    @Override
+    public void registerAll() {
+
+        final Suffixes INSTANCE = new Suffixes();
+
+        List<Suffix> allSuffixes = new ArrayList<Suffix>() {
             {
-                add(new OfTheHydra());
-                add(new OfGiants());
-                add(new OfBehemoths());
+                {
+                    add(new OfTheHydra());
+                    add(new OfGiants());
+                    add(new OfBehemoths());
 
-                add(new OfBalance());
-                add(new OfGuidance());
-                add(new OfSwiftness());
+                    add(new OfBalance());
+                    add(new OfGuidance());
+                    add(new OfSwiftness());
 
-                add(new OfGodhood());
-                add(new OfCriticalHits());
-                add(new OfCriticalDamage());
-                add(new OfCriticalUnity());
-                add(new OfVampirism());
-                add(new OfForce());
-                add(new OfRockPiercing());
+                    add(new OfGodhood());
+                    add(new OfCriticalHits());
+                    add(new OfCriticalDamage());
+                    add(new OfCriticalUnity());
+                    add(new OfVampirism());
+                    add(new OfForce());
+                    add(new OfRockPiercing());
 
-                add(new OfVitality());
-                add(new OfRockSkin());
-                add(new OfElementResist());
-                add(new OfImmortality());
-                add(new OfHiddenSense());
-                add(new OfTheDepths());
+                    add(new OfVitality());
+                    add(new OfRockSkin());
+                    add(new OfElementResist());
+                    add(new OfImmortality());
+                    add(new OfHiddenSense());
+                    add(new OfTheDepths());
 
-                add(new OfVitality());
-                add(new OfManaRegen());
-                add(new OfTheSage());
+                    add(new OfVitality());
+                    add(new OfManaRegen());
+                    add(new OfTheSage());
 
-                add(new OfFirestorms());
-                add(new OfEarthquakes());
-                add(new OfThunderstorms());
-                add(new OfIceStorms());
+                    add(new OfFirestorms());
+                    add(new OfEarthquakes());
+                    add(new OfThunderstorms());
+                    add(new OfIceStorms());
 
+                }
             }
-        }
-    };
+        };
 
-    public static HashMap<String, Suffix> all = new HashMap<>();
+        HashMap<String, Suffix> all = new HashMap<>();
 
-    private static List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
-        {
+        List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
             {
-                add(new OfDissonance(Elements.Physical));
-                add(new OfMajorAffinity(Elements.Physical));
-                add(new OfWeaponFlurry(WeaponTypes.None));
+                {
+                    add(new OfDissonance(Elements.Physical));
+                    add(new OfMajorAffinity(Elements.Physical));
+                    add(new OfWeaponFlurry(WeaponTypes.None));
 
+                }
             }
-        }
-    };
-
-    public static void init() {
+        };
 
         List<Suffix> list = new ArrayList<Suffix>();
         list.addAll(allSuffixes);
@@ -98,15 +104,6 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
             }
         }
 
-    }
-
-    @Override
-    public HashMap<String, Suffix> All() {
-        return all;
-    }
-
-    @Override
-    public void registerAll() {
         All().values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SUFFIX)
                         .register(x));

@@ -32,58 +32,59 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
     public static final Sets INTANCE = new Sets();
 
-    private static HashMap<String, Set> All = new HashMap<String, Set>();
-
-    private static List<Set> generated = new ArrayList<Set>() {
-        {
-            {
-
-                add(new AscensionOfElement(Elements.Physical));
-                add(new RoyalThiefAdornments());
-                add(new RingsOfImpossibility());
-
-                add(new Eliminator());
-                add(new TreasureFinder());
-                //high lvl
-                add(new MysticalOrnaments());
-                add(new ElementalEssence());
-                add(new SeersGuidance());
-                add(new GodKingsPlate());
-                add(new TheAscended());
-
-                // mid lvl
-                add(new ArmorOfTheElements());
-                add(new TheProtector());
-                add(new SpiritOfTheArcane());
-                add(new ArtifactArmor());
-
-                // low lvl
-                add(new BarbarianArmor());
-                add(new MagesRobes());
-                add(new RockmanChains());
-                add(new RangerArmor());
-
-                add(new IceLord());
-                add(new FlamingDevil());
-                add(new ForestGuardian());
-                add(new WillOfLightning());
-
-                add(new TreeOfLife());
-                add(new Limitless());
-                add(new ScholarRobes());
-
-                add(new WisdomOfTheElders());
-
-            }
-        }
-    };
-
     @Override
     public HashMap<String, Set> All() {
-        return All;
+        return SlashRegistry.Sets().getAll();
     }
 
-    public static void init() {
+    @Override
+    public void registerAll() {
+
+        HashMap<String, Set> All = new HashMap<String, Set>();
+
+        List<Set> generated = new ArrayList<Set>() {
+            {
+                {
+
+                    add(new AscensionOfElement(Elements.Physical));
+                    add(new RoyalThiefAdornments());
+                    add(new RingsOfImpossibility());
+
+                    add(new Eliminator());
+                    add(new TreasureFinder());
+                    //high lvl
+                    add(new MysticalOrnaments());
+                    add(new ElementalEssence());
+                    add(new SeersGuidance());
+                    add(new GodKingsPlate());
+                    add(new TheAscended());
+
+                    // mid lvl
+                    add(new ArmorOfTheElements());
+                    add(new TheProtector());
+                    add(new SpiritOfTheArcane());
+                    add(new ArtifactArmor());
+
+                    // low lvl
+                    add(new BarbarianArmor());
+                    add(new MagesRobes());
+                    add(new RockmanChains());
+                    add(new RangerArmor());
+
+                    add(new IceLord());
+                    add(new FlamingDevil());
+                    add(new ForestGuardian());
+                    add(new WillOfLightning());
+
+                    add(new TreeOfLife());
+                    add(new Limitless());
+                    add(new ScholarRobes());
+
+                    add(new WisdomOfTheElders());
+
+                }
+            }
+        };
 
         for (Set set : generated) {
             if (set instanceof IGenerated) {
@@ -95,10 +96,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
             }
 
         }
-    }
 
-    @Override
-    public void registerAll() {
         All.values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SET)
                         .register(x));

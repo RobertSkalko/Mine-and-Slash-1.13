@@ -62,183 +62,182 @@ import java.util.List;
 
 public class StatMods implements ISlashRegistryInit {
 
-    private static HashMap<String, StatMod> All = new HashMap<String, StatMod>();
+    @Override
+    public void registerAll() {
 
-    private static List<StatMod> list = new ArrayList<StatMod>() {
-        {
-
+        List<StatMod> list = new ArrayList<StatMod>() {
             {
+                {
+                    add(new ElementalSpellToAttackDMGPercent(Elements.Physical));
+                    add(new PotionBonusDmgAmountFlat(Elements.Physical));
+                    add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
+                    add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));
+                    add(new ElementalAffinityFlat(Elements.Physical));
+                    add(new LootTypeBonusFlat(LootType.NormalItem));
+                    add(new WeaponDamageFlat(WeaponTypes.None));
+                    add(new LessWeaponDamageFlat(WeaponTypes.None));
+                    add(new ElementalAttackDamageFlat(Elements.Physical));
+                    add(new AllElementalDamageMulti(Elements.Physical));
+                    add(new ElementalSpellToAttackDMGFlat(Elements.Physical));
+                    add(new ElementalSpellDamagePercent(Elements.Physical));
+                    add(new ElementalSpellDamageFlat(Elements.Physical));
+                    add(new ElementalResistFlat(Elements.Physical));
+                    add(new ElementalSpellDamageMulti(Elements.Physical));
+                    add(new ElementalPeneFlat(Elements.Physical));
+                    add(new ElementalPenePercent(Elements.Physical));
+                    add(new ElementalFocusFlat(Elements.Physical));
+                    add(new StatDoublePercent(new UnknownStat()));
+                    add(new BlockReflectFlat(Elements.Physical));
+                    add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
 
-                add(new ElementalSpellToAttackDMGPercent(Elements.Physical));
-                add(new PotionBonusDmgAmountFlat(Elements.Physical));
-                add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
-                add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));
-                add(new ElementalAffinityFlat(Elements.Physical));
-                add(new LootTypeBonusFlat(LootType.NormalItem));
-                add(new WeaponDamageFlat(WeaponTypes.None));
-                add(new LessWeaponDamageFlat(WeaponTypes.None));
-                add(new ElementalAttackDamageFlat(Elements.Physical));
-                add(new AllElementalDamageMulti(Elements.Physical));
-                add(new ElementalSpellToAttackDMGFlat(Elements.Physical));
-                add(new ElementalSpellDamagePercent(Elements.Physical));
-                add(new ElementalSpellDamageFlat(Elements.Physical));
-                add(new ElementalResistFlat(Elements.Physical));
-                add(new ElementalSpellDamageMulti(Elements.Physical));
-                add(new ElementalPeneFlat(Elements.Physical));
-                add(new ElementalPenePercent(Elements.Physical));
-                add(new ElementalFocusFlat(Elements.Physical));
-                add(new StatDoublePercent(new UnknownStat()));
-                add(new BlockReflectFlat(Elements.Physical));
-                add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
+                    add(new CompletePhysDispersionFlat());
+                    add(new HealPowerFlat());
+                    add(new AllEleDmgFlat());
+                    add(new AllEleSpellDmgFlat());
 
-                add(new CompletePhysDispersionFlat());
-                add(new HealPowerFlat());
-                add(new AllEleDmgFlat());
-                add(new AllEleSpellDmgFlat());
+                    add(new BlockStrengthPercent());
+                    add(new SpellDamageFlat());
+                    add(new SpellDamagePercent());
 
-                add(new BlockStrengthPercent());
-                add(new SpellDamageFlat());
-                add(new SpellDamagePercent());
+                    add(new BonusExpFlat());
 
-                add(new BonusExpFlat());
+                    // spell buffs
 
-                // spell buffs
+                    add(new ManaMulti());
+                    add(new LessManaMulti());
+                    add(new LessHealthRegenMulti());
 
-                add(new ManaMulti());
-                add(new LessManaMulti());
-                add(new LessHealthRegenMulti());
+                    add(new PhysicalDamageMulti());
+                    add(new LessPhysicalDamageMulti());
 
-                add(new PhysicalDamageMulti());
-                add(new LessPhysicalDamageMulti());
+                    add(new LessArmorMulti());
+                    add(new HealthMulti());
+                    add(new DodgeMulti());
+                    add(new CriticalHitMulti());
+                    add(new ArmorMulti());
 
-                add(new LessArmorMulti());
-                add(new HealthMulti());
-                add(new DodgeMulti());
-                add(new CriticalHitMulti());
-                add(new ArmorMulti());
+                    //
 
-                //
+                    add(new EnergyToManaConvFlat());
+                    add(new ManaToEnergyConvFlat());
 
-                add(new EnergyToManaConvFlat());
-                add(new ManaToEnergyConvFlat());
+                    // weapon damages
 
-                // weapon damages
+                    // less stats
 
-                // less stats
+                    add(new LessHealthRegenFlat());
+                    add(new LessCriticalDamagePercent());
+                    add(new LessCriticalHitPercent());
+                    add(new LessDodgePercent());
+                    add(new LessHealthRegenPercent());
+                    add(new LessManaRegenPercent());
+                    add(new LessManaOnHitPercent());
+                    add(new LessLifestealPercent());
+                    add(new LessLifeOnHitPercent());
+                    // less stats
 
-                add(new LessHealthRegenFlat());
-                add(new LessCriticalDamagePercent());
-                add(new LessCriticalHitPercent());
-                add(new LessDodgePercent());
-                add(new LessHealthRegenPercent());
-                add(new LessManaRegenPercent());
-                add(new LessManaOnHitPercent());
-                add(new LessLifestealPercent());
-                add(new LessLifeOnHitPercent());
-                // less stats
+                    // cripple stats (much less)
+                    add(new CrippleCriticalDamagePercent());
+                    add(new CrippleCriticalHitPercent());
+                    add(new CrippleDodgePercent());
+                    add(new CrippleHealthRegenPercent());
+                    add(new CrippleManaRegenPercent());
+                    add(new CrippleManaOnHitPercent());
+                    add(new CrippleLifestealPercent());
+                    add(new CrippleLifeOnHitPercent());
+                    // cripple
 
-                // cripple stats (much less)
-                add(new CrippleCriticalDamagePercent());
-                add(new CrippleCriticalHitPercent());
-                add(new CrippleDodgePercent());
-                add(new CrippleHealthRegenPercent());
-                add(new CrippleManaRegenPercent());
-                add(new CrippleManaOnHitPercent());
-                add(new CrippleLifestealPercent());
-                add(new CrippleLifeOnHitPercent());
-                // cripple
+                    add(new MajorCriticalHitPercent());
+                    add(new MajorCriticalDamagePercent());
 
-                add(new MajorCriticalHitPercent());
-                add(new MajorCriticalDamagePercent());
+                    add(new MajorDodgeFlat());
+                    add(new MajorArmorFlat());
+                    add(new ArmorFlat());
+                    add(new ArmorPeneFlat());
+                    add(new CriticalHitFlat());
+                    add(new CriticalDamageFlat());
+                    add(new PhysicalDamageFlat());
+                    add(new CriticalHitPercent());
+                    add(new PhysicalDamagePercent());
+                    add(new CriticalDamagePercent());
+                    add(new ArmorPenePercent());
+                    add(new DodgePercent());
+                    add(new BlockStrengthFlat());
 
-                add(new MajorDodgeFlat());
-                add(new MajorArmorFlat());
-                add(new ArmorFlat());
-                add(new ArmorPeneFlat());
-                add(new CriticalHitFlat());
-                add(new CriticalDamageFlat());
-                add(new PhysicalDamageFlat());
-                add(new CriticalHitPercent());
-                add(new PhysicalDamagePercent());
-                add(new CriticalDamagePercent());
-                add(new ArmorPenePercent());
-                add(new DodgePercent());
-                add(new BlockStrengthFlat());
+                    // Resources
+                    add(new MajorManaRegenFlat());
+                    add(new HealthFlat());
+                    add(new HealthPercent());
+                    add(new HealthRegenPercent());
+                    add(new HealthRegenFlat());
+                    add(new ManaRegenFlat());
+                    add(new EnergyRegenFlat());
+                    add(new EnergyRegenPercent());
+                    add(new ManaRegenPercent());
+                    add(new EnergyFlat());
 
-                // Resources
-                add(new MajorManaRegenFlat());
-                add(new HealthFlat());
-                add(new HealthPercent());
-                add(new HealthRegenPercent());
-                add(new HealthRegenFlat());
-                add(new ManaRegenFlat());
-                add(new EnergyRegenFlat());
-                add(new EnergyRegenPercent());
-                add(new ManaRegenPercent());
-                add(new EnergyFlat());
+                    add(new LifestealFlat());
+                    add(new LifestealPercent());
+                    add(new LifeOnHitFlat());
+                    add(new LifeOnHitPercent());
+                    add(new ManaFlat());
+                    add(new ManaOnHitFlat());
+                    // Resources
 
-                add(new LifestealFlat());
-                add(new LifestealPercent());
-                add(new LifeOnHitFlat());
-                add(new LifeOnHitPercent());
-                add(new ManaFlat());
-                add(new ManaOnHitFlat());
-                // Resources
+                    add(new ArmorPercent());
+                    add(new DodgeFlat());
 
-                add(new ArmorPercent());
-                add(new DodgeFlat());
+                    // bonus dmg
 
-                // bonus dmg
+                    // Map mods
 
-                // Map mods
+                    add(new BonusHealthMap());
+                    add(new BonusLifestealMap());
 
-                add(new BonusHealthMap());
-                add(new BonusLifestealMap());
+                    add(new LessCriticalHitMap());
+                    add(new LessDodgeMap());
 
-                add(new LessCriticalHitMap());
-                add(new LessDodgeMap());
+                    add(new BonusFireDamageMap());
+                    add(new BonusNatureDamageMap());
+                    add(new BonusThunderDamageMap());
+                    add(new BonusWaterDamageMap());
 
-                add(new BonusFireDamageMap());
-                add(new BonusNatureDamageMap());
-                add(new BonusThunderDamageMap());
-                add(new BonusWaterDamageMap());
+                    add(new BonusFireResistMap());
+                    add(new BonusNatureResistMap());
+                    add(new BonusThunderResistMap());
+                    add(new BonusWaterResistMap());
 
-                add(new BonusFireResistMap());
-                add(new BonusNatureResistMap());
-                add(new BonusThunderResistMap());
-                add(new BonusWaterResistMap());
+                    add(new LessAllFireDamageMap());
+                    add(new LessAllNatureDamageMap());
+                    add(new LessAllThunderDamageMap());
+                    add(new LessAllWaterDamageMap());
 
-                add(new LessAllFireDamageMap());
-                add(new LessAllNatureDamageMap());
-                add(new LessAllThunderDamageMap());
-                add(new LessAllWaterDamageMap());
+                    add(new LessEnergyRegenMap());
+                    add(new LessManaRegenMap());
+                    add(new LessHealthRegenMap());
+                    add(new LessLifeOnHitMap());
+                    add(new LessLifestealMap());
+                    add(new LessHealthMap());
+                    add(new LessManaOnHitMap());
+                    // Map mods
+                    add(new MajorMinusFireResistMulti());
+                    add(new MajorMinusWaterResistMulti());
+                    add(new MajorMinusThunderResistMulti());
+                    add(new MajorMinusNatureResistMulti());
 
-                add(new LessEnergyRegenMap());
-                add(new LessManaRegenMap());
-                add(new LessHealthRegenMap());
-                add(new LessLifeOnHitMap());
-                add(new LessLifestealMap());
-                add(new LessHealthMap());
-                add(new LessManaOnHitMap());
-                // Map mods
-                add(new MajorMinusFireResistMulti());
-                add(new MajorMinusWaterResistMulti());
-                add(new MajorMinusThunderResistMulti());
-                add(new MajorMinusNatureResistMulti());
+                    add(new AllAttributesFlat());
+                    add(new StrengthFlat());
+                    add(new DexterityFlat());
+                    add(new WisdomFlat());
+                    add(new IntelligenceFlat());
+                    add(new StaminaFlat());
+                    add(new VitalityFlat());
 
-                add(new AllAttributesFlat());
-                add(new StrengthFlat());
-                add(new DexterityFlat());
-                add(new WisdomFlat());
-                add(new IntelligenceFlat());
-                add(new StaminaFlat());
-                add(new VitalityFlat());
-
+                }
             }
-        }
-    };
+        };
 
-    public static void init() {
+        HashMap<String, StatMod> All = new HashMap<String, StatMod>();
 
         for (StatMod stat : list) {
             if (stat instanceof IGenerated) {
@@ -252,19 +251,14 @@ public class StatMods implements ISlashRegistryInit {
         }
 
         // this makes all StatMod classes for traits cus they are all the same!
-        for (Stat stat : Stats.all.values()) {
+        for (Stat stat : SlashRegistry.Stats().getList()) {
             if (stat instanceof BaseTrait) {
                 BaseTrait trait = (BaseTrait) stat;
                 AllTraitMods traitMod = new AllTraitMods(trait);
                 All.put(traitMod.GUID(), traitMod);
             }
         }
-        // how didnt i think of this before.
 
-    }
-
-    @Override
-    public void registerAll() {
         All.values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATMOD)
                         .register(x));

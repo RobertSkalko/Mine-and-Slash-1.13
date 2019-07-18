@@ -26,6 +26,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
+        if (guid.isEmpty()) {
+            return empty;
+        }
         if (map.containsKey(guid)) {
             return map.get(guid);
         } else {

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
-import com.robertx22.mine_and_slash.database.particle_gens.ParticleGen;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -12,13 +11,31 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
+import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
+import com.robertx22.mine_and_slash.db_lists.newregistry.empty_entries.*;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 
 import java.util.HashMap;
 
 public class SlashRegistry {
+
+    public static SlashRegistryContainer<IUnique> Uniques() {
+        return getRegistry(SlashRegistryType.UNIQUE_ITEM);
+    }
+
+    public static SlashRegistryContainer<Set> Sets() {
+        return getRegistry(SlashRegistryType.SET);
+    }
+
+    public static SlashRegistryContainer<Prefix> Prefixes() {
+        return getRegistry(SlashRegistryType.PREFIX);
+    }
+
+    public static SlashRegistryContainer<Suffix> Suffixes() {
+        return getRegistry(SlashRegistryType.SUFFIX);
+    }
 
     public static SlashRegistryContainer<GearItemSlot> GearTypes() {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
@@ -62,55 +79,40 @@ public class SlashRegistry {
 
     public static void init() {
         createRegistries();
-        initAllDatabases();
         registerFromAllInits();
     }
 
     private static void registerFromAllInits() {
 
-        new Stats().registerAll();
+        new Stats().registerAll();// STATS MUST BE INIT FIRST CUS STATMODS ARE DERIVED FROM STATS, or should be at least
         new StatMods().registerAll();
+
         new GearTypes().registerAll();
         new MapAffixes().registerAll();
         new Prefixes().registerAll();
         new Suffixes().registerAll();
-        new ParticleGens().registerAll();
-        new Sets().registerAll();
-        new Spells().registerAll();
         new StatusEffects().registerAll();
         new UniqueItems().registerAll();
         new WorldProviders().registerAll();
-
-    }
-
-    private static void initAllDatabases() {
-        Stats.init(); // STATS MUST BE INIT FIRST CUS STATMODS ARE DERIVED FROM STATS, or should be at least
-
-        StatMods.init();
-        Prefixes.init();
-
-        Suffixes.init();
-        Sets.init();
-        Spells.init();
+        new Sets().registerAll();
+        new Spells().registerAll();
 
     }
 
     private static void createRegistries() {
-
-        map.put(SlashRegistryType.GEAR_TYPE, new SlashRegistryContainer<GearItemSlot>());
-        map.put(SlashRegistryType.STAT, new SlashRegistryContainer<Stat>());
-        map.put(SlashRegistryType.STATMOD, new SlashRegistryContainer<StatMod>());
-        map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>());
-        map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>());
-        map.put(SlashRegistryType.UNIQUE_ITEM, new SlashRegistryContainer<IUnique>());
-        map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>());
-        map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>());
-        map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>());
-        map.put(SlashRegistryType.RUNEWORD, new SlashRegistryContainer<RuneWord>());
-        map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>());
-        map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>());
-        map.put(SlashRegistryType.PARTICLE_GEN, new SlashRegistryContainer<ParticleGen>());
-        map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>());
+        map.put(SlashRegistryType.GEAR_TYPE, new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
+        map.put(SlashRegistryType.STAT, new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, new EmptyStat()));
+        map.put(SlashRegistryType.STATMOD, new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod()));
+        map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
+        map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
+        map.put(SlashRegistryType.UNIQUE_ITEM, new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_ITEM, new EmptyUnique()));
+        map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix()));
+        map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix()));
+        map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));
+        map.put(SlashRegistryType.RUNEWORD, new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, new EmptyRuneWord()));
+        map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
+        map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
+        map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
 
     }
 

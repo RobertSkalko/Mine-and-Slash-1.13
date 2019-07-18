@@ -27,57 +27,51 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MapAffixes implements ISlashRegistryInit {
-    private static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
-
-    private static List<BaseMapAffix> list = new ArrayList<BaseMapAffix>() {
-        {
-            {
-
-                add(new LessWeaponDamageMapAffix(WeaponTypes.None));
-
-                add(new BonusHealthAffix());
-                add(new BonusLifestealAffix());
-
-                add(new BonusFireDamageAffix());
-                add(new BonusNatureDamageAffix());
-                add(new BonusThunderDamageAffix());
-                add(new BonusWaterDamageAffix());
-
-                add(new BonusFireResistAffix());
-                add(new BonusNatureResistAffix());
-                add(new BonusThunderResistAffix());
-                add(new BonusWaterResistAffix());
-
-                add(new LessAllFireDmgAffix());
-                add(new LessAllNatureDmgAffix());
-                add(new LessAllThunderDmgAffix());
-                add(new LessAllWaterDmgAffix());
-
-                add(new LessDodgeAffix());
-                add(new LessCriticalHitAffix());
-
-                // resources
-                add(new LessEnergyRegenAffix());
-                add(new LessManaRegenAffix());
-                add(new LessHealthRegenAffix());
-                add(new LessLifeOnHitAffix());
-                add(new LessLifestealAffix());
-                add(new LessHealthAffix());
-                add(new LessManaOnHitAffix());
-
-            }
-        }
-    };
 
     @Override
     public void registerAll() {
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
-                        .register(x));
 
-    }
+        HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
 
-    static {
+        List<BaseMapAffix> list = new ArrayList<BaseMapAffix>() {
+            {
+                {
+
+                    add(new LessWeaponDamageMapAffix(WeaponTypes.None));
+
+                    add(new BonusHealthAffix());
+                    add(new BonusLifestealAffix());
+
+                    add(new BonusFireDamageAffix());
+                    add(new BonusNatureDamageAffix());
+                    add(new BonusThunderDamageAffix());
+                    add(new BonusWaterDamageAffix());
+
+                    add(new BonusFireResistAffix());
+                    add(new BonusNatureResistAffix());
+                    add(new BonusThunderResistAffix());
+                    add(new BonusWaterResistAffix());
+
+                    add(new LessAllFireDmgAffix());
+                    add(new LessAllNatureDmgAffix());
+                    add(new LessAllThunderDmgAffix());
+                    add(new LessAllWaterDmgAffix());
+
+                    add(new LessDodgeAffix());
+                    add(new LessCriticalHitAffix());
+
+                    // resources
+                    add(new LessEnergyRegenAffix());
+                    add(new LessManaRegenAffix());
+                    add(new LessHealthRegenAffix());
+                    add(new LessLifeOnHitAffix());
+                    add(new LessLifestealAffix());
+                    add(new LessHealthAffix());
+                    add(new LessManaOnHitAffix());
+
+                }
+            }
+        };
 
         for (BaseMapAffix affix : list) {
 
@@ -91,6 +85,11 @@ public class MapAffixes implements ISlashRegistryInit {
                 All.put(affix.GUID(), affix);
             }
         }
+
+        All.values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
+                        .register(x));
+
     }
 
 }

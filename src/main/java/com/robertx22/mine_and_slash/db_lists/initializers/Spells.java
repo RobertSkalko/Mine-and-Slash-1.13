@@ -27,63 +27,58 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Spells implements ISlashRegistryInit {
-    private static HashMap<String, BaseSpell> All = new HashMap<String, BaseSpell>() {
-        {
-            {
-                put(new SpellFrostBolt().GUID(), new SpellFrostBolt());
-                put(new SpellFireBolt().GUID(), new SpellFireBolt());
-                put(new SpellAcidBolt().GUID(), new SpellAcidBolt());
-                put(new SpellThunderBolt().GUID(), new SpellThunderBolt());
-
-                put(new SpellFrostExplosion().GUID(), new SpellFrostExplosion());
-                put(new SpellFlameExplosion().GUID(), new SpellFlameExplosion());
-                put(new SpellLightningExplosion().GUID(), new SpellLightningExplosion());
-                put(new SpellAcidExplosion().GUID(), new SpellAcidExplosion());
-
-                put(new SpellInstantHeal().GUID(), new SpellInstantHeal());
-                put(new SpellSelfRegen().GUID(), new SpellSelfRegen());
-
-                put(new SpellFireBomb().GUID(), new SpellFireBomb());
-                put(new SpellThunderBomb().GUID(), new SpellThunderBomb());
-                put(new SpellAcidBomb().GUID(), new SpellAcidBomb());
-                put(new SpellIceBomb().GUID(), new SpellIceBomb());
-
-                put(new SpellFrostNova().GUID(), new SpellFrostNova());
-                put(new SpellFireNova().GUID(), new SpellFireNova());
-                put(new SpellThunderNova().GUID(), new SpellThunderNova());
-                put(new SpellPoisonNova().GUID(), new SpellPoisonNova());
-
-            }
-        }
-    };
-
-    private static List<BaseSpell> generated = new ArrayList<BaseSpell>() {
-        {
-            {
-                add(new SpellBonusEleBasicDmg(Elements.Physical));
-
-            }
-        }
-    };
-
-    public static void init() {
-
-        for (BaseSpell spell : generated) {
-            IGenerated<BaseSpell> gen = (IGenerated<BaseSpell>) spell;
-            gen.generateAllPossibleStatVariations().forEach(x -> All.put(x.GUID(), x));
-        }
-
-    }
 
     @Override
     public void registerAll() {
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SPELL)
-                        .register(x));
+
+        List<BaseSpell> All = new ArrayList<BaseSpell>() {
+            {
+                {
+                    add(new SpellFrostBolt());
+                    add(new SpellFireBolt());
+                    add(new SpellAcidBolt());
+                    add(new SpellThunderBolt());
+
+                    add(new SpellFrostExplosion());
+                    add(new SpellFlameExplosion());
+                    add(new SpellLightningExplosion());
+                    add(new SpellAcidExplosion());
+
+                    add(new SpellInstantHeal());
+                    add(new SpellSelfRegen());
+
+                    add(new SpellFireBomb());
+                    add(new SpellThunderBomb());
+                    add(new SpellAcidBomb());
+                    add(new SpellIceBomb());
+
+                    add(new SpellFrostNova());
+                    add(new SpellFireNova());
+                    add(new SpellThunderNova());
+                    add(new SpellPoisonNova());
+
+                }
+            }
+        };
+
+        List<BaseSpell> generated = new ArrayList<BaseSpell>() {
+            {
+                {
+                    add(new SpellBonusEleBasicDmg(Elements.Physical));
+
+                }
+            }
+        };
+
+        for (BaseSpell spell : generated) {
+            IGenerated<BaseSpell> gen = (IGenerated<BaseSpell>) spell;
+            gen.generateAllPossibleStatVariations().forEach(x -> All.add(x));
+        }
+
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SPELL).register(x));
 
     }
 }

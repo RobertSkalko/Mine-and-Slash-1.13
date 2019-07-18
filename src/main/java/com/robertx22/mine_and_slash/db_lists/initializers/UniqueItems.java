@@ -15,21 +15,8 @@ public class UniqueItems implements ISlashRegistryInit {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 
-    static List<IUnique> all = new ArrayList();
-
-    public static void init() {
-
-    }
-
     public static List<IUnique> getAll() {
-        if (all.isEmpty()) {
-            for (Item item : ITEMS.values()) {
-                IUnique uniq = (IUnique) item;
-                all.add(uniq);
-            }
-
-        }
-        return all;
+        return SlashRegistry.Uniques().getList();
     }
 
     public static List<IUnique> getAllUniquesOfTier(int tier, Collection<Item> coll) {
@@ -74,7 +61,17 @@ public class UniqueItems implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-        getAll().forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_ITEM)
+
+        List<IUnique> list = new ArrayList<>();
+        if (list.isEmpty()) {
+            for (Item item : ITEMS.values()) {
+                IUnique uniq = (IUnique) item;
+                list.add(uniq);
+            }
+
+        }
+
+        list.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_ITEM)
                 .register(x));
 
     }

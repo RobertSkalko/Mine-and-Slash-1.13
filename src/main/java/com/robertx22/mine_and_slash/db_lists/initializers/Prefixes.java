@@ -38,87 +38,79 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-        All().values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX)
-                        .register(x));
 
-    }
-
-    public static final Prefixes INSTANCE = new Prefixes();
-
-    private static List<Prefix> allPrefixes = new ArrayList<Prefix>() {
-        {
+        List<Prefix> allPrefixes = new ArrayList<Prefix>() {
             {
+                {
 
-                add(new Heros());
-                add(new Defenders());
+                    add(new Heros());
+                    add(new Defenders());
 
-                add(new Looters());
-                add(new Archaeologists());
-                add(new TreasureSeeker());
+                    add(new Looters());
+                    add(new Archaeologists());
+                    add(new TreasureSeeker());
 
-                add(new Wise());
-                add(new Tenacious());
+                    add(new Wise());
+                    add(new Tenacious());
 
-                add(new Gatekeepers());
+                    add(new Gatekeepers());
 
-                add(new TouchOfMagic());
-                add(new Arcanists());
-                add(new Magical());
+                    add(new TouchOfMagic());
+                    add(new Arcanists());
+                    add(new Magical());
 
-                add(new ThirstOfAcid());
-                add(new ThirstOfFrost());
-                add(new ThirstOfFlame());
-                add(new ThirstOfLightning());
+                    add(new ThirstOfAcid());
+                    add(new ThirstOfFrost());
+                    add(new ThirstOfFlame());
+                    add(new ThirstOfLightning());
 
-                add(new HardHitting());
-                add(new LifeStealing());
-                add(new HeavenlyStrikes());
+                    add(new HardHitting());
+                    add(new LifeStealing());
+                    add(new HeavenlyStrikes());
 
-                add(new Flaming());
-                add(new Frosty());
-                add(new Thorny());
-                add(new Thundering());
+                    add(new Flaming());
+                    add(new Frosty());
+                    add(new Thorny());
+                    add(new Thundering());
 
-                add(new Hardened());
-                add(new Evasive());
-                add(new HeavenlySkin());
+                    add(new Hardened());
+                    add(new Evasive());
+                    add(new HeavenlySkin());
 
-                add(new PrefixFireRes());
-                add(new PrefixWaterRes());
-                add(new PrefixThunderRes());
-                add(new PrefixNatureRes());
+                    add(new PrefixFireRes());
+                    add(new PrefixWaterRes());
+                    add(new PrefixThunderRes());
+                    add(new PrefixNatureRes());
 
-                add(new BraveHeart());
-                add(new DeepMind());
-                add(new InnerSpirit());
+                    add(new BraveHeart());
+                    add(new DeepMind());
+                    add(new InnerSpirit());
 
-                add(new Energetic());
-                add(new Tough());
+                    add(new Energetic());
+                    add(new Tough());
 
-                add(new PoisonImbued());
-                add(new FlameImbued());
-                add(new FrostImbued());
-                add(new LightningImbued());
+                    add(new PoisonImbued());
+                    add(new FlameImbued());
+                    add(new FrostImbued());
+                    add(new LightningImbued());
 
+                }
             }
-        }
-    };
+        };
 
-    private static HashMap<String, Prefix> all = new HashMap<>();
+        HashMap<String, Prefix> all = new HashMap<>();
 
-    private static List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
-        {
+        List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
             {
-                add(new Heretics(Elements.Physical));
-                add(new ElementThornsMastery(Elements.Physical));
-                add(new MagesGamble(new SpellAcidBolt()));
+                {
+                    add(new Heretics(Elements.Physical));
+                    add(new ElementThornsMastery(Elements.Physical));
+                    add(new MagesGamble(new SpellAcidBolt()));
 
+                }
             }
-        }
-    };
+        };
 
-    public static void init() {
         List<Prefix> list = new ArrayList<Prefix>();
         list.addAll(allPrefixes);
 
@@ -132,11 +124,17 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
             }
         }
 
+        All().values()
+                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX)
+                        .register(x));
+
     }
+
+    public static final Prefixes INSTANCE = new Prefixes();
 
     @Override
     public HashMap<String, Prefix> All() {
-        return all;
+        return SlashRegistry.Prefixes().getAll();
     }
 
 }
