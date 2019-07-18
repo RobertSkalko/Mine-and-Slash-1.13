@@ -5,6 +5,8 @@ import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.WornSetData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -15,9 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLocName {
+public abstract class Set implements IWeighted, IGUID, IhasRequirements, IAutoLocName, ISlashRegistryEntry<Set> {
 
     public Set() {
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.SET;
     }
 
     @Override

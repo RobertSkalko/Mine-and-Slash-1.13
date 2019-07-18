@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.world_providers;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Templates;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.world_gen.types.FeatureType;
@@ -34,10 +36,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public abstract class BaseWorldProvider extends Dimension implements IWP {
+public abstract class BaseWorldProvider extends Dimension implements IWP, ISlashRegistryEntry<BaseWorldProvider> {
 
     public ModDimension moddim;
     private DimensionType type;
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.WORLD_PROVIDER;
+    }
 
     @Override
     public List<FeatureType> smallSurfaceDecorations() {

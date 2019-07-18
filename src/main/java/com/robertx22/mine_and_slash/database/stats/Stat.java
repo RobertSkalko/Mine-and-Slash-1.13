@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.db_lists.newregistry.IRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -24,7 +25,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, IRegistryEntry<Stat> {
+public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, ISlashRegistryEntry<Stat> {
 
     public Stat() {
     }
@@ -33,6 +34,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, IRegist
 
     static final int rows = 13;
     static final int spriteSize = 18;
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.STAT;
+    }
 
     public int getSpriteX() {
         int placeX = this.iconSpriteNumber() % rows;

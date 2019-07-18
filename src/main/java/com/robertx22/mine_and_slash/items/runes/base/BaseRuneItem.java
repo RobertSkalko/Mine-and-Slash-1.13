@@ -5,6 +5,8 @@ import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -33,13 +35,18 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName {
+public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName, ISlashRegistryEntry<BaseRuneItem> {
 
     public int rarity;
 
     @Override
     public String locNameLangFileGUID() {
         return this.getRegistryName().toString();
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.RUNE;
     }
 
     @Override

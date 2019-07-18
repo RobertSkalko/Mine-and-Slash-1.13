@@ -19,34 +19,39 @@ import java.util.HashMap;
 
 public class SlashRegistry {
 
-    private static HashMap<RegistryEntryType, SlashRegistryEntry> map = new HashMap<>();
+    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
 
-    public static SlashRegistryEntry getRegistry(RegistryEntryType type) {
+    public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
         return map.get(type);
 
     }
 
-    public static IRegistryEntry get(RegistryEntryType type, String guid) {
+    public static ISlashRegistryEntry get(SlashRegistryType type, String guid) {
         return getRegistry(type).get(guid);
 
     }
 
-    public static void createRegistries() {
+    public static void init() {
+        createRegistries();
 
-        map.put(RegistryEntryType.GEAR_TYPE, new SlashRegistryEntry<GearItemSlot>());
-        map.put(RegistryEntryType.STAT, new SlashRegistryEntry<Stat>());
-        map.put(RegistryEntryType.STATMOD, new SlashRegistryEntry<StatMod>());
-        map.put(RegistryEntryType.SET, new SlashRegistryEntry<Set>());
-        map.put(RegistryEntryType.SPELL, new SlashRegistryEntry<BaseSpell>());
-        map.put(RegistryEntryType.UNIQUE_ITEM, new SlashRegistryEntry<IUnique>());
-        map.put(RegistryEntryType.SUFFIX, new SlashRegistryEntry<Suffix>());
-        map.put(RegistryEntryType.PREFIX, new SlashRegistryEntry<Prefix>());
-        map.put(RegistryEntryType.RUNE, new SlashRegistryEntry<BaseRuneItem>());
-        map.put(RegistryEntryType.RUNEWORD, new SlashRegistryEntry<RuneWord>());
-        map.put(RegistryEntryType.MAP_AFFIX, new SlashRegistryEntry<BaseMapAffix>());
-        map.put(RegistryEntryType.MAP_AFFIX, new SlashRegistryEntry<BaseStatusEffect>());
-        map.put(RegistryEntryType.PARTICLE_GEN, new SlashRegistryEntry<ParticleGen>());
-        map.put(RegistryEntryType.WORLD_PROVIDER, new SlashRegistryEntry<BaseWorldProvider>());
+    }
+
+    private static void createRegistries() {
+
+        map.put(SlashRegistryType.GEAR_TYPE, new SlashRegistryContainer<GearItemSlot>());
+        map.put(SlashRegistryType.STAT, new SlashRegistryContainer<Stat>());
+        map.put(SlashRegistryType.STATMOD, new SlashRegistryContainer<StatMod>());
+        map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>());
+        map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>());
+        map.put(SlashRegistryType.UNIQUE_ITEM, new SlashRegistryContainer<IUnique>());
+        map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>());
+        map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>());
+        map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>());
+        map.put(SlashRegistryType.RUNEWORD, new SlashRegistryContainer<RuneWord>());
+        map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>());
+        map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>());
+        map.put(SlashRegistryType.PARTICLE_GEN, new SlashRegistryContainer<ParticleGen>());
+        map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>());
 
     }
 

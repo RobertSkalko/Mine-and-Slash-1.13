@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.particle_gens.ParticleGen;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
+import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
@@ -14,7 +15,7 @@ import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 
-public enum RegistryEntryType {
+public enum SlashRegistryType {
 
     STAT(Stat.class),
     STATMOD(StatMod.class),
@@ -31,9 +32,9 @@ public enum RegistryEntryType {
     PARTICLE_GEN(ParticleGen.class),
     MAP_AFFIX(BaseMapAffix.class);
 
-    public Class<? extends IRegistryEntry> theclass;
+    public Class<? extends ISlashRegistryEntry> theclass;
 
-    RegistryEntryType(Class<? extends IRegistryEntry> theclass) {
+    SlashRegistryType(Class<? extends ISlashRegistryEntry> theclass) {
         this.theclass = theclass;
     }
 

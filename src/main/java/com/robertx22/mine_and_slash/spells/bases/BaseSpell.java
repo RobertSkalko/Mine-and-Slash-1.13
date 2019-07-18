@@ -1,14 +1,16 @@
 package com.robertx22.mine_and_slash.spells.bases;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.network.NoEnergyPacket;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.network.NoEnergyPacket;
 import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -16,7 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
-public abstract class BaseSpell implements IWeighted, IGUID {
+public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell> {
 
     public enum SpellType {
         Single_Target_Projectile,
@@ -26,6 +28,11 @@ public abstract class BaseSpell implements IWeighted, IGUID {
         Restore_Energy,
         Aoe_Damage_Nova,
         Self_Buff,
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.SPELL;
     }
 
     public String typeString() {

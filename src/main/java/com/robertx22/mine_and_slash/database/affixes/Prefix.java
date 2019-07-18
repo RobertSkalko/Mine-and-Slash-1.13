@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
-public abstract class Prefix extends BaseAffix {
+public abstract class Prefix extends BaseAffix implements ISlashRegistryEntry<Prefix> {
 
     public Prefix() {
 
@@ -16,5 +18,10 @@ public abstract class Prefix extends BaseAffix {
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Prefixes;
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.PREFIX;
     }
 }

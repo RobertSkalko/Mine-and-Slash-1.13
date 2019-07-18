@@ -1,15 +1,22 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
-public abstract class StatMod implements IWeighted, IGUID {
+public abstract class StatMod implements IWeighted, IGUID, ISlashRegistryEntry<StatMod> {
 
     public float multiplier = 1F;
 
     public float sizeMultiplier() {
         return multiplier;
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.STATMOD;
     }
 
     @Override

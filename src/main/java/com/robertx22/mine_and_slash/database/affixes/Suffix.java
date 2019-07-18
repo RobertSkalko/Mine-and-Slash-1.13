@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
-public abstract class Suffix extends BaseAffix {
+public abstract class Suffix extends BaseAffix implements ISlashRegistryEntry<Suffix> {
 
     @Override
     public String locNameLangFileGUID() {
@@ -12,5 +14,10 @@ public abstract class Suffix extends BaseAffix {
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Suffixes;
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.SUFFIX;
     }
 }

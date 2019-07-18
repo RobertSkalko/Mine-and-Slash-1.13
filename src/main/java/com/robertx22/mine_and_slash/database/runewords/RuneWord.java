@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.runewords;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -9,11 +11,16 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.List;
 
-public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName {
+public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlashRegistryEntry<RuneWord> {
 
     public abstract List<StatMod> mods();
 
     public abstract String GUID();
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.RUNEWORD;
+    }
 
     @Override
     public String locNameLangFileGUID() {

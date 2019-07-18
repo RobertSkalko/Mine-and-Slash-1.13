@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.particle_gens;
 
-import com.robertx22.mine_and_slash.db_lists.newregistry.IRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.RedstoneParticleData;
@@ -9,7 +9,7 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 
-public abstract class ParticleGen implements IRegistryEntry {
+public abstract class ParticleGen implements ISlashRegistryEntry {
 
     public Random rand = new Random();
 
