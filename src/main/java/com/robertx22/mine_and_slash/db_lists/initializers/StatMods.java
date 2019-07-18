@@ -252,7 +252,7 @@ public class StatMods implements ISlashRegistryInit {
         }
 
         // this makes all StatMod classes for traits cus they are all the same!
-        for (Stat stat : Stats.All.values()) {
+        for (Stat stat : Stats.all.values()) {
             if (stat instanceof BaseTrait) {
                 BaseTrait trait = (BaseTrait) stat;
                 AllTraitMods traitMod = new AllTraitMods(trait);

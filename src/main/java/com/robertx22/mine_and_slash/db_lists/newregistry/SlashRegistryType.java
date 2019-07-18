@@ -30,6 +30,7 @@ public enum SlashRegistryType {
     WORLD_PROVIDER(BaseWorldProvider.class),
     SET(Set.class),
     PARTICLE_GEN(ParticleGen.class),
+    EMPTY(EmptySlashRegistry.class),
     MAP_AFFIX(BaseMapAffix.class);
 
     public Class<? extends ISlashRegistryEntry> theclass;

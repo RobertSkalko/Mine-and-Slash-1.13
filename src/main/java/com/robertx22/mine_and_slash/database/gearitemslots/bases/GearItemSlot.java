@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.mine_and_slash.db_lists.initializers.StatMods;
 import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -83,7 +83,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
         List<StatMod> list = new ArrayList<StatMod>();
 
-        for (StatMod mod : StatMods.All.values()) {
+        for (StatMod mod : SlashRegistry.StatMods().getAll().values()) {
             if (mod instanceof AllTraitMods) {
                 list.add(mod);
             }

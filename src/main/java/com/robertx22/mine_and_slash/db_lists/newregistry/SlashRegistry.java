@@ -24,27 +24,27 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> Spells() {
+    public static SlashRegistryContainer<BaseSpell> Spells() {
         return getRegistry(SlashRegistryType.SPELL);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> Runes() {
+    public static SlashRegistryContainer<BaseRuneItem> Runes() {
         return getRegistry(SlashRegistryType.RUNE);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> RuneWords() {
+    public static SlashRegistryContainer<RuneWord> RuneWords() {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> WorldProviders() {
+    public static SlashRegistryContainer<BaseWorldProvider> WorldProviders() {
         return getRegistry(SlashRegistryType.WORLD_PROVIDER);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> Stats() {
+    public static SlashRegistryContainer<Stat> Stats() {
         return getRegistry(SlashRegistryType.STAT);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> StatMods() {
+    public static SlashRegistryContainer<StatMod> StatMods() {
         return getRegistry(SlashRegistryType.STATMOD);
     }
 
@@ -63,6 +63,23 @@ public class SlashRegistry {
     public static void init() {
         createRegistries();
         initAllDatabases();
+        registerFromAllInits();
+    }
+
+    private static void registerFromAllInits() {
+
+        new Stats().registerAll();
+        new StatMods().registerAll();
+        new GearTypes().registerAll();
+        new MapAffixes().registerAll();
+        new Prefixes().registerAll();
+        new Suffixes().registerAll();
+        new ParticleGens().registerAll();
+        new Sets().registerAll();
+        new Spells().registerAll();
+        new StatusEffects().registerAll();
+        new UniqueItems().registerAll();
+        new WorldProviders().registerAll();
 
     }
 
