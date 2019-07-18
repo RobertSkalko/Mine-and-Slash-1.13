@@ -1,4 +1,4 @@
-2.2.1
+2.2.2
 renamed my code packages to include both my curseforge name and my mod name
 added a super rare ring unique
 should fix /restorelevel not working

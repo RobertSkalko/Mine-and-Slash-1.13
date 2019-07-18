@@ -1,17 +1,18 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.db_lists.newregistry.IRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -23,7 +24,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc {
+public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, IRegistryEntry<Stat> {
 
     public Stat() {
     }
