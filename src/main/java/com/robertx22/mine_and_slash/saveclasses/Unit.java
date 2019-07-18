@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.saveclasses;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -31,6 +33,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -257,7 +260,9 @@ public class Unit {
 
         MobRarity finalRarity = RandomUtils.weightedRandom(after);
 
-        return finalRarity.Rank();
+        ModEntityConfig entityconfig = ModEntityConfigs.INSTANCE.getConfig(entity);
+
+        return MathHelper.clamp(finalRarity.Rank(), entityconfig.MIN_RARITY, entityconfig.MAX_RARITY);
 
     }
 
@@ -391,6 +396,8 @@ public class Unit {
             if (isMapWorld) {
                 MobStatUtils.increaseMobStatsPerTier(data, this);
             }
+
+            MobStatUtils.modifyMobStatsByConfig(entity, data, level);
 
         }
 

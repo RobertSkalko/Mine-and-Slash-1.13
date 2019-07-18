@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
@@ -341,6 +343,8 @@ public class EntityCap {
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
 
+            num *= ModEntityConfigs.INSTANCE.getConfig(source).DMG_MULTI;
+            
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
             dmg.Activate();
@@ -395,7 +399,11 @@ public class EntityCap {
         public void SetMobLevelAtSpawn(LivingEntity entity) {
 
             this.setMobStats = true;
-            this.level = LevelUtils.determineLevel(entity.world, entity.getPosition());
+            ModEntityConfig config = ModEntityConfigs.INSTANCE.getConfig(entity);
+
+            int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + config.LEVEL_MODIFIER;
+
+            this.level = MathHelper.clamp(lvl, config.MIN_LEVEL, config.MAX_LEVEL);
 
         }
 

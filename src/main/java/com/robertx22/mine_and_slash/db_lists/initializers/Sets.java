@@ -42,7 +42,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
         HashMap<String, Set> All = new HashMap<String, Set>();
 
-        List<Set> generated = new ArrayList<Set>() {
+        List<Set> sets = new ArrayList<Set>() {
             {
                 {
 
@@ -86,7 +86,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
             }
         };
 
-        for (Set set : generated) {
+        for (Set set : sets) {
             if (set instanceof IGenerated) {
                 for (Set statmod : ((IGenerated<Set>) set).generateAllPossibleStatVariations()) {
                     All.put(statmod.GUID(), statmod);

@@ -1,7 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalPene;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
@@ -9,6 +12,8 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.generated.Elementa
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.ArmorPenetration;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -18,6 +23,7 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
@@ -46,6 +52,25 @@ public class MobStatUtils {
 
         for (StatData stat : unit.getStats().values()) {
             stat.Flat *= DimensionsContainer.INSTANCE.getConfig(world).MOB_STRENGTH_MULTIPLIER;
+        }
+
+    }
+
+    public static void modifyMobStatsByConfig(Entity entity, UnitData unitdata,
+                                              int level) {
+
+        Unit unit = unitdata.getUnit();
+        ModEntityConfig config = ModEntityConfigs.INSTANCE.getConfig(entity);
+
+        for (StatData data : unit.getStats().values()) {
+            Stat stat = data.GetStat();
+            if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
+                data.Flat *= config.DMG_MULTI;
+            } else if (data.Name != Health.GUID) {
+                data.Flat *= config.STAT_MULTI;
+            } else {
+                data.Flat *= config.HP_MULTI;
+            }
         }
 
     }

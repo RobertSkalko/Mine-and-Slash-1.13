@@ -19,7 +19,7 @@ public enum AdvDescs implements IAutoLocName {
 
     AutoSalvageBag("These bags when equipped will automatically salvage items! This means all those bad common, uncommon and other useless items can be automatically salvaged! Higher rarity bag gives more bonus item chance."),
 
-    ChaosOrb("Gives Chaos Stats. These Stats can be good or bad. They either can't be removed or the removal is extremely rare and expensive."),
+    ChaosOrb("Gives Chaos Stats. These Stats can be good or bad. Chaos stats can't be removed, so choose wisely which item you modify."),
 
     Stoneofhope("Recreates the item completely, giving you a higher rarity. Very useful if you have a legendary item with bad/unwanted stats."),
 

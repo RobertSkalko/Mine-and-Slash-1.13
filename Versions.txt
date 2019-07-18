@@ -1,3 +1,6 @@
+2.2.3
+reworked my registry system so it uses my registry classes instead of plain old hashmaps. This should reduce crashes as now instead of returning null, it returns empty or default classes in case no key is in the registry
+unstable because this needs to be tested a bit to make sure everything works, but should increase stability in the long run.
 2.2.2
 renamed my code packages to include both my curseforge name and my mod name
 added a super rare ring unique

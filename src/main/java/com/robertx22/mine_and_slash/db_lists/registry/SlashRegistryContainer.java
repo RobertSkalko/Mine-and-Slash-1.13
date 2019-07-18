@@ -38,6 +38,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             if (accessorErrosAletedFor.contains(guid) == false) {
                 System.out.println("Mine and Slash GUID Error: " + guid + " of type: " + type
                         .toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+                accessorErrosAletedFor.add(guid);
             }
 
             return empty;
