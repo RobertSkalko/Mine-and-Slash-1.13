@@ -6,6 +6,8 @@ import java.util.List;
 
 public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
+    public static List<String> errorsAlertedFor = new ArrayList<>();
+
     public SlashRegistryContainer(SlashRegistryType type, C empty) {
         this.type = type;
         this.empty = empty;
@@ -42,6 +44,18 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void register(C c) {
-        map.put(c.GUID(), c);
+
+        if (isRegistered(c)) {
+            if (errorsAlertedFor.contains(c.GUID()) == false) {
+                System.out.println("[Mine and Slash Registry Error]: Key: " + c.GUID() + " has already been registered to: " + c
+                        .getSlashRegistryType()
+                        .toString() + " registry.");
+                errorsAlertedFor.add(c.GUID());
+            }
+
+        } else {
+            map.put(c.GUID(), c);
+        }
+
     }
 }

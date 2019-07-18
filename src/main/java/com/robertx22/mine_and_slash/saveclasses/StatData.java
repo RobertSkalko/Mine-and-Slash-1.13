@@ -1,18 +1,28 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
+import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.text.DecimalFormat;
 
 @Storable
-public class StatData {
+public class StatData implements ISlashRegistryEntry<Stat> {
 
     public StatData() {
 
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.STAT;
+    }
+
+    @Override
+    public String GUID() {
+        return this.Name;
     }
 
     public StatData(Stat stat) {
@@ -20,16 +30,7 @@ public class StatData {
     }
 
     public Stat GetStat() {
-        if (Stats.All.containsKey(Name)) {
-            return Stats.All.get(Name);
-        }
-        /*
-         * System.out.println(
-         * "No such stat, this is probably a legacy item and the stat has been renamed or removed: "
-         * + Name);
-         *
-         */
-        return Stats.All.get(UnknownStat.GUID);
+        return this.getFromRegistry();
     }
 
     @Store
