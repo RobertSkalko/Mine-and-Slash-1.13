@@ -18,9 +18,15 @@ public class PlayersCapBackup {
     public void backup(ServerPlayerEntity player, EntityCap.UnitData data) {
 
         int currentLvl = data.getLevel();
-        int backedUpLvl = map.getOrDefault(getKey(player), currentLvl);
 
-        if (backedUpLvl < currentLvl) {
+        int backedUpLvl = 0;
+
+        if (map.containsKey(getKey(player))) {
+            backedUpLvl = map.get(getKey(player));
+            if (backedUpLvl > currentLvl) {
+                map.put(getKey(player), data.getLevel());
+            }
+        } else {
             map.put(getKey(player), data.getLevel());
         }
     }
