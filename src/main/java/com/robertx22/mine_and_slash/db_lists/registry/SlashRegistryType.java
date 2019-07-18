@@ -1,10 +1,9 @@
-package com.robertx22.mine_and_slash.db_lists.newregistry;
+package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
-import com.robertx22.mine_and_slash.database.particle_gens.ParticleGen;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -29,7 +28,6 @@ public enum SlashRegistryType {
     UNIQUE_ITEM(IUnique.class),
     WORLD_PROVIDER(BaseWorldProvider.class),
     SET(Set.class),
-    PARTICLE_GEN(ParticleGen.class),
     EMPTY(EmptySlashRegistry.class),
     MAP_AFFIX(BaseMapAffix.class);
 

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.newregistry;
+package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
@@ -13,7 +13,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
-import com.robertx22.mine_and_slash.db_lists.newregistry.empty_entries.*;
+import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 

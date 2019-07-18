@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.newregistry;
+package com.robertx22.mine_and_slash.db_lists.registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,8 @@ import java.util.List;
 
 public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
-    public static List<String> errorsAlertedFor = new ArrayList<>();
+    public static List<String> registersErrorsAlertedFor = new ArrayList<>();
+    public static List<String> accessorErrosAletedFor = new ArrayList<>();
 
     public SlashRegistryContainer(SlashRegistryType type, C empty) {
         this.type = type;
@@ -34,7 +35,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         if (map.containsKey(guid)) {
             return map.get(guid);
         } else {
-            System.out.println("Mine and Slash GUID: " + guid + " of type: " + type.toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+            if (accessorErrosAletedFor.contains(guid) == false) {
+                System.out.println("Mine and Slash GUID Error: " + guid + " of type: " + type
+                        .toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+            }
+
             return empty;
         }
     }
@@ -50,11 +55,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public void register(C c) {
 
         if (isRegistered(c)) {
-            if (errorsAlertedFor.contains(c.GUID()) == false) {
+            if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
                 System.out.println("[Mine and Slash Registry Error]: Key: " + c.GUID() + " has already been registered to: " + c
                         .getSlashRegistryType()
                         .toString() + " registry.");
-                errorsAlertedFor.add(c.GUID());
+                registersErrorsAlertedFor.add(c.GUID());
             }
 
         } else {

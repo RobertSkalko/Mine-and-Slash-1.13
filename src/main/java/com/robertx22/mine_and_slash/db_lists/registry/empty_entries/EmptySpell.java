@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.newregistry.empty_entries;
+package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.items.spells.projectile.ItemFrostBolt;
 import com.robertx22.mine_and_slash.saveclasses.SpellItemData;

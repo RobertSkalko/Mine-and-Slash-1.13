@@ -1,6 +1,6 @@
-package com.robertx22.mine_and_slash.db_lists.newregistry.empty_entries;
+package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
+import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmptyPrefix extends Prefix {
+public class EmptySuffix extends Suffix {
     @Override
     public String GUID() {
         return "";

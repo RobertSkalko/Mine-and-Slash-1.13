@@ -16,9 +16,9 @@ import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfGodhood;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfTheHydra;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfWeaponFlurry;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
-import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -104,7 +104,7 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
             }
         }
 
-        All().values()
+        all.values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SUFFIX)
                         .register(x));
 

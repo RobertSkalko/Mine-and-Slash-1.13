@@ -23,9 +23,9 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_reso
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.MagesGamble;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
-import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -124,7 +124,7 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
             }
         }
 
-        All().values()
+        all.values()
                 .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX)
                         .register(x));
 

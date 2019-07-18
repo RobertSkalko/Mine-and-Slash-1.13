@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.status_effects.*;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
-import com.robertx22.mine_and_slash.db_lists.newregistry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.newregistry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 
 import java.util.ArrayList;
 import java.util.List;
