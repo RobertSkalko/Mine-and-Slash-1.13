@@ -33,7 +33,7 @@ public class MobStatUtils {
 
     static int spelldmg = 10;
     static int elePene = 8;
-    static int spellresist = 4;
+    static int spellresist = 3;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
@@ -66,10 +66,10 @@ public class MobStatUtils {
             Stat stat = data.GetStat();
             if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.Flat *= config.DMG_MULTI;
-            } else if (data.Name != Health.GUID) {
-                data.Flat *= config.STAT_MULTI;
-            } else {
+            } else if (data.Name.equals(Health.GUID)) {
                 data.Flat *= config.HP_MULTI;
+            } else {
+                data.Flat *= config.STAT_MULTI;
             }
         }
 

@@ -45,7 +45,7 @@ public class MyAdvProvider implements IDataProvider {
                 Path path1 = resolve(path, advancement);
 
                 try {
-                    IDataProvider.func_218426_a(GSON, cache, advancement.copy()
+                    IDataProvider.save(GSON, cache, advancement.copy()
                             .serialize(), path1);
                     LOGGER.log(Level.ALL, "Saved advacement");
                 } catch (IOException ioexception) {
