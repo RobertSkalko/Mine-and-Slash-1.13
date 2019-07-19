@@ -93,7 +93,8 @@ public class SlashRegistry {
 
         new Stats().registerAll();// STATS MUST BE INIT FIRST CUS STATMODS ARE DERIVED FROM STATS, or should be at least
         new StatMods().registerAll();
-
+        new Runes().registerAll();
+        new RuneWords().registerAll();
         new GearTypes().registerAll();
         new MapAffixes().registerAll();
         new Prefixes().registerAll();

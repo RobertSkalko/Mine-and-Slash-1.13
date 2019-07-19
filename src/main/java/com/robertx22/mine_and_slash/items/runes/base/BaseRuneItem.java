@@ -66,7 +66,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     public String GUID() {
-        return "";
+        return name();
     }
 
     @Override

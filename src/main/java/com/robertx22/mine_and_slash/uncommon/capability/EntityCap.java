@@ -344,7 +344,7 @@ public class EntityCap {
             float num = 1.1F * vanilla * rar.DamageMultiplier();
 
             num *= ModEntityConfigs.INSTANCE.getConfig(source).DMG_MULTI;
-            
+
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
             dmg.Activate();

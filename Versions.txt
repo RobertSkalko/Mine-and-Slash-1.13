@@ -1,3 +1,7 @@
+2.2.4 
+added more mob configs, please test if they work! (stuff like min lvl, min rarity, lvl modifier etc. hp multi.)
+fixed runewords
+fixed runes
 2.2.3
 reworked my registry system so it uses my registry classes instead of plain old hashmaps. This should reduce crashes as now instead of returning null, it returns empty or default classes in case no key is in the registry
 unstable because this needs to be tested a bit to make sure everything works, but should increase stability in the long run.
