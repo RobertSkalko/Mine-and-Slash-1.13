@@ -10,17 +10,18 @@ import com.robertx22.mine_and_slash.items.currency.ItemOrbOfTransmutation;
 import com.robertx22.mine_and_slash.items.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
-import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
-import com.robertx22.mine_and_slash.uncommon.localization.AdvTitles;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
+import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
+import com.robertx22.mine_and_slash.uncommon.localization.AdvTitles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -37,6 +38,13 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
                 .withCriterion("crafting_table", InventoryChangeTrigger.Instance.forItems(Blocks.CRAFTING_TABLE))
                 .register(consu, id("root"));
 
+        Advancement lvlpenalty = Advancement.Builder.builder()
+                .withParent(parent)
+                .withDisplay(Items.GUNPOWDER, AdvTitles.LevelPenalty.locName(), AdvDescs.LevelPenalty
+                        .locName(), null, FrameType.TASK, true, true, false)
+                .withCriterion(id("lvl_penalty"), new DropLvlPenaltyTrigger.Instance(5))
+                .register(consu, id("lvl_penalty"));
+        
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items
                 .get(0));
         Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items

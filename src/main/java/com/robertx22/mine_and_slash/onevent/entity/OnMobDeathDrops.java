@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -42,6 +43,9 @@ public class OnMobDeathDrops {
                         if (victim.shouldDropLoot(entity) == false) {
                             return;
                         }
+
+                        CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger((ServerPlayerEntity) player, killer, victim);
+
                         float loot_multi = EntityTypeUtils.getLootMulti(entity);
                         float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
