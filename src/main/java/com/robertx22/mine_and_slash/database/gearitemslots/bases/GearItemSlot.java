@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

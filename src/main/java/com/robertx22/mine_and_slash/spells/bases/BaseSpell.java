@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;

@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
 
 import java.util.List;
 

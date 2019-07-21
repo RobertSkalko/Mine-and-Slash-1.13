@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
+package com.robertx22.mine_and_slash.uncommon.interfaces;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 

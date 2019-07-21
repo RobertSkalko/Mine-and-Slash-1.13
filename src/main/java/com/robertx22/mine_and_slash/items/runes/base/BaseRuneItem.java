@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

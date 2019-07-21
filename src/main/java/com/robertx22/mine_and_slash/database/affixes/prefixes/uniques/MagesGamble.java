@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.ArrayList;
 import java.util.Arrays;

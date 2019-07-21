@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

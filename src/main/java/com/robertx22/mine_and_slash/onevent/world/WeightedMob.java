@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.world;
 
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.EntityType;
 
 public class WeightedMob implements IWeighted {

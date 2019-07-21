@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases;
 
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.block.Block;
 
 public class BlockWeight implements IWeighted {

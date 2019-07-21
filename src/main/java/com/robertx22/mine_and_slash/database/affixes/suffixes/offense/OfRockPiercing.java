@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.ArmorPenePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.Arrays;
 import java.util.List;

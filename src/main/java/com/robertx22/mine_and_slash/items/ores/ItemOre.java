@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
 import net.minecraft.block.Block;

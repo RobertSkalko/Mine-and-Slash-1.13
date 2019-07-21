@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
