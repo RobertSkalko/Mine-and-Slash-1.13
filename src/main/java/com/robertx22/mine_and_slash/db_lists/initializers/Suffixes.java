@@ -58,7 +58,6 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
                     add(new OfForce());
                     add(new OfRockPiercing());
 
-                    add(new OfVitality());
                     add(new OfRockSkin());
                     add(new OfElementResist());
                     add(new OfImmortality());

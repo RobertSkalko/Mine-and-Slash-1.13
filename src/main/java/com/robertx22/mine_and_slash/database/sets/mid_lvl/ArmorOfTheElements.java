@@ -26,7 +26,7 @@ public class ArmorOfTheElements extends Set {
                 {
                     put(2, new ManaFlat());
                     put(3, new AllEleSpellDmgFlat());
-                    put(4, new AllEleDmgFlat());
+                    put(4, new AllEleDmgFlat().multi(2));
 
                 }
             }
@@ -40,6 +40,6 @@ public class ArmorOfTheElements extends Set {
 
     @Override
     public String GUID() {
-        return "artifact_armor";
+        return "armor_of_the_elements";
     }
 }

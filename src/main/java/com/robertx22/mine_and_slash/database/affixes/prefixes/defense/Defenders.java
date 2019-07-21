@@ -17,7 +17,7 @@ public class Defenders extends Prefix {
 
     @Override
     public String GUID() {
-        return "Evasive";
+        return "defenders";
     }
 
     @Override
