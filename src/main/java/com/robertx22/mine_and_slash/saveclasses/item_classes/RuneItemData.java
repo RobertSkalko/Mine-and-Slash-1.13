@@ -7,15 +7,24 @@ import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+import java.util.List;
 
 @Storable
 public class RuneItemData implements ICommonDataItem<RuneRarity> {
@@ -99,6 +108,53 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              EntityCap.UnitData data) {
 
+        List<ITextComponent> tooltip = event.getToolTip();
+
+        RuneItemData rune = Rune.Load(stack);
+
+        if (rune != null) {
+
+            tooltip.add(TooltipUtils.level(rune.level));
+
+            RuneRarity rar = rune.GetRarity();
+
+            TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), rar.StatPercents(), rune.level);
+
+            if (rune.armor != null) {
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(Words.Armor.locName().appendText(":")), tooltip);
+                for (ITextComponent str : rune.armor.GetTooltipString(info)) {
+                    Tooltip.add(str, tooltip);
+                }
+                Tooltip.add("", tooltip);
+            }
+            if (rune.weapon != null) {
+
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(Words.Weapon.locName().appendText(":")), tooltip);
+                for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
+                    Tooltip.add(str, tooltip);
+                }
+            }
+            if (rune.jewerly != null) {
+
+                Tooltip.add("", tooltip);
+                Tooltip.add(Styles.GRAYCOMP()
+                        .appendSibling(Words.Jewerly.locName().appendText(":")), tooltip);
+                for (ITextComponent str : rune.jewerly.GetTooltipString(info)) {
+                    Tooltip.add(str, tooltip);
+                }
+                Tooltip.add("", tooltip);
+            }
+
+            Tooltip.add(TooltipUtils.rarity(rune.GetRarity()), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            Tooltip.add(Styles.BLUECOMP()
+                    .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
+
+        }
     }
 
     @Override

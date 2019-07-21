@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.items.runes.base;
 
 import com.robertx22.mine_and_slash.database.ElementalStatMod;
-import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -9,20 +8,14 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -122,52 +115,6 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        RuneItemData rune = Rune.Load(stack);
-
-        if (rune != null) {
-
-            tooltip.add(TooltipUtils.level(rune.level));
-
-            RuneRarity rar = rune.GetRarity();
-
-            TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), rar.StatPercents(), rune.level);
-
-            if (rune.armor != null) {
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Armor.locName().appendText(":")), tooltip);
-                for (ITextComponent str : rune.armor.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
-                }
-                Tooltip.add("", tooltip);
-            }
-            if (rune.weapon != null) {
-
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Weapon.locName().appendText(":")), tooltip);
-                for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
-                }
-            }
-            if (rune.jewerly != null) {
-
-                Tooltip.add("", tooltip);
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Jewerly.locName().appendText(":")), tooltip);
-                for (ITextComponent str : rune.jewerly.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
-                }
-                Tooltip.add("", tooltip);
-            }
-
-            Tooltip.add(TooltipUtils.rarity(rune.GetRarity()), tooltip);
-
-            Tooltip.add("", tooltip);
-
-            Tooltip.add(Styles.BLUECOMP()
-                    .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
-
-        }
 
     }
 

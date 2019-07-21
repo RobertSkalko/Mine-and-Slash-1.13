@@ -3,14 +3,8 @@ package com.robertx22.mine_and_slash.blocks.salvage_station;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -56,24 +50,12 @@ public class TileGearSalvage extends BaseTile {
 
         float bonus = getCapacitorBonus();
 
-        GearItemData gear = Gear.Load(st);
-        if (gear != null) {
-            return gear.getSalvageResult(bonus);
-        }
+        ICommonDataItem data = ICommonDataItem.load(st);
 
-        SpellItemData spell = Spell.Load(st);
-        if (spell != null) {
-            return spell.getSalvageResult(bonus);
-        }
-
-        MapItemData map = Map.Load(st);
-        if (map != null) {
-            return map.getSalvageResult(bonus);
-        }
-
-        RuneItemData rune = Rune.Load(st);
-        if (rune != null) {
-            return rune.getSalvageResult(bonus);
+        if (data != null) {
+            if (data.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
+                return data.getSalvageResult(bonus);
+            }
         }
 
         return ItemStack.EMPTY;

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
+import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
@@ -21,6 +23,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
@@ -28,11 +31,14 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
@@ -221,6 +227,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         return datas;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              UnitData data) {
@@ -304,6 +311,36 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         tip.clear();
         tip.addAll(tool);
 
+        if (Screen.hasShiftDown() == false) {
+            event.getToolTip()
+                    .add(Styles.BLUECOMP()
+                            .appendSibling(CLOC.tooltip("press_shift_more_info")));
+        } else {
+            event.getToolTip()
+                    .add(Styles.GOLDCOMP()
+                            .appendSibling(new StringTextComponent("Power Level: " + getPowerLevel())));
+            event.getToolTip()
+                    .add(Styles.BLUECOMP()
+                            .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
+
+        }
+
+        if (stack.getItem() instanceof IEffectItem) {
+            IEffectItem effect = (IEffectItem) stack.getItem();
+            event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
+        }
+
+        if (stack.getItem().getRegistryName() != null) {
+            if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
+                    .getRegistryName()
+                    .toString())) {
+
+                event.getToolTip()
+                        .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
+
+            }
+        }
+
     }
 
     public List<IRerollable> GetAllRerollable() {
@@ -380,7 +417,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
-        
+
         if (context == SalvageContext.AUTO_SALVAGE_BAG) {
             return this.isUnique() == false && this.isSalvagable;
 
