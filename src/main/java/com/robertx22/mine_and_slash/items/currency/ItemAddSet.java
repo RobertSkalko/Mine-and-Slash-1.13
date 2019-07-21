@@ -48,14 +48,8 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
     public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        GearBlueprint blueprint = new GearBlueprint(gear.level);
-        blueprint.SetCustomSetChance(100);
+        return gear.set == null && gear.getGearEnum().canGetSet(gear);
 
-        if (blueprint.canGetSet(gear) == false) {
-            return false;
-        }
-
-        return gear.canGetSet() && gear.set == null;
     }
 
     @Override

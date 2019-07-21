@@ -47,7 +47,8 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect, 
     public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear != null && gear.suffix == null && !gear.isRuned();
+        return gear != null && gear.suffix == null && gear.getGearEnum()
+                .canGetAffixes(gear);
     }
 
     @Override
