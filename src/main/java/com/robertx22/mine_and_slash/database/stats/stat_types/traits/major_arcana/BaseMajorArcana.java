@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arca
 
 import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BaseMajorArcana extends Trait implements INameSuffix {

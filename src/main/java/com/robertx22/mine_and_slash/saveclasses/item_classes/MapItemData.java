@@ -18,7 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -213,15 +213,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
     }
 
     @Override
-    public boolean isSalvagable(SalvageContext context) {
-        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
-            return this.isUnique() == false;
-
-        }
-        return true;
-    }
-
-    @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              UnitData unitdata) {
 
@@ -361,5 +352,15 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
     @Override
     public int Tier() {
         return this.tier;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public String getSpecificType() {
+        return this.worldGeneratorName;
     }
 }

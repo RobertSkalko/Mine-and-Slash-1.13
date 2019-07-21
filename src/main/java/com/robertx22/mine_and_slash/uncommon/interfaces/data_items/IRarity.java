@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.interfaces;
+package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 

@@ -8,10 +8,9 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ISalvagable;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
@@ -33,7 +32,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import java.util.List;
 
 @Storable
-public class SpellItemData implements ISalvagable, ITooltip, ISlashRegistryEntry {
+public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
 
     public SpellItemData() {
 
@@ -47,6 +46,8 @@ public class SpellItemData implements ISalvagable, ITooltip, ISlashRegistryEntry
     public static final int MIN_MANA_COST_PERCENT = 50;
     public static final int MAX_MANA_COST_PERCENT = 100;
 
+    @Store
+    public int tier = 0;
     @Store
     public int level = 1;
     @Store
@@ -94,6 +95,11 @@ public class SpellItemData implements ISalvagable, ITooltip, ISlashRegistryEntry
 
     private int MaxMana() {
         return this.GetSpell().ManaCost() * MAX_MANA_COST_PERCENT / 100;
+    }
+
+    @Override
+    public int getRank() {
+        return 0;
     }
 
     public SpellRarity getRarity() {
@@ -194,11 +200,6 @@ public class SpellItemData implements ISalvagable, ITooltip, ISlashRegistryEntry
         return stack;
     }
 
-    @Override
-    public boolean isSalvagable() {
-        return true;
-    }
-
     @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
@@ -261,6 +262,21 @@ public class SpellItemData implements ISalvagable, ITooltip, ISlashRegistryEntry
 
     @Override
     public String GUID() {
+        return this.spellGUID;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public int Tier() {
+        return this.tier;
+    }
+
+    @Override
+    public String getSpecificType() {
         return this.spellGUID;
     }
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.uncommon.interfaces.ITiered;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 
 import java.util.ArrayList;
 import java.util.List;

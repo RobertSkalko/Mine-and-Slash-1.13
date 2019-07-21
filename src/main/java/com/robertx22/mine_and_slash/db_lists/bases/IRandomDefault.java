@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.bases;
 
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.HashMap;

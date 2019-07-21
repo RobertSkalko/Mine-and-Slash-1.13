@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.item;
 import com.robertx22.mine_and_slash.a_libraries.curios.CurioSlots;
 import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ISalvagable;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -96,15 +96,6 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     }
 
     @Override
-    public boolean isSalvagable(SalvageContext context) {
-        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
-            return this.isUnique() == false;
-
-        }
-        return true;
-    }
-
-    @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              EntityCap.UnitData data) {
 
@@ -123,5 +114,15 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     @Override
     public int Tier() {
         return this.tier;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public String getSpecificType() {
+        return this.name;
     }
 }

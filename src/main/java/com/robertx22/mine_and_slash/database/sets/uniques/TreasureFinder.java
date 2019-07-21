@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.LootTypeB
 import com.robertx22.mine_and_slash.database.unique_items.bracelets.BraceletSetDrop;
 import com.robertx22.mine_and_slash.database.unique_items.necklaces.NecklaceSetDrop;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
 
 import java.util.Arrays;
 import java.util.HashMap;

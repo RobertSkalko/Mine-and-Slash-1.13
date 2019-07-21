@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
@@ -380,6 +380,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
+        
         if (context == SalvageContext.AUTO_SALVAGE_BAG) {
             return this.isUnique() == false && this.isSalvagable;
 
@@ -408,5 +409,15 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         }
 
         return 0;
+    }
+
+    @Override
+    public int getLevel() {
+        return level;
+    }
+
+    @Override
+    public String getSpecificType() {
+        return this.gearTypeName;
     }
 }

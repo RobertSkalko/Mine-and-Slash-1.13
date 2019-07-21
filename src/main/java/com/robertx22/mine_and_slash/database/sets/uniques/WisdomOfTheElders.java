@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.mine_and_slash.database.unique_items.helmet.HelmetWisdom;
 import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldWisdom;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IWeighted;
 
 import java.util.Arrays;
 import java.util.HashMap;
