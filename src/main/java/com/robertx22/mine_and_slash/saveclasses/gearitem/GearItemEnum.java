@@ -45,7 +45,7 @@ public enum GearItemEnum {
     RUNED() {
         @Override
         public boolean canGetSet(GearItemData data) {
-            return false;
+            return true;
         }
 
         @Override

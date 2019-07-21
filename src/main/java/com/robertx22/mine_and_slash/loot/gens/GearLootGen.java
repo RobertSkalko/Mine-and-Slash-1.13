@@ -3,12 +3,17 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -44,6 +49,10 @@ public class GearLootGen extends BaseLootGen {
     }
 
     public static GearItemData CreateData(GearBlueprint blueprint) {
+        return GearLootGen.CreateData(blueprint, GearItemEnum.NORMAL);
+    }
+
+    public static GearItemData CreateData(GearBlueprint blueprint, GearItemEnum type) {
         GearItemSlot gearslot = blueprint.GetGearType();
 
         ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
@@ -54,32 +63,66 @@ public class GearLootGen extends BaseLootGen {
         data.gearTypeName = gearslot.GUID();
         data.Rarity = rarity.Rank();
 
-        data.primaryStats = new PrimaryStatsData();
-        data.primaryStats.RerollFully(data);
-
-        data.secondaryStats = new SecondaryStatsData();
-        data.secondaryStats.RerollFully(data);
-
-        if (blueprint.getsChaosStats()) {
-            data.chaosStats = new ChaosStatsData();
-            data.chaosStats.RerollFully(data);
+        if (type.canGetPrimaryStats(data)) {
+            data.primaryStats = new PrimaryStatsData();
+            data.primaryStats.RerollFully(data);
+        }
+        if (type.canGetSecondaryStats(data)) {
+            data.secondaryStats = new SecondaryStatsData();
+            data.secondaryStats.RerollFully(data);
+        }
+        if (type.canGetChaosStats(data)) {
+            if (blueprint.getsChaosStats()) {
+                data.chaosStats = new ChaosStatsData();
+                data.chaosStats.RerollFully(data);
+            }
         }
 
-        if (RandomUtils.roll(rarity.AffixChance())) {
+        if (type.canGetAffixes(data)) {
+            if (RandomUtils.roll(rarity.AffixChance())) {
 
-            data.suffix = new SuffixData();
-            data.suffix.RerollFully(data);
+                data.suffix = new SuffixData();
+                data.suffix.RerollFully(data);
 
+            }
+            if (RandomUtils.roll(rarity.AffixChance())) {
+
+                data.prefix = new PrefixData();
+                data.prefix.RerollFully(data);
+
+            }
         }
-        if (RandomUtils.roll(rarity.AffixChance())) {
-
-            data.prefix = new PrefixData();
-            data.prefix.RerollFully(data);
-
+        if (type.canGetSet(data)) {
+            if (blueprint.canGetSet(data)) {
+                data.set = blueprint.generateSet(data);
+            }
         }
 
-        if (blueprint.canGetSet(data)) {
-            data.set = blueprint.generateSet(data);
+        if (type == GearItemEnum.RUNED) {
+            data.runes = new RunesData();
+            data.runes.capacity = rarity.runeSlots();
+        }
+
+        if (type == GearItemEnum.UNIQUE && blueprint instanceof UniqueBlueprint) {
+
+            UniqueBlueprint uniqprint = (UniqueBlueprint) blueprint;
+
+            IUnique unique = uniqprint.getUnique();
+
+            if (unique != null) {
+                rarity = new UniqueItem();
+                gearslot = SlashRegistry.GearTypes().get(unique.slot());
+
+                data.isUnique = true;
+
+                data.uniqueGUID = unique.GUID();
+                data.uniqueStats = new UniqueStatsData(unique.GUID());
+                data.uniqueStats.RerollFully(data);
+
+                data.level = blueprint.GetLevel();
+                data.gearTypeName = gearslot.GUID();
+                data.Rarity = rarity.Rank();
+            }
         }
 
         return data;
