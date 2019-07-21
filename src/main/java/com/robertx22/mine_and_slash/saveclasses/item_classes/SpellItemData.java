@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -95,6 +96,11 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
 
     private int MaxMana() {
         return this.GetSpell().ManaCost() * MAX_MANA_COST_PERCENT / 100;
+    }
+
+    @Override
+    public DataItemType getDataType() {
+        return DataItemType.SPELL;
     }
 
     @Override

@@ -14,6 +14,8 @@ import net.minecraft.item.ItemStack;
 
 public interface ICommonDataItem<R extends Rarity> extends IRarity<R>, ITiered, ISalvagable, ITooltip, IType, ILevel {
 
+    DataItemType getDataType();
+
     @Override
     default boolean isSalvagable(SalvageContext context) {
         if (context == SalvageContext.AUTO_SALVAGE_BAG) {

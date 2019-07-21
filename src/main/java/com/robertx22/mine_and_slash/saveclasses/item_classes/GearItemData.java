@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -413,6 +414,11 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     @Override
     public int getSalvagedRarity() {
         return this.Rarity;
+    }
+
+    @Override
+    public DataItemType getDataType() {
+        return DataItemType.GEAR;
     }
 
     @Override

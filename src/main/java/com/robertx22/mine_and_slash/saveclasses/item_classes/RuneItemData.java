@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -102,6 +103,11 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
         }
 
         return stack;
+    }
+
+    @Override
+    public DataItemType getDataType() {
+        return DataItemType.RUNE;
     }
 
     @Override

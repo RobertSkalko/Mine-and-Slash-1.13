@@ -5,10 +5,9 @@ import net.minecraft.item.ItemStack;
 
 public interface ISalvagable {
 
-    public enum SalvageContext {
+    enum SalvageContext {
         SALVAGE_STATION,
         AUTO_SALVAGE_BAG
-
     }
 
     ItemStack getSalvageResult(float salvageBonus);
@@ -17,7 +16,7 @@ public interface ISalvagable {
 
     boolean isSalvagable(SalvageContext context);
 
-    public default int tryIncreaseAmount(float salvageBonus, int amount) {
+    default int tryIncreaseAmount(float salvageBonus, int amount) {
 
         if (RandomUtils.roll(salvageBonus)) {
             return amount + 1;

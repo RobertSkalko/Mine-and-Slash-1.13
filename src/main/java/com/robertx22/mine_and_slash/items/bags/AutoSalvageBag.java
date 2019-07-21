@@ -10,12 +10,10 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -85,34 +83,18 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
             if (stack != null && !stack.isEmpty()) {
 
-                GearItemData gear = Gear.Load(stack);
-                if (gear != null) {
-                    nbt.putInt("gear", gear.Rarity);
+                ICommonDataItem data = ICommonDataItem.load(stack);
+
+                if (data != null) {
+                    nbt.putInt(data.getDataType().nbtGUID, data.getRank());
                     successChat(player);
-                }
-                SpellItemData spell = Spell.Load(stack);
-                if (spell != null) {
-                    nbt.putInt("spell", spell.rarity);
-                    successChat(player);
-                }
-                MapItemData map = Map.Load(stack);
-                if (map != null) {
-                    nbt.putInt("map", map.rarity);
-                    successChat(player);
-                }
-                RuneItemData rune = Rune.Load(stack);
-                if (rune != null) {
-                    nbt.putInt("rune", rune.rarity);
-                    successChat(player);
+                } else {
+                    for (DataItemType type : DataItemType.values()) {
+                        nbt.putInt(type.nbtGUID, -1);
+                    }
+                    player.sendMessage(new StringTextComponent("Bag Config Cleared"));
                 }
 
-            } else {
-                nbt.putInt("gear", -1);
-                nbt.putInt("spell", -1);
-                nbt.putInt("map", -1);
-                nbt.putInt("rune", -1);
-
-                player.sendMessage(new StringTextComponent("Bag Config Cleared"));
             }
             bag.setTag(nbt);
         }
@@ -132,26 +114,14 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     public static ISalvagable getSalvagable(ItemStack st) {
 
-        GearItemData gear = Gear.Load(st);
-        if (gear != null && gear.isUnique == false) { // DO NOT SALVAGE UNIQUE ITEMS, their rarity was -1. should
-            // probably change that
-            return gear;
+        ICommonDataItem data = ICommonDataItem.load(st);
+
+        if (data != null) {
+            if (data.isSalvagable(ISalvagable.SalvageContext.AUTO_SALVAGE_BAG)) {
+                return data;
+            }
         }
 
-        SpellItemData spell = Spell.Load(st);
-        if (spell != null) {
-            return spell;
-        }
-
-        MapItemData map = Map.Load(st);
-        if (map != null) {
-            return map;
-        }
-
-        RuneItemData rune = Rune.Load(st);
-        if (rune != null) {
-            return rune;
-        }
         return null;
 
     }
