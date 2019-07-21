@@ -40,10 +40,7 @@ public enum GearBlueprintSpecialEffects {
             gear.prefix = new PrefixData();
 
             List<Prefix> prefixes = SlashRegistry.Prefixes()
-                    .getList()
-                    .stream()
-                    .filter(x -> x.getRarityRank() == 5)
-                    .collect(Collectors.toList());
+                    .getFiltered(SlashRegistry.PREDICATES.ofRarityOrHigher(5));
 
             Prefix prefix = RandomUtils.weightedRandom(Prefixes.INSTANCE.allThatMeetRequirement(prefixes, new GearRequestedFor(gear)));
 

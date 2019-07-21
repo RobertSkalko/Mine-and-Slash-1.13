@@ -20,6 +20,9 @@ import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import java.util.HashMap;
 
 public class SlashRegistry {
+
+    public static Predicates PREDICATES = new Predicates();
+
     public static SlashRegistryContainer<BaseStatusEffect> StatusEffects() {
         return getRegistry(SlashRegistryType.STATUS_EFFECT);
     }

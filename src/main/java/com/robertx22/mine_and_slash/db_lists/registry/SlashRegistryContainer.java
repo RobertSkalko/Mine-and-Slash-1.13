@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
@@ -43,6 +45,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
             return empty;
         }
+    }
+
+    // just do predicate.and() .or() etc. if need multiple
+    public List<C> getFiltered(Predicate<C> predicate) {
+        return this.getList().stream().filter(predicate).collect(Collectors.toList());
     }
 
     public boolean isRegistered(C c) {
