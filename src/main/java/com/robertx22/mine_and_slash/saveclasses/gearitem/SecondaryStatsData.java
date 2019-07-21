@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -39,7 +38,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
         while (Stats > 0) {
             StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
                     .PossibleSecondaryStats());
-            this.Mods.add(StatModData.NewRandom(gear.GetRarity(), mod));
+            this.Mods.add(StatModData.NewRandom(gear.getRarity(), mod));
             Stats--;
 
         }
@@ -50,7 +49,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
         StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
                 .PossibleSecondaryStats());
 
-        gear.secondaryStats.Mods.add(StatModData.NewRandom(gear.GetRarity(), mod));
+        gear.secondaryStats.Mods.add(StatModData.NewRandom(gear.getRarity(), mod));
 
         this.AddedStat = true;
 
@@ -60,7 +59,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(StatGen.GenPercent(gear.GetRarity()));
+            data.setPercent(gear.getRarity().StatPercents().genPercent());
         }
 
     }

@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -32,7 +32,7 @@ public class StatModData implements ITooltipString {
 
         data.baseModName = mod.GUID();
         data.type = mod.Type();
-        data.percent = StatGen.GenPercent(rar);
+        data.randomize(rar);
         data.multiplier = mod.multiplier;
 
         return data;
@@ -128,6 +128,14 @@ public class StatModData implements ITooltipString {
         }
 
         return Arrays.asList(new StringTextComponent(""));
+    }
+
+    public void randomize(ItemRarity rarity) {
+        this.randomize(rarity.StatPercents());
+    }
+
+    public void randomize(MinMax minmax) {
+        this.percent = minmax.genPercent();
     }
 
     public void Add(StatData data, int level) {

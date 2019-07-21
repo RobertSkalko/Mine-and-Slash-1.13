@@ -164,7 +164,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     }
 
     @Override
-    public int getRank() {
+    public int getRarityRank() {
         return this.rarity;
     }
 

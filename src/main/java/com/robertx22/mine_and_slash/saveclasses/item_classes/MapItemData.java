@@ -346,7 +346,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
     }
 
     @Override
-    public int getRank() {
+    public int getRarityRank() {
         return this.rarity;
     }
 

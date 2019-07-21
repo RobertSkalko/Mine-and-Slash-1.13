@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -53,7 +52,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
         percents = new ArrayList<Integer>();
 
         for (StatMod mod : BaseAffix().StatMods()) {
-            percents.add(StatGen.GenPercent(gear.GetRarity()));
+            percents.add(gear.getRarity().StatPercents().genPercent());
 
         }
 

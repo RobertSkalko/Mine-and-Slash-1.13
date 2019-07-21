@@ -80,7 +80,7 @@ public class GearBlueprint extends ItemBlueprint {
                 }
 
             } else {
-                if (RandomUtils.roll(data.GetRarity().SetChance())) {
+                if (RandomUtils.roll(data.getRarity().SetChance())) {
                     return true;
                 }
             }

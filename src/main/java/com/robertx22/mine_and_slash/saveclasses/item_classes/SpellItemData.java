@@ -104,7 +104,7 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
     }
 
     @Override
-    public int getRank() {
+    public int getRarityRank() {
         return 0;
     }
 

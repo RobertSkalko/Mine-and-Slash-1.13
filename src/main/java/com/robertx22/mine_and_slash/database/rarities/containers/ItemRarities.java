@@ -16,11 +16,13 @@ public class ItemRarities extends RaritiesContainer<ItemRarity> {
         return Items;
     }
 
+    UniqueItem unique = new UniqueItem();
+
     @Override
     public ItemRarity get(int i) {
 
         if (i == -1) {
-            return new UniqueItem();
+            return unique;
         }
 
         return super.get(i);

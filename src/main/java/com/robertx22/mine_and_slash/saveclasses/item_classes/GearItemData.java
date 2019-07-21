@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -84,7 +83,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     }
 
     @Override
-    public int getRank() {
+    public int getRarityRank() {
         return this.Rarity;
     }
 
@@ -143,7 +142,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
             } else {
                 return SlashRegistry.GearTypes()
                         .get(gearTypeName)
-                        .GetItemForRarity(GetRarity().Rank());
+                        .GetItemForRarity(getRarity().Rank());
             }
         }
 
@@ -177,17 +176,9 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
     }
 
-    public ItemRarity GetRarity() {
-        if (isUnique) {
-            return new UniqueItem();
-        } else {
-            return Rarities.Items.get(Rarity);
-        }
-    }
-
     public ITextComponent GetDisplayName(ItemStack stack) {
 
-        ITextComponent text = new StringTextComponent(this.GetRarity()
+        ITextComponent text = new StringTextComponent(this.getRarity()
                 .textFormatColor() + "");
 
         if (this.isRuned()) {
@@ -248,7 +239,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
         List<ITextComponent> tip = event.getToolTip();
 
-        TooltipInfo info = new TooltipInfo(data, GetRarity().StatPercents(), this.level);
+        TooltipInfo info = new TooltipInfo(data, getRarity().StatPercents(), this.level);
 
         tip.clear();
 
@@ -304,7 +295,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
             tip.add(new StringTextComponent(""));
         }
 
-        ItemRarity rarity = GetRarity();
+        ItemRarity rarity = getRarity();
         tip.add(TooltipUtils.rarity(rarity));
 
         if (!this.isSalvagable) {
@@ -396,7 +387,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
                 }
             }
 
-            if (isUnique || RandomUtils.roll(this.GetRarity().specialItemChance())) {
+            if (isUnique || RandomUtils.roll(this.getRarity().specialItemChance())) {
 
                 Item item = RandomUtils.weightedRandom(ListUtils.minMaxTier(CurrencyItem.ITEMS, tier - 5, tier + 2));
 

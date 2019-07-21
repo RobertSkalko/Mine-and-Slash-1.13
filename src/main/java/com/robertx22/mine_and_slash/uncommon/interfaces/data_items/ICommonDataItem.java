@@ -12,6 +12,8 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public interface ICommonDataItem<R extends Rarity> extends IRarity<R>, ITiered, ISalvagable, ITooltip, IType, ILevel {
 
     DataItemType getDataType();
@@ -25,6 +27,7 @@ public interface ICommonDataItem<R extends Rarity> extends IRarity<R>, ITiered, 
         return true;
     }
 
+    @Nullable
     static ICommonDataItem load(ItemStack stack) {
 
         GearItemData gear = Gear.Load(stack);

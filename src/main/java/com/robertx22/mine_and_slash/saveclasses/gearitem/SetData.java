@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.WornSetData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -28,25 +26,6 @@ public class SetData implements ITooltipList {
     public Set GetSet() {
 
         return SlashRegistry.Sets().get(baseSet);
-    }
-
-    public List<StatModData> GetAllStats(int level, Unit unit) {
-
-        Set base = GetSet();
-
-        WornSetData data = unit.wornSets.get(this.baseSet);
-
-        List<StatModData> list = new ArrayList<StatModData>();
-
-        for (int i = 0; i < base.getObtainedMods(data).size(); i++) {
-
-            StatMod mod = base.getObtainedMods(data).get(i);
-
-            list.add(StatModData.Load(mod, 100));
-        }
-
-        return list;
-
     }
 
     @Override

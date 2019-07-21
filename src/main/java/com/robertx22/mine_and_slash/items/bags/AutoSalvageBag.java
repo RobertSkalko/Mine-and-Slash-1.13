@@ -86,7 +86,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
                 ICommonDataItem data = ICommonDataItem.load(stack);
 
                 if (data != null) {
-                    nbt.putInt(data.getDataType().nbtGUID, data.getRank());
+                    nbt.putInt(data.getDataType().nbtGUID, data.getRarityRank());
                     successChat(player);
                 } else {
                     for (DataItemType type : DataItemType.values()) {

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.loot.StatGen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -29,7 +28,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
 
-        StatModData moddata = StatModData.NewRandom(gear.GetRarity(), mod);
+        StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
 
         this.Mods.add(moddata);
 
@@ -39,7 +38,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(StatGen.GenPercent(gear.GetRarity()));
+            data.setPercent(gear.getRarity().StatPercents().genPercent());
         }
 
     }
