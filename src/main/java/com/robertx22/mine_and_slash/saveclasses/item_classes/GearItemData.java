@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -445,20 +444,6 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         }
 
         return this.uniqueGUID;
-    }
-
-    public boolean canGetSet() {
-
-        if (this.isUnique() == false && this.isRuned() == false) {
-
-            GearBlueprint blueprint = new GearBlueprint(level);
-            blueprint.SetCustomSetChance(100);
-
-            return blueprint.canGetSet(this);
-
-        }
-
-        return false;
     }
 
     @Override
