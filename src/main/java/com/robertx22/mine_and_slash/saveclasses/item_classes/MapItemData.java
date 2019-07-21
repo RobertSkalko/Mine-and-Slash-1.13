@@ -157,6 +157,11 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
         return list;
     }
 
+    @Override
+    public String getUniqueGUID() {
+        return this.worldGeneratorName;
+    }
+
     public List<MapAffixData> getAllAffixesThatAffect(AffectedEntities affected) {
 
         List<MapAffixData> list = new ArrayList<>();

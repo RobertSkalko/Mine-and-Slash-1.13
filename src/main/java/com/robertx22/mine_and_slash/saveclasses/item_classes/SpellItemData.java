@@ -62,6 +62,11 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
     @Store
     public int baseEffectPercent = 100;
 
+    @Override
+    public String getUniqueGUID() {
+        return this.spellGUID;
+    }
+
     public int GetManaCost() {
         return this.GetSpell().ManaCost() * this.manaCostPercent / 100;
     }

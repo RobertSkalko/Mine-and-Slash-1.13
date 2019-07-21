@@ -53,4 +53,5 @@ public interface ICommonDataItem<R extends Rarity> extends IRarity<R>, ITiered, 
         return null;
     }
 
+    String getUniqueGUID();
 }

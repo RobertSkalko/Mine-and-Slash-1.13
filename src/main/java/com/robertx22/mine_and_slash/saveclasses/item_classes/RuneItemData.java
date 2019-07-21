@@ -50,6 +50,11 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     @Store
     public StatModData jewerly;
 
+    @Override
+    public String getUniqueGUID() {
+        return this.name;
+    }
+
     public StatModData getModFor(GearItemData gear) {
 
         GearItemSlot slot = gear.GetBaseGearType();

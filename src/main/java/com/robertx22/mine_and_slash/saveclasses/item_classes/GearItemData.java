@@ -435,6 +435,18 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         return this.isSalvagable;
     }
 
+    @Override
+    public String getUniqueGUID() {
+
+        try {
+            return this.uniqueStats.uniqueGUID;
+        } catch (Exception e) {
+
+        }
+
+        return this.uniqueGUID;
+    }
+
     public boolean canGetSet() {
 
         if (this.isUnique() == false && this.isRuned() == false) {
