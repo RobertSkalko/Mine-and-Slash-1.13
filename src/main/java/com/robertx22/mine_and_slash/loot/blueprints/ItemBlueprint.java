@@ -39,14 +39,14 @@ public abstract class ItemBlueprint {
 
     public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
 
-    public void SetSpecificRarity(int i) {
+    public void setSpecificRarity(int i) {
 
         rarity = i;
         RandomRarity = false;
 
     }
 
-    public int GetRarity() {
+    public int getRarity() {
 
         RaritiesContainer<? extends Rarity> rarities = getRarityContainer();
 
@@ -64,7 +64,7 @@ public abstract class ItemBlueprint {
 
     }
 
-    public int GetLevel() {
+    public int getLevel() {
 
         int lvl = level;
 

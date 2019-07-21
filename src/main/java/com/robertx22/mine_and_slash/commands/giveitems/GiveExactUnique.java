@@ -48,7 +48,7 @@ public class GiveExactUnique {
         }
 
         UniqueBlueprint blueprint = new UniqueBlueprint(lvl, 0, true);
-        blueprint.SetSpecificRarity(new UniqueItem().Rank());
+        blueprint.setSpecificRarity(new UniqueItem().Rank());
         blueprint.setSpecificID(id);
         blueprint.LevelRange = false;
 

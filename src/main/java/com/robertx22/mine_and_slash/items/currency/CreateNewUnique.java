@@ -40,7 +40,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
         UniqueBlueprint gearPrint = new UniqueBlueprint(gear.level, gear.uniqueStats.getUniqueItem()
                 .Tier(), false);
-        gearPrint.SetSpecificRarity(new UniqueItem().Rank());
+        gearPrint.setSpecificRarity(new UniqueItem().Rank());
         gearPrint.LevelRange = false;
 
         GearItemData newgear = UniqueGearLootGen.CreateData(gearPrint);

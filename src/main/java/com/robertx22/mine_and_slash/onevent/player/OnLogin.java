@@ -67,7 +67,7 @@ public class OnLogin {
         GearBlueprint print = new GearBlueprint(1);
         print.SetSpecificType(new Sword().GUID());
         print.LevelRange = false;
-        print.SetSpecificRarity(0);
+        print.setSpecificRarity(0);
 
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(new Boots().GUID());
@@ -91,7 +91,7 @@ public class OnLogin {
         SpellBlueprint spell = new SpellBlueprint(1);
         spell.SetSpecificType(new SpellInstantHeal().GUID());
         spell.LevelRange = false;
-        spell.SetSpecificRarity(0);
+        spell.setSpecificRarity(0);
 
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 

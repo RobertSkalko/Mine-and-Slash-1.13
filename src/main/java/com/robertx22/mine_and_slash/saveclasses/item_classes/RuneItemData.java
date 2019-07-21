@@ -72,12 +72,6 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
         return this.rarity;
     }
 
-    public RuneRarity GetRarity() {
-
-        return Rarities.Runes.get(rarity);
-
-    }
-
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
@@ -86,7 +80,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
         ItemStack stack = ItemStack.EMPTY;
 
-        if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+        if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
             Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, 10));
 
@@ -122,7 +116,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
             tooltip.add(TooltipUtils.level(rune.level));
 
-            RuneRarity rar = rune.GetRarity();
+            RuneRarity rar = rune.getRarity();
 
             TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), rar.StatPercents(), rune.level);
 
@@ -153,7 +147,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
                 Tooltip.add("", tooltip);
             }
 
-            Tooltip.add(TooltipUtils.rarity(rune.GetRarity()), tooltip);
+            Tooltip.add(TooltipUtils.rarity(rune.getRarity()), tooltip);
 
             Tooltip.add("", tooltip);
 

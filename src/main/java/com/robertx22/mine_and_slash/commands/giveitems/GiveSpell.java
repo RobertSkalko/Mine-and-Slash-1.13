@@ -54,7 +54,7 @@ public class GiveSpell {
         SpellBlueprint blueprint = new SpellBlueprint(lvl);
         blueprint.LevelRange = false;
         if (rarity > -1) {
-            blueprint.SetSpecificRarity(rarity);
+            blueprint.setSpecificRarity(rarity);
         }
         if (!type.equals("random")) {
             blueprint.SetSpecificType(type);

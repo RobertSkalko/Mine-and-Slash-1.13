@@ -51,7 +51,7 @@ public class GiveGear {
         }
         GearBlueprint blueprint = new GearBlueprint(lvl);
         if (rarity > -1) {
-            blueprint.SetSpecificRarity(rarity);
+            blueprint.setSpecificRarity(rarity);
         }
         if (!type.equals("random")) {
             blueprint.SetSpecificType(type);

@@ -50,7 +50,7 @@ public class GiveMap {
 
         MapBlueprint blueprint = new MapBlueprint(lvl, tier);
         if (rarity > -1) {
-            blueprint.SetSpecificRarity(rarity);
+            blueprint.setSpecificRarity(rarity);
         }
         blueprint.LevelRange = false;
 

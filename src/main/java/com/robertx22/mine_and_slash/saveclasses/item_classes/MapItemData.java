@@ -180,12 +180,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
 
     }
 
-    public MapRarity GetRarity() {
-
-        return Rarities.Maps.get(rarity);
-
-    }
-
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
@@ -194,7 +188,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
 
         ItemStack stack = ItemStack.EMPTY;
 
-        if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+        if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
             Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, tier));
 
@@ -331,7 +325,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
 
             for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-                TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), data.GetRarity()
+                TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), data.getRarity()
                         .StatPercents(), data.level);
 
                 for (ITextComponent statstring : statmod.GetTooltipString(info)) {

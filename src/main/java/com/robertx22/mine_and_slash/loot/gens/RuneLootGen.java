@@ -38,7 +38,7 @@ public class RuneLootGen extends BaseLootGen {
 
     public static ItemStack Create(RuneBlueprint blueprint) {
 
-        int rarity = blueprint.GetRarity();
+        int rarity = blueprint.getRarity();
 
         BaseRuneItem item = blueprint.getRuneItem().byRarity(rarity);
 
@@ -50,13 +50,13 @@ public class RuneLootGen extends BaseLootGen {
         data.name = item.name();
         data.level = blueprint.level;
 
-        data.armor = StatModData.NewRandom(data.GetRarity(), RandomUtils.weightedRandom(item
+        data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
                 .armorStat()));
 
-        data.weapon = StatModData.NewRandom(data.GetRarity(), RandomUtils.weightedRandom(item
+        data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
                 .weaponStat()));
 
-        data.jewerly = StatModData.NewRandom(data.GetRarity(), RandomUtils.weightedRandom(item
+        data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
                 .jewerlyStat()));
 
         Rune.Save(stack, data);

@@ -48,7 +48,7 @@ public class GiveRune {
         for (int i = 0; i < amount; i++) {
             RuneBlueprint blueprint = new RuneBlueprint(lvl);
             if (rarity > -1) {
-                blueprint.SetSpecificRarity(rarity);
+                blueprint.setSpecificRarity(rarity);
             }
 
             blueprint.LevelRange = false;
