@@ -45,9 +45,6 @@ public class TeleportProtection extends SpellPotionBase {
 
     @Override
     public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
-        if (true) {
-            return;
-        }
 
         try {
 
