@@ -48,7 +48,7 @@ public class UniqueGearLootGen extends BaseLootGen {
     public static GearItemData CreateData(UniqueBlueprint blueprint) {
         return GearLootGen.CreateData(blueprint, GearItemEnum.UNIQUE);
     }
-    
+
     public static ItemStack CreateStack(UniqueBlueprint schema) {
 
         GearItemData data = CreateData(schema);

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
+import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -12,6 +13,7 @@ public class UniqueBlueprint extends GearBlueprint {
         super(level);
         this.randomTier = randomTier;
         this.map_tier = map_tier;
+
     }
 
     public UniqueBlueprint(int level, String guid) {
@@ -19,6 +21,11 @@ public class UniqueBlueprint extends GearBlueprint {
         this.guid = guid;
         this.uniqueIsRandom = false;
 
+    }
+
+    @Override
+    public int GetRarity() {
+        return new UniqueItem().Rank();
     }
 
     private String guid = "";
