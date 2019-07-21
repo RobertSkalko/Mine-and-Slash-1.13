@@ -13,6 +13,9 @@ import net.minecraft.item.ItemStack;
 public class BlueprintItemRequest {
 
     @Store
+    public int amount = 1;
+
+    @Store
     public String itemRegistryName;
 
     @Store
@@ -48,36 +51,37 @@ public class BlueprintItemRequest {
 
         } else {
 
-            if (this.itemRegistryName.equals(stack.getItem()
-                    .getRegistryName()
-                    .toString())) {
+            if (stack.getCount() >= amount) {
+                if (this.itemRegistryName.equals(stack.getItem()
+                        .getRegistryName()
+                        .toString())) {
 
-                Item item = stack.getItem();
+                    Item item = stack.getItem();
 
-                boolean matches = true;
+                    boolean matches = true;
 
-                if (matches) {
-                    if (item instanceof ITiered) {
-                        ITiered part = (ITiered) item;
-                        matches = part.Tier() >= tier;
+                    if (matches) {
+                        if (item instanceof ITiered) {
+                            ITiered part = (ITiered) item;
+                            matches = part.Tier() >= tier;
+                        }
                     }
-                }
-                if (matches) {
-                    if (item instanceof ILevel) {
-                        ILevel part = (ILevel) item;
-                        matches = part.getLevel() >= level;
+                    if (matches) {
+                        if (item instanceof ILevel) {
+                            ILevel part = (ILevel) item;
+                            matches = part.getLevel() >= level;
+                        }
                     }
-                }
-                if (matches) {
-                    if (item instanceof IRarity) {
-                        IRarity part = (IRarity) item;
-                        matches = part.getRarityRank() >= rarity;
+                    if (matches) {
+                        if (item instanceof IRarity) {
+                            IRarity part = (IRarity) item;
+                            matches = part.getRarityRank() >= rarity;
+                        }
                     }
-                }
 
-                return matches;
+                    return matches;
+                }
             }
-
         }
 
         return false;

@@ -79,11 +79,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti 
     }
 
     @Override
-    public int getSalvagedRarity() {
-        return this.rarity;
-    }
-
-    @Override
     public float getBonusLootMulti() {
 
         return 1 * getTotalPercents() * getPermaDeathMultiplier();

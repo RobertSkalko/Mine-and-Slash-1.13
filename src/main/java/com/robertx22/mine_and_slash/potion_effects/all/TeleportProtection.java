@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.ChunkPos;
 
 public class TeleportProtection extends SpellPotionBase {
 
@@ -52,25 +51,22 @@ public class TeleportProtection extends SpellPotionBase {
 
                 int tries = 0;
 
-                if (entity.world.chunkExists(new ChunkPos(entity.getPosition()).x, new ChunkPos(entity
-                        .getPosition()).z)) {
+                while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
 
-                    while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
+                    tries++;
 
-                        tries++;
-
-                        if (entity.posY >= entity.world.getHeight()) {
-                            break;
-                        }
-
-                        if (tries > 5) {
-                            break;
-                        }
-
-                        goUpward((ServerPlayerEntity) entity);
-
+                    if (entity.posY >= entity.world.getHeight()) {
+                        break;
                     }
+
+                    if (tries > 5) {
+                        break;
+                    }
+
+                    goUpward((ServerPlayerEntity) entity);
+
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

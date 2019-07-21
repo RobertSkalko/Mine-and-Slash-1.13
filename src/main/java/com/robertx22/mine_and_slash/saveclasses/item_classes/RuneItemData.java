@@ -73,11 +73,6 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     public int rarity = 0;
 
     @Override
-    public int getSalvagedRarity() {
-        return this.rarity;
-    }
-
-    @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
         int min = tryIncreaseAmount(salvageBonus, 1);

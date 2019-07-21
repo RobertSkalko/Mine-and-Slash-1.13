@@ -415,11 +415,6 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     }
 
     @Override
-    public int getSalvagedRarity() {
-        return this.Rarity;
-    }
-
-    @Override
     public DataItemType getDataType() {
         return DataItemType.GEAR;
     }

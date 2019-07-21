@@ -128,9 +128,6 @@ public class PlayerUtils {
 
                 player.setLocationAndAngles((double) i, (double) j, (double) k, f1, 0.0F);
                 player.setMotion(Vec3d.ZERO);
-            } else if (!serverworld1.getDefaultTeleporter().func_222268_a(player, f2)) {
-                serverworld1.getDefaultTeleporter().makePortal(player);
-                serverworld1.getDefaultTeleporter().func_222268_a(player, f2);
             }
 
             // MY STUFF

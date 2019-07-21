@@ -39,11 +39,6 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
 
     }
 
-    @Override
-    public int getSalvagedRarity() {
-        return this.rarity;
-    }
-
     public static final int MIN_MANA_COST_PERCENT = 50;
     public static final int MAX_MANA_COST_PERCENT = 100;
 

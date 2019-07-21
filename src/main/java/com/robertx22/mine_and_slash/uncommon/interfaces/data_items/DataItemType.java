@@ -5,7 +5,8 @@ public enum DataItemType {
     GEAR("gear"),
     SPELL("spell"),
     RUNE("rune"),
-    MAP("map");
+    MAP("map"),
+    BLUEPRINT("blueprint");
 
     DataItemType(String nbtGUID) {
         this.nbtGUID = nbtGUID;

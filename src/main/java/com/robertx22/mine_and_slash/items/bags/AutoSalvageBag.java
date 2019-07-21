@@ -214,7 +214,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     public boolean shouldSalvageItem(ISalvagable sal, CompoundNBT nbt) {
 
-        int rarity = sal.getSalvagedRarity();
+        int rarity = sal.getRarityRank();
 
         if (sal.isSalvagable(ISalvagable.SalvageContext.AUTO_SALVAGE_BAG)) {
             if (sal instanceof GearItemData) {
