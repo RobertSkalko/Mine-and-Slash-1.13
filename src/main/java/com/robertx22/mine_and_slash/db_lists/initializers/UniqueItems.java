@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UniqueItems implements ISlashRegistryInit {
 
-    public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
+    public static HashMap<String, Item> ITEMS = new HashMap<>();
 
     public static List<IUnique> getAll() {
         return SlashRegistry.Uniques().getList();

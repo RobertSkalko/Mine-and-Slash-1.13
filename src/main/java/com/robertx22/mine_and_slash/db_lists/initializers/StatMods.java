@@ -57,7 +57,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class StatMods implements ISlashRegistryInit {
@@ -237,16 +236,16 @@ public class StatMods implements ISlashRegistryInit {
             }
         };
 
-        HashMap<String, StatMod> All = new HashMap<String, StatMod>();
+        List<StatMod> All = new ArrayList<>();
 
         for (StatMod stat : list) {
             if (stat instanceof IGenerated) {
                 IGenerated<StatMod> gen = (IGenerated<StatMod>) stat;
                 for (StatMod statmod : gen.generateAllPossibleStatVariations()) {
-                    All.put(statmod.GUID(), statmod);
+                    All.add(statmod);
                 }
             } else {
-                All.put(stat.GUID(), stat);
+                All.add(stat);
             }
         }
 
@@ -255,13 +254,12 @@ public class StatMods implements ISlashRegistryInit {
             if (stat instanceof BaseTrait) {
                 BaseTrait trait = (BaseTrait) stat;
                 AllTraitMods traitMod = new AllTraitMods(trait);
-                All.put(traitMod.GUID(), traitMod);
+                All.add(traitMod);
             }
         }
 
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATMOD)
-                        .register(x));
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATMOD)
+                .register(x));
 
     }
 

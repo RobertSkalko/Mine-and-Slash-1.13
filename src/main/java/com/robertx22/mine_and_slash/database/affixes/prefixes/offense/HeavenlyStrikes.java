@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;

@@ -6,41 +6,39 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GearTypes implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-        HashMap<String, GearItemSlot> All = new HashMap<String, GearItemSlot>() {
+        List<GearItemSlot> All = new ArrayList<GearItemSlot>() {
             {
                 {
-                    put(new Boots().GUID(), new Boots());
-                    put(new Pants().GUID(), new Pants());
-                    put(new Helmet().GUID(), new Helmet());
-                    put(new Chest().GUID(), new Chest());
-                    put(new Ring().GUID(), new Ring());
-                    put(new Sword().GUID(), new Sword());
-                    put(new Necklace().GUID(), new Necklace());
-                    put(new Bracelet().GUID(), new Bracelet());
-                    put(new Bow().GUID(), new Bow());
-                    put(new Charm().GUID(), new Charm());
-                    put(new Hammer().GUID(), new Hammer());
-                    put(new Staff().GUID(), new Staff());
-                    put(new Axe().GUID(), new Axe());
-                    put(new Shield().GUID(), new Shield());
-                    put(new Torch().GUID(), new Torch());
+                    add(new Boots());
+                    add(new Pants());
+                    add(new Helmet());
+                    add(new Chest());
+                    add(new Ring());
+                    add(new Sword());
+                    add(new Necklace());
+                    add(new Bracelet());
+                    add(new Bow());
+                    add(new Charm());
+                    add(new Hammer());
+                    add(new Staff());
+                    add(new Axe());
+                    add(new Shield());
+                    add(new Torch());
 
                 }
 
             }
         };
 
-        All.values().
-
-                forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.GEAR_TYPE).
-
-                        register(x));
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.GEAR_TYPE)
+                .register(x));
 
     }
 }

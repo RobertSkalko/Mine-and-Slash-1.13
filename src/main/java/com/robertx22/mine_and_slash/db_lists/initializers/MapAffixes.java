@@ -23,7 +23,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MapAffixes implements ISlashRegistryInit {
@@ -31,7 +30,7 @@ public class MapAffixes implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>();
+        List<BaseMapAffix> All = new ArrayList<>();
 
         List<BaseMapAffix> list = new ArrayList<BaseMapAffix>() {
             {
@@ -78,17 +77,16 @@ public class MapAffixes implements ISlashRegistryInit {
             if (affix instanceof IGenerated) {
                 IGenerated<BaseMapAffix> gen = (IGenerated<BaseMapAffix>) affix;
                 for (BaseMapAffix statmod : gen.generateAllPossibleStatVariations()) {
-                    All.put(statmod.GUID(), statmod);
+                    All.add(statmod);
                 }
             } else {
 
-                All.put(affix.GUID(), affix);
+                All.add(affix);
             }
         }
 
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
-                        .register(x));
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
+                .register(x));
 
     }
 

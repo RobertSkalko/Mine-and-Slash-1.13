@@ -24,11 +24,6 @@ public class TouchOfMagic extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return UncommonWeight;
-    }
-
-    @Override
     public Requirements requirements() {
         return new Requirements(SlotRequirement.jewerlyOnly());
     }

@@ -78,7 +78,7 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
             }
         };
 
-        HashMap<String, Suffix> all = new HashMap<>();
+        List<Suffix> all = new ArrayList<>();
 
         List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
             {
@@ -95,18 +95,16 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
         list.addAll(allSuffixes);
 
         for (Suffix s : list) {
-            all.put(s.GUID(), s);
+            all.add(s);
         }
 
         for (IGenerated<Suffix> gen : allGenerated) {
             for (Suffix statmod : gen.generateAllPossibleStatVariations()) {
-                all.put(statmod.GUID(), statmod);
+                all.add(statmod);
             }
         }
 
-        all.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SUFFIX)
-                        .register(x));
+        all.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SUFFIX).register(x));
 
     }
 }

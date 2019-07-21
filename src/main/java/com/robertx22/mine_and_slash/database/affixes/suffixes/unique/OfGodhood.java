@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorDodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.multi.defense.HealthMulti;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +30,8 @@ public class OfGodhood extends Suffix {
     }
 
     @Override
-    public int Weight() {
-        return LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

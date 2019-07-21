@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.List;
 public class TreasureSeeker extends Prefix {
 
     @Override
-    public int Weight() {
-        return this.RareWeight;
+    public int getRarityRank() {
+        return IRarity.Rare;
     }
 
     @Override

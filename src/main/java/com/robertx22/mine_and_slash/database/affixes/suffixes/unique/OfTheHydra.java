@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +30,8 @@ public class OfTheHydra extends Suffix {
     }
 
     @Override
-    public int Weight() {
-        return LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

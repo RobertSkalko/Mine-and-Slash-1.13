@@ -7,15 +7,15 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
 
 public class RingsOfImpossibility extends Set {
 
     @Override
-    public int Weight() {
-        return IWeighted.MythicWeight;
+    public int getRarityRank() {
+        return IRarity.Mythic;
     }
 
     @Override

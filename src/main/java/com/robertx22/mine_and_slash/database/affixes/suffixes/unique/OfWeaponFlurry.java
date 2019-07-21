@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StaminaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class OfWeaponFlurry extends WeaponSuffix {
 
     @Override
     public String GUID() {
-        return "of_godhood";
+        return "of_" + this.type.name() + "_flurry";
     }
 
     @Override
@@ -32,8 +33,8 @@ public class OfWeaponFlurry extends WeaponSuffix {
     }
 
     @Override
-    public int Weight() {
-        return MythicWeight;
+    public int getRarityRank() {
+        return IRarity.Mythic;
     }
 
     @Override

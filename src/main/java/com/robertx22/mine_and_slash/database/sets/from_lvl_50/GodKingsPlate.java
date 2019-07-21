@@ -42,4 +42,5 @@ public class GodKingsPlate extends Set {
     public String GUID() {
         return "godkings_plate";
     }
+
 }

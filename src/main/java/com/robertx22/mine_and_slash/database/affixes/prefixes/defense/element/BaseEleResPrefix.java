@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public abstract class BaseEleResPrefix extends Prefix {
 

@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.LifestealPercent;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;

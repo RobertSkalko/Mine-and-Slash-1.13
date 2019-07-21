@@ -98,7 +98,7 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
             }
         };
 
-        HashMap<String, Prefix> all = new HashMap<>();
+        List<Prefix> all = new ArrayList<>();
 
         List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
             {
@@ -115,18 +115,16 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
         list.addAll(allPrefixes);
 
         for (Prefix s : list) {
-            all.put(s.GUID(), s);
+            all.add(s);
         }
 
         for (IGenerated<Prefix> gen : allGenerated) {
             for (Prefix statmod : gen.generateAllPossibleStatVariations()) {
-                all.put(statmod.GUID(), statmod);
+                all.add(statmod);
             }
         }
 
-        all.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX)
-                        .register(x));
+        all.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.PREFIX).register(x));
 
     }
 

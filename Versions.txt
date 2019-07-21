@@ -4,6 +4,7 @@ reduced mob spell resist
 added level penalty advacement
 more code reworks, this time item types and their data.
 please check if auto salvage bags work right along with salvage stations and item modification
+added super rare suffix
 2.2.4 
 added more mob configs, please test if they work! (stuff like min lvl, min rarity, lvl modifier etc. hp multi.)
 fixed runewords

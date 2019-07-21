@@ -40,7 +40,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        HashMap<String, Set> All = new HashMap<String, Set>();
+        List<Set> All = new ArrayList<>();
 
         List<Set> sets = new ArrayList<Set>() {
             {
@@ -89,17 +89,15 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
         for (Set set : sets) {
             if (set instanceof IGenerated) {
                 for (Set statmod : ((IGenerated<Set>) set).generateAllPossibleStatVariations()) {
-                    All.put(statmod.GUID(), statmod);
+                    All.add(statmod);
                 }
             } else {
-                All.put(set.GUID(), set);
+                All.add(set);
             }
 
         }
 
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SET)
-                        .register(x));
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SET).register(x));
 
     }
 

@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.SpellDamagePercent;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +25,8 @@ public class Magical extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return RareWeight;
+    public int getRarityRank() {
+        return IRarity.Rare;
     }
 
     @Override

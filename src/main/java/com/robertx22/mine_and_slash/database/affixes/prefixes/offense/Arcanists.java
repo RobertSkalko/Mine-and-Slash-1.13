@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.SpellDamagePercent;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +26,8 @@ public class Arcanists extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

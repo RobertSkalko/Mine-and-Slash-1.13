@@ -50,7 +50,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Stats implements ISlashRegistryInit {
@@ -60,7 +59,7 @@ public class Stats implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        HashMap<String, Stat> All = new HashMap<String, Stat>();
+        List<Stat> All = new ArrayList<>();
 
         List<Stat> generated = new ArrayList<Stat>() {
             {
@@ -200,17 +199,15 @@ public class Stats implements ISlashRegistryInit {
         for (Stat stat : generated) {
             if (stat instanceof IGenerated) {
                 for (Stat gen : ((IGenerated<Stat>) stat).generateAllPossibleStatVariations()) {
-                    All.put(gen.GUID(), gen);
+                    All.add(gen);
                 }
             } else {
-                All.put(stat.GUID(), stat);
+                All.add(stat);
             }
 
         }
 
-        All.values()
-                .forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STAT)
-                        .register(x));
+        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STAT).register(x));
 
     }
 

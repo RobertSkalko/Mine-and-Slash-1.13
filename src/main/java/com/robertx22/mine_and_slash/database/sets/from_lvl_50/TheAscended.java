@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
 
