@@ -18,7 +18,7 @@ public abstract class BaseStatusEffect implements IWeighted, ISlashRegistryEntry
 
     @Override
     public int Weight() {
-        return this.UncommonWeight;
+        return 1;
     }
 
     @Override

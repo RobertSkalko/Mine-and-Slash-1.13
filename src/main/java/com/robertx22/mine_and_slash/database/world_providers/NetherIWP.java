@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.world_providers;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -36,8 +37,8 @@ public class NetherIWP extends BaseWorldProvider {
     }
 
     @Override
-    public int Weight() {
-        return EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

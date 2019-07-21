@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.Elemental
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalFocusFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.HashMap;
 
@@ -21,8 +20,8 @@ public class AscensionOfElement extends ElementalSet {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

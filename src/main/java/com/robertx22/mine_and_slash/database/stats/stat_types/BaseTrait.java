@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types;
 
-import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -10,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
@@ -22,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseTrait extends Stat implements IGUID, IWeighted {
+public abstract class BaseTrait extends Stat {
 
     @Override
     public boolean IsPercent() {

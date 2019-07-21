@@ -11,7 +11,7 @@ public abstract class SpellBuffTrait extends BaseTrait implements IStatEffects {
     public int Weight() {
         return 0;
     }
-
+    
     // override if it has a condition
     public boolean condition(UnitData unit) {
         return true;

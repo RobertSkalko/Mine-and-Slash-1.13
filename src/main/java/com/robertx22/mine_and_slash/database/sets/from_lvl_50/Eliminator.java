@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.StatDoublePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.Dexterity;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.HashMap;
 
@@ -19,8 +18,8 @@ public class Eliminator extends Set {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.RareWeight;
+    public int getRarityRank() {
+        return IRarity.Rare;
     }
 
     @Override

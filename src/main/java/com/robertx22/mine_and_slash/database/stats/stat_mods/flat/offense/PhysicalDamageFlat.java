@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class PhysicalDamageFlat extends StatMod {
 
@@ -35,11 +34,6 @@ public class PhysicalDamageFlat extends StatMod {
     @Override
     public Stat GetBaseStat() {
         return new PhysicalDamage();
-    }
-
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
     }
 
 }

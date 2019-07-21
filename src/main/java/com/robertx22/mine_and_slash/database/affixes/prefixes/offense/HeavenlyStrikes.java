@@ -25,8 +25,8 @@ public class HeavenlyStrikes extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return this.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

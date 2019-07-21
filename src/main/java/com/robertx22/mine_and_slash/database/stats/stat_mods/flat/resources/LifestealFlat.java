@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Lifesteal;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class LifestealFlat extends StatMod {
 
@@ -34,11 +33,6 @@ public class LifestealFlat extends StatMod {
     @Override
     public Stat GetBaseStat() {
         return new Lifesteal();
-    }
-
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
     }
 
 }

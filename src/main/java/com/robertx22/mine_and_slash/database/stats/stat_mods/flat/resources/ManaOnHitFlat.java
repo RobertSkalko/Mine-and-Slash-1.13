@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.ManaOnHit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class ManaOnHitFlat extends StatMod {
 
@@ -36,8 +35,4 @@ public class ManaOnHitFlat extends StatMod {
         return new ManaOnHit();
     }
 
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
-    }
 }

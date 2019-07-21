@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsOtherStats;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public abstract class Trait extends BaseTrait implements IAffectsOtherStats {
 
@@ -23,11 +22,6 @@ public abstract class Trait extends BaseTrait implements IAffectsOtherStats {
             }
         }
 
-    }
-
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
     }
 
     // override if it has a condition

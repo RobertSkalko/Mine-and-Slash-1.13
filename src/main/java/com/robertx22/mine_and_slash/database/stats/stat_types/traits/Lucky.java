@@ -27,4 +27,5 @@ public class Lucky extends Trait implements IAffectsOtherStats {
     public String locNameForLangFile() {
         return "Lucky";
     }
+
 }

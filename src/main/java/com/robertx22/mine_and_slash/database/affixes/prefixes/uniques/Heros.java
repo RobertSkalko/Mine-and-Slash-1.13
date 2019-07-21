@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.BlockStrengthPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +28,8 @@ public class Heros extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

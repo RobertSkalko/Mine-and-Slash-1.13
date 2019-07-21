@@ -48,4 +48,5 @@ public class DesertHillsIWP extends BaseWorldProvider {
     public String locNameForLangFile() {
         return "Desert Hills";
     }
+
 }

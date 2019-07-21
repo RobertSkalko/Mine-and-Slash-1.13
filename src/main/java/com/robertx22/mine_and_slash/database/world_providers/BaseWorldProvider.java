@@ -1,11 +1,14 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.Templates;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.world_gen.types.FeatureType;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -36,7 +39,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public abstract class BaseWorldProvider extends Dimension implements IWP, ISlashRegistryEntry<BaseWorldProvider> {
+public abstract class BaseWorldProvider extends Dimension implements IWP, IRarity, ISlashRegistryEntry<BaseWorldProvider> {
 
     public ModDimension moddim;
     private DimensionType type;
@@ -44,6 +47,16 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, ISlash
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.WORLD_PROVIDER;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Uncommon;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
     }
 
     @Override
@@ -188,7 +201,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, ISlash
 
     @Override
     public int Weight() {
-        return UncommonWeight;
+        return getRarity().Weight();
     }
 
     /**

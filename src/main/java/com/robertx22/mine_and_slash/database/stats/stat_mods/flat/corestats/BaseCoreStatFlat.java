@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public abstract class BaseCoreStatFlat extends StatMod {
 
     @Override
-    public int Weight() {
-        return IWeighted.LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

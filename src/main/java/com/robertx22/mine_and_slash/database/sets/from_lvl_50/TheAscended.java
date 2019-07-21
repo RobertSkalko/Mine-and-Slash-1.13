@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.HashMap;
 
@@ -34,8 +33,8 @@ public class TheAscended extends Set {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

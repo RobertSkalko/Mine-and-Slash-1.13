@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +29,8 @@ public class OfTheDepths extends Suffix {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

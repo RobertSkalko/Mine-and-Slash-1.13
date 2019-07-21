@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.StatDoubl
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.BlockReflect;
 import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldElemental;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,8 +33,8 @@ public class ElementThornsMastery extends ElementalPrefix {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

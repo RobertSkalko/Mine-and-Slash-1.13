@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.Elemental
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -24,8 +25,8 @@ public class RingHermitsInsanity extends BaseUniqueRing {
     }
 
     @Override
-    public int Weight() {
-        return this.MythicWeight;
+    public int getRarityRank() {
+        return IRarity.Mythic;
     }
 
     @Override
@@ -43,4 +44,5 @@ public class RingHermitsInsanity extends BaseUniqueRing {
     public String locDescForLangFile() {
         return "Stop! Don't approach me..";
     }
+
 }

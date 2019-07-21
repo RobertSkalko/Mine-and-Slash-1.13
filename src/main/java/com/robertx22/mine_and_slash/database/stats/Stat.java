@@ -1,17 +1,21 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.gui.screen.Screen;
@@ -25,7 +29,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, ISlashRegistryEntry<Stat> {
+public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISlashRegistryEntry<Stat> {
 
     public Stat() {
     }
@@ -34,6 +38,22 @@ public abstract class Stat implements IGUID, IAutoLocName, IAutoLocDesc, ISlashR
 
     static final int rows = 13;
     static final int spriteSize = 18;
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Uncommon;
+    }
+
+    // this is used for alltraitmods, check if confused
+    @Override
+    public int Weight() {
+        return this.getRarity().Weight();
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {

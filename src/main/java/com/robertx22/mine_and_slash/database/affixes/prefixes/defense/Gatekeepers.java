@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +25,8 @@ public class Gatekeepers extends Prefix {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

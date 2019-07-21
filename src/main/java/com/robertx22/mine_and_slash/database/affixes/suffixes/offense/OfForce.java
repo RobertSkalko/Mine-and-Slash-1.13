@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,8 +27,8 @@ public class OfForce extends Suffix {
     }
 
     @Override
-    public int Weight() {
-        return IWeighted.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

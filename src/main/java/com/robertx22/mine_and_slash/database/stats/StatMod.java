@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
-public abstract class StatMod implements IWeighted, IGUID, ISlashRegistryEntry<StatMod> {
+public abstract class StatMod implements IWeighted, IRarity, IGUID, ISlashRegistryEntry<StatMod> {
 
     public float multiplier = 1F;
 
@@ -21,7 +24,17 @@ public abstract class StatMod implements IWeighted, IGUID, ISlashRegistryEntry<S
 
     @Override
     public int Weight() {
-        return IWeighted.UncommonWeight;
+        return this.getRarity().Weight();
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 1;
     }
 
     public abstract Stat GetBaseStat();

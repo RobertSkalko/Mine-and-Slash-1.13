@@ -20,14 +20,14 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public int Weight() {
-        return IWeighted.UncommonWeight;
+        return this.getRarity().Weight();
     }
 
     public abstract List<StatMod> StatMods();
 
     @Override
     public int getRarityRank() {
-        return 0;
+        return IRarity.Uncommon;
     }
 
     @Override

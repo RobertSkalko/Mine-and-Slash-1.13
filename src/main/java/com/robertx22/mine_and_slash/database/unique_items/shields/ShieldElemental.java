@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
@@ -45,8 +46,8 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
     }
 
     @Override
-    public int Weight() {
-        return EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

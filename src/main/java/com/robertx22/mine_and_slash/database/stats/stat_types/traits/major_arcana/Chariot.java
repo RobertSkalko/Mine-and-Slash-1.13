@@ -28,4 +28,5 @@ public class Chariot extends BaseMajorArcana {
     public String locNameForLangFile() {
         return "Chariot";
     }
+
 }

@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 public abstract class BaseEleResPrefix extends Prefix {
 
     @Override
-    public int Weight() {
-        return this.EpicWeight;
+    public int getRarityRank() {
+        return IRarity.Epic;
     }
 
     @Override

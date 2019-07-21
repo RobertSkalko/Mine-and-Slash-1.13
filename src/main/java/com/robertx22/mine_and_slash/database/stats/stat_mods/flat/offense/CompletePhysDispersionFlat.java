@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDispersion;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class CompletePhysDispersionFlat extends StatMod {
 
@@ -34,9 +33,5 @@ public class CompletePhysDispersionFlat extends StatMod {
         return new PhysicalDispersion();
     }
 
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
-    }
 }
 

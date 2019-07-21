@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
@@ -45,8 +46,8 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUni
     }
 
     @Override
-    public int Weight() {
-        return LegendaryWeight;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

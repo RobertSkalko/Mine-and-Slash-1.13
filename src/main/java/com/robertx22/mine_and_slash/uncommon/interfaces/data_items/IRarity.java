@@ -11,4 +11,12 @@ public interface IRarity<R extends Rarity> {
     public default boolean isUnique() {
         return this.getRarityRank() == -1;
     }
+
+    int Unique = -1;
+    int Common = 0;
+    int Uncommon = 1;
+    int Rare = 2;
+    int Epic = 3;
+    int Legendary = 4;
+    int Mythic = 5;
 }

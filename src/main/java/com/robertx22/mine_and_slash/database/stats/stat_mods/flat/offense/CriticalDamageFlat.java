@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class CriticalDamageFlat extends StatMod {
 
@@ -38,8 +37,4 @@ public class CriticalDamageFlat extends StatMod {
         return new CriticalDamage();
     }
 
-    @Override
-    public int Weight() {
-        return IWeighted.UncommonWeight;
-    }
 }
