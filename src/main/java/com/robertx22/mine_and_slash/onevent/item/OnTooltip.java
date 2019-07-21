@@ -1,11 +1,14 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
+import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -52,6 +55,17 @@ public class OnTooltip {
 
         if (data != null) {
             data.BuildTooltip(stack, event, unit, unitdata);
+        } else {
+            if (stack.getItem().getRegistryName() != null) {
+                if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
+                        .getRegistryName()
+                        .toString())) {
+
+                    event.getToolTip()
+                            .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
+
+                }
+            }
         }
 
     }

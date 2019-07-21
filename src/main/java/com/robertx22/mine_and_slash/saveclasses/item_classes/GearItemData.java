@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
@@ -332,17 +331,6 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
         if (stack.getItem() instanceof IEffectItem) {
             IEffectItem effect = (IEffectItem) stack.getItem();
             event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
-        }
-
-        if (stack.getItem().getRegistryName() != null) {
-            if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
-                    .getRegistryName()
-                    .toString())) {
-
-                event.getToolTip()
-                        .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
-
-            }
         }
 
     }
