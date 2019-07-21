@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;

@@ -7,7 +7,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public interface ITooltip {
 
-    public abstract void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
-                                      UnitData data);
+    void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit, UnitData data);
 
 }

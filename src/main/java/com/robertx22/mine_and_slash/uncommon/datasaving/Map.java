@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

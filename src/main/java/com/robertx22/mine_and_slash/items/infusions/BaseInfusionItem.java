@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.items.infusions;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -30,9 +30,13 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 
         if (gear.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Armor)) {
             possible = this.armorInfusions();
-        } else if (gear.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Weapon)) {
+        } else if (gear.GetBaseGearType()
+                .slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon)) {
             possible = this.weaponInfusions();
-        } else if (gear.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Jewerly)) {
+        } else if (gear.GetBaseGearType()
+                .slotType()
+                .equals(GearItemSlot.GearSlotType.Jewerly)) {
             possible = this.jewerlyInfusions();
         } else {
             possible = this.jewerlyInfusions();

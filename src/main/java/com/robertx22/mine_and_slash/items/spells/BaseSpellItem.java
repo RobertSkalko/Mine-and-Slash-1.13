@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.items.spells;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

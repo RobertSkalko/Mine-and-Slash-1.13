@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.spells.projectile;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.spells.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;

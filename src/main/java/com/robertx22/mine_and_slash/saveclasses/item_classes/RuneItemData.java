@@ -1,36 +1,27 @@
-package com.robertx22.mine_and_slash.saveclasses.rune;
+package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ISalvagable;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 @Storable
-public class RuneItemData implements ISalvagable {
+public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
     public RuneItemData() {
 
-    }
-
-    public RuneItemData(int level, String name, int rarity, StatModData weapon,
-                        StatModData armor, StatModData jewerly) {
-
-        this.name = name;
-        this.level = level;
-        this.rarity = rarity;
-        this.weapon = weapon;
-        this.armor = armor;
-        this.jewerly = jewerly;
     }
 
     @Store
@@ -38,6 +29,9 @@ public class RuneItemData implements ISalvagable {
 
     @Store
     public int level = 1;
+
+    @Store
+    public int tier = 0;
 
     @Store
     public StatModData weapon;
@@ -102,8 +96,32 @@ public class RuneItemData implements ISalvagable {
     }
 
     @Override
-    public boolean isSalvagable() {
+    public boolean isSalvagable(SalvageContext context) {
+        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
+            return this.isUnique() == false;
+
+        }
         return true;
     }
 
+    @Override
+    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
+                             EntityCap.UnitData data) {
+
+    }
+
+    @Override
+    public int getRank() {
+        return this.rarity;
+    }
+
+    @Override
+    public RuneRarity getRarity() {
+        return Rarities.Runes.get(rarity);
+    }
+
+    @Override
+    public int Tier() {
+        return this.tier;
+    }
 }

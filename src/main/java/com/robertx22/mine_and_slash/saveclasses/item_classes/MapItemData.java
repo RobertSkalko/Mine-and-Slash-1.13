@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
@@ -10,15 +10,15 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ISalvagable;
+import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
+public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti {
 
     @Store
     public int minutes = 30; // default
@@ -213,7 +213,11 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
     }
 
     @Override
-    public boolean isSalvagable() {
+    public boolean isSalvagable(SalvageContext context) {
+        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
+            return this.isUnique() == false;
+
+        }
         return true;
     }
 
@@ -342,5 +346,20 @@ public class MapItemData implements ISalvagable, ITooltip, IBonusLootMulti {
             }
 
         }
+    }
+
+    @Override
+    public int getRank() {
+        return this.rarity;
+    }
+
+    @Override
+    public MapRarity getRarity() {
+        return Rarities.Maps.get(rarity);
+    }
+
+    @Override
+    public int Tier() {
+        return this.tier;
     }
 }

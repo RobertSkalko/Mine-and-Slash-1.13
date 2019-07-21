@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 

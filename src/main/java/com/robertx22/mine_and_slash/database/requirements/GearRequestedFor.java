@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 
 public class GearRequestedFor {
 

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;

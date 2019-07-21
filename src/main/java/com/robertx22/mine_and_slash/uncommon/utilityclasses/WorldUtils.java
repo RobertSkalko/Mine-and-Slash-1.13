@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.items.currency;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import net.minecraft.item.ItemStack;

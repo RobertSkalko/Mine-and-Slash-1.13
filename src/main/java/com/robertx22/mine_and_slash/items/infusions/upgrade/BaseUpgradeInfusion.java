@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.items.infusions.upgrade;
 
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;

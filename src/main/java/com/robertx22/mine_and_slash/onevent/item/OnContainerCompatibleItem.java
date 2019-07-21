@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.item;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

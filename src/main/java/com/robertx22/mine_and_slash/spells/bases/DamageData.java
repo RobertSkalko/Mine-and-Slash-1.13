@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.spells.bases;
 
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;

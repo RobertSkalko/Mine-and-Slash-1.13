@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.items.currency.map;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import net.minecraft.item.ItemStack;

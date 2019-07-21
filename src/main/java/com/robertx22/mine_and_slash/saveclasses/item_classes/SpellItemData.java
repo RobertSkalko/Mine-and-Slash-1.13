@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;

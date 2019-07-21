@@ -5,11 +5,17 @@ import net.minecraft.item.ItemStack;
 
 public interface ISalvagable {
 
+    public enum SalvageContext {
+        SALVAGE_STATION,
+        AUTO_SALVAGE_BAG
+
+    }
+
     ItemStack getSalvageResult(float salvageBonus);
 
     int getSalvagedRarity();
 
-    boolean isSalvagable();
+    boolean isSalvagable(SalvageContext context);
 
     public default int tryIncreaseAmount(float salvageBonus, int amount) {
 

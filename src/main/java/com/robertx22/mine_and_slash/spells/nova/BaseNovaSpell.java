@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.spells.nova;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.spells.bases.SpellEffectDamage;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;

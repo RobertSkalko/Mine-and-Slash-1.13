@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -12,11 +12,15 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.ISalvagable;
+import com.robertx22.mine_and_slash.uncommon.interfaces.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ITooltip, ISalvagable {
+public class GearItemData implements ICommonDataItem<ItemRarity> {
 
     @Store
     public boolean isUnique = false;
@@ -59,8 +63,14 @@ public class GearItemData implements ITooltip, ISalvagable {
         return runes != null;
     }
 
-    public boolean isUnique() {
-        return isUnique;
+    @Override
+    public int getRank() {
+        return this.Rarity;
+    }
+
+    @Override
+    public ItemRarity getRarity() {
+        return Rarities.Items.get(this.Rarity);
     }
 
     public boolean changesItemStack() {
@@ -369,7 +379,11 @@ public class GearItemData implements ITooltip, ISalvagable {
     }
 
     @Override
-    public boolean isSalvagable() {
+    public boolean isSalvagable(SalvageContext context) {
+        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
+            return this.isUnique() == false && this.isSalvagable;
+
+        }
         return this.isSalvagable;
     }
 
@@ -380,5 +394,19 @@ public class GearItemData implements ITooltip, ISalvagable {
         }
 
         return false;
+    }
+
+    @Override
+    public int Tier() {
+
+        if (this.isUnique()) {
+            try {
+                return this.uniqueStats.getUniqueItem().Tier();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
     }
 }

@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.spells.self;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.items.spells.self.ItemInstantHeal;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.spells.bases.SpellBuffCheck;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.NoEnergyPacket;
-import com.robertx22.mine_and_slash.saveclasses.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

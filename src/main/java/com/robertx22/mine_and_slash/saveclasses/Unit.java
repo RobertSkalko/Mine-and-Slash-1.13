@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;

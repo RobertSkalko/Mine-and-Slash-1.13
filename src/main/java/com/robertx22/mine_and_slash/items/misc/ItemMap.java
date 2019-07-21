@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.items.misc;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.saveclasses.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;

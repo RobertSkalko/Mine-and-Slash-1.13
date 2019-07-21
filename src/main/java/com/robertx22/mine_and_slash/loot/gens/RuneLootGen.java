@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.RuneBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.rune.RuneItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

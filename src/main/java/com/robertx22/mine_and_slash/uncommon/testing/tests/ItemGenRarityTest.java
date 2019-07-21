@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.testing.tests;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
-import com.robertx22.mine_and_slash.saveclasses.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import org.apache.commons.lang3.time.StopWatch;
 
