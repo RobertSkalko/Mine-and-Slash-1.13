@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
+public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Serializable, ITooltipList, IRerollable {
 
     private static final long serialVersionUID = -110285627065158395L;
 
@@ -40,9 +41,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
         Prefix prefix = Prefixes.INSTANCE.random(new GearRequestedFor(gear));
 
-        baseAffix = prefix.GUID();
-
-        RerollNumbers(gear);
+        this.create(gear, prefix);
 
     }
 
@@ -56,6 +55,13 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
         }
 
+    }
+
+    @Override
+    public void create(GearItemData gear, Prefix prefix) {
+
+        baseAffix = prefix.GUID();
+        RerollNumbers(gear);
     }
 
     @Override

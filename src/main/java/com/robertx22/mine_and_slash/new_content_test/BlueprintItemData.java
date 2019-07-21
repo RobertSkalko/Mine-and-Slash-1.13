@@ -65,6 +65,11 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
     }
 
     @Override
+    public boolean isSalvagable(SalvageContext context) {
+        return false;
+    }
+
+    @Override
     public int Tier() {
         return tier;
     }

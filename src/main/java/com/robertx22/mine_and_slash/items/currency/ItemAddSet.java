@@ -36,7 +36,8 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
         blueprint.SetCustomSetChance(100);
 
         if (blueprint.canGetSet(gear)) {
-            gear.set = blueprint.generateSet(gear);
+            gear.set = new SetData();
+            gear.set = gear.set.generate(gear);
         }
 
         Gear.Save(stack, gear);

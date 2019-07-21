@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ChaosStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
+public class ChaosStatsData extends StatGroupData implements ICreateSpecific<StatMod>, Serializable, ITooltipList, IRerollable {
 
     private static final long serialVersionUID = -8272316157157669116L;
 
@@ -49,9 +50,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
         StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().ChaosStats());
 
-        StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
-
-        this.Mods.add(moddata);
+        this.create(gear, mod);
 
     }
 
@@ -60,4 +59,12 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
     }
 
+    @Override
+    public void create(GearItemData gear, StatMod mod) {
+
+        this.Mods = new ArrayList<StatModData>();
+        StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+        this.Mods.add(moddata);
+
+    }
 }

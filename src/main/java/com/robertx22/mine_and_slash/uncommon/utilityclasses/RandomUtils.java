@@ -59,6 +59,9 @@ public class RandomUtils {
 
     public static <T extends IWeighted> T weightedRandom(Collection<T> coll) {
 
+        if (coll == null || coll.isEmpty()) {
+            return null;
+        }
         return (T) WeightedRandom(CollectionToList(coll));
 
     }

@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import info.loenwind.autosave.annotations.Storable;
@@ -75,6 +78,22 @@ public class SetData implements ITooltipList {
         }
 
         return list;
+
+    }
+
+    public SetData generate(GearItemData data) {
+
+        SetData setdata = null;
+
+        Set set = Sets.INTANCE.random(new GearRequestedFor(data));
+
+        if (set != null) {
+
+            setdata = new SetData();
+            setdata.baseSet = set.GUID();
+        }
+
+        return setdata;
 
     }
 }

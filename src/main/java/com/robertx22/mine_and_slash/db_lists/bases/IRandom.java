@@ -13,6 +13,6 @@ public interface IRandom<T extends IhasRequirements & IWeighted, Config> {
 
     public T random();
 
-    public List<T> allThatMeetRequirement(Config gearRequestedFor);
+    public List<T> allThatMeetRequirement(List<T> list, Config gearRequestedFor);
 
 }

@@ -107,7 +107,8 @@ public class GearLootGen extends BaseLootGen {
         }
         if (type.canGetSet(data)) {
             if (blueprint.canGetSet(data)) {
-                data.set = blueprint.generateSet(data);
+                data.set = new SetData();
+                data.set = data.set.generate(data);
             }
         }
 

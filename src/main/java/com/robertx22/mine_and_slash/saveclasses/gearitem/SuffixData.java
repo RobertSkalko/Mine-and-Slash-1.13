@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Suffixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SuffixData extends AffixData implements Serializable, ITooltipList, IRerollable {
+public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Serializable, ITooltipList, IRerollable {
 
     private static final long serialVersionUID = 8802998468539898482L;
 
@@ -35,13 +36,17 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
     }
 
     @Override
+    public void create(GearItemData gear, Suffix suffix) {
+        baseAffix = suffix.GUID();
+        RerollNumbers(gear);
+    }
+
+    @Override
     public void RerollFully(GearItemData gear) {
 
         Suffix suffix = Suffixes.INSTANCE.random(new GearRequestedFor(gear));
 
-        baseAffix = suffix.GUID();
-
-        RerollNumbers(gear);
+        this.create(gear, suffix);
 
     }
 
