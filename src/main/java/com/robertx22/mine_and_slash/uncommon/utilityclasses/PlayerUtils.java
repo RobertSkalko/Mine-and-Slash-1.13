@@ -15,8 +15,8 @@ import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.ServerWorld;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
 
 import java.util.Comparator;
@@ -61,20 +61,8 @@ public class PlayerUtils {
         playerlist.updatePermissionLevel(player);
         serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         player.revive();
-        double d0 = player.posX;
-        double d1 = player.posY;
-        double d2 = player.posZ;
         float f = player.rotationPitch;
         float f1 = player.rotationYaw;
-        double d3 = 8.0D;
-        float f2 = f1;
-        serverworld.getProfiler().startSection("moving");
-        double moveFactor = serverworld.getDimension()
-                .getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-        d0 *= moveFactor;
-        d2 *= moveFactor;
-
-        serverworld.getProfiler().endSection();
 
         player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), f1, 0.0F);
         player.setMotion(Vec3d.ZERO);
@@ -83,7 +71,7 @@ public class PlayerUtils {
 
         player.setWorld(serverworld1);
         serverworld1.func_217447_b(player);
-        player.func_213846_b(serverworld);
+        player.setWorld(serverworld);
         player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, f1, f);
         player.interactionManager.setWorld(serverworld1);
         player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));

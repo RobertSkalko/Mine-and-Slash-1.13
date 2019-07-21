@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.ChunkPos;
 
 public class TeleportProtection extends SpellPotionBase {
 
@@ -44,26 +45,34 @@ public class TeleportProtection extends SpellPotionBase {
 
     @Override
     public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
+        if (true) {
+            return;
+        }
 
         try {
+
             if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
 
                 int tries = 0;
 
-                while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
+                if (entity.world.chunkExists(new ChunkPos(entity.getPosition()).x, new ChunkPos(entity
+                        .getPosition()).z)) {
 
-                    tries++;
+                    while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
 
-                    if (entity.posY >= entity.world.getHeight()) {
-                        break;
+                        tries++;
+
+                        if (entity.posY >= entity.world.getHeight()) {
+                            break;
+                        }
+
+                        if (tries > 5) {
+                            break;
+                        }
+
+                        goUpward((ServerPlayerEntity) entity);
+
                     }
-
-                    if (tries > 5) {
-                        break;
-                    }
-
-                    goUpward((ServerPlayerEntity) entity);
-
                 }
             }
         } catch (Exception e) {

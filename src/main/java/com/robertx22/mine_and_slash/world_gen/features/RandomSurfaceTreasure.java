@@ -2,14 +2,13 @@ package com.robertx22.mine_and_slash.world_gen.features;
 
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.mine_and_slash.world_gen.processors.BiomeProcessor;
 import com.robertx22.mine_and_slash.world_gen.processors.ChestProcessor;
 import com.robertx22.mine_and_slash.world_gen.types.FeatureType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.ServerWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
@@ -18,6 +17,7 @@ import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 import java.util.function.Function;
