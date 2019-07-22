@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
@@ -213,7 +213,7 @@ public class ConfigItem implements IWeighted {
 
     private ItemStack createUnique(ItemStack stack, int level) {
 
-        UniqueBlueprint blueprint = new UniqueBlueprint(level, this.uniqueId);
+        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(level, this.uniqueId);
         blueprint.uniqueIsRandom = this.uniqueIsRandom;
         blueprint.tier = randomUniqueUpToTier;
         blueprint.map_tier = this.randomUniqueUpToTier;

@@ -7,16 +7,16 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.List;
 
-public class UniqueBlueprint extends GearBlueprint {
+public class UniqueGearBlueprint extends GearBlueprint {
 
-    public UniqueBlueprint(int level, int map_tier, boolean randomTier) {
+    public UniqueGearBlueprint(int level, int map_tier, boolean randomTier) {
         super(level);
         this.randomTier = randomTier;
         this.map_tier = map_tier;
 
     }
 
-    public UniqueBlueprint(int level, String guid) {
+    public UniqueGearBlueprint(int level, String guid) {
         super(level);
         this.guid = guid;
         this.uniqueIsRandom = false;

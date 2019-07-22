@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
@@ -59,9 +59,9 @@ public class GearLootGen extends BaseLootGen {
         data.gearTypeName = blueprint.GetGearType().GUID();
         data.Rarity = rarity.Rank();
 
-        if (type == GearItemEnum.UNIQUE && blueprint instanceof UniqueBlueprint) {
+        if (type == GearItemEnum.UNIQUE && blueprint instanceof UniqueGearBlueprint) {
 
-            UniqueBlueprint uniqprint = (UniqueBlueprint) blueprint;
+            UniqueGearBlueprint uniqprint = (UniqueGearBlueprint) blueprint;
 
             IUnique unique = uniqprint.getUnique();
 

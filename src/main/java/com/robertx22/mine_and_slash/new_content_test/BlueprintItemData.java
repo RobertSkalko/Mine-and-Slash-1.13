@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.new_content_test;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintDataItemRequest;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
@@ -17,7 +18,11 @@ import java.util.List;
 @Storable
 public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
 
-    public List<BlueprintItemRequest> requests = new ArrayList<>();
+    @Store
+    public List<BlueprintDataItemRequest> requests = new ArrayList<>();
+
+    @Store
+    public BlueprintGearReward gearReward = new BlueprintGearReward();
 
     @Store
     public int level;

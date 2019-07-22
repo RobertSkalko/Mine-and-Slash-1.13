@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -35,7 +35,7 @@ public class UniqueGearLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-        UniqueBlueprint gearPrint = new UniqueBlueprint(info.level, info.tier, true);
+        UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(info.level, info.tier, true);
 
         ItemStack stack = CreateStack(gearPrint);
 
@@ -45,11 +45,11 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     }
 
-    public static GearItemData CreateData(UniqueBlueprint blueprint) {
+    public static GearItemData CreateData(UniqueGearBlueprint blueprint) {
         return GearLootGen.CreateData(blueprint, GearItemEnum.UNIQUE);
     }
 
-    public static ItemStack CreateStack(UniqueBlueprint schema) {
+    public static ItemStack CreateStack(UniqueGearBlueprint schema) {
 
         GearItemData data = CreateData(schema);
 

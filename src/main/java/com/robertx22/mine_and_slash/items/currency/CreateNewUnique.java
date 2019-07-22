@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.currency;
 
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -38,7 +38,8 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        UniqueBlueprint gearPrint = new UniqueBlueprint(gear.level, gear.uniqueStats.getUniqueItem()
+        UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(gear.level, gear.uniqueStats
+                .getUniqueItem()
                 .Tier(), false);
         gearPrint.setSpecificRarity(new UniqueItem().Rank());
         gearPrint.LevelRange = false;
