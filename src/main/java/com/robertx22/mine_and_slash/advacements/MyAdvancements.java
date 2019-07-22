@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.items.currency.ItemOrbOfTransmutation;
 import com.robertx22.mine_and_slash.items.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
+import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
@@ -44,7 +45,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
                         .locName(), null, FrameType.TASK, true, true, false)
                 .withCriterion(id("lvl_penalty"), new DropLvlPenaltyTrigger.Instance(5))
                 .register(consu, id("lvl_penalty"));
-        
+
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items
                 .get(0));
         Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items
@@ -58,6 +59,14 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items
                 .get(5));
 
+        Advancement first_adv_map = Advancement.Builder.builder()
+                .withParent(lvl_10)
+                .withDisplay(ItemMap.Items.get(0), AdvTitles.FirstAdventureMap.locName(), AdvDescs.AdventureMap
+                        .locName(), null, FrameType.GOAL, true, true, false)
+                .withCriterion("adv_map", InventoryChangeTrigger.Instance.forItems(ItemMap.Items
+                        .get(0)))
+                .register(consu, id("adv_map"));
+
         Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu, BlockRegister.BLOCK_GEAR_REPAIR);
         Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", lvl_10, consu, BlockRegister.BLOCK_GEAR_MODIFY);
         Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu, BlockRegister.BLOCK_GEAR_SALVAGE);
@@ -68,7 +77,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement loot_bag = itemAdv(AdvTitles.LootBag, AdvDescs.LootBag, "loot_bag", repair, consu, ItemLootBag.ITEM);
         Advancement master_bag = itemAdv(AdvTitles.MasterBag, AdvDescs.MasterBag, "master_bag", repair, consu, ItemMasterBag.ITEM);
 
-        Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", lvl_10, consu, BlockRegister.BLOCK_MAP_DEVICE);
+        Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", first_adv_map, consu, BlockRegister.BLOCK_MAP_DEVICE);
 
         Advancement orbOfTrans = byItemName(ItemRegister.ORB_OF_TRANSMUTATION, new StringTextComponent(new ItemOrbOfTransmutation()
                 .locNameForLangFile()), "orb_of_transmutation", AdvDescs.OrbOfTransmutation, lvl_10, consu, ItemRegister.ORB_OF_TRANSMUTATION);

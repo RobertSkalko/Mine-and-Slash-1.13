@@ -17,11 +17,6 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(0, 0);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(25, 100);
     }
@@ -52,7 +47,7 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 15F;
     }
 }

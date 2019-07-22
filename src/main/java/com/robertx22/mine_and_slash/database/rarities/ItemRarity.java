@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 public interface ItemRarity extends Rarity, SalvagableItem {
     int AffixChance();
 
-    MinMax SecondaryStatsAmount();
-
     MinMax StatPercents();
 
     int SetChance();
@@ -18,6 +16,6 @@ public interface ItemRarity extends Rarity, SalvagableItem {
 
     float itemTierPower();
 
-    float difficulty();
+    float powerMultiplier();
 
 }

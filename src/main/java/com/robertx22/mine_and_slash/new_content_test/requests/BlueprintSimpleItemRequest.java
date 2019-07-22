@@ -31,12 +31,13 @@ public class BlueprintSimpleItemRequest extends BaseBlueprintRequest {
     @Store
     public int rarity = UNUSED_INT;
 
+    @Override
     public void random(ItemRarity rar) {
 
-        int raramount = (int) (3 * rar.difficulty());
+        int raramount = (int) (3 * rar.powerMultiplier());
         this.amount = RandomUtils.RandomRange(raramount, raramount * 3);
 
-        int rartier = (int) (1 * rar.difficulty());
+        int rartier = (int) (1 * rar.powerMultiplier());
         this.tier = RandomUtils.RandomRange(rartier, ITiered.MAX_TIER);
 
         rarity = RandomUtils.weightedRandom(Rarities.Items.getRarities()).Rank();

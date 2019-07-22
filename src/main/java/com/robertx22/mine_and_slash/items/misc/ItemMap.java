@@ -25,8 +25,8 @@ public class ItemMap extends Item implements IAutoLocName {
         this.rarity = rarity;
     }
 
-    public static void createMapPortal(DimensionType type, BlockPos pos, World world,
-                                       MapItemData data) {
+    public static boolean createMapPortal(DimensionType type, BlockPos pos, World world,
+                                          MapItemData data) {
 
         if (WorldUtils.isMapWorld(world)) {
 
@@ -34,14 +34,14 @@ public class ItemMap extends Item implements IAutoLocName {
 
             if (data != null) {
 
-                summonPortal(world, pos, type);
+                return summonPortal(world, pos, type);
             }
         }
+
+        return false;
     }
 
-    private static void summonPortal(World world, BlockPos pos, DimensionType type) {
-
-        spawnPortalBlock(world, pos, type);
+    private static boolean summonPortal(World world, BlockPos pos, DimensionType type) {
 
         spawnFrameBlock(world, pos.south());
         spawnFrameBlock(world, pos.north());
@@ -53,10 +53,12 @@ public class ItemMap extends Item implements IAutoLocName {
         spawnFrameBlock(world, pos.north().east());
         spawnFrameBlock(world, pos.north().west());
 
+        return spawnPortalBlock(world, pos, type);
+
     }
 
-    private static void spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
-
+    private static boolean spawnPortalBlock(World world, BlockPos pos,
+                                            DimensionType type) {
         Block block = world.getBlockState(pos).getBlock();
 
         if (block.equals(Blocks.AIR) || block.equals(BlockRegister.PORTAL_BLOCK)) {
@@ -64,7 +66,9 @@ public class ItemMap extends Item implements IAutoLocName {
             world.setBlockState(pos, BlockRegister.PORTAL_BLOCK.getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal(type);
             world.setTileEntity(pos, portal);
+            return true;
         }
+        return false;
     }
 
     private static Block FRAME_BLOCK = Blocks.COBBLESTONE;

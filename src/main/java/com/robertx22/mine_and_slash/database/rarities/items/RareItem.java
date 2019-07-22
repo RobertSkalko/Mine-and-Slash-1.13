@@ -13,11 +13,6 @@ public class RareItem extends BaseRare implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(1, 2);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(15, 70);
     }
@@ -53,7 +48,7 @@ public class RareItem extends BaseRare implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 1.4F;
     }
 }

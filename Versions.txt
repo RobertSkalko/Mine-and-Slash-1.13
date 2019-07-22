@@ -1,3 +1,6 @@
+2.2.6
+added warning on no space for map device portals
+added first adv map advancement
 2.2.5
 initial update to forge 1.14.4, probably unstable. Doesn't work on 1.14.3!
 reduced mob spell resist

@@ -163,6 +163,26 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -221,25 +241,6 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -430,6 +431,10 @@
 
 	"mmorpg.word.activation_time": "Activation Time",
 	"mmorpg.word.affixes_affecting_all": "Affixes Affecting All",
+	"mmorpg.word.alwayschaosstats": "Always has Chaos Stats",
+	"mmorpg.word.alwaysmajorarcana": "Always has Major Arcana Chaos Stats",
+	"mmorpg.word.alwaysmythicaffixes": "Always has Mythic Affixes",
+	"mmorpg.word.alwaysset": "Always has Set",
 	"mmorpg.word.animal": "Animal",
 	"mmorpg.word.armor": "Armor",
 	"mmorpg.word.attack": "Attack",
@@ -437,6 +442,7 @@
 	"mmorpg.word.basevalue": "Base Value",
 	"mmorpg.word.beware": "Beware",
 	"mmorpg.word.blocks": "Blocks",
+	"mmorpg.word.blueprint": "Blueprint",
 	"mmorpg.word.bonus_loot_amount": "Bonus Loot Amount",
 	"mmorpg.word.bonus_salvage_chance": "Bonus Salvage Chance",
 	"mmorpg.word.bonus_success_rate": "Bonus Success Rate",
@@ -496,6 +502,7 @@
 	"mmorpg.word.rarity": "Rarity",
 	"mmorpg.word.regeneration": "Regeneration",
 	"mmorpg.word.repair_station": "Repair Station",
+	"mmorpg.word.requirements": "Requirements",
 	"mmorpg.word.resources": "Resources",
 	"mmorpg.word.runed": "Runed",
 	"mmorpg.word.runes": "Runes",
@@ -758,6 +765,7 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 	"mmorpg.advancement.desc.addaffix": "Unique items have lower chance to gain affixes, that's why these currencies are so important",
+	"mmorpg.advancement.desc.adventuremap": "Maps are used in Map Devices. Sacrificing one gives you time to spend in other dimensions to attain loot!",
 	"mmorpg.advancement.desc.autosalvagebag": "These bags when equipped will automatically salvage items! This means all those bad common, uncommon and other useless items can be automatically salvaged! Higher rarity bag gives more bonus item chance.",
 	"mmorpg.advancement.desc.chaosorb": "Gives Chaos Stats. These Stats can be good or bad. Chaos stats can't be removed, so choose wisely which item you modify.",
 	"mmorpg.advancement.desc.currencybag": "Currency Bag automatically picks up Mine and Slash ores, currencies etc",
@@ -879,22 +887,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.aoe_regen": "Aoe Regen",
-	"effect.mmorpg.bonus_flame_dmg": "Bonus Flame Dmg",
-	"effect.mmorpg.bonus_frost_dmg": "Bonus Frost Dmg",
-	"effect.mmorpg.bonus_lightning_dmg": "Bonus Lightning Dmg",
-	"effect.mmorpg.bonus_venom_dmg": "Bonus Venom Dmg",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.energy_regen": "Regen Energy",
-	"effect.mmorpg.mana_regen": "Regen Mana",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -997,6 +989,22 @@
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.aoe_regen": "Aoe Regen",
+	"effect.mmorpg.bonus_flame_dmg": "Bonus Flame Dmg",
+	"effect.mmorpg.bonus_frost_dmg": "Bonus Frost Dmg",
+	"effect.mmorpg.bonus_lightning_dmg": "Bonus Lightning Dmg",
+	"effect.mmorpg.bonus_venom_dmg": "Bonus Venom Dmg",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.energy_regen": "Regen Energy",
+	"effect.mmorpg.mana_regen": "Regen Mana",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
 
 	"mmorpg.world_type.birch_forest": "Birch Forest",
@@ -1025,6 +1033,7 @@
 	"mmorpg.chat.map_time_penalty_activated": "Map time penalty activated",
 	"mmorpg.chat.no_bed_found": "No bed found",
 	"mmorpg.chat.no_targets_found": "No targets found",
+	"mmorpg.chat.nospaceforportal": "No Space for the portals. Please make room.",
 	"mmorpg.chat.not_attuned_to_any_altars": "Not attuned to any altars",
 	"mmorpg.chat.not_enough_experience": "Not enough experience",
 	"mmorpg.chat.not_enough_time": "Not enough time",

@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -155,16 +156,22 @@ public class TileMapDevice extends BaseTile {
                         this.StartSlot().shrink(1);
 
                         BlockPos pos = this.pos.north(4);
-                        ItemMap.createMapPortal(type, pos, world, map);
+                        Boolean spawnedPortal1 = ItemMap.createMapPortal(type, pos, world, map);
 
                         BlockPos pos1 = this.pos.south(4);
-                        ItemMap.createMapPortal(type, pos1, world, map);
+                        Boolean spawnedPortal2 = ItemMap.createMapPortal(type, pos1, world, map);
 
                         BlockPos pos2 = this.pos.east(4);
-                        ItemMap.createMapPortal(type, pos2, world, map);
+                        Boolean spawnedPortal3 = ItemMap.createMapPortal(type, pos2, world, map);
 
                         BlockPos pos3 = this.pos.west(4);
-                        ItemMap.createMapPortal(type, pos3, world, map);
+                        Boolean spawnedPortal4 = ItemMap.createMapPortal(type, pos3, world, map);
+
+                        if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
+                            AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
+                            world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
+                                    .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
+                        }
 
                     } catch (Exception e) {
                         e.printStackTrace();

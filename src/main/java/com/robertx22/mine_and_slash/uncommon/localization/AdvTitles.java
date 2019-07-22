@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum AdvTitles implements IAutoLocName {
-
+    FirstAdventureMap("First Adventure Map!"),
     WelcomeMineandslash("Welcome to Mine and Slash!"),
     RepairStation("Repair Station"),
     SalvageStation("Salvage Station"),

@@ -1,27 +1,27 @@
 {
-  "parent": "mmorpg:mine_and_slash/adv_map",
+  "parent": "mmorpg:mine_and_slash/player_level_10",
   "display": {
     "icon": {
-      "item": "mmorpg:map_device"
+      "item": "mmorpg:map/map0"
     },
     "title": {
-      "translate": "mmorpg.advancement.title.mapdevice"
+      "translate": "mmorpg.advancement.title.firstadventuremap"
     },
     "description": {
-      "translate": "mmorpg.advancement.desc.mapdevice"
+      "translate": "mmorpg.advancement.desc.adventuremap"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "gained_map_device": {
+    "adv_map": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mmorpg:map_device"
+            "item": "mmorpg:map/map0"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "gained_map_device"
+      "adv_map"
     ]
   ]
 }

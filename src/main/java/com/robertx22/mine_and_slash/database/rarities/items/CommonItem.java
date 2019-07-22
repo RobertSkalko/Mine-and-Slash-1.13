@@ -13,11 +13,6 @@ public class CommonItem extends BaseCommon implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(0, 1);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(3, 60);
     }
@@ -53,7 +48,7 @@ public class CommonItem extends BaseCommon implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 1F;
     }
 }

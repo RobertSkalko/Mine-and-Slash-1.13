@@ -13,11 +13,6 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(2, 4);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(25, 90);
     }
@@ -53,7 +48,7 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 2.5F;
     }
 }

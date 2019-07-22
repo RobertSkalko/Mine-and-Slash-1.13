@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum AdvDescs implements IAutoLocName {
+    AdventureMap("Maps are used in Map Devices. Sacrificing one gives you time to spend in other dimensions to attain loot!"),
+
     LevelPenalty("When you kill a mob that is too high or too low level, the item and exp drops will be reduced. Try to kill mobs within 5 levels of yours."),
     WelcomeMineandslash("This mod is all about killing mobs, looting epic gear to kill more mobs!"),
     RepairStation("Repair Station is used to repair your gear. Put ores (common, uncommon etc) into the fuel slot and then put items to repair left. They can also have a capacitor that decreases the repair cost"),

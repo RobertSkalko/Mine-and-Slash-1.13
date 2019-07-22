@@ -15,11 +15,6 @@ public class EpicItem extends BaseEpic implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(2, 3);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(20, 75);
     }
@@ -55,7 +50,7 @@ public class EpicItem extends BaseEpic implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 1.6F;
     }
 }

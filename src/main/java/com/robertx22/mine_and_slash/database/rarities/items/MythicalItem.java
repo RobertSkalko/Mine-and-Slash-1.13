@@ -13,11 +13,6 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
     }
 
     @Override
-    public MinMax SecondaryStatsAmount() {
-        return new MinMax(3, 5);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(35, 100);
     }
@@ -53,7 +48,7 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
     }
 
     @Override
-    public float difficulty() {
+    public float powerMultiplier() {
         return 7F;
     }
 }
