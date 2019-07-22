@@ -7,8 +7,11 @@ import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.BowWeaponMe
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 
@@ -18,6 +21,12 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
     public ItemBow(int rar) {
         super(new Properties().maxStackSize(1).defaultMaxDamage(1000));
         this.rarity = rar;
+    }
+
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player,
+                                     Entity entity) {
+        return false;
     }
 
     public int rarity = 0;

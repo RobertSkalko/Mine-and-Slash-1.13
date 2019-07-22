@@ -4,10 +4,6 @@ import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.pene.OfEarthquakes;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.pene.OfFirestorms;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.pene.OfIceStorms;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.pene.OfThunderstorms;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfManaRegen;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfTheDepths;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfTheSage;
@@ -68,11 +64,6 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
                     add(new OfManaRegen());
                     add(new OfTheSage());
 
-                    add(new OfFirestorms());
-                    add(new OfEarthquakes());
-                    add(new OfThunderstorms());
-                    add(new OfIceStorms());
-
                 }
             }
         };
@@ -82,6 +73,7 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
         List<IGenerated<Suffix>> allGenerated = new ArrayList<IGenerated<Suffix>>() {
             {
                 {
+                    add(new OfEleStorms(Elements.Physical));
                     add(new OfDissonance(Elements.Physical));
                     add(new OfMajorAffinity(Elements.Physical));
                     add(new OfWeaponFlurry(WeaponTypes.None));

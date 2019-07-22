@@ -2,17 +2,10 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixFireRes;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixNatureRes;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixThunderRes;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.PrefixWaterRes;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.EleShieldPrefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.imbued.FlameImbued;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.imbued.FrostImbued;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.imbued.LightningImbued;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.imbued.PoisonImbued;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.Energetic;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.LifeStealing;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.Tenacious;
@@ -77,22 +70,12 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
                     add(new Evasive());
                     add(new HeavenlySkin());
 
-                    add(new PrefixFireRes());
-                    add(new PrefixWaterRes());
-                    add(new PrefixThunderRes());
-                    add(new PrefixNatureRes());
-
                     add(new BraveHeart());
                     add(new DeepMind());
                     add(new InnerSpirit());
 
                     add(new Energetic());
                     add(new Tough());
-
-                    add(new PoisonImbued());
-                    add(new FlameImbued());
-                    add(new FrostImbued());
-                    add(new LightningImbued());
 
                 }
             }
@@ -104,6 +87,8 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
             {
                 {
                     add(new Heretics(Elements.Physical));
+                    add(new EleShieldPrefix(Elements.Physical));
+                    add(new ElementImbued(Elements.Physical));
                     add(new ElementThornsMastery(Elements.Physical));
                     add(new MagesGamble(new SpellAcidBolt()));
 
