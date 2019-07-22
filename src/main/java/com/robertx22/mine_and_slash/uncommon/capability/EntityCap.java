@@ -578,15 +578,13 @@ public class EntityCap {
 
                 boolean canAtk = false;
 
-                if ((int) cooled >= 1) {
+                if (cooled >= 1 || Float.compare(cooled, base) == 0) {
                     canAtk = true;
-                } else if (Float.compare(cooled, base) == 0) {
-                    canAtk = true; // this never seems to happen?
                 }
 
                 if (canAtk) {
                     if ((float) victim.hurtResistantTime > 10.0F) {
-                        if (amount <= victim.lastDamage) {
+                        if (amount <= attacker.lastDamage) {
                             return false;
                         }
                     }
@@ -596,7 +594,7 @@ public class EntityCap {
                 }
             } else {
                 if ((float) victim.hurtResistantTime > 10.0F) {
-                    if (amount <= victim.lastDamage) {
+                    if (amount <= attacker.lastDamage) {
                         return false;
                     }
                 }
