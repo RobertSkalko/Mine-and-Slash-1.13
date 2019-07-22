@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.config;
 
-import com.robertx22.mine_and_slash.uncommon.enumclasses.EntitySystemChoice;
-
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
 public class ServerContainer {
@@ -29,8 +27,6 @@ public class ServerContainer {
     public DoubleValue UNARMED_ENERGY_COST;
     public DoubleValue STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT;
     public DoubleValue PLAYER_HEART_TO_HEALTH_CONVERSION;
-
-    public EnumValue<EntitySystemChoice> ENTITIES_UNDER_SYSTEM;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
@@ -114,10 +110,6 @@ public class ServerContainer {
         UNARMED_ENERGY_COST = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("UNARMED_ENERGY_COST", 1D, 0D, Integer.MAX_VALUE);
-
-        ENTITIES_UNDER_SYSTEM = builder.comment(".")
-                .translation("mmorpg.word.")
-                .defineEnum("ENTITIES_UNDER_SYSTEM", EntitySystemChoice.All_Entities);
 
         builder.pop();
     }

@@ -28,7 +28,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.UnitNbt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.*;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.AttackUtils;
@@ -36,7 +35,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -214,20 +212,7 @@ public class EntityCap {
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-            boolean can = false;
-
-            if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
-                    .equals(EntitySystemChoice.All_Entities) && event.getObject() instanceof LivingEntity) {
-                can = true;
-
-            } else if (ModConfig.INSTANCE.Server.ENTITIES_UNDER_SYSTEM.get()
-                    .equals(EntitySystemChoice.Mobs_And_Players)) {
-                if (event.getObject() instanceof IMob || event.getObject() instanceof PlayerEntity) {
-                    can = true;
-                }
-            }
-
-            if (can) {
+            if (event.getObject() instanceof LivingEntity) {
                 event.addCapability(RESOURCE, new Provider());
             }
         }
