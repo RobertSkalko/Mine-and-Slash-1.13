@@ -167,7 +167,6 @@ public class Stats implements ISlashRegistryInit {
 
                     add(new BlockStrength());
                     add(new Armor());
-                    add(new ArmorPenetration());
                     add(new CriticalDamage());
                     add(new CriticalHit());
                     add(new PhysicalDamage());

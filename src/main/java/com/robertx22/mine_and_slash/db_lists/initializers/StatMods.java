@@ -152,14 +152,12 @@ public class StatMods implements ISlashRegistryInit {
                     add(new MajorDodgeFlat());
                     add(new MajorArmorFlat());
                     add(new ArmorFlat());
-                    add(new ArmorPeneFlat());
                     add(new CriticalHitFlat());
                     add(new CriticalDamageFlat());
                     add(new PhysicalDamageFlat());
                     add(new CriticalHitPercent());
                     add(new PhysicalDamagePercent());
                     add(new CriticalDamagePercent());
-                    add(new ArmorPenePercent());
                     add(new DodgePercent());
                     add(new BlockStrengthFlat());
 

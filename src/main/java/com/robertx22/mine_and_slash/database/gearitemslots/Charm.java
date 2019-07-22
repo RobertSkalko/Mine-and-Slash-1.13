@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
@@ -24,7 +23,7 @@ public class Charm extends GearItemSlot {
     @Override
     public List<StatMod> PrimaryStats() {
 
-        return ListUtils.newList(new ElementalPeneFlat(Elements.Physical).allSingleElementVariations(), new ArmorPeneFlat());
+        return ListUtils.newList(new ElementalPeneFlat(Elements.Physical).allSingleElementVariations(), new ElementalPeneFlat(Elements.Physical));
 
     }
 

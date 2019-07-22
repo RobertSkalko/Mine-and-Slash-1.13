@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalPenetrable;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
@@ -26,13 +27,22 @@ public class ElementalPeneEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
+
             if (Effect instanceof IElementalPenetrable) {
+
                 IElementalEffect ele = (IElementalEffect) Effect;
 
                 if (ele.GetElement().equals(stat.Element()) || stat.Element()
                         .equals(Elements.Elemental)) {
-                    IElementalPenetrable ipene = (IElementalPenetrable) Effect;
-                    ipene.addElementalPenetration((int) data.Value);
+
+                    if (stat.Element() == Elements.Physical) {
+                        IPenetrable ipene = (IPenetrable) Effect;
+                        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.Value);
+
+                    } else {
+                        IElementalPenetrable ipene = (IElementalPenetrable) Effect;
+                        ipene.addElementalPenetration((int) data.Value);
+                    }
                 }
             }
 

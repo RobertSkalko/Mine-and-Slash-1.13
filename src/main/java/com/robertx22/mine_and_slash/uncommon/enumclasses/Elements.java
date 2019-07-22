@@ -50,7 +50,7 @@ public enum Elements implements IColor {
     public static List<Elements> getAllExceptNone() {
 
         return Arrays.stream(Elements.values())
-                .filter(x -> x.isSingleElement || x == Elements.Elemental)
+                .filter(x -> x != Elements.Elemental)
                 .collect(Collectors.toList());
 
     }

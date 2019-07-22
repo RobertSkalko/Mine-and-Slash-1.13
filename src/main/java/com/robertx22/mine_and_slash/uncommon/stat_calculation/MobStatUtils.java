@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalPene;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.ArmorPenetration;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
@@ -83,7 +82,6 @@ public class MobStatUtils {
         unit.getStat(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
         unit.getStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getStat(CriticalDamage.GUID).Flat += 10 * rar.DamageMultiplier();
-        unit.getStat(ArmorPenetration.GUID).Flat += 8 * level * rar.StatMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 
@@ -91,6 +89,9 @@ public class MobStatUtils {
                     .StatMultiplier();
             unit.getStat(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
                     .DamageMultiplier();
+        }
+
+        for (Elements element : Elements.getAllExceptNone()) {
             unit.getStat(new ElementalPene(element).GUID()).Flat += elePene * level * rar.DamageMultiplier();
 
         }

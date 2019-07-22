@@ -5,9 +5,10 @@ import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorPeneFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.ArmorPenePercent;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPenePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class OfRockPiercing extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ArmorPeneFlat(), new PhysicalDamagePercent(), new ArmorPenePercent());
+        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new PhysicalDamagePercent(), new ElementalPenePercent(Elements.Physical));
     }
 
     @Override

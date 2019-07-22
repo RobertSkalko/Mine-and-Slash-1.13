@@ -15,6 +15,6 @@ public interface IElementalGenerated<T extends IGUID> extends IGenerated {
         List<T> list = new ArrayList<>();
         Elements.getAllExceptNone().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
-
     }
+
 }
