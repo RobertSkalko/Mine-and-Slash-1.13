@@ -13,7 +13,7 @@ public abstract class RaritiesContainer<RarityType extends Rarity> {
 
     public abstract List<RarityType> rarities();
 
-    public List<Rarity> getRarities() {
+    public List<RarityType> getRarities() {
         return new ArrayList<>(rarities());
     }
 

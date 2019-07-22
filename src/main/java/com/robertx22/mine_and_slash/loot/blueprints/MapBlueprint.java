@@ -5,13 +5,13 @@ import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
 public class MapBlueprint extends ItemBlueprint {
 
     public static final int PERMADEATH_CHANCE = 10;
-    private static final int MAX_MAP_TIER = 20;
 
     public MapBlueprint(int level, int worldTier) {
         super(level);
@@ -32,7 +32,7 @@ public class MapBlueprint extends ItemBlueprint {
         if (tierRange) {
             int thetier = RandomUtils.RandomRange(tier - tierVariance, tier + tierVariance);
 
-            return MathHelper.clamp(thetier, 1, MAX_MAP_TIER);
+            return MathHelper.clamp(thetier, 1, ITiered.MAX_TIER);
 
         } else {
             return tier;

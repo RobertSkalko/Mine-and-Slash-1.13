@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content_test;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintDataItemRequest;
+import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintSimpleItemRequest;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
@@ -19,7 +20,10 @@ import java.util.List;
 public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
 
     @Store
-    public List<BlueprintDataItemRequest> requests = new ArrayList<>();
+    public List<BlueprintDataItemRequest> dataRequests = new ArrayList<>();
+
+    @Store
+    public List<BlueprintSimpleItemRequest> simpleItemRequests = new ArrayList<>();
 
     @Store
     public BlueprintGearReward gearReward = new BlueprintGearReward();
@@ -32,6 +36,22 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
 
     @Store
     public int rarity;
+
+    public int getDifficulty() {
+
+        int diff = 0;
+
+        diff += dataRequests.stream()
+                .mapToInt(BlueprintDataItemRequest::getDifficultyValue)
+                .sum();
+
+        diff += simpleItemRequests.stream()
+                .mapToInt(BlueprintSimpleItemRequest::getDifficultyValue)
+                .sum();
+
+        return diff;
+
+    }
 
     @Override
     public DataItemType getDataType() {

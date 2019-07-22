@@ -35,6 +35,18 @@ public class BlueprintGearReward {
     @Store
     public List<GearBlueprintSpecialEffects> specialEffects = new ArrayList<>();
 
+    public BlueprintGearReward() {
+
+    }
+
+    public BlueprintGearReward(BlueprintItemData data) {
+
+        int diff = data.getDifficulty();
+
+        // TODO BASE THE REWARD ON THE DIFFICULTY..
+
+    }
+
     public ItemStack create() {
 
         ItemStack stack = ItemStack.EMPTY;
