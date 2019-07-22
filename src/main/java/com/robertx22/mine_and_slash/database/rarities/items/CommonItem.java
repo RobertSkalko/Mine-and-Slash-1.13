@@ -52,4 +52,8 @@ public class CommonItem extends BaseCommon implements ItemRarity {
         return 1;
     }
 
+    @Override
+    public float difficulty() {
+        return 1F;
+    }
 }

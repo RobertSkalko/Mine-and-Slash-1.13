@@ -52,6 +52,10 @@ public class RareItem extends BaseRare implements ItemRarity {
         return 1.5F;
     }
 
+    @Override
+    public float difficulty() {
+        return 1.4F;
+    }
 }
 
 

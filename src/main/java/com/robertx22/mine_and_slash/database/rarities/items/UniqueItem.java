@@ -51,4 +51,8 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
         return 3.5F;
     }
 
+    @Override
+    public float difficulty() {
+        return 15F;
+    }
 }

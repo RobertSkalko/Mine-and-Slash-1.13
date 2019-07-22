@@ -52,4 +52,8 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
         return 3;
     }
 
+    @Override
+    public float difficulty() {
+        return 7F;
+    }
 }

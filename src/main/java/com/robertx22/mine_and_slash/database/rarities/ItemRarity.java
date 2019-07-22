@@ -18,4 +18,6 @@ public interface ItemRarity extends Rarity, SalvagableItem {
 
     float itemTierPower();
 
+    float difficulty();
+
 }

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.requests;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ILevel;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import info.loenwind.autosave.annotations.Store;
@@ -21,13 +20,21 @@ public class BlueprintSimpleItemRequest extends BaseBlueprintRequest {
     public String itemRegistryName;
 
     @Store
-    public int level;
-
-    @Store
     public int tier;
 
     @Store
     public int rarity;
+
+    @Override
+    public int getDifficultyValue() {
+
+        int diff = 100;
+
+        diff *= BaseBlueprintRequest.getRarityDifficultyMulti(rarity);
+        diff *= BaseBlueprintRequest.getTierDifficultyMulti(tier);
+
+        return diff;
+    }
 
     // public abstract BaseBlueprintItemRequest random(BlueprintItemData data);
     @Override
@@ -46,12 +53,6 @@ public class BlueprintSimpleItemRequest extends BaseBlueprintRequest {
                     if (item instanceof ITiered) {
                         ITiered part = (ITiered) item;
                         matches = part.Tier() >= tier;
-                    }
-                }
-                if (matches) {
-                    if (item instanceof ILevel) {
-                        ILevel part = (ILevel) item;
-                        matches = part.getLevel() >= level;
                     }
                 }
                 if (matches) {

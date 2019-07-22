@@ -54,4 +54,8 @@ public class EpicItem extends BaseEpic implements ItemRarity {
         return 2;
     }
 
+    @Override
+    public float difficulty() {
+        return 1.6F;
+    }
 }

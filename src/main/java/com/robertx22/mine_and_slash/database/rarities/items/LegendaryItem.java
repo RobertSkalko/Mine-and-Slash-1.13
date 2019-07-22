@@ -52,4 +52,8 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
         return 2.5F;
     }
 
+    @Override
+    public float difficulty() {
+        return 2.5F;
+    }
 }

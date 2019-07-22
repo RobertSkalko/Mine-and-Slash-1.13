@@ -52,4 +52,8 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
         return 1.2F;
     }
 
+    @Override
+    public float difficulty() {
+        return 1.2F;
+    }
 }
