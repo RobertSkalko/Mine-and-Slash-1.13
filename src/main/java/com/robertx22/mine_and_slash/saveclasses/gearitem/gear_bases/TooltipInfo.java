@@ -11,6 +11,9 @@ public class TooltipInfo implements Cloneable {
         this.unitdata = unitdata;
     }
 
+    public TooltipInfo() {
+    }
+
     public TooltipInfo setIsSet() {
         this.isSet = true;
         return this;

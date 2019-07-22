@@ -5,12 +5,15 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintDataItemRequest;
 import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintSimpleItemRequest;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
@@ -66,6 +69,14 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              EntityCap.UnitData data) {
+        List<ITextComponent> tooltip = event.getToolTip();
+
+        TooltipInfo info = new TooltipInfo();
+
+        tooltip.add(Words.Requirements.locName().appendText(": "));
+
+        dataRequests.forEach(x -> x.GetTooltipString(info));
+        simpleItemRequests.forEach(x -> x.GetTooltipString(info));
 
     }
 
