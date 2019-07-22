@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
+import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -30,6 +31,10 @@ public class OnMeleeAttack {
         }
 
         if (event.getSource() != null) {
+
+            if (isRangedWeaponUsedAsMelee(event)) {
+                return;
+            }
 
             if (event.getSource() instanceof MyDamageSource || event.getSource()
                     .getDamageType()
@@ -112,6 +117,22 @@ public class OnMeleeAttack {
 
         }
 
+    }
+
+    public static boolean isRangedWeaponUsedAsMelee(LivingAttackEvent event) {
+
+        if (event.getSource().getTrueSource() instanceof LivingEntity) {
+            LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+
+            if (en.getHeldItemMainhand()
+                    .getItem() instanceof ItemBow || en.getHeldItemOffhand()
+                    .getItem() instanceof ItemBow) {
+
+                return event.getSource().isProjectile() == false;
+            }
+        }
+
+        return false;
     }
 
 }
