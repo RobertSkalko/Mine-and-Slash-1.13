@@ -79,7 +79,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
         return map.get(type);
-
     }
 
     public static ISlashRegistryEntry get(SlashRegistryType type, String guid) {
@@ -94,7 +93,8 @@ public class SlashRegistry {
 
     private static void registerFromAllInits() {
 
-        new Stats().registerAll();// STATS MUST BE INIT FIRST CUS STATMODS ARE DERIVED FROM STATS, or should be at least
+        new Spells().registerAll(); // some stats are based on spells, so spells go first
+        new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or should be at least
         new StatMods().registerAll();
         new Runes().registerAll();
         new RuneWords().registerAll();
@@ -106,9 +106,6 @@ public class SlashRegistry {
         new UniqueGears().registerAll();
         new WorldProviders().registerAll();
         new Sets().registerAll();
-        new Spells().registerAll();
-        new UniqueGears().registerAll();
-
     }
 
     private static void createRegistries() {

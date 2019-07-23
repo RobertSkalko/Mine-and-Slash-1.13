@@ -24,7 +24,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private HashMap<String, C> map = new HashMap<>();
 
     private void emptyRegistryLog() {
-        System.out.println(Ref.MODID + " Slash Registry is empty, this is really bad!");
+        System.out.println(Ref.MODID + " Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
     }
 
     public HashMap<String, C> getAll() {

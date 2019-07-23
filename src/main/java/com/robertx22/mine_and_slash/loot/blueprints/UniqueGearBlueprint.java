@@ -13,6 +13,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
         super(level);
         this.randomTier = randomTier;
         this.map_tier = map_tier;
+        this.tier = map_tier;
 
     }
 
