@@ -13,24 +13,31 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public static List<String> registersErrorsAlertedFor = new ArrayList<>();
     public static List<String> accessorErrosAletedFor = new ArrayList<>();
 
+    private SlashRegistryType type;
+    private C empty;
+    private HashMap<String, C> map = new HashMap<>();
+    private boolean errorIfEmpty = true;
+
+    public SlashRegistryContainer dontErrorIfEmpty() {
+        this.errorIfEmpty = false;
+        return this;
+    }
+
     public SlashRegistryContainer(SlashRegistryType type, C empty) {
         this.type = type;
         this.empty = empty;
     }
 
-    private SlashRegistryType type;
-    private C empty;
-
-    private HashMap<String, C> map = new HashMap<>();
-
     private void emptyRegistryLog() {
-        System.out.println(Ref.MODID + " Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+        if (errorIfEmpty) {
+            if (map.isEmpty()) {
+                System.out.println(Ref.MODID + " Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+            }
+        }
     }
 
     public HashMap<String, C> getAll() {
-        if (map.isEmpty()) {
-            emptyRegistryLog();
-        }
+        emptyRegistryLog();
 
         return map;
     }
@@ -41,9 +48,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
-        if (map.isEmpty()) {
-            emptyRegistryLog();
-        }
+        emptyRegistryLog();
 
         if (guid.isEmpty()) {
             return empty;

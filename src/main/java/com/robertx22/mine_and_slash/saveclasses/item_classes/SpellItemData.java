@@ -161,6 +161,8 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
         return text;
     }
 
+    public static float SPELL_DMG_RANDOMNESS = 1.5F;
+
     public int GetDamage(Unit unit) {
 
         BaseSpell spell = GetSpell();
@@ -170,7 +172,7 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
 
         int total = basedmg + scalingdmg;
 
-        int finalrandom = RandomUtils.RandomRange(1 + total / 2, 2 + total + total / 2);
+        int finalrandom = RandomUtils.RandomRange(1 + (int) (total / SPELL_DMG_RANDOMNESS), (int) (2 + total + total / SPELL_DMG_RANDOMNESS));
 
         return finalrandom;
 

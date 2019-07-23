@@ -2,6 +2,8 @@
 added warning on no space for map device portals
 added first adv map advancement
 bows no longer work melee
+reworked unique item registry, it was not using my new registry system properly, also added more error checking to my registry
+reduced spell dmg randomness a bit
 2.2.5
 initial update to forge 1.14.4, probably unstable. Doesn't work on 1.14.3!
 reduced mob spell resist
