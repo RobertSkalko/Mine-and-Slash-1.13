@@ -22,6 +22,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private HashMap<String, C> map = new HashMap<>();
 
     public HashMap<String, C> getAll() {
+
         return map;
     }
 

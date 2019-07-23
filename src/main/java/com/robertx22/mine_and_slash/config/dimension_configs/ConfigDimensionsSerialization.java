@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 
 import java.io.FileNotFoundException;
@@ -40,7 +39,8 @@ public class ConfigDimensionsSerialization implements ISerializedConfig {
 
             DimensionsContainer.INSTANCE = new Gson().fromJson(reader, DimensionsContainer.class);
 
-            System.out.println("Dimensions added to config: " + ConfigItems.INSTANCE.map.size());
+            System.out.println("Dimensions added to config: " + DimensionsContainer.INSTANCE.dimensionsList
+                    .size());
         } catch (FileNotFoundException e) {
 
             e.printStackTrace();

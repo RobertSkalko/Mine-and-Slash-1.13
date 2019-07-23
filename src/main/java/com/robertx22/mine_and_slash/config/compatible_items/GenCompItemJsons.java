@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import net.minecraft.item.Item;
 
@@ -15,7 +14,7 @@ public class GenCompItemJsons {
         items.map.clear();
 
         try {
-            for (IUnique uniq : UniqueItems.getAll()) {
+            for (IUnique uniq : SlashRegistry.UniqueGears().getAll().values()) {
                 ConfigItem item = new ConfigItem().setAlwaysUnique()
                         .setUniqueId(uniq)
                         .setSalvagable(true)

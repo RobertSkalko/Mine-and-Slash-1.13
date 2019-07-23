@@ -1,23 +1,13 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
-public class UniqueItems implements ISlashRegistryInit {
-
-    public static HashMap<String, Item> ITEMS = new HashMap<>();
-
-    public static List<IUnique> getAll() {
-        return SlashRegistry.UniqueGears().getList();
-    }
+public class UniqueItems {
 
     public static List<IUnique> getAllUniquesOfTier(int tier, Collection<Item> coll) {
         List<IUnique> list = new ArrayList<IUnique>();
@@ -59,19 +49,4 @@ public class UniqueItems implements ISlashRegistryInit {
         return list;
     }
 
-    @Override
-    public void registerAll() {
-
-        List<IUnique> list = new ArrayList<>();
-
-        for (Item item : ITEMS.values()) {
-            IUnique uniq = (IUnique) item;
-            list.add(uniq);
-
-        }
-
-        list.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_GEAR)
-                .register(x));
-
-    }
 }

@@ -107,6 +107,7 @@ public class SlashRegistry {
         new WorldProviders().registerAll();
         new Sets().registerAll();
         new Spells().registerAll();
+        new UniqueItemRegister().registerAll();
 
     }
 

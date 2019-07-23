@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.database.unique_items;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.axes.AxeFire;
 import com.robertx22.mine_and_slash.database.unique_items.axes.AxeThunder;
 import com.robertx22.mine_and_slash.database.unique_items.axes.AxeWaterFire;
@@ -34,17 +35,34 @@ import com.robertx22.mine_and_slash.database.unique_items.swords.ElementalSaber;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordNature;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordPhysical;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordWater;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 
-public class UniqueItemRegister {
+public class UniqueItemRegister implements ISlashRegistryInit {
+
+    private static void add(Item item) {
+
+        if (item instanceof IGenerated) {
+            IGenerated<IUnique> gen = (IGenerated) item;
+            for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
+                SlashRegistry.UniqueGears().register(uniq);
+            }
+
+        } else {
+            IUnique uniq = (IUnique) item;
+            SlashRegistry.UniqueGears().register(uniq);
+        }
+    }
 
     /**
      * this needs to be called before serialization of config
      */
-    public static void register() {
+
+    @Override
+    public void registerAll() {
 
         add(new RingHermitsInsanity());
         add(new EleSpellDmgStaff(Elements.Physical));
@@ -139,23 +157,5 @@ public class UniqueItemRegister {
         add(new StaffNature());
         add(new StaffLifesteal());
 
-        // localization helper
-
     }
-
-    private static void add(Item item) {
-
-        if (item instanceof IGenerated) {
-            IGenerated<IUnique> gen = (IGenerated) item;
-            for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
-                UniqueItems.ITEMS.put(uniq.GUID(), (Item) uniq);
-            }
-
-        } else {
-
-            IUnique uniq = (IUnique) item;
-            UniqueItems.ITEMS.put(uniq.GUID(), item);
-        }
-    }
-
 }

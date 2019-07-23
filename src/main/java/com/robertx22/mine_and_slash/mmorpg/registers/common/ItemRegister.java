@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.UniqueItemRegister;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -75,8 +74,6 @@ public class ItemRegister {
     }
 
     private static void putInLists() {
-
-        UniqueItemRegister.register();
 
         for (ItemRarity x : Rarities.Items.rarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
