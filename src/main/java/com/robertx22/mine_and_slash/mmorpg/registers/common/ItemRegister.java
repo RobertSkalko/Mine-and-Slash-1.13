@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
@@ -103,8 +103,8 @@ public class ItemRegister {
         ItemCapacitor.Items.values().forEach((x) -> r.register(x));
         ItemLootbox.Items.values().forEach((x) -> r.register(x));
 
-        for (Item item : UniqueItems.ITEMS.values()) {
-            IUnique uniq = (IUnique) item;
+        for (IUnique uniq : SlashRegistry.UniqueGears().getList()) {
+            Item item = (Item) uniq;
             item.setRegistryName("uniques/" + uniq.slot()
                     .toLowerCase() + "/" + uniq.GUID());
             event.getRegistry().register(item);

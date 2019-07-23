@@ -1,24 +1,19 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
-import net.minecraft.item.Item;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UniqueItemsSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {
-
-        List<String> list = new ArrayList();
-        for (Item item : UniqueItems.ITEMS.values()) {
-            IUnique uniq = (IUnique) item;
-            list.add(uniq.GUID());
-        }
-
-        return list;
+        return SlashRegistry.UniqueGears()
+                .getList()
+                .stream()
+                .map(x -> x.GUID())
+                .collect(Collectors.toList());
     }
 
 }

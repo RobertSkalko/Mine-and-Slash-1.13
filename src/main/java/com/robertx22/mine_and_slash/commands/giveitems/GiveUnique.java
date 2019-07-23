@@ -51,12 +51,17 @@ public class GiveUnique {
             }
         }
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, tier, true);
-        blueprint.setSpecificRarity(new UniqueItem().Rank());
-        blueprint.SetSpecificType(type);
-        blueprint.LevelRange = false;
-
         for (int i = 0; i < amount; i++) {
+
+            UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, tier, true);
+            blueprint.setSpecificRarity(new UniqueItem().Rank());
+
+            if (type.equals("random") == false) {
+                blueprint.SetSpecificType(type);
+            }
+
+            blueprint.LevelRange = false;
+
             player.addItemStackToInventory(UniqueGearLootGen.CreateStack(blueprint));
         }
 

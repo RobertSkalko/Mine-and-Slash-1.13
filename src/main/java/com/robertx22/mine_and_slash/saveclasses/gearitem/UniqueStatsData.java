@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -73,7 +73,9 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
     }
 
     public IUnique getUniqueItem() {
-        return (IUnique) UniqueItems.ITEMS.get(this.uniqueGUID);
+
+        return SlashRegistry.UniqueGears().get(this.uniqueGUID);
+
     }
 
     @Override

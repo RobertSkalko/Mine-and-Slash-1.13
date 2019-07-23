@@ -73,6 +73,8 @@ public class GearLootGen extends BaseLootGen {
                 data.uniqueGUID = unique.GUID();
                 data.uniqueStats = new UniqueStatsData(unique.GUID());
                 data.uniqueStats.RerollFully(data);
+            } else {
+                return null;
             }
         }
 

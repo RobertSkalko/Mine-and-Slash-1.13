@@ -43,32 +43,8 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
     }
 
-    public int GetTier() {
-
-        if (tier < 0) {
-
-            if (randomTier) {
-
-                if (map_tier == 0) {
-                    tier = 0;
-                } else {
-                    tier = RandomUtils.RandomRange(0, this.map_tier);
-                }
-
-            } else {
-
-                tier = map_tier;
-            }
-        }
-
-        return tier;
-
-    }
-
     public IUnique getUnique() {
-
         if (this.uniqueIsRandom) {
-            tier = this.GetTier();
 
             if (this.randomTier == false) {
                 return RandomUtils.weightedRandom(SlashRegistry.UniqueGears()
@@ -86,7 +62,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
         List<IUnique> possible = SlashRegistry.UniqueGears()
                 .getFiltered(SlashRegistry.PREDICATES.ofTierOrLess(tier)
-                        .and(x.slot()
+                        .and(x -> ((IUnique) x).slot()
                                 .equals(this.gearType) || gearType.equals("random") || gearType
                                 .equals("")));
 

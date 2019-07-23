@@ -41,21 +41,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 
-public class UniqueItemRegister implements ISlashRegistryInit {
-
-    private static void add(Item item) {
-
-        if (item instanceof IGenerated) {
-            IGenerated<IUnique> gen = (IGenerated) item;
-            for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
-                SlashRegistry.UniqueGears().register(uniq);
-            }
-
-        } else {
-            IUnique uniq = (IUnique) item;
-            SlashRegistry.UniqueGears().register(uniq);
-        }
-    }
+public class UniqueGears implements ISlashRegistryInit {
 
     /**
      * this needs to be called before serialization of config
@@ -158,4 +144,19 @@ public class UniqueItemRegister implements ISlashRegistryInit {
         add(new StaffLifesteal());
 
     }
+
+    private void add(Item item) {
+
+        if (item instanceof IGenerated) {
+            IGenerated<IUnique> gen = (IGenerated) item;
+            for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
+                SlashRegistry.UniqueGears().register(uniq);
+            }
+
+        } else {
+            IUnique uniq = (IUnique) item;
+            SlashRegistry.UniqueGears().register(uniq);
+        }
+    }
+
 }

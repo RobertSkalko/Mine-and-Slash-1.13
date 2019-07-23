@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
@@ -133,7 +132,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     public Item getItem() {
 
         if (isUnique) {
-            return UniqueItems.ITEMS.getOrDefault(this.uniqueGUID, null);
+            return (Item) SlashRegistry.UniqueGears().get(uniqueGUID);
         } else {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;

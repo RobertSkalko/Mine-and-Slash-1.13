@@ -103,11 +103,11 @@ public class SlashRegistry {
         new Prefixes().registerAll();
         new Suffixes().registerAll();
         new StatusEffects().registerAll();
-        new UniqueItems().registerAll();
+        new UniqueGears().registerAll();
         new WorldProviders().registerAll();
         new Sets().registerAll();
         new Spells().registerAll();
-        new UniqueItemRegister().registerAll();
+        new UniqueGears().registerAll();
 
     }
 

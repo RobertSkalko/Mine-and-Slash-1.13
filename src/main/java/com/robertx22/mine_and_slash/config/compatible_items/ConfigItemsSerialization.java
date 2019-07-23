@@ -5,11 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.initializers.UniqueItems;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
-import net.minecraft.item.Item;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,6 +14,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ConfigItemsSerialization implements ISerializedConfig {
 
@@ -73,15 +71,12 @@ public class ConfigItemsSerialization implements ISerializedConfig {
 
     private void genListOfUniqueItems() {
 
-        List<String> list = new ArrayList();
-
-        for (Item item : UniqueItems.ITEMS.values()) {
-            IUnique uniq = (IUnique) item;
-            list.add(uniq.GUID());
-        }
-
         String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW THE GUIDS/IDS OF ALL UNIQUE ITEMS\n" + String
-                .join("\n", list);
+                .join("\n", SlashRegistry.UniqueGears()
+                        .getList()
+                        .stream()
+                        .map(x -> x.GUID())
+                        .collect(Collectors.toList()));
 
         SerializationUtils.makeFileAndDirAndWrite("tutorials", "UniqueItemGUIDS-TUTORIAL.txt", text);
 

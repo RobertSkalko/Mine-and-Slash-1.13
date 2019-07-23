@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +23,14 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private HashMap<String, C> map = new HashMap<>();
 
+    private void emptyRegistryLog() {
+        System.out.println(Ref.MODID + " Slash Registry is empty, this is really bad!");
+    }
+
     public HashMap<String, C> getAll() {
+        if (map.isEmpty()) {
+            emptyRegistryLog();
+        }
 
         return map;
     }
@@ -31,6 +40,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public C get(String guid) {
+
+        if (map.isEmpty()) {
+            emptyRegistryLog();
+        }
 
         if (guid.isEmpty()) {
             return empty;

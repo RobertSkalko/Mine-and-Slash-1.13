@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class ElementalStat extends Stat implements IElementalGenerated<Stat> {
@@ -26,7 +27,7 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAllExceptNone().forEach(x -> list.add(newGeneratedInstance(x)));
+        Arrays.stream(Elements.values()).forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }
