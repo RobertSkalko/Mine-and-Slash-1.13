@@ -16,7 +16,7 @@ public class UniqueItems implements ISlashRegistryInit {
     public static HashMap<String, Item> ITEMS = new HashMap<>();
 
     public static List<IUnique> getAll() {
-        return SlashRegistry.Uniques().getList();
+        return SlashRegistry.UniqueGears().getList();
     }
 
     public static List<IUnique> getAllUniquesOfTier(int tier, Collection<Item> coll) {
@@ -63,15 +63,14 @@ public class UniqueItems implements ISlashRegistryInit {
     public void registerAll() {
 
         List<IUnique> list = new ArrayList<>();
-        if (list.isEmpty()) {
-            for (Item item : ITEMS.values()) {
-                IUnique uniq = (IUnique) item;
-                list.add(uniq);
-            }
+
+        for (Item item : ITEMS.values()) {
+            IUnique uniq = (IUnique) item;
+            list.add(uniq);
 
         }
 
-        list.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_ITEM)
+        list.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.UNIQUE_GEAR)
                 .register(x));
 
     }

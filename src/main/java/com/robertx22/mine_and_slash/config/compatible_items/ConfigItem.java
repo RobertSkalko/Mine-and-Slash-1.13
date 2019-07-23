@@ -132,13 +132,7 @@ public class ConfigItem implements IWeighted {
     public boolean isValid() throws Exception {
 
         if (uniqueIsRandom == false) {
-            boolean matches = false;
-            for (IUnique uniq : UniqueItems.getAll()) {
-                if (uniq.GUID().equals(this.uniqueId)) {
-                    matches = true;
-                }
-            }
-            if (matches == false) {
+            if (SlashRegistry.UniqueGears().isRegistered(uniqueId) == false) {
                 throw new Exception("Unique Id doesn't exist: " + this.uniqueId);
             }
         }

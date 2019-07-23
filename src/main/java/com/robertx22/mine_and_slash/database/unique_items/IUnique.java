@@ -52,7 +52,7 @@ public interface IUnique extends IWeighted, IRarity, ITiered, IGUID, IAutoLocNam
 
     @Override
     public default SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.UNIQUE_ITEM;
+        return SlashRegistryType.UNIQUE_GEAR;
     }
 
 }

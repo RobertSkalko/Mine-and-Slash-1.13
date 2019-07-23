@@ -25,7 +25,7 @@ public enum SlashRegistryType {
     SPELL(BaseSpell.class),
     SUFFIX(Suffix.class),
     PREFIX(Prefix.class),
-    UNIQUE_ITEM(IUnique.class),
+    UNIQUE_GEAR(IUnique.class),
     WORLD_PROVIDER(BaseWorldProvider.class),
     SET(Set.class),
     EMPTY(EmptySlashRegistry.class),

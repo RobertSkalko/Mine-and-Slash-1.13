@@ -31,8 +31,8 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.MAP_AFFIX);
     }
 
-    public static SlashRegistryContainer<IUnique> Uniques() {
-        return getRegistry(SlashRegistryType.UNIQUE_ITEM);
+    public static SlashRegistryContainer<IUnique> UniqueGears() {
+        return getRegistry(SlashRegistryType.UNIQUE_GEAR);
     }
 
     public static SlashRegistryContainer<Set> Sets() {
@@ -116,7 +116,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.STATMOD, new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod()));
         map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
         map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
-        map.put(SlashRegistryType.UNIQUE_ITEM, new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_ITEM, new EmptyUnique()));
+        map.put(SlashRegistryType.UNIQUE_GEAR, new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, new EmptyUnique()));
         map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix()));
         map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix()));
         map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));
