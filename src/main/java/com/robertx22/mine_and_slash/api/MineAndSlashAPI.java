@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.api;
 
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
@@ -19,15 +18,17 @@ import net.minecraft.item.Item;
 public class MineAndSlashAPI {
 
     public static void addCompatibleItem(String itemID, ConfigItem item) {
-        ConfigItems.INSTANCE.map.put(itemID, item);
-        ConfigItems.INSTANCE.refreshList();
+        item.registryName = itemID;
+        SlashRegistry.CompatibleItems().register(item);
     }
 
     public static void addAffix(BaseAffix affix) {
         if (affix instanceof Prefix) {
             SlashRegistry.Prefixes().register((Prefix) affix);
-        } else {
+        } else if (affix instanceof Suffix) {
             SlashRegistry.Suffixes().register((Suffix) affix);
+        } else {
+            throw new Error("Affix must be derived from the Prefix or the Suffix class!");
         }
     }
 

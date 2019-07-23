@@ -1,3 +1,5 @@
+2.2.7
+compatible items now use my new registry system too.
 2.2.6
 added warning on no space for map device portals
 added first adv map advancement

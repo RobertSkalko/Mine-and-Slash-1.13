@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -29,7 +30,8 @@ public enum SlashRegistryType {
     WORLD_PROVIDER(BaseWorldProvider.class),
     SET(Set.class),
     EMPTY(EmptySlashRegistry.class),
-    MAP_AFFIX(BaseMapAffix.class);
+    MAP_AFFIX(BaseMapAffix.class),
+    COMPATIBLE_ITEM(ConfigItem.class);
 
     public Class<? extends ISlashRegistryEntry> theclass;
 

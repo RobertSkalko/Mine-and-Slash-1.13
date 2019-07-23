@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -22,6 +23,10 @@ import java.util.HashMap;
 public class SlashRegistry {
 
     public static Predicates PREDICATES = new Predicates();
+
+    public static SlashRegistryContainer<ConfigItem> CompatibleItems() {
+        return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
+    }
 
     public static SlashRegistryContainer<BaseStatusEffect> StatusEffects() {
         return getRegistry(SlashRegistryType.STATUS_EFFECT);
@@ -122,6 +127,8 @@ public class SlashRegistry {
         map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
         map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
+        map.put(SlashRegistryType.COMPATIBLE_ITEM, new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM, new ConfigItem())
+                .dontErrorIfEmpty());
 
     }
 

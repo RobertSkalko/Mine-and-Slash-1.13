@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -57,9 +57,8 @@ public class OnTooltip {
             data.BuildTooltip(stack, event, unit, unitdata);
         } else {
             if (stack.getItem().getRegistryName() != null) {
-                if (ConfigItems.INSTANCE.map.containsKey(stack.getItem()
-                        .getRegistryName()
-                        .toString())) {
+                if (SlashRegistry.CompatibleItems()
+                        .isRegistered(stack.getItem().getRegistryName().toString())) {
 
                     event.getToolTip()
                             .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));

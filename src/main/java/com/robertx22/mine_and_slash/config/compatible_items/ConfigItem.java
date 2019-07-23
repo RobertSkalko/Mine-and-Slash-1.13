@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
@@ -18,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 
-public class ConfigItem implements IWeighted {
+public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
     @Override
     public int Weight() {
@@ -26,6 +28,16 @@ public class ConfigItem implements IWeighted {
     }
 
     public transient String registryName = "";
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.COMPATIBLE_ITEM;
+    }
+
+    @Override
+    public String GUID() {
+        return this.registryName;
+    }
 
     public enum creationTypes {
         NORMAL,

@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
-    public static List<String> registersErrorsAlertedFor = new ArrayList<>();
-    public static List<String> accessorErrosAletedFor = new ArrayList<>();
+    public List<String> registersErrorsAlertedFor = new ArrayList<>();
+    public List<String> accessorErrosAletedFor = new ArrayList<>();
 
     private SlashRegistryType type;
     private C empty;
@@ -21,6 +21,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public SlashRegistryContainer dontErrorIfEmpty() {
         this.errorIfEmpty = false;
         return this;
+    }
+
+    public int getSize() {
+        return map.size();
     }
 
     public SlashRegistryContainer(SlashRegistryType type, C empty) {

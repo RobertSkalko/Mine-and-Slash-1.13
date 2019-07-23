@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -49,7 +49,8 @@ public class CompatibleItemLootGen extends BaseLootGen {
     public static ItemStack gen(int level) {
 
         try {
-            ConfigItem config = RandomUtils.weightedRandom(ConfigItems.INSTANCE.getAll()
+            ConfigItem config = RandomUtils.weightedRandom(SlashRegistry.CompatibleItems()
+                    .getList()
                     .stream()
                     .filter(x -> x.statsAddedOnlyOnDrop == false && x.dropsAsLoot)
                     .collect(Collectors.toList()));

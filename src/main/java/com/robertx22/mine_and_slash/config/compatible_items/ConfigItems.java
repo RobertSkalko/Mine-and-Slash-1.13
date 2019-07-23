@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.config.IConfig;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConfigItems implements IConfig {
+public class ConfigItems implements IConfig, ISlashRegistryInit {
 
     public ConfigItems() {
 
@@ -18,7 +19,7 @@ public class ConfigItems implements IConfig {
 
     public String ConfigType = "compatible_items";
 
-    public static ConfigItems INSTANCE = new ConfigItems();
+    // public static ConfigItems INSTANCE = new ConfigItems();
 
     String version = "1.3";
 
@@ -28,43 +29,28 @@ public class ConfigItems implements IConfig {
 
     private List<ConfigItem> list = new ArrayList();
 
-    public void refreshList() {
+    @Override
+    public void registerAll() {
 
-        list = new ArrayList<>();
+        if (enabled) {
 
-        for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
-            entry.getValue().registryName = entry.getKey();
-            list.add(entry.getValue());
+            list = new ArrayList<>();
 
+            for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
+                entry.getValue().registryName = entry.getKey();
+                list.add(entry.getValue());
+                System.out.println(Ref.MODID + ":Added Compatible Item: " + entry.getKey());
+            }
+
+            list.forEach(x -> x.registerToSlashRegistry());
+
+        } else {
+            System.out.println(Ref.MODID + ": Compatible Item File is marked as disabled, not loading.");
         }
     }
 
     public void add(String id, ConfigItem item) {
         map.put(id, item);
-    }
-
-    public void addAll(ConfigItems items) {
-
-        if (items.enabled) {
-            if (items != null && items.map != null) {
-                for (String regname : items.map.keySet()) {
-                    System.out.println(Ref.MODID + ":Added Compatible Item: " + regname);
-                }
-                this.map.putAll(items.map);
-                this.refreshList();
-            } else {
-                System.out.println("File in compatible items folder is not a correct one");
-            }
-        }
-    }
-
-    public List<ConfigItem> getAll() {
-
-        if (list.isEmpty()) {
-            refreshList();
-        }
-
-        return list;
     }
 
     public void validateAll() {
@@ -87,4 +73,5 @@ public class ConfigItems implements IConfig {
     public String GUID() {
         return ConfigType;
     }
+
 }

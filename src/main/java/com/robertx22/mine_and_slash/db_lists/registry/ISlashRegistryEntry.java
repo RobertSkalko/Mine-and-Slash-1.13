@@ -11,4 +11,8 @@ public interface ISlashRegistryEntry<C> extends IGUID {
         return (C) SlashRegistry.get(getSlashRegistryType(), this.GUID());
     }
 
+    default void registerToSlashRegistry() {
+        SlashRegistry.getRegistry(getSlashRegistryType()).register(this);
+    }
+
 }

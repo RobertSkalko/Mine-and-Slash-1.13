@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.onevent.item;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -38,9 +38,9 @@ public class OnContainerCompatibleItem {
                 if (Gear.has(stack) == false) {
 
                     String reg = stack.getItem().getRegistryName().toString();
-                    if (ConfigItems.INSTANCE.map.containsKey(reg)) {
+                    if (SlashRegistry.CompatibleItems().isRegistered(reg)) {
 
-                        ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
+                        ConfigItem config = SlashRegistry.CompatibleItems().get(reg);
 
                         PlayerEntity player = event.getEntityPlayer();
 

@@ -44,22 +44,24 @@ public class ConfigItemsSerialization implements ISerializedConfig {
     public void load() {
 
         JsonReader reader;
+
         try {
 
             for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
 
                 reader = new JsonReader(new FileReader(file.getPath()));
-                ConfigItems.INSTANCE.addAll(new Gson().fromJson(reader, ConfigItems.class));
+                ConfigItems items = new Gson().fromJson(reader, ConfigItems.class);
+                items.validateAll();
+                items.registerAll();
 
             }
-            System.out.println("Items added to config: " + ConfigItems.INSTANCE.map.size());
+            System.out.println("Items added to config: " + SlashRegistry.CompatibleItems()
+                    .getSize());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
         }
-
-        ConfigItems.INSTANCE.validateAll();
 
     }
 
