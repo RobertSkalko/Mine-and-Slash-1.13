@@ -363,7 +363,12 @@ public class Unit {
                     .slotType()
                     .equals(GearItemSlot.GearSlotType.OffHand)) {
                 gears.add(off);
+            } else if (off != null && off.GetBaseGearType()
+                    .slotType()
+                    .equals(GearItemSlot.GearSlotType.Weapon)) {
+                entity.sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }
+
         }
 
         Unit copy = this.Clone();

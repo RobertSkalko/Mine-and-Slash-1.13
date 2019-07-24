@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -58,10 +57,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
     public FilterListWrap<C> allThatMeetRequirement(GearItemData gear) {
         return this.allThatMeetRequirement(new GearRequestedFor(gear));
-    }
-
-    public FilterListWrap<C> allThatMeetRequirement(GearItemSlot slot) {
-        return this.allThatMeetRequirement(new GearRequestedFor(slot));
     }
 
     public FilterListWrap<C> allThatMeetRequirement(GearRequestedFor request) {
