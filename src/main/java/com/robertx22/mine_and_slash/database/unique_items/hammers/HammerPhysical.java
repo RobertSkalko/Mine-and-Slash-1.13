@@ -43,4 +43,5 @@ public class HammerPhysical extends BaseUniqueHammer {
     public String locDescForLangFile() {
         return "Not even mountains can bar my path!";
     }
+
 }

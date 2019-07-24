@@ -7,9 +7,9 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDam
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueBoots;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,4 +45,5 @@ public class BootsFire extends BaseUniqueBoots {
     public String locDescForLangFile() {
         return "Fire brews wherever I walk.";
     }
+
 }

@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.Boots;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 
@@ -10,11 +12,6 @@ public class EmptyUnique implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return new ArrayList<>();
-    }
-
-    @Override
-    public String slot() {
-        return "";
     }
 
     @Override
@@ -45,5 +42,10 @@ public class EmptyUnique implements IUnique {
     @Override
     public int Tier() {
         return 0;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return new Boots();
     }
 }

@@ -1,5 +1,10 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
+import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -40,6 +45,31 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         this.list = list.stream()
                 .filter(x -> ((IRarity) x).getRarityRank() == rarity)
                 .collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> ofSpecificGearType(String type) {
+        this.list = list.stream()
+                .filter(x -> ((IGearSlotType) x).getGearSlot()
+                        .equals(type) || type.isEmpty() || type.equals("random"))
+                .collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> allThatMeetRequirement(GearItemData gear) {
+        return this.allThatMeetRequirement(new GearRequestedFor(gear));
+    }
+
+    public FilterListWrap<C> allThatMeetRequirement(GearItemSlot slot) {
+        return this.allThatMeetRequirement(new GearRequestedFor(slot));
+    }
+
+    public FilterListWrap<C> allThatMeetRequirement(GearRequestedFor request) {
+
+        this.list = list.stream()
+                .filter(x -> ((IhasRequirements) x).meetsRequirements(request))
+                .collect(Collectors.toList());
+
         return this;
     }
 

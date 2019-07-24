@@ -18,7 +18,7 @@ public class GenCompItemJsons {
                 ConfigItem item = new ConfigItem().setAlwaysUnique()
                         .setUniqueId(uniq)
                         .setSalvagable(true)
-                        .setType(uniq.slot());
+                        .setType(uniq.getGearSlot());
                 Item theitem = (Item) uniq;
                 item.dropsAsLoot = false;
 

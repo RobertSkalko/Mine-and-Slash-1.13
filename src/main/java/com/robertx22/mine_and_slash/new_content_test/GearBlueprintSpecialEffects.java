@@ -1,11 +1,9 @@
 package com.robertx22.mine_and_slash.new_content_test;
 
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.BaseMajorArcana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.PrefixData;
@@ -17,7 +15,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public enum GearBlueprintSpecialEffects implements IWeighted, IRarity {
@@ -49,13 +46,11 @@ public enum GearBlueprintSpecialEffects implements IWeighted, IRarity {
 
             gear.prefix = new PrefixData();
 
-            List<Prefix> prefixes = SlashRegistry.Prefixes()
-                    .getFiltered(SlashRegistry.PREDICATES.ofRarityOrHigher(5));
-
-            Prefix prefix = RandomUtils.weightedRandom(Prefixes.INSTANCE.allThatMeetRequirement(prefixes, new GearRequestedFor(gear)));
-
-            gear.prefix.create(gear, prefix);
-
+            gear.prefix.create(gear, SlashRegistry.Prefixes()
+                    .getWrapped()
+                    .allThatMeetRequirement(new GearRequestedFor(gear))
+                    .ofExactRarity(5)
+                    .random());
         }
     },
 

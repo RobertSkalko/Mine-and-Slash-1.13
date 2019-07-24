@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.unique_items.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.Helmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.armor.ItemHelmet;
@@ -14,8 +15,8 @@ public abstract class BaseUniqueHelmet extends ItemHelmet implements IUnique {
     }
 
     @Override
-    public String slot() {
-        return new Helmet().GUID();
+    public GearItemSlot getGearSlot() {
+        return new Helmet();
     }
 
     @Override

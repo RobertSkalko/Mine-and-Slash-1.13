@@ -10,12 +10,13 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 
 import java.util.List;
 
-public interface IUnique extends IWeighted, IRarity, ITiered, IGUID, IAutoLocName, IAutoLocDesc, IGearItem, ISlashRegistryEntry<IUnique> {
+public interface IUnique extends IWeighted, IRarity, IGearSlotType, ITiered, IGUID, IAutoLocName, IAutoLocDesc, IGearItem, ISlashRegistryEntry<IUnique> {
 
     @Override
     public default int Weight() {
@@ -23,8 +24,6 @@ public interface IUnique extends IWeighted, IRarity, ITiered, IGUID, IAutoLocNam
     }
 
     List<StatMod> uniqueStats();
-
-    String slot();
 
     @Override
     public default int getRarityRank() {

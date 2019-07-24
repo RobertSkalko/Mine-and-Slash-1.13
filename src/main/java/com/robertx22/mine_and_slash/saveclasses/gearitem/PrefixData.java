@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.initializers.Prefixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -39,7 +38,10 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Prefix prefix = Prefixes.INSTANCE.random(new GearRequestedFor(gear));
+        Prefix prefix = SlashRegistry.Prefixes()
+                .getWrapped()
+                .allThatMeetRequirement(new GearRequestedFor(gear))
+                .random();
 
         this.create(gear, prefix);
 

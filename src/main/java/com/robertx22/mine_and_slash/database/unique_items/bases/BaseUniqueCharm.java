@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.unique_items.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.Charm;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
@@ -12,8 +13,8 @@ public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
     }
 
     @Override
-    public String slot() {
-        return new Charm().GUID();
+    public GearItemSlot getGearSlot() {
+        return new Charm();
     }
 
     @Override

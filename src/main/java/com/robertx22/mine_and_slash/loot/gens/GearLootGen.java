@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -66,7 +65,7 @@ public class GearLootGen extends BaseLootGen {
             IUnique unique = uniqprint.getUnique();
 
             if (unique != null) {
-                data.gearTypeName = SlashRegistry.GearTypes().get(unique.slot()).GUID();
+                data.gearTypeName = unique.getGearSlot().GUID();
 
                 data.isUnique = true;
 

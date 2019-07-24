@@ -3,9 +3,6 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-
-import java.util.List;
 
 public class UniqueGearBlueprint extends GearBlueprint {
 
@@ -65,15 +62,11 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
     private IUnique randomUnique() {
 
-        List<IUnique> possible = SlashRegistry.UniqueGears()
-                .getFiltered(SlashRegistry.PREDICATES.ofTierOrLess(tier)
-                        .and(x -> ((IUnique) x).slot()
-                                .equals(this.gearType) || gearType.equals("random") || gearType
-                                .equals("")));
-
-        IUnique unique = RandomUtils.weightedRandom(possible);
-
-        return unique;
+        return SlashRegistry.UniqueGears()
+                .getWrapped()
+                .ofTierOrLess(tier)
+                .ofSpecificGearType(gearType)
+                .random();
 
     }
 

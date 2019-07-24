@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.unique_items.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import net.minecraft.item.ShieldItem;
 
@@ -17,8 +18,8 @@ public abstract class BaseUniqueShield extends ShieldItem implements IUnique {
     }
 
     @Override
-    public String slot() {
-        return new Shield().GUID();
+    public GearItemSlot getGearSlot() {
+        return new Shield();
     }
 
     @Override

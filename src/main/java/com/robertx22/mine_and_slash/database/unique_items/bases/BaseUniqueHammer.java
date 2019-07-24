@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.unique_items.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.Hammer;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
@@ -13,8 +14,8 @@ public abstract class BaseUniqueHammer extends ItemHammer implements IUnique {
     }
 
     @Override
-    public String slot() {
-        return new Hammer().GUID();
+    public GearItemSlot getGearSlot() {
+        return new Hammer();
     }
 
     @Override
@@ -31,4 +32,5 @@ public abstract class BaseUniqueHammer extends ItemHammer implements IUnique {
     public IBaseAutoLoc.AutoLocGroup locNameGroup() {
         return IBaseAutoLoc.AutoLocGroup.Unique_Items;
     }
+
 }
