@@ -49,7 +49,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
             if (this.randomTier == false) {
 
-                return (IUnique) SlashRegistry.UniqueGears()
+                return SlashRegistry.UniqueGears()
                         .getWrapped()
                         .ofExactTier(tier)
                         .random();

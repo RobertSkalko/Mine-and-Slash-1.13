@@ -71,7 +71,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         }
     }
 
-    public FilterListWrap getWrapped() {
+    public FilterListWrap<C> getWrapped() {
         return new FilterListWrap<C>(this.map.values());
     }
 
