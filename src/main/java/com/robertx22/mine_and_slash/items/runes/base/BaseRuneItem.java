@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -40,6 +41,21 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.RUNE;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Uncommon;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Runes.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return 0;
     }
 
     @Override

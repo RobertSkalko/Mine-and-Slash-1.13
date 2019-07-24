@@ -3,10 +3,12 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
@@ -24,6 +26,21 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         Armor,
         Jewerly,
         OffHand
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 0;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return 0;
     }
 
     @Override

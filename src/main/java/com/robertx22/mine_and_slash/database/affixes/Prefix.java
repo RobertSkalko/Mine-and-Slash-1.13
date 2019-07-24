@@ -24,4 +24,9 @@ public abstract class Prefix extends BaseAffix implements ISlashRegistryEntry<Pr
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.PREFIX;
     }
+
+    @Override
+    public int Tier() {
+        return 0;
+    }
 }

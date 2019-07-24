@@ -27,4 +27,5 @@ public class Chest extends BaseArmor {
     public String locNameForLangFile() {
         return "Chest";
     }
+
 }

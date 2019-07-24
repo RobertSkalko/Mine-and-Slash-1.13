@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.unique_items.rings;
 
-import com.robertx22.mine_and_slash.database.map_mods.minus.LessHealthMap;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.minus.LessHealthMap;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

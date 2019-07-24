@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -37,6 +39,21 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     @Override
     public String GUID() {
         return this.registryName;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 0;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return 0;
     }
 
     public enum creationTypes {

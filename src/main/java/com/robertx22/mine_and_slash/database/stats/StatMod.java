@@ -33,6 +33,11 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISlashRegist
     }
 
     @Override
+    public int Tier() {
+        return 0;
+    }
+
+    @Override
     public int getRarityRank() {
         return 1;
     }

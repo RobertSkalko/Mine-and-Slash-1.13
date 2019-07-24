@@ -23,6 +23,11 @@ public abstract class BaseMapAffix implements IWeighted, IGUID, IRarity, ISlashR
     }
 
     @Override
+    public int Tier() {
+        return 0;
+    }
+
+    @Override
     public int getRarityRank() {
         return IRarity.Uncommon;
     }

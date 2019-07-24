@@ -48,8 +48,12 @@ public class UniqueGearBlueprint extends GearBlueprint {
         if (this.uniqueIsRandom) {
 
             if (this.randomTier == false) {
-                return RandomUtils.weightedRandom(SlashRegistry.UniqueGears()
-                        .getFiltered(x -> x.Tier() == tier));
+
+                return (IUnique) SlashRegistry.UniqueGears()
+                        .getWrapped()
+                        .ofExactTier(tier)
+                        .random();
+
             } else {
                 return randomUnique();
             }

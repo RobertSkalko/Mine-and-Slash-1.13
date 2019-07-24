@@ -1,10 +1,19 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-public enum GearItemEnum {
+import java.util.Arrays;
+
+public enum GearItemEnum implements IWeighted {
 
     NORMAL() {
+        @Override
+        public int Weight() {
+            return 1000;
+        }
+
         @Override
         public boolean canGetSet(GearItemData data) {
             return true;
@@ -44,6 +53,11 @@ public enum GearItemEnum {
 
     RUNED() {
         @Override
+        public int Weight() {
+            return 250;
+        }
+
+        @Override
         public boolean canGetSet(GearItemData data) {
             return true;
         }
@@ -80,6 +94,11 @@ public enum GearItemEnum {
     },
 
     UNIQUE() {
+        @Override
+        public int Weight() {
+            return 50;
+        }
+
         @Override
         public boolean canGetSet(GearItemData data) {
             try {
@@ -134,5 +153,9 @@ public enum GearItemEnum {
     public abstract boolean canGetInfusions(GearItemData data);
 
     public abstract boolean canGetSecondaryStats(GearItemData data);
+
+    public static GearItemEnum random() {
+        return RandomUtils.weightedRandom(Arrays.asList(GearItemEnum.values()));
+    }
 
 }

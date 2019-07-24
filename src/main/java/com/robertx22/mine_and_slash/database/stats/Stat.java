@@ -40,6 +40,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     static final int spriteSize = 18;
 
     @Override
+    public int Tier() {
+        return 0;
+    }
+
+    @Override
     public int getRarityRank() {
         return IRarity.Uncommon;
     }

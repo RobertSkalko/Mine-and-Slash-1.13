@@ -3,8 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -33,7 +32,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import java.util.List;
 
 @Storable
-public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
+public class SpellItemData implements ICommonDataItem {
 
     public SpellItemData() {
 
@@ -179,7 +178,7 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
     }
 
     public BaseSpell GetSpell() {
-        return (BaseSpell) this.getFromRegistry();
+        return SlashRegistry.Spells().get(this.spellGUID);
     }
 
     @Override
@@ -264,16 +263,6 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SPELL;
-    }
-
-    @Override
-    public String GUID() {
-        return this.spellGUID;
-    }
-
-    @Override
     public int getLevel() {
         return this.level;
     }
@@ -287,4 +276,5 @@ public class SpellItemData implements ICommonDataItem, ISlashRegistryEntry {
     public String getSpecificType() {
         return this.spellGUID;
     }
+
 }

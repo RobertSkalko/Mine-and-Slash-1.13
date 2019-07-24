@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
@@ -42,6 +43,15 @@ public class BlueprintGearReward {
     public BlueprintGearReward(BlueprintItemData data) {
 
         int diff = data.getDifficulty();
+        this.rarity = data.rarity;
+        this.level = data.level;
+        this.tier = data.tier;
+
+        this.enumGearType = GearItemEnum.random();
+
+        if (this.enumGearType == GearItemEnum.UNIQUE) {
+            this.uniqueID = SlashRegistry.UniqueGears().random().GUID();
+        }
 
         // TODO BASE THE REWARD ON THE DIFFICULTY..
 

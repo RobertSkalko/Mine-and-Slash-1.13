@@ -1,28 +1,17 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.text.DecimalFormat;
 
 @Storable
-public class StatData implements ISlashRegistryEntry<Stat> {
+public class StatData {
 
     public StatData() {
 
-    }
-
-    @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.STAT;
-    }
-
-    @Override
-    public String GUID() {
-        return this.Name;
     }
 
     public StatData(Stat stat) {
@@ -30,7 +19,7 @@ public class StatData implements ISlashRegistryEntry<Stat> {
     }
 
     public Stat GetStat() {
-        return this.getFromRegistry();
+        return SlashRegistry.Stats().get(Name);
     }
 
     @Store

@@ -31,4 +31,5 @@ public class RuneWordBloom extends RuneWord {
     public String locNameForLangFile() {
         return "Bloom";
     }
+
 }

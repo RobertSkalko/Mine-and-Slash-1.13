@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana;
 
-import com.robertx22.mine_and_slash.database.map_mods.minus.LessHealthMap;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.AllElementalDamageMulti;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.minus.LessHealthMap;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 

@@ -26,6 +26,11 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
     }
 
     @Override
+    public int Tier() {
+        return 0;
+    }
+
+    @Override
     public Rarity getRarity() {
         return Rarities.Items.get(getRarityRank());
     }

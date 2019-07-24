@@ -20,4 +20,9 @@ public abstract class Suffix extends BaseAffix implements ISlashRegistryEntry<Su
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.SUFFIX;
     }
+
+    @Override
+    public int Tier() {
+        return 0;
+    }
 }

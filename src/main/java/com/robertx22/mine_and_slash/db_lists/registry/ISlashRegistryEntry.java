@@ -1,8 +1,11 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 
-public interface ISlashRegistryEntry<C> extends IGUID {
+public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRarity {
 
     SlashRegistryType getSlashRegistryType();
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,9 +71,17 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         }
     }
 
+    public FilterListWrap getWrapped() {
+        return new FilterListWrap<C>(this.map.values());
+    }
+
     // just do predicate.and() .or() etc. if need multiple
     public List<C> getFiltered(Predicate<C> predicate) {
         return this.getList().stream().filter(predicate).collect(Collectors.toList());
+    }
+
+    public C random() {
+        return RandomUtils.weightedRandom(this.getList());
     }
 
     public boolean isRegistered(C c) {

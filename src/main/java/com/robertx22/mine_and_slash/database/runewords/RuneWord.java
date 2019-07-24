@@ -2,12 +2,15 @@ package com.robertx22.mine_and_slash.database.runewords;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.List;
 
@@ -16,6 +19,21 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlash
     public abstract List<StatMod> mods();
 
     public abstract String GUID();
+
+    @Override
+    public int Tier() {
+        return 0;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Uncommon;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Runes.get(getRarityRank());
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -40,7 +58,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlash
 
     @Override
     public int Weight() {
-        return 1000;
+        return this.getRarity().Weight();
     }
 
     public String getRuneWordCombo() {
