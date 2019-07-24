@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -13,6 +12,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public List<String> registersErrorsAlertedFor = new ArrayList<>();
     public List<String> accessorErrosAletedFor = new ArrayList<>();
+
+    public static void logRegistryError(String text) {
+        System.out.println("[Mine and Slash Registry Error]: " + text);
+    }
 
     private SlashRegistryType type;
     private C empty;
@@ -36,7 +39,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void emptyRegistryLog() {
         if (errorIfEmpty) {
             if (map.isEmpty()) {
-                System.out.println(Ref.MODID + " Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+                logRegistryError("Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
             }
         }
     }
@@ -62,8 +65,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             return map.get(guid);
         } else {
             if (accessorErrosAletedFor.contains(guid) == false) {
-                System.out.println("Mine and Slash GUID Error: " + guid + " of type: " + type
-                        .toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+                logRegistryError("GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
                 accessorErrosAletedFor.add(guid);
             }
 
@@ -96,7 +98,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
         if (isRegistered(c)) {
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
-                System.out.println("[Mine and Slash Registry Error]: Key: " + c.GUID() + " has already been registered to: " + c
+                logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c
                         .getSlashRegistryType()
                         .toString() + " registry.");
                 registersErrorsAlertedFor.add(c.GUID());
